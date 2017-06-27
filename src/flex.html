@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <!--
+        https://developer.mozilla.org/zh-CN/docs/Web/CSS/CSS_Flexible_Box_Layout/Using_CSS_flexible_boxes
+        http://learnlayout.com/flexbox.html
+        https://css-tricks.com/snippets/css/a-guide-to-flexbox/
+    -->
+    <style>
+        /** {
+            margin: 0;
+            padding: 0;
+        }*/
+        
+        .container {
+            display: -webkit-flex;
+            display: flex;
+            border: 1px solid red;
+            box-sizing: border-box;
+            overflow: hidden;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .initial {
+            -webkit-flex: initial;
+            flex: initial;
+            width: 300px;
+            max-width: 300px;
+            box-sizing: border-box;
+            background: #0f0;
+            transition: all ease-out 0.5s 0.1s;
+        }
+        
+        .initial>ul>li {
+            /*list-style-type: none;*/
+            margin-left: -20px;
+        }
+        
+        @media all and (max-width: 720px) {
+            .initial {
+                -webkit-flex: initial;
+                flex: initial;
+                width: 50px;
+                max-width: 50px;
+                box-sizing: border-box;
+                background: #ccc;
+                transition: all ease-in 0.5s 0.1s;
+                color: aquamarine;
+            }
+        }
+        
+        .none {
+            -webkit-flex: none;
+            flex: none;
+            width: 200px;
+        }
+        
+        .flex1 {
+            -webkit-flex: 1;
+            flex: 1;
+            box-sizing: border-box;
+            background: #f0f;
+        }
+        
+        .flex2 {
+            -webkit-flex: 2;
+            flex: 2;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>flex</h1>
+    <hr>
+    <div class="container">
+        <nav class="initial">
+            <ul>
+                <li>li1</li>
+                <li>li2</li>
+                <li>li3</li>
+            </ul>
+        </nav>
+        <section class="flex1">
+            flex 1
+        </section>
+    </div>
+    <section>
+        <ul>
+            <li> name_1
+                <ul>
+                    <li> name_3
+                        <ul>
+                            <li> name_4 </li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            <li> name_2 </li>
+        </ul>
+    </section>
+</body>
+
+</html>

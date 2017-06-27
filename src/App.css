@@ -1,0 +1,89 @@
+.App {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.App-logo {
+    animation: App-logo-spin infinite 20s linear;
+    height: 80px;
+}
+
+.App-header {
+    background-color: #222;
+    height: 150px;
+    padding: 20px;
+    color: white;
+    text-align: center;
+}
+
+@keyframes App-logo-spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.App-SideBox {
+    position: relative;
+    max-width: 300px;
+}
+
+.App-SideBox-init {
+    position: relative;
+    border: 1px solid red;
+    margin: auto;
+    /*text-align: center;*/
+    max-width: 300px;
+    max-width: min-content;
+    overflow: hidden;
+    float: left;
+    -webkit-transition: all 0.5s ease 0.1s;
+    -moz-transition: all 0.5s ease 0.1s;
+    transition: all 0.5s ease 0s;
+}
+
+.App-SideBox-New {
+    position: relative;
+    border: 3px solid #ff0;
+    margin: auto;
+    /*text-align: center;*/
+    width: 50px;
+    max-width: 50px !important;
+    max-width: min-content !important;
+    overflow: hidden;
+    float: left;
+    -webkit-transition: all 0.5s ease 0.1s;
+    -moz-transition: all 0.5s ease 0.1s;
+    transition: all 0.5s ease 0.1s;
+}
+
+.App-SideBox-btn {
+    /*position: absolute;*/
+    float: left;
+    z-index: 99999;
+    cursor: pointer;
+    margin-top: 50%;
+    transform: translateY(50%);
+    width: 20px;
+    overflow: hidden;
+    height: 100px;
+    color: #0f0;
+    background: rgba(0, 0, 0, 0.9);
+    border-radius: 0 15px 15px 0;
+    text-align: center;
+    line-height: 100px;
+    /*text-orientation: upright;*/
+    /*writing-mode: tb-rl;*/
+}
+
+.App-body {
+    background: #ccc;
+    font-size: 32px;
+    width: 100%;
+    /*margin-left: 300px;*/
+    /*clear: both;
+    float: left;*/
+}
