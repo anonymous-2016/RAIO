@@ -8,7 +8,7 @@ import SideBox from './SideBox.js';
 
 import ContentBox from './ContentBox.js';
 
-import TestRouters from './TestRouters.js';
+// import TestRouters from './TestRouters.js';
 
 
 /*import SidebarExample from './test.js';*/
@@ -79,7 +79,7 @@ class App extends Component {
             <div className="App">
                 <div className="App-header">
                     <img src={logo} className="App-logo" alt="logo" style={this.props.width}/>
-                    <h2>React SRC</h2>
+                    <h2>React 微盘交易管理系统</h2>
                 </div>
                 {/*<div className="App-SideBox">
                     <div className={this.state.styles}>

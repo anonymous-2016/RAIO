@@ -121,7 +121,13 @@ plugins: [
 
 
 
+<!--
 
+async & delay & lasy loading
+
+lasy import
+
+-->
 
 
 
