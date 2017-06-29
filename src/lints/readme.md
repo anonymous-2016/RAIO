@@ -21,6 +21,9 @@ https://github.com/airbnb/javascript/blob/master/packages/eslint-config-airbnb/.
 }
 
 
+# eslint-1-warnings-2-errors
+
+https://gist.github.com/xgqfrms-gildata/7d861fde6dd15262ae007e68ca0898f0
 
 
 
