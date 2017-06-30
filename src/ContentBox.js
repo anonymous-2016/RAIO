@@ -76,30 +76,24 @@ class ContentBox extends Component {
         // (prevState, props)
         console.log('click ', e);
         this.setState({
-            current: e.key,
+            current: e.key
         });
     }
     render() {
         // let routes = [this.props.routes];
         return (
             <Router>
-                <div style={{display: 'flex'}} className={this.props.styles}>
+                <div style={{display: 'flex'}} >
                     <div style={{
-                            width: '270px',
-                            background: '#f0f0f0',
-                            borderRight: "30px solid red",
-                            minHeight: ' 500px',
-                            maxHeight: '700px',
+                            minHeight: '800px',
+                            maxHeight: '1000px',
                             overflowX: 'hidden',
                             overflowY: 'scroll',
+                            background: '#333'
                         }}
-                        className="sidebar-btn"
+                        className="old-sidebar-btn"
+                        className={this.props.styles}
                         >
-                        <button onClick={this.props.ClickHandler}>props</button>
-                        <button onClick={(e) => this.props.ClickHandler(e)}>props</button>
-                        {/**/}
-                        <button onClick={this.state.ClickHandler}>state</button>
-                        <button onClick={(e) => this.state.ClickHandler(e)}>state</button>
                         <Menu
                                 theme={this.state.theme}
                                 onClick={this.handleClick}
@@ -228,6 +222,12 @@ class ContentBox extends Component {
                             </SubMenu>
                         </Menu>
                     </div>
+                    <button 
+                        onClick={this.props.ClickHandler}
+                        style={{minWidth: "50px", height: "auto", border: "1px solid #0f0", cursor: "pointer"}}
+                        >
+                        props
+                    </button>
                     <div style={{ flex: 1, padding: '10px', overflow: 'auto'}}>
                         {routes.map((route, index) => (
                             <Route
