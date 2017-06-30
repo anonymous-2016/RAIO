@@ -53,9 +53,9 @@ class App extends Component {
             width: props.width,
             routes: routes
         };
-        this.handleMenuClick = this.handleMenuClick.bind(this);
+        // this.handlerMenuClick = this.handlerMenuClick.bind(this);
     }
-    handleMenuClick(e) {
+    handlerMenuClick(e) {
         console.log("clicked === \n", e);
         if(this.state.styles === "App-SideBox-init"){
             this.setState({
@@ -81,30 +81,8 @@ class App extends Component {
                     <img src={logo} className="App-logo" alt="logo" style={this.props.width}/>
                     <h2>React 微盘交易管理系统</h2>
                 </div>
-                {/*<div className="App-SideBox">
-                    <div className={this.state.styles}>
-                        <SideBox routes={routes}/>
-                        <TestRouters/>
-                    </div>
-                    <div onClick={this.handleMenuClick} className="App-SideBox-btn">
-                        <span>icon</span>
-                    </div>
-                </div>*/}
                 <div className="App-body">
-                    <ContentBox routes={routes}/>
-                    {/*how to dynamic update route*/}
-                    {/*<Router>
-                        <div style={{ flex: 1, padding: '10px' }}>
-                            {routes.map((route, index) => (
-                                <Route
-                                    key={index}
-                                    path={route.path}
-                                    exact={route.exact}
-                                    component={route.main}
-                                />
-                            ))}
-                        </div>
-                    </Router>*/}
+                    <ContentBox routes={routes} ClickHandler={(e)=> this.handlerMenuClick(e)} styles={this.state.styles}/>
                 </div>
             </div>
         );

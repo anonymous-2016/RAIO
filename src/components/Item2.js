@@ -4,11 +4,7 @@ class Item2 extends Component {
     render() {
         return (
             <div>
-                item2 <br/>
-                <hr/>
-                item2 <br/>
-                <hr/>
-                item2 <br/>
+                <h1>登陆统计</h1>
             </div>
         );
     }
