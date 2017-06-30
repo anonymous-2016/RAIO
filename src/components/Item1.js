@@ -14,12 +14,29 @@ class Item1 extends Component {
             <div>
                 <h1>用户查询</h1>
                 {/*<IndexComponents />*/}
-                <AL />
-                al
+                {/*<AL />*/}
             </div>
         );
     }
 }
 
+/* input box*/
+
+/*const InputBox = () => {
+    return();
+
+}
+
+
+登陆名:
+用户ID:
+用户类型:
+内部用户
+激活状态:
+是
+手机号:
+邮件:
+用户姓名:
+有效日期*/
 
 export default Item1;

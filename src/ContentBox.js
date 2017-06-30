@@ -15,6 +15,7 @@ import Item3 from './components/Item3.js';
 import './contentbox.css';
 
 import {Layout, Menu, Icon} from 'antd';
+import {Button} from 'antd';
 import 'antd/dist/antd.css';
 
 const {Header, Content, Footer, Sider} = Layout;
@@ -87,8 +88,7 @@ class ContentBox extends Component {
                     <div style={{
                             minHeight: '800px',
                             maxHeight: '1000px',
-                            overflowX: 'hidden',
-                            overflowY: 'scroll',
+                            overflow: 'hidden',
                             background: '#333'
                         }}
                         className="old-sidebar-btn"
@@ -222,13 +222,9 @@ class ContentBox extends Component {
                             </SubMenu>
                         </Menu>
                     </div>
-                    <button 
-                        onClick={this.props.ClickHandler}
-                        style={{minWidth: "50px", height: "auto", border: "1px solid #0f0", cursor: "pointer"}}
-                        >
-                        props
-                    </button>
-                    <div style={{ flex: 1, padding: '10px', overflow: 'auto'}}>
+                    <Button icon="swap" onClick={this.props.ClickHandler}>折叠/展开</Button>
+                    {/*menu-fold menu-unfold*/}
+                    <div style={{flex: 1, padding: '100px 10px', overflow: 'auto'}}>
                         {routes.map((route, index) => (
                             <Route
                                 key={index}
