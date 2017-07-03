@@ -3,8 +3,8 @@
     margin: 0;
     padding: 0;
     overflow: hidden;
-    height: 700px;
-    max-height: 700px;
+    min-height: 700px;
+    /*max-height: 1500px;*/
 }
 
 .App-logo {
@@ -36,8 +36,8 @@
 
 .App-SideBox-init {
     position: relative;
-    border: 1px solid red;
-    margin: auto;
+    /*border: 1px solid red;*/
+    /*margin: auto;*/
     /*text-align: center;*/
     max-width: 300px;
     width: 240px;
@@ -51,8 +51,8 @@
 
 .App-SideBox-New {
     position: relative;
-    border: 3px solid #ff0;
-    margin: auto;
+    /*border: 3px solid #ff0;*/
+    /*margin: auto;*/
     /*text-align: center;*/
     width: 50px;
     max-width: 50px !important;
@@ -75,7 +75,7 @@
     overflow: hidden;
     height: 100px;
     color: #0f0;
-    background: rgba(0, 0, 0, 0.9);
+    background: rgba(0, 0, 0, 1);
     border-radius: 0 15px 15px 0;
     text-align: center;
     line-height: 100px;
@@ -84,10 +84,25 @@
 }
 
 .App-body {
-    background: #ccc;
+    background: #fff;
     font-size: 32px;
     width: 100%;
     /*margin-left: 300px;*/
     /*clear: both;
     float: left;*/
+}
+
+.ant-table-wrapper {
+    zoom: 1;
+    border: 1px solid #e9e9e9;
+    margin: 10px;
+}
+
+#btn_style {
+    padding-left: 1px;
+    padding-right: 1px;
+    margin-top: 250px;
+    margin-left: -10px;
+    background: #000;
+    z-index: 999999;
 }

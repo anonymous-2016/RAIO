@@ -1,0 +1,22 @@
+.user-search {
+    border: 1px solid #d9d9d9;
+    padding: 10px;
+    margin: 10px;
+}
+
+#user-check-search {
+    right: -130px;
+    position: absolute;
+    top: -10px;
+}
+
+
+/*.itemBox {
+    width: 230px;
+    border: 1px solid red;
+    overflow: hidden;
+    text-align: right;
+    padding-top: 10px;
+    padding-bottom: -10px;
+    float: left;
+}*/

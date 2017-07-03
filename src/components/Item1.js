@@ -4,6 +4,11 @@ import {IndexComponents} from './IndexComponents';
 
 import {AL} from '../Ant_Components/FixedSider';
 
+import {WHLF} from './utils/WHLF';
+import './utils/WHLF.css';
+
+import {AT} from './utils/AT';
+
 import {Layout, Menu, Icon} from 'antd';
 const {Header, Content, Footer, Sider} = Layout;
 
@@ -12,9 +17,15 @@ class Item1 extends Component {
     render() {
         return (
             <div>
-                <h1>用户查询</h1>
+                <a href="#用户查询">用户查询</a>
                 {/*<IndexComponents />*/}
                 {/*<AL />*/}
+                <div className="user-search">
+                    <WHLF />
+                </div>
+                <div>
+                    <AT />
+                </div>
             </div>
         );
     }

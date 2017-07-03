@@ -41,7 +41,14 @@ const routes = [
     }
 ];
 
-
+const btnStyles = {
+    border: "2px solid #ccc",
+    color: "#0f0",
+    fontSize: "18px",
+    height: "50px",
+    lineHeight: "50px",
+    padding: "auto 1px !important"
+};
 
 class ContentBox extends Component {
     constructor(props) {
@@ -222,9 +229,15 @@ class ContentBox extends Component {
                             </SubMenu>
                         </Menu>
                     </div>
-                    <Button icon="swap" onClick={this.props.ClickHandler}>折叠/展开</Button>
+                    <Button
+                         icon="swap"
+                         style={btnStyles}
+                         onClick={this.props.ClickHandler}
+                         id="btn_style"
+                         >
+                    </Button>
                     {/*menu-fold menu-unfold*/}
-                    <div style={{flex: 1, padding: '100px 10px', overflow: 'auto'}}>
+                    <div style={{flex: 1, padding: '10px', overflow: 'auto'}}>
                         {routes.map((route, index) => (
                             <Route
                                 key={index}
