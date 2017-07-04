@@ -1,20 +1,10 @@
 import React, {Component} from 'react';
 
-
 import {Form, Icon, Input, Button} from 'antd';
-
 import {DatePicker, TimePicker} from 'antd';
+const {MonthPicker, RangePicker} = DatePicker;
 
-
-/*import moment from 'moment';
-
-// 推荐在入口文件全局设置 locale
-import 'moment/locale/zh-cn';
-
-moment.locale('zh-cn');*/
-
-
-
+// import moment from 'moment';
 
 const FormItem = Form.Item;
 
@@ -22,7 +12,6 @@ const hasErrors = (fieldsError) => {
     // 测试数组中的某些元素是否通过由提供的函数实现的测试。
     return Object.keys(fieldsError).some(field => fieldsError[field]);
 };
-
 
 const today = new Date().toLocaleString();
 
@@ -138,6 +127,7 @@ class HLF extends Component {
                         )
                     }
                 </FormItem>
+                <br/>
                 {/*</div>
                 <div className="itemBox">*/}
                 <FormItem
@@ -203,10 +193,10 @@ class HLF extends Component {
                         })
                         (
                             <div>
-                                <DatePicker
+                                <RangePicker
                                     showTime
+                                    open="false"
                                     format="YYYY-MM-DD HH:mm:ss"
-                                    placeholder="请选择有效日期"
                                     onChange={(e) => this.onStartChange(e)}
                                     />
                             </div>
@@ -215,6 +205,7 @@ class HLF extends Component {
                 </FormItem>
                 {/*</div>
                 <div className="itemBoxBtn">*/}
+                <br/>
                 <FormItem>
                     <Button
                         icon="search"
@@ -248,19 +239,5 @@ export default WHLF;
 激活状态
 有效日期	
 用户类型:	内部用户
-                <FormItem
-                    validateStatus={passwordError ? 'error' : ''}
-                    help={passwordError || ''}
-                    label="密码"
-                    style={{}}
-                    >
-                    {
-                        getFieldDecorator('password', {
-                            rules: [{ required: true, message: 'Please input your Password!' }],
-                        })
-                        (
-                            <Input prefix={<Icon type="lock" style={{ fontSize: 13 }} />} type="password" placeholder="Password" />
-                        )
-                    }
-                </FormItem>
+
 */

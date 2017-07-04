@@ -17,7 +17,7 @@
     },
     "editor.formatOnSave": false,
     "editor.renderWhitespace": "all",
-    "editor.fontSize": 14,
+    "editor.fontSize": 16,
     "editor.tabSize": 4,
     "editor.multiCursorModifier": "alt",
     "editor.wordWrap": "on",

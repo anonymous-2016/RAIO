@@ -78,7 +78,7 @@ const columns = [
     }, 
     {
         title: '有效日期',
-        dataIndex: 'valid',
+        dataIndex: 'vdate',
         key: 'validDate '
     },
     {
@@ -87,22 +87,25 @@ const columns = [
         key: 'userType '
     },
     {
-        title: 'Action',
+        title: '操作',
         key: 'action',
-        render: (text, record) => (
+        render: (text, data) => (
             <span>
-                <a href="#">Action 一 {record.name}</a>
+                <a href={"#"+data.uname}>更新</a>
                 <span className="ant-divider" />
-                <a href="#">Delete</a>
+                <a href="#">删除</a>
                 <span className="ant-divider" />
                 <a href="#" className="ant-dropdown-link">
-                    More actions <Icon type="down" />
+                    More <Icon type="down" />
                 </a>
             </span>
         )
     }
 ];
 
+// http://localhost:8000/user/450000197702084698
+
+// xiagq gildata 23 Male 18123456789 xiagq@gildata.com 上海 上海市 浦东新区 2017-07-03 15:26:50
 
 const data = [
     {
@@ -112,7 +115,9 @@ const data = [
         uid: 17,
         lname: '西湖区',
         pnum: "18123456789",
-        email: "clarence.gray@example.com"
+        email: "clarence.gray@example.com",
+        vdate: "2017-01-01~2017-12-31",
+        activation: "是"
     }, 
     {
         key: '2',
@@ -121,7 +126,9 @@ const data = [
         uid: 23,
         lname: '湖底公园',
         pnum: "18123456789",
-        email: "clarence.gray@example.com"
+        email: "clarence.gray@example.com",
+        vdate: "2017-01-01~2017-12-31",
+        activation: "否"
     },
     {
         key: '3',
@@ -130,7 +137,9 @@ const data = [
         uid: 32,
         lname: 'Sidney No. 1 Lake Park',
         pnum: "18123456789",
-        email: "clarence.gray@example.com"
+        email: "clarence.gray@example.com",
+        vdate: "2017-01-01~2017-12-31",
+        activation: "是"
     },
     {
         key: '4',
@@ -139,7 +148,9 @@ const data = [
         uid: 23,
         lname: '西湖公园1号',
         pnum: "18123456789",
-        email: "clarence.gray@example.com"
+        email: "clarence.gray@example.com",
+        vdate: "2017-01-01~2017-12-31",
+        activation: "是"
     }, 
     {
         key: '5',
@@ -148,7 +159,9 @@ const data = [
         uid: 66,
         lname: '西湖湖底',
         pnum: "18123456789",
-        email: "clarence.gray@example.com"
+        email: "clarence.gray@example.com",
+        vdate: "2017-01-01~2017-12-31",
+        activation: "否"
     },
     {
         key: '6',
@@ -157,7 +170,9 @@ const data = [
         uid: 18,
         lname: 'Sidney No. 1 Lake Park',
         pnum: "18123456789",
-        email: "clarence.gray@example.com"
+        email: "clarence.gray@example.com",
+        vdate: "2017-01-01~2017-12-31",
+        activation: "否"
     }
 ];
 

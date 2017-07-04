@@ -43,6 +43,7 @@ const routes = [
 
 const btnStyles = {
     border: "2px solid #ccc",
+    borderRight: "2px solid #bbb",
     color: "#0f0",
     fontSize: "18px",
     height: "50px",
