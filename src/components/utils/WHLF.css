@@ -1,7 +1,15 @@
 .user-search {
     border: 1px solid #d9d9d9;
-    padding: 10px;
+    padding: 20px 10px 10px;
     margin: 10px;
+}
+
+.search-spaces {
+    margin-left: 30px;
+}
+
+.left-spaces {
+    margin-left: 13px;
 }
 
 

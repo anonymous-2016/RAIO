@@ -35,7 +35,6 @@ class HLF extends Component {
         // value = value._d;
         this.onChange('startValue', value);
         console.log('DatePicker new value = \n', value);
-        
     };
     componentDidMount() {
         // To disabled submit button at the beginning.
@@ -52,6 +51,8 @@ class HLF extends Component {
     clickSearchHandler = (e) => {
         e.preventDefault();
         console.log('Received values of form: ', e);
+        let event = e;
+        alert(event);
     };
     render() {
         // 解构赋值
@@ -60,9 +61,11 @@ class HLF extends Component {
         const userNameError = isFieldTouched('userName') && getFieldError('userName');
         const textError = isFieldTouched('text') && getFieldError('text');
         const userTypeError = isFieldTouched('text') && getFieldError('text');
+        //
+        const phoneTypeError = isFieldTouched('text') && getFieldError('text');
+        const emailTypeError = isFieldTouched('email') && getFieldError('email');
         return (
             <Form layout="inline" onSubmit={this.handleSubmit}>
-                {/*<div className="itemBox">*/}
                 <FormItem
                     validateStatus={userNameError ? 'error' : ''}
                     help={userNameError || ''}
@@ -77,8 +80,6 @@ class HLF extends Component {
                         )
                     }
                 </FormItem>
-                {/*</div>
-                <div className="itemBox">*/}
                 <FormItem
                     validateStatus={textError ? 'error' : ''}
                     help={textError || ''}
@@ -94,8 +95,6 @@ class HLF extends Component {
                         )
                     }
                 </FormItem>
-                {/*</div>
-                <div className="itemBox">*/}
                 <FormItem
                     validateStatus={userTypeError ? 'error' : ''}
                     help={userTypeError || ''}
@@ -110,8 +109,6 @@ class HLF extends Component {
                         )
                     }
                 </FormItem>
-                {/*</div>
-                <div className="itemBox">*/}
                 <FormItem
                     validateStatus={textError ? 'error' : ''}
                     help={textError || ''}
@@ -128,42 +125,36 @@ class HLF extends Component {
                     }
                 </FormItem>
                 <br/>
-                {/*</div>
-                <div className="itemBox">*/}
                 <FormItem
-                    validateStatus={textError ? 'error' : ''}
-                    help={textError || ''}
+                    validateStatus={phoneTypeError ? 'error' : ''}
+                    help={phoneTypeError || ''}
                     label="手机号"
                     style={{}}
                     >
                     {
-                        getFieldDecorator('text', {
+                        getFieldDecorator('number', {
                             rules: [{ required: false, message: '手机号' }],
                         })
                         (
-                            <Input prefix={<Icon type="phone" style={{ fontSize: 13 }} />} type="text" placeholder="手机号" />
+                            <Input prefix={<Icon type="phone" style={{ fontSize: 13 }} />} type="number" placeholder="手机号" />
                         )
                     }
                 </FormItem>
-                {/*</div>
-                <div className="itemBox">*/}
                 <FormItem
-                    validateStatus={textError ? 'error' : ''}
-                    help={textError || ''}
-                    label="邮箱"
+                    validateStatus={emailTypeError ? 'error' : ''}
+                    help={emailTypeError || ''}
+                    label={<span className="left-spaces">邮箱</span>}
                     style={{}}
                     >
                     {
-                        getFieldDecorator('text', {
+                        getFieldDecorator('email', {
                             rules: [{ required: false, message: '邮箱' }],
                         })
                         (
-                            <Input prefix={<Icon type="mail" style={{ fontSize: 13 }} />} type="text" placeholder="邮箱" />
+                            <Input prefix={<Icon type="mail" style={{ fontSize: 13 }} />} type="email" placeholder="邮箱" />
                         )
                     }
                 </FormItem>
-                {/*</div>
-                <div className="itemBox">*/}
                 <FormItem
                     validateStatus={textError ? 'error' : ''}
                     help={textError || ''}
@@ -179,8 +170,6 @@ class HLF extends Component {
                         )
                     }
                 </FormItem>
-                {/*</div>
-                <div className="itemBox">*/}
                 <FormItem
                     validateStatus={textError ? 'error' : ''}
                     help={textError || ''}
@@ -195,7 +184,6 @@ class HLF extends Component {
                             <div>
                                 <RangePicker
                                     showTime
-                                    open="false"
                                     format="YYYY-MM-DD HH:mm:ss"
                                     onChange={(e) => this.onStartChange(e)}
                                     />
@@ -203,9 +191,7 @@ class HLF extends Component {
                         )
                     }
                 </FormItem>
-                {/*</div>
-                <div className="itemBoxBtn">*/}
-                <br/>
+                <span className="search-spaces"/>
                 <FormItem>
                     <Button
                         icon="search"
@@ -217,7 +203,6 @@ class HLF extends Component {
                         查询
                     </Button>
                 </FormItem>
-               {/* </div>*/}
             </Form>
         );
     }

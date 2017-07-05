@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="root">
+        <!-- This element's contents will be replaced with your component. -->
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.6.1/react.min.js" integrity="sha256-ivdPAn5h6U67z6OPgwfiLM9ug6levxmYFqWNxNCV0YE=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.6.1/react-dom.min.js" integrity="sha256-UEqn5+tyzezD6A5HBMNTlc5mXkmt+ohTfCBPtXMaGb0=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react-router-dom/4.1.1/react-router-dom.js" integrity="sha256-/d3M+20uJ4+y9J4fuE2BAoFPU+inA9OfwmF7ZuzOoN8=" crossorigin="anonymous"></script>
+    <script>
+        'use strict';
+
+        var _react = require('react');
+
+        var _react2 = _interopRequireDefault(_react);
+
+        var _reactRouterDom = require('react-router-dom');
+
+        function _interopRequireDefault(obj) {
+            return obj && obj.__esModule ? obj : {
+                default: obj
+            };
+        }
+
+        var Home = function Home() {
+            return _react2.default.createElement(
+                'div',
+                null,
+                _react2.default.createElement(
+                    'h2',
+                    null,
+                    'Home'
+                )
+            );
+        };
+
+        var About = function About() {
+            return _react2.default.createElement(
+                'div',
+                null,
+                _react2.default.createElement(
+                    'h2',
+                    null,
+                    'About'
+                )
+            );
+        };
+
+        var Topic = function Topic(_ref) {
+            var match = _ref.match;
+            return _react2.default.createElement(
+                'div',
+                null,
+                _react2.default.createElement(
+                    'h3',
+                    null,
+                    match.params.topicId
+                )
+            );
+        };
+
+        var Topics = function Topics(_ref2) {
+            var match = _ref2.match;
+            return _react2.default.createElement(
+                'div',
+                null,
+                _react2.default.createElement(
+                    'h2',
+                    null,
+                    'Topics'
+                ),
+                _react2.default.createElement(
+                    'ul',
+                    null,
+                    _react2.default.createElement(
+                        'li',
+                        null,
+                        _react2.default.createElement(
+                            _reactRouterDom.Link, {
+                                to: match.url + '/rendering'
+                            },
+                            'Rendering with React'
+                        )
+                    ),
+                    _react2.default.createElement(
+                        'li',
+                        null,
+                        _react2.default.createElement(
+                            _reactRouterDom.Link, {
+                                to: match.url + '/components'
+                            },
+                            'Components'
+                        )
+                    ),
+                    _react2.default.createElement(
+                        'li',
+                        null,
+                        _react2.default.createElement(
+                            _reactRouterDom.Link, {
+                                to: match.url + '/props-v-state'
+                            },
+                            'Props v. State'
+                        )
+                    )
+                ),
+                _react2.default.createElement(_reactRouterDom.Route, {
+                    path: match.url + '/:topicId',
+                    component: Topic
+                }),
+                _react2.default.createElement(_reactRouterDom.Route, {
+                    exact: true,
+                    path: match.url,
+                    render: function render() {
+                        return _react2.default.createElement(
+                            'h3',
+                            null,
+                            'Please select a topic.'
+                        );
+                    }
+                })
+            );
+        };
+
+        var BasicExample = function BasicExample() {
+            return _react2.default.createElement(
+                _reactRouterDom.BrowserRouter,
+                null,
+                _react2.default.createElement(
+                    'div',
+                    null,
+                    _react2.default.createElement(
+                        'ul',
+                        null,
+                        _react2.default.createElement(
+                            'li',
+                            null,
+                            _react2.default.createElement(
+                                _reactRouterDom.Link, {
+                                    to: '/'
+                                },
+                                'Home'
+                            )
+                        ),
+                        _react2.default.createElement(
+                            'li',
+                            null,
+                            _react2.default.createElement(
+                                _reactRouterDom.Link, {
+                                    to: '/about'
+                                },
+                                'About'
+                            )
+                        ),
+                        _react2.default.createElement(
+                            'li',
+                            null,
+                            _react2.default.createElement(
+                                _reactRouterDom.Link, {
+                                    to: '/topics'
+                                },
+                                'Topics'
+                            )
+                        )
+                    ),
+                    _react2.default.createElement('hr', null),
+                    _react2.default.createElement(_reactRouterDom.Route, {
+                        exact: true,
+                        path: '/',
+                        component: Home
+                    }),
+                    _react2.default.createElement(_reactRouterDom.Route, {
+                        path: '/about',
+                        component: About
+                    }),
+                    _react2.default.createElement(_reactRouterDom.Route, {
+                        path: '/topics',
+                        component: Topics
+                    })
+                )
+            );
+        };
+
+        ReactDOM.render(_react2.default.createElement(BasicExample, null), document.getElementById('root'));
+    </script>
+</body>
+
+</html>
