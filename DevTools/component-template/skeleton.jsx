@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-
 import ReactDOM, {render} from 'react-dom';
 import PropTypes from 'prop-types';
 
@@ -91,13 +90,17 @@ class ComponentName extends Component {
     }
 }
 
+export {ComponentName};
 export default ComponentName;
 
 const app_root = document.querySelector(`#app_root`);
-const root = document.getElementById('root')
+const root = document.getElementById('root');
 
 ReactDOM.render(
-    <ComponentName {...props} name="xgqfrms" />,
+    <ComponentName 
+        {...props} 
+        name="xgqfrms"
+    />,
     app_root
 );
 

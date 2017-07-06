@@ -5,6 +5,11 @@ import {LayoutFixedSider} from '../Ant_Components/LayoutFixedSider';
 
 import {SiderTrigger} from '../Ant_Components/Trigger';
 
+import {ModalApp} from '../Ant_Components/Modal';
+
+import {RadioApp} from '../Ant_Components/Radio';
+
+
 class Item3 extends Component {
     render() {
         return (
@@ -15,6 +20,8 @@ class Item3 extends Component {
                 <div>
                     {/*<SiderTrigger />*/}
                 </div>
+                <ModalApp />
+                <RadioApp />
             </div>
         );
     }

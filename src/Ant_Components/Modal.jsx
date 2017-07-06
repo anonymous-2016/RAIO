@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 
 import {Modal, Button} from 'antd';
+
 const confirm = Modal.confirm;
 
 const showConfirm = () => {
@@ -8,20 +9,26 @@ const showConfirm = () => {
         title: '真的要删除它吗？',
         content: 'When clicked the OK button, this dialog will be closed after 1 second',
         onOk(){
-            return new Promise(
-                (resolve, reject) => {
-                    let result = setTimeout(Math.random() > 0.5 ? resolve : reject, 1000);
-                    console.log(`result = \n`, result);
-                    return result;
+            return new Promise((resolve, reject) => {
+                let result = setTimeout(Math.random() > 0.5 ? resolve : reject, 1000);
+                console.log(`result = \n`, result);
+                return result;
+            })
+            .then((result) => {
+                if(result > 0.5){
+                    alert(`resolve it!`);
                 }
-            ).catch(
+            })
+            .catch(
                 (reject) => {
                     console.log(`reject =\n `, reject);
                     console.log('Oops errors!');
                 }
             );
         },
-        onCancel(){}
+        onCancel(){
+            alert(`you have cancled it!`);
+        }
     });
 };
 
