@@ -7,7 +7,7 @@ const confirm = Modal.confirm;
 const showConfirm = () => {
     confirm({
         title: '真的要删除它吗？',
-        content: 'When clicked the OK button, this dialog will be closed after 1 second',
+        content: '单击确定按钮后，此对话框将在1秒后关闭',
         onOk(){
             return new Promise((resolve, reject) => {
                 let result = setTimeout(Math.random() > 0.5 ? resolve : reject, 1000);

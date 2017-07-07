@@ -2,15 +2,21 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 
 import 'whatwg-fetch';
-
-import './RoleManagement.css';
-import {RoleTree} from './RolesTree';
-
 // import * as fetch from 'whatwg-fetch';
 // https://github.com/github/fetch#json
 
-import {Table, Form, Icon, Input, Button} from 'antd';
+import './RoleManagement.css';
 
+import {RoleTree} from './RolesTree';
+
+import {DropOption} from './utils/DropOption';
+// ({onMenuClick, menuOptions = [], buttonStyle, dropdownProps}) 
+
+import MF from './utils/Modal';
+
+import {Table, Form, Icon, Input, Button, Modal} from 'antd';
+
+const confirm = Modal.confirm;
 
 const FormItem = Form.Item;
 
@@ -19,6 +25,23 @@ const hasErrors = (fieldsError) => {
     return Object.keys(fieldsError).some(field => fieldsError[field]);
 };
 
+const handleMenuClick = (record, e) => {
+    console.log(`record`, record);
+    console.log(`record.rname`, record.rname);
+    console.log(`e`, e);
+    if(e.key === "1"){
+        console.log(`update`, record.rname);
+    }
+    if(e.key === "2"){
+        confirm({
+            title: '确定删除此记录吗？',
+            onOk(){
+                //onDeleteItem(record.id);
+                console.log(`onOk`, record.rname);
+            }
+        });
+    }
+};
 
 const columns = [
     {
@@ -46,6 +69,22 @@ const columns = [
         title: '用户名',
         dataIndex: 'uname',
         key: 'userName'
+    },
+    {
+        title: '编辑',
+        dataIndex: 'edit',
+        key: 'editRole',
+        render: (text, record) => {
+            return(
+                <DropOption 
+                    onMenuClick={e => handleMenuClick(record, e)} 
+                    menuOptions={[
+                        {key: '1', name: '更新'},
+                        {key: '2', name: '删除'}
+                    ]}
+                />
+            )
+        }
     }
 ];
 
@@ -241,6 +280,7 @@ class RolesManagement extends Component {
                 </Form>
                 <div className="table-left">
                     <Table dataSource={this.state.data} columns={columns} />
+                    <MF />
                 </div>
             </div>
         );
@@ -254,7 +294,8 @@ RolesManagement.defaultProps = {
         "rname": "胡彦斌",
         "uid": 2048,
         "uname": "彦斌",
-        "ulname": "西湖 湖底公园"
+        "ulname": "西湖 湖底公园",
+        "edit": ""
     }]
 };
 

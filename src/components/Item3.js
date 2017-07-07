@@ -9,6 +9,8 @@ import {ModalApp} from '../Ant_Components/Modal';
 
 import {RadioApp} from '../Ant_Components/Radio';
 
+import {ProductManagement} from './ProductManagement';
+
 
 class Item3 extends Component {
     render() {
@@ -22,6 +24,7 @@ class Item3 extends Component {
                 </div>
                 <ModalApp />
                 <RadioApp />
+                <ProductManagement />
             </div>
         );
     }
