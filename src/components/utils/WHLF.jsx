@@ -56,6 +56,8 @@ class HLF extends Component {
     };
     render() {
         // 解构赋值
+        // alert(this.props.form);
+        console.log(`this.props.form`, this.props.form);
         const {getFieldDecorator, getFieldsError, getFieldError, isFieldTouched} = this.props.form;
         // Only show error after a field is touched.
         const userNameError = isFieldTouched('userName') && getFieldError('userName');

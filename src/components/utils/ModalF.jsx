@@ -6,8 +6,7 @@ import {
     Input,
     InputNumber,
     Radio,
-    Modal,
-    Cascader
+    Modal
 } from 'antd';
 
 
@@ -22,34 +21,10 @@ const formItemLayout = {
     }
 };
 
-const modal = ({
-    item = {},
-    onOk,
-    form: {
-        getFieldDecorator,
-        validateFields,
-        getFieldsValue
-    },
-    ...modalProps
-}) => {
-    const handleOk = () => {
-        validateFields((errors) => {
-            if (errors) {
-                return;
-            }
-            const data = {
-                ...getFieldsValue(),
-                key: item.key
-            };
-            onOk(data);
-        });
-    };
-    const modalOpts = {
-        ...modalProps,
-        onOk: handleOk
-    };
+const modal = () => {
+    const {getFieldsValue, getFieldValue, setFieldsValue, getFieldDecorator} = this.props.form;
     return (
-        <Modal {...modalOpts}>
+        <Modal >
             <Form layout="horizontal">
                 <FormItem label="姓名" hasFeedback {...formItemLayout}>
                     {getFieldDecorator('name', {
@@ -144,7 +119,7 @@ modal.propTypes = {
     onOk: PropTypes.func
 };
 
-const MF = Form.create()(modal);
+// this.props.form
+const NMF = Form.create()(modal);
 
-// export {MF};
-export default MF;
+export default NMF;

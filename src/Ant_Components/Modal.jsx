@@ -37,7 +37,7 @@ const ModalApp = (props) => {
     return(
         <div>
             <Button onClick={showConfirm}>
-                Confirm
+                Confirm & ModalApp
             </Button>
         </div>
     );

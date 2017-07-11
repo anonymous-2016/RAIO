@@ -22,16 +22,18 @@ const formItemLayout = {
     }
 };
 
-const modal = ({
-    item = {},
-    onOk,
-    form: {
-        getFieldDecorator,
-        validateFields,
-        getFieldsValue
-    },
-    ...modalProps
-}) => {
+const ModalFormList = (
+    {
+        item = {},
+        onOk,
+        form: {
+            getFieldDecorator,
+            validateFields,
+            getFieldsValue
+        },
+        ...modalProps
+    }
+) => {
     const handleOk = () => {
         validateFields((errors) => {
             if (errors) {
@@ -41,6 +43,7 @@ const modal = ({
                 ...getFieldsValue(),
                 key: item.key
             };
+            data.address = data.address.join(' ');
             onOk(data);
         });
     };
@@ -137,14 +140,19 @@ const modal = ({
     )
 };
 
-modal.propTypes = {
+ModalFormList.propTypes = {
     form: PropTypes.object.isRequired,
     type: PropTypes.string,
     item: PropTypes.object,
     onOk: PropTypes.func
 };
 
-const MF = Form.create()(modal);
 
-// export {MF};
-export default MF;
+const MFL = Form.create()(ModalFormList);
+
+
+export {MFL};
+
+export default MFL;
+
+
