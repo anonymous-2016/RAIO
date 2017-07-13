@@ -21,8 +21,12 @@ const formItemLayout = {
     }
 };
 
-const modal = () => {
+// TypeError: Cannot read property 'form' of undefined
+const modal = (props) => {
     const {getFieldsValue, getFieldValue, setFieldsValue, getFieldDecorator} = this.props.form;
+    const item = {
+        // 
+    };
     return (
         <Modal >
             <Form layout="horizontal">

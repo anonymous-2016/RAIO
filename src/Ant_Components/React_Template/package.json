@@ -1,0 +1,49 @@
+{
+    "name": "reactcodesnippets",
+    "description": "React.js Code Snippets for Front End Web Development using ES6 Syntax",
+    "version": "7.13.0",
+    "displayName": "React.js Code Snippets",
+    "publisher": "xgqfrms",
+    "icon": "images/react.png",
+    "galleryBanner": {
+        "theme": "light"
+    },
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com//vscode-react-snippets"
+    },
+    "engines": {
+        "vscode": "1.14.0"
+    },
+    "categories": [
+        "Snippets"
+    ],
+    "contributes": {
+        "snippets": [{
+                "language": "javascript",
+                "path": "./snippets/snippets.json"
+            },
+            {
+                "language": "javascriptreact",
+                "path": "./snippets/snippets.json"
+            },
+            {
+                "language": "typescript",
+                "path": "./snippets/snippets.json"
+            },
+            {
+                "language": "typescriptreact",
+                "path": "./snippets/snippets.json"
+            },
+            {
+                "language": "jsx",
+                "path": "./snippets/snippets.json"
+            },
+            {
+                "language": "tsx",
+                "path": "./snippets/snippets.json"
+            }
+        ]
+    }
+}

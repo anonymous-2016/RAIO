@@ -16,7 +16,7 @@ const FormItem = Form.Item;
 
 
 class ModalForm extends React.Component {
-    render() {
+    render(props) {
         return (
             <div>
                 <Button

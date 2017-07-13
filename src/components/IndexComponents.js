@@ -1,22 +1,25 @@
 import React, {Component} from 'react';
 
-import {UserQuery} from './UserQuery';
-import {LoginStatistics} from './LoginStatistics';
-import {BehaviorAnalysis} from './BehaviorAnalysis';
+// UM
+import {UserQuery} from './UM/UserQuery';
+import {LoginStatistics} from './UM/LoginStatistics';
+import {BehaviorAnalysis} from './UM/BehaviorAnalysis';
 
-import {RoleManagement} from './RoleManagement';
-import {BindingSettings} from './BindingSettings';
-import {LimitSettings} from './LimitSettings';
-import {UserRightsSettings} from './UserRightsSettings';
-import {UserRestrictions} from './UserRestrictions';
-import {RolePermissionSettings} from './RolePermissionSettings';
+// AM
+import {RoleManagement} from './AM/RoleManagement';
+import {BindingSettings} from './AM/BindingSettings';
+import {LimitSettings} from './AM/LimitSettings';
+import {UserRightsSettings} from './AM/UserRightsSettings';
+import {UserRestrictions} from './AM/UserRestrictions';
+import {RolePermissionSettings} from './AM/RolePermissionSettings';
 
-import {ProductManagement} from './ProductManagement';
-import {ModuleManagement} from './ModuleManagement';
-import {ClassLibraryManagement} from './ClassLibraryManagement';
-import {FunctionalManagement} from './FunctionalManagement';
-import {ResourceManagement} from './ResourceManagement';
-import {MenuManagement} from './MenuManagement';
+// IM
+import {ProductManagement} from './IM/ProductManagement';
+import {ModuleManagement} from './IM/ModuleManagement';
+import {ClassLibraryManagement} from './IM/ClassLibraryManagement';
+import {FunctionalManagement} from './IM/FunctionalManagement';
+import {ResourceManagement} from './IM/ResourceManagement';
+import {MenuManagement} from './IM/MenuManagement';
 
 class IndexComponents extends Component {
     render() {

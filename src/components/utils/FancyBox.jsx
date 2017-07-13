@@ -46,8 +46,8 @@ class SignUpDialog extends React.Component {
         return (
             <div>
                 <Dialog 
-                    title="Mars Exploration Program"
-                    message="How should we refer to you?"
+                    title="Title"
+                    message="just message?"
                     >
                     <input 
                         value={this.state.login}
@@ -56,7 +56,7 @@ class SignUpDialog extends React.Component {
                     <button
                         onClick={this.handleSignUp}
                         >
-                        Sign Me Up!
+                        {record.pname}
                     </button>
                 </Dialog>
             </div>

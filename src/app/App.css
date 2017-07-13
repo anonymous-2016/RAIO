@@ -71,7 +71,7 @@
 .App-SideBox-btn {
     /*position: absolute;*/
     float: left;
-    z-index: 99999;
+    z-index: 999;
     cursor: pointer;
     margin-top: 50%;
     transform: translateY(50%);
@@ -108,7 +108,7 @@
     margin-top: 250px;
     margin-left: -10px;
     background: #000;
-    z-index: 999999;
+    z-index: 999;
 }
 
 .ant-calendar-picker {

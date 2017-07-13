@@ -15,33 +15,63 @@ class AUF extends React.Component {
     }
     render () {
         const {getFieldDecorator} = this.props.form;
+        // FormItem flexbox
+        const formItemLayout = {
+            labelCol: {
+                xs: { span: 24 },
+                sm: { span: 4 }
+            },
+            wrapperCol: {
+                xs: { span: 24 },
+                sm: { span: 8 }
+            }
+        };
+        /* {...formLayout} */
+        const formLayout = {
+            labelCol: {
+                xs: { span: 24 },
+                sm: { span: 16 }
+            },
+            wrapperCol: {
+                xs: { span: 24 },
+                sm: { span: 16 }
+            }
+        };
+        const btnLayout = {
+            sm: { span: 4 }
+        };
         return (
-            <Form>
-                <FormItem
-                    label={<span className="left-spaces">角色编码:</span>}
-                    style={{}}
-                    >
-                    {
-                        getFieldDecorator('roleCode', {
-                            rules: [{ required: false, message: '角色编码' }],
-                        })
-                        (
-                            <Input prefix={<Icon type="user" style={{ fontSize: 13 }} />} type="number" placeholder="角色编码" />
-                        )
-                    }
-                </FormItem>
-                <FormItem>
-                    <Button
-                        icon="search"
-                        type="primary"
-                        htmlType="submit"
-                        id="add-user-search"
-                        onClick={this.clickSearchHandler}
+            <div>
+                <Form>
+                    <FormItem
+                        label={<span className="left-spaces">角色编码</span>}
+                        style={{}}
+                        {...formItemLayout}
                         >
-                        查询
-                    </Button>
-                </FormItem>
-            </Form>
+                        {
+                            getFieldDecorator('roleCode', {
+                                rules: [{ required: false, message: '角色编码' }],
+                            })
+                            (
+                                <Input prefix={<Icon type="user" style={{ fontSize: 13 }} />} type="number" placeholder="角色编码" />
+                            )
+                        }
+                    </FormItem>
+                    <FormItem
+                        {...formItemLayout}
+                        >
+                        <Button
+                            icon="search"
+                            type="primary"
+                            htmlType="submit"
+                            id="add-user-search"
+                            onClick={this.clickSearchHandler}
+                            >
+                            查询
+                        </Button>
+                    </FormItem>
+                </Form>
+            </div>
         )
     }
 }

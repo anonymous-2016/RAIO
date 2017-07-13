@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import logo from './logo.png';
+import logo from '../img/logo.png';
 import './App.css';
 
 import SideBox from './SideBox.js';
@@ -55,7 +55,7 @@ class App extends Component {
         };
         // this.handlerMenuClick = this.handlerMenuClick.bind(this);
     }
-    handlerMenuClick(e) {
+    handlerMenuClick = (e) => {
         console.log("clicked === \n", e);
         if(this.state.styles === "App-SideBox-init"){
             this.setState({
@@ -80,7 +80,11 @@ class App extends Component {
                     <h1>CRM 权限认证管理系统</h1>
                 </div>
                 <div className="App-body">
-                    <ContentBox routes={routes} ClickHandler={(e) => this.handlerMenuClick(e)} styles={this.state.styles}/>
+                    <ContentBox
+                        routes={routes}
+                        ClickHandler={(e) => this.handlerMenuClick(e)}
+                        styles={this.state.styles}
+                    />
                 </div>
             </div>
         );

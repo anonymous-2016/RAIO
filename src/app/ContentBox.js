@@ -11,6 +11,8 @@ import Item2 from '../components/Item2.js';
 import Item3 from '../components/Item3.js';
 
 
+import XFooter from './Footer';
+
 
 import './contentbox.css';
 
@@ -22,7 +24,7 @@ const {Header, Content, Footer, Sider} = Layout;
 const SubMenu = Menu.SubMenu;
 
 
-const routes = [
+/* const routes = [
     {
         path: '/',
         exact: true,
@@ -39,7 +41,7 @@ const routes = [
         sidebar: () => <div>item3</div>,
         main: () => <div><Item3 /></div>
     }
-];
+]; */
 
 const btnStyles = {
     border: "2px solid #ccc",
@@ -57,12 +59,14 @@ class ContentBox extends Component {
         this.state = {
             theme: 'dark',
             current: '1',
+            openKeys: [],
             message: props.message,
             styles: props.styles,
             Any: props.any,
             width: props.width,
-            routes: routes,
-            ClickHandler: props.ClickHandler
+            routes: props.routes,
+            ClickHandler: props.ClickHandler,
+            collapsed: false
         };
         this.handleClick = this.handleClick.bind(this);
         this.stateHandleClick = this.stateHandleClick.bind(this);
@@ -74,19 +78,43 @@ class ContentBox extends Component {
         console.log('click ', e);
         this.setState({
             current: e.key,
+            collapsed: !this.state.collapsed
         });
     }
     addClick = (prevState, props) => {
         this.setState({
             // prevState, props
+            collapsed: !this.state.collapsed
         });
     }
     stateHandleClick(e) {
         // (prevState, props)
         console.log('click ', e);
         this.setState({
-            current: e.key
+            current: e.key,
+            collapsed: !this.state.collapsed
         });
+    }
+    // 只展开当前父级菜单 
+    // 点击菜单，收起其他展开的所有菜单，保持菜单聚焦简洁。
+    onOpenChange = (openKeys) => {
+        const state = this.state;
+        const latestOpenKey = openKeys.find(key => !(state.openKeys.indexOf(key) > -1));
+        const latestCloseKey = state.openKeys.find(key => !(openKeys.indexOf(key) > -1));
+        let nextOpenKeys = [];
+        if (latestOpenKey) {
+            nextOpenKeys = this.getAncestorKeys(latestOpenKey).concat(latestOpenKey);
+        }
+        if (latestCloseKey) {
+            nextOpenKeys = this.getAncestorKeys(latestCloseKey);
+        }
+        this.setState({openKeys: nextOpenKeys});
+    }
+    getAncestorKeys = (key) => {
+        const map = {
+            sub3: ['sub2']
+        };
+        return map[key] || [];
     }
     render() {
         // let routes = [this.props.routes];
@@ -108,6 +136,7 @@ class ContentBox extends Component {
                             style={{ width: 240 }}
                             defaultOpenKeys={['sub1']}
                             selectedKeys={[this.state.current]}
+                            onOpenChange={this.onOpenChange}
                             mode="inline"
                             >
                             <SubMenu 
@@ -126,13 +155,13 @@ class ContentBox extends Component {
                                     </Link>
                                 </Menu.Item>
                                 <Menu.Item key="2">
-                                    <Link to="/item3">
+                                    <Link to="/">
                                         <Icon type="area-chart" style={{fontSize: 12, color: '#ff0'}}/>
                                         登录统计
                                     </Link>
                                 </Menu.Item>
                                 <Menu.Item key="3">
-                                    <Link to="/item3">
+                                    <Link to="/">
                                         <Icon type="area-chart" style={{fontSize: 12, color: '#ff0'}}/>
                                         行为分析
                                     </Link>
@@ -154,30 +183,30 @@ class ContentBox extends Component {
                                     </Link>
                                 </Menu.Item>
                                 <Menu.Item key="5">
-                                    <Link to="/item3">
+                                    <Link to="/item2">
                                         <Icon type="setting" style={{fontSize: 12, color: '#f0f'}}/>
                                         绑定设置</Link>
                                 </Menu.Item>
                                 <Menu.Item key="6">
-                                    <Link to="/item3">
+                                    <Link to="/item2">
                                         <Icon type="setting" style={{fontSize: 12, color: '#f0f'}}/>
                                         限制设置
                                     </Link>
                                 </Menu.Item>
                                 <Menu.Item key="7">
-                                    <Link to="/item3">
+                                    <Link to="/item2">
                                         <Icon type="setting" style={{fontSize: 12, color: '#f0f'}}/>
                                         用户权限设置
                                     </Link>
                                 </Menu.Item>
                                 <Menu.Item key="8">
-                                    <Link to="/item3">
+                                    <Link to="/item2">
                                         <Icon type="setting" style={{fontSize: 12, color: '#f0f'}}/>
                                         用户限制
                                     </Link>
                                 </Menu.Item>
                                 <Menu.Item key="9">
-                                    <Link to="/item3">
+                                    <Link to="/item2">
                                         <Icon type="setting" style={{fontSize: 12, color: '#f0f'}}/>
                                         角色权限设置
                                     </Link>
@@ -239,14 +268,17 @@ class ContentBox extends Component {
                     </Button>
                     {/*menu-fold menu-unfold*/}
                     <div style={{flex: 1, padding: '10px', overflow: 'auto'}}>
-                        {routes.map((route, index) => (
-                            <Route
-                                key={index}
-                                path={route.path}
-                                exact={route.exact}
-                                component={route.main}
-                            />
-                        ))}
+                        {
+                            this.props.routes.map((route, index) => (
+                                <Route
+                                    key={index}
+                                    path={route.path}
+                                    exact={route.exact}
+                                    component={route.main}
+                                />
+                            ))
+                        }
+                        <XFooter />
                     </div>
                 </div>
             </Router>
