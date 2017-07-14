@@ -140,6 +140,27 @@ class ContentBox extends Component {
                             mode="inline"
                             >
                             <SubMenu 
+                                    key="sub0"
+                                    title={
+                                        <span>
+                                            <Icon type="area-chart" style={{fontSize: 18, color: '#f0f'}} className=""/>
+                                            <span
+                                                style={{fontSize: 16, color: 'rgba(255, 255, 255, 0.7)'}}
+                                                className=""
+                                                >
+                                                just for test
+                                            </span>
+                                        </span>
+                                    }
+                                >
+                                <Menu.Item key="1">
+                                    <Link to="/test">
+                                        <Icon type="area-chart" style={{fontSize: 12, color: '#fff'}}/>
+                                        test
+                                    </Link>
+                                </Menu.Item>
+                            </SubMenu>
+                            <SubMenu 
                                     key="sub1"
                                     title={
                                         <span>

@@ -7,6 +7,8 @@ import {SignUpDialog} from '../utils/FancyBox';
 import {EM} from '../Modals/EditModal';
 
 
+import {ATab} from '../../Ant_Components/TabPage';
+
 
 
 // import {ET} from './utils/EditTable';
@@ -116,9 +118,29 @@ class ProductManagement extends Component {
         alert(e.target.value); 
     };
     render() {
+        const items = [
+            {
+                title: "Tab 01",
+                content: "this is a lot content",
+                color: 'red'
+            },
+            {
+                title: "Tab 02",
+                content: "here have a lot content, too",
+                color: '#0f0'
+            },
+            {
+                title: "Tab 03",
+                content: "There are lots of content, as well",
+                color: '#f0f'
+            }
+        ];
         return (
             <div>
                 <label>产品名称: </label>
+                <div>
+                    <ATab items={items}/>
+                </div>
                 {/*<SignUpDialog datas={{}}/>*/}
                 {/*<input list="t_type" name="terminal" />*/}
                 <datalist id="t_type">

@@ -43,6 +43,7 @@ const handleMenuClick = (record, e) => {
     console.log(`e`, e);
     if(e.key === "1"){
         console.log(`update`, record.rname);
+        console.log(`record`, record);
         const clickOK = () => {
             alert('clickOK', clickOK);
         }

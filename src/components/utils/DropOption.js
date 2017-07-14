@@ -70,6 +70,7 @@ const DropOption = ({onMenuClick, menuOptions = [], buttonStyle, dropdownProps})
                 <Icon type="down" />
             </Button>
         </Dropdown>
+        /* <Modal />*/
     );
 };
 

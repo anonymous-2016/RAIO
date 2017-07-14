@@ -23,6 +23,8 @@ import Item1 from '../components/Item1.js';
 import Item2 from '../components/Item2.js';
 import Item3 from '../components/Item3.js';
 
+import TestItem from '../components/Test.jsx';
+
 
 const routes = [
     {
@@ -40,6 +42,11 @@ const routes = [
         path: '/item3',
         sidebar: () => <div>item3</div>,
         main: () => <div><Item3 /></div>
+    },
+    {
+        path: '/test',
+        sidebar: () => <div>TestItem</div>,
+        main: () => <div><TestItem /></div>
     }
 ]
 

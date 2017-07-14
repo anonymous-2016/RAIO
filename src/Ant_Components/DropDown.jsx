@@ -8,6 +8,19 @@ import { Menu, Dropdown, Icon } from 'antd';
 
 const menu = (
     <Menu>
+        {
+            items.map(
+                (item, index) => {
+                    return(
+                        <Menu.Item>
+                            <a rel="noopener noreferrer" href={item.url}>
+                                {index}
+                            </a>
+                        </Menu.Item>
+                    )
+                }
+            )
+        }
         <Menu.Item>
         <a rel="noopener noreferrer" href="https://www.xgqfrms.xyz/">1st</a>
         </Menu.Item>
@@ -28,6 +41,21 @@ const APP = () => {
                 Hover me
                 <Icon type="down" />
             </a>
+            {/* 
+            state: isshow 
+            {
+                isshow
+                ?
+                <EMC
+                    data={record}
+                    clickOK={clickOK}
+                    >
+                    <span>{text} 编辑</span>
+                </EMC>
+                :
+                ``
+            } 
+            */}
         </Dropdown>
     );
 }
