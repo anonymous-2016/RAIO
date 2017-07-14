@@ -1,7 +1,10 @@
 import React, { Component, PropTypes } from 'react';
 
-import {Table, Form, Icon, Input, Button, Modal, Col, Row} from 'antd';
+import {Table, Form, Icon, Input, Button, Modal, Col, Row, Select, InputNumber, DatePicker, AutoComplete, Cascader} from 'antd';
 
+
+const InputGroup = Input.Group;
+const Option = Select.Option;
 const FormItem = Form.Item;
 
 class MMForm extends Component {
@@ -45,15 +48,19 @@ class MMForm extends Component {
                         hasFeedback
                         >
                         {
-                            getFieldDecorator('productNum', {
+                            getFieldDecorator('productName', {
                                 rules: [
                                     {
                                         required: true, 
                                         message: 'Please input your 产品名称!'
                                     }
-                                ],
+                                ]
                             })(
-                                <Input type="number" placeholder="金融终端/Fans" />
+                                <Select defaultValue="Fans" style={{ width: 120 }}>
+                                    <Option value="金融终端">金融终端</Option>
+                                    <Option value="Fans">Fans</Option>
+                                    <Option value="disabled" disabled>Disabled</Option>
+                                </Select>
                             )
                         }
                     </FormItem>
@@ -63,7 +70,7 @@ class MMForm extends Component {
                         hasFeedback
                         >
                         {
-                            getFieldDecorator('productName', {
+                            getFieldDecorator('menuVersion', {
                                 rules: [
                                     {
                                         type: 'string', 
@@ -75,7 +82,7 @@ class MMForm extends Component {
                                     }
                                 ],
                             })(
-                                <Input type="text" placeholder="菜单版本"/>
+                                <Input type="number" placeholder="菜单版本"/>
                             )
                         }
                     </FormItem>
@@ -85,7 +92,7 @@ class MMForm extends Component {
                         hasFeedback
                         >
                         {
-                            getFieldDecorator('productBrief ', {
+                            getFieldDecorator('type', {
                                 rules: [
                                     {
                                         type: 'string', 
@@ -108,7 +115,7 @@ class MMForm extends Component {
                         hasFeedback
                         >
                         {
-                            getFieldDecorator('productIntro', {
+                            getFieldDecorator('menuname', {
                                 rules: [
                                     {
                                         type: 'string', 
@@ -123,7 +130,7 @@ class MMForm extends Component {
                                     }
                                 ],
                             })(
-                                <Input type="textarea" placeholder="菜单名称"/>
+                                <Input type="text" placeholder="菜单名称"/>
                             )
                         }
                     </FormItem>
@@ -133,7 +140,7 @@ class MMForm extends Component {
                         hasFeedback
                         >
                         {
-                            getFieldDecorator('productIntro', {
+                            getFieldDecorator('displaystate', {
                                 rules: [
                                     {
                                         type: 'string', 
@@ -142,13 +149,13 @@ class MMForm extends Component {
                                     {
                                         required: true, 
                                         message: 'Please input your 显示状态!',
-                                    },
-                                    {
-                                        validator: this.checkConfirm
                                     }
                                 ],
                             })(
-                                <Input type="textarea" placeholder="显示状态"/>
+                                <Select defaultValue="yes" style={{ width: 120 }}>
+                                    <Option value="yes">是enum</Option>
+                                    <Option value="no">否enum</Option>
+                                </Select>
                             )
                         }
                     </FormItem>
@@ -158,7 +165,7 @@ class MMForm extends Component {
                         hasFeedback
                         >
                         {
-                            getFieldDecorator('productIntro', {
+                            getFieldDecorator('style', {
                                 rules: [
                                     {
                                         type: 'string', 
@@ -173,11 +180,13 @@ class MMForm extends Component {
                                     }
                                 ],
                             })(
-                                <Input type="textarea" placeholder="样式"/>
+                                <Input type="text" placeholder="样式"/>
                             )
                         }
                     </FormItem>
                 </Form>
+                <Button>查询</Button>
+                <Button>添加</Button>
             </div>
         );
     }
