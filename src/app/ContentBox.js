@@ -134,7 +134,7 @@ class ContentBox extends Component {
                             theme={this.state.theme}
                             onClick={this.handleClick}
                             style={{ width: 240 }}
-                            defaultOpenKeys={['sub1']}
+                            defaultOpenKeys={['sub0']}
                             selectedKeys={[this.state.current]}
                             onOpenChange={this.onOpenChange}
                             mode="inline"
@@ -170,19 +170,19 @@ class ContentBox extends Component {
                                     }
                                 >
                                 <Menu.Item key="1">
-                                    <Link to="/">
+                                    <Link to="/item1">
                                         <Icon type="area-chart" style={{fontSize: 12, color: '#ff0'}}/>
                                         用户查询
                                     </Link>
                                 </Menu.Item>
                                 <Menu.Item key="2">
-                                    <Link to="/">
+                                    <Link to="/item1">
                                         <Icon type="area-chart" style={{fontSize: 12, color: '#ff0'}}/>
                                         登录统计
                                     </Link>
                                 </Menu.Item>
                                 <Menu.Item key="3">
-                                    <Link to="/">
+                                    <Link to="/item1">
                                         <Icon type="area-chart" style={{fontSize: 12, color: '#ff0'}}/>
                                         行为分析
                                     </Link>

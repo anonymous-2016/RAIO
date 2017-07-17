@@ -70,7 +70,7 @@ class EditModalCopy extends React.Component {
                 </Button>
                 {/* Button 控制 modal 的显示与否 */}
                 <Modal
-                    title={record.pname}
+                    title={record.pname ? record.pname : '标题'}
                     wrapClassName="vertical-center-modal"
                     visible={this.state.showModal}
                     onOk={() => this.OK(false)}

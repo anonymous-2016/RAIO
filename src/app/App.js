@@ -31,7 +31,7 @@ const routes = [
         path: '/',
         exact: true,
         sidebar: () => <div>item1</div>,
-        main: () => <div><Item1 /></div>
+        main: () => <div><TestItem /></div>
     },
     {
         path: '/item2',

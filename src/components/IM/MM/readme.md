@@ -48,6 +48,53 @@ const Option = Select.Option;
  {/* Warning: `defaultValue` is invalid for `getFieldDecorator` will set `value`, please use `option.initialValue` instead. */}
 
 
+https://ant.design/components/form-cn/#components-form-demo-register
+
+initialValue: ['zhejiang', 'hangzhou', 'xihu'],
+
+https://ant.design/components/form-cn/#getFieldDecorator(id,-options)-参数
+
+
+```jsx
+
+<FormItem
+    {...formItemLayout}
+    label="产品名称"
+    hasFeedback
+    >
+    {
+        getFieldDecorator('productName', {
+            initialValue: "Fans",
+            rules: [
+                {
+                    required: true, 
+                    message: 'Please input your 产品名称!'
+                }
+            ]
+        })(
+            <Select
+                defaultValue="Fans"
+                style={{ width: 150 }}
+                placeholder="Select a terminal"
+                >
+                <Option value="金融终端">金融终端</Option>
+                <Option value="Fans">Fans</Option>
+                {/* <Option value="disabled" disabled>Disabled</Option> */}
+            </Select>
+        )
+    }
+</FormItem>
+
+ defaultValue="Fans"
+
+ initialValue: "Fans",
+
+```
+
+
+
+
+
 ### Type
 
 Indicates the type of validator to use. Recognised type values are:
@@ -103,4 +150,16 @@ email: Must be of type email.
 
 
 
+Warning: `defaultValue` is invalid for `getFieldDecorator` will set `value`, please use `option.initialValue` instead.
+
+
+编码 名称 英文名称 图标名称 收藏名称 关联功能 快捷键 类型 提示信息 样式 关联产品 显示
+确定
+
+
+功能编码 功能名称 功能命令 功能参数 
+功能说明 关联模块 关联资源 掩码定义 
+
 */
+
+

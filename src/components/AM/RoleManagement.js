@@ -128,6 +128,7 @@ const columns = [
                         ]} 
                     />
                     <EMC
+                        title='标题'
                         data={record}
                         clickOK={clickOK}
                     >

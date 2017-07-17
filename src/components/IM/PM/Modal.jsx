@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 import {Table, Form, Icon, Input, Button, Modal, Col, Row} from 'antd';
 
@@ -56,6 +57,7 @@ class FormModal extends Component {
                     click show modal
                 </Button>
                 <Modal
+                    title={this.props.title ? this.props.title : '标题'}
                     visible={this.state.show}
                     onOk={() => this.showModalHandler(false)}
                     onCancel={() => this.showModalHandler(false)}

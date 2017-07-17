@@ -1,6 +1,12 @@
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 
 import {MMF} from './Form';
+import {WMF} from './MModal';
+import {FM} from './FModal';
+
+import {MenuTree} from './Menu';
+
 
 class MenuManage extends Component {
     constructor(props) {
@@ -13,6 +19,9 @@ class MenuManage extends Component {
         return (
             <div>
                 <MMF />
+                <WMF />
+                <FM />
+                <MenuTree/>
             </div>
         );
     }

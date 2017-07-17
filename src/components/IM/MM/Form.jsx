@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 
 import {Table, Form, Icon, Input, Button, Modal, Col, Row, Select, InputNumber, DatePicker, AutoComplete, Cascader} from 'antd';
 
@@ -19,18 +20,18 @@ class MMForm extends Component {
         const formItemLayout = {
             labelCol: {
                 xs: {
-                    span: 24
+                    span: 8
                 },
                 sm: {
-                    span: 6
+                    span: 8
                 }
             },
             wrapperCol: {
                 xs: {
-                    span: 24
+                    span: 16
                 },
                 sm: {
-                    span: 14
+                    span: 16
                 }
             }
         };
@@ -49,6 +50,7 @@ class MMForm extends Component {
                         >
                         {
                             getFieldDecorator('productName', {
+                                initialValue: "Fans",
                                 rules: [
                                     {
                                         required: true, 
@@ -56,10 +58,14 @@ class MMForm extends Component {
                                     }
                                 ]
                             })(
-                                <Select defaultValue="Fans" style={{ width: 120 }}>
+                                <Select
+                                    showSearch
+                                    style={{ width: 150 }}
+                                    placeholder="Select a terminal"
+                                    >
                                     <Option value="金融终端">金融终端</Option>
                                     <Option value="Fans">Fans</Option>
-                                    <Option value="disabled" disabled>Disabled</Option>
+                                    {/* <Option value="disabled" disabled>Disabled</Option> */}
                                 </Select>
                             )
                         }
@@ -82,7 +88,11 @@ class MMForm extends Component {
                                     }
                                 ],
                             })(
-                                <Input type="number" placeholder="菜单版本"/>
+                                <Input
+                                    type="number"
+                                    placeholder="菜单版本"
+                                    style={{ width: 150 }}
+                                />
                             )
                         }
                     </FormItem>
@@ -104,7 +114,11 @@ class MMForm extends Component {
                                     }
                                 ],
                             })(
-                                <Input type="text" placeholder="类型"/>
+                                <Input
+                                    type="text" 
+                                    placeholder="类型"
+                                    style={{ width: 150 }}
+                                />
                             )
                         }
                     </FormItem>
@@ -130,7 +144,11 @@ class MMForm extends Component {
                                     }
                                 ],
                             })(
-                                <Input type="text" placeholder="菜单名称"/>
+                                <Input
+                                    type="text"
+                                    placeholder="菜单名称"
+                                    style={{ width: 150 }}
+                                />
                             )
                         }
                     </FormItem>
@@ -151,10 +169,13 @@ class MMForm extends Component {
                                         message: 'Please input your 显示状态!',
                                     }
                                 ],
+                                initialValue: "yes"
                             })(
-                                <Select defaultValue="yes" style={{ width: 120 }}>
-                                    <Option value="yes">是enum</Option>
-                                    <Option value="no">否enum</Option>
+                                <Select
+                                    style={{ width: 150 }}
+                                    >
+                                    <Option value="yes">是</Option>
+                                    <Option value="no">否</Option>
                                 </Select>
                             )
                         }
@@ -180,7 +201,11 @@ class MMForm extends Component {
                                     }
                                 ],
                             })(
-                                <Input type="text" placeholder="样式"/>
+                                <Input
+                                    type="text"
+                                    placeholder="样式"
+                                    style={{ width: 150 }}
+                                />
                             )
                         }
                     </FormItem>
