@@ -38,4 +38,34 @@ const UserReducers = (state = initailState, action) => {
 export default UserReducers;
 
 
+/* 
+
+
+// Object_initializer
+
+// Shorthand property names
+
+
+
+let data = {};
+
+return Object.assign(
+    {},
+    state,
+    {
+        data
+    }
+);
+
+
+return Object.assign(
+    {},
+    state,
+    {
+        data: {}
+    }
+);
+
+
+*/
 

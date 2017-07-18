@@ -5,6 +5,8 @@ import {MMF} from './Form';
 import {WMF} from './MModal';
 import {FM} from './FModal';
 
+import {RMT} from './ReactTreeMenu';
+
 import {MenuTree} from './Menu';
 
 
@@ -15,13 +17,37 @@ class MenuManage extends Component {
             // 
         };
     }
+    onClick = (e) => {
+        // 阻止事件的默认行为，防止事件冒泡！
+        e.preventDefault();
+        e.stopPropagation();
+        // alert(`e`, e.key);
+        console.log('e.key', e.key);
+        console.log('e.text', e.text);
+    };
     render () {
+        const datas = [
+            {
+                text: 'root',
+                children: [
+                    {
+                        text: 'chlid1',
+                        children: [
+                            {
+                                text: 'chlid3'
+                            }
+                        ]
+                    }
+                ]
+            }
+        ];
         return (
             <div>
                 <MMF />
                 <WMF />
                 <FM />
-                <MenuTree/>
+                {/* <MenuTree/> */}
+                {/* <RMT data={datas} onClick={this.onClick}/> */}
             </div>
         );
     }
@@ -34,8 +60,6 @@ const MM = MenuManage;
 
 export {MM};
 export default MM;
-
-// rcfc
 
 
 
