@@ -1,14 +1,32 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 
-import {MMF} from './Form';
-import {WMF} from './MModal';
+ import {MMF} from './Form';
+
 import {FM} from './FModal';
 
-import {RMT} from './ReactTreeMenu';
+import {RMT} from './ReactTreeMenu'; 
 
 import {MenuTree} from './Menu';
 
+import {MainTable} from './MainTable';
+
+
+const datas = [
+    {
+        text: 'root',
+        children: [
+            {
+                text: 'chlid1',
+                children: [
+                    {
+                        text: 'chlid3'
+                    }
+                ]
+            }
+        ]
+    }
+];
 
 class MenuManage extends Component {
     constructor(props) {
@@ -26,28 +44,14 @@ class MenuManage extends Component {
         console.log('e.text', e.text);
     };
     render () {
-        const datas = [
-            {
-                text: 'root',
-                children: [
-                    {
-                        text: 'chlid1',
-                        children: [
-                            {
-                                text: 'chlid3'
-                            }
-                        ]
-                    }
-                ]
-            }
-        ];
         return (
             <div>
-                <MMF />
-                <WMF />
-                <FM />
-                {/* <MenuTree/> */}
-                {/* <RMT data={datas} onClick={this.onClick}/> */}
+                 <MMF /> 
+                {/* <WMF /> */}
+                {/* <FM />  */}
+                <MainTable />
+                {/* <MenuTree/>  */}
+                {/* <RMT data={datas} onClick={this.onClick}/>  */}
             </div>
         );
     }
@@ -60,36 +64,3 @@ const MM = MenuManage;
 
 export {MM};
 export default MM;
-
-
-
-/* 
-
-产品名称：金融终端/Fans
-菜单版本:
-类型:	
-菜单名称：
-显示状态:	是/否
-样式:
-查询	添加
-
-                                            
-    菜单树	名称	产品	功能	版本	类型	操作	移动		
-                    关联			修改	上移 下移		
-一级										
-|  二级										
-|   | 三级										
-|   |  | 四级										
-|   |  |  |	五级									
-|   |  |  |										
-|   |  |  |										
-|   |  |  |										
-|   |  | 四级										
-|   | 三级										
-|  二级										
-一级										
-|  二级										
-
-
-
-*/

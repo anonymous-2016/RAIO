@@ -5,31 +5,24 @@ import 'whatwg-fetch';
 // import * as fetch from 'whatwg-fetch';
 // https://github.com/github/fetch#json
 
-import './RoleManagement.css';
+import './index.css';
 
-import {RoleTree} from './RolesTree';
+/* import {RoleTree} from './RolesTree'; */
 
 // Warning: Failed prop type: The prop `menuOptions` is marked as required in `DropOption`, but its value is `undefined`.
 
-import {DropOption} from '../utils/DropOption';
+import {DropOption} from '../../utils/DropOption';
 // ({onMenuClick, menuOptions = [], buttonStyle, dropdownProps}) 
 
-// import MF from '../utils/Modal';
-
-// import NMF from '../utils/ModalF';
-
-import {EMC} from '../Modals/EditModalCopy';
-
-
-import GridRowCol from '../../Ant_Components/Gird-Flex';
+import {EMC} from '../../Modals/EditModalCopy';
+import GridRowCol from '../../../Ant_Components/Gird-Flex';
 
 import {Table, Form, Icon, Input, Button, Modal, Menu, Dropdown,} from 'antd';
 
 
+
 const confirm = Modal.confirm;
-
 const FormItem = Form.Item;
-
 const MenuItem = Menu.Item;
 
 const hasErrors = (fieldsError) => {
@@ -141,38 +134,6 @@ const columns = [
 ];
 
 
-// <MF />
-
-
-/*
-const data = [
-    {
-        key: '1',
-        rid: 110,
-        rname: '胡彦斌',
-        uid: 2017,
-        uname: '彦斌',
-        ulname: '西湖公园1号'
-    },
-    {
-        key: '2',
-        rid: 3721,
-        rname: '胡彦斌',
-        uid: 1024,
-        uname: '彦斌',
-        ulname: '湖底公园7号'
-    },
-    {
-        key: '3',
-        rid: 666,
-        rname: '胡彦斌',
-        uid: 2048,
-        uname: '彦斌',
-        ulname: '西湖 湖底公园'
-    }
-];
-*/
-
 class RolesManagement extends Component {
     constructor(props){
         super(props);
@@ -247,10 +208,10 @@ class RolesManagement extends Component {
         const loginNameError = isFieldTouched('loginName') && getFieldError('loginName');
         const userNameError = isFieldTouched('userName') && getFieldError('userName');
         return (
-            <div>
-                {/* <h2>角色管理 RoleManagement</h2>*/}
-                {/* <RoleTree /> */}
-                {/* <GridRowCol /> */}
+            <div className="user-search">
+                <a href="#">
+                    角色管理
+                </a>
                 <Form layout="inline" onSubmit={this.handleSubmit}>
                     <FormItem
                         validateStatus={roleCodeError ? 'error' : ''}
@@ -374,5 +335,10 @@ RolesManagement.propTypes = {
 
 const RoleManagement = Form.create({})(RolesManagement);
 
-export {RoleManagement};
-export default RoleManagement;
+/* export {RoleManagement};
+export default RoleManagement; */
+
+const RM = RoleManagement;
+
+export {RM};
+export default RM;

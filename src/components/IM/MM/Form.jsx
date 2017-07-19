@@ -35,13 +35,18 @@ class MMForm extends Component {
                 }
             }
         };
+        {/* style={{border: '1px solid red'}} */}
+        const handleSearch = (value) => {
+            console.log(`selected ${value}`);
+        };
+        const handleAdd = (value) => {
+            console.log(`selected ${value}`);
+        };
         return (
-            <div>
+            <div style={{border: '1px solid #ccc', margin: 10, padding: 10}}>
                 <Form 
                     onSubmit={this.handleSubmit}
-                    label="Form Title"
                     layout="inline"
-                    style={{border: '1px solid red'}}
                     >
                     <FormItem
                         {...formItemLayout}
@@ -209,9 +214,44 @@ class MMForm extends Component {
                             )
                         }
                     </FormItem>
+                    <br />
+                    <FormItem
+                        {...formItemLayout}
+                        >
+                        {
+                            <Button
+                                onClick={() => handleSearch()}
+                                type='primary'
+                                >
+                                查询
+                            </Button>
+                        }
+                    </FormItem>
+                    <FormItem
+                        {...formItemLayout}
+                        >
+                        {
+                            <Button
+                                onClick={() => handleAdd()}
+                                type='primary'
+                                >
+                                添加
+                            </Button>
+                        }
+                    </FormItem>
                 </Form>
-                <Button>查询</Button>
-                <Button>添加</Button>
+                {/* <Button
+                    onClick={() => handleSearch()}
+                    type='primary'
+                    >
+                    查询
+                </Button>
+                <Button
+                    onClick={() => handleAdd()}
+                    type='primary'
+                    >
+                    添加
+                </Button> */}
             </div>
         );
     }

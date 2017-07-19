@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Table Up & Down</title>
+    <style>
+        * {
+            text-align: center;
+        }
+        
+        .tb {
+            width: 50%;
+            border: 1px solid #000;
+            border-collapse: collapse;
+        }
+        
+        table,
+        th,
+        td {
+            border: 1px solid #aaa;
+            font-size: 23px;
+        }
+        
+        .color1 {
+            color: red;
+        }
+        
+        .color2 {
+            color: #0ff;
+        }
+        
+        .color3 {
+            color: #0f0;
+        }
+        
+        .color4 {
+            color: #f0f;
+        }
+        
+        .up {
+            color: #0f0;
+            margin: auto 10px;
+        }
+        
+        .dowm {
+            color: #f0f;
+            margin: auto 10px;
+        }
+    </style>
+</head>
+
+<!-- .map()  -->
+
+<body>
+    <table class="tb">
+        <thead>
+            <tr>
+                <td>ID</td>
+                <td>Name</td>
+                <td>Up / Down</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="color1">1</td>
+                <td class="color1">
+                    textfield 1
+                </td>
+                <td>
+                    <a href="javascript:void(0)" onclick="moveUp(this)" class="up">上移</a>
+                    <a href="javascript:void(0)" onclick="moveDown(this)" class="down">下移</a>
+                </td>
+            </tr>
+            <tr>
+                <td class="color2">2</td>
+                <td class="color2">
+                    textfield 2
+                </td>
+                <td>
+                    <a href="javascript:void(0)" onclick="moveUp(this)" class="up">上移</a>
+                    <a href="javascript:void(0)" onclick="moveDown(this)" class="down">下移</a>
+                </td>
+            </tr>
+            <tr>
+                <td class="color3">3</td>
+                <td class="color3">
+                    textfield 3
+                </td>
+                <td>
+                    <a href="javascript:void(0)" onclick="moveUp(this)" class="up">上移</a>
+                    <a href="javascript:void(0)" onclick="moveDown(this)" class="down">下移</a>
+                </td>
+            </tr>
+            <tr>
+                <td class="color4">4</td>
+                <td class="color4">
+                    textfield 4
+                </td>
+                <td>
+                    <a href="javascript:void(0)" onclick="moveUp(this)" class="up">上移</a>
+                    <a href="javascript:void(0)" onclick="moveDown(this)" class="down">下移</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <!-- js  -->
+    <script src="https://cdn.xgqfrms.xyz/jquery/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript">
+        function moveUp(obj) {
+            // 获取当前的父级元素 tr (a => td => tr) 
+            var current = $(obj).parent().parent();
+            // 前一个
+            var prev = current.prev();
+            if (current.index() > 1) {
+                // 如果 current 不是第一个 tr，在前面插入
+                current.insertBefore(prev);
+            }
+        }
+
+        function moveDown(obj) {
+            // 获取当前的父级元素 tr (a => td => tr) 
+            var current = $(obj).parent().parent();
+            // 后一个
+            var next = current.next();
+            if (next) {
+                // 如果 current 不是最后一个 tr，在后面插入
+                current.insertAfter(next);
+            }
+        }
+    </script>
+</body>
+
+</html>

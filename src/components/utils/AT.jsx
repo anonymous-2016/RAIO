@@ -63,13 +63,27 @@ const columns = [
     {
         title: '手机号',
         dataIndex: 'pnum',
-        key: 'phoneNumber',
-        render: ((text) => (<a href="#">{text}</a>))
+        key: 'phoneNumber'
     }, 
     {
         title: '邮箱',
         dataIndex: 'email',
-        key: 'email'
+        key: 'email',
+        render: ((text) => {
+            return(
+                <a
+                    href="#"
+                    onClick = {
+                        (e) => {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            return console.log(`e`, e);
+                        }
+                    } >
+                    {text}
+                </a>
+            );
+        })
     }, 
     {
         title: '激活状态',
@@ -85,7 +99,7 @@ const columns = [
         title: '用户类型',
         dataIndex: 'utype',
         key: 'userType '
-    },
+    }/* ,
     {
         title: '操作',
         key: 'action',
@@ -100,7 +114,7 @@ const columns = [
                 </a>
             </span>
         )
-    }
+    } */
 ];
 
 // http://localhost:8000/user/450000197702084698
@@ -122,7 +136,7 @@ const data = [
     {
         key: '2',
         uname: 'Sidney',
-        utype: "内部用户",
+        utype: "外部用户",
         uid: 23,
         lname: '湖底公园',
         pnum: "18123456789",
@@ -144,7 +158,7 @@ const data = [
     {
         key: '4',
         uname: 'xray',
-        utype: "内部用户",
+        utype: "外部用户",
         uid: 23,
         lname: '西湖公园1号',
         pnum: "18123456789",
@@ -166,13 +180,13 @@ const data = [
     {
         key: '6',
         uname: 'Joe Black',
-        utype: "内部用户",
+        utype: "外部用户",
         uid: 18,
         lname: 'Sidney No. 1 Lake Park',
         pnum: "18123456789",
         email: "clarence.gray@example.com",
         vdate: "2017-01-01~2017-12-31",
-        activation: "否"
+        activation: "是"
     }
 ];
 

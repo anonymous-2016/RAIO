@@ -29,13 +29,16 @@ class FunctionModal extends Component {
         }
     }
     showModal = (value) => {
+        // e.preventDefault();
+        // e.stopPropagation();
+        // e.nativeEvent.stopImmediatePropagation();
         this.setState({
             visible: value
         });
-    }
+    };
     handleSubmit = () => {
         // 
-    }
+    };
     render () {
         const {getFieldDecorator} = this.props.form;
         // cosnt productNum = ;
@@ -68,11 +71,24 @@ class FunctionModal extends Component {
         const handleChange = () => {
             // 
         }
+        const url = window.location.href;
         return (
             <div>
-                <Button onClick={() => this.showModal(true)}>
-                    关联 Modal
-                </Button>
+                {/* <Button onClick={() => this.showModal(true)}>
+                    关联
+                </Button> */}
+                <span>
+                    <a
+                        href={window.location.href}
+                        onClick={(e) => {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            return this.showModal(true);
+                        }}>
+                        关联
+                        {/* {this.props.data.name} */}
+                    </a>
+                </span>
                 <Modal
                     title='修改'
                     key={this.state.key}
@@ -82,7 +98,6 @@ class FunctionModal extends Component {
                     >
                     <Form 
                         onSubmit={() => this.handleSubmit()}
-                        label="Form Title"
                         >
                         <FormItem
                             {...formItemLayout}
@@ -91,6 +106,7 @@ class FunctionModal extends Component {
                             >
                             {
                                 getFieldDecorator('featuresEncode', {
+                                    initialValue: 111,
                                     rules: [
                                         {
                                             required: true, 

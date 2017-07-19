@@ -163,3 +163,36 @@ Warning: `defaultValue` is invalid for `getFieldDecorator` will set `value`, ple
 */
 
 
+```js
+
+{/* 
+<Button
+    onClick={() => this.showModal(true)}
+    type='primary'
+    >
+    {
+        this.props.children ? '修改' : 'opreate'
+    }
+</Button>
+*/}
+<a
+    href="#"
+    onClick={
+        (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            return this.showModal(true);
+        }
+    }
+    type='primary'
+    >
+    {
+        this.props.children ? '修改' : 'opreate'
+    }
+</a>
+
+
+
+const MMF = Form.create()(MMForm);
+
+```

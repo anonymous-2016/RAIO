@@ -25,13 +25,35 @@ import Item3 from '../components/Item3.js';
 
 import TestItem from '../components/Test.jsx';
 
+// IM
+// import ProductManagement from '../components/IM/ProductManagement.js';
+import {PM} from '../components/IM/PM/index.jsx';
+// impm
+import {MM} from '../components/IM/MM/index.jsx';
+// immm
+
+// AM
+
+import {RM} from '../components/AM/RM/index.jsx';
+// amrm
 
 const routes = [
     {
         path: '/',
         exact: true,
-        sidebar: () => <div>item1</div>,
+        sidebar: () => <div>TestItem</div>,
         main: () => <div><TestItem /></div>
+    },
+    {
+        path: '/test',
+        sidebar: () => <div>TestItem</div>,
+        main: () => <div><TestItem /></div>
+    },
+    {
+        path: '/item1',
+        exact: true,
+        sidebar: () => <div>item1</div>,
+        main: () => <div><Item1 /></div>
     },
     {
         path: '/item2',
@@ -39,16 +61,26 @@ const routes = [
         main: () => <div><Item2 /></div>
     },
     {
+        path: '/amrm',
+        sidebar: () => <div>AMRM</div>,
+        main: () => <div><RM /></div>
+    },
+    {
         path: '/item3',
         sidebar: () => <div>item3</div>,
         main: () => <div><Item3 /></div>
     },
     {
-        path: '/test',
-        sidebar: () => <div>TestItem</div>,
-        main: () => <div><TestItem /></div>
+        path: '/impm',
+        sidebar: () => <div>IMPM</div>,
+        main: () => <div><PM /></div>
+    },
+    {
+        path: '/immm',
+        sidebar: () => <div>IMPM</div>,
+        main: () => <div><MM /></div>
     }
-]
+];
 
 class App extends Component {
     constructor(props) {

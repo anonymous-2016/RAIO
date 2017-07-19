@@ -6,10 +6,6 @@ import {
     Link
 } from 'react-router-dom';
 
-import Item1 from '../components/Item1.js';
-import Item2 from '../components/Item2.js';
-import Item3 from '../components/Item3.js';
-
 
 import XFooter from './Footer';
 
@@ -198,7 +194,7 @@ class ContentBox extends Component {
                                     }
                                 >
                                 <Menu.Item key="4">
-                                    <Link to="/item2">
+                                    <Link to="/amrm">
                                         <Icon type="setting" style={{fontSize: 12, color: '#f0f'}}/>
                                         角色管理
                                     </Link>
@@ -243,7 +239,7 @@ class ContentBox extends Component {
                                     }
                                 >
                                 <Menu.Item key="10">
-                                    <Link to="/item3">
+                                    <Link to="/impm">
                                         <Icon type="idcard" style={{fontSize: 12, color: '#fff'}}/>
                                         产品管理
                                     </Link>
@@ -273,7 +269,7 @@ class ContentBox extends Component {
                                     </Link>
                                 </Menu.Item>
                                 <Menu.Item key="15">
-                                    <Link to="/item3">
+                                    <Link to="/immm">
                                     <Icon type="idcard" style={{fontSize: 12, color: '#fff'}}/>
                                     菜单管理</Link>
                                 </Menu.Item>

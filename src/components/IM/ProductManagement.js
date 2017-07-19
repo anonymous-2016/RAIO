@@ -51,18 +51,27 @@ const columns = [
                 `;
                 const clickOK = (record) => {
                     return record.pid = "new pid";
-                } 
-                return(
+                }
+                /* 
                     <a href="#" >
-                        {/* {index} */}
-                        {/* <SignUpDialog data={record}/> */}
+                        {index} 
+                        <SignUpDialog data={record}/> 
+                        {text} 
                         <EM
                             data={record}
                             clickOK={clickOK}
                         >
-                            <span>{text} 编辑</span>
+                            <span>编辑</span>
                         </EM>
                     </a>
+                */
+                return(
+                    <EM
+                        data={record}
+                        clickOK={clickOK}
+                        >
+                        <span>编辑</span>
+                    </EM>
                 );
             }
         )
@@ -95,7 +104,6 @@ const data = [
 
 
 // 通过 rowSelection 对象表明需要行选择 
-
 const rowSelection = {
     onSelect: function(record, selected, selectedRows) {
         // (record, selected, selectedRows) === object, boolean, object 
@@ -112,29 +120,41 @@ const rowSelection = {
     }
 };
 
+// Tabs
+
+const items = [
+    {
+        title: "Tab 01",
+        content: "this is a lot content",
+        color: 'red'
+    },
+    {
+        title: "Tab 02",
+        content: "here have a lot content, too",
+        color: '#0f0'
+    },
+    {
+        title: "Tab 03",
+        content: "There are lots of content, as well",
+        color: '#f0f'
+    }
+];
+
 
 class ProductManagement extends Component {
     showModal = (e) => {
         alert(e.target.value); 
     };
     render() {
-        const items = [
-            {
-                title: "Tab 01",
-                content: "this is a lot content",
-                color: 'red'
-            },
-            {
-                title: "Tab 02",
-                content: "here have a lot content, too",
-                color: '#0f0'
-            },
-            {
-                title: "Tab 03",
-                content: "There are lots of content, as well",
-                color: '#f0f'
-            }
-        ];
+        const handleChange = (value) => {
+            console.log(`selected ${value}`);
+        };
+        const handleSearch = (value) => {
+            console.log(`selected ${value}`);
+        };
+        const handleAdd = (value) => {
+            console.log(`selected ${value}`);
+        };
         return (
             <div>
                 <label>产品名称: </label>
@@ -142,11 +162,11 @@ class ProductManagement extends Component {
                     <ATab items={items}/>
                 </div>
                 {/*<SignUpDialog datas={{}}/>*/}
-                {/*<input list="t_type" name="terminal" />*/}
+                <input list="t_type" name="terminal" />
                 <datalist id="t_type">
                     <option value="Fans终端"></option>
                      <option value="金融终端"></option>
-                </datalist>
+                </datalist> 
                 <Button onClick={this.showConfirm}>
                     查询
                 </Button>

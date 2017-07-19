@@ -61,11 +61,29 @@ class ModifyModal extends Component {
         };
         return (
             <div>
-                <Button onClick={() => this.showModal(true)}>
-                    show 修改 Modal
-                </Button>
+                {/* <Button
+                    onClick={() => this.showModal(true)}
+                    type='primary'
+                    >
+                    {
+                        this.props.children ? '修改' : 'opreate'
+                    }
+                </Button> */}
+                <a
+                    href="#"
+                    onClick={
+                        (e) => {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            return this.showModal(true);
+                        }
+                    }
+                    type='primary'
+                    >
+                    {this.props.children}
+                </a>
                 <Modal
-                    title='修改'
+                    title='关联'
                     key={this.state.key}
                     visible={this.state.visible}
                     onCancel={() => this.showModal(false)}

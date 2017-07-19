@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 
 
-import {PM} from './IM/PM';
+/* import {PM} from './IM/PM'; */
 
 import {MM} from './IM/MM';
 
@@ -16,7 +16,7 @@ class TestItem extends Component {
             <div>
                 <a href="#">TestItem</a>
                 {/* <ModalName /> */}
-                <PM />
+                {/* <PM /> */}
                 <MM />
             </div>
         );

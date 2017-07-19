@@ -1,7 +1,19 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 
-import {Table, Form, Icon, Input, Button, Modal, Col, Row} from 'antd';
+import {
+    Table,
+    Form,
+    Icon,
+    Input,
+    Button,
+    Modal,
+    Col,
+    Row,
+    InputNumber,
+    Radio,
+    Cascader
+} from 'antd';
 
 const FormItem = Form.Item;
 
@@ -28,6 +40,7 @@ class FormModal extends Component {
         console.log(`e`, e);
     };
     render () {
+        const record = this.props.data;
         const {getFieldDecorator} = this.props.form;
         // cosnt productNum = ;
         const formItemLayout = {
@@ -50,14 +63,22 @@ class FormModal extends Component {
         };
         return (
             <div>
-                <h3>产品定义!A1</h3>
-                <Button
+                {/* <Button
                     onClick={() => this.showModalHandler(true)}
                     >
-                    click show modal
-                </Button>
+                    {this.props.children}
+                </Button> */}
+                <a href="#"
+                    onClick={(e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        return this.showModalHandler(true);
+                    }}
+                    >
+                    {this.props.children}
+                </a>
                 <Modal
-                    title={this.props.title ? this.props.title : '标题'}
+                    title={this.props.data.title ? record.title : '标题'}
                     visible={this.state.show}
                     onOk={() => this.showModalHandler(false)}
                     onCancel={() => this.showModalHandler(false)}

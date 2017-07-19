@@ -1,12 +1,14 @@
 import React, {Component} from 'react';
 
-import {Form, Icon, Input, Button} from 'antd';
-import {DatePicker, TimePicker} from 'antd';
+import {Select, Form, Icon, Input, Button, DatePicker, TimePicker} from 'antd';
+
+
 const {MonthPicker, RangePicker} = DatePicker;
 
 // import moment from 'moment';
 
 const FormItem = Form.Item;
+const Option = Select.Option;
 
 const hasErrors = (fieldsError) => {
     // 测试数组中的某些元素是否通过由提供的函数实现的测试。
@@ -20,10 +22,10 @@ class HLF extends Component {
         super(props);
         // this.onChange = this.onChange.bind(this);
         // this.onStartChange = this.onStartChange.bind(this);
+        this.state = {
+            startValue: today
+        };
     }
-    state = {
-        startValue: today
-    };
     onChange = (field, value) => {
         this.setState({
             [field]: value,
@@ -60,65 +62,75 @@ class HLF extends Component {
         console.log(`this.props.form`, this.props.form);
         const {getFieldDecorator, getFieldsError, getFieldError, isFieldTouched} = this.props.form;
         // Only show error after a field is touched.
+        const loginNameError = isFieldTouched('loginName') && getFieldError('loginName');
+        const userIdError = isFieldTouched('userId') && getFieldError('userId');
+        // const userTypeError = isFieldTouched('userType') && getFieldError('userType');
         const userNameError = isFieldTouched('userName') && getFieldError('userName');
-        const textError = isFieldTouched('text') && getFieldError('text');
-        const userTypeError = isFieldTouched('text') && getFieldError('text');
-        //
-        const phoneTypeError = isFieldTouched('text') && getFieldError('text');
-        const emailTypeError = isFieldTouched('email') && getFieldError('email');
+
+        const phoneNumberError = isFieldTouched('phoneNumber') && getFieldError('phoneNumber');
+        const emailError = isFieldTouched('email') && getFieldError('email');
+        // const activateStateError = isFieldTouched('activateState') && getFieldError('activateState');
+        const validDateError = isFieldTouched('validDate') && getFieldError('validDate');
         return (
             <Form layout="inline" onSubmit={this.handleSubmit}>
                 <FormItem
-                    validateStatus={userNameError ? 'error' : ''}
-                    help={userNameError || ''}
+                    validateStatus={loginNameError ? 'error' : ''}
+                    help={loginNameError || ''}
                     label="登录名"
                     >
                     {
-                        getFieldDecorator('userName', {
+                        getFieldDecorator('loginName', {
                             rules: [{ required: false, message: '登录名' }],
                         })
                         (
-                        <Input prefix={<Icon type="user" style={{ fontSize: 13 }} />} placeholder="登录名" />
+                        <Input prefix={<Icon type="user" style={{ fontSize: 13 }} />} type="text" placeholder="登录名" />
                         )
                     }
                 </FormItem>
                 <FormItem
-                    validateStatus={textError ? 'error' : ''}
-                    help={textError || ''}
+                    validateStatus={userIdError ? 'error' : ''}
+                    help={userIdError || ''}
                     label="用户ID"
                     style={{}}
                     >
                     {
-                        getFieldDecorator('text', {
+                        getFieldDecorator('userId', {
                             rules: [{ required: false, message: '用户ID' }],
                         })
                         (
-                            <Input prefix={<Icon type="idcard" style={{ fontSize: 13 }} />} type="text" placeholder="用户ID" />
+                            <Input prefix={<Icon type="idcard" style={{ fontSize: 13 }} />} type="number" placeholder="用户ID" />
                         )
                     }
                 </FormItem>
                 <FormItem
-                    validateStatus={userTypeError ? 'error' : ''}
-                    help={userTypeError || ''}
                     label="用户类型"
                     >
+                    {/* validateStatus={userTypeError ? 'error' : ''}
+                    help={userTypeError || ''} */}
+                    {/*  <Input prefix={<Icon type="contacts" style={{ fontSize: 13 }} />} placeholder="用户类型" /> */}
                     {
-                        getFieldDecorator('text', {
-                            rules: [{ required: false, message: '用户类型!' }],
-                        })
-                        (
-                        <Input prefix={<Icon type="contacts" style={{ fontSize: 13 }} />} placeholder="用户类型" />
-                        )
+                        <Select
+                            defaultValue="innerUser"
+                            style={{width: 163}}
+                            placeholder="用户类型"
+                            onChange={(e) => {
+                                console.log(`e`, e);
+                                {/* console.log(`e.value`, e.value);
+                                console.log(`e.innerText`, e.innerText); */}
+                            }}>
+                            <Option value="innerUser">内部用户</Option>
+                            <Option value="outerUser">外部用户</Option>
+                        </Select>
                     }
                 </FormItem>
                 <FormItem
-                    validateStatus={textError ? 'error' : ''}
-                    help={textError || ''}
+                    validateStatus={userNameError ? 'error' : ''}
+                    help={userNameError || ''}
                     label="用户姓名"
                     style={{}}
                     >
                     {
-                        getFieldDecorator('text', {
+                        getFieldDecorator('userName', {
                             rules: [{ required: false, message: '用户姓名' }],
                         })
                         (
@@ -128,23 +140,23 @@ class HLF extends Component {
                 </FormItem>
                 <br/>
                 <FormItem
-                    validateStatus={phoneTypeError ? 'error' : ''}
-                    help={phoneTypeError || ''}
+                    validateStatus={phoneNumberError ? 'error' : ''}
+                    help={phoneNumberError || ''}
                     label="手机号"
                     style={{}}
                     >
                     {
-                        getFieldDecorator('number', {
+                        getFieldDecorator('phoneNumber', {
                             rules: [{ required: false, message: '手机号' }],
                         })
                         (
-                            <Input prefix={<Icon type="phone" style={{ fontSize: 13 }} />} type="number" placeholder="手机号" />
+                            <Input prefix={<Icon type="phone" style={{ fontSize: 13 }} />} type="tel" placeholder="手机号" />
                         )
                     }
                 </FormItem>
                 <FormItem
-                    validateStatus={emailTypeError ? 'error' : ''}
-                    help={emailTypeError || ''}
+                    validateStatus={emailError ? 'error' : ''}
+                    help={emailError || ''}
                     label={<span className="left-spaces">邮箱</span>}
                     style={{}}
                     >
@@ -158,28 +170,36 @@ class HLF extends Component {
                     }
                 </FormItem>
                 <FormItem
-                    validateStatus={textError ? 'error' : ''}
-                    help={textError || ''}
                     label="激活状态"
-                    style={{}}
                     >
-                    {
-                        getFieldDecorator('text', {
-                            rules: [{ required: false, message: '激活状态' }],
-                        })
-                        (
-                            <Input prefix={<Icon type="file-text" style={{ fontSize: 13 }} />} type="text" placeholder="激活状态" />
-                        )
+                    {/* validateStatus={activateStateError ? 'error' : ''}
+                    help={activateStateError || ''} */}
+                     {
+                        <Select
+                            defaultValue="yes"
+                            style={{width: 163}}
+                            placeholder="激活状态"
+                            onChange={(e) => {
+                                console.log(`e`, e);
+                                {/* console.log(`e.value`, e.value);
+                                console.log(`e.innerText`, e.innerText); */}
+                            }}
+                            >
+                            <Option key="yes" value="yes">是</Option>
+                            <Option key="no" value="no">否</Option>
+                        </Select>
                     }
+                    {/* <Input prefix={<Icon type="file-text" style={{ fontSize: 13 }} />} type="text" placeholder="激活状态" /> */}
+                    {/* <Icon type="file-text" style={{ fontSize: 13 }} /> */}
                 </FormItem>
                 <FormItem
-                    validateStatus={textError ? 'error' : ''}
-                    help={textError || ''}
+                    validateStatus={validDateError ? 'error' : ''}
+                    help={validDateError || ''}
                     label="有效日期"
                     style={{}}
                     >
                     {
-                        getFieldDecorator('text', {
+                        getFieldDecorator('validDate', {
                             rules: [{ required: false, message: '有效日期' }],
                         })
                         (
@@ -216,15 +236,3 @@ export {WHLF};
 
 export default WHLF;
 
-/*
-
-用户ID
-用户姓名
-登录名
-手机号
-邮箱
-激活状态
-有效日期	
-用户类型:	内部用户
-
-*/

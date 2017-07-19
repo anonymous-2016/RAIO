@@ -134,4 +134,79 @@ span pull push offset order 属性可以通过内嵌到 xs sm md lg xl 属性中
 
 
 
+确定
 
+产品编号 产品名称 产品简称 产品介绍
+
+
+
+```jsx
+const IconStyles = {
+    css1: {
+        fontSize: 15,
+        color: '#0f0',
+        background: '#000'
+    },
+    css2: {
+        fontSize: 13,
+        color: '#000',
+        background: '#f0f'
+    }
+};
+
+```
+
+
+```js
+
+const style1 = `
+    color: red;
+    font-size: 16px;
+`;
+const style2 = `
+    color: #f0f;
+    font-size: 16px;
+`;
+const clickOK = (record) => {
+    return record.pid = "new pid";
+}
+
+
+const styles = {
+    css1: `
+        color: red;
+        font-size: 16px;
+    `,
+    css2: `
+        color: #0f0;
+        font-size: 32px;
+    `,
+    css3: `
+        color: rgba(255, 0, 255, 0.7);
+        font-size: 16px;
+    `
+};
+
+console.log(`%c color demo`, styles.css1, this.location.href);
+console.log(`%c color demo`, styles.css2, this.location.href);
+console.log(`%c color demo`, styles.css3, this.location.href);
+
+
+console.log(`%c color demo`, styles.css3, `%c ${this.location.href}`);
+console.log(`%c color demo`, styles.css3, `%c ${this.location.href}`, styles.css2);
+// %c %c 一一对应的占位符！
+console.log(`%c color demo %c ${this.location.href}`, styles.css3, styles.css2);
+```
+
+
+
+```js
+
+const handleSearch = (value) => {
+    console.log(`selected ${value}`);
+};
+const handleAdd = (value) => {
+    console.log(`selected ${value}`);
+};
+
+```
