@@ -20,24 +20,6 @@ const {Header, Content, Footer, Sider} = Layout;
 const SubMenu = Menu.SubMenu;
 
 
-/* const routes = [
-    {
-        path: '/',
-        exact: true,
-        sidebar: () => <div>item1</div>,
-        main: () => <div><Item1 /></div>
-    },
-    {
-        path: '/item2',
-        sidebar: () => <div>item2</div>,
-        main: () => <div><Item2 /></div>
-    },
-    {
-        path: '/item3',
-        sidebar: () => <div>item3</div>,
-        main: () => <div><Item3 /></div>
-    }
-]; */
 
 const btnStyles = {
     border: "2px solid #ccc",
@@ -230,13 +212,13 @@ class ContentBox extends Component {
                                 </Menu.Item>
                             </SubMenu>
                             <SubMenu 
-                                    key="sub3" 
-                                    title={
-                                        <span>
-                                            <Icon type="idcard" style={{fontSize: 18, color: '#0f0'}}/>
-                                            <span>信息管理</span>
-                                        </span>
-                                    }
+                                key="sub3" 
+                                title={
+                                    <span>
+                                        <Icon type="idcard" style={{fontSize: 18, color: '#0f0'}}/>
+                                        <span>信息管理</span>
+                                    </span>
+                                }
                                 >
                                 <Menu.Item key="10">
                                     <Link to="/impm">
@@ -245,7 +227,7 @@ class ContentBox extends Component {
                                     </Link>
                                 </Menu.Item>
                                 <Menu.Item key="11">
-                                    <Link to="/item3">
+                                    <Link to="/imnmm">
                                         <Icon type="idcard" style={{fontSize: 12, color: '#fff'}}/>
                                         模块管理
                                     </Link>
@@ -263,7 +245,7 @@ class ContentBox extends Component {
                                     </Link>
                                 </Menu.Item>
                                 <Menu.Item key="14">
-                                    <Link to="/item3">
+                                    <Link to="/imnrm">
                                         <Icon type="idcard" style={{fontSize: 12, color: '#fff'}}/>
                                         资源管理
                                     </Link>

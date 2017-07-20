@@ -82,6 +82,43 @@ $ tree
 ├── index.html                  # index.html template
 └── package.json                # build scripts and dependencies
 
+```
+
+```sh
+
+$ tree src
+
+
+├─Actions
+├─Ant_Components
+│  ├─React_Template
+│  └─Redux_Template
+├─app
+├─components
+│  ├─AM                      # 权限管理
+│  │  └─RM
+│  ├─IM                      # 信息管理
+│  │  ├─MM
+│  │  │  └─ReactTreeMenu
+│  │  ├─ModuleM
+│  │  ├─PM
+│  │  └─RM
+│  ├─json-datas
+│  ├─Modals
+│  ├─Search
+│  ├─UM                       # 用户管理
+│  └─utils
+├─img
+├─Reducers
+│  ├─AM
+│  ├─IM
+│  └─UM
+├─Routers
+├─Sass
+└─Store
+
+
+
 
 ```
 

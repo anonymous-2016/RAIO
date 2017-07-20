@@ -10,5 +10,5 @@ class ResourceManagement extends Component {
     }
 }
 
-export {ResourceManagement};
-export default ResourceManagement;
+/* export {ResourceManagement};
+export default ResourceManagement; */

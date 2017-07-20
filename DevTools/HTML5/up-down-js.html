@@ -41,7 +41,7 @@
         }
         
         .up {
-            color: #0f0;
+            color: #ccc;
             margin: auto 10px;
         }
         
@@ -112,22 +112,32 @@
         function moveUp(obj) {
             // 获取当前的父级元素 tr (a => td => tr) 
             var current = $(obj).parent().parent();
+            console.log(current);
             // 前一个
             var prev = current.prev();
-            if (current.index() > 1) {
+            if (current.index() > 0) {
                 // 如果 current 不是第一个 tr，在前面插入
                 current.insertBefore(prev);
+            }
+            if (current.index() === 0) {
+                alert(`current.index() === ${current.index()}!`);
             }
         }
 
         function moveDown(obj) {
             // 获取当前的父级元素 tr (a => td => tr) 
             var current = $(obj).parent().parent();
+            console.log('current = ', current);
+            console.log(`current[0].rowIndex = `, current[0].rowIndex);
+            console.log(`typeof current[0].rowIndex = `, typeof current[0].rowIndex);
             // 后一个
             var next = current.next();
             if (next) {
                 // 如果 current 不是最后一个 tr，在后面插入
                 current.insertAfter(next);
+            }
+            if (current[0].rowIndex === 4) {
+                alert(`current.index() === ${current.index()}!`);
             }
         }
     </script>

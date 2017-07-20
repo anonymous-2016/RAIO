@@ -15,7 +15,11 @@ import {DropOption} from '../../utils/DropOption';
 // ({onMenuClick, menuOptions = [], buttonStyle, dropdownProps}) 
 
 import {EMC} from '../../Modals/EditModalCopy';
-import GridRowCol from '../../../Ant_Components/Gird-Flex';
+import GridRowCol from '../../../Ant_Components/Gird-Flex'; 
+
+
+// amrm
+import {RT} from './RoleTable';
 
 import {Table, Form, Icon, Input, Button, Modal, Menu, Dropdown,} from 'antd';
 
@@ -40,14 +44,16 @@ const handleMenuClick = (record, e) => {
         const clickOK = () => {
             alert('clickOK', clickOK);
         }
-/*         return(
+    /*      
+        return(
             <EM
                 data={record}
                 clickOK={clickOK}
                 >
                 <span>{record.rname} 编辑</span>
             </EM>
-        ); */
+        ); 
+    */
     }
     if(e.key === "2"){
         confirm({
@@ -98,19 +104,6 @@ const columns = [
             const clickOK = (record) => {
                 return record.pid = "new pid";
             };
-            const menu = (
-                <Menu>
-                    <Menu.Item>
-                    <a rel="noopener noreferrer" href="https://www.xgqfrms.xyz/">1st</a>
-                    </Menu.Item>
-                    <Menu.Item>
-                    <a rel="noopener noreferrer" href="https://www.xgqfrms.xyz/">2nd</a>
-                    </Menu.Item>
-                    <Menu.Item>
-                    <a rel="noopener noreferrer" href="https://www.xgqfrms.xyz/">3rd</a>
-                    </Menu.Item>
-                </Menu>
-            );
             return(
                 <span>
                     <DropOption 
@@ -201,6 +194,13 @@ class RolesManagement extends Component {
         console.log('Received values of form: ', e);
         alert(`e`, e);
     };
+    onChange = (e) => {
+        const { value } = e.target;
+        const reg = /^-?(0|[1-9][0-9]*)(\.[0-9]*)?$/;
+        if ((!isNaN(value) && reg.test(value)) || value === '' || value === '-') {
+            this.props.onChange(value);
+        }
+    };
     render() {
         const {getFieldDecorator, getFieldsError, getFieldError, isFieldTouched} = this.props.form;
         const roleCodeError = isFieldTouched('roleCode') && getFieldError('roleCode');
@@ -209,103 +209,124 @@ class RolesManagement extends Component {
         const userNameError = isFieldTouched('userName') && getFieldError('userName');
         return (
             <div className="user-search">
-                <a href="#">
-                    角色管理
-                </a>
-                <Form layout="inline" onSubmit={this.handleSubmit}>
-                    <FormItem
-                        validateStatus={roleCodeError ? 'error' : ''}
-                        help={roleCodeError || ''}
-                        label="角色编码"
-                        >
-                        {
-                            getFieldDecorator('roleCode', {
-                                rules: [{ required: false, message: '角色编码' }],
-                            })
-                            (
-                                <Input
-                                    type="number"
-                                    min="1000"
-                                    prefix={<Icon type="key"
-                                    style={{ fontSize: 13 }} />}
-                                    placeholder="角色编码"
-                                />
-                            )
-                        }
-                    </FormItem>
-                    <FormItem
-                        validateStatus={loginNameError ? 'error' : ''}
-                        help={loginNameError || ''}
-                        label="登录名"
-                        >
-                        {
-                            getFieldDecorator('loginName', {
-                                rules: [{ required: false, message: '登录名' }],
-                            })
-                            (
-                            <Input type="text" maxLength="12" prefix={<Icon type="contacts" style={{ fontSize: 13 }} />} placeholder="登录名" />
-                            )
-                        }
-                    </FormItem>
-                    <span className="search-spaces"/>
-                    <FormItem>
-                        <Button
-                            icon="search"
+                <div>
+                    <div>
+                        <Input
+                            type='number'
+                            placeholder="角色编码"
+                            style={{width: 150, margin: 'auto 10px'}} 
+                            prefix={<Icon type="user" style={{fontSize: 12, marginTop: 12}} />}
+                            onChange={(e) => this.onChange(e)}
+                        />
+                        <Button 
                             type="primary"
-                            htmlType="submit"
-                            id="role-manage-search"
-                            onClick={this.clickSearchHandler}
+                            icon="search"
                             >
                             查询
                         </Button>
-                    </FormItem>
-                    <br/>
-                    <FormItem
-                        validateStatus={userCodeError ? 'error' : ''}
-                        help={userCodeError || ''}
-                        label="用户编码"
-                        >
-                        {
-                            getFieldDecorator('userCode', {
-                                rules: [{ required: false, message: '用户编码' }],
-                            })
-                            (
-                            <Input
-                                type="number"
-                                min="1000"
-                                step="1"
-                                prefix={<Icon type="qrcode" style={{fontSize: 13}} />}
-                                placeholder="用户编码" />
-                            )
-                        }
-                    </FormItem>
-                    <FormItem
-                        validateStatus={userNameError ? 'error' : ''}
-                        help={userNameError || ''}
-                        label="用户名"
-                        >
-                        {
-                            getFieldDecorator('userName', {
-                                rules: [{ required: false, message: '用户名' }],
-                            })
-                            (
-                            <Input type="text" maxLength="12" prefix={<Icon type="user" style={{ fontSize: 13 }} />} placeholder="用户名" />
-                            )
-                        }
-                    </FormItem>
-                    <span className="search-spaces"/>
-                    <FormItem>
-                        <Button
-                            icon="user-add"
-                            type="primary"
-                            htmlType="button"
-                            id="role-manage-add"
-                            onClick={this.clickAddHandler}
+                    </div>
+                    <RT />
+                </div>
+                <hr style={{height: 30, background: '#000'}}/>
+                <a href="#">
+                    角色管理
+                </a>
+                <div>
+                    <Form layout="inline" onSubmit={this.handleSubmit}>
+                        <FormItem
+                            validateStatus={roleCodeError ? 'error' : ''}
+                            help={roleCodeError || ''}
+                            label="角色编码"
                             >
-                            添加
-                        </Button>
-                    </FormItem>
-                </Form>
+                            {
+                                getFieldDecorator('roleCode', {
+                                    rules: [{ required: false, message: '角色编码' }],
+                                })
+                                (
+                                    <Input
+                                        type="number"
+                                        min="1000"
+                                        prefix={<Icon type="key"
+                                        style={{ fontSize: 13 }} />}
+                                        placeholder="角色编码"
+                                    />
+                                )
+                            }
+                        </FormItem>
+                        <FormItem
+                            validateStatus={loginNameError ? 'error' : ''}
+                            help={loginNameError || ''}
+                            label="登录名"
+                            >
+                            {
+                                getFieldDecorator('loginName', {
+                                    rules: [{ required: false, message: '登录名' }],
+                                })
+                                (
+                                <Input type="text" maxLength="12" prefix={<Icon type="contacts" style={{ fontSize: 13 }} />} placeholder="登录名" />
+                                )
+                            }
+                        </FormItem>
+                        <span className="search-spaces"/>
+                        <FormItem>
+                            <Button
+                                icon="search"
+                                type="primary"
+                                htmlType="submit"
+                                id="role-manage-search"
+                                onClick={this.clickSearchHandler}
+                                >
+                                查询
+                            </Button>
+                        </FormItem>
+                        <br/>
+                        <FormItem
+                            validateStatus={userCodeError ? 'error' : ''}
+                            help={userCodeError || ''}
+                            label="用户编码"
+                            >
+                            {
+                                getFieldDecorator('userCode', {
+                                    rules: [{ required: false, message: '用户编码' }],
+                                })
+                                (
+                                <Input
+                                    type="number"
+                                    min="1000"
+                                    step="1"
+                                    prefix={<Icon type="qrcode" style={{fontSize: 13}} />}
+                                    placeholder="用户编码" />
+                                )
+                            }
+                        </FormItem>
+                        <FormItem
+                            validateStatus={userNameError ? 'error' : ''}
+                            help={userNameError || ''}
+                            label="用户名"
+                            >
+                            {
+                                getFieldDecorator('userName', {
+                                    rules: [{ required: false, message: '用户名' }],
+                                })
+                                (
+                                <Input type="text" maxLength="12" prefix={<Icon type="user" style={{ fontSize: 13 }} />} placeholder="用户名" />
+                                )
+                            }
+                        </FormItem>
+                        <span className="search-spaces"/>
+                        <FormItem>
+                            <Button
+                                icon="user-add"
+                                type="primary"
+                                htmlType="button"
+                                id="role-manage-add"
+                                onClick={this.clickAddHandler}
+                                >
+                                添加
+                            </Button>
+                        </FormItem>
+                    </Form>
+                </div>
                 {/* className="table-left" */}
                 <div >
                     <Table dataSource={this.state.data} columns={columns} />
