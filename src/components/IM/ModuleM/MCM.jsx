@@ -9,11 +9,15 @@ import {
     Radio,
     Button,
     Modal,
-    Cascader
+    Cascader,
+    Menu,
+    Select
 } from 'antd';
 
 
 const FormItem = Form.Item;
+const MenuItem = Menu.Item;
+const Option = Select.Option;
 
 class MCModal extends Component {
     constructor(props){
@@ -62,7 +66,7 @@ class MCModal extends Component {
                     {this.props.children}
                 </a>
                 <Modal
-                    title={record.pname ? record.pname : '标题'}
+                    title={record.pname ? record.pname : '类库定义'}
                     wrapClassName="vertical-center-modal"
                     visible={this.state.showModal}
                     onOk={() => this.OK(false)}
@@ -71,57 +75,75 @@ class MCModal extends Component {
                     >
                     <Form >
                         <FormItem
-                            label={<span className="left-spaces">角色编码</span>}
+                            label={<span className="left-spaces">编码</span>}
                             {...formItemLayout}
                             >
                             {
-                                getFieldDecorator('roleEncode', {
-                                    initialValue: record.rencode,
+                                getFieldDecorator('encode', {
+                                    initialValue: record.mencode,
                                     rules: [
-                                        { required: false, message: '角色编码' }
+                                        { required: false, message: '编码' }
                                     ],
                                 })
                                 (
                                     <Input 
                                         prefix={<Icon type="user" style={{}} />} 
-                                        type="number" 
-                                        placeholder="角色编码" 
+                                        type="text" 
+                                        placeholder="编码" 
                                     />
                                 )
                             }
                         </FormItem>
                         <FormItem
-                            label={<span className="left-spaces">角色名称</span>}
+                            label={<span className="left-spaces">名称</span>}
                             {...formItemLayout}
                             >
                             {
-                                getFieldDecorator('roleName', {
-                                    initialValue: record.rname,
-                                    rules: [{ required: true, message: '角色名称' }],
+                                getFieldDecorator('name', {
+                                    initialValue: record.mname,
+                                    rules: [{ required: true, message: '名称' }],
                                 })
                                 (
                                     <Input 
                                         prefix={<Icon type="idcard" style={{}} />} 
                                         type="text" 
-                                        placeholder="角色名称" 
+                                        placeholder="名称" 
                                         />
                                 )
                             }
                         </FormItem>
                         <FormItem
-                            label={<span className="left-spaces">关联用户</span>}
+                            label={<span className="left-spaces">描述</span>}
                             {...formItemLayout}
                             >
                             {
-                                getFieldDecorator('roleEdit', {
+                                getFieldDecorator('describe', {
                                     initialValue: record.redit ? record.redit : `Null Value!`,
-                                    rules: [{ required: false, message: '关联用户' }],
+                                    rules: [{ required: false, message: '描述' }],
+                                })
+                                (
+                                    <Input 
+                                        prefix={<Icon type="notification" style={{ fontSize: 13 }} />} 
+                                        type="textarea" 
+                                        placeholder="描述"
+                                        />
+                                )
+                            }
+                        </FormItem>
+                        <FormItem
+                            label={<span className="left-spaces">开发者</span>}
+                            {...formItemLayout}
+                            >
+                            {
+                                getFieldDecorator('developer', {
+                                    initialValue: record.redit ? record.redit : `Null Value!`,
+                                    rules: [{ required: false, message: '开发者' }],
                                 })
                                 (
                                     <Input 
                                         prefix={<Icon type="notification" style={{ fontSize: 13 }} />} 
                                         type="text" 
-                                        placeholder="关联用户"
+                                        placeholder="开发者"
                                         />
                                 )
                             }

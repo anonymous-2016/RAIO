@@ -9,11 +9,16 @@ import {
     Radio,
     Button,
     Modal,
-    Cascader
+    Cascader,
+    Menu,
+    Select
 } from 'antd';
 
 
 const FormItem = Form.Item;
+
+const MenuItem = Menu.Item;
+const Option = Select.Option;
 
 class MDModal extends Component {
     constructor(props){
@@ -62,7 +67,7 @@ class MDModal extends Component {
                     {this.props.children}
                 </a>
                 <Modal
-                    title={record.pname ? record.pname : '标题'}
+                    title={record.pname ? record.pname : '模块定义'}
                     wrapClassName="vertical-center-modal"
                     visible={this.state.showModal}
                     onOk={() => this.OK(false)}
@@ -71,57 +76,111 @@ class MDModal extends Component {
                     >
                     <Form >
                         <FormItem
-                            label={<span className="left-spaces">角色编码</span>}
+                            label={<span className="left-spaces">模块编码</span>}
                             {...formItemLayout}
                             >
                             {
-                                getFieldDecorator('roleEncode', {
-                                    initialValue: record.rencode,
+                                getFieldDecorator('moduleEncode', {
+                                    initialValue: record.mencode,
                                     rules: [
-                                        { required: false, message: '角色编码' }
+                                        { required: false, message: '模块编码' }
                                     ],
                                 })
                                 (
                                     <Input 
-                                        prefix={<Icon type="user" style={{}} />} 
-                                        type="number" 
-                                        placeholder="角色编码" 
+                                        prefix={<Icon type="key" style={{}} />} 
+                                        type="text" 
+                                        placeholder="模块编码" 
                                     />
                                 )
                             }
                         </FormItem>
                         <FormItem
-                            label={<span className="left-spaces">角色名称</span>}
+                            label={<span className="left-spaces">模块名称</span>}
                             {...formItemLayout}
                             >
                             {
-                                getFieldDecorator('roleName', {
-                                    initialValue: record.rname,
-                                    rules: [{ required: true, message: '角色名称' }],
+                                getFieldDecorator('moduleCommand', {
+                                    initialValue: record.mname,
+                                    rules: [{ required: true, message: '模块命令' }],
                                 })
                                 (
                                     <Input 
                                         prefix={<Icon type="idcard" style={{}} />} 
                                         type="text" 
-                                        placeholder="角色名称" 
+                                        placeholder="模块命令" 
                                         />
                                 )
                             }
                         </FormItem>
                         <FormItem
-                            label={<span className="left-spaces">关联用户</span>}
+                            label={<span className="left-spaces">模块描述</span>}
                             {...formItemLayout}
                             >
                             {
-                                getFieldDecorator('roleEdit', {
-                                    initialValue: record.redit ? record.redit : `Null Value!`,
-                                    rules: [{ required: false, message: '关联用户' }],
+                                getFieldDecorator('moduleDescribe', {
+                                    rules: [{ required: false, message: '模块描述' }],
                                 })
                                 (
                                     <Input 
-                                        prefix={<Icon type="notification" style={{ fontSize: 13 }} />} 
+                                        prefix={<Icon type="file" style={{ fontSize: 13 }} />} 
                                         type="text" 
-                                        placeholder="关联用户"
+                                        placeholder="模块描述"
+                                        />
+                                )
+                            }
+                        </FormItem>
+                        <FormItem
+                            label={<span className="left-spaces">关联类库</span>}
+                            {...formItemLayout}
+                            >
+                            {
+                                getFieldDecorator('associateLibs', {
+                                    rules: [{ required: false, message: '关联类库' }],
+                                    initialValue: "lib2"
+                                })
+                                (
+                                    <Select
+                                        placeholder="关联类库"
+                                        >
+                                        <Option value="lib1">类库 1</Option>
+                                        <Option value="lib2">类库 2</Option>
+                                        <Option value="lib3">类库 3</Option>
+                                    </Select>
+                                )
+                            }
+                        </FormItem>
+                        <FormItem
+                            label={<span className="left-spaces">模块命令</span>}
+                            {...formItemLayout}
+                            >
+                            {
+                                getFieldDecorator('moduleCommand', {
+                                    rules: [{ required: false, message: '模块命令' }],
+                                    initialValue: record.mcomand
+                                })
+                                (
+                                    <Input 
+                                        prefix={<Icon type="code" style={{ fontSize: 13 }} />} 
+                                        type="text" 
+                                        placeholder="模块命令"
+                                        />
+                                )
+                            }
+                        </FormItem>
+                        <FormItem
+                            label={<span className="left-spaces">模块参数</span>}
+                            {...formItemLayout}
+                            >
+                            {
+                                getFieldDecorator('moduleParameters', {
+                                    rules: [{ required: false, message: '模块参数' }],
+                                })
+                                (
+                                    <Input 
+                                        prefix={<Icon type="compass" style={{ fontSize: 13 }} />} 
+                                        type="text" 
+                                        placeholder="模块参数"
                                         />
                                 )
                             }
@@ -135,6 +194,8 @@ class MDModal extends Component {
         )
     }
 }
+
+
 
 MDModal.propTypes = {
 
