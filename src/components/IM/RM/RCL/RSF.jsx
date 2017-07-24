@@ -1,13 +1,7 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-// modal
-import {RT} from './RT';
-import {ARDM} from './ARDM';
-
-// test
-
-import {RCL} from './RCL/index';
+import {ARCM}from './ARCM';
 
 import {
     Form,
@@ -22,11 +16,10 @@ import {
 } from 'antd';
 
 const Option = Select.Option;
-
-
 const FormItem = Form.Item;
 
-class RM extends Component {
+
+class RSForm extends Component {
     constructor (props) {
         super(props);
         this.state = {
@@ -45,7 +38,7 @@ class RM extends Component {
     handleSubmit = (value) => {
         console.log(`selected ${value}`);
     };
-    render () {
+    render() {
         const {getFieldDecorator} = this.props.form;
         const formItemLayout = {
             labelCol: {
@@ -68,6 +61,8 @@ class RM extends Component {
         const handleSearch = (value) => {
             console.log(`selected ${value}`);
             alert(`查询 ...`);
+            // search
+            this.props.onSearch();
         };
         const showModal = (value) => {
             this.setState(
@@ -85,7 +80,7 @@ class RM extends Component {
             showModal(true);
         };
         return (
-            <div style={{border: '1px solid #ccc', margin: 10, padding: 10}}>
+            <div>
                 <Form
                     onSubmit={(e) => this.handleSubmit(e)}
                     layout="inline"
@@ -118,34 +113,6 @@ class RM extends Component {
                         }
                     </FormItem>
                     <FormItem
-                        {...formItemLayout}
-                        label="资源分类"
-                        hasFeedback
-                        >
-                        {
-                            getFieldDecorator('productName', {
-                                initialValue: "classfication1",
-                                rules: [
-                                    {
-                                        required: false, 
-                                        message: 'Please input your 资源分类!'
-                                    }
-                                ]
-                            })(
-                                <Select
-                                    showSearch
-                                    style={{ width: 150 }}
-                                    placeholder="Select a 资源分类"
-                                    >
-                                    <Option value="classfication1">资源分类 1</Option>
-                                    <Option value="classfication2">资源分类 2</Option>
-                                    <Option value="classfication3">资源分类 3</Option>
-                                </Select>
-                            )
-                        }
-                    </FormItem>
-                    <br/>
-                    <FormItem
                         label="资源名称"
                         {...formItemLayout}
                         hasFeedback
@@ -172,7 +139,7 @@ class RM extends Component {
                             )
                         }
                     </FormItem>
-                    {/* <br/> */}
+                    <br/>
                     <FormItem>
                         <Button 
                             icon="search" 
@@ -196,66 +163,19 @@ class RM extends Component {
                 </Form>
                 <div>
                     {
-                        show
-                        &&
-                        <ARDM
-                            title='标题'
-                            data={[]}
-                            clickOK={() => console.log(`clicked OK!`)}
-                            hide={this.hideModal}
-                        >
-                             {/* <span>添加</span>  */}
-                        </ARDM>
+                        show && <ARCM hide={this.hideModal}/>
                     }
                 </div>
-                <hr/>
-                <div>
-                    <RT />
-                </div>
-                 <hr/>
-                <div>
-                    <RCL />
-                </div> 
             </div>
-        )
+        );
     }
 }
 
-const NRM = Form.create({})(RM);
+RSForm.propTypes = {
 
-RM.propTypes = {
+};
 
-}
+const RSF = Form.create({})(RSForm);
 
-export {NRM};
-export default NRM;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+export {RSF};
+export default RSF;

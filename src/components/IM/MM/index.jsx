@@ -1,13 +1,13 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 
- import {MMF} from './Form';
+import {MMF} from './Form';
 
-import {FM} from './FModal';
+// import {FM} from './FModal';
 
-import {RMT} from './ReactTreeMenu'; 
+// import {RMT} from './ReactTreeMenu'; 
 
-import {MenuTree} from './Menu';
+// import {MenuTree} from './Menu';
 
 import {MainTable} from './MainTable';
 
@@ -46,7 +46,7 @@ class MenuManage extends Component {
     render () {
         return (
             <div>
-                 <MMF /> 
+                <MMF /> 
                 {/* <WMF /> */}
                 {/* <FM />  */}
                 <MainTable />

@@ -9,28 +9,38 @@ import {
     Radio,
     Button,
     Modal,
-    Cascader
+    Cascader,
+    Menu,
+    Select
 } from 'antd';
 
 
 const FormItem = Form.Item;
 
-class RCModal extends Component {
+const MenuItem = Menu.Item;
+const Option = Select.Option;
+
+class NLDModal extends Component {
     constructor(props){
         super(props);
         this.state = {
-            showModal: false
+            showModal: true
         }
     }
+     // default  true, 一进来就显示，不用 click 通过 props 传递的子组件，来触发 show modal！
     setModalVisible = (value) => {
         this.setState({
             showModal: value
         });
+        this.props.hide();
     }
     OK = (value) => {
         this.setState({
             showModal: value
         });
+        // Error
+        // this.props.hide;
+        this.props.hide();
     }
     render() {
         const record = this.props.data;
@@ -48,21 +58,8 @@ class RCModal extends Component {
         };
         return (
             <div>
-                <a
-                    onClick={
-                        (e) => {
-                            e.preventDefault();
-                            e.stopPropagation();
-                            return(
-                                this.setModalVisible(true)
-                            );
-                        }
-                    }
-                    >
-                    {this.props.children}
-                </a>
                 <Modal
-                    title={record.pname ? record.pname : '资源分类'}
+                    title={record.pname ? record.pname : '类库定义'}
                     wrapClassName="vertical-center-modal"
                     visible={this.state.showModal}
                     onOk={() => this.OK(false)}
@@ -71,62 +68,79 @@ class RCModal extends Component {
                     >
                     <Form >
                         <FormItem
-                            label={<span className="left-spaces">分类编码</span>}
+                            label={<span className="left-spaces">编码</span>}
                             {...formItemLayout}
                             >
                             {
-                                getFieldDecorator('rcEncode', {
+                                getFieldDecorator('lencode', {
+                                    initialValue: record.lencode,
                                     rules: [
-                                        { required: false, message: '分类编码' }
+                                        { required: false, message: '编码' }
                                     ],
                                 })
                                 (
                                     <Input 
-                                        prefix={<Icon type="user" style={{}} />} 
-                                        type="number" 
-                                        placeholder="分类编码" 
+                                        prefix={<Icon type="key" style={{}} />} 
+                                        type="text" 
+                                        placeholder="编码" 
                                     />
                                 )
                             }
                         </FormItem>
                         <FormItem
-                            label={<span className="left-spaces">分类名称</span>}
+                            label={<span className="left-spaces">名称</span>}
                             {...formItemLayout}
                             >
                             {
-                                getFieldDecorator('rcName', {
-                                    initialValue: record.rname,
-                                    rules: [{ required: true, message: '分类名称' }],
+                                getFieldDecorator('libName', {
+                                    initialValue: record.lname,
+                                    rules: [{ required: true, message: '名称' }],
                                 })
                                 (
                                     <Input 
                                         prefix={<Icon type="idcard" style={{}} />} 
                                         type="text" 
-                                        placeholder="分类名称" 
+                                        placeholder="名称" 
                                         />
                                 )
                             }
                         </FormItem>
                         <FormItem
-                            label={<span className="left-spaces">父分类编码</span>}
+                            label={<span className="left-spaces">描述</span>}
                             {...formItemLayout}
                             >
                             {
-                                getFieldDecorator('prcEncode', {
-                                    initialValue: record.redit ? record.redit : `Null Value!`,
-                                    rules: [{ required: false, message: '父分类编码' }],
+                                getFieldDecorator('describe', {
+                                    rules: [{ required: false, message: '描述' }],
                                 })
                                 (
                                     <Input 
-                                        prefix={<Icon type="notification" style={{ fontSize: 13 }} />} 
+                                        prefix={<Icon type="file" style={{ fontSize: 13 }} />} 
+                                        type="textarea" 
+                                        placeholder="描述"
+                                        />
+                                )
+                            }
+                        </FormItem>
+                        <FormItem
+                            label={<span className="left-spaces">开发者</span>}
+                            {...formItemLayout}
+                            >
+                            {
+                                getFieldDecorator('developers', {
+                                    rules: [{ required: false, message: '开发者' }],
+                                })
+                                (
+                                    <Input 
+                                        prefix={<Icon type="user" style={{ fontSize: 13 }} />} 
                                         type="text" 
-                                        placeholder="父分类编码"
+                                        placeholder="开发者"
                                         />
                                 )
                             }
                         </FormItem>
                         {/* <span>
-                            {`${record.rencode} + ${record.rname} + ${record.redit ? record.redit : `Null Value!`}`}
+                            {`${record.rencode} + ${record.lname} + ${record.redit ? record.redit : `Null Value!`}`}
                         </span> */}
                     </Form>
                 </Modal>
@@ -135,23 +149,13 @@ class RCModal extends Component {
     }
 }
 
-RCModal.propTypes = {
+
+
+NLDModal.propTypes = {
 
 }
 
-const RCM = Form.create({})(RCModal);
+const NLDM = Form.create({})(NLDModal);
 
-export {RCM};
-export default RCM;
-
-/* 
-<RCM
-    title='标题'
-    data={record}
-    clickOK={clickOK}
->
-    <span>{text ? text : `资源分类!A default`}</span>
-</RCM>
-
-
-*/
+export {NLDM};
+export default NLDM;

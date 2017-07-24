@@ -1,5 +1,0 @@
-# CONTRIBUTING
-
-
-> No Need!
-

@@ -70,7 +70,8 @@ https://ant.design/components/form-cn/#getFieldDecorator(id,-options)-参数
                     required: true, 
                     message: 'Please input your 产品名称!'
                 }
-            ]
+            ],
+            initialValue: "Fans"
         })(
             <Select
                 defaultValue="Fans"
@@ -165,7 +166,6 @@ Warning: `defaultValue` is invalid for `getFieldDecorator` will set `value`, ple
 
 ```js
 
-{/* 
 <Button
     onClick={() => this.showModal(true)}
     type='primary'
@@ -173,8 +173,7 @@ Warning: `defaultValue` is invalid for `getFieldDecorator` will set `value`, ple
     {
         this.props.children ? '修改' : 'opreate'
     }
-</Button>
-*/}
+</Button> 
 <a
     href="#"
     onClick={
@@ -186,13 +185,111 @@ Warning: `defaultValue` is invalid for `getFieldDecorator` will set `value`, ple
     }
     type='primary'
     >
-    {
-        this.props.children ? '修改' : 'opreate'
-    }
+    {this.props.children}
 </a>
-
 
 
 const MMF = Form.create()(MMForm);
 
 ```
+
+# form validation
+
+```js
+
+<FormItem
+    {...formItemLayout}
+    label="功能编码"
+    hasFeedback
+    >
+    {
+        getFieldDecorator('featuresEncode', {
+            initialValue: 111,
+            rules: [
+                {
+                    required: true, 
+                    message: '请输入功能编码!'
+                }
+            ],
+        })(
+            <Input type="number" placeholder="功能编码" />
+        )
+    }
+</FormItem>
+
+
+```
+
+# FormItem & Select `mode="multiple"`
+
+
+```js
+
+<FormItem
+    {...formItemLayout}
+    label="关联资源"
+    hasFeedback
+    >
+    {
+        getFieldDecorator('associateResources', {
+            rules: [
+                {
+                    required: true, 
+                    message: '请输入关联资源!'
+                }
+            ],
+            initialValue: ['关联资源010', '关联资源020', '关联资源030']
+        })(
+            <Select
+                mode="multiple"
+                style={{width: '100%'}}
+                placeholder="Please select a 关联资源"
+                onChange={handleChange}
+                >
+                {childs}
+            </Select>
+        )
+    }
+</FormItem>
+
+// options data & fetch / promise
+
+const childs = [];
+for (let i = 10; i < 36; i++) {
+    childs.push(
+        <Option key={`0${i.toString()}`}>
+            {`关联资源0${i.toString()}`}
+        </Option>
+    );
+}
+
+```
+
+
+# babel-plugin-import
+
+https://www.npmjs.com/package/babel-plugin-import
+
+> You are using a whole package of antd, 
+please use https://www.npmjs.com/package/babel-plugin-import to reduce app bundle size.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

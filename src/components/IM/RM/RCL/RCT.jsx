@@ -6,7 +6,6 @@ import 'whatwg-fetch';
 // modal
 
 import {RCM} from './RCM';
-import {RDM} from './RDM';
 
 // ANT
 import {Table, Form, Icon, Input, Button, Modal, Menu, Dropdown, Select} from 'antd';
@@ -15,8 +14,6 @@ const confirm = Modal.confirm;
 const FormItem = Form.Item;
 const MenuItem = Menu.Item;
 const Option = Select.Option;
-
-
 
 const columns = [
     {
@@ -29,21 +26,21 @@ const columns = [
             };
             return(
                 <span>
-                    <RDM
+                    <RCM
                         title='编码'
                         data={record}
                         clickOK={clickOK}
                     >
-                        <span>{text ? text : `资源定义!A1 default`}</span>
-                    </RDM>
+                        <span>{text ? text : `资源分类!A1`}</span>
+                    </RCM>
                 </span>
             );
         }
     }, 
     {
-        title: '分类编码',
+        title: '父编码',
         dataIndex: 'cencode',
-        key: 'classficationEncode',
+        key: 'pEncode',
         render: (text, record, index) => {
             const clickOK = (record) => {
                 return record.rencode = "new rencode";
@@ -51,11 +48,11 @@ const columns = [
             return(
                 <span>
                     <RCM
-                        title='分类编码'
+                        title='父编码'
                         data={record}
                         clickOK={clickOK}
                     >
-                        <span>{text ? text : `资源分类!A default`}</span>
+                        <span>{text ? text : `资源分类!A1`}</span>
                     </RCM>
                 </span>
             );
@@ -70,26 +67,6 @@ const columns = [
                 const clickTest = () => {
                     alert('clickTest!');
                 };
-                /* <a href="javascript:void(0)" onClick={() => clickTest()}>
-                        {text}
-                    </a> */
-                return(
-                    <span>
-                        {text}
-                    </span>
-                );
-            }
-        )
-    },
-    {
-        title: '描述',
-        dataIndex: 'desc',
-        key: 'description',
-        render: (
-            (text) => {
-                const clickTest = () => {
-                    alert('clickTest!');
-                }
                 return(
                     <span>
                         {text}
@@ -101,44 +78,30 @@ const columns = [
 ];
 
 // key` prop,or set `rowKey
-const datas = [
+/* const datas = [
     {
-        encode: `资源定义!A1`,
-        cencode: `资源分类!A1`,
+        encode: `资源分类!A1`,
+        pEncode: `资源分类!A1`,
         name: `名称`,
-        desc: `描述`,
         key: '1'
     },
     {
-        encode: `资源定义!A1`,
-        cencode: `资源分类!A1`,
+        encode: `资源分类!A1`,
+        pEncode: `资源分类!A1`,
         name: `名称`,
-        desc: `描述`,
         key: '2'
-    },
-    {
-        encode: `资源定义!A1`,
-        cencode: `资源分类!A1`,
-        name: `名称`,
-        desc: `描述`,
-        key: '3'
-    },
-    {
-        encode: `资源定义!A1`,
-        cencode: `资源分类!A1`,
-        name: `名称`,
-        desc: `描述`,
-        key: '4'
     }
-];
+]; */
 
 
-class RT extends Component {
+class RCT extends Component {
     render () {
+        // console.log(`this.props.datas`, this.props.datas);
+        // 3
         return (
             <div>
                 <Table
-                    dataSource={datas}
+                    dataSource={this.props.datas}
                     columns={columns}
                 />
             </div>
@@ -146,10 +109,9 @@ class RT extends Component {
     }
 }
 
-RT.propTypes = {
+RCT.propTypes = {
 
 };
 
-export {RT};
-export default RT;
-
+export {RCT};
+export default RCT;

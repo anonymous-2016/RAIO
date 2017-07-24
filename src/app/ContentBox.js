@@ -233,13 +233,13 @@ class ContentBox extends Component {
                                     </Link>
                                 </Menu.Item>
                                 <Menu.Item key="12">
-                                    <Link to="/item3">
+                                    <Link to="/imlm">
                                         <Icon type="idcard" style={{fontSize: 12, color: '#fff'}}/>
                                         类库管理
                                     </Link>
                                 </Menu.Item>
                                 <Menu.Item key="13">
-                                    <Link to="/item3">
+                                    <Link to="/imfm">
                                         <Icon type="idcard" style={{fontSize: 12, color: '#fff'}}/>
                                         功能管理
                                     </Link>

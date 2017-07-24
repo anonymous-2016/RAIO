@@ -39,6 +39,11 @@ import {NMM} from '../components/IM/ModuleM/index.jsx';
 // imnmm
 
 
+import {FM} from '../components/IM/FM/index.jsx';
+// imfm
+import {LM} from '../components/IM/LM/index.jsx';
+// imlm
+
 
 
 
@@ -46,6 +51,8 @@ import {NMM} from '../components/IM/ModuleM/index.jsx';
 
 import {RM} from '../components/AM/RM/index.jsx';
 // amrm
+
+
 
 
 
@@ -101,8 +108,17 @@ const routes = [
         path: '/imnmm',
         sidebar: () => <div>IMNMM</div>,
         main: () => <div><NMM /></div>
+    },
+    {
+        path: '/imfm',
+        sidebar: () => <div>IMFM</div>,
+        main: () => <div><FM /></div>
+    },
+    {
+        path: '/imlm',
+        sidebar: () => <div>IMLM</div>,
+        main: () => <div><LM /></div>
     }
-    
 ];
 
 class App extends Component {

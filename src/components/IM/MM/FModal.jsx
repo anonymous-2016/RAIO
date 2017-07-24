@@ -60,6 +60,7 @@ class FunctionModal extends Component {
                 }
             }
         };
+        // child options
         const childs = [];
         for (let i = 10; i < 36; i++) {
             childs.push(
@@ -74,9 +75,6 @@ class FunctionModal extends Component {
         const url = window.location.href;
         return (
             <div>
-                {/* <Button onClick={() => this.showModal(true)}>
-                    关联
-                </Button> */}
                 <span>
                     <a
                         href={window.location.href}
@@ -90,7 +88,7 @@ class FunctionModal extends Component {
                     </a>
                 </span>
                 <Modal
-                    title='修改'
+                    title='关联'
                     key={this.state.key}
                     visible={this.state.visible}
                     onCancel={() => this.showModal(false)}
@@ -110,7 +108,7 @@ class FunctionModal extends Component {
                                     rules: [
                                         {
                                             required: true, 
-                                            message: 'Please input your 功能编码!'
+                                            message: '请输入功能编码!'
                                         }
                                     ],
                                 })(
@@ -128,7 +126,7 @@ class FunctionModal extends Component {
                                     rules: [
                                         {
                                             required: true, 
-                                            message: 'Please input your 功能名称!'
+                                            message: '请输入功能名称!'
                                         }
                                     ],
                                 })(
@@ -146,7 +144,7 @@ class FunctionModal extends Component {
                                     rules: [
                                         {
                                             required: true, 
-                                            message: 'Please input your 功能命令!'
+                                            message: '请输入功能命令!'
                                         }
                                     ],
                                 })(
@@ -164,7 +162,7 @@ class FunctionModal extends Component {
                                     rules: [
                                         {
                                             required: true, 
-                                            message: 'Please input your 功能参数!'
+                                            message: '请输入功能参数!'
                                         }
                                     ],
                                 })(
@@ -183,7 +181,7 @@ class FunctionModal extends Component {
                                     rules: [
                                         {
                                             required: true, 
-                                            message: 'Please input your 功能说明!'
+                                            message: '请输入功能说明!'
                                         }
                                     ],
                                 })(
@@ -201,7 +199,7 @@ class FunctionModal extends Component {
                                     rules: [
                                         {
                                             required: true, 
-                                            message: 'Please input your 关联模块!'
+                                            message: '请输入关联模块!'
                                         }
                                     ],
                                 })(
@@ -219,15 +217,15 @@ class FunctionModal extends Component {
                                     rules: [
                                         {
                                             required: true, 
-                                            message: 'Please input your 关联资源!'
+                                            message: '请输入关联资源!'
                                         }
                                     ],
+                                    initialValue: ['关联资源010', '关联资源020', '关联资源030']
                                 })(
                                     <Select
                                         mode="multiple"
                                         style={{width: '100%'}}
                                         placeholder="Please select a 关联资源"
-                                        defaultValue={['a10', 'c12']}
                                         onChange={handleChange}
                                         >
                                         {childs}
@@ -245,7 +243,7 @@ class FunctionModal extends Component {
                                     rules: [
                                         {
                                             required: true, 
-                                            message: 'Please input your 掩码定义!'
+                                            message: '请输入掩码定义!'
                                         }
                                     ]
                                 })(

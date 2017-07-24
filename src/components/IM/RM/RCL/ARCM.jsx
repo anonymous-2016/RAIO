@@ -15,23 +15,25 @@ import {
 
 const FormItem = Form.Item;
 
-class RCModal extends Component {
+class ARCModal extends Component {
     constructor(props){
         super(props);
         this.state = {
-            showModal: false
+            showModal: true
         }
     }
     setModalVisible = (value) => {
         this.setState({
             showModal: value
         });
-    }
+        this.props.hide();
+    };
     OK = (value) => {
         this.setState({
             showModal: value
         });
-    }
+        this.props.hide();
+    };
     render() {
         const record = this.props.data;
         const {getFieldDecorator, setFieldsValue} = this.props.form;
@@ -48,21 +50,8 @@ class RCModal extends Component {
         };
         return (
             <div>
-                <a
-                    onClick={
-                        (e) => {
-                            e.preventDefault();
-                            e.stopPropagation();
-                            return(
-                                this.setModalVisible(true)
-                            );
-                        }
-                    }
-                    >
-                    {this.props.children}
-                </a>
                 <Modal
-                    title={record.pname ? record.pname : '资源分类'}
+                    title={this.props.title}
                     wrapClassName="vertical-center-modal"
                     visible={this.state.showModal}
                     onOk={() => this.OK(false)}
@@ -95,7 +84,6 @@ class RCModal extends Component {
                             >
                             {
                                 getFieldDecorator('rcName', {
-                                    initialValue: record.rname,
                                     rules: [{ required: true, message: '分类名称' }],
                                 })
                                 (
@@ -113,7 +101,7 @@ class RCModal extends Component {
                             >
                             {
                                 getFieldDecorator('prcEncode', {
-                                    initialValue: record.redit ? record.redit : `Null Value!`,
+                                    initialValue: `Null Value!`,
                                     rules: [{ required: false, message: '父分类编码' }],
                                 })
                                 (
@@ -125,9 +113,6 @@ class RCModal extends Component {
                                 )
                             }
                         </FormItem>
-                        {/* <span>
-                            {`${record.rencode} + ${record.rname} + ${record.redit ? record.redit : `Null Value!`}`}
-                        </span> */}
                     </Form>
                 </Modal>
             </div>
@@ -135,23 +120,11 @@ class RCModal extends Component {
     }
 }
 
-RCModal.propTypes = {
+ARCModal.propTypes = {
 
-}
+};
 
-const RCM = Form.create({})(RCModal);
+const ARCM = Form.create({})(ARCModal);
 
-export {RCM};
-export default RCM;
-
-/* 
-<RCM
-    title='标题'
-    data={record}
-    clickOK={clickOK}
->
-    <span>{text ? text : `资源分类!A default`}</span>
-</RCM>
-
-
-*/
+export {ARCM};
+export default ARCM;

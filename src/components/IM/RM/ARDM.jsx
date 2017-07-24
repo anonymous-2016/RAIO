@@ -12,25 +12,28 @@ import {
     Cascader
 } from 'antd';
 
+// import {RCL} from './RCL/index';
 
 const FormItem = Form.Item;
 
-class RDModal extends Component {
+class ARDModal extends Component {
     constructor(props){
         super(props);
         this.state = {
-            showModal: false
+            showModal: true
         }
     }
     setModalVisible = (value) => {
         this.setState({
             showModal: value
         });
+        this.props.hide();
     }
     OK = (value) => {
         this.setState({
             showModal: value
         });
+        this.props.hide();
     }
     render() {
         const record = this.props.data;
@@ -48,21 +51,8 @@ class RDModal extends Component {
         };
         return (
             <div>
-                <a
-                    onClick={
-                        (e) => {
-                            e.preventDefault();
-                            e.stopPropagation();
-                            return(
-                                this.setModalVisible(true)
-                            );
-                        }
-                    }
-                    >
-                    {this.props.children}
-                </a>
                 <Modal
-                    title={this.props.title}
+                    title={'添加'}
                     wrapClassName="vertical-center-modal"
                     visible={this.state.showModal}
                     onOk={() => this.OK(false)}
@@ -163,9 +153,7 @@ class RDModal extends Component {
                                             onChange={e => e.target.value}
                                             />
                                         {/* seting props values */}
-                                        {
-                                            '资源分类列表 Modal'
-                                        }
+                                        {'资源分类列表 Modal'}
                                     </div>
                                 )
                             }
@@ -194,11 +182,11 @@ class RDModal extends Component {
     }
 }
 
-RDModal.propTypes = {
+ARDModal.propTypes = {
 
 }
 
-const RDM = Form.create({})(RDModal);
+const ARDM = Form.create({})(ARDModal);
 
-export {RDM};
-export default RDM;
+export {ARDM};
+export default ARDM;

@@ -21,7 +21,7 @@ const Option = Select.Option;
 const AutoCompleteOption = AutoComplete.Option;
 
 
-class ModifyModal extends Component {
+class AddModal extends Component {
     constructor (props) {
         super(props);
         this.state = {
@@ -349,13 +349,13 @@ class ModifyModal extends Component {
     }
 }
 
-ModifyModal.propTypes = {
+AddModal.propTypes = {
     /*  */
 };
 
 
-const WMF = Form.create()(ModifyModal);
+const MAF = Form.create()(AddModal);
 // WrappedModifyModal
 
-export {WMF};
-export default WMF;
+export {MAF};
+export default MAF;

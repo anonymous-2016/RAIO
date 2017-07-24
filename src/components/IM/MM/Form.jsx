@@ -59,7 +59,7 @@ class MMForm extends Component {
                                 rules: [
                                     {
                                         required: true, 
-                                        message: 'Please input your 产品名称!'
+                                        message: '请输入产品名称!'
                                     }
                                 ]
                             })(
@@ -89,7 +89,7 @@ class MMForm extends Component {
                                     }, 
                                     {
                                         required: true, 
-                                        message: 'Please input your 菜单版本!',
+                                        message: '请输入菜单版本!',
                                     }
                                 ],
                             })(
@@ -115,7 +115,7 @@ class MMForm extends Component {
                                     }, 
                                     {
                                         required: true, 
-                                        message: 'Please input your 类型!',
+                                        message: '请输入类型!',
                                     }
                                 ],
                             })(
@@ -142,7 +142,7 @@ class MMForm extends Component {
                                     }, 
                                     {
                                         required: true, 
-                                        message: 'Please input your 菜单名称!',
+                                        message: '请输入菜单名称!',
                                     },
                                     {
                                         validator: this.checkConfirm
@@ -171,7 +171,7 @@ class MMForm extends Component {
                                     }, 
                                     {
                                         required: true, 
-                                        message: 'Please input your 显示状态!',
+                                        message: '请输入显示状态!',
                                     }
                                 ],
                                 initialValue: "yes"
@@ -199,7 +199,7 @@ class MMForm extends Component {
                                     }, 
                                     {
                                         required: true, 
-                                        message: 'Please input your 样式!',
+                                        message: '请输入样式!',
                                     },
                                     {
                                         validator: this.checkConfirm
@@ -222,6 +222,8 @@ class MMForm extends Component {
                             <Button
                                 onClick={() => handleSearch()}
                                 type='primary'
+                                icon="search"
+                                style={{marginLeft: 50}}
                                 >
                                 查询
                             </Button>
@@ -234,6 +236,8 @@ class MMForm extends Component {
                             <Button
                                 onClick={() => handleAdd()}
                                 type='primary'
+                                icon="user-add"
+                                style={{marginLeft: 50}}
                                 >
                                 添加
                             </Button>

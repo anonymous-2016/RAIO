@@ -9,13 +9,17 @@ import {
     Radio,
     Button,
     Modal,
-    Cascader
+    Cascader,
+    Menu,
+    Select
 } from 'antd';
-
 
 const FormItem = Form.Item;
 
-class RDModal extends Component {
+const MenuItem = Menu.Item;
+const Option = Select.Option;
+
+class FMDModal extends Component {
     constructor(props){
         super(props);
         this.state = {
@@ -62,131 +66,123 @@ class RDModal extends Component {
                     {this.props.children}
                 </a>
                 <Modal
-                    title={this.props.title}
+                    title={record.pname ? record.pname : '模块定义!A1'}
                     wrapClassName="vertical-center-modal"
                     visible={this.state.showModal}
                     onOk={() => this.OK(false)}
                     onCancel={() => this.setModalVisible(false)}
                     onClick={(record) => this.props.clickOK(record)}
                     >
-                    <Form >
+                    <Form>
                         <FormItem
-                            label={<span className="left-spaces">资源编码</span>}
+                            label={<span className="left-spaces">模块编码</span>}
                             {...formItemLayout}
                             >
                             {
-                                getFieldDecorator('rEncode', {
-                                    initialValue: record.rencode,
+                                getFieldDecorator('mEncode', {
                                     rules: [
-                                        { required: false, message: '资源编码' }
+                                        { required: false, message: '模块编码' }
                                     ],
                                 })
                                 (
                                     <Input 
-                                        prefix={<Icon type="user" style={{}} />} 
-                                        type="number" 
-                                        placeholder="资源编码" 
+                                        prefix={<Icon type="key" style={{}} />} 
+                                        type="text" 
+                                        placeholder="模块编码" 
                                     />
                                 )
                             }
                         </FormItem>
                         <FormItem
-                            label={<span className="left-spaces">资源名称</span>}
+                            label={<span className="left-spaces">模块名称</span>}
                             {...formItemLayout}
                             >
                             {
-                                getFieldDecorator('rName', {
-                                    initialValue: record.rname,
-                                    rules: [{ required: true, message: '资源名称' }],
+                                getFieldDecorator('mName', {
+                                    rules: [{ required: true, message: '模块名称' }],
                                 })
                                 (
                                     <Input 
                                         prefix={<Icon type="idcard" style={{}} />} 
                                         type="text" 
-                                        placeholder="资源名称" 
+                                        placeholder="模块名称" 
                                         />
                                 )
                             }
                         </FormItem>
                         <FormItem
-                            label={<span className="left-spaces">资源描述</span>}
+                            label={<span className="left-spaces">模块描述</span>}
                             {...formItemLayout}
                             >
                             {
-                                getFieldDecorator('rDescribe', {
-                                    initialValue: record.redit ? record.redit : `Null Value!`,
-                                    rules: [{ required: false, message: '资源描述' }],
+                                getFieldDecorator('mdescribe', {
+                                    rules: [{ required: false, message: '模块描述' }],
                                 })
                                 (
                                     <Input 
-                                        prefix={<Icon type="notification" style={{ fontSize: 13 }} />} 
+                                        prefix={<Icon type="file" style={{ fontSize: 13 }} />} 
                                         type="textarea" 
-                                        placeholder="资源描述"
+                                        placeholder="模块描述"
                                         />
                                 )
                             }
                         </FormItem>
                         <FormItem
-                            label={<span className="left-spaces">资源配置</span>}
+                            label={<span className="left-spaces">关联类库</span>}
                             {...formItemLayout}
                             >
                             {
-                                getFieldDecorator('rConfiguration', {
-                                    initialValue: record.redit ? record.redit : `Null Value!`,
-                                    rules: [{ required: false, message: '资源配置' }],
+                                getFieldDecorator('alibs', {
+                                    rules: [{ required: false, message: '关联类库' }],
                                 })
                                 (
-                                    <Input 
-                                        prefix={<Icon type="notification" style={{ fontSize: 13 }} />} 
-                                        type="textarea" 
-                                        placeholder="资源配置"
-                                        />
+                                    <Select
+                                        placeholder="关联类库"
+                                        >
+                                        <Option value="alib1">关联类库1</Option>
+                                        <Option value="alib2">关联类库2</Option>
+                                        <Option value="alib3">关联类库3</Option>
+                                    </Select>
                                 )
                             }
                         </FormItem>
                         <FormItem
-                            label={<span className="left-spaces">分类编码</span>}
+                            label={<span className="left-spaces">模块命令</span>}
                             {...formItemLayout}
                             >
                             {
-                                getFieldDecorator('maskDefine', {
-                                    initialValue: record.rname,
-                                    rules: [{ required: true, message: '分类编码' }],
-                                })
-                                (
-                                    <div>
-                                        <Input 
-                                            prefix={<Icon type="idcard" style={{}} />} 
-                                            type="text" 
-                                            placeholder="资源分类列表!A1"
-                                            value={"smg"}
-                                            onChange={e => e.target.value}
-                                            />
-                                        {/* seting props values */}
-                                        {
-                                            '资源分类列表 Modal'
-                                        }
-                                    </div>
-                                )
-                            }
-                        </FormItem>
-                        <FormItem
-                            label={<span className="left-spaces">掩码定义</span>}
-                            {...formItemLayout}
-                            >
-                            {
-                                getFieldDecorator('maskDefine', {
-                                    rules: [{ required: true, message: '掩码定义' }],
+                                getFieldDecorator('mCommand', {
+                                    rules: [{ required: false, message: '模块命令' }],
                                 })
                                 (
                                     <Input 
-                                        prefix={<Icon type="idcard" style={{}} />} 
+                                        prefix={<Icon type="user" style={{ fontSize: 13 }} />} 
                                         type="text" 
-                                        placeholder="掩码定义" 
+                                        placeholder="模块命令"
                                         />
                                 )
                             }
                         </FormItem>
+                        <FormItem
+                            label={<span className="left-spaces">模块参数</span>}
+                            {...formItemLayout}
+                            >
+                            {
+                                getFieldDecorator('mParams', {
+                                    rules: [{ required: false, message: '模块参数' }],
+                                })
+                                (
+                                    <Input 
+                                        prefix={<Icon type="user" style={{ fontSize: 13 }} />} 
+                                        type="text" 
+                                        placeholder="模块参数"
+                                        />
+                                )
+                            }
+                        </FormItem>
+                        {/* <span>
+                            {`${record.rencode} + ${record.lname} + ${record.redit ? record.redit : `Null Value!`}`}
+                        </span> */}
                     </Form>
                 </Modal>
             </div>
@@ -194,11 +190,13 @@ class RDModal extends Component {
     }
 }
 
-RDModal.propTypes = {
+
+
+FMDModal.propTypes = {
 
 }
 
-const RDM = Form.create({})(RDModal);
+const FMDM = Form.create({})(FMDModal);
 
-export {RDM};
-export default RDM;
+export {FMDM};
+export default FMDM;

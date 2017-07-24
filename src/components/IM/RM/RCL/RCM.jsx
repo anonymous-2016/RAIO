@@ -62,7 +62,7 @@ class RCModal extends Component {
                     {this.props.children}
                 </a>
                 <Modal
-                    title={record.pname ? record.pname : '资源分类'}
+                    title={this.props.title}
                     wrapClassName="vertical-center-modal"
                     visible={this.state.showModal}
                     onOk={() => this.OK(false)}
@@ -125,9 +125,6 @@ class RCModal extends Component {
                                 )
                             }
                         </FormItem>
-                        {/* <span>
-                            {`${record.rencode} + ${record.rname} + ${record.redit ? record.redit : `Null Value!`}`}
-                        </span> */}
                     </Form>
                 </Modal>
             </div>
@@ -143,15 +140,3 @@ const RCM = Form.create({})(RCModal);
 
 export {RCM};
 export default RCM;
-
-/* 
-<RCM
-    title='标题'
-    data={record}
-    clickOK={clickOK}
->
-    <span>{text ? text : `资源分类!A default`}</span>
-</RCM>
-
-
-*/
