@@ -21,9 +21,18 @@ import GridRowCol from '../../../Ant_Components/Gird-Flex';
 // amrm
 import {RT} from './RoleTable';
 
-import {Table, Form, Icon, Input, Button, Modal, Menu, Dropdown,} from 'antd';
+import {ADDM} from './ADDM';
 
-
+import {
+    Table,
+    Form,
+    Icon,
+    Input,
+    Button,
+    Modal,
+    Menu,
+    Dropdown
+} from 'antd';
 
 const confirm = Modal.confirm;
 const FormItem = Form.Item;
@@ -131,11 +140,20 @@ class RolesManagement extends Component {
     constructor(props){
         super(props);
         this.state = {
-            data: props.data
+            data: this.props.data ? this.props.data : [],
+            show: false
         };
     }
+    hideModal = () => {
+        this.setState(
+            {
+                show: false
+            }
+        );
+    };
     componentDidMount() {
         // To disabled submit button at the beginning.
+        const form = this.props.form;
         this.props.form.validateFields();
         setTimeout(() => {
              fetch('https://cdn.xgqfrms.xyz/json/roles.json')
@@ -171,7 +189,7 @@ class RolesManagement extends Component {
                 data: []
             }
         );
-        let q = ""
+        let q = "";
         setTimeout(() => {
              fetch('https://cdn.xgqfrms.xyz/json/roles.json')
             .then((res) => {
@@ -189,24 +207,41 @@ class RolesManagement extends Component {
             });
         }, 1000);
     };
+    showModal = (value) => {
+        this.setState(
+            {
+                show: value ? value : true
+            }
+        );
+    };
     clickAddHandler = (e) => {
         e.preventDefault();
         console.log('Received values of form: ', e);
-        alert(`e`, e);
+        // this.showModal();
+        // alert(`e`, e);
+        this.setState(
+            {
+                show: true
+            }
+        );
     };
     onChange = (e) => {
-        const { value } = e.target;
+        const { value } = e.target.value;
         const reg = /^-?(0|[1-9][0-9]*)(\.[0-9]*)?$/;
         if ((!isNaN(value) && reg.test(value)) || value === '' || value === '-') {
+            // 递归调用
             this.props.onChange(value);
         }
     };
     render() {
+        const form = this.props.form;
         const {getFieldDecorator, getFieldsError, getFieldError, isFieldTouched} = this.props.form;
         const roleCodeError = isFieldTouched('roleCode') && getFieldError('roleCode');
         const userCodeError = isFieldTouched('userCode') && getFieldError('userCode');
         const loginNameError = isFieldTouched('loginName') && getFieldError('loginName');
         const userNameError = isFieldTouched('userName') && getFieldError('userName');
+        //
+        let show = this.state.show;
         return (
             <div className="user-search">
                 <div>
@@ -228,6 +263,7 @@ class RolesManagement extends Component {
                     <RT />
                 </div>
                 <hr style={{height: 30, background: '#000'}}/>
+                {/*  */}
                 <a href="#">
                     角色管理
                 </a>
@@ -320,12 +356,19 @@ class RolesManagement extends Component {
                                 type="primary"
                                 htmlType="button"
                                 id="role-manage-add"
-                                onClick={this.clickAddHandler}
+                                onClick={(e) => this.clickAddHandler(e)}
                                 >
                                 添加
                             </Button>
                         </FormItem>
                     </Form>
+                    <div>
+                        {
+                            show
+                            &&
+                            <ADDM hide={this.hideModal} />
+                        }
+                    </div>
                 </div>
                 {/* className="table-left" */}
                 <div >

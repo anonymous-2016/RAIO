@@ -54,7 +54,8 @@ class HLF extends Component {
         e.preventDefault();
         console.log('Received values of form: ', e);
         let event = e;
-        alert(event);
+        // alert(event);
+        this.props.onSearch();
     };
     render() {
         // 解构赋值

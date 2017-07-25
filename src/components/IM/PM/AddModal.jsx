@@ -1,40 +1,45 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
+
 import {
+    Table,
     Form,
     Icon,
     Input,
-    InputNumber,
-    Radio,
     Button,
     Modal,
+    Col,
+    Row,
+    InputNumber,
+    Radio,
     Cascader
 } from 'antd';
 
 const FormItem = Form.Item;
 
-
-class EditModalCopy extends React.Component {
+class AddModal extends Component {
     constructor(props){
         super(props);
         this.state = {
-            showModal: false
-        };
+            showModal: true
+        }
     }
-    // 方法命名冲突了！
     setModalVisible = (value) => {
         this.setState({
             showModal: value
         });
+        this.props.hide();
     }
     OK = (value) => {
         this.setState({
             showModal: value
         });
+        this.props.hide();
     }
     render() {
         const record = this.props.data;
+        const form = this.props.form;
         const {getFieldDecorator, setFieldsValue} = this.props.form;
         // FormItem flexbox
         const formItemLayout = {
@@ -49,95 +54,99 @@ class EditModalCopy extends React.Component {
         };
         return (
             <div>
-                <a
-                    onClick={
-                        (e) => {
-                            e.preventDefault();
-                            e.stopPropagation();
-                            return(
-                                this.setModalVisible(true)
-                            );
-                        }
-                    }
-                    >
-                    {this.props.children}
-                </a>
                 <Modal
-                    title={record.pname ? record.pname : '标题'}
+                    title={'添加'}
                     wrapClassName="vertical-center-modal"
                     visible={this.state.showModal}
                     onOk={() => this.OK(false)}
                     onCancel={() => this.setModalVisible(false)}
                     onClick={(record) => this.props.clickOK(record)}
                     >
-                    <Form >
+                    {/* mode="inline" */}
+                    <Form>
                         <FormItem
-                            label={<span className="left-spaces">角色编码</span>}
+                            label={<span className="left-spaces">产品编号</span>}
                             {...formItemLayout}
                             >
                             {
-                                getFieldDecorator('roleEncode', {
-                                    initialValue: record.rencode,
+                                getFieldDecorator('pNum', {
                                     rules: [
-                                        { required: false, message: '角色编码' }
+                                        { required: false, message: '产品编号' }
                                     ],
                                 })
                                 (
                                     <Input 
                                         prefix={<Icon type="user" style={{}} />} 
                                         type="number" 
-                                        placeholder="角色编码" 
+                                        placeholder="产品编号" 
                                     />
                                 )
                             }
                         </FormItem>
                         <FormItem
-                            label={<span className="left-spaces">角色名称</span>}
+                            label={<span className="left-spaces">产品名称</span>}
                             {...formItemLayout}
                             >
                             {
-                                getFieldDecorator('roleName', {
-                                    initialValue: record.rname,
-                                    rules: [{ required: true, message: '角色名称' }],
+                                getFieldDecorator('pName', {
+                                    rules: [{ required: true, message: '产品名称' }],
                                 })
                                 (
                                     <Input 
                                         prefix={<Icon type="idcard" style={{}} />} 
                                         type="text" 
-                                        placeholder="角色名称" 
+                                        placeholder="产品名称" 
                                         />
                                 )
                             }
                         </FormItem>
                         <FormItem
-                            label={<span className="left-spaces">关联用户</span>}
+                            label={<span className="left-spaces">产品简称</span>}
                             {...formItemLayout}
                             >
                             {
-                                getFieldDecorator('roleEdit', {
-                                    initialValue: record.redit ? record.redit : `Null Value!`,
-                                    rules: [{ required: false, message: '关联用户' }],
+                                getFieldDecorator('pBrief', {
+                                    rules: [{ required: false, message: '产品简称' }],
                                 })
                                 (
                                     <Input 
                                         prefix={<Icon type="notification" style={{ fontSize: 13 }} />} 
-                                        type="text" 
-                                        placeholder="关联用户"
+                                        type="tex" 
+                                        placeholder="产品简称"
                                         />
                                 )
                             }
                         </FormItem>
-                        {/* <span>
-                            {`${record.rencode} + ${record.rname} + ${record.redit ? record.redit : `Null Value!`}`}
-                        </span> */}
+                        <FormItem
+                            label={<span className="left-spaces">产品介绍</span>}
+                            {...formItemLayout}
+                            >
+                            {
+                                getFieldDecorator('pIntroduce', {
+                                    rules: [{ required: false, message: '产品介绍' }],
+                                })
+                                (
+                                    <Input 
+                                        prefix={<Icon type="notification" style={{ fontSize: 13 }} />} 
+                                        type="textarea" 
+                                        placeholder="产品介绍"
+                                        />
+                                )
+                            }
+                        </FormItem>
                     </Form>
                 </Modal>
             </div>
-        );
+        )
     }
 }
 
-const AUM = Form.create({})(EditModalCopy);
+AddModal.propTypes = {
 
-export {AUM};
-export default AUM;
+};
+
+const AM = Form.create({})(AddModal);
+
+export {AM};
+export default AM;
+

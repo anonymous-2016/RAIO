@@ -1,44 +1,5 @@
-/*
-数据源
-
-const dataSource = [
-    {
-        key: '1',
-        name: '胡彦斌',
-        age: 32,
-        address: '西湖区湖底公园1号'
-    }, {
-        key: '2',
-        name: '胡彦祖',
-        age: 42,
-        address: '西湖区湖底公园1号'
-    }
-];
-
-const columns = [
-    {
-        title: '姓名',
-        dataIndex: 'name',
-        key: 'name'
-    }, 
-    {
-        title: '年龄',
-        dataIndex: 'age',
-        key: 'age'
-    }, 
-    {
-        title: '住址',
-        dataIndex: 'address',
-        key: 'address'
-    }
-];
-
-<Table dataSource={dataSource} columns={columns} />
-
-用户ID 用户姓名 登录名 手机号 邮件 激活状态 有效日期
-
-*/
-import React, {Component} from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 import {Table, Icon} from 'antd';
 	
@@ -99,27 +60,9 @@ const columns = [
         title: '用户类型',
         dataIndex: 'utype',
         key: 'userType '
-    }/* ,
-    {
-        title: '操作',
-        key: 'action',
-        render: (text, data) => (
-            <span>
-                <a href={"#"+data.uname}>更新</a>
-                <span className="ant-divider" />
-                <a href="#">删除</a>
-                <span className="ant-divider" />
-                <a href="#" className="ant-dropdown-link">
-                    More <Icon type="down" />
-                </a>
-            </span>
-        )
-    } */
+    }
 ];
 
-// http://localhost:8000/user/450000197702084698
-
-// xiagq gildata 23 Male 18123456789 xiagq@gildata.com 上海 上海市 浦东新区 2017-07-03 15:26:50
 
 const data = [
     {
@@ -191,19 +134,23 @@ const data = [
 ];
 
 
-<Table columns={columns} dataSource={data} />
+class AT extends Component {
+    constructor(props, context) {
+        super(props, context);
+    }
+    render() {
+        return (
+            <div>
+                <Table columns={columns} dataSource={this.props.datas} />
+            </div>
+        );
+    }
+}
 
-const AT = () => {
-    return(
-        <div>
-            <Table columns={columns} dataSource={data} />
-        </div>
-    );
+AT.propTypes = {
+
 };
-
-
 export {AT};
-
 export default AT;
 
 

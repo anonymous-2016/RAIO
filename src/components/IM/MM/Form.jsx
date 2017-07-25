@@ -1,8 +1,12 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 
-import {Table, Form, Icon, Input, Button, Modal, Col, Row, Select, InputNumber, DatePicker, AutoComplete, Cascader} from 'antd';
+import {AFM} from './AFM';
 
+
+import {
+    Table, Form, Icon, Input, Button, Modal, Col, Row, Select, InputNumber, DatePicker, AutoComplete, Cascader
+} from 'antd';
 
 const InputGroup = Input.Group;
 const Option = Select.Option;
@@ -12,9 +16,18 @@ class MMForm extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            // 
+            show: false
         };
     }
+    hideModal = () => {
+        this.setState(
+            () => {
+                return {
+                    show: false
+                };
+            }
+        );
+    };
     render () {
         const {getFieldDecorator} = this.props.form;
         const formItemLayout = {
@@ -39,8 +52,19 @@ class MMForm extends Component {
         const handleSearch = (value) => {
             console.log(`selected ${value}`);
         };
+        let show = this.state.show;
+        const showModal = () => {
+            this.setState(
+                () => {
+                    return {
+                        show: true
+                    };
+                }
+            );
+        };
         const handleAdd = (value) => {
             console.log(`selected ${value}`);
+            showModal();
         };
         return (
             <div style={{border: '1px solid #ccc', margin: 10, padding: 10}}>
@@ -234,7 +258,7 @@ class MMForm extends Component {
                         >
                         {
                             <Button
-                                onClick={() => handleAdd()}
+                                onClick={(e) => handleAdd(e)}
                                 type='primary'
                                 icon="user-add"
                                 style={{marginLeft: 50}}
@@ -244,18 +268,13 @@ class MMForm extends Component {
                         }
                     </FormItem>
                 </Form>
-                {/* <Button
-                    onClick={() => handleSearch()}
-                    type='primary'
-                    >
-                    查询
-                </Button>
-                <Button
-                    onClick={() => handleAdd()}
-                    type='primary'
-                    >
-                    添加
-                </Button> */}
+                <div>
+                    {
+                        show
+                        &&
+                        <AFM hide={this.hideModal} title="添加"/>
+                    }
+                </div>
             </div>
         );
     }

@@ -4,6 +4,8 @@ import {Table, Form, Icon, Input, Button, Modal, Select} from 'antd';
 
 import {PMModal} from './Modal';
 
+import {AM} from './AddModal';
+
 const Option = Select.Option;
 
 
@@ -106,19 +108,22 @@ const data = [
         pname: "001",
         pid: "产品定义 !A1",
         lversion: "v1",
-        rmenu: "关联1"
+        rmenu: "关联1",
+        key: '1'
     },
     {
         pname: "002",
         pid: "产品定义 !A1",
         lversion: "v2",
-        rmenu: "关联2"
+        rmenu: "关联2",
+        key: '2'
     },
     {
         pname: "003",
         pid: "产品定义 !A1",
         lversion: "v3",
-        rmenu: "关联3"
+        rmenu: "关联3",
+        key: '3'
     }
 ];
 
@@ -161,6 +166,21 @@ const items = [
 
 
 class PM extends Component {
+    constructor(props, context) {
+        super(props, context);
+        this.state = {
+            show: false
+        };
+    }
+    hideModal = () => {
+        this.setState(
+            (pervState, props) => {
+                return {
+                    show: false
+                }
+            }
+        );
+    };
     render () {
         const handleChange = (value) => {
             console.log(`selected ${value}`);
@@ -171,41 +191,69 @@ class PM extends Component {
         const handleAdd = (value) => {
             console.log(`selected ${value}`);
         };
+        let show = this.state.show;
+        const showModal = (value) => {
+            // console.log(`selected ${value}`);
+            this.setState(
+                (pervState, props) => {
+                    return {
+                        show: value
+                    }
+                }
+            );
+        };
         return (
             <div>
-                 <div style={{marginLeft: 10}}>
-                    {/* <input list="t_type" name="terminal" />
-                    <datalist id="t_type">
-                        <option value="Fans终端"></option>
-                        <option value="金融终端"></option>
-                    </datalist> */}
-                    <lable style={{fontSize: 16, marginRight: 7}}>
-                        产品名称:
-                    </lable>
-                    <Select
-                        style={{width: 150}}
-                        onChange={handleChange}
-                        placeholder="请选择终端类型"
-                        icon="calculator"
-                        >
-                        <Option value="FansT"><Icon type="calculator" /> Fans终端</Option>
-                        <Option value="FinanceT"><Icon type="line-chart" /> 金融终端</Option>
-                    </Select>
+                 <div style={{marginLeft: 10}}>                    
+                    <Form>
+                        <lable style={{fontSize: 16, marginRight: 7}}>
+                            产品名称:
+                        </lable>
+                        <Select
+                            style={{width: 150}}
+                            onChange={handleChange}
+                            placeholder="请选择终端类型"
+                            icon="calculator"
+                            >
+                            <Option value="FansT">
+                                <Icon type="calculator" />
+                                Fans终端
+                            </Option>
+                            <Option value="FinanceT"><
+                                Icon type="line-chart" />
+                                金融终端
+                            </Option>
+                        </Select>
+                    </Form>
                     <Button 
                         style={{width: 70, marginLeft: 30}}
                         onClick={handleSearch}
                         type="primary"
+                        icon="search"
                         >
                         查询
                     </Button>
                     <Button 
                         style={{width: 70, marginLeft: 10}}
-                        onClick={handleAdd}
+                        onClick={
+                            () => {
+                                handleAdd();
+                                showModal(true);
+                            }
+                        }
                         type="primary"
+                        icon="user-add"
                         >
                         添加
                     </Button>
                 </div> 
+                <div>
+                    {
+                        show
+                        &&
+                        <AM hide={this.hideModal}/>
+                    }
+                </div>
                  {/* rowSelection={rowSelection} */}
                 <Table
                     columns={columns}
@@ -220,6 +268,8 @@ class PM extends Component {
         )
     }
 }
+
+
 
 export {PM};
 export default PM;

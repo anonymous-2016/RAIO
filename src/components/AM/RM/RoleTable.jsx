@@ -7,12 +7,9 @@ import {AUM} from './AUM';
 
 
 // ANT
-import {Table, Form, Icon, Input, Button, Modal, Menu, Dropdown, Select} from 'antd';
+import {Table} from 'antd';
 
-const confirm = Modal.confirm;
-const FormItem = Form.Item;
-const MenuItem = Menu.Item;
-const Option = Select.Option;
+
 
 
 const columns = [
@@ -90,21 +87,6 @@ const datas = [
     }
 ];
 
-/* 
-const newdatas = (datas) => {
-    datas.map(
-        (data, index) => {
-            return(
-                <li key={data.key ? data.key : index}>
-                    {data.roleEncode}
-                    {data.roleName}
-                </li>
-            );
-        }
-    );
-};
- */
-
 class RoleTable extends Component {
     render () {
         return (
@@ -123,16 +105,8 @@ RoleTable.propTypes = {
     // 
 };
 
-/* export {RoleTable};
-export default RoleTable; */
-
 const RT = RoleTable;
 export {RT};
 export default RT;
 
 
-/* 
-
-import * as RM from '../RM';
-
-*/

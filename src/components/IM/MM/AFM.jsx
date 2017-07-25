@@ -3,83 +3,70 @@ import PropTypes from 'prop-types';
 
 import {
     Form,
-    Input,
-    Tooltip,
     Icon,
-    Cascader,
-    Select,
-    Row,
-    Col,
-    Checkbox,
+    Input,
+    InputNumber,
+    Radio,
     Button,
-    AutoComplete,
-    Modal
+    Modal,
+    Cascader,
+    Menu,
+    Select
 } from 'antd';
 
 const FormItem = Form.Item;
+const MenuItem = Menu.Item;
 const Option = Select.Option;
-const AutoCompleteOption = AutoComplete.Option;
 
-
-class ModifyModal extends Component {
-    constructor (props) {
+class AFModal extends Component {
+    constructor(props){
         super(props);
         this.state = {
-            visible: false
-        };
+            showModal: true
+        }
     }
-    // handlers
-    showModal = (value) => {
+     // default  true, 一进来就显示，不用 click 通过 props 传递的子组件，来触发 show modal！
+    setModalVisible = (value) => {
         this.setState({
-            visible: value,
-            key: '001'
+            showModal: value
         });
-    }
+        this.props.hide();
+    };
+    OK = (value) => {
+        this.setState({
+            showModal: value
+        });
+        // Error
+        // this.props.hide;
+        this.props.hide();
+    };
     handleSubmit = () => {
-        // 
-    }
-    render () {
-        const {getFieldDecorator} = this.props.form;
-        // cosnt productNum = ;
+        // handleSubmit
+    };
+    render() {
+        const record = this.props.data;
+        const form = this.props.form;
+        const {getFieldDecorator, setFieldsValue} = this.props.form;
+        // FormItem flexbox
         const formItemLayout = {
             labelCol: {
-                xs: {
-                    span: 24
-                },
-                sm: {
-                    span: 6
-                }
+                xs: { span: 24 },
+                sm: { span: 6 }
             },
             wrapperCol: {
-                xs: {
-                    span: 24
-                },
-                sm: {
-                    span: 14
-                }
+                xs: { span: 24 },
+                sm: { span: 16 }
             }
         };
         return (
             <div>
-                <a
-                    href="#"
-                    onClick={
-                        (e) => {
-                            e.preventDefault();
-                            e.stopPropagation();
-                            return this.showModal(true);
-                        }
-                    }
-                    type='primary'
-                    >
-                    {this.props.children}
-                </a>
                 <Modal
-                    title={this.props.title ? this.props.title : '修改'}
-                    key={this.state.key}
-                    visible={this.state.visible}
-                    onCancel={() => this.showModal(false)}
-                    onOk={() => this.showModal(false)}
+                    title={'Add 修改'}
+                    wrapClassName="vertical-center-modal"
+                    visible={this.state.showModal}
+                    onOk={() => this.OK(false)}
+                    onCancel={() => this.setModalVisible(false)}
+                    onClick={(record) => this.props.clickOK(record)}
                     >
                     <Form 
                         onSubmit={() => this.handleSubmit()}
@@ -319,7 +306,6 @@ class ModifyModal extends Component {
                                 )
                             }
                         </FormItem>
-                        {/*  */}
                         <FormItem
                             {...formItemLayout}
                             label="显示"
@@ -339,24 +325,17 @@ class ModifyModal extends Component {
                             }
                         </FormItem>
                     </Form>
-                    {/* <Button
-                        style={{marginLeft: "45%"}}
-                        onClick={() => alert(`Saving...!`)}>
-                        Save
-                    </Button> */}
                 </Modal>
             </div>
-        );
+        )
     }
 }
 
-ModifyModal.propTypes = {
-    /*  */
-};
+AFModal.propTypes = {
 
+}
 
-const WMF = Form.create()(ModifyModal);
-// WrappedModifyModal
+const AFM = Form.create({})(AFModal);
 
-export {WMF};
-export default WMF;
+export {AFM};
+export default AFM;

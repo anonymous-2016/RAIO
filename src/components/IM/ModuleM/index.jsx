@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 
 import {MT} from './MT';
 
+import {ADM} from './ADM';
 
 import {
     Form,
@@ -26,11 +27,20 @@ class MM extends Component {
     constructor (props) {
         super(props);
         this.state = {
-            // 
+            show: false
         };
     }
     handleSubmit = (value) => {
         console.log(`selected ${value}`);
+    };
+    hideModal = () => {
+        this.setState(
+            (pervState, props) => {
+                return {
+                    show: false
+                }
+            }
+        );
     };
     render () {
         const {getFieldDecorator} = this.props.form;
@@ -56,9 +66,21 @@ class MM extends Component {
             console.log(`selected ${value}`);
             alert(`查询 ...`);
         };
+        let show = this.state.show;
+        const showModal = (value) => {
+            // console.log(`selected ${value}`);
+            this.setState(
+                (pervState, props) => {
+                    return {
+                        show: value
+                    }
+                }
+            );
+        };
         const handleAdd = (value) => {
             console.log(`selected ${value}`);
-            alert(`添加 ...`);
+            // alert(`添加 ...`);
+            showModal(true);
         };
         return (
             <div style={{border: '1px solid #ccc', margin: 10, padding: 10}}>
@@ -180,9 +202,13 @@ class MM extends Component {
                     </FormItem>
                     <FormItem>
                         <Button 
-                            icon="user" 
+                            icon="user-add" 
                             type="primary"
-                            onClick={(e) => handleAdd(e)}
+                            onClick={
+                                (e) => {
+                                    return handleAdd(e);
+                                }
+                            }
                             style={{marginLeft: 30}}
                             >
                             添加
@@ -190,6 +216,13 @@ class MM extends Component {
                     </FormItem>
                 </Form>
                 <hr/>
+                <div>
+                    {
+                        show
+                        && 
+                        <ADM hide={this.hideModal}/>
+                    }
+                </div>
                 <div>
                     <MT />
                 </div>

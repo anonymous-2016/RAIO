@@ -83,3 +83,44 @@ for (let i = 10; i < 36; i++) {
 ```
 
 
+# this.props.form
+
+https://codepen.io/pen/?&editors=001
+
+https://ant.design/components/form-cn/
+
+
+
+```js
+
+const form = this.props.form;
+
+form.getFieldValue('password')
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -132,3 +132,156 @@ const menu = (
 );
 ```
 
+# key
+
+```js
+
+const newdatas = (datas) => {
+    datas.map(
+        (data, index) => {
+            return(
+                <li key={data.key ? data.key : index}>
+                    {data.roleEncode}
+                    {data.roleName}
+                </li>
+            );
+        }
+    );
+};
+
+
+// back end key
+const datas = [
+    {
+        "key":1,
+        "rid":666,
+        "rname":"胡彦斌",
+        "uid":2048,
+        "uname":"彦斌",
+        "ulname":"西湖 湖底公园"
+    },
+    {
+        "key":2,
+        "rid":666,
+        "rname":"胡彦斌",
+        "uid":2048,
+        "uname":"彦斌",
+        "ulname":"西湖 湖底公园"
+    }
+];
+
+
+// front end key
+const datas = [
+    {
+        "rid":333,
+        "rname":"胡彦斌",
+        "uid":1024,
+        "uname":"彦斌",
+        "ulname":"西湖 湖底公园"
+    },
+    {
+        "rid":666,
+        "rname":"胡彦斌",
+        "uid":2048,
+        "uname":"彦斌",
+        "ulname":"西湖 湖底公园"
+    }
+];
+
+const newdatas = (datas) => {
+    let newdatas = datas.map(
+        (data, index) => {
+            data.key = `keyID_${index}`;
+            return data;
+        }
+    );
+    return newdatas;
+};
+
+newdatas(datas);
+
+
+
+
+
+const newDatas = datas.map(
+    (data, index) => {
+        console.log(`data`, data);
+        console.log(`index`, index);
+        data.key = `keyID_${index}`;
+        return data;
+    }
+);
+
+```
+
+
+
+```js
+
+/* 
+
+import * as RM from '../RM';
+
+*/
+
+/* export {RoleTable};
+export default RoleTable; */
+
+/* 
+const newdatas = (datas) => {
+    datas.map(
+        (data, index) => {
+            return(
+                <li key={data.key ? data.key : index}>
+                    {data.roleEncode}
+                    {data.roleName}
+                </li>
+            );
+        }
+    );
+};
+
+*/
+
+
+// ANT
+import {Table, Form, Icon, Input, Button, Modal, Menu, Dropdown, Select} from 'antd';
+
+const confirm = Modal.confirm;
+const FormItem = Form.Item;
+const MenuItem = Menu.Item;
+const Option = Select.Option;
+
+
+
+
+componentDidMount() {
+    // To disabled submit button at the beginning.
+    const form = this.props.form;
+    this.props.form.validateFields();
+    setTimeout(() => {
+            fetch('https://cdn.xgqfrms.xyz/json/roles.json')
+        .then((res) => {
+            console.log(`res `, res);
+            let json = res.json();
+            console.log(`json `, json);
+            return json;
+        })
+        .then((data) => {
+            this.setState(
+                {
+                    data: data
+                }
+            );
+        });
+    }, 1000);
+}
+
+```
+
+
+
+
+

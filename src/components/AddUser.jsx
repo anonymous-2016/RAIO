@@ -13,8 +13,8 @@ class AUF extends React.Component {
             clearVisible: false
         }
     }
-    render () {
-        const {getFieldDecorator} = this.props.form;
+    render (props) {
+        const {getFieldDecorator, getFieldsError, getFieldError, isFieldTouched} = this.props.form;
         // FormItem flexbox
         const formItemLayout = {
             labelCol: {

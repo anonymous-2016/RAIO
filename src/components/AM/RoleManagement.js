@@ -25,6 +25,8 @@ import GridRowCol from '../../Ant_Components/Gird-Flex';
 
 import {Table, Form, Icon, Input, Button, Modal, Menu, Dropdown,} from 'antd';
 
+import { Spin } from 'antd';
+
 
 const confirm = Modal.confirm;
 
@@ -177,12 +179,18 @@ class RolesManagement extends Component {
     constructor(props){
         super(props);
         this.state = {
-            data: props.data
+            data: props.data,
+            showloading: false
         };
     }
     componentDidMount() {
         // To disabled submit button at the beginning.
         this.props.form.validateFields();
+        this.setState(
+            {
+                showloading: true
+            }
+        );
         setTimeout(() => {
              fetch('https://cdn.xgqfrms.xyz/json/roles.json')
             .then((res) => {
@@ -194,12 +202,20 @@ class RolesManagement extends Component {
             .then((data) => {
                 this.setState(
                     {
-                        data: data
+                        data: data,
+                        showloading: false
                     }
                 );
             });
         }, 1000);
-    }
+    };
+    componentUnMount() {
+        this.setState(
+            {
+                data: []
+            }
+        );
+    };
     handleSubmit = (e) => {
         e.preventDefault();
         this.props.form.validateFields((err, values) => {
@@ -347,6 +363,11 @@ class RolesManagement extends Component {
                 </Form>
                 {/* className="table-left" */}
                 <div >
+                    {
+                        this.state.showloading
+                        &&
+                        <Spin />
+                    }
                     <Table dataSource={this.state.data} columns={columns} />
                 </div>
             </div>

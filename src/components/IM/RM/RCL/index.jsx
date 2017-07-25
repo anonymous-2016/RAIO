@@ -20,6 +20,7 @@ let datas = [
     }
 ];
 
+// global key
 let key = 3;
 
 class RCL extends Component {
@@ -35,7 +36,7 @@ class RCL extends Component {
             {
                 encode: `资源分类!A1`,
                 pEncode: `资源分类!A1`,
-                name: `名称3`,
+                name: `名称${key++}`,
                 key: key++
             }
         );

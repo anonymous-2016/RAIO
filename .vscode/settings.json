@@ -36,5 +36,6 @@
     "files.associations": {
         "*.jsx": "javascriptreact",
         "*.js": "javascriptreact"
-    }
+    },
+    "editor.snippetSuggestions": "top"
 }
