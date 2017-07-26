@@ -1,1 +1,1 @@
-this.setState((state, props) => { return {  }})
+this.setState((state, props) => { return {  }});

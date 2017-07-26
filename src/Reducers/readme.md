@@ -165,7 +165,39 @@ Object.assign(
 
 
 
+```js
 
+const state = {
+    show: false
+};
+state.show;
+// false
+
+Object.assign(
+    {},
+    state,
+    {
+        show: !state.show
+    }
+);
+state.show;
+// false
+
+
+let newState = Object.assign(
+    {},
+    state,
+    {
+        show: !state.show
+    }
+);
+newState.show;
+// true
+
+
+
+
+```
 
 
 

@@ -1,50 +1,51 @@
-import React, { Component, PropTypes } from 'react'
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 class componentName extends Component {
     constructor(props) {
-        super(props)
+        super(props);
 
     }
 
-    componentWillMount () {
+    componentWillMount() {
 
     }
 
-    componentDidMount () {
+    componentDidMount() {
 
     }
 
-    componentWillReceiveProps (nextProps) {
+    componentWillReceiveProps(nextProps) {
 
     }
 
-    shouldComponentUpdate (nextProps, nextState) {
+    shouldComponentUpdate(nextProps, nextState) {
 
     }
 
-    componentWillUpdate (nextProps, nextState) {
+    componentWillUpdate(nextProps, nextState) {
 
     }
 
-    componentDidUpdate (prevProps, prevState) {
+    componentDidUpdate(prevProps, prevState) {
 
     }
 
-    componentWillUnmount () {
+    componentWillUnmount() {
 
     }
 
-    render () {
+    render() {
         return (
             <div>
 
             </div>
-        )
+        );
     }
 }
 
 componentName.propTypes = {
 
-}
+};
 
-export default componentName
+export default componentName;

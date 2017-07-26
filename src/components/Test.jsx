@@ -10,6 +10,10 @@ import {MM} from './IM/MM';
 // import moduleName from 'module';
 // imp + Tab
 
+import {FUFM} from '../Ant_Components/fold-unfold-menu';
+
+import {NAL}from './NewAppLayout';
+
 class TestItem extends Component {
     render() {
         return (
@@ -17,7 +21,9 @@ class TestItem extends Component {
                 <a href="#">TestItem</a>
                 {/* <ModalName /> */}
                 {/* <PM /> */}
-                <MM />
+                <NAL />
+                {/* <FUFM /> */}
+                {/* <MM /> */}
             </div>
         );
     }

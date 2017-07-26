@@ -49,7 +49,7 @@ class ContentBox extends Component {
         this.handleClick = this.handleClick.bind(this);
         this.stateHandleClick = this.stateHandleClick.bind(this);
     }
-    handleClick(e) {
+/*     handleClick(e) {
         // e.preventDefault();
         // e.stopPropagation();
         // e.nativeEvent.stopImmediatePropagation();
@@ -58,7 +58,7 @@ class ContentBox extends Component {
             current: e.key,
             collapsed: !this.state.collapsed
         });
-    }
+    } */
     addClick = (prevState, props) => {
         this.setState({
             // prevState, props
@@ -75,6 +75,18 @@ class ContentBox extends Component {
     }
     // 只展开当前父级菜单 
     // 点击菜单，收起其他展开的所有菜单，保持菜单聚焦简洁。
+    handleClick = (e) => {
+        console.log('Clicked: ', e);
+        this.setState(
+            (prevState, props) => {
+                console.log('Clicked e.key: ', e.key);
+                return {
+                    current: e.key,
+                    collapsed: !this.state.collapsed
+                };
+            }
+        );
+    };
     onOpenChange = (openKeys) => {
         const state = this.state;
         const latestOpenKey = openKeys.find(key => !(state.openKeys.indexOf(key) > -1));
@@ -86,26 +98,28 @@ class ContentBox extends Component {
         if (latestCloseKey) {
             nextOpenKeys = this.getAncestorKeys(latestCloseKey);
         }
-        this.setState({openKeys: nextOpenKeys});
-    }
+        this.setState({
+            openKeys: nextOpenKeys
+        });
+    };
     getAncestorKeys = (key) => {
         const map = {
             sub3: ['sub2']
         };
         return map[key] || [];
-    }
+    };
     render() {
         // let routes = [this.props.routes];
         return (
             <Router>
                 <div style={{display: 'flex'}} >
-                    <div style={{
+                    <div 
+                        style={{
                             minHeight: '800px',
                             maxHeight: '1000px',
                             overflow: 'hidden',
                             background: '#333'
                         }}
-                        className="old-sidebar-btn"
                         className={this.props.styles}
                         >
                         <Menu
