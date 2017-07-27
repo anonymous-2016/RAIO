@@ -167,7 +167,7 @@ class App extends Component {
             </div>
         );
     }
-};
+}
 
 App.defaultProps = {
     message: 'Hello!',
@@ -177,7 +177,8 @@ App.defaultProps = {
 App.propTypes = {
     message: PropTypes.string.isRequired,
     styles: PropTypes.string.isRequired,
-    width: PropTypes.string
+    width: PropTypes.string,
+    any: PropTypes.any
 };
 
 export default App;

@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 
 import {
     BrowserRouter as Router,
@@ -42,8 +43,6 @@ class ContentBox extends Component {
             styles: props.styles,
             Any: props.any,
             width: props.width,
-            routes: props.routes,
-            ClickHandler: props.ClickHandler,
             collapsed: false
         };
         this.handleClick = this.handleClick.bind(this);
@@ -120,7 +119,7 @@ class ContentBox extends Component {
                             overflow: 'hidden',
                             background: '#333'
                         }}
-                        className={this.props.styles}
+                        className={this.props.styles ? this.props.styles : 'null'}
                         >
                         <Menu
                             theme={this.state.theme}
@@ -297,7 +296,17 @@ class ContentBox extends Component {
             </Router>
         );
     }
+}
+
+ContentBox.propTypes = {
+    message: PropTypes.string.isRequired,
+    styles: PropTypes.string.isRequired,
+    width: PropTypes.string,
+    any: PropTypes.any,
+    routes: PropTypes.array,
+    ClickHandler: PropTypes.function
 };
+
 
 export default ContentBox;
 

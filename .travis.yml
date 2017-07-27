@@ -1,0 +1,9 @@
+# Comments in YAML look like this.
+
+language: node_js
+node:
+- 6.11.0
+npm:
+- 5.3.0
+os:
+- windows10 x64 pro
