@@ -84,6 +84,72 @@ http://eslint.org/docs/developer-guide/working-with-custom-formatters#the-messag
 
 
 
+# ESlint
+
+> ESlint inline
+
+```js
+
+/* eslint-disable no-underscore-dangle */
+
+console.log(`enable all`);
+
+/* eslint-enable */
+
+
+/* eslint-disable no-console */
+
+console.log(`only enable no-console`);
+
+/* eslint-enable no-console*/
 
 
 
+
+/* eslint-disable no-console */
+/* eslint-disable react/prop-types */
+
+
+console.log(`enable all`);
+
+/* eslint-enable */
+
+```
+
+# .eslintrc
+
+```js
+
+{
+    "parser": "babel-eslint",
+    "parserOptions": {
+        "ecmaVersion": 6,
+        "sourceType": "module",
+        "ecmaFeatures": {
+            "jsx": true,
+            "modules": true,
+            "experimentalObjectRestSpread": true
+        }
+    },
+    "plugins": [
+        "react"
+    ],
+    "extends": ["eslint:recommended", "plugin:react/recommended"],
+    "rules": {
+        "comma-dangle": 0,
+        "react/jsx-uses-vars": 1,
+        "react/display-name": 1,
+        "react/prop-types": 1,
+        "no-unused-vars": "warn",
+        "no-console": 1,
+        "no-unexpected-multiline": "warn"
+    },
+    "settings": {
+        "react": {
+            "pragma": "React",
+            "version": "15.6.1"
+        }
+    }
+}
+
+```

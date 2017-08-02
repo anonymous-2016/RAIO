@@ -8,6 +8,7 @@ import SideBox from './SideBox.js';
 
 import ContentBox from './ContentBox.js';
 
+import {Button} from 'antd';
 // import TestRouters from './TestRouters.js';
 
 
@@ -129,7 +130,8 @@ class App extends Component {
             styles: props.styles,
             Any: props.any,
             width: props.width,
-            routes: routes
+            routes: routes,
+            marginLeft: 240
         };
         // this.handlerMenuClick = this.handlerMenuClick.bind(this);
     }
@@ -138,13 +140,15 @@ class App extends Component {
         if(this.state.styles === "App-SideBox-init"){
             this.setState({
                 message: "e.key",
-                styles: "App-SideBox-New"
+                styles: "App-SideBox-New",
+                marginLeft: 50
             });
         }
         if(this.state.styles === "App-SideBox-New"){
             this.setState({
                 message: "Hello!",
-                styles: "App-SideBox-init"
+                styles: "App-SideBox-init",
+                marginLeft: 240
             });
         }
         console.log("this.state.message === ", this.state.message);
@@ -153,15 +157,28 @@ class App extends Component {
     render() {
         return (
             <div className="App">
-                <div className="App-header">
+                {/* <div className="App-header">
                     <img src={logo} className="App-logo" alt="logo" style={this.props.width}/>
                     <h1>CRM 权限认证管理系统</h1>
-                </div>
+                </div> */}
                 <div className="App-body">
+{/*                     <div>
+                        <Button
+                            icon="swap"
+                            onClick={this.handlerMenuClick}
+                            id="btn_style"
+                            className="btnStyles"
+                            style={{left: (this.state.marginLeft - 30), transition: 'all 0.5s ease 0.1s'}}
+                            >
+                        </Button>
+                    </div> */}
                     <ContentBox
                         routes={routes}
-                        ClickHandler={(e) => this.handlerMenuClick(e)}
+                        ClickHandler={this.handlerMenuClick}
                         styles={this.state.styles}
+                        marginLeft={this.state.marginLeft}
+                        logo={logo}
+                        message={'just for test message'}
                     />
                 </div>
             </div>
@@ -178,7 +195,8 @@ App.propTypes = {
     message: PropTypes.string.isRequired,
     styles: PropTypes.string.isRequired,
     width: PropTypes.string,
-    any: PropTypes.any
+    any: PropTypes.any,
+    routes: PropTypes.array
 };
 
 export default App;

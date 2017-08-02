@@ -45,8 +45,8 @@ class ContentBox extends Component {
             width: props.width,
             collapsed: false
         };
-        this.handleClick = this.handleClick.bind(this);
-        this.stateHandleClick = this.stateHandleClick.bind(this);
+        /* this.handleClick = this.handleClick.bind(this);
+        this.stateHandleClick = this.stateHandleClick.bind(this); */
     }
 /*     handleClick(e) {
         // e.preventDefault();
@@ -103,7 +103,8 @@ class ContentBox extends Component {
     };
     getAncestorKeys = (key) => {
         const map = {
-            sub3: ['sub2']
+            sub3: ['sub2'],
+            sub5: ['sub6','sub7']
         };
         return map[key] || [];
     };
@@ -114,9 +115,6 @@ class ContentBox extends Component {
                 <div style={{display: 'flex'}} >
                     <div 
                         style={{
-                            minHeight: '800px',
-                            maxHeight: '1000px',
-                            overflow: 'hidden',
                             background: '#333'
                         }}
                         className={this.props.styles ? this.props.styles : 'null'}
@@ -271,15 +269,31 @@ class ContentBox extends Component {
                             </SubMenu>
                         </Menu>
                     </div>
-                    <Button
-                         icon="swap"
-                         style={btnStyles}
-                         onClick={this.props.ClickHandler}
-                         id="btn_style"
-                         >
-                    </Button>
                     {/*menu-fold menu-unfold*/}
-                    <div style={{flex: 1, padding: '10px', overflow: 'auto'}}>
+                    <div style={{
+                        flex: 1,
+                        padding: '10px',
+                        overflow: 'auto',
+                        marginLeft: this.props.marginLeft,
+                        transition: 'all 0.5s ease 0.1s'
+                        }}
+                        className="App-Container"
+                        >
+                        <div className="App-header">
+                            <div>
+                                <img src={this.props.logo} className="App-logo" alt="logo" style={this.props.width}/>
+                            </div>
+                            <h3>CRM 权限认证管理系统</h3>
+                        </div>
+                        <Button
+                            icon="swap"
+                            onClick={this.props.ClickHandler}
+                            id="btn_style"
+                            className="btnStyles"
+                            style={{left: 10, transition: 'all 0.5s ease 0.1s'}}
+                            >
+                        </Button>
+                        {/* left: (this.props.marginLeft - 20) */}
                         {
                             this.props.routes.map((route, index) => (
                                 <Route
@@ -304,7 +318,9 @@ ContentBox.propTypes = {
     width: PropTypes.string,
     any: PropTypes.any,
     routes: PropTypes.array,
-    ClickHandler: PropTypes.function
+    ClickHandler: PropTypes.func,
+    marginLeft: PropTypes.number,
+    logo: PropTypes.string
 };
 
 

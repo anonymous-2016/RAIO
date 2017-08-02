@@ -1,9 +1,20 @@
 import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 
-import {Select, Form, Icon, Input, Button, DatePicker, TimePicker} from 'antd';
+import './WHLF.css';
 
+import {
+    Select,
+    Form,
+    Icon,
+    Input,
+    Button,
+    DatePicker,
+    TimePicker
+} from 'antd';
 
 const {MonthPicker, RangePicker} = DatePicker;
+
 
 // import moment from 'moment';
 
@@ -60,6 +71,7 @@ class HLF extends Component {
     render() {
         // 解构赋值
         // alert(this.props.form);
+        const form = this.props.form;
         console.log(`this.props.form`, this.props.form);
         const {getFieldDecorator, getFieldsError, getFieldError, isFieldTouched} = this.props.form;
         // Only show error after a field is touched.
@@ -197,7 +209,9 @@ class HLF extends Component {
                     validateStatus={validDateError ? 'error' : ''}
                     help={validDateError || ''}
                     label="有效日期"
-                    style={{}}
+                    style={{
+                        fontSize: 'auto'
+                    }}
                     >
                     {
                         getFieldDecorator('validDate', {
@@ -209,11 +223,13 @@ class HLF extends Component {
                                     showTime
                                     format="YYYY-MM-DD HH:mm:ss"
                                     onChange={(e) => this.onStartChange(e)}
+                                    className="datePickerStyle"
                                     />
                             </div>
                         )
                     }
                 </FormItem>
+                <br/>
                 <span className="search-spaces"/>
                 <FormItem>
                     <Button
@@ -221,7 +237,7 @@ class HLF extends Component {
                         type="primary"
                         htmlType="submit"
                         id="user-check-search"
-                        onClick={this.clickSearchHandler}
+                        onClick={(e) => this.clickSearchHandler(e)}
                         >
                         查询
                     </Button>
@@ -231,9 +247,17 @@ class HLF extends Component {
     }
 }
 
+HLF.propTypes = {
+    // form: PropTypes.array.isRequired
+    /* form: PropTypes.object.isRequired */
+    onSearch: PropTypes.func.isRequired
+};
+
 const WHLF = Form.create({})(HLF);
 
 export {WHLF};
+
+
 
 export default WHLF;
 

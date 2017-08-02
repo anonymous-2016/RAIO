@@ -5,16 +5,21 @@ import {IndexComponents} from './IndexComponents';
 import {AL} from '../Ant_Components/FixedSider';
 
 import {WHLF} from './utils/WHLF';
-import './utils/WHLF.css';
 
 import {AT} from './utils/AT';
 
 import 'whatwg-fetch';
 // import * as fetch from 'whatwg-fetch';
 
-import { Spin , Alert} from 'antd';
 
-import {Layout, Menu, Icon} from 'antd';
+
+import styles from './Item1.css';
+// css in js
+
+
+
+
+import {Layout, Menu, Icon, Spin , Alert} from 'antd';
 const {Header, Content, Footer, Sider} = Layout;
 
 let datas = [
@@ -113,7 +118,9 @@ class Item1 extends Component {
             });
         }, 1000);
     }; */
-    onSearch = () => {
+    onSearch = (e) => {
+        // get search content value
+        console.log('e', e);
         this.setState(
             {
                 showloading: true
@@ -142,15 +149,26 @@ class Item1 extends Component {
         return (
             <div>
                 <a href="#用户查询">用户查询</a>
+                {/* <span className={styles.css_in_js_h1}>
+                    CSS in JS Testing
+                </span>
+                <span className="css-in-js-h1">
+                    className Testing
+                </span> */}
                 {/*<IndexComponents />*/}
                 {/*<AL />*/}
                 <div className="user-search">
-                    <WHLF onSearch={this.onSearch}/>
+                    <WHLF
+                        onSearch={this.onSearch}
+                    />
+                    {/* form */}
                 </div>
                 {
                     
                     <Spin tip="Loading..." size="large" spinning={this.state.showloading}>
-                         <AT datas={this.state.datas}/> 
+                         <AT 
+                            datas={this.state.datas}
+                         /> 
                     </Spin>
                 }
             </div>
