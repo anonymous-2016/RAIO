@@ -55,9 +55,14 @@ class HLF extends Component {
     }
     handleSubmit = (e) => {
         e.preventDefault();
+        // e.stopPropagation();
         this.props.form.validateFields((err, values) => {
             if (!err) {
                 console.log('Received values of form: ', values);
+            }
+            else{
+                // pass values to parent component
+                this.props.onSearch(values);
             }
         });
     };
@@ -256,8 +261,5 @@ HLF.propTypes = {
 const WHLF = Form.create({})(HLF);
 
 export {WHLF};
-
-
-
 export default WHLF;
 

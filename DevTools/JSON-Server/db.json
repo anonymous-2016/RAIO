@@ -1,0 +1,13 @@
+{
+    "datas": [{
+            "id": 1,
+            "name": "typicode",
+            "password": "abc123"
+        },
+        {
+            "id": 3,
+            "name": "gildata",
+            "password": "ufo123"
+        }
+    ]
+}
