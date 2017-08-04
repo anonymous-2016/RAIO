@@ -1,6 +1,5 @@
 {
-    "datas": [
-        {
+    "datas": [{
             "key": "1",
             "uname": "xray",
             "utype": "内部用户",

@@ -21,7 +21,7 @@ class TestItem extends Component {
                 <a href="#">TestItem</a>
                 {/* <ModalName /> */}
                 {/* <PM /> */}
-                <NAL />
+                {/* <NAL /> */}
                 {/* <FUFM /> */}
                 {/* <MM /> */}
             </div>

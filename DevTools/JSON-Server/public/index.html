@@ -216,7 +216,7 @@
             );
         };
         const getid = (id, dom_id) => {
-            let new_url = `${url}?id=${id}`;
+            let new_url = `${url}?uid=${id}`;
             fetch(new_url, {
                 method: 'GET'
             }).then(
@@ -259,7 +259,7 @@
         });
         const btn_get = document.querySelector("#click_get");
         btn_get.addEventListener("click", () => {
-            getid(1, "#textarea_get");
+            getid(17, "#textarea_get");
             console.log(`finish get id data!`);
         });
         // mode: "no-cors"

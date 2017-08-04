@@ -170,7 +170,8 @@ class HLF extends Component {
                                     required: false,
                                     message: '用户类型'
                                 },
-                            ]
+                            ],
+                            initialValue: ""
                         })(
                             <Select 
                                 placeholder="用户类型" 
@@ -269,7 +270,8 @@ class HLF extends Component {
                                     required: false,
                                     message: '激活状态'
                                 },
-                            ]
+                            ],
+                            initialValue: ""
                         })(
                             <Select 
                                 placeholder="激活状态" 
