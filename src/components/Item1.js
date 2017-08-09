@@ -145,12 +145,14 @@ class Item1 extends Component {
         // Object.assign() values
         // {...values} , let objClone = { ...obj}; 用于对象字面量 (new in ECMAScript; stage 3 draft):
         let {uid, uname, lname, utype, email, pnum, vdate, activation} = values;
-        console.log(`*******************************************************`);
+        // values
+        /* console.log(`*******************************************************`);
         console.log(`uid`, uid);
         console.log(`uname`, uname);
         console.log(`utype`, utype);
         console.log(`activation`, activation);
-        console.log(`*******************************************************`);
+        console.log(`*******************************************************`); */
+        // fetch data
         fetchSearch.getUserInfos(uid, uname, lname, utype, email, pnum, vdate, activation).then(
             (json) => {
                 data = json;
@@ -169,7 +171,7 @@ class Item1 extends Component {
         setTimeout(() => {
             console.log(`data again`, data);
             this.setState(
-                    {
+                {
                     datas: ((data.length > 0 || data.hasOwnProperty("uid")) ? data : []),
                     showloading: false
                 }

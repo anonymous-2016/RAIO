@@ -1,5 +1,11 @@
 // search module
 
+
+import {debug} from '../../app/debug.jsx';
+
+import {color} from '../../app/color.jsx';
+
+
 // api url
 const url = `http://localhost:7777/datas/`;
 
@@ -11,10 +17,12 @@ export const getUserId = (uid) => {
         (response) => response.json()
     ).then(
         (json) => {
-            console.log(`get id data`, json);
-            console.log(`get id data json[0]`, json[0]);
-            // maps array data
-            console.log(`get id data, json.length`, json.length);
+            if(debug){
+                console.log(`get id data`, json);
+                console.log(`get id data json[0]`, json[0]);
+                // maps array data
+                console.log(`get id data, json.length`, json.length);
+            }
             return json;
         }
     );
@@ -27,11 +35,13 @@ export const getAll = () => {
         (response) => response.json()
     ).then(
         (json) => {
-            console.log(`get id data`, json);
-            // array objects
-            console.log(`get id data, json.length`, json.length);
-            return json;
-            // ??? Promise
+            if(debug){
+                console.log(`get id data`, json);
+                // array objects
+                console.log(`get id data, json.length`, json.length);
+                return json;
+                // ??? Promise
+            }
         }
     );
 };
@@ -155,6 +165,25 @@ export const getUserInfos = (uid, uname, lname, utype, email, pnum, vdate, activ
         ?uid=${uid}&uname=${uname}&lname=${lname}&utype=${utype}
         &email=${email}&pnum=${pnum}&vdate=${vdate}&activation=${activation}
     `; */
+    /* 
+    let arr = [];
+    let obj = {};
+    if(uid){
+        // arr.push();
+        Object.assign(obj, {uid: uid});
+    }
+    if(uname){
+        Object.assign(obj, {uname});
+    }
+    if(utype){
+        Object.assign(obj, {utype});
+    }
+    // obj === Object {uid: "123", uname: "uname", utype: "utype"}
+    // url?obj
+    // http://localhost:3000/item1?{uid:%20%22123%22,%20uname:%20%22uname%22,%20utype:%20%22utype%22}
+    // url?JSON.stringify(obj) ???
+    // http://localhost:3000/item1?%22{%22uid%22:%22123%22,%22uname%22:%22uname%22,%22utype%22:%22utype%22}%22
+    */
     let new_url = url;
     // all
     if(uid){
@@ -188,10 +217,12 @@ export const getUserInfos = (uid, uname, lname, utype, email, pnum, vdate, activ
         (response) => response.json()
     ).then(
         (json) => {
-            console.log(`%c get getUserInfos data`, color_css, json);
-            console.log(`get getUserInfos data json[0]`, json[0]);
-            // maps array data
-            console.log(`get getUserInfos data, json.length`, json.length);
+            if(debug){
+                console.log(`%c get getUserInfos data`, color_css, json);
+                console.log(`get getUserInfos data json[0]`, json[0]);
+                // maps array data
+                console.log(`get getUserInfos data, json.length`, json.length);
+            }
             return json;
         }
     );

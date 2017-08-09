@@ -5,6 +5,9 @@ import React, {Component} from 'react';
 
 import {MM} from './IM/MM';
 
+
+import {CRMS} from './CRM_Search';
+
 // index.jsx
 
 // import moduleName from 'module';
@@ -24,6 +27,7 @@ class TestItem extends Component {
                 {/* <NAL /> */}
                 {/* <FUFM /> */}
                 {/* <MM /> */}
+                <CRMS />
             </div>
         );
     }

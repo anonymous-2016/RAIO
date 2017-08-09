@@ -4,12 +4,12 @@
     "description": "json-server & fake/mock api",
     "main": "index.js",
     "scripts": {
-        "start": "npm run db",
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "start": "echo \"JSON-server ready running...\n\" && json-server --watch db.json",
         "infos": "echo JSON-server ready running...\n",
         "jsondb": "json-server --watch db.json --port 7777",
         "open": "start  http://localhost:7777/datas/",
-        "website": "start  http://localhost:7777/",
-        "db": "npm run infos && npm run open  && npm run website && npm run jsondb"
+        "db": "npm run infos && npm run open && npm run jsondb"
     },
     "author": "xgqfrms",
     "license": "MIT",

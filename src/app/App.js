@@ -122,6 +122,35 @@ const routes = [
     }
 ];
 
+
+// Component Template
+
+/* 
+
+login router redirection
+
+uid
+pwd
+
+
+/login  => /api/search
+
+基金->F9
+
+    {
+        path: '/api/search',
+        sidebar: () => <div>IMLM</div>,
+        main: () => <div><SearchResult /></div>
+    },
+    SearchResult > Input/Output/Test (Tabs) , 此报表开发者 disable input (<input refs id="search_developer" type="text" disabled="">)
+    Input > Table 字段名 类型 注释
+    Output > 编号 类型 注释 (multi tables)
+    Test > 必填项 table, 开始测试 btn 查看命令 Modal, 可选项 form (show ? 点此展开“可选项” : 收起“可选项” ), 测试结果 Table
+
+    // pass gradeparent functions to childs
+*/
+
+
 class App extends Component {
     constructor(props) {
         super(props);
