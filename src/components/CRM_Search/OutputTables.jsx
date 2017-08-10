@@ -12,11 +12,39 @@ import PropTypes from 'prop-types';
 import {Table, Icon} from 'antd';
 
 class OutputTables extends Component {
+    constructor(props, context) {
+        super(props, context);
+        this.state = {
+            // 
+        };
+    }
+    
     render() {
         return (
             <div>
-                <Table dataSource={this.props.dataSource} columns={this.props.columns} />
-                this.props.data = {this.props.data}
+                {/* map Tables*/}
+                {/* {title: "基金经理详细信息(折线图同类平均)", datas: Array(4)} */}
+                {
+                    this.props.dataSources.map(
+                        (data, index) => {
+                            return(
+                                <div 
+                                    key={`key-${index}`}
+                                    style={{margin: 10, padding: 20}}>
+                                    <h3 style={{textAlign: "center"}}>{`表 ${++index} : ${data.title}`}</h3>
+                                    <Table
+                                        dataSource={data.datas}
+                                        columns={this.props.columns}
+                                        key={`key-${index}`}
+                                    />
+                                </div>
+                            ); 
+                        }
+                    )
+                }
+                {/* <Table dataSource={this.props.dataSource} columns={this.props.columns} /> */}
+                {/* this.props.data = {this.props.data} */}
+                {/* <Table title={datas[i].title}  datas={{datas[i].datas}> */}
             </div>
         );
     }
@@ -25,7 +53,7 @@ class OutputTables extends Component {
 OutputTables.propTypes = {
     data: PropTypes.string.isRequired,
     columns: PropTypes.array.isRequired,
-    dataSource: PropTypes.array.isRequired
+    dataSources: PropTypes.array.isRequired
 };
 
 const OTS = OutputTables;

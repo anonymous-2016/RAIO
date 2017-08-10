@@ -548,3 +548,129 @@ http://10.1.5.31:8080/http/report/query?
 ```
 
 
+
+
+
+```js
+
+let state = {
+    loading: false,
+    visible: false
+};
+
+// same key, auto get values!
+
+const {visible, loading} = state;
+visible;
+// false
+
+state = {
+    loading: true,
+    visible: true
+};
+
+visible;
+// false (const will not change any more)
+
+// react state auto update ???
+
+
+let keys = {
+    key1: 1,
+    key2: 2
+};
+
+let {key1, key2} = keys;
+
+key1;
+// 1
+
+keys = {
+    key1: 11,
+    key2: 22
+};
+
+key1;
+// 1
+
+
+
+
+// auto ...spread & ...rest
+
+> $ npm i -D babel-plugin-transform-object-rest-spread
+
+https://babeljs.io/docs/plugins/transform-object-rest-spread/
+
+
+## Objects
+
+
+let {x, y, ...rest} = {x: 1, y: 2, a: 3, b: 4};
+// Uncaught SyntaxError: Unexpected token ...
+
+rest;
+// 
+
+let spread = { x, y, ...rest };
+// Uncaught SyntaxError: Unexpected token ...
+
+spread;
+// { x: 1, y: 2, a: 3, b: 4 }
+
+
+## Arrays
+
+let [x, y, ...rest] = [1, 2, 3, 4];
+
+rest;
+// [3, 4]
+
+let spread = [x, y, ...rest];
+
+spread;
+// [1, 2, 3, 4]
+
+
+
+
+
+
+```
+
+# modal footer & form submit
+
+```jsx
+
+
+    footer={
+        [
+            <Button 
+                key="submit" 
+                type="primary" 
+                size="large"
+                onClick={this.testOK}
+                htmlType="submit">
+                测试
+            </Button>,
+            <Button 
+                key="back" 
+                size="large" 
+                onClick={this.testCancel}>
+                关闭
+            </Button>
+        ]
+    }
+
+```
+
+
+Warning: setState(...): 
+Cannot update during an existing state transition 
+(such as within `render` or another component's constructor).
+Render methods should be a pure function of props and state; 
+constructor side-effects are an anti-pattern, but can be moved to `componentWillMount`.
+
+
+
+

@@ -113,7 +113,7 @@ const modal = (props) => {
                 </FormItem>
             </Form>
         </Modal>
-    )
+    );
 };
 
 modal.propTypes = {
