@@ -31,7 +31,11 @@ class OutputTables extends Component {
                                 <div 
                                     key={`key-${index}`}
                                     style={{margin: 10, padding: 20}}>
-                                    <h3 style={{textAlign: "center"}}>{`表 ${++index} : ${data.title}`}</h3>
+                                    <h3 
+                                        style={{textAlign: "center"}}
+                                        >
+                                        {`表 ${++index} : ${data.title}`}
+                                    </h3>
                                     <Table
                                         dataSource={data.datas}
                                         columns={this.props.columns}
@@ -42,9 +46,6 @@ class OutputTables extends Component {
                         }
                     )
                 }
-                {/* <Table dataSource={this.props.dataSource} columns={this.props.columns} /> */}
-                {/* this.props.data = {this.props.data} */}
-                {/* <Table title={datas[i].title}  datas={{datas[i].datas}> */}
             </div>
         );
     }

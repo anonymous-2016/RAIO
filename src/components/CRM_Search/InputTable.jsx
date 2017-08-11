@@ -15,7 +15,7 @@ class InputTable extends Component {
         return (
             <div>
                 <Table dataSource={this.props.dataSource} columns={this.props.columns} />
-                this.props.data = {this.props.data}
+                {/* this.props.data = {this.props.data} */}
             </div>
         );
     }

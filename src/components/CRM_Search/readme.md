@@ -545,7 +545,65 @@ http://10.1.5.31:8080/http/report/query?
     "WriteType": "json"
 }
 
+
+
+
+{
+    "OutField": [
+        "a0",
+        "a1",
+        "a2",
+        "a3"
+    ],
+    "FastQuarterReportType": [
+        "Q1th",
+        "Q2nd",
+        "Q3rd",
+        "Q4th"
+    ],
+    "FastDateFilterType": "AllYear",
+    "Filters": [{
+        "FilterType": "between",
+        "Field": "a0",
+        "MaxValue": "2017-08-04",
+        "MinValue": "2012-01-01"
+    }],
+    "BeginDate": "2015-08-07",
+    "EndDate": "2017-08-07",
+    "LX": "6",
+    "Sorts": [{
+        "Field": "a0",
+        "Sort": "desc"
+    }],
+    "Page": {
+        "PageNo": "1",
+        "PageSize": "20"
+    },
+    "ApiName": "fund.f9.fund_profile.FundManager.BasicInformations",
+    "WriteType": "json"
+}
+
+ApiName SecuCode Names WriteType
+
+琨
+
+
+## test
+
+10.1.5.31:8080/http/report/query?{"SecuCode":"000011","Names":"阳琨","ApiName":"fund.f9.fund_profile.FundManager.BasicInformations","WriteType":"json"}
+
+
+
+http://10.6.1.81/webtool/home.html?resource=tab0&sear_valu=
+
+
+基金->F9
+
+hsjy 600570
+
+
 ```
+
 
 
 
@@ -670,6 +728,249 @@ Cannot update during an existing state transition
 (such as within `render` or another component's constructor).
 Render methods should be a pure function of props and state; 
 constructor side-effects are an anti-pattern, but can be moved to `componentWillMount`.
+
+
+https://facebook.github.io/react/docs/react-component.html#setstate
+
+
+```jsx
+
+setState(updater, [callback])
+
+
+
+(prevState, props) => stateChange
+
+// componentDidUpdate()
+
+// setState(updater, callback))
+
+// setState() will always lead to a re-render unless shouldComponentUpdate() returns false.
+
+setState(
+    (prevState, props),
+    () => {
+        //
+    }
+);
+
+```
+
+
+
+# input in table
+
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/keys
+
+
+https://stackoverflow.com/questions/126100/how-to-efficiently-count-the-number-of-keys-properties-of-an-object-in-javascrip
+
+https://stackoverflow.com/questions/5223/length-of-a-javascript-object
+
+```jsx
+
+Object.keys(obj).length;
+
+
+const obj = {
+    title: "字段",
+    dataIndex: "name",
+    key: "name"
+};
+
+Object.keys(obj).length;
+// 3
+
+
+
+let url_obj = {};
+
+// const datas_length = this.props.datas.length;
+const datas_length = 4;
+let i_length = 0;
+
+const Requiredcolumns = [
+    {
+        title: "字段",
+        dataIndex: "name",
+        key: "name"
+    },
+    {
+        title: "类型",
+        dataIndex: "type",
+        key: "type"
+    },
+    {
+        title: "值",
+        dataIndex: "value",
+        key: "value",
+        render: (text, index) => {
+            // disabled
+            console.log(`url_obj = `, url_obj);
+            console.log(`%c text = `, color.css1, text);
+            console.log(`%c index = `, color.css2, index);
+            url_obj[index.name] = text;
+            i_length++;
+            console.log(`%c i_length = `, color.css1, i_length);
+            if(datas_length === i_length){
+                // keys length === demo_datas length
+                // finish url object
+                console.log(`%c full url_obj defaultValue = `, color.css2, url_obj);
+                console.log(`%c full i_length = `, color.css1, i_length);
+            }
+            // console.log(`url_obj defaultValue = `, url_obj);
+            if(index.name === "WriteType"){
+                // 1. write global let
+                // 2. use let create new url
+                return(
+                    <Input 
+                        onChange={
+                            (e) => {
+                                console.log(`e = `, e);
+                                console.log(`e = `, e.target.value);
+                            }
+                        }
+                        defaultValue={text}
+                        type="text"
+                        disabled/>
+                );
+            }else{
+                return(
+                    <Input 
+                        onChange={
+                            (e) => {
+                                console.log(`index.name = `, index.name);
+                                console.log(`e = `, e.target.value);
+                                let key = index.name,
+                                    value = e.target.value;
+                                {/* url_obj = Object.assign(
+                                    url_obj,
+                                    {
+                                        key: value
+                                    }
+                                ); */}
+                                // url_obj.key = value;// key
+                                url_obj[key] = value;// key's value
+                                console.log(`new url_obj = `, url_obj);
+                            }
+                        }
+                        defaultValue={text}
+                        type="text" />
+                );
+            }
+        }
+        
+    },
+    {
+        title: "描述",
+        dataIndex: "desc",
+        key: "desc"
+    }
+];
+
+
+```
+
+
+# string to json
+
+```js
+
+let x = `{
+    key: "k4",
+    name: "WriteType",
+    type: "string",
+    value: "json (json文本格式)",
+    desc: "返回的数据协议格式 "
+}`;
+
+let y = eval(`(${x})`);
+// Object {key: "k4", name: "WriteType", type: "string", value: "json (json文本格式)", desc: "返回的数据协议格式 "}
+
+let z = eval(`${x}`);
+
+// VM825:3 Uncaught SyntaxError: Unexpected token :
+
+
+JSON.parse()
+
+
+/ab+c/i;
+
+new RegExp('ab+c', 'i');
+new RegExp(/ab+c/, 'i');
+
+String.replace();
+
+
+{/* template for may Table */}
+
+<Table dataSource={this.state.datas} columns={this.state.columns} />
+
+
+```
+
+
+
+
+
+
+ http://10.1.5.31:8080/http/report/query?{"ApiName":"JY.Topic.Market_profile.Investors_data_statistics.AccountStatistics", "WriteType":"json"}
+
+
+
+
+
+
+
+## table input validation
+
+
+onbulr
+
+```js
+
+for (let key in object) {
+    if (object.hasOwnProperty(key)) {
+        if(object[key] === ""){
+            // alret & disable fetch data
+        }
+    }
+}
+
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

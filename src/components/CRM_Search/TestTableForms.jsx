@@ -12,8 +12,10 @@ import PropTypes from 'prop-types';
 import {Table, Icon, Form, Button} from 'antd';
 
 import './testtableforms.css';
-import {TM}from './TestModal';
 
+import {TM}from './TestModal';
+import {RI} from './Required';
+import {RTS}from './Results';
 
 // debug color
 const css1 = `
@@ -23,13 +25,30 @@ const css2 = `
     color: #f0f;
 `;
 
+let fetch_url = "";
+
 class TestTableForms extends Component {
     constructor(props, context) {
         super(props, context);
         this.state = {
-            show: false
+            show: false,
+            visible: false,
+            test_datas: {}
         }
     }
+    TestClick = (url) => {
+        console.log(`new url obj = `, url);
+        fetch_url = url;
+        // fetch url
+        // console.log(`new url obj = `, fetch_url);
+    };
+    startTest = () => {
+        // fetch test data
+        let url = fetch_url;
+        console.log(`fetch_url = `, fetch_url);
+        console.log(`fetch test data`, url);
+        // new test_datas url
+    };
     showModal = () => {
         console.log(`clicked showModal!`);
         console.log(`%c showModal = `, css1, this.state.show);
@@ -59,26 +78,53 @@ class TestTableForms extends Component {
         console.log(`clicked hideModal, agian!`);
         console.log(`%c hideModal agian = `, css2, this.state.show);
     };
-    startTest = () => {
-        // fetch test data
-        console.log(`fetch test data`);
-    };
+/*     componentWillMount() {
+        this.hideModal();
+    }
+    componentWillUnmount() {
+        this.hideModal();
+    } */
     checkTestCommands = (url) => {
         // fetch test data
         console.log(`fetching url = \n`, url);
     };
+    testOK = (e) => {
+        // e.preventDefault();
+        console.log(`testOK e`, e);
+        this.setState({
+            loading: true
+        });
+        setTimeout(() => {
+            this.setState({
+                loading: false,
+                visible: true
+            });
+            // this.props.hideModal();
+        }, 1000);
+    }
+    testCancel = () => {
+        this.setState({
+            visible: false
+        });
+    }
     render() {
-        let show = this.state.show;
+        const {show, test_datas} = this.state;
         return (
             <div>
                 <div>
                     <h2 className="title-color">必填项</h2>
-                    <Table dataSource={this.props.dataSource} columns={this.props.columns} />
+                    <RI 
+                        dataSource={[]}
+                        test_datas={test_datas}
+                        TestClick={this.TestClick}
+                    />
                     {/* 
                         coloums = 字段 类型 值 描述
-                        input + output
+                        input + output => new table data
+                        // required 
+                        // new objects
+
                     */}
-                    {/* this.props.data = {this.props.data} */}
                 </div>
                 <div style={{textAlign: "center"}}>
                     <Button
@@ -97,7 +143,8 @@ class TestTableForms extends Component {
                         show 
                         ?
                         <TM 
-                            hideModal={this.hideModal} 
+                            hideModal={this.hideModal}
+                            visible={this.state.visible}
                             checkTestCommands={this.checkTestCommands}
                         />
                         :
@@ -114,8 +161,9 @@ class TestTableForms extends Component {
                 </div>
                 <div>
                     <h2 className="title-color">测试结果</h2>
+                    {/* {title: "基金经理详细信息(折线图同类平均)", datas: Array(4)} */}
                     {/* Tabs & Tables */}
-                    <Table dataSource={this.props.dataSource} columns={this.props.columns} />
+                     <RTS tabs={this.props.outputs} style={{ overflowX: "scroll"}}/> 
                 </div>
             </div>
         );
@@ -123,9 +171,7 @@ class TestTableForms extends Component {
 }
 
 TestTableForms.propTypes = {
-    data: PropTypes.string.isRequired,
-    columns: PropTypes.array.isRequired,
-    dataSource: PropTypes.array.isRequired
+    outputs: PropTypes.string.isRequired,
 };
 
 const TTF = TestTableForms;

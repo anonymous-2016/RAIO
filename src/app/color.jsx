@@ -6,7 +6,7 @@
  */
 
 export const color_css1 = `
-    color: #fff;
+    color: #0f0;
     font-size: 23px;
 `;
 
@@ -20,7 +20,20 @@ export const color_css3 = `
     font-size: 23px;
 `;
 
+
+// debug color
+export const css1 = `
+    color: red;
+`;
+export const css2 = `
+    color: #f0f;
+`;
+
+
+
 const color = {
+    css1,
+    css2,
     color_css1,
     color_css2,
     color_css3

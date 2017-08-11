@@ -58,8 +58,8 @@ class TabsContentBox extends Component {
     constructor(props, context) {
         super(props, context);
         this.state = {
-            input_datas: [],
-            output_datas: []
+            input_datas: this.props.input_datas,
+            output_datas: this.props.output_datas
         };
     }
     // fetch data by `ReportName` & `GetSchema`
@@ -122,8 +122,11 @@ class TabsContentBox extends Component {
             if(json.Info.schema.Properties !== undefined){
                 // datas.BasicInformationRow.Properties
                 datas = json.Info.schema.Properties;
+                // need shape ???
             }else{
                 let tables = json.Info.schema;
+                // name: Info.schema.BasicInformationRow
+
                 // let i = 0;
                 for (let key in tables) {
                     let arr = [];
@@ -179,34 +182,45 @@ class TabsContentBox extends Component {
     };
     render() {
         return (
-            <div style={{width: "100%"}}>
+            <div style={{}}>
                 <Tabs defaultActiveKey="1">
                     <TabPane 
                         tab={<span><Icon type="apple" />输入</span>}
                         key="1"
                         style={{}}
-                        onTabClick={this.inputClick}>
-                        <button onClick={this.inputClick}>
-                            inputClick
-                        </button>
-                        <IT data="input datas" dataSource={this.state.input_datas} columns={input_columns}/>
+                        onTabClick={this.testClick}>
+                        <IT data="input datas" dataSource={this.props.input_datas} columns={input_columns}/>
                     </TabPane>
                     {/* TabPane onClick={this.inputClick} */}
                     <TabPane 
                         tab={<span><Icon type="android" />输出</span>}
                         key="2"
                         style={{}}>
-                        <button onClick={this.outputClick}>
-                            outputClick
-                        </button>
-                        {/* nested array = arr[{title:,[{},{}]}, {title:,[{},{}]}, ...] */}
-                        <OTS data="output datas" dataSources={this.state.output_datas} columns={output_columns}/>
+                        {/* a table ??? https://cdn.xgqfrms.xyz/json/table.json*/}
+                        {/* 
+                          if (desc !== undefined) {
+                              // add title
+                              // object.title = data.desc
+                          }else{
+                              // no need object.title
+                          }
+                         */}
+                        <OTS
+                            data="output datas"
+                            dataSources={this.props.output_datas}
+                            columns={output_columns}
+                        />
                     </TabPane>
                     <TabPane 
                         tab={<span><Icon type="phone" />测试</span>}
                         key="3"
-                        style={{}}>
-                        <TTF data="test datas" dataSource={[]} columns={[]}/>
+                        style={{minWidth: 700}}>
+                        <TTF
+                            data="test datas"
+                            dataSource={[]}
+                            columns={[]}
+                            outputs={this.props.output_datas}
+                        />
                         {/* muilt test components */}
                     </TabPane>
                     <TabPane 
@@ -236,6 +250,8 @@ class TabsContentBox extends Component {
 
 TabsContentBox.propTypes = {
     developer: PropTypes.string.isRequired,
+    input_datas: PropTypes.array.isRequired,
+    output_datas: PropTypes.array.isRequired
 };
 
 const TCB = TabsContentBox;

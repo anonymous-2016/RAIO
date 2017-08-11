@@ -23,7 +23,7 @@ class TestModal extends Component {
     }
     onTest = () => {
         // copy state, do test fetch
-        this.testOK();
+        this.testOK(); 
     };
 /*     componentWillUnmount(){
         this.props.hideModal();
@@ -42,14 +42,16 @@ class TestModal extends Component {
                     // fetch data
                     let url = values.textarea;
                     this.props.checkTestCommands(url);
-                    this.onTest();
+                    // this.onTest();
                 }else{
                     throw new Error(Error.name, Error.message);
                 }
             }
         );
     };
-    testOK = () => {
+    testOK = (e) => {
+        // e.preventDefault();
+        console.log(`testOK e`, e);
         this.setState({
             loading: true
         });
@@ -58,15 +60,20 @@ class TestModal extends Component {
                 loading: false,
                 visible: false
             });
-            this.props.hideModal();
+            // this.props.hideModal();
         }, 1000);
     }
     testCancel = () => {
         this.setState({
             visible: false
         });
-        this.props.hideModal();
     }
+/*     componentDidUpdate(){
+        this.props.hideModal();
+    } */
+/*     componentWillUnmount() {
+        this.props.hideModal();
+    } */
     render() {
         const {getFieldsValue, getFieldValue, setFieldsValue, getFieldDecorator} = this.props.form;
         const formItemLayout = {
@@ -77,6 +84,8 @@ class TestModal extends Component {
                 span: 14
             }
         };
+        // destructuring assignment
+        const {visible, loading} = this.state;
         return (
             <div>
                 {/* query object */}
@@ -85,7 +94,7 @@ class TestModal extends Component {
                     title="命令行"
                     onOk={this.testOK}
                     onCancel={this.testCancel}
-                    visible={this.state.visible}
+                    visible={visible}
                     footer={[]}
                     >
                     {/* loading={this.state.loading} */}
@@ -123,7 +132,7 @@ class TestModal extends Component {
                                 htmlType="submit"
                                 icon="hourglass"
                                 style={{margin: "auto 10px"}}
-                                loading={this.state.loading}>
+                                loading={loading}>
                                 开始测试
                             </Button>
                             <Button 
@@ -154,3 +163,16 @@ const TM = Form.create()(TestModal);
 
 export {TM};
 export default TM;
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -129,8 +129,15 @@ class SC extends Component {
     // get data from props
     render() {
         return (
-            <div style={{ border: '1px solid #f0f', minHeight: 500, overflowX: "hidden"}} >
+            <div
+                style={{
+                    border: '1px solid #f0f',
+                    minHeight: 500,
+                    minWidth: 400,
+                    //
+                }} >
                 <Router>
+                    {/* display: 'flex', */}
                     <div style={{display: 'flex', border: '1px solid #000'}} >
                         <div 
                             style={{
@@ -174,16 +181,19 @@ class SC extends Component {
                                 </SubMenu>
                             </Menu>
                         </div>
-                        {
-                            this.props.routes.map((route, index) => (
-                                <Route
-                                    key={index}
-                                    path={route.path}
-                                    exact={route.exact}
-                                    component={route.main}
-                                />
-                            ))
-                        }
+                        {/* style={{display: 'flex', overflowX: "scroll"}} */}
+                        <div >
+                            {
+                                this.props.routes.map((route, index) => (
+                                    <Route
+                                        key={index}
+                                        path={route.path}
+                                        exact={route.exact}
+                                        component={route.main}
+                                    />
+                                ))
+                            }
+                        </div>
                     </div>
                 </Router>
             </div>
