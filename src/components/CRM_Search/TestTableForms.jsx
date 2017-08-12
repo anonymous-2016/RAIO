@@ -110,8 +110,8 @@ class TestTableForms extends Component {
     render() {
         const {show, test_datas} = this.state;
         return (
-            <div>
-                <div>
+            <div >
+                <div >
                     <h2 className="title-color">必填项</h2>
                     <RI 
                         dataSource={[]}
@@ -151,7 +151,7 @@ class TestTableForms extends Component {
                         ""
                     }
                 </div>
-                <div>
+                <div >
                     <h2 className="title-color">可选项</h2>
                     <Table dataSource={this.props.dataSource} columns={this.props.columns} />
                     <Form />
@@ -161,9 +161,11 @@ class TestTableForms extends Component {
                 </div>
                 <div>
                     <h2 className="title-color">测试结果</h2>
-                    {/* {title: "基金经理详细信息(折线图同类平均)", datas: Array(4)} */}
                     {/* Tabs & Tables */}
-                     <RTS tabs={this.props.outputs} style={{ overflowX: "scroll"}}/> 
+                     <RTS
+                        tabs={this.props.outputs}
+                        style={{maxWidth: 850}}
+                    /> 
                 </div>
             </div>
         );
@@ -171,7 +173,7 @@ class TestTableForms extends Component {
 }
 
 TestTableForms.propTypes = {
-    outputs: PropTypes.string.isRequired,
+    outputs: PropTypes.array.isRequired,
 };
 
 const TTF = TestTableForms;

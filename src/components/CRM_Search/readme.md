@@ -445,6 +445,8 @@ name": "IndexF10IndexFund",
 
 
 
+
+
 name === ReportName (唯一的 query key)
 
 
@@ -585,12 +587,14 @@ http://10.1.5.31:8080/http/report/query?
 
 ApiName SecuCode Names WriteType
 
-琨
+阳琨
 
 
 ## test
 
 10.1.5.31:8080/http/report/query?{"SecuCode":"000011","Names":"阳琨","ApiName":"fund.f9.fund_profile.FundManager.BasicInformations","WriteType":"json"}
+
+华夏大盘精选(前端：000011  后端：000012)
 
 
 
@@ -599,7 +603,21 @@ http://10.6.1.81/webtool/home.html?resource=tab0&sear_valu=
 
 基金->F9
 
-hsjy 600570
+600570 恒生电子(恒生电子-全资子公司(恒生聚源 hsjy ))
+
+
+
+10.1.5.31:8080/http/report/query?{"SecuCode":"600570","Names":"张国强","ApiName":"fund.f9.fund_profile.FundManager.BasicInformations","WriteType":"json"}
+
+
+
+
+http://10.1.5.31:8081/http/report/query?{"SecuCode":"000011","ApiName":"fund.f9.fund_profile.FundManager","WriteType":"json"}
+
+
+http://10.1.5.31:8081/http/report/query?{"SecuCode":"000011","Names":"陈伟彦","ApiName":"fund.f9.fund_profile.FundManager.BasicInformations","WriteType":"json"}
+
+
 
 
 ```

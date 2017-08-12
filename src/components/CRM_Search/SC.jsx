@@ -72,13 +72,15 @@ class SC extends Component {
                 icon = "bar-chart";
         }
         if(debug){
-            console.log(`icon = \t`, icon);
+            // console.log(`icon = \t`, icon);
         }
         return icon;
         // this.randomIcons(data.name.substr(0, 2))
     }
     // no need any more
-    componentDidMount() {
+    // click link fetch
+    // componentDidMount() 
+    clickFetchData = () => {
         // 'Access-Control-Allow-Origin' header 
         // set the request's mode to 'no-cors' 
         // const url = `http://10.1.5.31:8081/http/manage/admin?{"Admin":"report","Action":"GetAllLoad","WriteType":"json"}`;
@@ -125,7 +127,7 @@ class SC extends Component {
                 datas: datas
             });
         });
-    }
+    };
     // get data from props
     render() {
         return (
@@ -168,7 +170,7 @@ class SC extends Component {
                                     {
                                         this.props.datas.map((data, index) => (
                                             <SubItem key={(index)}>
-                                                <Link to={`/sc/${data.name}`}>
+                                                <Link to={`/api/sc/${data.name}`}>
                                                     <Icon
                                                         type={data.name ? this.randomIcons(data.description.substr(0, 2)) : "bar-chart"}
                                                         style={{fontSize: 12, color: '#fff'}}

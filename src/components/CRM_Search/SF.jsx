@@ -1,6 +1,18 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
+/**
+ * 2017.08.09
+ * xgqfrms
+ * 
+ * @class SearchForm
+ * @extends {Component}
+ */
+
+// import {debug} from '../../app/debug.jsx';
+
+import {urls} from '../../app/urls.js';
+
 import {
     Form,
     Input,
@@ -13,14 +25,7 @@ import {
 const FormItem = Form.Item;
 const Option = Select.Option;
 
-
-/**
- * 2017.08.09
- * xgqfrms
- * 
- * @class SearchForm
- * @extends {Component}
- */
+const debug = true;
 
 class SearchForm extends Component {
     constructor(props, context) {
@@ -36,12 +41,9 @@ class SearchForm extends Component {
             (err, values) => {
                 try {
                     if (!err) {
-                        const debug = true;
                         if(debug ? debug : true){
                             console.log('Received values of form: ', values);
                         }
-                        // Object {prefix: "keywords", searchkey: "xxxx yyyyy xxxxx"}
-                        // Object {prefix: "reportname", searchkey: "xxxx yyyyy xxxxx"}
                         // object => JSON
                         // fetch data
                         let obj = values,
@@ -64,44 +66,22 @@ class SearchForm extends Component {
                             console.log(`value = `, value);
                         }
                         if((value !== "undefined" && value.length > 0)){
-                            url = `http://10.6.1.81/http-manage/admin?{"Admin":"report","Action":"GetSchema","WriteType":"json","${key}":"${value}"}`;
+                            
+                            url = `${urls.search}?{"Admin":"report","Action":"GetSchema","WriteType":"json","${key}":"${value}"}`;
                         }else{
-                            url = `http://10.6.1.81/http-manage/admin?{'Admin':'report','Action':'GetSchema','WriteType':'json'}`;
+                            url = `${urls.search}?{'Admin':'report','Action':'GetSchema','WriteType':'json'}`;
                         }
                         if(debug ? debug : true){
                             console.log(`fetch url = `, url);
                         }
                         // fetch data & routes = data;
-                        let data = [ 
-                            {
-                                "name" : "fund.topic.performance_evaluation.fund_performance.AInvestmentValueAnalysisDetail",
-                                "description" : "基金--> 基金专题统计--> 业绩评价--> 分级基金业绩表现--> 分级基金子基金（A份额）投资价值分析明细",
-                                "dependtables" : [ "SecuMain", "MF_NetValue" ]
-                            }
-                        ];
-                        console.log(`this.props.xyzSearch = `, this.props.xyzSearch);
-                        // this.props.xyzSearch(data);
-                        this.props.xyzSearch();
+                        // console.log(`this.props.xyzSearch = `, this.props.xyzSearch);
+                        this.props.xyzSearch(url);
                     }
                 } catch (error) {
                     throw new Error(error.message, error.name, error.fileName, error.lineNumber, error.columnNumber);
                     // new Error([message[, fileName[, lineNumber]]])
                 }
-            /*
-                try {
-                    throw new Error('Whoops!');
-                } catch (e) {
-                    const debug = true;
-                    // debug module
-                    if(debug){
-                        console.log(`error.message : `, e.message);
-                        console.log(`error.name : `, e.name);
-                        console.log(`error.fileName : `, e.fileName);
-                        console.log(`error.lineNumber : `, e.lineNumber);
-                        console.log(`error.columnNumber : `, e.columnNumber);
-                    }
-                }
-            */
             }
         );
     }
@@ -176,6 +156,11 @@ class SearchForm extends Component {
                         }
                     </FormItem>
                 */}
+                    {/* <Button
+                        type="primary"
+                        htmlType="submit">
+                        查询
+                    </Button> */}
                     <FormItem
                         {...formItemLayout}
                         label="查询"
@@ -191,7 +176,8 @@ class SearchForm extends Component {
                         })(
                             <Input
                                 addonBefore={prefixSelector}
-                                style={{ width: '100%' }}
+                                placeholder="多个关键字之间用 空格 分割!"
+                                style={{ width: '100%', maxWidth: 600}}
                             />
                         )}
                     </FormItem>

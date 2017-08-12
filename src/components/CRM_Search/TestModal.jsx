@@ -113,7 +113,7 @@ class TestModal extends Component {
                                             message: ' url 长度必须 30 个字符之间'
                                         }
                                     ],
-                                    initialValue: `http://10.1.5.31:8080/http/report/query?{"ApiName":"JY.Topic.Market_profile.Investors_data_statistics.AccountStatistics"}`,
+                                    initialValue: `10.1.5.31:8080/http/report/query?{"SecuCode":"000011","Names":"阳琨","ApiName":"fund.f9.fund_profile.FundManager.BasicInformations","WriteType":"json"}`,
                                 })(
                                     <Input
                                         type="textarea"

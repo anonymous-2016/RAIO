@@ -11,6 +11,7 @@ import PropTypes from 'prop-types';
 import {IT} from './InputTable';
 import {OTS} from './OutputTables';
 import {TTF} from './TestTableForms';
+import  './tabboxs.css';
 
 import {Tabs, Icon, Button} from 'antd';
 const TabPane = Tabs.TabPane;
@@ -182,29 +183,27 @@ class TabsContentBox extends Component {
     };
     render() {
         return (
-            <div style={{}}>
+            
+            /* <div style={{ maxWidth: 900}}> */
+            <div className="tbs-width">
                 <Tabs defaultActiveKey="1">
                     <TabPane 
                         tab={<span><Icon type="apple" />输入</span>}
                         key="1"
-                        style={{}}
-                        onTabClick={this.testClick}>
+                        style={{
+                            maxWidth: "100%",
+                        }}>
+                        {/* onTabClick={this.testClick} */}
                         <IT data="input datas" dataSource={this.props.input_datas} columns={input_columns}/>
                     </TabPane>
                     {/* TabPane onClick={this.inputClick} */}
                     <TabPane 
                         tab={<span><Icon type="android" />输出</span>}
                         key="2"
-                        style={{}}>
-                        {/* a table ??? https://cdn.xgqfrms.xyz/json/table.json*/}
-                        {/* 
-                          if (desc !== undefined) {
-                              // add title
-                              // object.title = data.desc
-                          }else{
-                              // no need object.title
-                          }
-                         */}
+                        style={{
+                            maxWidth: "100%",
+                        }}>
+                        {/* single table & multi tables */}
                         <OTS
                             data="output datas"
                             dataSources={this.props.output_datas}
@@ -214,11 +213,9 @@ class TabsContentBox extends Component {
                     <TabPane 
                         tab={<span><Icon type="phone" />测试</span>}
                         key="3"
-                        style={{minWidth: 700}}>
+                        style={{maxWidth: 850}}>
                         <TTF
                             data="test datas"
-                            dataSource={[]}
-                            columns={[]}
                             outputs={this.props.output_datas}
                         />
                         {/* muilt test components */}

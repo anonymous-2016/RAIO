@@ -21,7 +21,7 @@ class TestItem extends Component {
     render() {
         return (
             <div>
-                <a href="#">TestItem</a>
+                {/* <a href="#">TestItem</a> */}
                 {/* <ModalName /> */}
                 {/* <PM /> */}
                 {/* <NAL /> */}

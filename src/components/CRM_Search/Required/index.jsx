@@ -119,14 +119,14 @@ const demo_datas = [
         key: "k2",
         name: "SecuCode",
         type: "string",
-        value: (value || 600570),
+        value: (value || "000011"),
         desc: "基金编码"
     },
     {
         key: "k3",
         name: "Names",
         type: "string",
-        value: "xgqfrms",
+        value: "阳琨",
         desc: "姓名"
     },
     {

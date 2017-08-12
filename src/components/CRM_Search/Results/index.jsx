@@ -48,34 +48,40 @@ class ResultTables extends Component {
     render() {
         const tables = this.props.tabs;
         return (
-            <div>
+            <div style={{maxWidth: 850}}>
                 {/* map */}
-                {/* tables === {title: "基金经理详细信息(折线图同类平均)", datas: Array(4)} */}
+                {/* 
+                tables === {title: "基金经理详细信息", datas: Array(4)} 
+                */}
                 <Tabs defaultActiveKey="1">
                     {
                         tables.map(
-                            (table, index) => (
-                                <TabPane 
-                                    tab={
-                                        <span style={{fontSize: 12}}>
-                                            <Icon type="apple" />
-                                            {`表${++index}:${table.title}`}
-                                        </span>
-                                    }
-                                    key={`k-${index}`}
-                                    style={{}}>
-                                    {/* test data, output data */}
-                                    <RT
-                                        dataSource={[]}
-                                        columns={table.datas}
+                            (table, index) => {
+                                {/* console.log(`tab key index ${index}`); */}
+                                return(
+                                    <TabPane 
+                                        tab={
+                                            <span style={{fontSize: 12}}>
+                                                <Icon type="apple" />
+                                                {`表${++index}:${table.title}`}
+                                            </span>
+                                        }
+                                        key={`${++index}`}
                                         style={{
-                                            overflowX: "scroll", 
-                                            maxWidth: 800,
-                                            minWidth: 600
-                                        }}
-                                    />
-                                </TabPane>
-                            )
+                                            
+                                        }}>
+                                        {/* test data, output data */}
+                                        <RT
+                                            dataSource={[]}
+                                            columns={table.datas}
+                                            style={{
+                                                maxWidth: 850,
+                                                minWidth: 600
+                                            }}
+                                        />
+                                    </TabPane>
+                                )
+                            }
                         )
                     }
                     {/* no content === disabled */}

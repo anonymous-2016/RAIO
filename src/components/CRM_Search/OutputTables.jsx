@@ -34,7 +34,7 @@ class OutputTables extends Component {
                                     <h3 
                                         style={{textAlign: "center"}}
                                         >
-                                        {`表 ${++index} : ${data.title}`}
+                                        {`表 ${++index}: ${data.title ? data.title : ""}`}
                                     </h3>
                                     <Table
                                         dataSource={data.datas}

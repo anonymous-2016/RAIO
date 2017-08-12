@@ -61,8 +61,7 @@ class ResultTables extends Component {
         // test datas
         let test_datas = [{},{}];
         return (
-            <div style={{overflowX: "scroll"}}>
-                <Table dataSource={[]} columns={cols} />
+            <div >
                 {
                     // test.name === output.key
                     show
