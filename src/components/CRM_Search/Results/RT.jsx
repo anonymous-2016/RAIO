@@ -8,6 +8,8 @@ import PropTypes from 'prop-types';
  * @class ResultTables
  * @extends {Component}
  */
+import {color} from '../../../app/color';
+
 
 import {Table} from 'antd';
 
@@ -45,9 +47,13 @@ class ResultTables extends Component {
         this.props.columns.map(
             (data, index) => {
                 let obj = {};
+                // 注释: A份额交易代码
                 obj.title = `${data.Description}`;
-                obj.dataIndex = `${data.Description}`;
-                obj.key = `${data.Description}`;
+                console.log(`%c 注释: ${obj.title} & obj.title = data.Description \n`, color.css1);
+                // 编号: A0
+                obj.dataIndex = `${data.name}`;
+                obj.key = `${data.name}`;
+                console.log(`%c 编号: ${obj.key} & obj.name = data.name \n`, color.css2);
                 cols.push(obj);
                 return cols;
             }
@@ -60,6 +66,8 @@ class ResultTables extends Component {
         */
         // test datas
         let test_datas = [{},{}];
+        // tab.name === "AnyManagedFundsRow":[] 
+        // A0 = key
         return (
             <div >
                 {

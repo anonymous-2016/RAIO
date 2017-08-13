@@ -25,13 +25,6 @@ class TestModal extends Component {
         // copy state, do test fetch
         this.testOK(); 
     };
-/*     componentWillUnmount(){
-        this.props.hideModal();
-        this.setState({
-            loading: false,
-            visible: false
-        });
-    } */
     handleSubmit = (e) => {
         e.preventDefault();
         this.props.form.validateFields(
@@ -57,23 +50,19 @@ class TestModal extends Component {
         });
         setTimeout(() => {
             this.setState({
-                loading: false,
-                visible: false
+                loading: false
             });
-            // this.props.hideModal();
+            this.props.hideModal();
         }, 1000);
     }
     testCancel = () => {
-        this.setState({
-            visible: false
-        });
+       this.props.hideModal();
     }
-/*     componentDidUpdate(){
-        this.props.hideModal();
-    } */
-/*     componentWillUnmount() {
-        this.props.hideModal();
-    } */
+    changeHanlder = (e) => {
+        // e.target.value;
+        console.log(`e.target.value =`, e.target.value);
+        // call parent submit function
+    }
     render() {
         const {getFieldsValue, getFieldValue, setFieldsValue, getFieldDecorator} = this.props.form;
         const formItemLayout = {
@@ -114,13 +103,15 @@ class TestModal extends Component {
                                         }
                                     ],
                                     initialValue: `10.1.5.31:8080/http/report/query?{"SecuCode":"000011","Names":"阳琨","ApiName":"fund.f9.fund_profile.FundManager.BasicInformations","WriteType":"json"}`,
+                                    // initialValue = ( input.example || null)
                                 })(
                                     <Input
                                         type="textarea"
                                         placeholder="请先点击 “开始测试” 按钮!"
                                         rows="15"
                                         cols="500"
-                                        />
+                                        onChange={(e) => this.changeHanlder(e)}
+                                    />
                                 )
                             }
                         </FormItem>

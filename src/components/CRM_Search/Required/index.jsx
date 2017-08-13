@@ -9,104 +9,22 @@ import PropTypes from 'prop-types';
  * @extends {Component}
  */
 
+import {urls}from '../../../app/urls.js';
+import {color}from '../../../app/color';
+
+
 import {Table, Icon, Input, Button} from 'antd';
 
-import {color} from '../../../app/color';
 
 let url_obj = {};
 let url = "";
-// const datas_length = this.props.datas.length;
-const datas_length = 4;
-let i_length = 0;
+// initial url
 
-const Requiredcolumns = [
-    {
-        title: "字段",
-        dataIndex: "name",
-        key: "name"
-    },
-    {
-        title: "类型",
-        dataIndex: "type",
-        key: "type"
-    },
-    {
-        title: "值",
-        dataIndex: "value",
-        key: "value",
-        render: (text, index) => {
-            // disabled
-            console.log(`url_obj = `, url_obj);
-            console.log(`%c text = `, color.css1, text);
-            console.log(`%c index = `, color.css2, index);
-            if(index.name === "WriteType"){
-                url_obj[index.name] = "json";
-            }else{
-                url_obj[index.name] = text;
-            }
-            i_length++;
-            console.log(`%c i_length = `, color.css1, i_length);
-            if(datas_length === i_length){
-                // keys length === demo_datas length
-                // finish url object
-                console.log(`%c full url_obj defaultValue = `, color.css2, url_obj);
-                console.log(`%c full i_length = `, color.css1, i_length);
-                i_length = 0;
-            }
-            // console.log(`url_obj defaultValue = `, url_obj);
-            if(index.name === "WriteType"){
-                // 1. write global let
-                // 2. use let create new url
-                return(
-                    <Input 
-                        onChange={
-                            (e) => {
-                                console.log(`e = `, e);
-                                console.log(`e = `, e.target.value);
-                            }
-                        }
-                        defaultValue={text}
-                        type="text"
-                        disabled/>
-                );
-            }else{
-                return(
-                    <Input 
-                        onChange={
-                            (e) => {
-                                console.log(`index.name = `, index.name);
-                                console.log(`e = `, e.target.value);
-                                let key = index.name,
-                                    value = e.target.value;
-                                {/* url_obj = Object.assign(
-                                    url_obj,
-                                    {
-                                        key: value
-                                    }
-                                ); */}
-                                // url_obj.key = value;// key
-                                url_obj[key] = value;// key's value
-                                console.log(`${key} url_obj = `, url_obj); 
-                                let str_obj = JSON.stringify(url_obj);
-                                url = `http://10.1.5.31:8080/http/report/query?${str_obj}`;
-                            }
-                        }
-                        defaultValue={text}
-                        type="text" />
-                );
-            }
-        }
-    },
-    {
-        title: "描述",
-        dataIndex: "desc",
-        key: "desc"
-    }
-];
-
-// input in table
 
 const value = "";
+// undefined
+
+// input datas
 const demo_datas = [
     {
         key: "k1",
@@ -138,6 +56,105 @@ const demo_datas = [
     }
 ];
 
+// example
+
+
+// const datas_length = this.props.datas.length;
+const datas_length = 4;
+let i_length = 0;
+
+const Requiredcolumns = [
+    {
+        title: "字段",
+        dataIndex: "name",
+        key: "name"
+    },
+    {
+        title: "类型",
+        dataIndex: "type",
+        key: "type"
+    },
+    {
+        title: "值",
+        dataIndex: "value",
+        key: "value",
+        render: (text, index) => {
+            // disabled
+            // console.log(`url_obj = `, url_obj);
+            // console.log(`%c text = `, color.css1, text);
+            // console.log(`%c index = `, color.css2, index);
+            if(index.name === "WriteType"){
+                url_obj[index.name] = "json";
+            }else{
+                url_obj[index.name] = text;
+            }
+            i_length++;
+            // console.log(`%c i_length = `, color.css1, i_length);
+            if(datas_length === i_length){
+                // keys length === demo_datas length
+                // finish url object
+                // console.log(`%c full url_obj defaultValue = `, color.css2, url_obj);
+                // console.log(`%c full i_length = `, color.css1, i_length);
+                i_length = 0;
+            }
+            // console.log(`url_obj defaultValue = `, url_obj);
+            if(index.name === "WriteType"){
+                // 1. write global let
+                // 2. use let create new url
+                return(
+                    <Input 
+                        onChange={
+                            (e) => {
+                                {/* console.log(`e = `, e); */}
+                                {/* console.log(`e = `, e.target.value); */}
+                            }
+                        }
+                        defaultValue={text}
+                        type="text"
+                        disabled/>
+                );
+            }else{
+                return(
+                    <Input 
+                        onChange={
+                            (e) => {
+                                {/* console.log(`index.name = `, index.name); */}
+                                {/* console.log(`e = `, e.target.value); */}
+                                let key = index.name,
+                                    value = e.target.value;
+                                {/* url_obj = Object.assign(
+                                    url_obj,
+                                    {
+                                        key: value
+                                    }
+                                ); */}
+                                // url_obj.key = value;// key
+                                url_obj[key] = value;// key's value
+                                console.log(`${key} url_obj = `, url_obj); 
+                                let str_obj = JSON.stringify(url_obj);
+                                url = `${urls.test}?${str_obj}`;
+                                {/* this.setState({
+                                    testurl: url
+                                });
+                                console.log(`testurl = `, this.state.testurl); */}
+                            }
+                        }
+                        defaultValue={text}
+                        type="text" />
+                );
+            }
+        }
+    },
+    {
+        title: "描述",
+        dataIndex: "desc",
+        key: "desc"
+    }
+];
+
+// input in table
+
+
 /* 
 array.push(
     {
@@ -159,7 +176,8 @@ class RequiredItems extends Component {
         super(props, context);
         this.state = {
             datas: [],
-            testurl: ""
+            testurl: "",
+            initialurl: ""
             // this.props.data
             // input + output
             // table keys , input values
@@ -180,20 +198,54 @@ class RequiredItems extends Component {
         // url = `http://10.1.5.31:8080/http/report/query?${str_obj}`;
         this.setState({
             testurl: url
-        });
+        }); 
         console.log(`testurl = `, this.state.testurl);
         this.props.TestClick(this.state.testurl);
     };
-     componentDidUpdate() {
+    autoSave = () => {
+        setTimeout(() => {
+            this.onSaveInput();
+        }, 0);
+    }
+/*     shouldComponentUpdate(nextProps, nextState) {
+        return true;
+    } */
+    componentWillUpdate(){
+        // this.onSaveInput();
+    }
+    componentDidUpdate() {
         // this.onSaveInput();
         // this.props.TestClick(url)
-    }  
+    }
+    // initialize & before onChange
+    componentDidMount() {
+        demo_datas.map(
+            (data, index) => {
+                let key = data.name,
+                    value = data.value;
+                // key":"json (json文本格式)"
+                console.log(`%c index = ${index} key = \n`, color.color_css1,  key);
+                if(key === "WriteType"){
+                    url_obj.key = "json";
+                }else{
+                    url_obj.key = value;
+                }
+                
+            }
+        );
+        let str_obj = JSON.stringify(url_obj);
+        url = `${urls.test}?${str_obj}`;
+        console.log(`%c initial url = \n`, color.color_css2, url);
+        // initial url
+        this.autoSave();
+    }
     render() {
         /* console.log(`new url_obj = `, url_obj);
         let str_obj = JSON.stringify(url_obj);
         let url = `http://10.1.5.31:8080/http/report/query?${str_obj}`; */
         return (
-            <div>
+            <div 
+                onChange={this.autoSave}>
                 {/* input 必填项 */}
                 <Table
                     dataSource={
@@ -206,8 +258,14 @@ class RequiredItems extends Component {
                         )
                     }
                     columns={Requiredcolumns}
-                    onChange={this.onSaveInput}
                 />
+                {/* onChange={this.onSaveInput} */}
+                {/*  <button
+                    type="button"
+                    className="btn btn-default"
+                    onClick={this.onSaveInput}>
+                    onSaveInput BTN
+                </button>  */}
             </div>
         );
     }

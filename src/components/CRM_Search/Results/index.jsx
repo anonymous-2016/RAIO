@@ -9,6 +9,8 @@ import PropTypes from 'prop-types';
  * @extends {Component}
  */
 
+import {color}from '../../../app/color';
+
 import {RT}from './RT';
 
 import {Icon, Tabs} from 'antd';
@@ -41,7 +43,7 @@ class ResultTables extends Component {
     constructor(props, context) {
         super(props, context);
         this.state = {
-            // 
+            results: "" 
         };
     }
     //
@@ -58,6 +60,8 @@ class ResultTables extends Component {
                         tables.map(
                             (table, index) => {
                                 {/* console.log(`tab key index ${index}`); */}
+                                console.log(`%c index = ${index} table = \n`, color.color_css1,  table);
+                                // tab.name === "AnyManagedFundsRow":[] 
                                 return(
                                     <TabPane 
                                         tab={
@@ -67,9 +71,7 @@ class ResultTables extends Component {
                                             </span>
                                         }
                                         key={`${++index}`}
-                                        style={{
-                                            
-                                        }}>
+                                        style={{}}>
                                         {/* test data, output data */}
                                         <RT
                                             dataSource={[]}
@@ -93,6 +95,7 @@ class ResultTables extends Component {
 
 ResultTables.propTypes = {
     tabs: PropTypes.array.isRequired,
+    results: PropTypes.object.isRequired,
 };
 
 const RTS = ResultTables;

@@ -33,7 +33,8 @@ class CRMS extends Component {
          this.setState({
             loading: true
         }); 
-        fetch(`${urls.init}?{"Admin":"report","Action":"GetSchema","WriteType":"json"}`)
+        // fetch(`${urls.init}?{"Admin":"report","Action":"GetSchema","WriteType":"json"}`)
+        fetch(`http://localhost:7777/info/`)
         .then((response) => response.json())
         .then(
             (json) => {

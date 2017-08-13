@@ -96,7 +96,7 @@ class SCT extends Component {
         fetch(`${url}`)
         .then((response) => response.json())
         .then((json)=> {
-            // console.log(`json = ${json}`);
+            console.log(`json = ${json}`);
             // console.log(`json.length = ${json.length}`);
             // console.log(`json.Info.schema.Properties `, json.Info.schema.Properties);
             // Properties
@@ -114,6 +114,8 @@ class SCT extends Component {
                     i = 0;
                 // no desc
                 let objs = table.Properties;
+console.log(`@@@@@@@@@@@@ no tab.name === "" @@@@@@@@@@@@$`);
+                // add Table.name = "Table1"
                 for (let key in objs) {
                     if(!objs.hasOwnProperty(key)) continue;
                     if (objs.hasOwnProperty(key)) {
@@ -136,6 +138,10 @@ class SCT extends Component {
                     let arr = [],
                         new_obj = {},
                         i = 0;
+                    // tab.name === "AnyManagedFundsRow":[] ???
+                    // results table
+console.log(`$$$$$$$$$$$$$$$$$$$$$  tab.name === "AnyManagedFundsRow":[] ??? $$$$$$$$$$$$$$$$$$$$$`);
+                    // add Table.name = "AnyManagedFundsRow"
                     if(!tables.hasOwnProperty(key)) continue;
                     if (tables.hasOwnProperty(key)) {
                         let title = tables[key].desc,
@@ -147,12 +153,12 @@ class SCT extends Component {
                                 objs[key].key = ("k000" + i++);
                             }
                             arr.push(objs[key]);
-                            // console.log(`arr ${key}`, arr);
+                            console.log(`arr ${key}`, arr);
                         }
                         // console.log(`title ${key}`, title);
                         new_obj.title = tables[key].desc;
                         new_obj.datas = arr;
-                        // console.log(`new obj = `, new_obj);
+                        console.log(`new obj = `, new_obj);
                     }
                     datas.push(new_obj);
                     /* const css = `
@@ -220,8 +226,10 @@ class SCT extends Component {
             http://10.1.5.31:8081/http/manage/admin?{"Admin":"report","Action":"GetRowSchema","WriteType":"json", "ReportName":"IndexF10IndexFund"}
         */
         // console.log(`this.state.url_name url_key`, url_key);
-        let url_in = `${urls.input}?{"Admin":"report","Action":"GetSchema","WriteType":"json", "ReportName":"${url_key}"}`,
-            url_out = `${urls.output}?{"Admin":"report","Action":"GetRowSchema","WriteType":"json", "ReportName":"${url_key}"}`;
+        const fixedInURL = `{"Admin":"report","Action":"GetSchema","WriteType":"json", "ReportName":`;
+        const fixedOutURL = `{"Admin":"report","Action":"GetRowSchema","WriteType":"json", "ReportName":`;
+        let url_in = `${urls.input}?${fixedInURL}"${url_key}"}`,
+            url_out = `${urls.output}?${fixedOutURL}"${url_key}"}`;
         this.inputClick(url_in);
         this.outputClick(url_out);
     }

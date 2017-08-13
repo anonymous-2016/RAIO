@@ -300,6 +300,9 @@ http://10.1.5.203/http-manage/admin?{%27Admin%27:%27report%27,%27Action%27:%27Ge
 
 
 
+http://10.1.5.203/webtool/home.html
+
+
 
 
 
@@ -379,6 +382,114 @@ http://10.1.5.31:8081/http/manage/admin?{"Admin":"report","Action":"GetSchema","
 
 
 ```
+
+
+
+
+
+```js
+
+    {
+        "AnyManagedFundsRow":
+        [
+            {
+                A0: "华夏基金管理有限公司",
+                A1: "华夏大中华企业精选灵活配置混合(QDII)",
+                A2: "其他型基金",
+                A3: "2016-01-20",
+                A4: "其他型基金",
+                A5: "21.877086009428236",
+                A5: "65135"
+            },
+                                {
+                A0: "华夏基金管理有限公司",
+                A1: "华夏大中华企业精选灵活配置混合(QDII)",
+                A2: "其他型基金",
+                A3: "2016-01-20",
+                A4: "其他型基金",
+                A5: "21.877086009428236",
+                A5: "65135"
+            }
+        ]
+    }
+
+```
+
+# data shape
+
+> map & for in keys
+
+```js
+data = {} 
+
+// "name": "AnyManagedFundsRow",
+let new_pobj.title = data.name;
+
+let key = data.columnMeta.key;
+let value = data.rows[i][i];
+
+new_cobj[key] = value;
+
+new_pobj.table = new_cobj;
+
+new_tables.push(new_pobj);
+
+{
+    title: "",
+    table: []
+}
+
+
+```
+
+
+```js
+
+    [
+        {
+            "name": "AnyManagedFundsRow",
+            "columnMeta": {
+                "a0": "STRING",
+                "a1": "STRING",
+                "a2": "STRING",
+                "a3": "DATE",
+                "a4": "DATE",
+                "a5": "DOUBLE",
+                "a6": "INT"
+            },
+            "rows": [
+                [
+                    "华夏基金管理有限公司",
+                    "华夏大中华企业精选灵活配置混合(QDII)",
+                    "其他型基金",
+                    "2016-01-20",
+                    "",
+                    21.877086009428236,
+                    65135
+                ],
+                [
+                    "华夏基金管理有限公司",
+                    "华夏大盘精选混合",
+                    "混合型基金",
+                    "2015-09-01",
+                    "2017-05-02",
+                    10.307680340705128,
+                    2944
+                ]
+            ]
+        }
+    ]
+
+```
+
+
+
+
+
+
+
+
+
 
 
 

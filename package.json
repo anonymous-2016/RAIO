@@ -2,19 +2,29 @@
     "name": "arra",
     "version": "1.1.1",
     "private": true,
+    "scripts": {
+        "start": "react-scripts start",
+        "build": "react-scripts build",
+        "test": "react-scripts test --env=jsdom",
+        "eject": "react-scripts eject",
+        "app": "cd build & browser-sync start --server --files 'index.html'",
+        "bat": "start start-browser.bat",
+        "starts": "start http://localhost:7777/datas/ && start http://localhost:7777/Info/"
+    },
     "dependencies": {
-        "react": "^15.6.1",
-        "react-dom": "^15.6.1",
-        "prop-types": "^15.5.10",
-        "react-router-dom": "^4.1.1",
-        "redux": "^3.7.1",
-        "react-redux": "^5.0.5",
-        "redux-immutable-state-invariant": "^2.0.0",
         "antd": "^2.11.2",
         "bootstrap": "^3.3.7",
         "jquery": "^3.2.1",
         "moment": "^2.18.1",
+        "prop-types": "^15.5.10",
         "rc-queue-anim": "^1.2.0",
+        "react": "^15.6.1",
+        "react-dom": "^15.6.1",
+        "react-redux": "^5.0.5",
+        "react-router-dom": "^4.1.1",
+        "react-treebeard": "^2.0.3",
+        "redux": "^3.7.1",
+        "redux-immutable-state-invariant": "^2.0.0",
         "whatwg-fetch": "^2.0.3",
         "ztree": "^3.5.24"
     },
@@ -26,12 +36,5 @@
         "redux-devtools-extension": "^2.13.2",
         "redux-thunk": "^2.2.0",
         "style-loader": "^0.18.2"
-    },
-    "scripts": {
-        "start": "react-scripts start",
-        "build": "react-scripts build",
-        "test": "react-scripts test --env=jsdom",
-        "eject": "react-scripts eject",
-        "app": "cd build & browser-sync start --server --files 'index.html'"
     }
 }

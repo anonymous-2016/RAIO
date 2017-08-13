@@ -9,6 +9,8 @@ import PropTypes from 'prop-types';
  * @extends {Component}
  */
 
+import {color} from '../../app/color';
+
 import {Table, Icon, Form, Button} from 'antd';
 
 import './testtableforms.css';
@@ -25,7 +27,7 @@ const css2 = `
     color: #f0f;
 `;
 
-let fetch_url = "";
+// let fetch_url = "";
 
 class TestTableForms extends Component {
     constructor(props, context) {
@@ -33,21 +35,79 @@ class TestTableForms extends Component {
         this.state = {
             show: false,
             visible: false,
-            test_datas: {}
+            test_datas: {},
+            fetch_url: ""
         }
     }
     TestClick = (url) => {
-        console.log(`new url obj = `, url);
-        fetch_url = url;
+        console.log(`%c new url obj = `,color.color_css1, url);
+        // fetch_url = url;
+        this.setState({
+            fetch_url: url
+        });
         // fetch url
         // console.log(`new url obj = `, fetch_url);
     };
     startTest = () => {
+        const that = this;
         // fetch test data
-        let url = fetch_url;
-        console.log(`fetch_url = `, fetch_url);
-        console.log(`fetch test data`, url);
+        let url = this.state.fetch_url;
+        console.log(`%c fetch test data`, css2, url);
         // new test_datas url
+        fetch(url)
+        .then((response) => response.json())
+        .then(
+            (json) => {
+                this.setState({loading: true}); 
+                return json;
+            }
+        )
+        .then(
+            (fecth_data) => {
+                // fecth_data === [{}, {}];
+                let objs = {};
+                fecth_data.map(
+                    // name.AnyManagedFundsRow
+                    (data) => {
+                        // 
+                    }
+                );
+                // need shape
+                /*
+                {
+                    "AnyManagedFundsRow":
+                    [
+                        {
+                            A0: "华夏基金管理有限公司",
+                            A1: "华夏大中华企业精选灵活配置混合(QDII)",
+                            A2: "其他型基金",
+                            A3: "2016-01-20",
+                            A4: "其他型基金",
+                            A5: "21.877086009428236",
+                            A5: "65135"
+                        },
+                                            {
+                            A0: "华夏基金管理有限公司",
+                            A1: "华夏大中华企业精选灵活配置混合(QDII)",
+                            A2: "其他型基金",
+                            A3: "2016-01-20",
+                            A4: "其他型基金",
+                            A5: "21.877086009428236",
+                            A5: "65135"
+                        }
+                    ]
+                }
+                */
+                // result table A0 = key
+                console.log(`%c fecth data = \n`, css2, fecth_data);
+                that.setState({
+                    test_datas: {fecth_data}
+                })
+            }
+        );
+/*         this.setState({
+            test_datas: fecth_data
+        }); */
     };
     showModal = () => {
         console.log(`clicked showModal!`);
@@ -78,15 +138,9 @@ class TestTableForms extends Component {
         console.log(`clicked hideModal, agian!`);
         console.log(`%c hideModal agian = `, css2, this.state.show);
     };
-/*     componentWillMount() {
-        this.hideModal();
-    }
-    componentWillUnmount() {
-        this.hideModal();
-    } */
     checkTestCommands = (url) => {
         // fetch test data
-        console.log(`fetching url = \n`, url);
+        console.log(`%c fetching url = \n`, css1, url);
     };
     testOK = (e) => {
         // e.preventDefault();
@@ -165,7 +219,9 @@ class TestTableForms extends Component {
                      <RTS
                         tabs={this.props.outputs}
                         style={{maxWidth: 850}}
-                    /> 
+                        results={test_datas}
+                    />
+                    {/* // tab.name === "AnyManagedFundsRow":[]  */}
                 </div>
             </div>
         );

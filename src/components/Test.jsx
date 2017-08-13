@@ -7,6 +7,7 @@ import {MM} from './IM/MM';
 
 
 import {CRMS} from './CRM_Search';
+import {TE} from '../components/CRM_Search/TreeMenus/demo';
 
 // index.jsx
 
@@ -27,7 +28,8 @@ class TestItem extends Component {
                 {/* <NAL /> */}
                 {/* <FUFM /> */}
                 {/* <MM /> */}
-                <CRMS />
+                <CRMS /> 
+                <TE style={{width: 240}} />
             </div>
         );
     }

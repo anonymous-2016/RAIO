@@ -1,0 +1,1 @@
+start http://localhost:7777/datas/ && start http://localhost:7777/Info/
