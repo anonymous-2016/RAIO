@@ -245,7 +245,8 @@ class RequiredItems extends Component {
         let url = `http://10.1.5.31:8080/http/report/query?${str_obj}`; */
         return (
             <div 
-                onChange={this.autoSave}>
+                onChange={this.autoSave}
+                style={{margin: 10, padding: 10, boxSizing: "borderBox"}}>
                 {/* input 必填项 */}
                 <Table
                     dataSource={
@@ -258,6 +259,8 @@ class RequiredItems extends Component {
                         )
                     }
                     columns={Requiredcolumns}
+                    bordered
+                    pagination={false}
                 />
                 {/* onChange={this.onSaveInput} */}
                 {/*  <button

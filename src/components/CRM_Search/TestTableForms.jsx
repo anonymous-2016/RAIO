@@ -11,6 +11,7 @@ import PropTypes from 'prop-types';
 
 import {color} from '../../app/color';
 
+
 import {Table, Icon, Form, Button} from 'antd';
 
 import './testtableforms.css';
@@ -18,6 +19,26 @@ import './testtableforms.css';
 import {TM}from './TestModal';
 import {RI} from './Required';
 import {RTS}from './Results';
+
+import {OI} from './Options/index';
+
+
+/* 
+
+import {OI} from './Options/';
+import {OI} from './Options/index';
+
+// bug ???
+
+import {OI} from './Options';
+
+
+// ./src/components/CRM_Search/TestTableForms.jsx
+// Module not found: `E:\xgqfrms\src-2017-6-22\src\components\CRM_Search\Options.json` 
+// does not match the corresponding path on disk - File does not exist.
+
+*/
+
 
 // debug color
 const css1 = `
@@ -207,7 +228,8 @@ class TestTableForms extends Component {
                 </div>
                 <div >
                     <h2 className="title-color">可选项</h2>
-                    <Table dataSource={this.props.dataSource} columns={this.props.columns} />
+                    {/* <Table dataSource={this.props.dataSource} columns={this.props.columns} bordered pagination={false}/> */}
+                    <OI dataSource={this.props.dataSource} columns={this.props.columns}/>
                     <Form />
                     {
                         (Math.random()*10 > 5) ? <button>展开-可选项</button> : <button>收起-可选项</button>

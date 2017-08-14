@@ -13,8 +13,13 @@ import {Table, Icon} from 'antd';
 class InputTable extends Component {
     render() {
         return (
-            <div>
-                <Table dataSource={this.props.dataSource} columns={this.props.columns} />
+            <div style={{margin: 10, padding: 10, boxSizing: "borderBox"}}>
+                <Table
+                    dataSource={this.props.dataSource}
+                    columns={this.props.columns}
+                    bordered
+                    pagination={false}
+                />
                 {/* this.props.data = {this.props.data} */}
             </div>
         );

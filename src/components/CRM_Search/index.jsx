@@ -9,16 +9,24 @@ import PropTypes from 'prop-types';
  * @extends {Component}
  */
 
-import {urls} from '../../app/urls.js';
+// utils
+import {urls, ljs_urls} from '../../app/urls';
+import {color} from '../../app/color';
+import {debug} from '../../app/debug';
 
-// Spin
+// libs
 import {Spin} from 'antd';
-import {SC} from './SC';
-import {SCT} from './SCT';
-import {LF} from './Login';
-import {SF} from './SF';
 
+// all components in one
+import {IC} from './index-components';
+// {...IC} / IC.SCT
 
+const {
+    SC,
+    SCT,
+    LF,
+    SF
+} = {...IC};
 
 class CRMS extends Component {
     constructor(props, context) {
@@ -29,12 +37,27 @@ class CRMS extends Component {
             loading: false
         };
     }
+/*
+    shouldComponentUpdate(nextProps, nextState) {
+        return true;
+    }
+*/
+    /* eslint-disable no-console, no-unused-vars */
     componentDidMount() {
          this.setState({
             loading: true
-        }); 
-        // fetch(`${urls.init}?{"Admin":"report","Action":"GetSchema","WriteType":"json"}`)
-        fetch(`http://localhost:7777/info/`)
+        });
+        let fetch_url = "";
+        if(debug){
+            fetch_url = `${ljs_urls.ljs_info}`;
+        }else{
+            fetch_url = `${urls.init}?{"Admin":"report","Action":"GetSchema","WriteType":"json"}`;
+        }
+        if(debug){
+            // fetch_url
+            console.log(`%c initial menus(routes) url = \n`, color.color_css1, fetch_url);
+        }
+        fetch(fetch_url)
         .then((response) => response.json())
         .then(
             (json) => {
@@ -46,21 +69,33 @@ class CRMS extends Component {
             let datas = json.Info;
             let routes = datas.map(
                 (data) => {
-                    console.log(`data`, data)
+                    if(debug){
+                        console.log(`%c initial menus(routes) data = \n`, color.color_css1, data);
+                    }
                     return {
                         path: `/api/sc/${data.name}`,
                         exact: true,
-                        main: () => (
-                            <div>
-                                <SCT data={data} urlname={data.name}/>
-                            </div>
-                        )
+                        main: () => {
+                            if(debug){
+                                console.log(`%c initial SCT data = \n`, color.color_css2, data);
+                            } 
+                            return(
+                                <div>
+                                    <SCT data={data} urlname={data.name}/>
+                                </div>
+                            );
+                        }
                     };
                 }
             );
-            console.log(`datas = ${JSON.stringify(datas)}`);
+            if(debug){
+                console.log(`%c all datas, JSON.stringify(datas) = ${JSON.stringify(datas)}`, color.css1);
+            }
             return this.setState(
                 (prevState, props) => {
+                    if(debug){
+                        // prevState
+                    }
                     return{
                         datas: datas,
                         routes: routes,
@@ -70,28 +105,29 @@ class CRMS extends Component {
             );
         });
     }
-/*     shouldComponentUpdate(nextProps, nextState) {
-        return true;
-    } */
-    // data, url
     xyzSearch = (url) => {
-        this.setState(
-            {
-                loading: true
-            }
-        );  
-        // fetch data
+        this.setState({
+            loading: true
+        });
+        if(debug){
+            // search url
+            console.log(`%c search url = \n`, color.color_css1, url);
+        }
         fetch(url)
         .then((response) => response.json())
         .then(
             (json) => {
-                this.setState({loading: true}); 
+                this.setState({
+                    loading: true
+                }); 
                 return json;
             }
         )
         .then(
             (json) => {
-                console.log(`json.Info`, json.Info);
+                if(debug){
+                    console.log(`%c Search json.Info = `, color.color_css3, json.Info);
+                }
                 // Properties
                 /* 
                     {
@@ -100,7 +136,9 @@ class CRMS extends Component {
                     }
                 */
                 let datas = json.Info;
-                console.log('datas = ', datas);
+                if(debug){
+                    console.log('%C Search datas = ', color.color_css1, datas);
+                }
                 if(!Array.isArray(datas)){
                     datas = [];
                 }
@@ -117,9 +155,12 @@ class CRMS extends Component {
                         };
                     }
                 );
-                // console.log('routes =', routes);
+                if(debug){
+                    console.log('%c routes =', color.css1, routes);
+                }
                 return this.setState(
                     (prevState, props) => {
+                        // prevState
                         return{
                             datas: datas,
                             routes: routes,
@@ -129,8 +170,8 @@ class CRMS extends Component {
                 );
             }
         );
-        // shouldComponentUpdate(true);
-    }
+    };
+    /* eslint-enable no-console */
     render() {
         return (
             <div>
@@ -147,7 +188,10 @@ class CRMS extends Component {
                         />
                     </Spin>
                 }
-                {/* <LF /> */}
+                {/* 
+                    // Login Form
+                    <LF /> 
+                */}
             </div>
         );
     }
@@ -155,7 +199,7 @@ class CRMS extends Component {
 
 
 CRMS.propTypes = {
-
+    // urls: PropTypes.object.isRequired,
 };
 
 export {CRMS};

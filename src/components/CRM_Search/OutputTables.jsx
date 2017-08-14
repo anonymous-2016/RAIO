@@ -21,7 +21,7 @@ class OutputTables extends Component {
     
     render() {
         return (
-            <div>
+            <div style={{maxWidth: 850, boxSizing: "borderBox"}}>
                 {/* map Tables*/}
                 {/* {title: "基金经理详细信息(折线图同类平均)", datas: Array(4)} */}
                 {
@@ -30,7 +30,7 @@ class OutputTables extends Component {
                             return(
                                 <div 
                                     key={`key-${index}`}
-                                    style={{margin: 10, padding: 20}}>
+                                    style={{margin: 10, padding: 10, boxSizing: "borderBox"}}>
                                     <h3 
                                         style={{textAlign: "center"}}
                                         >
@@ -40,6 +40,8 @@ class OutputTables extends Component {
                                         dataSource={data.datas}
                                         columns={this.props.columns}
                                         key={`key-${index}`}
+                                        bordered
+                                        pagination={false}
                                     />
                                 </div>
                             ); 

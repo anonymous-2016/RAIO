@@ -8,12 +8,15 @@ import PropTypes from 'prop-types';
  * @class ResultTables
  * @extends {Component}
  */
+
 import {color} from '../../../app/color';
 
 
 import {Table} from 'antd';
 
-/* const output_columns = [
+/* 
+
+const output_columns = [
     {
         title: "编号",
         dataIndex: "name",
@@ -30,6 +33,7 @@ import {Table} from 'antd';
         key: "Description"
     }
 ];
+
  */
 class ResultTables extends Component {
     render() {
@@ -48,7 +52,7 @@ class ResultTables extends Component {
             (data, index) => {
                 let obj = {};
                 // 注释: A份额交易代码
-                obj.title = `${data.Description}`;
+                obj.title = `${data.Description || "暂无表头" }`;
                 console.log(`%c 注释: ${obj.title} & obj.title = data.Description \n`, color.css1);
                 // 编号: A0
                 obj.dataIndex = `${data.name}`;
@@ -69,14 +73,15 @@ class ResultTables extends Component {
         // tab.name === "AnyManagedFundsRow":[] 
         // A0 = key
         return (
-            <div >
+            <div>
+                <Table dataSource={[]} columns={cols} bordered pagination={false}/>
                 {
                     // test.name === output.key
                     show
                     ?
-                    <Table dataSource={test_datas} columns={cols} />
+                    <Table dataSource={test_datas} columns={cols} bordered pagination={false}/>
                     :
-                    <Table dataSource={[]} columns={cols} />
+                    <Table dataSource={[]} columns={cols} bordered pagination={false}/>
                 }
             </div>
         );

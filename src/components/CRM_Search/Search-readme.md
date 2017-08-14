@@ -440,6 +440,15 @@ new_tables.push(new_pobj);
 }
 
 
+"AnyManagedFundsRow" : [
+    {
+        A0: ""
+    },
+    {
+        A0: ""
+    }
+]
+
 ```
 
 
@@ -486,7 +495,70 @@ new_tables.push(new_pobj);
 
 
 
+## `"use strict";`
 
+
+https://www.w3schools.com/js/js_strict.asp
+
+
+## Eslint disable
+
+
+```js
+
+/* eslint-disable no-console, no-unused-vars */
+
+
+/* eslint-enable no-console */
+
+```
+
+## Destructuring Assignment
+
+
+### IC.SF 
+
+> VS code
+
+> F12 ? IC.SF : SF
+
+
+
+
+```jsx
+
+// make all components in one
+import {SC} from './SC';
+import {SCT} from './SCT';
+import {LF} from './LoginForm';
+import {SF} from './SF';
+
+const IC = {
+    SC,
+    SCT,
+    LF,
+    SF
+};
+
+export {IC};
+export default IC;
+
+
+
+
+import {IC} from './index-components';
+// {...IC} / IC.SCT
+
+const {
+    SC,
+    SCT,
+    LF,
+    SF
+} = {...IC};
+
+
+
+```
 
 
 

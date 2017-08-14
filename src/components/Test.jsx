@@ -2,21 +2,19 @@ import React, {Component} from 'react';
 
 
 /* import {PM} from './IM/PM'; */
-
 import {MM} from './IM/MM';
+// index.jsx
+// import moduleName from 'module';
+// imp + Tab
+import {FUFM} from '../Ant_Components/fold-unfold-menu';
+import {NAL}from './NewAppLayout';
+
 
 
 import {CRMS} from './CRM_Search';
 import {TE} from '../components/CRM_Search/TreeMenus/demo';
+import {TM} from '../components/CRM_Search/TableMash';
 
-// index.jsx
-
-// import moduleName from 'module';
-// imp + Tab
-
-import {FUFM} from '../Ant_Components/fold-unfold-menu';
-
-import {NAL}from './NewAppLayout';
 
 class TestItem extends Component {
     render() {
@@ -29,7 +27,8 @@ class TestItem extends Component {
                 {/* <FUFM /> */}
                 {/* <MM /> */}
                 <CRMS /> 
-                <TE style={{width: 240}} />
+                <TE style={{width: 240}} /> 
+                {/* <TM /> */}
             </div>
         );
     }

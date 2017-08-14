@@ -50,7 +50,7 @@ class ResultTables extends Component {
     render() {
         const tables = this.props.tabs;
         return (
-            <div style={{maxWidth: 850}}>
+            <div style={{maxWidth: 850, margin: 10, padding: 10, boxSizing: "borderBox"}}>
                 {/* map */}
                 {/* 
                 tables === {title: "基金经理详细信息", datas: Array(4)} 
@@ -67,10 +67,10 @@ class ResultTables extends Component {
                                         tab={
                                             <span style={{fontSize: 12}}>
                                                 <Icon type="apple" />
-                                                {`表${++index}:${table.title}`}
+                                                {`表${++index}:${table.title || ""}`}
                                             </span>
                                         }
-                                        key={`${++index}`}
+                                        key={(++index)}
                                         style={{}}>
                                         {/* test data, output data */}
                                         <RT
