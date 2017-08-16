@@ -66,10 +66,22 @@ class SearchForm extends Component {
                             console.log(`value = `, value);
                         }
                         if((value !== "undefined" && value.length > 0)){
-                            
-                            url = `${urls.search}?{"Admin":"report","Action":"GetSchema","WriteType":"json","${key}":"${value}"}`;
+                        /* 
+                            "Action":"GetSchemaArray"
+                            "Action":"GetRowSchemaArray"
+                        */
+                        // 测试    
+                        url = `${urls.search}?{"Admin":"report","Action":"GetSchemaArray","WriteType":"json","${key}":"${value}"}`;
+                        /* 
+                            if (key === "KeyWord") {
+                                url = `${urls.search}?{"Admin":"report","Action":"GetSchemaArray","WriteType":"json","${key}":"${value}"}`;
+                            }else{
+                                url = `${urls.search}?{"Admin":"report","Action":"GetRowSchemaArray","WriteType":"json","${key}":"${value}"}`;
+                            } 
+                        */
                         }else{
-                            url = `${urls.search}?{'Admin':'report','Action':'GetSchema','WriteType':'json'}`;
+                            url = `${urls.search}?{'Admin':'report','Action':'GetAllLoad','WriteType':'json'}`;
+                            // GetTreeSchema
                         }
                         if(debug ? debug : true){
                             console.log(`fetch url = `, url);
@@ -239,6 +251,10 @@ export {SF};
 export default SF;
 
 
+        /* 
+            "Action":"GetSchemaArray"
+            "Action":"GetRowSchemaArray"
+        */
 /* 
 
 #components-form-demo-normal-login .login-form {

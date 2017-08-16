@@ -10,6 +10,8 @@ import PropTypes from 'prop-types';
  */
 
 import {color}from '../../../app/color';
+import {debug} from '../../../app/debug';
+
 
 import {RT}from './RT';
 
@@ -49,6 +51,9 @@ class ResultTables extends Component {
     //
     render() {
         const tables = this.props.tabs;
+        if (!debug) {
+            console.log(`%c tables = \n`, color.color_css1, tables);
+        }
         return (
             <div style={{maxWidth: 850, margin: 10, padding: 10, boxSizing: "borderBox"}}>
                 {/* map */}
@@ -60,7 +65,9 @@ class ResultTables extends Component {
                         tables.map(
                             (table, index) => {
                                 {/* console.log(`tab key index ${index}`); */}
-                                console.log(`%c index = ${index} table = \n`, color.color_css1,  table);
+                                if (!debug) {
+                                     console.log(`%c table[${index}]= \n`, color.css2, table);
+                                }
                                 // tab.name === "AnyManagedFundsRow":[] 
                                 return(
                                     <TabPane 
@@ -95,7 +102,7 @@ class ResultTables extends Component {
 
 ResultTables.propTypes = {
     tabs: PropTypes.array.isRequired,
-    results: PropTypes.object.isRequired,
+    results: PropTypes.array.isRequired,
 };
 
 const RTS = ResultTables;

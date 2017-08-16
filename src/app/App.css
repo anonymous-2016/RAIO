@@ -52,8 +52,10 @@
     /*border: 1px solid red;*/
     /*margin: auto;*/
     /*text-align: center;*/
-    max-width: 300px;
-    width: 240px;
+    /* max-width: 300px;
+    width: 240px; */
+    width: 50px;
+    max-width: 50px !important;
     max-width: min-content;
     /* overflow: hidden; */
     overflow-y: scroll;
@@ -104,8 +106,10 @@
     /*border: 3px solid #ff0;*/
     /*margin: auto;*/
     /*text-align: center;*/
-    width: 50px;
-    max-width: 50px !important;
+    max-width: 300px;
+    width: 240px;
+    /* width: 50px;
+    max-width: 50px !important; */
     max-width: min-content !important;
     /* overflow: hidden; */
     overflow-y: hidden;

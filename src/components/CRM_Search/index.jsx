@@ -12,7 +12,7 @@ import PropTypes from 'prop-types';
 // utils
 import {urls, ljs_urls} from '../../app/urls';
 import {color} from '../../app/color';
-import {debug} from '../../app/debug';
+import {debug, xyz_debug} from '../../app/debug';
 
 // libs
 import {Spin} from 'antd';
@@ -48,10 +48,11 @@ class CRMS extends Component {
             loading: true
         });
         let fetch_url = "";
-        if(debug){
+        if(!debug){
             fetch_url = `${ljs_urls.ljs_info}`;
         }else{
-            fetch_url = `${urls.init}?{"Admin":"report","Action":"GetSchema","WriteType":"json"}`;
+            fetch_url = `${urls.init}?{"Admin":"report","Action":"GetAllLoad","WriteType":"json"}`;
+            // GetTreeSchema
         }
         if(debug){
             // fetch_url
@@ -69,26 +70,24 @@ class CRMS extends Component {
             let datas = json.Info;
             let routes = datas.map(
                 (data) => {
-                    if(debug){
+                    if(!debug){
                         console.log(`%c initial menus(routes) data = \n`, color.color_css1, data);
                     }
                     return {
                         path: `/api/sc/${data.name}`,
                         exact: true,
                         main: () => {
-                            if(debug){
-                                console.log(`%c initial SCT data = \n`, color.color_css2, data);
-                            } 
                             return(
                                 <div>
                                     <SCT data={data} urlname={data.name}/>
+                                    {/* SCT  */}
                                 </div>
                             );
                         }
                     };
                 }
             );
-            if(debug){
+            if(!debug){
                 console.log(`%c all datas, JSON.stringify(datas) = ${JSON.stringify(datas)}`, color.css1);
             }
             return this.setState(
@@ -113,6 +112,10 @@ class CRMS extends Component {
             // search url
             console.log(`%c search url = \n`, color.color_css1, url);
         }
+        /* 
+            "Action":"GetSchemaArray"
+            "Action":"GetRowSchemaArray"
+        */
         fetch(url)
         .then((response) => response.json())
         .then(
@@ -126,7 +129,7 @@ class CRMS extends Component {
         .then(
             (json) => {
                 if(debug){
-                    console.log(`%c Search json.Info = `, color.color_css3, json.Info);
+                   ! console.log(`%c Search json.Info = `, color.color_css3, json.Info);
                 }
                 // Properties
                 /* 
@@ -136,19 +139,29 @@ class CRMS extends Component {
                     }
                 */
                 let datas = json.Info;
-                if(debug){
+                if(!debug){
                     console.log('%C Search datas = ', color.color_css1, datas);
                 }
                 if(!Array.isArray(datas)){
                     datas = [];
                 }
+                // ??? reportName one object, not array ?
+                /* 
+                    http://localhost:3000/api/sc/TestProtocol
+                    // search bug!
+                */
                 let routes = datas.map(
-                    (route) => {
+                    (route, index) => {
+                        if (xyz_debug(true)) {
+                            console.log(`%c route index = ${index} = `, color.css1);
+                            console.log(`%c route ${index} = `, color.css2, route);
+                        }
                         return {
                             path: `/api/sc/${route.name}`,
                             exact: true,
                             main: () => (
                                 <div>
+                                    {/* contents */}
                                     <SCT data={route} urlname={route.name}/>
                                 </div>
                             )
@@ -176,6 +189,7 @@ class CRMS extends Component {
         return (
             <div>
                 <SF xyzSearch={this.xyzSearch}/>
+                {/* menus */}
                 {
                     <Spin
                         tip="Loading..."

@@ -3,7 +3,8 @@
     margin-left: 10px;
     /*     padding-left: 20px;
     text-indent: 10px; */
-    color: #f0f;
+    font-size: 18px;
+    color: #108ee9;
 }
 
 .title-color::before {

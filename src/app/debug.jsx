@@ -4,6 +4,14 @@
  * 2017.08.08
  */
 
+const xyz_debug = (value=true) => {
+    if(value !== true){
+        return false; 
+    }
+    return value;
+};
+
+
 /* 
 TODO: process.env.NODE_ENV
 
@@ -22,5 +30,6 @@ const debug = true;
 // Prod: close debug
 // const debug = false;
 
-export {debug};
+export {debug, xyz_debug};
 export default debug;
+

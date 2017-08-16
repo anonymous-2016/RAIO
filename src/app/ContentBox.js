@@ -137,7 +137,7 @@ class ContentBox extends Component {
                                                 style={{fontSize: 16, color: 'rgba(255, 255, 255, 0.7)'}}
                                                 className=""
                                                 >
-                                                just for test
+                                                CRM API工具
                                             </span>
                                         </span>
                                     }
@@ -145,7 +145,7 @@ class ContentBox extends Component {
                                 <Menu.Item key="1">
                                     <Link to="/test">
                                         <Icon type="area-chart" style={{fontSize: 12, color: '#fff'}}/>
-                                        test
+                                        API 查询工具
                                     </Link>
                                 </Menu.Item>
                             </SubMenu>

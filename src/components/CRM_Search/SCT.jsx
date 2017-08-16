@@ -14,7 +14,7 @@ import {urls} from '../../app/urls.js';
 import {color} from '../../app/color';
 import {debug} from '../../app/debug';
 
-import {TCB} from './TabsBox';
+import {TCB} from './TabsContentBox';
 
 
 let arr = [],
@@ -28,6 +28,9 @@ class SCT extends Component {
             new_data: {},
             input_datas: [],
             output_datas: [],
+            in_out_data: [],
+            in_data: [],
+            out_data: [],
             developer: "",
             url_name: this.props.urlname
         };
@@ -96,7 +99,9 @@ class SCT extends Component {
         fetch(`${url}`)
         .then((response) => response.json())
         .then((json)=> {
-            console.log(`json = ${json}`);
+            if(debug){
+                console.log(`json = ${json}`); 
+            }
             // console.log(`json.length = ${json.length}`);
             // console.log(`json.Info.schema.Properties `, json.Info.schema.Properties);
             // Properties
@@ -114,7 +119,9 @@ class SCT extends Component {
                     i = 0;
                 // no desc
                 let objs = table.Properties;
-console.log(`@@@@@@@@@@@@ no tab.name === "" @@@@@@@@@@@@$`);
+                if(debug){
+                    console.log(`%c @@@@@@@@@@@@ no tab.name === "" @@@@@@@@@@@@$`, color.color_css1);
+                }
                 // add Table.name = "Table1"
                 for (let key in objs) {
                     if(!objs.hasOwnProperty(key)) continue;
@@ -140,7 +147,9 @@ console.log(`@@@@@@@@@@@@ no tab.name === "" @@@@@@@@@@@@$`);
                         i = 0;
                     // tab.name === "AnyManagedFundsRow":[] ???
                     // results table
-console.log(`$$$$$$$$$$$$$$$$$$$$$  tab.name === "AnyManagedFundsRow":[] ??? $$$$$$$$$$$$$$$$$$$$$`);
+                    if(debug){
+                        console.log(`%c $$$$$$$$$$  tab.name === "AnyManagedFundsRow":[] ??? $$$$$$$$$$`, color.css2);
+                    }
                     // add Table.name = "AnyManagedFundsRow"
                     if(!tables.hasOwnProperty(key)) continue;
                     if (tables.hasOwnProperty(key)) {
@@ -153,24 +162,22 @@ console.log(`$$$$$$$$$$$$$$$$$$$$$  tab.name === "AnyManagedFundsRow":[] ??? $$$
                                 objs[key].key = ("k000" + i++);
                             }
                             arr.push(objs[key]);
-                            console.log(`arr ${key}`, arr);
+                            if (debug) {
+                                console.log(`arr ${key}`, arr);
+                            }
                         }
                         // console.log(`title ${key}`, title);
                         new_obj.title = tables[key].desc;
                         new_obj.datas = arr;
-                        console.log(`new obj = `, new_obj);
+                        if (debug) {
+                            console.log(`new obj = `, new_obj);
+                        }
                     }
                     datas.push(new_obj);
-                    /* const css = `
-                        color: #0f0;
-                        font-size: 23px;
-                    `;
-                    const css2 = `
-                        color: #f00;
-                        font-size: 16px;
-                    `; */
-                    // console.log(`%c datas key = ${key} \n datas = `, css, datas);
-                    // console.log(`%c datas i = ${i} \n datas = `, css2, datas[i-1]);
+                    if (!debug) {
+                        console.log(`%c datas key = ${key} \n datas = `, color.css1, datas);
+                        console.log(`%c datas i = ${i} \n datas = `, color.css2, datas[i-1]);
+                    }
                     // i++;
                 }
             }
@@ -186,6 +193,10 @@ console.log(`$$$$$$$$$$$$$$$$$$$$$  tab.name === "AnyManagedFundsRow":[] ??? $$$
             );
             return datas;
         });
+    };
+    in_out_data = () => {
+        // input + output = in_out_data
+        // filter data
     };
     componentDidMount() {
         let new_data = this.state.data;
@@ -231,10 +242,11 @@ console.log(`$$$$$$$$$$$$$$$$$$$$$  tab.name === "AnyManagedFundsRow":[] ??? $$$
         let url_in = `${urls.input}?${fixedInURL}"${url_key}"}`,
             url_out = `${urls.output}?${fixedOutURL}"${url_key}"}`;
         this.inputClick(url_in);
+        // get developer
         this.outputClick(url_out);
     }
     render() {
-        const {input_datas, output_datas} = this.state;
+        const {input_datas, output_datas, in_out_data} = this.state;
         // const {input_datas, output_datas} = this.props.datas;
         return (
             <div>
@@ -246,7 +258,8 @@ console.log(`$$$$$$$$$$$$$$$$$$$$$  tab.name === "AnyManagedFundsRow":[] ??? $$$
                         developer={this.state.developer || (Math.random()*10 > 5 ? "xgqfrms" : "admin")} 
                         input_datas={input_datas}
                         output_datas={output_datas}
-                        />
+                        in_out_data={in_out_data}
+                    />
                 </div>
             </div>
         );

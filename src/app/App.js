@@ -53,7 +53,8 @@ import {LM} from '../components/IM/LM/index.jsx';
 import {RM} from '../components/AM/RM/index.jsx';
 // amrm
 
-
+// utils 
+import {debug} from './debug.jsx';
 
 
 
@@ -160,29 +161,35 @@ class App extends Component {
             Any: props.any,
             width: props.width,
             routes: routes,
-            marginLeft: 240
+            marginLeft: 50
         };
         // this.handlerMenuClick = this.handlerMenuClick.bind(this);
     }
+    /* App-SideBox-init  App-SideBox-New*/
     handlerMenuClick = (e) => {
-        console.log("clicked === \n", e);
+        if (!debug) {
+            console.log("clicked === \n", e);
+        }
         if(this.state.styles === "App-SideBox-init"){
             this.setState({
                 message: "e.key",
                 styles: "App-SideBox-New",
-                marginLeft: 50
+                marginLeft: 240
             });
         }
         if(this.state.styles === "App-SideBox-New"){
             this.setState({
                 message: "Hello!",
                 styles: "App-SideBox-init",
-                marginLeft: 240
+                marginLeft: 50
             });
         }
-        console.log("this.state.message === ", this.state.message);
-        console.log("this.state.styles === ", this.state.styles);
-    }
+        if (debug) {
+            console.log("this.state.message === ", this.state.message);
+            console.log("this.state.styles === ", this.state.styles);
+        }
+        
+    };
     render() {
         return (
             <div className="App">

@@ -11,10 +11,11 @@ import PropTypes from 'prop-types';
 
 import {urls}from '../../../app/urls.js';
 import {color}from '../../../app/color';
+import {debug} from '../../../app/debug';
 
 
-import {Table, Icon, Input, Button} from 'antd';
-
+import {Table, Icon, Input, Button, Form} from 'antd';
+const FormItem = Form.Item;
 
 let url_obj = {};
 let url = "";
@@ -25,134 +26,41 @@ const value = "";
 // undefined
 
 // input datas
-const demo_datas = [
-    {
-        key: "k1",
-        name: "ApiName",
-        type: "string",
-        value: "fund.f9.fund_profile.FundManager.BasicInformations",
-        desc: "报表名称"
-    },
-    {
-        key: "k2",
-        name: "SecuCode",
-        type: "string",
-        value: (value || "000011"),
-        desc: "基金编码"
-    },
-    {
-        key: "k3",
-        name: "Names",
-        type: "string",
-        value: "阳琨",
-        desc: "姓名"
-    },
-    {
-        key: "k4",
-        name: "WriteType",
-        type: "string",
-        value: "json (json文本格式)",
-        desc: "返回的数据协议格式 "
-    }
-];
+/* 
+    const demo_datas = [
+        {
+            key: "k1",
+            name: "ApiName",
+            type: "string",
+            value: "fund.f9.fund_profile.FundManager.BasicInformations",
+            desc: "报表名称"
+        },
+        {
+            key: "k2",
+            name: "SecuCode",
+            type: "string",
+            value: (value || "000011"),
+            desc: "基金编码"
+        },
+        {
+            key: "k3",
+            name: "Names",
+            type: "string",
+            value: "阳琨",
+            desc: "姓名"
+        },
+        {
+            key: "k4",
+            name: "WriteType",
+            type: "string",
+            value: "json (json文本格式)",
+            desc: "返回的数据协议格式 "
+        }
+    ];
 
+ */
 // example
 
-
-// const datas_length = this.props.datas.length;
-const datas_length = 4;
-let i_length = 0;
-
-const Requiredcolumns = [
-    {
-        title: "字段",
-        dataIndex: "name",
-        key: "name"
-    },
-    {
-        title: "类型",
-        dataIndex: "type",
-        key: "type"
-    },
-    {
-        title: "值",
-        dataIndex: "value",
-        key: "value",
-        render: (text, index) => {
-            // disabled
-            // console.log(`url_obj = `, url_obj);
-            // console.log(`%c text = `, color.css1, text);
-            // console.log(`%c index = `, color.css2, index);
-            if(index.name === "WriteType"){
-                url_obj[index.name] = "json";
-            }else{
-                url_obj[index.name] = text;
-            }
-            i_length++;
-            // console.log(`%c i_length = `, color.css1, i_length);
-            if(datas_length === i_length){
-                // keys length === demo_datas length
-                // finish url object
-                // console.log(`%c full url_obj defaultValue = `, color.css2, url_obj);
-                // console.log(`%c full i_length = `, color.css1, i_length);
-                i_length = 0;
-            }
-            // console.log(`url_obj defaultValue = `, url_obj);
-            if(index.name === "WriteType"){
-                // 1. write global let
-                // 2. use let create new url
-                return(
-                    <Input 
-                        onChange={
-                            (e) => {
-                                {/* console.log(`e = `, e); */}
-                                {/* console.log(`e = `, e.target.value); */}
-                            }
-                        }
-                        defaultValue={text}
-                        type="text"
-                        disabled/>
-                );
-            }else{
-                return(
-                    <Input 
-                        onChange={
-                            (e) => {
-                                {/* console.log(`index.name = `, index.name); */}
-                                {/* console.log(`e = `, e.target.value); */}
-                                let key = index.name,
-                                    value = e.target.value;
-                                {/* url_obj = Object.assign(
-                                    url_obj,
-                                    {
-                                        key: value
-                                    }
-                                ); */}
-                                // url_obj.key = value;// key
-                                url_obj[key] = value;// key's value
-                                console.log(`${key} url_obj = `, url_obj); 
-                                let str_obj = JSON.stringify(url_obj);
-                                url = `${urls.test}?${str_obj}`;
-                                {/* this.setState({
-                                    testurl: url
-                                });
-                                console.log(`testurl = `, this.state.testurl); */}
-                            }
-                        }
-                        defaultValue={text}
-                        type="text" />
-                );
-            }
-        }
-    },
-    {
-        title: "描述",
-        dataIndex: "desc",
-        key: "desc"
-    }
-];
-
-// input in table
 
 
 /* 
@@ -167,7 +75,6 @@ array.push(
 );
 
  */
-// get changed table values ?
 
 // options value
 
@@ -196,13 +103,21 @@ class RequiredItems extends Component {
         // input onchange
         // let str_obj = JSON.stringify(url_obj);
         // url = `http://10.1.5.31:8080/http/report/query?${str_obj}`;
+        if (debug) {
+            console.log(`input url = `, color.css3, url);
+        }
+        // global url
         this.setState({
             testurl: url
-        }); 
-        console.log(`testurl = `, this.state.testurl);
+        });
+        if (debug) {
+            console.log(`new testurl = `, this.state.testurl);
+        }
+        // url
         this.props.TestClick(this.state.testurl);
     };
     autoSave = () => {
+        // global url
         setTimeout(() => {
             this.onSaveInput();
         }, 0);
@@ -219,91 +134,259 @@ class RequiredItems extends Component {
     }
     // initialize & before onChange
     componentDidMount() {
-        demo_datas.map(
+        const initial_datas = this.props.init_datas;
+        // input value === init datas
+        initial_datas.map(
             (data, index) => {
                 let key = data.name,
                     value = data.value;
-                // key":"json (json文本格式)"
-                console.log(`%c index = ${index} key = \n`, color.color_css1,  key);
-                if(key === "WriteType"){
-                    url_obj.key = "json";
-                }else{
-                    url_obj.key = value;
+                // "key":"json (json文本格式)"
+                if (debug) {
+                     console.log(`%c index = ${index} \n`, color.css1);
+                     console.log(`%c key = ${key} \n`, color.css2);
+                     console.log(`%c value = ${value} \n`, color.css2);
                 }
-                
+                if(key === "WriteType"){
+                    url_obj[key] = "json";
+                    if (!debug) {
+                        console.log(`%c url_obj.key = ${url_obj.key} \n`, color.css3);
+                    }
+                }else{
+                    url_obj[key] = value;
+                    if (debug) {
+                        console.log(`%c value = ${url_obj.key} \n`, color.css3);
+                    }
+                }
+                if (debug) {
+                    console.log(`%c url_obj = \n`, color.color_css2, url_obj);
+                }
             }
         );
         let str_obj = JSON.stringify(url_obj);
+        // get changed table values ?
+        // global url
         url = `${urls.test}?${str_obj}`;
-        console.log(`%c initial url = \n`, color.color_css2, url);
+        let init = 0;
+        if (debug && (init === 0)) {
+            console.log(`%c initial url = \n`, color.color_css3, url);
+            init += 1;
+        }else{
+            console.log(`%c new url, index = ${init}  = \n`, color.color_css3, url);
+        }
         // initial url
         this.autoSave();
     }
+    // get methods from props
+    handleSubmit = (e) => {
+        e.preventDefault();
+        this.props.form.validateFields(
+            (err, values) => {
+                if (!err) {
+                    if (debug) {
+                        console.log('Received values of form: ', values);
+                    }
+                    this.autoSave();
+                }
+                else{
+                    // when required is empty
+                    this.props.disableBTN(true);
+                }
+            }
+        );
+    }
     render() {
-        /* console.log(`new url_obj = `, url_obj);
-        let str_obj = JSON.stringify(url_obj);
-        let url = `http://10.1.5.31:8080/http/report/query?${str_obj}`; */
+        const { getFieldDecorator } = this.props.form;
+        // form input
+        /* 
+            console.log(`new url_obj = `, url_obj);
+            let str_obj = JSON.stringify(url_obj);
+            let url = `http://10.1.5.31:8080/http/report/query?${str_obj}`;
+        */
+        const initial_datas = this.props.init_datas;
+        // input value === init datas
+        const datas_length = initial_datas.length;
+        if (debug) {
+            console.log(`initial_datas.length = `, initial_datas.length);
+        }
+        // const datas_length = 4;
+        let i_length = 0;
+        // input in table
+        const Requiredcolumns = [
+            {
+                title: "字段",
+                dataIndex: "name",
+                key: "name"
+            },
+            {
+                title: "类型",
+                dataIndex: "type",
+                key: "type"
+            },
+            {
+                title: "值",
+                dataIndex: "value",
+                key: "value",
+                render: (text, index) => {
+                    if (debug) {
+                    // disabled
+                        console.log(`url_obj = `, url_obj);
+                        console.log(`%c text = ${text} \n`, color.css1);
+                        console.log(`%c index = ${index} \n`, color.css2);
+                    }
+                    // get initial obj_url
+                    if(index.name === "WriteType"){
+                        url_obj[index.name] = "json";
+                    }else{
+                        url_obj[index.name] = text;
+                    }
+                    i_length++;
+                    if (debug) {
+                        console.log(`%c i_length = `, color.css1, i_length);
+                    }
+                    if(datas_length === i_length){
+                        // keys length === demo_datas length
+                        // finish url object
+                        if (debug) {
+                            console.log(`%c full url_obj defaultValue = `, color.css2, url_obj);
+                            console.log(`%c full i_length = `, color.css1, i_length);
+                        }
+                        i_length = 0;
+                    }
+                    // console.log(`url_obj defaultValue = `, url_obj);
+                    if(index.name === "WriteType"){
+                        // 1. write global let
+                        // 2. use let create new url
+                        return(
+                            /* disabled no need onChange()*/
+                            <Input 
+                                onChange={
+                                    (e) => {
+                                        if (!debug) {
+                                            console.log(`e = `, e.target.value);
+                                        }
+                                    }
+                                }
+                                defaultValue={text}
+                                type="text"
+                                disabled/>
+                        );
+                    }else{
+                        return(
+                            <FormItem>
+                                {
+                                    getFieldDecorator(index.name, {
+                                        rules: [
+                                            {
+                                                required: true,
+                                                message: '请输入必填字段值, 必填字段值不可为空!'
+                                            }
+                                        ],
+                                        initialValue: text
+                                    })(
+                                        <Input 
+                                            onChange={
+                                                (e) => {
+                                                    if (debug) {
+                                                        console.log(`index.name = `, index.name);
+                                                        console.log(`e = `, e.target.value);
+                                                    }
+                                                    let key = index.name,
+                                                        value = e.target.value;
+                                                    {/* url_obj = Object.assign(
+                                                        url_obj,
+                                                        {
+                                                            key: value
+                                                        }
+                                                    ); */}
+                                                    // url_obj.key = value;// key
+                                                    url_obj[key] = value;
+                                                    // key's value
+                                                    if (debug) {
+                                                        console.log(`${key} url_obj = `, url_obj); 
+                                                    }
+                                                    let str_obj = JSON.stringify(url_obj);
+                                                    url = `${urls.test}?${str_obj}`;
+                                                    {/* 
+                                                        this.setState({
+                                                            testurl: url
+                                                        });
+                                                    */}
+                                                    if (debug) {
+                                                        console.log(`%c changed url = \n`, color.green_16_border, url); 
+                                                    }
+                                                    return url;
+                                                }
+                                            }
+                                            type="text"
+                                        />
+                                    )
+                                }
+                            </FormItem>
+                        );
+                    }
+                }
+            },
+            {
+                title: "描述",
+                dataIndex: "desc",
+                key: "desc"
+            }
+        ];
         return (
             <div 
                 onChange={this.autoSave}
                 style={{margin: 10, padding: 10, boxSizing: "borderBox"}}>
                 {/* input 必填项 */}
-                <Table
-                    dataSource={
-                        (
-                            this.props.dataSource.length > 0
-                            ?
-                            this.props.dataSource
-                            :
-                            demo_datas
-                        )
-                    }
-                    columns={Requiredcolumns}
-                    bordered
-                    pagination={false}
-                />
-                {/* onChange={this.onSaveInput} */}
-                {/*  <button
-                    type="button"
-                    className="btn btn-default"
-                    onClick={this.onSaveInput}>
-                    onSaveInput BTN
-                </button>  */}
+                <Form onSubmit={this.handleSubmit}>
+                    <Table
+                        dataSource={initial_datas}
+                        columns={Requiredcolumns}
+                        bordered
+                        pagination={false}
+                    />
+                </Form>
             </div>
         );
     }
 }
 
 RequiredItems.propTypes = {
-    dataSource: PropTypes.array.isRequired,
-    // columns: PropTypes.array.isRequired,
-    test_datas: PropTypes.object.isRequired,
+    init_datas: PropTypes.array.isRequired,
     TestClick: PropTypes.func.isRequired,
+    disableBTN: PropTypes.func.isRequired
 };
 
-const RI = RequiredItems;
+const RI = Form.create()(RequiredItems);
+// const RI = RequiredItems;
 
 export {RI};
 export default RI;
 
 
-
 /* 
 
-table input validation
+form
 
-for (let key in object) {
-    if (object.hasOwnProperty(key)) {
-        if(object[key] === ""){
-            // alret & disable fetch data
-        }
-    }
-}
-
+wrapped input
 
 
 */
 
+
+/* 
+
+    table input validation
+
+    for (let key in object) {
+        if (object.hasOwnProperty(key)) {
+            if(object[key] === ""){
+                // alret & disable fetch data
+            }
+        }
+    }
+
+
+*/
 
 
 /* 
@@ -365,3 +448,5 @@ name: Info.schema.BasicInformationRow
 
 
 */
+
+

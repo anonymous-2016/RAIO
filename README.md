@@ -33,6 +33,23 @@ import PropTypes from 'prop-types'; // ES6
 var PropTypes = require('prop-types'); // ES5 with npm 
 ``` 
 
+## build
+
+> minify ???
+
+1. delete comments
+2. hot load
+
+
+
+```sh
+
+$ npm run build
+
+$ browser-sync start --server --files "./*.html"
+
+
+```
 
 
 

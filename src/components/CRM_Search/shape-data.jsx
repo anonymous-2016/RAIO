@@ -34,19 +34,23 @@ const test_array = [
 ];
 
 const tabs_obj = {};
+let p_obj = {};
 
 const tabs = test_array.map(
     // tab
     (tab) => {
-        let p_obj = {},
-            c_obj = {};
+        let c_obj = {};
         p_obj[tab.name] = [];
+        // p_obj[tab.name].Properties = [];
         // object keys length
         let key_length = Object.keys(tab.columnMeta).length;
         for (let key in tab.columnMeta) {
             if (tab.columnMeta.hasOwnProperty(key)) {
-                c_obj[key.toUpperCase()] = "";
-                c_obj.type = tab.columnMeta[key];
+                c_obj[key.toUpperCase()] = {};
+                // A0: {type:"STRING"}
+                // ??? // A0: {"Description": "华夏基金管理有限公司"}
+                c_obj[key.toUpperCase()].type = tab.columnMeta[key];
+                // c_obj[key.toUpperCase()] = tab.columnMeta[key];
                 // "a0".toUpperCase(); === "A0"
             }
             console.log(`%c ${c_obj[key.toUpperCase()]}`, "color: #f0f", c_obj);
@@ -54,32 +58,50 @@ const tabs = test_array.map(
         }
         console.log("%c finish a c_obj!", "color: red", c_obj);
         // c_obj = {"A0": "","A1": "","A2": "",A3: "",A4: "", A5: "", A6: ""}
+        /* 
+            Object keys to Array
+        */
+        let obj_keys =  Object.keys(c_obj);
+        console.log(`obj_keys = `, obj_keys);
+        // ["A0", "A1", "A2", "A3", "A4", "A5", "A6"]
+        console.log(`tab.rows`, tab.rows);
+        // array length
+        for(let array of tab.rows){
+            let temp_array = [];
+            // push 
+            let temp_obj = {};
+            temp_array = array.map(
+                (value, index) => {
+                    // value
+                    console.log(`index = `, index);
+                    console.log(`value = `, value);
+                    console.log(`typeof value = `, typeof(value));
+                    c_obj[obj_keys[index]].Description = value;
+                    console.log(`typeof c_obj[obj_keys[index]].Description = `, typeof(c_obj[obj_keys[index]].Description));
+                    // c_obj[obj_keys[index]].Description = JSON.stringify(value);
+                    console.log( `obj_keys[${index}]= `, obj_keys[index]);
+                    // temp_obj
+                    // reset object ???
+                }
+            );
+            console.log(`%c finish a new c_obj!`, "color: #f0f", c_obj);
+            console.log(`%c type of c_obj["A5"].Description !`, "color: #f0f", typeof(c_obj["A5"].Description));
+            // number
+            p_obj[tab.name].push(c_obj);
+            // p_obj[tab.name].push(temp_array); 
+        }
+        return p_obj;
     }
 );
 
 
 
  
-/* 
-
-            // array length
-            for(let array of tab.rows){
-                // array === []
-                let obj = {};
-                array.map(
-                    (value, index) => {
-                        // value
-                        console.log(`index = `, index);
-                        console.log(`value = `, value);
-                        obj[`A${index}`] = value;
-                        console.log( `obj[A${index}]= `, obj[`A${index}`]);
-                    }
-                );
-                console.log("%c finish a obj!", "color: red", obj);
-            }
 
 
-*/
+
+
+
 
 
 /* 

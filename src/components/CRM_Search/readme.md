@@ -1,3 +1,101 @@
+# api module structure
+
+
+
+index
+    SC = route menus
+    SCT = route content
+
+SCT
+    TCB = tabs (in, out, test)
+
+TCB
+    IT = in
+    OTS = out
+    TTF = test
+
+TTF
+    RI = required
+    OI = options
+    RTS = test results
+
+RI
+
+
+
+
+
+
+
+defaultValue={text}
+
+```jsx
+
+                                        <Input 
+                                            onChange={
+                                                (e) => {
+                                                    if (debug) {
+                                                        console.log(`index.name = `, index.name);
+                                                        console.log(`e = `, e.target.value);
+                                                    }
+                                                    let key = index.name,
+                                                        value = e.target.value;
+                                                    {/* url_obj = Object.assign(
+                                                        url_obj,
+                                                        {
+                                                            key: value
+                                                        }
+                                                    ); */}
+                                                    // url_obj.key = value;// key
+                                                    url_obj[key] = value;
+                                                    // key's value
+                                                    if (debug) {
+                                                        console.log(`${key} url_obj = `, url_obj); 
+                                                    }
+                                                    let str_obj = JSON.stringify(url_obj);
+                                                    url = `${urls.test}?${str_obj}`;
+                                                    {/* 
+                                                        this.setState({
+                                                            testurl: url
+                                                        });
+                                                    */}
+                                                    if (debug) {
+                                                        console.log(`%c changed url = \n`, color.green_16_border, url); 
+                                                    }
+                                                    return url;
+                                                }
+                                            }
+                                            defaultValue={text}
+                                            type="text"
+                                        />
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # query all
 
 
@@ -1250,6 +1348,64 @@ C:\Program Files (x86)\Google\Chrome\Application
 
 
 ```
+
+
+
+
+
+
+
+
+
+
+
+
+# import * as & debug read-only
+
+```js
+
+/* 
+
+import * as name from "module-name";
+import { member } from "module-name";
+import { member as alias } from "module-name";
+
+*/
+
+import {color} from '../../../app/color';
+import {debug}  from '../../../app/debug';
+// import { debug as xyz_debug}  from '../../../app/debug';
+// import * as xyz_debug  from '../../../app/debug';
+
+// debug = false;
+// const "debug" is read-only
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

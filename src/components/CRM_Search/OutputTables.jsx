@@ -11,6 +11,8 @@ import PropTypes from 'prop-types';
 
 import {Table, Icon} from 'antd';
 
+import './output.css';
+
 class OutputTables extends Component {
     constructor(props, context) {
         super(props, context);
@@ -18,7 +20,6 @@ class OutputTables extends Component {
             // 
         };
     }
-    
     render() {
         return (
             <div style={{maxWidth: 850, boxSizing: "borderBox"}}>
@@ -31,11 +32,13 @@ class OutputTables extends Component {
                                 <div 
                                     key={`key-${index}`}
                                     style={{margin: 10, padding: 10, boxSizing: "borderBox"}}>
-                                    <h3 
+                                    <p 
                                         style={{textAlign: "center"}}
+                                        className="table-title"
                                         >
-                                        {`表 ${++index}: ${data.title ? data.title : ""}`}
-                                    </h3>
+                                        {`${data.title ? data.title : ""}`}
+                                        {/* {`表 ${++index}: ${data.title ? data.title : ""}`} */}
+                                    </p>
                                     <Table
                                         dataSource={data.datas}
                                         columns={this.props.columns}

@@ -9,8 +9,22 @@ import PropTypes from 'prop-types';
  * @extends {Component}
  */
 
-import {color} from '../../../app/color';
 
+/* 
+
+import * as name from "module-name";
+import {member} from "module-name";
+import {member as alias} from "module-name";
+
+*/
+
+import {color} from '../../../app/color';
+import {debug}  from '../../../app/debug';
+// import { debug as xyz_debug}  from '../../../app/debug';
+// import * as xyz_debug  from '../../../app/debug';
+
+// debug = false;
+// const "debug" is read-only
 
 import {Table} from 'antd';
 
@@ -53,11 +67,15 @@ class ResultTables extends Component {
                 let obj = {};
                 // 注释: A份额交易代码
                 obj.title = `${data.Description || "暂无表头" }`;
-                console.log(`%c 注释: ${obj.title} & obj.title = data.Description \n`, color.css1);
+                if (!debug) {
+                    console.log(`%c 注释: ${obj.title} & obj.title = data.Description \n`, color.css1);
+                }
                 // 编号: A0
                 obj.dataIndex = `${data.name}`;
                 obj.key = `${data.name}`;
-                console.log(`%c 编号: ${obj.key} & obj.name = data.name \n`, color.css2);
+                if (!debug) {
+                    console.log(`%c 编号: ${obj.key} & obj.name = data.name \n`, color.css2);
+                }
                 cols.push(obj);
                 return cols;
             }

@@ -163,7 +163,7 @@ class SC extends Component {
                                                 style={{fontSize: 16, color: 'rgba(255, 255, 255, 0.7)'}}
                                                 className=""
                                                 >
-                                                just for test
+                                                API 查询工具
                                             </span>
                                         </span>
                                     }>

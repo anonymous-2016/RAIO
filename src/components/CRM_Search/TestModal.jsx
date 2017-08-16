@@ -10,6 +10,10 @@ import PropTypes from 'prop-types';
  * @extends {Component}
  */
 
+import {color} from '../../app/color';
+import {debug} from '../../app/debug';
+
+
 import {Icon, Form, Button, Modal, Input} from 'antd';
 const FormItem = Form.Item;
 
@@ -21,30 +25,11 @@ class TestModal extends Component {
             visible: true
         };
     }
-    onTest = () => {
-        // copy state, do test fetch
-        this.testOK(); 
-    };
-    handleSubmit = (e) => {
-        e.preventDefault();
-        this.props.form.validateFields(
-            (err, values) => {
-                if (!err) {
-                    console.log('Received values of form: ', values);
-                    console.log('fetch url = \n', values.textarea);
-                    // fetch data
-                    let url = values.textarea;
-                    this.props.checkTestCommands(url);
-                    // this.onTest();
-                }else{
-                    throw new Error(Error.name, Error.message);
-                }
-            }
-        );
-    };
     testOK = (e) => {
         // e.preventDefault();
-        console.log(`testOK e`, e);
+        if(debug) {
+            console.log(`testOK e`, e);
+        }
         this.setState({
             loading: true
         });
@@ -54,16 +39,44 @@ class TestModal extends Component {
             });
             this.props.hideModal();
         }, 1000);
-    }
+    };
+    onTest = () => {
+        // copy state, do test fetch
+        this.testOK(); 
+    };
+    handleSubmit = (e) => {
+        e.preventDefault();
+        this.props.form.validateFields(
+            (err, values) => {
+                if (!err) {
+                    if(debug) {
+                        console.log('Received values of form: ', values);
+                        console.log('fetch url = \n', values.textarea);
+                    }
+                    // fetch data
+                    let url = values.textarea;
+                    this.props.TestClick(url);
+                    this.props.checkTestCommands();
+                    // this.onTest();
+                }else{
+                    throw new Error(Error.name, Error.message);
+                }
+            }
+        );
+    };
     testCancel = () => {
        this.props.hideModal();
     }
     changeHanlder = (e) => {
         // e.target.value;
-        console.log(`e.target.value =`, e.target.value);
+        if (debug) {
+            console.log(`e.target.value =`, e.target.value);
+        }
         // call parent submit function
     }
     render() {
+        const {checkTestCommands, fetch_url, TestClick} = this.props;
+        // all props
         const {getFieldsValue, getFieldValue, setFieldsValue, getFieldDecorator} = this.props.form;
         const formItemLayout = {
             labelCol: {
@@ -75,6 +88,7 @@ class TestModal extends Component {
         };
         // destructuring assignment
         const {visible, loading} = this.state;
+        const commands_url = this.props.fetch_url;
         return (
             <div>
                 {/* query object */}
@@ -102,7 +116,7 @@ class TestModal extends Component {
                                             message: ' url 长度必须 30 个字符之间'
                                         }
                                     ],
-                                    initialValue: `10.1.5.31:8080/http/report/query?{"SecuCode":"000011","Names":"阳琨","ApiName":"fund.f9.fund_profile.FundManager.BasicInformations","WriteType":"json"}`,
+                                    initialValue: `${commands_url}`,
                                     // initialValue = ( input.example || null)
                                 })(
                                     <Input

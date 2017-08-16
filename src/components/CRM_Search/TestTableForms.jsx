@@ -10,6 +10,7 @@ import PropTypes from 'prop-types';
  */
 
 import {color} from '../../app/color';
+import {debug} from '../../app/debug';
 
 
 import {Table, Icon, Form, Button} from 'antd';
@@ -25,20 +26,19 @@ import {OI} from './Options/index';
 
 /* 
 
-import {OI} from './Options/';
-import {OI} from './Options/index';
+    import {OI} from './Options/';
+    import {OI} from './Options/index';
 
-// bug ???
+    // bug ???
 
-import {OI} from './Options';
+    import {OI} from './Options';
 
 
-// ./src/components/CRM_Search/TestTableForms.jsx
-// Module not found: `E:\xgqfrms\src-2017-6-22\src\components\CRM_Search\Options.json` 
-// does not match the corresponding path on disk - File does not exist.
+    // ./src/components/CRM_Search/TestTableForms.jsx
+    // Module not found: `E:\xgqfrms\src-2017-6-22\src\components\CRM_Search\Options.json` 
+    // does not match the corresponding path on disk - File does not exist.
 
 */
-
 
 // debug color
 const css1 = `
@@ -56,24 +56,38 @@ class TestTableForms extends Component {
         this.state = {
             show: false,
             visible: false,
-            test_datas: {},
-            fetch_url: ""
+            test_datas: this.props.test_datas, // init_datas url
+            fetch_url: "",
+            disable_btn: false
         }
     }
+    disableBTN = (value=false) =>{
+        this.setState(
+            {
+                disable_btn: value
+            }
+        );
+    };
     TestClick = (url) => {
-        console.log(`%c new url obj = `,color.color_css1, url);
+        if (debug) {
+            console.log(`%c new url obj = `,color.color_css1, url);
+        }
         // fetch_url = url;
         this.setState({
             fetch_url: url
         });
         // fetch url
-        // console.log(`new url obj = `, fetch_url);
+        if (debug) {
+            console.log(`new this.state.fetch_url = `, this.state.fetch_url);
+        }
     };
     startTest = () => {
         const that = this;
         // fetch test data
         let url = this.state.fetch_url;
-        console.log(`%c fetch test data`, css2, url);
+        if (debug) {
+            console.log(`%c fetch test data`, css2, url);
+        }
         // new test_datas url
         fetch(url)
         .then((response) => response.json())
@@ -87,52 +101,55 @@ class TestTableForms extends Component {
             (fecth_data) => {
                 // fecth_data === [{}, {}];
                 let objs = {};
-                fecth_data.map(
-                    // name.AnyManagedFundsRow
-                    (data) => {
-                        // 
-                    }
-                );
-                // need shape
-                /*
-                {
-                    "AnyManagedFundsRow":
-                    [
-                        {
-                            A0: "华夏基金管理有限公司",
-                            A1: "华夏大中华企业精选灵活配置混合(QDII)",
-                            A2: "其他型基金",
-                            A3: "2016-01-20",
-                            A4: "其他型基金",
-                            A5: "21.877086009428236",
-                            A5: "65135"
-                        },
-                                            {
-                            A0: "华夏基金管理有限公司",
-                            A1: "华夏大中华企业精选灵活配置混合(QDII)",
-                            A2: "其他型基金",
-                            A3: "2016-01-20",
-                            A4: "其他型基金",
-                            A5: "21.877086009428236",
-                            A5: "65135"
+                if(Array.isArray(fecth_data)){
+                    fecth_data.map(
+                        // name.AnyManagedFundsRow
+                        (data) => {
+                            //do something 
+                            // need shape
                         }
-                    ]
+                    );
+                    // result table A0 = key
+                    if (debug) {
+                        console.log(`%c fecth data = \n`, css2, fecth_data);
+                    }
+                    that.setState({
+                        test_datas: {fecth_data}
+                    });
                 }
-                */
-                // result table A0 = key
-                console.log(`%c fecth data = \n`, css2, fecth_data);
-                that.setState({
-                    test_datas: {fecth_data}
-                })
+/*
+    {
+        "AnyManagedFundsRow":
+        [
+            {
+                A0: "华夏基金管理有限公司",
+                A1: "华夏大中华企业精选灵活配置混合(QDII)",
+                A2: "其他型基金",
+                A3: "2016-01-20",
+                A4: "其他型基金",
+                A5: "21.877086009428236",
+                A5: "65135"
+            },
+                                {
+                A0: "华夏基金管理有限公司",
+                A1: "华夏大中华企业精选灵活配置混合(QDII)",
+                A2: "其他型基金",
+                A3: "2016-01-20",
+                A4: "其他型基金",
+                A5: "21.877086009428236",
+                A5: "65135"
+            }
+        ]
+    }
+*/
             }
         );
-/*         this.setState({
-            test_datas: fecth_data
-        }); */
     };
     showModal = () => {
-        console.log(`clicked showModal!`);
-        console.log(`%c showModal = `, css1, this.state.show);
+        if (!debug) {
+            console.log(`clicked showModal!`);
+            console.log(`%c showModal = `, css1, this.state.show);
+        }
         // e.preventDefault();
         this.setState(
             (prevState, props) => {
@@ -143,12 +160,16 @@ class TestTableForms extends Component {
                 }
             }
         );
-        console.log(`clicked showModal, agian!`);
-        console.log(`%c showModal agian = `, css2, this.state.show);
+        if (!debug) {
+            console.log(`clicked showModal, agian!`);
+            console.log(`%c showModal agian = `, css2, this.state.show);
+        }
     };
     hideModal = () => {
-        console.log(`clicked hideModal!`);
-        console.log(`%c hideModal = `, css1, this.state.show);
+        if (!debug) {
+            console.log(`clicked hideModal!`);
+            console.log(`%c hideModal = `, css1, this.state.show);
+        }
         this.setState(
             (prevState, props) => {
                 return{
@@ -156,16 +177,24 @@ class TestTableForms extends Component {
                 }
             }
         );
-        console.log(`clicked hideModal, agian!`);
-        console.log(`%c hideModal agian = `, css2, this.state.show);
+        if (!debug) {
+            console.log(`clicked hideModal, agian!`);
+            console.log(`%c hideModal agian = `, css2, this.state.show);
+        }
     };
-    checkTestCommands = (url) => {
+    checkTestCommands = () => {
         // fetch test data
-        console.log(`%c fetching url = \n`, css1, url);
+        if (debug) {
+            console.log(`%c ready fetching commands url  = \n`, css1);
+        }
+        this.startTest();
+        // console.log(`%c fetching url = \n`, css1, url);
     };
     testOK = (e) => {
         // e.preventDefault();
-        console.log(`testOK e`, e);
+        if (debug) {
+            console.log(`testOK e`, e);
+        }
         this.setState({
             loading: true
         });
@@ -183,13 +212,69 @@ class TestTableForms extends Component {
         });
     }
     render() {
-        const {show, test_datas} = this.state;
+        const {show, test_datas} = {...this.state};
+        const {inputs, outputs} = {...this.props};
+        if (!debug) {
+            console.log(`%c ri inputs`, color.color_css3, inputs);
+            console.log(`%c ri outputs`, color.css2, outputs);
+        }
+        // shape input data & example
+        const ri_datas = [];
+        // ApiName = url
+        /* 
+            1. pass props
+            2. get window.location path
+        */
+        /* 
+            dead code: "ApiName" & "WriteType":"json"
+            window.location.pathname === "/api/sc/TestProtocol"
+            slice / indexof / substr
+            "/api/sc/TestProtocol".slice(8); === "TestProtocol"
+            "/api/sc/TestProtocol".substr(8); === "TestProtocol"
+        */
+        // example : MarketMakerPracticeEndDateList
+        // http://10.1.5.203/http-manage/admin?{%22Admin%22:%22report%22,%22Action%22:%22GetSchema%22,%22WriteType%22:%22json%22,%20%22ReportName%22:%22MarketMakerPracticeEndDateList%22}
+        // WriteType === enum: ["json(json文本格式)", "binary(二维表二进制格式)"]
+        // http://10.1.5.203/http-report/query?{"key":"json"}
+        // TestProtocol
+        // http://10.1.5.203/http-report/query?{"ApiName": "TestProtocol", "WriteType":"json"}
+        // http://10.1.5.203/http-report/query?{"ApiName": "MarketMakerPracticeEndDateList", "StatPeriod": "6", "WriteType":"json"}
+        const testdatas = [
+            {
+                key: "k1",
+                name: "ApiName",
+                type: "string",
+                value: "fund.f9.fund_profile.FundManager.BasicInformations",
+                desc: "报表名称"
+            },
+            {
+                key: "k2",
+                name: "SecuCode",
+                type: "string",
+                value: "000011",
+                desc: "基金编码"
+            },
+            {
+                key: "k3",
+                name: "Names",
+                type: "string",
+                value: "阳琨",
+                desc: "姓名"
+            },
+            {
+                key: "k4",
+                name: "WriteType",
+                type: "string",
+                value: "json (json文本格式)",
+                desc: "返回的数据协议格式 "
+            }
+        ];
         return (
             <div >
                 <div >
-                    <h2 className="title-color">必填项</h2>
+                    <p className="title-color">必填项</p>
                     <RI 
-                        dataSource={[]}
+                        init_datas={testdatas}
                         test_datas={test_datas}
                         TestClick={this.TestClick}
                     />
@@ -198,20 +283,23 @@ class TestTableForms extends Component {
                         input + output => new table data
                         // required 
                         // new objects
-
                     */}
                 </div>
                 <div style={{textAlign: "center"}}>
                     <Button
                         type="primary"
                         style={{margin: "auto 10px"}}
-                        onClick={this.startTest}>
+                        onClick={this.startTest}
+                        disabled={this.state.disable_btn}
+                        >
                         开始测试
                     </Button>
                     <Button
                         type="primary"
                         style={{margin: "auto 10px"}}
-                        onClick={this.showModal}>
+                        onClick={this.showModal}
+                        disabled={this.state.disable_btn}
+                        >
                         查看命令
                     </Button>
                     {
@@ -221,12 +309,14 @@ class TestTableForms extends Component {
                             hideModal={this.hideModal}
                             visible={this.state.visible}
                             checkTestCommands={this.checkTestCommands}
+                            fetch_url={this.state.fetch_url}
+                            TestClick={this.TestClick}
                         />
                         :
                         ""
                     }
                 </div>
-                <div >
+                <div style={{visibility: "hidden"}}>
                     <h2 className="title-color">可选项</h2>
                     {/* <Table dataSource={this.props.dataSource} columns={this.props.columns} bordered pagination={false}/> */}
                     <OI dataSource={this.props.dataSource} columns={this.props.columns}/>
@@ -235,15 +325,18 @@ class TestTableForms extends Component {
                         (Math.random()*10 > 5) ? <button>展开-可选项</button> : <button>收起-可选项</button>
                     }
                 </div>
-                <div>
+                <div style={{visibility: "hidden"}}>
                     <h2 className="title-color">测试结果</h2>
                     {/* Tabs & Tables */}
-                     <RTS
-                        tabs={this.props.outputs}
-                        style={{maxWidth: 850}}
-                        results={test_datas}
-                    />
                     {/* // tab.name === "AnyManagedFundsRow":[]  */}
+                    {
+                        <RTS
+                            tabs={this.props.outputs}
+                            style={{maxWidth: 850}}
+                            results={[]}
+                        />
+                    }
+                    {/* results={[test_datas]}  */}
                 </div>
             </div>
         );
@@ -251,7 +344,9 @@ class TestTableForms extends Component {
 }
 
 TestTableForms.propTypes = {
+    inputs:PropTypes.array.isRequired,
     outputs: PropTypes.array.isRequired,
+    test_datas: PropTypes.array.isRequired,
 };
 
 const TTF = TestTableForms;
