@@ -215,12 +215,14 @@ class RequiredItems extends Component {
             {
                 title: "字段",
                 dataIndex: "name",
-                key: "name"
+                key: "name",
+                width: "15%"
             },
             {
                 title: "类型",
                 dataIndex: "type",
-                key: "type"
+                key: "type",
+                width: "10%"
             },
             {
                 title: "值",
@@ -318,18 +320,21 @@ class RequiredItems extends Component {
                                                 }
                                             }
                                             type="text"
+                                            placeholder="☹️ 暂无默认的示例命令值 !"
                                         />
                                     )
                                 }
                             </FormItem>
                         );
                     }
-                }
+                },
+                // width: "40%"
             },
             {
                 title: "描述",
                 dataIndex: "desc",
-                key: "desc"
+                key: "desc",
+                // width: "30%"
             }
         ];
         return (

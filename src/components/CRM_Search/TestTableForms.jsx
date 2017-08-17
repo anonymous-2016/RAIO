@@ -9,20 +9,25 @@ import PropTypes from 'prop-types';
  * @extends {Component}
  */
 
+//utils
 import {color} from '../../app/color';
 import {debug} from '../../app/debug';
 
 
-import {Table, Icon, Form, Button} from 'antd';
-
+// css
 import './testtableforms.css';
 
+// components
 import {TM}from './TestModal';
 import {RI} from './Required';
 import {RTS}from './Results';
 
+// uri bug ???
 import {OI} from './Options/index';
 
+// libs
+import {Collapse, Form, Button} from 'antd';
+const Panel = Collapse.Panel;
 
 /* 
 
@@ -58,7 +63,8 @@ class TestTableForms extends Component {
             visible: false,
             test_datas: this.props.test_datas, // init_datas url
             fetch_url: "",
-            disable_btn: false
+            disable_btn: false,
+            isCollapsed: true
         }
     }
     disableBTN = (value=false) =>{
@@ -205,11 +211,22 @@ class TestTableForms extends Component {
             });
             // this.props.hideModal();
         }, 1000);
-    }
+    };
     testCancel = () => {
         this.setState({
             visible: false
         });
+    };
+    cilicPanel = () => {
+        if (debug) {
+            console.log(`%C this.state.isCollapsed= `, color.css1, this.state.isCollapsed);
+        }
+        this.setState({
+            isCollapsed: !this.state.isCollapsed
+        });
+        if (debug) {
+            console.log(`%C new this.state.isCollapsed = `, color.css1, this.state.isCollapsed);
+        }
     }
     render() {
         const {show, test_datas} = {...this.state};
@@ -219,7 +236,53 @@ class TestTableForms extends Component {
             console.log(`%c ri outputs`, color.css2, outputs);
         }
         // shape input data & example
-        const ri_datas = [];
+        let ri_datas = [];
+        if(inputs.commandexample){
+            if (debug) {
+                console.log(`%c ri inputs.commandexample = `, color.color_css2, inputs.commandexample);
+            }
+            // ri_datas = inputs.commandexample
+        }else{
+            /*
+                {
+                    key: "k1",
+                    name: "ApiName",
+                    type: "string",
+                    value: "fund.f9.fund_profile.FundManager.BasicInformations",
+                    desc: "报表名称"
+                } 
+            */
+            inputs.map(
+                (value, index) => {
+                    if (debug) {
+                        console.log(`%c ri inputs index = `, color.css1, index);
+                        console.log(`%c ri inputs value = `, color.css2, value);
+                    }
+                    // Required: true
+                    if(value.Required){
+                        let obj = {};
+                        obj.value = "";
+                        obj.name = value.name;
+                        obj.desc = value.Description;
+                        obj.type = value.type;
+                        obj.key = index;
+                        ri_datas.push(obj);
+                    }
+                    // return obj_temp[index];
+                }
+            );
+            const fixed_obj = {
+                "key": "1111111",
+                "name": "WriteType",
+                "type": "string",
+                "value": "json",
+                "desc": "返回的数据协议格式"
+            };
+            ri_datas.push(fixed_obj);
+            if (debug) {
+                console.log(`%c ri ri_datas = `, color.css2, ri_datas);
+            }
+        }
         // ApiName = url
         /* 
             1. pass props
@@ -232,13 +295,16 @@ class TestTableForms extends Component {
             "/api/sc/TestProtocol".slice(8); === "TestProtocol"
             "/api/sc/TestProtocol".substr(8); === "TestProtocol"
         */
-        // example : MarketMakerPracticeEndDateList
-        // http://10.1.5.203/http-manage/admin?{%22Admin%22:%22report%22,%22Action%22:%22GetSchema%22,%22WriteType%22:%22json%22,%20%22ReportName%22:%22MarketMakerPracticeEndDateList%22}
-        // WriteType === enum: ["json(json文本格式)", "binary(二维表二进制格式)"]
-        // http://10.1.5.203/http-report/query?{"key":"json"}
-        // TestProtocol
-        // http://10.1.5.203/http-report/query?{"ApiName": "TestProtocol", "WriteType":"json"}
-        // http://10.1.5.203/http-report/query?{"ApiName": "MarketMakerPracticeEndDateList", "StatPeriod": "6", "WriteType":"json"}
+        /* 
+            // "commandexample": "{\"StatPeriod\":\"6\",\"ApiName\":\"MarketMakerPracticeEndDateList\"}",
+            // example : MarketMakerPracticeEndDateList
+            // http://10.1.5.203/http-manage/admin?{%22Admin%22:%22report%22,%22Action%22:%22GetSchema%22,%22WriteType%22:%22json%22,%20%22ReportName%22:%22MarketMakerPracticeEndDateList%22}
+            // WriteType === enum: ["json(json文本格式)", "binary(二维表二进制格式)"]
+            // http://10.1.5.203/http-report/query?{"key":"json"}
+            // TestProtocol
+            // http://10.1.5.203/http-report/query?{"ApiName": "TestProtocol", "WriteType":"json"}
+            // http://10.1.5.203/http-report/query?{"ApiName": "MarketMakerPracticeEndDateList", "StatPeriod": "6", "WriteType":"json"}
+        */
         const testdatas = [
             {
                 key: "k1",
@@ -274,9 +340,10 @@ class TestTableForms extends Component {
                 <div >
                     <p className="title-color">必填项</p>
                     <RI 
-                        init_datas={testdatas}
+                        init_datas={(ri_datas.length > 0 ) ? ri_datas : testdatas}
                         test_datas={test_datas}
                         TestClick={this.TestClick}
+                        disableBTN={this.disableBTN}
                     />
                     {/* 
                         coloums = 字段 类型 值 描述
@@ -316,13 +383,29 @@ class TestTableForms extends Component {
                         ""
                     }
                 </div>
-                <div style={{visibility: "hidden"}}>
-                    <h2 className="title-color">可选项</h2>
-                    {/* <Table dataSource={this.props.dataSource} columns={this.props.columns} bordered pagination={false}/> */}
-                    <OI dataSource={this.props.dataSource} columns={this.props.columns}/>
-                    <Form />
+                <div style={{visibility: "visible"}}>
+                    <h2 className="title-color options-space">可选项</h2>
                     {
-                        (Math.random()*10 > 5) ? <button>展开-可选项</button> : <button>收起-可选项</button>
+                       <Collapse
+                            defaultActiveKey={['2']}
+                            onChange={this.cilicPanel}
+                            className="options-panal">
+                            <Panel
+                                header={ (this.state.isCollapsed === true) ? "展开-可选项" : "收起-可选项"}
+                                key="1"
+                                >
+                                {/* <Table dataSource={this.props.dataSource} columns={this.props.columns} bordered pagination={false}/> */}
+                                <OI dataSource={this.props.dataSource} columns={this.props.columns}/>
+                                <Form />
+                            </Panel>
+                        </Collapse>
+                        /* 
+                            <div style={{visibility: "hidden"}}>
+                                {
+                                    (Math.random()*10 > 5) ? <button>展开-可选项</button> : <button>收起-可选项</button>
+                                }
+                            </div> 
+                        */
                     }
                 </div>
                 <div style={{visibility: "hidden"}}>

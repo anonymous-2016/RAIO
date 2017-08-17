@@ -102,8 +102,10 @@ class SCT extends Component {
             if(debug){
                 console.log(`json = ${json}`); 
             }
-            // console.log(`json.length = ${json.length}`);
-            // console.log(`json.Info.schema.Properties `, json.Info.schema.Properties);
+            if (!debug) {
+                console.log(`json.length = ${json.length}`);
+                console.log(`json.Info.schema.Properties `, json.Info.schema.Properties);
+            }
             // Properties
             let datas = [];
             if(json.Info === "Does't Contain The undefined Report"){
@@ -126,9 +128,21 @@ class SCT extends Component {
                 for (let key in objs) {
                     if(!objs.hasOwnProperty(key)) continue;
                     if (objs.hasOwnProperty(key)) {
-                        // A0
+                        // A0 === name
                         objs[key].name =  key;
+                        if(objs[key].Description){
+                            // objs[key].name =  key;
+                        }else{
+                            // TestProtocol 暂无注释
+                            objs[key].Description = "☹️ 暂无注释";
+                            if (!debug) {
+                                console.log(`%c objs[key].Description === "emoji ☹️ 暂无注释" `, color.color_css2, objs[key].Description);
+                            }
+                        }
                         objs[key].key = ("k000" + i++);
+                    }
+                    if (!debug) {
+                        console.log(`%c objs[key] === {type: "string", Description: "A份额简称", name: "A1", key: "k0001"} `, color.color_css2, objs[key]);
                     }
                     arr.push(objs[key]);
                 }
@@ -158,7 +172,8 @@ class SCT extends Component {
                         for (let key in objs) {
                             if (objs.hasOwnProperty(key)) {
                                 // A0
-                                objs[key].name =  key;
+                                // TestProtocol 暂无注释
+                                objs[key].name =  key || "暂无注释";
                                 objs[key].key = ("k000" + i++);
                             }
                             arr.push(objs[key]);

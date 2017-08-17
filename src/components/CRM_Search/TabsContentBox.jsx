@@ -9,21 +9,25 @@ import PropTypes from 'prop-types';
  * @extends {Component}
  */
 
+
+// components
 import {IT} from './InputTable';
 import {OTS} from './OutputTables';
-
 import {TTF} from './TestTableForms';
+
+// css
 import  './tabboxs.css';
 
 
 // utils
-import {color} from '../../app/color';
-import {debug, xyz_debug} from '../../app/debug';
+// import {color} from '../../app/color';
+// import {debug, xyz_debug} from '../../app/debug';
 
 // libs
 import {Tabs, Icon, Button} from 'antd';
 const TabPane = Tabs.TabPane;
 
+/* 
 let arr = [],
     arrout = [];
 
@@ -34,23 +38,27 @@ const css = `
 const css2 = `
     color: #f00;
     font-size: 16px;
-`;
+`; 
+*/
 
 const input_columns = [
     {
         title: "字段名",
         dataIndex: "name",
-        key: "name"
+        key: "name",
+        width: '20%'
     },
     {
         title: "类型",
         dataIndex: "type",
-        key: "type"
+        key: "type",
+        width: '15%'
     },
     {
         title: "注释",
         dataIndex: "Description",
-        key: "Description"
+        key: "Description",
+        // width: '70%'
     }
 ];
 
@@ -58,17 +66,20 @@ const output_columns = [
     {
         title: "编号",
         dataIndex: "name",
-        key: "name"
+        key: "name",
+        width: '20%'
     },
     {
         title: "类型",
         dataIndex: "type",
-        key: "type"
+        key: "type",
+        width: '15%'
     },
     {
         title: "注释",
         dataIndex: "Description",
-        key: "Description"
+        key: "Description",
+        // width: '25%'
     }
 ];
 
@@ -157,6 +168,7 @@ TabsContentBox.propTypes = {
 };
 
 const TCB = TabsContentBox;
+
 export {TCB};
 export default TCB;
 
