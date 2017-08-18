@@ -302,7 +302,7 @@ class ContentBox extends Component {
                             <div>
                                 <img src={this.props.logo} className="App-logo" alt="logo" style={this.props.width}/>
                             </div>
-                            <h3>CRM 权限认证管理系统</h3>
+                            <h3 className="CRM-title">CRM 权限认证管理系统</h3>
                         </div>
                         <Button
                             icon="swap"

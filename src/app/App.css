@@ -21,7 +21,12 @@
     text-align: center;
     background: #fff;
     box-sizing: border-box;
-    border-bottom: 1px solid red;
+    border-bottom: 1px solid #ccc;
+}
+
+.CRM-title {
+    text-indent: -100px;
+    color: #777;
 }
 
 @keyframes App-logo-spin {

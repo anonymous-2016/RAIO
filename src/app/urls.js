@@ -8,6 +8,7 @@
  * @extends {utils}
  */
 
+// GetAllLoadSearch 
 
 export const init = `http://10.1.5.203/http-manage/admin`;
 // http://10.1.5.203/http-manage/admin?{%22Admin%22:%22report%22,%22Action%22:%22GetAllLoad%22,%22WriteType%22:%22json%22}

@@ -78,13 +78,65 @@ defaultValue={text}
 
 
 
+```js
+
+http://10.1.5.203/http-report/query?
+{
+    'ApiName':'TestProtocol',
+    "Sorts":[
+        {
+            "Field": "",
+            "Sort":"no"
+        }
+    ],
+    "Page":{
+        "PageNo":"2",
+        "PageSize":"50"
+    },
+    "Compress":"true",
+    "OutField":[
+        "ByteV","BooleanV","DoubleV","FloatV","IntV","ShortV","CharV","ByteArray","BooleanArray","DoubleArray","FloatArray","IntArray","ShortArray","LongV","LongArray","CharArray","DateV","DateArray","TimeStampV","TimestampArray","ListV","StringV","StringArray","TableV"
+    ],
+    "IgnoreField":[
+        "ByteV","BooleanV","DoubleV","FloatV","IntV","ShortV","CharV","ByteArray","BooleanArray","DoubleArray","FloatArray","IntArray","ShortArray","LongV","LongArray","CharArray","DateV","DateArray","TimeStampV","TimestampArray","ListV","StringV","StringArray","TableV"
+    ],
+    "Group":"group",
+    "FastDateFilterType": "Latest6Month",
+    "CallBack":"jsonp:",
+    "FastQuarterReportType":["Q1th","Q3rd"],
+    "WriteType":"json"
+}
+
+
+http://10.1.5.203/http-report/query?{'ApiName':'OtherAccountReceiveAge','SecuCode':'000002',"BeginDate":"2012-06-30","EndDate":"2016-06-30","Sorts":[{"Field":"accountreceiveage.enddate","Sort":"asc"}],"Page":{"PageNo":"1","PageSize":"100"},"FastDateFilterType":"Customer","WriteType":"json"}
+
+
+Customer
+"EndDate":"2016-06-30",
+"BeginDate":"2012-06-30"
+
+
+
+http://10.1.5.203/http-manage/admin?{%22Admin%22:%22report%22,%22Action%22:%22GetAllLoadSearch%22,%22WriteType%22:%22json%22,%22ReportName%22:%22OtherAccountReceiveAge%22}
+
+
+GetAllLoadSearch === init
+
+
+ReportName
+
+KeyWord
+
+
+
+// no value, no key
 
 
 
 
 
 
-
+``` 
 
 
 

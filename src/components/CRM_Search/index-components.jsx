@@ -12,7 +12,7 @@
 import {SC} from './SC';
 import {SCT} from './SCT';
 import {LF} from './LoginForm';
-import {SF} from './SF';
+import {SF} from './SearchForm/SF';
 
 
 const IC = {

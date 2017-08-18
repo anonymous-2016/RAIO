@@ -11,9 +11,9 @@ import PropTypes from 'prop-types';
 
 
 // components
-import {IT} from './InputTable';
-import {OTS} from './OutputTables';
-import {TTF} from './TestTableForms';
+import {IT} from './Input/InputTable';
+import {OTS} from './Output/OutputTables';
+import {TTF} from './Test/TestTableForms';
 
 // css
 import  './tabboxs.css';
@@ -102,6 +102,7 @@ class TabsContentBox extends Component {
                         key="1"
                         style={{
                             maxWidth: "100%",
+                            boxSizing: "borderBox"
                         }}>
                         {/* onTabClick={this.testClick} */}
                         <IT
@@ -116,6 +117,7 @@ class TabsContentBox extends Component {
                         key="2"
                         style={{
                             maxWidth: "100%",
+                            boxSizing: "borderBox"
                         }}>
                         {/* single table & multi tables */}
                         <OTS
@@ -127,7 +129,10 @@ class TabsContentBox extends Component {
                     <TabPane 
                         tab={<span><Icon type="phone" />测试</span>}
                         key="3"
-                        style={{maxWidth: 850}}>
+                        style={{
+                            maxWidth: "100%",
+                            boxSizing: "borderBox"
+                        }}>
                         <TTF
                             test_datas={this.state.in_out_data}
                             outputs={this.props.output_datas}

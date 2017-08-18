@@ -133,24 +133,36 @@ class SC extends Component {
         return (
             <div
                 style={{
-                    border: '1px solid #f0f',
-                    minHeight: 500,
-                    minWidth: 400,
-                    //
+                    border: '1px solid #ccc',
+                    minHeight: 1000,
+                    overflowY: "scroll",
+                    boxSizing:" borderBox"
                 }} >
                 <Router>
                     {/* display: 'flex', */}
-                    <div style={{display: 'flex', border: '1px solid #000'}} >
+                    <div 
+                        style={{
+                            display: 'flex',
+                            maxWidth: "100%",
+                            boxSizing: "borderBox",
+                            border: '1px solid #fff',
+                            overflowX: "hidden",
+                        }}>
                         <div 
                             style={{
-                                background: '#333',
-                                border: '1px solid red'
+                                background: "#404040",
+                                border: "1px solid #ccc"
                             }}
                             >
                             <Menu
                                 theme={this.state.theme}
                                 onClick={this.handleClick}
-                                style={{ width: 240 }}
+                                style={{
+                                    width: 220,
+                                    minHeight: 1000,
+                                    maxHeight: 1400,
+                                    overflowY: "scroll"
+                                }}
                                 defaultOpenKeys={['sub1']}
                                 mode="inline"
                                 >
@@ -158,7 +170,7 @@ class SC extends Component {
                                     key="sub1"
                                     title={
                                         <span>
-                                            <Icon type="area-chart" style={{fontSize: 18, color: '#f0f'}} className=""/>
+                                            <Icon type="area-chart" style={{fontSize: 16, color: '#0f0'}} className=""/>
                                             <span
                                                 style={{fontSize: 16, color: 'rgba(255, 255, 255, 0.7)'}}
                                                 className=""

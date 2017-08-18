@@ -44,20 +44,23 @@ class SCT extends Component {
         fetch(`${url}`)
         .then((response) => response.json())
         .then((json)=> {
-            // console.log(`json = ${json}`);
-            // console.log(`json.length = ${json.length}`);
-            // console.log(`%c json.Info`, color.color_css1,json.Info.schema.Properties);
+            if (!debug) {
+                console.log(`json = ${json}`);
+                console.log(`json.length = ${json.length}`);
+                console.log(`%c json.Info`, color.color_css1,json.Info.schema.Properties);
+            }
             // Properties
-            
             if(json.Info === "Does't Contain The undefined Report"){
                 // "Info" : "Does't Contain The undefined Report"
                 return arr;
             }
             let datas = json.Info.schema.Properties;
-            let {ApiName, SecuCode} = datas;
-            // console.log(`ApiName = ${ApiName}`, ApiName);
-            // console.log(`ApiName = ${ApiName.Description}`);
-            // console.log(`SecuCode = ${SecuCode.Description}`);
+            if (!debug) {
+                let {ApiName, SecuCode} = datas;
+                console.log(`ApiName = ${ApiName}`, ApiName);
+                console.log(`ApiName = ${ApiName.Description}`);
+                console.log(`SecuCode = ${SecuCode.Description}`);
+            }
             // Objects to Array
             // let arr = [];
             let i = 0;
@@ -108,10 +111,17 @@ class SCT extends Component {
             }
             // Properties
             let datas = [];
-            if(json.Info === "Does't Contain The undefined Report"){
+            if(json.Success === false){
                 // "Info" : "Does't Contain The undefined Report"
+                // "Info": "Does't Contain The xxxxxxx Report"
+                // "Success": false
                 return datas;
             }
+            if(json.Info.name && json.Info.schema === undefined){
+                // "Info" : {"name" : "StaticReportImageData"}
+                // json.Info.name === "StaticReportImageData"
+                return datas;
+            } 
             if(json.Info.schema.Properties !== undefined){
                 // json.Info.schema.Properties
                 // single table
@@ -237,11 +247,11 @@ class SCT extends Component {
                 new_data: Object.assign({}, new_data)
             }
         );
-        if(debug){
-            /* console.log(`%c new_data`, color.color_css2, new_data);
+        if(!debug){
+            console.log(`%c new_data`, color.color_css2, new_data);
             console.log(`%c new_data url_key = \n`, color.color_css1, url_key);
             console.log(`%c developer = \n`, color.color_css3, developer);
-            console.log(`typeof url_key`, (typeof url_key)); */
+            console.log(`typeof url_key`, (typeof url_key));
         }
         /* 
             fund.topic.performance_evaluation.fund_performance.AInvestmentValueAnalysisDetail
@@ -251,7 +261,9 @@ class SCT extends Component {
             GetRowSchema === output
             http://10.1.5.31:8081/http/manage/admin?{"Admin":"report","Action":"GetRowSchema","WriteType":"json", "ReportName":"IndexF10IndexFund"}
         */
-        // console.log(`this.state.url_name url_key`, url_key);
+        if (!debug) {
+            console.log(`this.state.url_name url_key`, url_key);
+        }
         const fixedInURL = `{"Admin":"report","Action":"GetSchema","WriteType":"json", "ReportName":`;
         const fixedOutURL = `{"Admin":"report","Action":"GetRowSchema","WriteType":"json", "ReportName":`;
         let url_in = `${urls.input}?${fixedInURL}"${url_key}"}`,

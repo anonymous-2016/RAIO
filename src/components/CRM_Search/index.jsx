@@ -51,7 +51,8 @@ class CRMS extends Component {
         if(!debug){
             fetch_url = `${ljs_urls.ljs_info}`;
         }else{
-            fetch_url = `${urls.init}?{"Admin":"report","Action":"GetAllLoad","WriteType":"json"}`;
+            // GetAllLoadSearch
+            fetch_url = `${urls.init}?{"Admin":"report","Action":"GetAllLoadSearch","WriteType":"json"}`;
             // GetTreeSchema
         }
         if(debug){
