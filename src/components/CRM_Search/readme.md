@@ -27,9 +27,33 @@ RI
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 defaultValue={text}
 
 ```jsx
+
+
+/* eslint-disable no-console */
+
+
+
+/* eslint-enable no-console */
+
+
+
 
     <Input 
         onChange={

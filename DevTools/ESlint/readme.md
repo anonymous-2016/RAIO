@@ -228,7 +228,11 @@ foo(); // eslint-disable-line example/rule-name
 
 
 
+/* eslint-disable no-console */
 
+
+
+/* eslint-enable no-console */
 
 
 ```

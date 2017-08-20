@@ -188,6 +188,7 @@ class TestTableForms extends Component {
             console.log(`%C new this.state.isCollapsed = `, color.css1, this.state.isCollapsed);
         }
     }
+    /* eslint-disable no-console */
     render() {
         const {show, test_datas} = {...this.state};
         const {inputs, outputs} = {...this.props};
@@ -198,10 +199,22 @@ class TestTableForms extends Component {
         // shape input data & example
         let ri_datas = [];
         if(inputs.commandexample){
+            /* 
+            "commandexample" : "{            \"SecuCode\": 000011,            \"ApiName\": \"fund.f9.fund_profile.FundIntroduce\" }",
+            // bug ???
+            000011 => "000011" 
+            http://10.1.5.203/http-manage/admin?{%27Admin%27:%27report%27,%27Action%27:%27GetSchema%27,%27WriteType%27:%27json%27,%27KeyWord%27:%27%E5%9F%BA%E9%87%91-%3EF9-%3E%20%E5%9F%BA%E9%87%91%E6%A6%82%E5%86%B5%27}
+            基金->F9-> 基金概况->基金介绍
+            // input 
+            http://10.1.5.203/http-manage/admin?{%22Admin%22:%22report%22,%22Action%22:%22GetSchema%22,%22WriteType%22:%22json%22,%20%22ReportName%22:%22fund.f9.fund_profile.FundIntroduce%22}
+            基金->F9->基金概况 ->基金管理人(基金公司基本资料,基金公司基本联系方式)
+            基金->F9->基金概况 ->基金经理(信息显示表格)
+             */
             if (debug) {
                 console.log(`%c ri inputs.commandexample = `, color.color_css2, inputs.commandexample);
             }
             // ri_datas = inputs.commandexample
+            // JSON.parse();
         }else{
             /*
                 {
@@ -214,32 +227,40 @@ class TestTableForms extends Component {
             */
             inputs.map(
                 (value, index) => {
-                    if (debug) {
+                    if (!debug) {
                         console.log(`%c ri inputs index = `, color.css1, index);
                         console.log(`%c ri inputs value = `, color.css2, value);
                     }
                     // Required: true
                     if(value.Required){
+                        // only required will be pushed to ri_datas!
                         let obj = {};
+                        obj.key = index;
                         obj.value = "";
                         obj.name = value.name;
                         obj.desc = value.Description;
                         obj.type = value.type;
-                        obj.key = index;
                         ri_datas.push(obj);
+                        if (debug) {
+                            console.log(`%c ri_datas obj = `, color.css1, obj);
+                            console.log(`%c ri_datas[${index}] = `, color.css1, ri_datas);
+                        }
                     }
                     // return obj_temp[index];
                 }
             );
+            if (!debug) {
+                console.log(`%c ri_datas = `, color.css1, ri_datas);
+            }
             const fixed_obj = {
-                "key": "1111111",
+                "key": 11111111,
                 "name": "WriteType",
                 "type": "string",
                 "value": "json",
                 "desc": "返回的数据协议格式"
             };
             ri_datas.push(fixed_obj);
-            if (debug) {
+            if (!debug) {
                 console.log(`%c ri ri_datas = `, color.css2, ri_datas);
             }
         }
@@ -362,12 +383,15 @@ class TestTableForms extends Component {
             </div>
         );
     }
+    /* eslint-enable no-console */
 }
 
 TestTableForms.propTypes = {
     inputs:PropTypes.array.isRequired,
     outputs: PropTypes.array.isRequired,
     test_datas: PropTypes.array.isRequired,
+    // dataSource: PropTypes.array.isRequired,
+    // columns: PropTypes.array.isRequired,
 };
 
 const TTF = TestTableForms;

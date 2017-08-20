@@ -32,7 +32,8 @@ class SCT extends Component {
             in_data: [],
             out_data: [],
             developer: "",
-            url_name: this.props.urlname
+            url_name: this.props.urlname,
+            new_example: {}
         };
     }
     // url_name
@@ -48,6 +49,14 @@ class SCT extends Component {
                 console.log(`json = ${json}`);
                 console.log(`json.length = ${json.length}`);
                 console.log(`%c json.Info`, color.color_css1,json.Info.schema.Properties);
+            }
+            // json.Info.developer
+            if(json.Info.developer){
+                this.setState(
+                    {
+                        developer: json.Info.developer
+                    }
+                );
             }
             // Properties
             if(json.Info === "Does't Contain The undefined Report"){
@@ -90,6 +99,16 @@ class SCT extends Component {
                     input_datas: arr
                 }
             );
+            // commandexample
+            /* 
+            if(json.Info.commandexample){
+                // "{            \"SecuCode\":  000011,            \"ApiName\": \"fund.f9.fund_profile.FundIntroduce\" }"
+                // regex ""
+                let new_example = JSON.parse(json.Info.commandexample);
+                // object
+                // {SecuCode: "000011", ApiName: "fund.f9.fund_profile.FundIntroduce"}
+            }
+            */
             return arr;
         });
         // console.log(`new arr = `, arr);
@@ -121,17 +140,17 @@ class SCT extends Component {
                 // "Info" : {"name" : "StaticReportImageData"}
                 // json.Info.name === "StaticReportImageData"
                 return datas;
-            } 
-            if(json.Info.schema.Properties !== undefined){
+            }
+            // single table
+            if (json.Info.schema.Properties !== undefined){
                 // json.Info.schema.Properties
-                // single table
                 let table = json.Info.schema;
                 let arr = [],
                     new_obj = {},
                     i = 0;
                 // no desc
                 let objs = table.Properties;
-                if(debug){
+                if(!debug){
                     console.log(`%c @@@@@@@@@@@@ no tab.name === "" @@@@@@@@@@@@$`, color.color_css1);
                 }
                 // add Table.name = "Table1"
@@ -160,7 +179,7 @@ class SCT extends Component {
                 new_obj.datas = arr;
                 datas.push(new_obj);
                 // datas = [];
-            }else{
+            }else {
                 // multi tables
                 // json.Info.schema.BasicInformationRow.Properties
                 let tables = json.Info.schema;
@@ -178,6 +197,7 @@ class SCT extends Component {
                     if(!tables.hasOwnProperty(key)) continue;
                     if (tables.hasOwnProperty(key)) {
                         let title = tables[key].desc,
+                            tablenamle = key,
                             objs = tables[key].Properties;
                         for (let key in objs) {
                             if (objs.hasOwnProperty(key)) {
@@ -192,7 +212,8 @@ class SCT extends Component {
                             }
                         }
                         // console.log(`title ${key}`, title);
-                        new_obj.title = tables[key].desc;
+                        new_obj.title = title;
+                        new_obj.tablenamle = tablenamle;
                         new_obj.datas = arr;
                         if (debug) {
                             console.log(`new obj = `, new_obj);
@@ -225,23 +246,27 @@ class SCT extends Component {
     };
     componentDidMount() {
         let new_data = this.state.data;
+        // this.props.data
         // get url
-        // console.log(`this.state.url_name`, this.state.url_name);
+        if (!debug) {
+            console.log(`this.state.url_name`, this.state.url_name);
+        }
         // undefined url_key ???
-        let url_key = this.state.url_name,
-            developer = "";
-        // developer ? developer : "undefined"
+        let url_key = this.state.url_name;
         if(url_key === undefined){
             url_key = ""; 
         } 
-        if(new_data.developer){
+        // developer moved to input
+        // let developer = "";
+        // developer ? developer : "undefined"
+        /* if(new_data.developer){
             developer = new_data.developer;
             this.setState(
                 {
                     developer: developer
                 }
             );
-        }
+        } */
         this.setState(
             {
                 new_data: Object.assign({}, new_data)
@@ -250,7 +275,7 @@ class SCT extends Component {
         if(!debug){
             console.log(`%c new_data`, color.color_css2, new_data);
             console.log(`%c new_data url_key = \n`, color.color_css1, url_key);
-            console.log(`%c developer = \n`, color.color_css3, developer);
+            // console.log(`%c developer = \n`, color.color_css3, developer);
             console.log(`typeof url_key`, (typeof url_key));
         }
         /* 
@@ -301,3 +326,174 @@ SCT.propTypes = {
 
 export {SCT};
 export default SCT;
+
+
+
+/*
+
+    // example === input & JSON.parse(json.Info.commandexample
+
+    // 基金->F9-> 基金概况
+
+    "{            "SecuCode": 000011,            "ApiName": "fund.f9.fund_profile.FundIntroduce" }"
+    "{            "SecuCode": 000001,            "ApiName": "fund.f9.fund_profile.FundManagerMent" }"
+    "{            "SecuCode": 000011,            "ApiName": "fund.f9.fund_profile.FundManager" }"
+
+    // 主板F10-->财务概况
+
+    "{            "SecuCode": "600570",            "ApiName": "F10.FinalSummary.FastView.DuBangAnalysis" }"
+    "{            "SecuCode": "601318",            "ApiName": "F10.FinaIndicator.SpecialIndex" }"
+    "{            "SecuCode": "600570",            "ApiName": "F10.FinalSummary.AssetsDebtConstitute.Assets" }"
+    "{            "SecuCode": "600570",            "ApiName": "F10.FinalSummary.FinancialStatementView" }"
+    "{            "SecuCode": "600570",            "ApiName": "F10.FinalSummary.AssetsDebtConstitute.Debt" }"
+    "{            "SecuCode": "600570",            "ApiName": "F10.FinalSummary.FastView.NoticePerformance" }"
+
+
+bad
+
+http://10.1.5.203/http-manage/admin?{%22Admin%22:%22report%22,%22Action%22:%22GetSchema%22,%22WriteType%22:%22json%22,%20%22ReportName%22:%22fund.f9.fund_profile.FundIntroduce%22}
+
+?{"Admin":"report","Action":"GetSchema","WriteType":"json",%20"ReportName":"fund.f9.fund_profile.FundIntroduce"}
+
+
+
+good
+
+http://10.1.5.203/http-manage/admin?{%22Admin%22:%22report%22,%22Action%22:%22GetSchema%22,%22WriteType%22:%22json%22,%20%22ReportName%22:%22F10.FinaIndicator.SpecialIndex%22}
+
+?{"Admin":"report","Action":"GetSchema","WriteType":"json",%20"ReportName":"F10.FinaIndicator.SpecialIndex"}
+
+
+*/
+
+/* 
+
+    // Sorts 单选框
+    // Sorts === json.Info.schema
+    // :基金->F9->基金概况 ->基金经理->基金经理详细信息(基本资料)
+    // multi tables
+    // fund.f9.fund_profile.FundManager.BasicInformations
+    // schema.AnyManagedFundsRow.Properties
+
+    schema: {
+        "AnyManagedFundsRow" : {
+            "Properties": {
+                "A0": {
+                    "type": "string",
+                    "Description": "管理公司"
+                },
+                "A1": {
+                    "type": "string",
+                    "Description": "出生日期"
+                }
+            },
+            "desc" : "基金经理详细信息(历任管理基金)",
+            "type" : "object",
+        },
+        BasicInformationRow : {
+            Properties: {
+                A0: {
+                    "type" : "string",
+                    "Description" : "性别"
+                }
+            },
+            desc : "基金经理详细信息(基本资料)",
+            type : "object",
+        }
+    }
+
+    AnyManagedFundsRow: {
+        "desc" : "基金经理详细信息(历任管理基金)",
+        "cols": {
+            A0: "管理公司",
+            A1: "出生日期"
+        }
+        // {}.keys
+    }
+
+    BasicInformationRow: {
+        desc : "基金经理详细信息(基本资料)",
+        "cols": {
+            A0: "管理公司",
+            A1: "出生日期"
+        }
+    }
+
+
+
+
+    Field : [
+        AnyManagedFundsRow.A0: AnyManagedFundsRow.desc + AnyManagedFundsRow.cols.A0 
+        // 
+    ]
+
+
+
+        基金经理详细信息(基本资料
+
+    "Sorts":[
+        {
+            "Field":"basicinformationrow.a0",
+            "Sort":"asc"
+        }
+    ]
+
+
+
+
+    // OutField 多选框
+
+    AnyManagedFundsRow: {
+        "desc" : "基金经理详细信息(历任管理基金)",
+        "cols": {
+            A0: "管理公司",
+            A1: "出生日期"
+        }
+        // {}.keys
+    }
+
+    "OutField":[
+        "BasicInformationRow.A6",
+        "BasicInformationRow.A7",
+        "AnyManagedFundsRow.A0",
+        "AnyManagedFundsRow.A1",
+        "AnyManagedFundsRow.A2",
+        "HistoricalReturnsRow.A3",
+        "HistoricalReturnsRow.A4"
+    ]
+
+*/
+
+
+/* 
+
+
+    // single table & output
+    // fund.f9.fund_profile.FundIntroduce
+    // schema.Properties
+
+
+    // ??? table name ???
+    http://10.1.5.203/http-manage/admin?{%27Admin%27:%27report%27,%27Action%27:%27GetRowSchema%27,%27WriteType%27:%27json%27,%27ReportName%27:%27fund.f9.fund_profile.FundIntroduce%27}?ran=0.027994435157687736
+
+    "Sorts":[
+        {
+            "Field":"basicinformationrow.a0",
+            "Sort":"asc"
+        }
+    ]
+
+    // A0 ???
+
+    "OutField":[
+        "BasicInformationRow.A6",
+        "BasicInformationRow.A7",
+        "AnyManagedFundsRow.A0",
+        "AnyManagedFundsRow.A1",
+        "AnyManagedFundsRow.A2",
+        "HistoricalReturnsRow.A3",
+        "HistoricalReturnsRow.A4"
+    ]
+    // A0 ???
+
+*/

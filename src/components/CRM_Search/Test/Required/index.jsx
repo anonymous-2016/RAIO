@@ -9,6 +9,7 @@ import PropTypes from 'prop-types';
  * @extends {Component}
  */
 
+ // utils
 import {urls}from '../../../../app/urls.js';
 import {color}from '../../../../app/color';
 import {debug} from '../../../../app/debug';
@@ -25,56 +26,7 @@ const FormItem = Form.Item;
 const value = "";
 // undefined
 
-// input datas
-/* 
-    const demo_datas = [
-        {
-            key: "k1",
-            name: "ApiName",
-            type: "string",
-            value: "fund.f9.fund_profile.FundManager.BasicInformations",
-            desc: "报表名称"
-        },
-        {
-            key: "k2",
-            name: "SecuCode",
-            type: "string",
-            value: (value || "000011"),
-            desc: "基金编码"
-        },
-        {
-            key: "k3",
-            name: "Names",
-            type: "string",
-            value: "阳琨",
-            desc: "姓名"
-        },
-        {
-            key: "k4",
-            name: "WriteType",
-            type: "string",
-            value: "json (json文本格式)",
-            desc: "返回的数据协议格式 "
-        }
-    ];
 
- */
-// example
-
-
-
-/* 
-array.push(
-    {
-        key: "last-index",
-        name: "WriteType",
-        type: "string",
-        value: "json",
-        desc: "返回的数据协议格式 (json文本格式)"
-    }
-);
-
- */
 
 // options value
 
@@ -87,9 +39,6 @@ class RequiredItems extends Component {
             initialurl: "",
             url: "",
             url_obj: {}
-            // this.props.data
-            // input + output
-            // table keys , input values
         }
     }
     clickTestButton = () => {
@@ -127,9 +76,9 @@ class RequiredItems extends Component {
     urlSave = (url) => {
         // global url
     };
-/*     shouldComponentUpdate(nextProps, nextState) {
+    shouldComponentUpdate(nextProps, nextState) {
         return true;
-    } */
+    }
     componentWillUpdate(){
         // this.onSaveInput();
     }
@@ -137,19 +86,23 @@ class RequiredItems extends Component {
         // this.onSaveInput();
         // this.props.TestClick(url)
     }
-    // initialize & before onChange
+    // before onChange
+    // update after render
     componentDidMount() {
         const initial_datas = this.props.init_datas;
         // input value === init datas
-        // let url_obj ={};
+        if (debug) {
+            console.log(`%c initial_datas = \n`, color.color_css3, initial_datas);
+        }
         let url_obj = this.state.url_obj;
+        // ???
         initial_datas.map(
             (data, index) => {
                 let key = data.name,
                     value = data.value;
                 // "key":"json (json文本格式)"
                 if (debug) {
-                     console.log(`%c index = ${index} \n`, color.css1);
+                     console.log(`%c index = ${index} \n`, color.css2);
                      console.log(`%c key = ${key} \n`, color.css2);
                      console.log(`%c value = ${value} \n`, color.css2);
                 }
@@ -158,7 +111,8 @@ class RequiredItems extends Component {
                     this.setState({
                         url_obj: Object.assign(this.state.url_obj, url_obj)
                     });
-                    if (!debug) {
+                    if (debug) {
+                        console.log(`%c url_obj = ${url_obj} \n`, color.css3);
                         console.log(`%c url_obj.key = ${url_obj.key} \n`, color.css3);
                     }
                 }else{
@@ -210,8 +164,10 @@ class RequiredItems extends Component {
             }
         );
     }
+    /* eslint-disable no-console */
+    // initialize
     render() {
-        const { getFieldDecorator } = this.props.form;
+        const {getFieldDecorator} = this.props.form;
         // form input
         /* 
             console.log(`new url_obj = `, url_obj);
@@ -222,7 +178,8 @@ class RequiredItems extends Component {
         // input value === init datas
         const datas_length = initial_datas.length;
         if (debug) {
-            console.log(`initial_datas.length = `, initial_datas.length);
+            console.log(`%c initial_datas = `, color.color_css3, initial_datas);
+            console.log(`%c initial_datas.length = `, color.color_css3, initial_datas.length);
         }
         // const datas_length = 4;
         let i_length = 0;
@@ -245,14 +202,22 @@ class RequiredItems extends Component {
                 dataIndex: "value",
                 key: "value",
                 render: (text, index) => {
+                    // 
                     let init_url_obj = this.state.url_obj,
+                        // componentDidMount
                         url_obj = this.state.url_obj;
+                        // componentDidMount
                     let url = this.state.url;
                     if (debug) {
                         // disabled
                         console.log(`url_obj = `, url_obj);
+                        // {ApiName: "", EndDate: "", SecuType: "", MarketType: "", DatePerformType: "", WriteType: "json"}
                         console.log(`%c text = ${text} \n`, color.css1);
+                        // text = json 
                         console.log(`%c index = ${index} \n`, color.css2);
+                        // index = [object Object] ???
+                        console.log(`%c JSON.stringify(index) = ${JSON.stringify(index)} \n`, color.css2);
+                        // JSON.stringify(index) = {"key":0,"value":"","name":"ApiName","desc":"报表名称(true)","type":"string"} 
                     }
                     // get initial obj_url
                     if(index.name === "WriteType"){
@@ -376,6 +341,7 @@ class RequiredItems extends Component {
             </div>
         );
     }
+    /* eslint-enable no-console */
 }
 
 RequiredItems.propTypes = {

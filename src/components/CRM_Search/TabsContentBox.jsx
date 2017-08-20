@@ -9,7 +9,6 @@ import PropTypes from 'prop-types';
  * @extends {Component}
  */
 
-
 // components
 import {IT} from './Input/InputTable';
 import {OTS} from './Output/OutputTables';
@@ -20,68 +19,13 @@ import  './tabboxs.css';
 
 
 // utils
-// import {color} from '../../app/color';
-// import {debug, xyz_debug} from '../../app/debug';
+import {color} from '../../app/color';
+import {debug, xyz_debug} from '../../app/debug';
 
 // libs
-import {Tabs, Icon, Button} from 'antd';
+import {Tabs, Icon} from 'antd';
 const TabPane = Tabs.TabPane;
 
-/* 
-let arr = [],
-    arrout = [];
-
-const css = `
-    color: #0f0;
-    font-size: 23px;
-`;
-const css2 = `
-    color: #f00;
-    font-size: 16px;
-`; 
-*/
-
-const input_columns = [
-    {
-        title: "字段名",
-        dataIndex: "name",
-        key: "name",
-        width: '20%'
-    },
-    {
-        title: "类型",
-        dataIndex: "type",
-        key: "type",
-        width: '15%'
-    },
-    {
-        title: "注释",
-        dataIndex: "Description",
-        key: "Description",
-        // width: '70%'
-    }
-];
-
-const output_columns = [
-    {
-        title: "编号",
-        dataIndex: "name",
-        key: "name",
-        width: '20%'
-    },
-    {
-        title: "类型",
-        dataIndex: "type",
-        key: "type",
-        width: '15%'
-    },
-    {
-        title: "注释",
-        dataIndex: "Description",
-        key: "Description",
-        // width: '25%'
-    }
-];
 
 class TabsContentBox extends Component {
     constructor(props, context) {
@@ -92,7 +36,86 @@ class TabsContentBox extends Component {
             in_out_data: this.props.in_out_data
         };
     }
+    // shape datas ???
     render() {
+        const {input_datas, output_datas, in_out_data, developer} = {...this.props};
+        if (!debug) {
+            console.log(`%c TCB input_datas = ${input_datas}`, color.color_css3);
+            console.log(`%c TCB output_datas = ${output_datas}`, color.color_css2);
+            console.log(`%c TCB developer = ${developer}`, color.color_css1);
+        }
+        if (!debug) {
+            console.log(`%c TCB JSON.stringify(input_datas) = \n`, color.color_css3, JSON.stringify(input_datas));
+            console.log(`%c TCB JSON.stringify(output_datas) = \n`, color.color_css3, JSON.stringify(output_datas));
+        }
+        // tablenamle + datas.keys.name
+        // selects multi & select single
+        /* 
+            // output
+            [
+                {
+                    "title":"single table no table name",
+                    "datas":[{"type":"string","Description":"基金简称","name":"A0","key":"k0000"}, ...]
+                }
+            ]
+            // selects options A0, ...
+            [
+                {
+                    "tablenamle": "BasicInformationRow",
+                    "title":"基金经理详细信息(基本资料)",
+                    "datas":[{"type":"string","Description":"基金简称","name":"A0","key":"k0000"}, ...]
+                },
+                {
+                    "tablenamle": "AnyManagedFundsRow",
+                    "title":"基金经理详细信息(历任管理基金)",
+                    "datas":[{"type":"string","Description":"基金简称","name":"A0","key":"k0000"}, ...]
+                }
+            ]
+            // selects options A0, ...
+            // 基金经理详细信息(基本资料) => english table name
+            // "tablenamle": "BasicInformationRow",
+            // "tablenamle": "AnyManagedFundsRow",
+        */
+        const input_columns = [
+            {
+                title: "字段名",
+                dataIndex: "name",
+                key: "name",
+                width: '20%'
+            },
+            {
+                title: "类型",
+                dataIndex: "type",
+                key: "type",
+                width: '15%'
+            },
+            {
+                title: "注释",
+                dataIndex: "Description",
+                key: "Description",
+                // width: '70%'
+            }
+        ];
+        const output_columns = [
+            {
+                title: "编号",
+                dataIndex: "name",
+                key: "name",
+                width: '20%'
+            },
+            {
+                title: "类型",
+                dataIndex: "type",
+                key: "type",
+                width: '15%'
+            },
+            {
+                title: "注释",
+                dataIndex: "Description",
+                key: "Description",
+                // width: '25%'
+            }
+        ];
         return (
             /* <div style={{ maxWidth: 900}}> */
             <div className="tbs-width">
@@ -107,7 +130,7 @@ class TabsContentBox extends Component {
                         {/* onTabClick={this.testClick} */}
                         <IT
                             data="input datas"
-                            dataSource={this.props.input_datas}
+                            dataSource={input_datas}
                             columns={input_columns} 
                         />
                     </TabPane>
@@ -122,7 +145,7 @@ class TabsContentBox extends Component {
                         {/* single table & multi tables */}
                         <OTS
                             data="output datas"
-                            dataSources={this.props.output_datas}
+                            dataSources={output_datas}
                             columns={output_columns}
                         />
                     </TabPane>
@@ -134,9 +157,9 @@ class TabsContentBox extends Component {
                             boxSizing: "borderBox"
                         }}>
                         <TTF
-                            test_datas={this.state.in_out_data}
-                            outputs={this.props.output_datas}
-                            inputs={this.props.input_datas}
+                            test_datas={in_out_data}
+                            outputs={output_datas}
+                            inputs={input_datas}
                         />
                         {/* muilt test components */}
                     </TabPane>
@@ -147,7 +170,7 @@ class TabsContentBox extends Component {
                                 <input
                                     type="text"
                                     style={{width: 100, margin: "auto 5px", textAlign: "center", color: "red"}}
-                                    value={this.props.developer}
+                                    value={developer}
                                     disabled
                                     contentEditable="false"
                                     readOnly

@@ -77,7 +77,7 @@
         // Uncaught ReferenceError: postdata is not defined
         // const function, not auto hoisting
         const postdata = () => {
-            let id = 0;
+            let uid = 0;
             fetch(url, {
                 method: 'GET'
             }).then(
@@ -90,7 +90,7 @@
                     // Good: [1, 3] => [1, 2, 3]
                     // newjson = json.sort(id); ???
                     // json = json.sort((a, b) => a.id - b.id);
-                    json.sort((a, b) => a.id - b.id);
+                    json.sort((a, b) => a.uid - b.uid);
                     /* 
                         参数: compareFunction
                         可选, 用来指定按某种顺序进行排列的函数。
@@ -116,7 +116,7 @@
                                 return array.indexOf(element);
                             };
                             let exist = false;
-                            exist = testArray.indexOf(data.id) !== -1;
+                            exist = testArray.indexOf(data.uid) !== -1;
                             // -1
                             console.log(`index`, index);
                             console.log(`index + 1 `, (index + 1));
@@ -127,51 +127,65 @@
                             // Array.of(1, 2, 3); // [1, 2, 3]
                             // Array.from('foo'); // ["f", "o", "o"]
                             // for push
-                            if (data.id !== (index + 1) && !exist) {
-                                console.log(`data.id = \n`, data.id);
+                            if (data.uid !== (index + 1) && !exist) {
+                                console.log(`data.uid = \n`, data.uid);
                                 console.log(`index = \n`, index);
-                                id = index + 1;
+                                uid = index + 1;
                             } else {
-                                id = json.length + 1;
+                                uid = json.length + 1;
                             }
                         }
                     );
-                    console.log(`inner new id`, id);
+                    console.log(`inner new id`, uid);
                     // return id;
                 }
             );
             setTimeout(() => {
-                console.log(`outer new id`, id);
+                console.log(`outer new id`, uid);
                 fetch(url, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
                     },
                     body: JSON.stringify({
-                        id: id,
-                        name: "new-name",
-                        password: "xyz&123"
+                        id: uid,
+                        key: "111",
+                        uname: "admin",
+                        utype: "内部用户",
+                        uid: uid,
+                        lname: "西湖区001",
+                        pnum: "18123456789",
+                        email: "admin@gildata.com",
+                        vdate: "2017-08-01~2017-12-31",
+                        activation: "是"
                     })
                 });
             }, 1000);
             console.log(`%c fetch post data!`, color);
         };
-        const putdata = (id = 1) => {
-            fetch(`${url}/${id}`, {
+        const putdata = (uid = 1) => {
+            fetch(`${url}${uid}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                    // id: id,
-                    name: "put-new-name",
-                    password: "xyz&123"
+                    id: uid,
+                    key: "111",
+                    uname: "admin",
+                    utype: "内部用户",
+                    uid: uid,
+                    lname: "西湖区001",
+                    pnum: "18123456789",
+                    email: "admin@gildata.com",
+                    vdate: "2017-08-01~2017-12-31",
+                    activation: "是"
                 })
             });
             console.log(`%c fetch put data!`, color);
         };
-        const deletedata = (id = 1) => {
-            fetch(`${url}/${id}`, {
+        const deletedata = (key = 1) => {
+            fetch(`${url}?key=${key}`, {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json'
@@ -180,7 +194,7 @@
             });
             console.log(`%c fetch delete data!`, color);
         };
-        const getdata = (id) => {
+        const getdata = (dom_id) => {
             fetch(url, {
                 method: 'GET'
             }).then(
@@ -198,12 +212,12 @@
                     );
                     // regex format
                     // CodeMirror js lib
-                    document.querySelector(id).innerText = `loading...`;
+                    document.querySelector(dom_id).innerText = `loading...`;
                     // mock async
                     setTimeout(() => {
-                        document.querySelector(id).innerText = format_data;
+                        document.querySelector(dom_id).innerText = format_data;
                         console.log(`%c fetch format_data \n`, color, format_data);
-                        document.querySelector(id).innerText = data;
+                        document.querySelector(dom_id).innerText = data;
                         console.log(`%c fetch stringify data \n`, color, data);
                     }, 1000);
                     return data;
@@ -215,8 +229,8 @@
                 }
             );
         };
-        const getid = (id, dom_id) => {
-            let new_url = `${url}?uid=${id}`;
+        const getid = (uid, dom_id) => {
+            let new_url = `${url}?uid=${uid}`;
             fetch(new_url, {
                 method: 'GET'
             }).then(
@@ -265,25 +279,15 @@
         // mode: "no-cors"
         // btn_reset_db === put all
         /* 
-            {
-                "datas": [
-                {
-                        "id": 1,
-                        "name": "typicode",
-                        "password": "abc123"
-                    },
-                    {
-                        "id": 2,
-                        "name": "xgqfrms",
-                        "password": "xyz123"
-                    },
-                    {
-                        "id": 3,
-                        "name": "gildata",
-                        "password": "ufo123"
-                    }
-                ]
-            }
+            // add id to all items
+            // http://localhost:7777/datas/ === array
+            arr.map(
+                (data, index) => {
+                    // data.id = ++index;
+                    data.id = data.uid
+                    return data;
+                }
+            );
         */
     </script>
 </body>

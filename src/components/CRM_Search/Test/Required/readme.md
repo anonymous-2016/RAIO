@@ -187,20 +187,106 @@ name: Info.schema.BasicInformationRow
 
 
 
+// input datas
+/* 
+    const demo_datas = [
+        {
+            key: "k1",
+            name: "ApiName",
+            type: "string",
+            value: "fund.f9.fund_profile.FundManager.BasicInformations",
+            desc: "报表名称"
+        },
+        {
+            key: "k2",
+            name: "SecuCode",
+            type: "string",
+            value: (value || "000011"),
+            desc: "基金编码"
+        },
+        {
+            key: "k3",
+            name: "Names",
+            type: "string",
+            value: "阳琨",
+            desc: "姓名"
+        },
+        {
+            key: "k4",
+            name: "WriteType",
+            type: "string",
+            value: "json (json文本格式)",
+            desc: "返回的数据协议格式 "
+        }
+    ];
+
+ */
+// example
+
+
+
+/* 
+array.push(
+    {
+        key: "last-index",
+        name: "WriteType",
+        type: "string",
+        value: "json",
+        desc: "返回的数据协议格式 (json文本格式)"
+    }
+);
+
+ */
+
+
+ 
+/* eslint-disable no-console */
+
+
+
+/* eslint-enable no-console */
+
 ```
 
+## setState
+
+```jsx
+
+
+this.setState(
+    (prevState, props) => {
+        return {
+            counter: prevState.counter + props.step
+        };
+    }
+);
+
+
+Object.assign(
+    previousState,
+    {quantity: state.quantity + 1},
+    {quantity: state.quantity + 1},
+    // ...
+)
+
+
+this.setState(
+    (prevState) => {
+        return {
+            counter: prevState.quantity + 1
+        };
+    }
+);
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
+this.setState(
+    (prevState, props) => {
+        return Object.assign(
+            previousState,
+            {counter: prevState.counter + props.step}
+        );
+    }
+);
+```
