@@ -25,13 +25,22 @@ RI
 
 
 
+## fetch_url
+
+> `ljs_urls.ljs_info` local json server
+
+```js
+        // ljs_info 
+        if(debug){
+            fetch_url = `${ljs_urls.ljs_info}`;
+        }else{
+            // GetAllLoadSearch
+            fetch_url = `${urls.init}?{"Admin":"report","Action":"GetAllLoadSearch","WriteType":"json"}`;
+            // GetTreeSchema
+        }
 
 
-
-
-
-
-
+```
 
 
 

@@ -4,7 +4,7 @@
 // http://localhost:7777/datas
 
 
-// http://localhost:7777/info/
+
 
 fetch(`http://localhost:7777/datas`)
 .then((response) => response.json())
@@ -16,69 +16,6 @@ fetch(`http://localhost:7777/datas`)
     );
     return repos = json;
 });
-
-
-
-// fetch ReportName
-
-fetch(`http://localhost:7777/input`)
-.then((response) => response.json())
-.then((json)=> {
-    console.log(`json = ${json}`);
-    console.log(`json.length = ${json.length}`);
-    console.log(`json.Info`, json.Info.schema.Properties);
-    // Properties
-    let datas = json.Info.schema.Properties;
-    let {ApiName, SecuCode} = datas;
-    console.log(`ApiName = ${ApiName.Description}`);
-    console.log(`SecuCode = ${SecuCode.Description}`);
-    // Objects to Array
-    let arr = [];
-    for (let key in datas) {
-        if(!datas.hasOwnProperty(key)) continue;
-        if(datas.hasOwnProperty(key)) {
-            // key === index
-            arr.push(datas[key]);
-        }
-    }
-    for (let key in datas) {
-        if(!datas.hasOwnProperty(key)) continue;
-        if(datas.hasOwnProperty(key)) {
-            console.log(`key = `, key);
-            console.log(`key.type =`, key.type);
-            console.log(`key.Required =`, key.Required);
-            console.log(`key.Description =`, key.Description);
-            arr.push({
-                "type": key.type,
-                "Required": key.Required,
-                "Description": key.Description
-            });
-        }
-    } 
-    console.log(`arr result = `, arr);
-    return inputs = arr;
-});
-
-
-let objs = json.Info.schema.Properties;
-
-for (let key in objs) {
-    if(!objs.hasOwnProperty(key)) continue;
-    if(objs.hasOwnProperty(key)) {
-        console.log(`key = `, key);
-        console.log(`key.type =`, key.type);
-    }
-    let obj = objs[key];
-    for (let prop in obj) {
-        if(!obj.hasOwnProperty(prop)) continue;
-        if(obj.hasOwnProperty(prop)) {
-            console.log(`prop= `, prop);
-            console.log(`prop.type =`, prop.type);
-        }
-    }
-}
-
-
 
 
 // fetch post

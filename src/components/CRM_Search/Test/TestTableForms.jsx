@@ -111,6 +111,17 @@ class TestTableForms extends Component {
             }
         );
     };
+    checkTestCommands = () => {
+        // fetch test data
+        if (debug) {
+            console.log(`%c ready fetching commands url  = \n`, css1);
+        }
+        this.startTest();
+        if (debug) {
+            console.log(`%c fetching fetch_url = \n`, css1, this.state.fetch_url);
+        }
+    };
+    // Modal
     showModal = () => {
         if (!debug) {
             console.log(`clicked showModal!`);
@@ -148,14 +159,7 @@ class TestTableForms extends Component {
             console.log(`%c hideModal agian = `, css2, this.state.show);
         }
     };
-    checkTestCommands = () => {
-        // fetch test data
-        if (debug) {
-            console.log(`%c ready fetching commands url  = \n`, css1);
-        }
-        this.startTest();
-        // console.log(`%c fetching url = \n`, css1, url);
-    };
+    // Modal
     testOK = (e) => {
         // e.preventDefault();
         if (debug) {
@@ -177,6 +181,7 @@ class TestTableForms extends Component {
             visible: false
         });
     };
+    // Panel
     cilicPanel = () => {
         if (debug) {
             console.log(`%C this.state.isCollapsed= `, color.css1, this.state.isCollapsed);
@@ -187,17 +192,27 @@ class TestTableForms extends Component {
         if (debug) {
             console.log(`%C new this.state.isCollapsed = `, color.css1, this.state.isCollapsed);
         }
-    }
+    };
     /* eslint-disable no-console */
     render() {
         const {show, test_datas} = {...this.state};
-        const {inputs, outputs} = {...this.props};
+        const {inputs, outputs, options} = {...this.props};
+        // options
+        const {sort, fields, datas} = options;
         if (!debug) {
             console.log(`%c ri inputs`, color.color_css3, inputs);
             console.log(`%c ri outputs`, color.css2, outputs);
+            // options
+            console.log(`%c test options`, color.green_23, options);
+            console.log(`%c sort = \n`, color.green_23, sort);
+            console.log(`%c fields = \n`, color.green_23, fields);
+            // datas
+            console.log(`%c datas = \n`, color.green_23, datas);
         }
         // shape input data & example
         let ri_datas = [];
+        let op_datas = [];
+        // commandexample
         if(inputs.commandexample){
             /* 
             "commandexample" : "{            \"SecuCode\": 000011,            \"ApiName\": \"fund.f9.fund_profile.FundIntroduce\" }",
@@ -241,9 +256,24 @@ class TestTableForms extends Component {
                         obj.desc = value.Description;
                         obj.type = value.type;
                         ri_datas.push(obj);
-                        if (debug) {
+                        if (!debug) {
                             console.log(`%c ri_datas obj = `, color.css1, obj);
                             console.log(`%c ri_datas[${index}] = `, color.css1, ri_datas);
+                        }
+                    }
+                    // Options True
+                    if (!value.Required && value.name !== "WriteType") {
+                        // all options will be pushed to op_datas!
+                        let obj = {};
+                        obj.key = index;
+                        obj.value = "";
+                        obj.name = value.name;
+                        obj.desc = value.Description;
+                        obj.type = value.type;
+                        op_datas.push(obj);
+                        if (!debug) {
+                            console.log(`%c op_datas obj = `, color.css2, obj);
+                            console.log(`%c  op_datas[${index}] = `, color.css2,  op_datas);
                         }
                     }
                     // return obj_temp[index];
@@ -260,9 +290,10 @@ class TestTableForms extends Component {
                 "desc": "返回的数据协议格式"
             };
             ri_datas.push(fixed_obj);
-            if (!debug) {
-                console.log(`%c ri ri_datas = `, color.css2, ri_datas);
-            }
+        }
+        if (!debug) {
+            console.log(`%c finished ri_datas = `, color.css2, ri_datas);
+            console.log(`%c finished op_datas = `, color.css2,  op_datas);
         }
         const testdatas = [
             {
@@ -299,17 +330,10 @@ class TestTableForms extends Component {
                 <div >
                     <p className="title-color">必填项</p>
                     <RI 
-                        init_datas={(ri_datas.length > 0 ) ? ri_datas : testdatas}
-                        test_datas={test_datas}
+                        init_datas={(ri_datas.length > 0) ? ri_datas : testdatas}
                         TestClick={this.TestClick}
                         disableBTN={this.disableBTN}
                     />
-                    {/* 
-                        coloums = 字段 类型 值 描述
-                        input + output => new table data
-                        // required 
-                        // new objects
-                    */}
                 </div>
                 <div style={{textAlign: "center"}}>
                     <Button
@@ -354,17 +378,16 @@ class TestTableForms extends Component {
                                 key="1"
                                 >
                                 {/* <Table dataSource={this.props.dataSource} columns={this.props.columns} bordered pagination={false}/> */}
-                                <OI dataSource={this.props.dataSource} columns={this.props.columns}/>
-                                <Form />
+                                <OI
+                                    dataSource={this.props.dataSource}
+                                    columns={this.props.columns}
+                                    sort_items={sort}
+                                    fields_items={fields}
+                                    option_datas={op_datas}
+                                    TestClick={this.TestClick}
+                                />
                             </Panel>
                         </Collapse>
-                        /* 
-                            <div style={{visibility: "hidden"}}>
-                                {
-                                    (Math.random()*10 > 5) ? <button>展开-可选项</button> : <button>收起-可选项</button>
-                                }
-                            </div> 
-                        */
                     }
                 </div>
                 <div style={{visibility: "hidden"}}>

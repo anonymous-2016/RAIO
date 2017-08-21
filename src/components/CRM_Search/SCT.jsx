@@ -41,7 +41,9 @@ class SCT extends Component {
     inputClick = (url) => {
         // http://localhost:7777/input
         let u = `${url}`;
-        console.log(`url test = ${u}`, u);
+        if (debug) {
+            console.log(`%c url test = ${u}`, color.color_css3);
+        }
         fetch(`${url}`)
         .then((response) => response.json())
         .then((json)=> {
@@ -176,6 +178,7 @@ class SCT extends Component {
                     arr.push(objs[key]);
                 }
                 new_obj.title = "";
+                new_obj.tablenamle = "";
                 new_obj.datas = arr;
                 datas.push(new_obj);
                 // datas = [];
@@ -190,7 +193,7 @@ class SCT extends Component {
                         i = 0;
                     // tab.name === "AnyManagedFundsRow":[] ???
                     // results table
-                    if(debug){
+                    if(!debug){
                         console.log(`%c $$$$$$$$$$  tab.name === "AnyManagedFundsRow":[] ??? $$$$$$$$$$`, color.css2);
                     }
                     // add Table.name = "AnyManagedFundsRow"
@@ -207,7 +210,7 @@ class SCT extends Component {
                                 objs[key].key = ("k000" + i++);
                             }
                             arr.push(objs[key]);
-                            if (debug) {
+                            if (!debug) {
                                 console.log(`arr ${key}`, arr);
                             }
                         }
@@ -216,7 +219,7 @@ class SCT extends Component {
                         new_obj.tablenamle = tablenamle;
                         new_obj.datas = arr;
                         if (debug) {
-                            console.log(`new obj = `, new_obj);
+                            console.log(`%c new output obj = `, color.css2, new_obj);
                         }
                     }
                     datas.push(new_obj);

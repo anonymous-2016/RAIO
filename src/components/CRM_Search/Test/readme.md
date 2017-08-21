@@ -1,6 +1,31 @@
 # test
 
 
+> options
+
+```js
+
+    if (!debug) {
+        console.log(`%c index = ${index}`, color.css1);
+        // index = [object Object] === row datas
+        console.log(`%c JSON.stringify(index) = ${JSON.stringify(index)}`, color.color_css3);
+        /* 
+            {
+                "key":"k-fdft",
+                "name":"FastDateFilterType",
+                "type":"array",
+                "value":"select 1 = fixed ((最新日期) (今年以来) (近一月) (近三月) (近六月) (近一年) (近二年) (近三年) (近五年) (全部) (上市以前) (上市以后) (自定义 ? datapicker ))",
+                "description":"日期 快速过滤类型"
+            }
+        */
+        console.log(`%c text = ${text}`, color.css2);
+        //  text = select 1 = fixed ((最新日期) (今年以来) (近一月) (近三月) (近六月) (近一年) (近二年) (近三年) (近五年) (全部) (上市以前) (上市以后) (自定义 ? datapicker ))
+    }
+
+
+```
+
+
 
 主板F9->财务数据->报表附注->其他应收账款账龄结构
 

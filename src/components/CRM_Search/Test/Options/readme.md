@@ -578,6 +578,236 @@ date = datepicker(yyyy-MM-dd) / input
 
 
 
+```js
+
+    {
+        sort_items.map(
+            (value, index) => {
+                return(
+                    <Option
+                        key={index}
+                        value={value.name}>
+                        {value.description}
+                    </Option>
+                )
+            }
+        )
+    }
+
+Object.keys(sort_items);
+
+
+/*
+
+    let obj = {A0: "基本资料-成立日期", A1: "基本资料-总经理", A2: "基本资料-法人代表"};
+
+    Object.keys(obj);
+    // ["A0", "A1", "A2"]
+    Object.values(obj);
+    // ["基本资料-成立日期", "基本资料-总经理", "基本资料-法人代表"]
+    Object.entries(obj);
+    // [["A0", "基本资料-成立日期"], ["A1", "基本资料-总经理"], ["A2", "基本资料-法人代表"]]
+    // map ??
+
+*/
+
+for(let key in obj){
+    console.log(`key = `, key);
+    console.log(`obj[${key}] === value = `, obj[key]);
+}
+
+/*
+
+    key =  A0
+    obj[A0] === value =  基本资料-成立日期
+    key =  A1
+    obj[A1] === value =  基本资料-总经理
+    key =  A2
+    obj[A2] === value =  基本资料-法人代表
+
+*/
+
+
+// array / array like object
+for(let value of obj){
+    console.log(`value`, value);
+}
+
+// Uncaught TypeError: obj[Symbol.iterator] is not a function
+
+```
+
+
+
+```jsx
+// bug
+
+
+    {
+        [sort_items].map(
+            (sort_items) => {
+                let i = 0;
+                for(let key in sort_items){
+                    return(
+                        <Option
+                            key={key.toString()+i}
+                            value={key}>
+                            {
+                                sort_items[key]
+                            }
+                        </Option>
+                    )
+                }
+            }
+        )
+    }
+
+
+
+[fields_items].map(
+    (fields) => {
+        let i = 0;
+        for(let key in fields){
+            return(
+                <Option
+                    key={key.toString()+i}
+                    value={key}>
+                    {
+                        fields[key]
+                    }
+                </Option>
+            )
+        }
+    }
+)
+
+
+
+let obj = {A0: "基本资料-成立日期", A1: "基本资料-总经理", A2: "基本资料-法人代表"};
+
+[obj].map(
+    (fields) => {
+        let i = 0;
+        for(let key in fields){
+            console.log(`key`, key);console.log(`fields[key]`, fields[key]);
+        }
+    }
+)
+// key A0
+// fields[key] 基本资料-成立日期
+// key A1
+// fields[key] 基本资料-总经理
+// key A2
+// fields[key] 基本资料-法人代表
+
+
+
+
+
+
+```
+
+
+## shit api
+
+
+```jsx
+
+
+// OK
+
+    {
+        Object.keys(fields_items).map(
+            (key, i) => {
+                return(
+                    <Option
+                        key={i}
+                        value={key}>
+                        {
+                            fields_items[key]
+                        }
+                    </Option>
+                );
+            }
+        )
+    }
+
+
+    // Bad
+
+    {
+        [fields_items].map(
+            (fields) => {
+                let i = 0;
+                let arr = [];
+                for(let key in fields){
+                    arr.push(
+                        <Option
+                            key={i++}
+                            value={key}>
+                            {
+                                fields[key]
+                            }
+                        </Option>
+                    )
+                }
+                return arr;
+            }
+        )
+    }
+
+// Uncaught TypeError: Cannot use 'in' operator to search for 'value' in undefined
+
+
+
+
+
+
+```
+
+
+
+
+
+
+
+```js
+
+
+    // sort_items => array === Object.keys()
+    // sort_items for in
+    const index_values = [
+        {
+            "key": "k1",
+            "name": "A0",
+            "type" : "string",
+            "description" : "A份额交易代码"
+        },
+        {
+            "key": "k2",
+            "name": "A1",
+            "type" : "string",
+            "description" : "净值日期"
+        },
+        {
+            "key": "k3",
+            "name": "A2",
+            "type" : "string",
+            "description" : "A份额交易代码"
+        },
+        {
+            "key": "k4",
+            "name": "A3",
+            "type" : "number",
+            "description" : "单位净值（元）"
+        }
+    ];
+
+```
+
+
+
+
 
 
 

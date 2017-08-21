@@ -44,6 +44,7 @@ class TabsContentBox extends Component {
             console.log(`%c TCB output_datas = ${output_datas}`, color.color_css2);
             console.log(`%c TCB developer = ${developer}`, color.color_css1);
         }
+        // input_datas & output_datas
         if (!debug) {
             console.log(`%c TCB JSON.stringify(input_datas) = \n`, color.color_css3, JSON.stringify(input_datas));
             console.log(`%c TCB JSON.stringify(output_datas) = \n`, color.color_css3, JSON.stringify(output_datas));
@@ -76,6 +77,61 @@ class TabsContentBox extends Component {
             // "tablenamle": "BasicInformationRow",
             // "tablenamle": "AnyManagedFundsRow",
         */
+        // const output_options = "";
+        let options_obj = {},
+            options_sort = {},
+            options_fields = {},
+            options_datas = [];
+        const output_options = output_datas;
+        // copy & in case of modify original Array
+        output_options.map(
+            (value, index) => {
+                if(!debug) {
+                    console.log(`index = ${index}`);
+                    console.log(`value = \n `, value);
+                    console.log(`JSON.stringify(value) = \n`, JSON.stringify(value));
+                    console.log(`value tablenamle = `, value.tablenamle);
+                    console.log(`value title = `, value.title);
+                    console.log(`value datas \n = `, value.datas);
+                }
+                let key_prefix = value.tablenamle;
+                let value_prefix = value.title;
+                value.datas.map(
+                    (v, i) => {
+                        if (!debug) {
+                            console.log(`v.name = ${v.name}`);
+                            console.log(`v.Description = ${v.Description}`);
+                        }
+                        if(value_prefix.length > 0){
+                            // multi table
+                            options_sort[`${key_prefix}.${v.name}`] = `${value_prefix}-${v.Description}`;
+                            options_fields[`${key_prefix}.${v.name}`] = `${v.Description}`;
+                        }else{
+                            // single table
+                            options_sort[`${v.name}`] = `${v.Description}`;
+                            options_fields[`${v.name}`] = `${v.Description}`;
+                        }
+                    }
+                );
+                options_obj["sort"] = options_sort;
+                options_obj["fields"] = options_fields;
+                // return temp_obj;
+            }
+        );
+        options_obj["datas"] = options_datas;
+        // moved to TTF shape op_datas
+        // input_datas => options
+        /* 
+            {
+                key: "k1",
+                name: "EndDate",
+                type: "string",
+                value: "2016-09-30",
+                description: "报告期"
+            }
+        */
+        // Sorts === tablenamle + datas.keys.name & tabletitle
+        // OutField/IgnoreField === tablenamle + datas.keys.name & no tabletitle
         const input_columns = [
             {
                 title: "字段名",
@@ -160,6 +216,7 @@ class TabsContentBox extends Component {
                             test_datas={in_out_data}
                             outputs={output_datas}
                             inputs={input_datas}
+                            options={options_obj}
                         />
                         {/* muilt test components */}
                     </TabPane>

@@ -96,30 +96,54 @@ class OptionsItems extends Component {
             select_value: e.target.value,
         });
     };
+    onRadioGroupChange = (e) => {
+        // onRadioGroupChange
+        console.log('selects checked', e.target);
+        // {value: "false", type: "radio", checked: true, disabled: false, onChange: ƒuntion, ...}
+        console.log('selects checked', e.target.value);
+        // true / false
+        // value={this.state.compress_value}
+    };
     onSelectDateChange = (e) => {
         if (debug) {
-            console.log('select Date checked', e.target.value);
+            console.log('%c select Date checked', color.css1, e);
         }
-        this.setState({
-            select_date: e.target.value,
-        });
-    }
+    };
+    onSelectSortKeyChange = (e) => {
+        // onSelectSortChange
+        if (debug) {
+            console.log('select Sort Key checked', e);
+        }
+    };
+    onSelectSortMethodChange = (e) => {
+        // onSelectSortChange
+        if (debug) {
+            console.log('select Sort Method checked', e);
+        }
+    };
+    onOutFieldChange = (e) => {
+        if (debug) {
+            console.log('%c select OutField checked', color.color_css3, e);
+            // ["BasicInformationRow.A0", "BasicInformationRow.A2", "BasicInformationRow.A5"]
+        }
+    };
+    onGroupChange = (e) => {
+        if (debug) {
+            console.log('%c select Group checked', color.color_css3, e);
+            // ["BasicInformationRow.A0", "BasicInformationRow.A2", "BasicInformationRow.A5"]
+        }
+    };
+    onIgnoreFieldChange = (e) => {
+        if (debug) {
+            console.log('select IgnoreField checked', e);
+        }
+    };
     onCheckboxGroupChange = (checkedValues) => {
         if (debug) {
             console.log('Checkbox Group checked = ', checkedValues);
         }
         // array []
         // "checked = " ["Q1th", "Q2nd", "Q3rd", "Q4th"]
-    };
-    onDefaultInputChange = (e) => {
-        if (debug) {
-            console.log('Default Input e checked = ', e.target.value);
-        }
-        let obj = {};
-        obj[e.target.id] = e.target.value;
-        this.setState({
-            defaultInput: Object.assign(this.state.defaultInput, obj)
-        });
     };
     onPageInputChange = (e) => {
         if (!debug) {
@@ -145,11 +169,31 @@ class OptionsItems extends Component {
             console.log('changed this.state.Page ', this.state.Page);
         }
     };
+    // default
+    onDefaultInputChange = (e) => {
+        // onDefaultInputChange
+        if (debug) {
+            console.log('Default Input e.target checked = ', e.target);
+            console.log('Default Input e.target.value checked = ', e.target.value);
+            console.log('Default e.target.id checked = ', e.target.id);
+            console.log('Default e.target.key checked = ', e.target.key);
+        }
+        let obj = {};
+        let key = e.target.id;
+        let value = e.target.value;
+        obj[key] = value;
+        this.setState(
+            (prevState, props) => {
+                return{
+                    defaultInput : Object.assign(prevState.defaultInput, obj)
+                }
+            }
+        );
+    };
     render() {
-        // mock/fake data
-        // needs value
+        const {sort_items, fields_items, option_datas} = this.props;
         // value === output name & desc
-        const option_datass = [
+        /* const option_datas = [
             {
                 key: "k1",
                 name: "EndDate",
@@ -227,7 +271,8 @@ class OptionsItems extends Component {
                 value: "multi checkbox 1 = fixed ((一季报) (中报) (三季报) (年报))",
                 description: "季报 快速过滤类型"
             }
-        ];
+        ]; */
+        // ???
         // fixed columns 
         const options_columns = [
             {
@@ -261,7 +306,7 @@ class OptionsItems extends Component {
                             size="40"
                         />
                     */
-                    if (debug) {
+                    if (!debug) {
                         console.log(`%c index = ${index}`, color.css1);
                         // index = [object Object] === row datas
                         console.log(`%c JSON.stringify(index) = ${JSON.stringify(index)}`, color.color_css3);
@@ -275,6 +320,7 @@ class OptionsItems extends Component {
                             }
                         */
                         console.log(`%c text = ${text}`, color.css2);
+                        //  text = select 1 = fixed ((最新日期) (今年以来) (近一月) (近三月) (近六月) (近一年) (近二年) (近三年) (近五年) (全部) (上市以前) (上市以后) (自定义 ? datapicker ))
                     }
                     // switch
                     let valueType;
@@ -294,32 +340,7 @@ class OptionsItems extends Component {
                         {"Customer":"自定义"}
                     ];
                     // datepicker 自定义
-                    const index_values = [
-                        {
-                            "key": "k1",
-                            "name": "A0",
-                            "type" : "string",
-                            "description" : "A份额交易代码"
-                        },
-                        {
-                            "key": "k2",
-                            "name": "A1",
-                            "type" : "string",
-                            "description" : "净值日期"
-                        },
-                        {
-                            "key": "k3",
-                            "name": "A2",
-                            "type" : "string",
-                            "description" : "A份额交易代码"
-                        },
-                        {
-                            "key": "k4",
-                            "name": "A3",
-                            "type" : "number",
-                            "description" : "单位净值（元）"
-                        }
-                    ];
+                    // demo index_values 
                     const QR = [
                         {"label": "一季报", "value": "Q1th"},
                         {"label": "中报", "value": "Q2nd"},
@@ -327,6 +348,7 @@ class OptionsItems extends Component {
                         {"label": "年报", "value": "Q4th"}
                     ];
                     // switch cases
+                    let input_name = index.name;
                     switch (index.name) {
                         case "Sorts":
                             valueType = (
@@ -342,18 +364,28 @@ class OptionsItems extends Component {
                                     <Select
                                         allowClear
                                         placeholder="排序字段，支持排序组合"
+                                        onChange={this.onSelectSortKeyChange}
                                         >
-                                        {/* index.value.map */}
+                                        {/* 
+                                            Select.js:630 Uncaught TypeError: Cannot read property 'type' of null
+                                        */}
                                         {
-                                            index_values.map(
-                                                (value, index) => {
-                                                    return(
-                                                        <Option
-                                                            key={index}
-                                                            value={value.name}>
-                                                            {value.description}
-                                                        </Option>
-                                                    )
+                                            [sort_items].map(
+                                                (sort_items) => {
+                                                    let i = 0;
+                                                    let arr = [];
+                                                    for(let key in sort_items){
+                                                        arr.push(
+                                                            <Option
+                                                                key={key.toString()+i}
+                                                                value={key}>
+                                                                {
+                                                                    sort_items[key]
+                                                                }
+                                                            </Option>
+                                                        )
+                                                    }
+                                                    return arr;
                                                 }
                                             )
                                         }
@@ -362,6 +394,7 @@ class OptionsItems extends Component {
                                     <Select
                                         allowClear
                                         placeholder="排序方式: (升序) 或 (降序) 或 (无序)"
+                                        onChange={this.onSelectSortMethodChange}
                                         > 
                                         <Option value="desc">升序</Option>
                                         <Option value="asc">降序</Option>
@@ -380,11 +413,11 @@ class OptionsItems extends Component {
                                     {
                                         FDFT.map(
                                             (value, index) => {
-                                                if (debug) {
+                                                if (!debug) {
                                                     console.log(`value = `, value);
                                                 }
                                                 for(let key in value){
-                                                    if (debug) {
+                                                    if (!debug) {
                                                         console.log(`value[key] = `, value[key]);
                                                         console.log(`key = `, key);
                                                     }
@@ -419,17 +452,20 @@ class OptionsItems extends Component {
                                     mode="multiple"
                                     allowClear
                                     placeholder="数据输出的字段，用于输出字段过滤，当输出字段数量小于不输出字段数量时采用"
+                                    onChange={this.onOutFieldChange}
                                     >
                                     {
-                                        index_values.map(
-                                            (value, index) => {
+                                        Object.keys(fields_items).map(
+                                            (key, i) => {
                                                 return(
                                                     <Option
-                                                        key={index}
-                                                        value={value.name}>
-                                                        {value.description}
+                                                        key={i}
+                                                        value={key}>
+                                                        {
+                                                            fields_items[key]
+                                                        }
                                                     </Option>
-                                                )
+                                                );
                                             }
                                         )
                                     }
@@ -442,17 +478,20 @@ class OptionsItems extends Component {
                                     mode="multiple"
                                     allowClear
                                     placeholder="数据输出的字段，用于输出字段过滤，当输出字段数量小于不输出字段数量时采用"
+                                    onChange={this.onIgnoreFieldChange}
                                     >
                                     {
-                                        index_values.map(
-                                            (value, index) => {
+                                        Object.keys(fields_items).map(
+                                            (key, i) => {
                                                 return(
                                                     <Option
-                                                        key={index}
-                                                        value={value.name}>
-                                                        {value.description}
+                                                        key={i}
+                                                        value={key}>
+                                                        {
+                                                            fields_items[key]
+                                                        }
                                                     </Option>
-                                                )
+                                                );
                                             }
                                         )
                                     }
@@ -484,8 +523,8 @@ class OptionsItems extends Component {
                         case "Compress": 
                             valueType = (
                                 <RadioGroup
-                                    onChange={this.onChange}
-                                    value={this.state.value}>
+                                    onChange={this.onRadioGroupChange}
+                                    >
                                     <Radio value="true">
                                         是
                                     </Radio>
@@ -500,15 +539,18 @@ class OptionsItems extends Component {
                                 <Select
                                     allowClear
                                     placeholder="分组字段，当选择分组时，pageInfo 同样针对组分页"
+                                    onChange={this.onGroupChange}
                                     > 
                                     {
-                                        index_values.map(
-                                            (value, index) => {
-                                                return (
-                                                   <Option
-                                                        key={index}
-                                                        value={value.name}>
-                                                        {value.description}
+                                        Object.keys(fields_items).map(
+                                            (key, i) => {
+                                                return(
+                                                    <Option
+                                                        key={i}
+                                                        value={key}>
+                                                        {
+                                                            fields_items[key]
+                                                        }
                                                     </Option>
                                                 );
                                             }
@@ -523,6 +565,29 @@ class OptionsItems extends Component {
                                     placeholder="可选项 Filters 赋值"
                                     value=""
                                     type="text"
+                                    key={index.name}
+                                    disabled
+                                />
+                            )
+                            break;
+                        case "CallBack": 
+                            valueType = (
+                                <Input 
+                                    placeholder="可选项 CallBack 赋值"
+                                    value=""
+                                    type="text"
+                                    key={index.name}
+                                    disabled
+                                />
+                            )
+                            break;
+                        case "ExtParams": 
+                            valueType = (
+                                <Input 
+                                    placeholder="可选项 ExtParams 赋值"
+                                    value=""
+                                    type="text"
+                                    key={index.name}
                                     disabled
                                 />
                             )
@@ -530,10 +595,11 @@ class OptionsItems extends Component {
                         default:
                             valueType = (
                                 <Input 
-                                    placeholder="可选项 赋值"
-                                    value={this.state.defaultInput[index.name] ? this.state.defaultInput[index.name] : "index.name"}
+                                    placeholder="☹️ 暂无默认的可选项命令值"
+                                    value={this.state.defaultInput.input_name ? this.state.defaultInput.input_name : (text ? text : "")}
                                     type="text"
-                                    id={index.name}
+                                    id={input_name}
+                                    key={index.key + 1}
                                     onChange={this.onDefaultInputChange}
                                 />
                             )
@@ -564,7 +630,7 @@ class OptionsItems extends Component {
                         onSubmit={this.handleSubmit}
                         >
                         <Table
-                            dataSource={(this.props.dataSource ? this.props.dataSource : option_datass)}
+                            dataSource={(this.props.dataSource ? this.props.dataSource : option_datas)}
                             columns={options_columns}
                             bordered
                             pagination={false}
@@ -577,9 +643,12 @@ class OptionsItems extends Component {
 
 OptionsItems.propTypes = {
     // init_options_datas: PropTypes.array.isRequired,
+    sort_items: PropTypes.object.isRequired,
+    fields_items: PropTypes.object.isRequired,
+    option_datas: PropTypes.array.isRequired,
+    TestClick: PropTypes.func.isRequired,
 };
 
 const OI = OptionsItems;
-
 export {OI};
 export default OI;

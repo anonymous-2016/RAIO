@@ -48,7 +48,8 @@ class CRMS extends Component {
             loading: true
         });
         let fetch_url = "";
-        if(!debug){
+        // ljs_info 
+        if(debug){
             fetch_url = `${ljs_urls.ljs_info}`;
         }else{
             // GetAllLoadSearch
@@ -57,7 +58,7 @@ class CRMS extends Component {
         }
         if(debug){
             // fetch_url
-            console.log(`%c initial menus(routes) url = \n`, color.color_css1, fetch_url);
+            console.log(`%c initial menus(routes) url = ${fetch_url}`, color.color_css1);
         }
         fetch(fetch_url)
         .then((response) => response.json())

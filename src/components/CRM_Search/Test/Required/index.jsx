@@ -9,63 +9,43 @@ import PropTypes from 'prop-types';
  * @extends {Component}
  */
 
- // utils
+// utils
 import {urls}from '../../../../app/urls.js';
 import {color}from '../../../../app/color';
 import {debug} from '../../../../app/debug';
 
 
+// libs
 import {Table, Input, Form} from 'antd';
 const FormItem = Form.Item;
 
 // let url_obj = {};
 // let url = "";
 // initial url
+// const value = "";
 
 
-const value = "";
-// undefined
-
-
-
-// options value
 
 class RequiredItems extends Component {
     constructor(props, context) {
         super(props, context);
         this.state = {
-            datas: [],
-            testurl: "",
+            datas: this.props.init_datas,
             initialurl: "",
             url: "",
             url_obj: {}
         }
     }
-    clickTestButton = () => {
-        // url = data & modify input value
-        // create a new url
-        /* 
-            fetch test result
-            // show result
-        */
-        // input onchange bind to start_test()
-    };
-    onSaveInput = (url) => {
+    onSaveInput = () => {
         // input onchange
         // let str_obj = JSON.stringify(url_obj);
         // url = `http://10.1.5.31:8080/http/report/query?${str_obj}`;
+        // this.onInputChange();
         if (debug) {
-            console.log(`input url = `, color.css3, this.state.url);
+            console.log(`input test url = `, color.css3, this.state.url);
         }
-        // global url
-        this.setState({
-            testurl: url
-        });
-        if (debug) {
-            console.log(`new testurl = `, this.state.testurl);
-        }
-        // url
-        this.props.TestClick(this.state.testurl);
+        // TestClick(url)
+        this.props.TestClick(this.state.url);
     };
     autoSave = () => {
         // global url
@@ -73,63 +53,57 @@ class RequiredItems extends Component {
             this.onSaveInput();
         }, 0);
     };
-    urlSave = (url) => {
-        // global url
-    };
-    shouldComponentUpdate(nextProps, nextState) {
-        return true;
-    }
-    componentWillUpdate(){
-        // this.onSaveInput();
-    }
-    componentDidUpdate() {
-        // this.onSaveInput();
-        // this.props.TestClick(url)
-    }
-    // before onChange
-    // update after render
+    // before onChange & update after render
     componentDidMount() {
-        const initial_datas = this.props.init_datas;
         // input value === init datas
+        const initial_datas = this.props.init_datas;
+        let temp_url_obj = this.state.url_obj;
         if (debug) {
             console.log(`%c initial_datas = \n`, color.color_css3, initial_datas);
+            // (4) [{…}, {…}, {…}, {…}]
+            // {key: 0, value: "", name: "ApiName", desc: "报表名称(true)", type: "string"}
+            console.log(`%c initial temp_url_obj = \n`, color.color_css3, temp_url_obj);
+            // {ApiName: "", SecuCode: "", Names: "", WriteType: "json"}
         }
-        let url_obj = this.state.url_obj;
-        // ???
+        // example / ""
         initial_datas.map(
             (data, index) => {
                 let key = data.name,
                     value = data.value;
                 // "key":"json (json文本格式)"
                 if (debug) {
-                     console.log(`%c index = ${index} \n`, color.css2);
-                     console.log(`%c key = ${key} \n`, color.css2);
-                     console.log(`%c value = ${value} \n`, color.css2);
+                    console.log(`%c JSON.stringify(data)= ${JSON.stringify(data)} \n`, color.css2);
+                    // JSON.stringify(data)= {"key":0,"value":"","name":"ApiName","desc":"报表名称(true)","type":"string"} 
+                    console.log(`%c index = ${index} \n`, color.css2);
+                    console.log(`%c key = ${key} \n`, color.css2);
+                    console.log(`%c value = ${value} \n`, color.css2);
                 }
+                // fixed
                 if(key === "WriteType"){
-                    url_obj[key] = "json";
+                    temp_url_obj[key] = "json";
                     this.setState({
-                        url_obj: Object.assign(this.state.url_obj, url_obj)
+                        url_obj: Object.assign(this.state.url_obj, temp_url_obj)
                     });
                     if (debug) {
-                        console.log(`%c url_obj = ${url_obj} \n`, color.css3);
-                        console.log(`%c url_obj.key = ${url_obj.key} \n`, color.css3);
+                        console.log(`%c temp_url_obj = ${temp_url_obj} \n`, color.css3);
+                        console.log(`%c temp_url_obj[key] = ${temp_url_obj[key]} \n`, color.css3);
                     }
                 }else{
-                    url_obj[key] = value;
+                    temp_url_obj[key] = value;
                     this.setState({
-                        url_obj: Object.assign(this.state.url_obj, url_obj)
+                        url_obj: Object.assign(this.state.url_obj, temp_url_obj)
                     });
-                    if (!debug) {
-                        console.log(`%c value = ${url_obj.key} \n`, color.css3);
+                    if (debug) {
+                        console.log(`%c temp_url_obj.key = ${temp_url_obj.key} \n`, color.css3);
+                        console.log(`%c temp_url_obj[key] = ${temp_url_obj[key]} \n`, color.css3);
                     }
-                }
-                if (debug) {
-                    console.log(`%c url_obj = \n`, color.color_css2, url_obj);
                 }
             }
         );
-        let str_obj = JSON.stringify(url_obj);
+        if (debug) {
+            console.log(`%c init temp_url_obj = \n`, color.color_css2, temp_url_obj);
+        }
+        let str_obj = JSON.stringify(temp_url_obj);
         // get changed table values ?
         // global url ??? update bug (only one input can be update, overwrite)
         this.setState({
@@ -137,10 +111,10 @@ class RequiredItems extends Component {
         });
         let init = 0;
         if (debug && (init === 0)) {
-            console.log(`%c initial url = \n`, color.color_css3, this.state.url);
+            console.log(`%c initial test url = \n`, color.color_css3, this.state.url);
             init += 1;
         }else{
-            console.log(`%c new url, index = ${init}  = \n`, color.color_css3, this.state.url);
+            console.log(`%c update new test url, index:${init} = \n`, color.color_css3, this.state.url);
         }
         // initial url
         this.autoSave();
@@ -163,7 +137,31 @@ class RequiredItems extends Component {
                 }
             }
         );
-    }
+    };
+    onInputChange = (e) => {
+        if (debug) {
+            // console.log(`%c e.target = `, color.green_23, e.target);
+            // <input type="text" placeholder="☹️ 暂无默认的示例命令值 !" value="111" id="ApiName" data-__meta="[object Object]" class="ant-input ant-input-lg">
+            console.log(`%c e.target.id = `, color.green_23, e.target.id);
+            console.log(`%c e.target.value = `, color.green_23, e.target.value);
+        }
+        let temp_url_obj = this.state.url_obj;
+        if (debug) {
+            console.log(`%c before change temp_url_obj = \n`, color.color_css2, temp_url_obj);
+        }
+        let key =  e.target.id;
+        let value = e.target.value;
+        temp_url_obj[key] = value;
+        if (debug) {
+            console.log(`%c after change temp_url_obj = \n`, color.color_css2, temp_url_obj);
+        }
+        let str_obj = JSON.stringify(temp_url_obj);
+        // get changed table values ?
+        // global url ??? update bug (only one input can be update, overwrite)
+        this.setState({
+            url: `${urls.test}?${str_obj}`
+        });
+    };
     /* eslint-disable no-console */
     // initialize
     render() {
@@ -175,13 +173,11 @@ class RequiredItems extends Component {
             let url = `http://10.1.5.31:8080/http/report/query?${str_obj}`;
         */
         const initial_datas = this.props.init_datas;
-        // input value === init datas
         const datas_length = initial_datas.length;
-        if (debug) {
+        if (!debug) {
             console.log(`%c initial_datas = `, color.color_css3, initial_datas);
             console.log(`%c initial_datas.length = `, color.color_css3, initial_datas.length);
         }
-        // const datas_length = 4;
         let i_length = 0;
         // input in table
         const Requiredcolumns = [
@@ -202,45 +198,14 @@ class RequiredItems extends Component {
                 dataIndex: "value",
                 key: "value",
                 render: (text, index) => {
-                    // 
-                    let init_url_obj = this.state.url_obj,
-                        // componentDidMount
-                        url_obj = this.state.url_obj;
-                        // componentDidMount
-                    let url = this.state.url;
-                    if (debug) {
-                        // disabled
-                        console.log(`url_obj = `, url_obj);
-                        // {ApiName: "", EndDate: "", SecuType: "", MarketType: "", DatePerformType: "", WriteType: "json"}
-                        console.log(`%c text = ${text} \n`, color.css1);
-                        // text = json 
-                        console.log(`%c index = ${index} \n`, color.css2);
-                        // index = [object Object] ???
-                        console.log(`%c JSON.stringify(index) = ${JSON.stringify(index)} \n`, color.css2);
-                        // JSON.stringify(index) = {"key":0,"value":"","name":"ApiName","desc":"报表名称(true)","type":"string"} 
+                    if (!debug) {
+                        // index === object
+                        console.log(`%c required index = `, color.green_16_border, index);
+                        // {key: 0, value: "", name: "ApiName", desc: "报表名称(true)", type: "string"}
+                        // text === value
+                        console.log(`%c text = `, color.green_23, text);
+                        // "" / "json" / example_value
                     }
-                    // get initial obj_url
-                    if(index.name === "WriteType"){
-                        url_obj[index.name] = "json";
-                        url_obj = Object.assign(init_url_obj, url_obj)
-                    }else{
-                        url_obj[index.name] = text;
-                        url_obj = Object.assign(init_url_obj, url_obj)
-                    }
-                    i_length++;
-                    if (debug) {
-                        console.log(`%c i_length = `, color.css1, i_length);
-                    }
-                    if(datas_length === i_length){
-                        // keys length === demo_datas length
-                        // finish url object
-                        if (debug) {
-                            console.log(`%c full url_obj defaultValue = `, color.css2, url_obj);
-                            console.log(`%c full i_length = `, color.css1, i_length);
-                        }
-                        i_length = 0;
-                    }
-                    // console.log(`url_obj defaultValue = `, url_obj);
                     if(index.name === "WriteType"){
                         // 1. write global let
                         // 2. use let create new url
@@ -273,40 +238,7 @@ class RequiredItems extends Component {
                                         initialValue: text
                                     })(
                                         <Input 
-                                            onChange={
-                                                (e) => {
-                                                    if (debug) {
-                                                        console.log(`index.name = `, index.name);
-                                                        console.log(`e = `, e.target.value);
-                                                    }
-                                                    let key = index.name,
-                                                        value = e.target.value;
-                                                    {/* url_obj = Object.assign(
-                                                        url_obj,
-                                                        {
-                                                            key: value
-                                                        }
-                                                    ); */}
-                                                    // url_obj.key = value;// key
-                                                    url_obj[key] = value;
-                                                    // key's value
-                                                    if (debug) {
-                                                        console.log(`${key} url_obj = `, url_obj); 
-                                                    }
-                                                    let str_obj = JSON.stringify(url_obj);
-                                                    url = `${urls.test}?${str_obj}`;
-                                                    {/* 
-                                                        this.setState({
-                                                            testurl: url
-                                                        });
-                                                    */}
-                                                    if (debug) {
-                                                        console.log(`%c changed url = \n`, color.green_16_border, url); 
-                                                    }
-                                                    // return url;
-                                                    this.onSaveInput(url);
-                                                }
-                                            }
+                                            onChange={this.onInputChange}
                                             type="text"
                                             placeholder="☹️ 暂无默认的示例命令值 !"
                                         />
@@ -332,7 +264,7 @@ class RequiredItems extends Component {
                 {/* input 必填项 */}
                 <Form onSubmit={this.handleSubmit}>
                     <Table
-                        dataSource={initial_datas}
+                        dataSource={this.state.datas}
                         columns={Requiredcolumns}
                         bordered
                         pagination={false}
@@ -347,7 +279,7 @@ class RequiredItems extends Component {
 RequiredItems.propTypes = {
     init_datas: PropTypes.array.isRequired,
     TestClick: PropTypes.func.isRequired,
-    disableBTN: PropTypes.func.isRequired
+    disableBTN: PropTypes.func.isRequired,
 };
 
 const RI = Form.create()(RequiredItems);

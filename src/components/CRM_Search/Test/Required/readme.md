@@ -289,4 +289,168 @@ this.setState(
         );
     }
 );
+
 ```
+
+
+
+
+```js
+
+    urlSave = (url) => {
+        // global url
+    };
+    shouldComponentUpdate(nextProps, nextState) {
+        return true;
+    }
+    componentWillUpdate(){
+        // this.onSaveInput();
+    }
+    componentDidUpdate() {
+        // this.onSaveInput();
+        // this.props.TestClick(url)
+    }
+
+
+// global url
+
+(e) => {
+    if (debug) {
+        console.log(`index.name = `, index.name);
+        console.log(`e = `, e.target.value);
+    }
+    let key = index.name,
+        value = e.target.value;
+    {/* url_obj = Object.assign(
+        url_obj,
+        {
+            key: value
+        }
+    ); */}
+    // url_obj.key = value;// key
+    url_obj[key] = value;
+    // key's value
+    if (debug) {
+        console.log(`${key} url_obj = `, url_obj); 
+    }
+    let str_obj = JSON.stringify(url_obj);
+    url = `${urls.test}?${str_obj}`;
+    {/* 
+        this.setState({
+            testurl: url
+        });
+    */}
+    if (debug) {
+        console.log(`%c changed url = \n`, color.green_16_border, url); 
+    }
+    // return url;
+    this.onSaveInput(url);
+}
+
+
+
+
+    if (!debug) {
+        // index === object
+        console.log(`%c required index = `, color.green_16_border, index);
+        // {key: 0, value: "", name: "ApiName", desc: "报表名称(true)", type: "string"}
+        // text === value
+        console.log(`%c text = `, color.green_23, text);
+        // "" / "json" / example_value
+    }
+    let init_url_obj = this.state.url_obj,
+        url = this.state.url,
+        url_obj = this.state.url_obj;
+        // componentDidMount
+    if (!debug) {
+        // disabled
+        console.log(`url_obj = `, url_obj);
+        // {ApiName: "", EndDate: "", SecuType: "", MarketType: "", DatePerformType: "", WriteType: "json"}
+        console.log(`%c text = ${text} \n`, color.css1);
+        // text = json 
+        console.log(`%c index = ${index} \n`, color.css2);
+        // index = [object Object] ???
+        console.log(`%c JSON.stringify(index) = ${JSON.stringify(index)} \n`, color.css2);
+        // JSON.stringify(index) = {"key":0,"value":"","name":"ApiName","desc":"报表名称(true)","type":"string"} 
+    }
+    // get initial obj_url
+    if(index.name === "WriteType"){
+        url_obj[index.name] = "json";
+        url_obj = Object.assign(init_url_obj, url_obj)
+    }else{
+        url_obj[index.name] = text;
+        url_obj = Object.assign(init_url_obj, url_obj)
+    }
+    i_length++;
+    if (!debug) {
+        console.log(`%c i_length = `, color.css1, i_length);
+    }
+    if(datas_length === i_length){
+        // keys length === demo_datas length
+        // finish url object
+        if (debug) {
+            console.log(`%c full url_obj defaultValue = `, color.css2, url_obj);
+            console.log(`%c full i_length = `, color.css1, i_length);
+        }
+        // reset
+        i_length = 0;
+    }
+
+
+
+
+
+```
+
+
+
+##  OK
+
+
+
+```jsx
+
+    onInputChange = (e) => {
+        if (debug) {
+            // console.log(`%c e.target = `, color.green_23, e.target);
+            // <input type="text" placeholder="☹️ 暂无默认的示例命令值 !" value="111" id="ApiName" data-__meta="[object Object]" class="ant-input ant-input-lg">
+            console.log(`%c e.target.id = `, color.green_23, e.target.id);
+            console.log(`%c e.target.value = `, color.green_23, e.target.value);
+        }
+        let temp_url_obj = this.state.url_obj;
+        if (debug) {
+            console.log(`%c before change temp_url_obj = \n`, color.color_css2, temp_url_obj);
+        }
+        let key =  e.target.id;
+        let value = e.target.value;
+        temp_url_obj[key] = value;
+        if (debug) {
+            console.log(`%c after change temp_url_obj = \n`, color.color_css2, temp_url_obj);
+        }
+        let str_obj = JSON.stringify(temp_url_obj);
+        // get changed table values ?
+        // global url ??? update bug (only one input can be update, overwrite)
+        this.setState({
+            url: `${urls.test}?${str_obj}`
+        });
+    };
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
