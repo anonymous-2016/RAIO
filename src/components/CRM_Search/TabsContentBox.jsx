@@ -76,14 +76,13 @@ class TabsContentBox extends Component {
             // 基金经理详细信息(基本资料) => english table name
             // "tablenamle": "BasicInformationRow",
             // "tablenamle": "AnyManagedFundsRow",
-        */
-        // const output_options = "";
+        */ 
+        const output_options = output_datas;
+        // copy & in case of modify original Array
         let options_obj = {},
             options_sort = {},
             options_fields = {},
             options_datas = [];
-        const output_options = output_datas;
-        // copy & in case of modify original Array
         output_options.map(
             (value, index) => {
                 if(!debug) {
@@ -105,7 +104,8 @@ class TabsContentBox extends Component {
                         if(value_prefix.length > 0){
                             // multi table
                             options_sort[`${key_prefix}.${v.name}`] = `${value_prefix}-${v.Description}`;
-                            options_fields[`${key_prefix}.${v.name}`] = `${v.Description}`;
+                            options_fields[`${key_prefix}.${v.name}`] = `${value_prefix}-${v.Description}`;
+                            // ${value_prefix}-
                         }else{
                             // single table
                             options_sort[`${v.name}`] = `${v.Description}`;
@@ -172,6 +172,10 @@ class TabsContentBox extends Component {
                 // width: '25%'
             }
         ];
+        const url_path = window.location.pathname.substr(8);
+        if (!debug) {
+            console.log(` \n options_obj = \n`, options_obj);
+        }
         return (
             /* <div style={{ maxWidth: 900}}> */
             <div className="tbs-width">
@@ -217,6 +221,7 @@ class TabsContentBox extends Component {
                             outputs={output_datas}
                             inputs={input_datas}
                             options={options_obj}
+                            url_path={url_path}
                         />
                         {/* muilt test components */}
                     </TabPane>

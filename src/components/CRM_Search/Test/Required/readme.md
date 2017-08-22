@@ -435,6 +435,16 @@ this.setState(
         });
     };
 
+
+    // regex test / keys, value === ""
+    // /""/ig.test(str_obj)
+    if(/""/ig.test(str_obj)){
+        this.props.disableBTN(true);
+    }else{
+        this.props.disableBTN(false);
+    }
+
+
 ```
 
 
@@ -443,6 +453,38 @@ this.setState(
 
 
 
+
+```js
+
+
+// no need any more
+        let str_obj = JSON.stringify(temp_url_obj);
+        if (debug) {
+            console.log(`%c init str_obj = \n`, color.color_css2, str_obj);
+        }
+        // this.props.disableBTN(true);
+        // regex test / keys, value === ""
+        if(debug === false){
+            this.props.disableBTN(true);
+        }else{
+            this.props.disableBTN(false);
+        }
+        // get changed table values ?
+        // global url ??? update bug (only one input can be update, overwrite)
+        this.setState({
+            url: `${urls.test}?${str_obj}`
+        });
+        let init = 0;
+        if (debug && (init === 0)) {
+            console.log(`%c initial test url = \n`, color.color_css3, this.state.url);
+            init += 1;
+        }else{
+            console.log(`%c update new test url, index:${init} = \n`, color.color_css3, this.state.url);
+        }
+// no need any more
+
+
+```
 
 
 

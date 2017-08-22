@@ -12,7 +12,7 @@ import PropTypes from 'prop-types';
 //utils
 import {color} from '../../../app/color';
 import {debug} from '../../../app/debug';
-
+import {urls} from '../../../app/urls.js';
 
 // css
 import './testtableforms.css';
@@ -48,8 +48,11 @@ class TestTableForms extends Component {
             visible: false,
             test_datas: this.props.test_datas, // init_datas url
             fetch_url: "",
-            disable_btn: false,
-            isCollapsed: true
+            disable_btn: true,
+            isCollapsed: true,
+            loading: false,
+            required_obj: {},
+            options_obj: {}
         }
     }
     disableBTN = (value=false) =>{
@@ -59,26 +62,90 @@ class TestTableForms extends Component {
             }
         );
     };
-    TestClick = (url) => {
+    TestClick = (url_objs) => {
+        const {required_obj={}, options_obj={}} = url_objs;
+        this.setState({
+            required_obj: (required_obj !== undefined ? required_obj : {}),
+            options_obj: (options_obj !== undefined ? options_obj : {})
+        });
+        // default value
+        /*  
+            // alert("testing...");
+            // handle undefined ???
+            o = {a: 1};
+            a = {};
+            x = Object.assign({}, o, a);
+            // {a: 1}
+            x = Object.assign({}, o, undefined);
+            // {a: 1}
+        */
+        /* 
+            // mock data
+            let {required_obj={}, options_obj={}} = url_objs;
+            options_obj = {
+                "Sorts": [
+                    {"Field": "AnyManagedFundsRow.A0", "Sort": "desc"}
+                ]
+            };
+        */
         if (debug) {
-            console.log(`%c new url obj = `,color.color_css1, url);
+            console.log(`%c urls.test = ${urls.test} \n`, color.color_css3);
+            // console.log(`%c new url obj = `,color.color_css1, url);
+            console.log(`%c url_objs = \n`,color.color_css1, url_objs);
+            console.log(`%c required_obj = \n`,color.color_css1, required_obj);
+            console.log(`%c options_obj = \n`,color.color_css1, options_obj);
         }
         // fetch_url = url;
+        // required obj + options obj = url: `${urls.test}?${url_objs}`
+        // shape url_objs
+        let new_url_objs = {};
+        new_url_objs = Object.assign({}, required_obj, options_obj);
+        /*
+            // empty value
+            // move to options
+            if(value !== ""){
+                obj[key] = value;
+            }
+        */
+        let str_objs = JSON.stringify(new_url_objs);
+        let s =  `"`;
+        let new_str_objs = str_objs.replace(/[\s]*\"/ig, s);
+        // "{"ApiName":"TestProtocol","WriteType":"json"}"
+        const test_url = `${urls.test}?${new_str_objs}`;
         this.setState({
-            fetch_url: url
+            fetch_url: test_url
         });
         // fetch url
         if (debug) {
-            console.log(`new this.state.fetch_url = `, this.state.fetch_url);
+            console.log(`%c final test fetch url = \n`, color.color_css3, this.state.fetch_url);
         }
     };
     startTest = () => {
         const that = this;
+        this.setState({
+            loading: true
+        });
         // fetch test data
         let url = this.state.fetch_url;
         if (debug) {
             console.log(`%c fetch test data`, css2, url);
         }
+        /* 
+            {
+                "info" : "Lose Param fund.f9.fund_profile.FundManager.BasicInformations Report",
+                "trace" : ""
+            }
+            // have ApiName & Lose Param
+            {
+                "info" : "Dosn't Contain The  Report",
+                "trace" : ""
+            }
+            // no ApiName
+            []
+            // No data
+            [{}, {}, ...]
+            // OK
+        */
         // new test_datas url
         fetch(url)
         .then((response) => response.json())
@@ -93,23 +160,41 @@ class TestTableForms extends Component {
                 // fecth_data === [{}, {}];
                 let objs = {};
                 if(Array.isArray(fecth_data)){
+                    // shape data & pass it to result!
                     fecth_data.map(
                         // name.AnyManagedFundsRow
-                        (data) => {
+                        (data, index) => {
                             //do something 
                             // need shape
+                            if (debug) {
+                                console.log(`%c fecthing index = ${index} \n`, color.color_css2);
+                                console.log(`%c fecthing data = \n ${data}`, color.color_css2);
+                            }
                         }
                     );
                     // result table A0 = key
                     if (debug) {
-                        console.log(`%c fecth data = \n`, css2, fecth_data);
+                        console.log(`%c fecthed data = \n`, color.color_css3, JSON.stringify(fecth_data));
                     }
                     that.setState({
                         test_datas: {fecth_data}
                     });
+                    /*
+                        setTimeout(() => {
+                            that.setState({
+                                loading: false
+                            });
+                        }, 1000);
+                        // promise reject ???
+                    */
                 }
             }
         );
+        setTimeout(() => {
+            this.setState({
+                loading: false
+            });
+        }, 1000);
     };
     checkTestCommands = () => {
         // fetch test data
@@ -184,19 +269,24 @@ class TestTableForms extends Component {
     // Panel
     cilicPanel = () => {
         if (debug) {
-            console.log(`%C this.state.isCollapsed= `, color.css1, this.state.isCollapsed);
+            console.log(`%c this.state.isCollapsed= `, color.css1, this.state.isCollapsed);
         }
         this.setState({
             isCollapsed: !this.state.isCollapsed
         });
         if (debug) {
-            console.log(`%C new this.state.isCollapsed = `, color.css1, this.state.isCollapsed);
+            console.log(`%c new this.state.isCollapsed = `, color.css1, this.state.isCollapsed);
         }
     };
+    componentDidMount() {
+        this.setState({
+            disable_btn: true
+        });
+    }
     /* eslint-disable no-console */
     render() {
         const {show, test_datas} = {...this.state};
-        const {inputs, outputs, options} = {...this.props};
+        const {inputs, outputs, options, url_path} = {...this.props};
         // options
         const {sort, fields, datas} = options;
         if (!debug) {
@@ -251,10 +341,16 @@ class TestTableForms extends Component {
                         // only required will be pushed to ri_datas!
                         let obj = {};
                         obj.key = index;
-                        obj.value = "";
                         obj.name = value.name;
                         obj.desc = value.Description;
                         obj.type = value.type;
+                        if (value.name === "ApiName") {
+                            let path = window.location.pathname.substr(8);
+                            obj.value = path;
+                            // obj.value = url_path;
+                        }else{
+                            obj.value = "";
+                        }
                         ri_datas.push(obj);
                         if (!debug) {
                             console.log(`%c ri_datas obj = `, color.css1, obj);
@@ -273,7 +369,7 @@ class TestTableForms extends Component {
                         op_datas.push(obj);
                         if (!debug) {
                             console.log(`%c op_datas obj = `, color.css2, obj);
-                            console.log(`%c  op_datas[${index}] = `, color.css2,  op_datas);
+                            console.log(`%c op_datas[${index}] = `, color.css2,  op_datas);
                         }
                     }
                     // return obj_temp[index];
@@ -291,7 +387,7 @@ class TestTableForms extends Component {
             };
             ri_datas.push(fixed_obj);
         }
-        if (!debug) {
+        if ( debug) {
             console.log(`%c finished ri_datas = `, color.css2, ri_datas);
             console.log(`%c finished op_datas = `, color.css2,  op_datas);
         }
@@ -326,13 +422,14 @@ class TestTableForms extends Component {
             }
         ];
         return (
-            <div >
-                <div >
+            <div>
+                <div>
                     <p className="title-color">必填项</p>
                     <RI 
                         init_datas={(ri_datas.length > 0) ? ri_datas : testdatas}
                         TestClick={this.TestClick}
                         disableBTN={this.disableBTN}
+                        options_datas={this.state.options_obj || {}}
                     />
                 </div>
                 <div style={{textAlign: "center"}}>
@@ -341,6 +438,8 @@ class TestTableForms extends Component {
                         style={{margin: "auto 10px"}}
                         onClick={this.startTest}
                         disabled={this.state.disable_btn}
+                        loading={this.state.loading}
+                        icon="hourglass"
                         >
                         开始测试
                     </Button>
@@ -348,7 +447,6 @@ class TestTableForms extends Component {
                         type="primary"
                         style={{margin: "auto 10px"}}
                         onClick={this.showModal}
-                        disabled={this.state.disable_btn}
                         >
                         查看命令
                     </Button>
@@ -361,6 +459,7 @@ class TestTableForms extends Component {
                             checkTestCommands={this.checkTestCommands}
                             fetch_url={this.state.fetch_url}
                             TestClick={this.TestClick}
+                            disabled_btn={this.state.disable_btn}
                         />
                         :
                         ""
@@ -385,6 +484,7 @@ class TestTableForms extends Component {
                                     fields_items={fields}
                                     option_datas={op_datas}
                                     TestClick={this.TestClick}
+                                    required_datas={this.state.required_obj || {}}
                                 />
                             </Panel>
                         </Collapse>
@@ -412,9 +512,9 @@ class TestTableForms extends Component {
 TestTableForms.propTypes = {
     inputs:PropTypes.array.isRequired,
     outputs: PropTypes.array.isRequired,
-    test_datas: PropTypes.array.isRequired,
-    // dataSource: PropTypes.array.isRequired,
-    // columns: PropTypes.array.isRequired,
+    options: PropTypes.object.isRequired,
+    url_path: PropTypes.string.isRequired,
+    test_datas: PropTypes.array.isRequired
 };
 
 const TTF = TestTableForms;

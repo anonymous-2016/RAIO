@@ -225,3 +225,256 @@ const date_str = "{            \"SecuCode\":  2016-01-01,            \"ApiName\"
 
 
 
+
+
+```jsx
+
+
+ApiName: fund.f9.fund_profile.FundManager.BasicInformations
+
+SecuCode: 000011
+
+Names: 阳琨
+
+
+
+000011阳琨
+
+
+
+    setTimeout(() => {
+        that.setState({
+            loading: false
+        });
+    }, 1000);
+    // promise reject ???
+
+
+
+
+const promise = new Promise(
+    (resolve, reject) => {
+        // do a thing, possibly async, then…
+        if (/* everything turned out fine */) {
+            resolve("Stuff worked!");
+        }
+        else {
+            reject(Error("It broke"));
+        }
+    }
+);
+```
+
+```js
+
+    const createGist = (opts) => {
+        ChromeSamples.log('Posting request to GitHub API...');
+        fetch(
+            'https://api.github.com/gists', 
+            {
+                method: 'post',
+                body: JSON.stringify(opts)
+            }
+        ).then(
+            (response) => response.json()
+        ).then(
+            (data) => {
+                ChromeSamples.log('Created Gist:', data.html_url);
+            }
+        );
+    }
+
+    const submitGist = () => {
+        let content = document.querySelector('textarea').value;
+        if (content) {
+            createGist(
+                {
+                    description: 'Fetch API Post example',
+                    public: true,
+                    files: {
+                        'test.js': {
+                            content: content
+                        }
+                    }
+                }
+            );
+        } else {
+            ChromeSamples.log('Please enter in content to POST to a new Gist.');
+        }
+    }
+
+    const submitBtn = document.querySelector('button');
+    submitBtn.addEventListener('click', submitGist);
+
+```
+
+
+
+```js
+
+
+    const {required_obj={}, options_obj = {}} = url_objs;
+    // default value
+    /*  
+        // alert("testing...");
+        // handle undefined ???
+        o = {a: 1};
+        a = {};
+        x = Object.assign({}, o, a);
+        // {a: 1}
+        x = Object.assign({}, o, undefined);
+        // {a: 1}
+    */
+    /* 
+        // mock data
+        let {required_obj={}, options_obj={}} = url_objs;
+        options_obj = {
+            "Sorts": [
+                {"Field": "AnyManagedFundsRow.A0", "Sort": "desc"}
+            ]
+        };
+    */
+
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+```js
+
+
+// 测试协议
+
+http://10.1.5.203/http-report/query?
+{
+    'ApiName':'TestProtocol',
+    "Sorts":[
+        {
+            "Field":"booleanv",
+            "Sort":"no"
+        }
+    ],
+    "Page":{
+        "PageNo":"2",
+        "PageSize":"50"
+    },
+    "Compress":"true",
+    "OutField":[
+        "ByteV","BooleanV","DoubleV","FloatV","IntV","ShortV","CharV","ByteArray","BooleanArray","DoubleArray","FloatArray","IntArray","ShortArray","LongV","LongArray","CharArray","DateV","DateArray","TimeStampV","TimestampArray","ListV","StringV","StringArray","TableV"
+    ],
+    "IgnoreField":[
+        "ByteV","BooleanV","DoubleV","FloatV","IntV","ShortV","CharV","ByteArray","BooleanArray","DoubleArray","FloatArray","IntArray","ShortArray","LongV","LongArray","CharArray","DateV","DateArray","TimeStampV","TimestampArray","ListV","StringV","StringArray","TableV"
+    ],
+    "Group":"group",
+    "FastDateFilterType":"Latest6Month",
+    "CallBack":"jsonp:",
+    "FastQuarterReportType":["Q1th","Q3rd"],
+    "WriteType":"json"
+}
+
+
+```
+
+
+
+```js
+ApiName: fund.f9.fund_profile.FundManager.BasicInformations
+
+SecuCode: 000011
+
+Names: 阳琨
+
+http://10.1.5.203/http-report/query?
+{
+    'ApiName':'fund.f9.fund_profile.FundManager.BasicInformations',
+    'SecuCode':'000011',
+    'Names':'阳琨',
+    "Sorts":[
+        {
+            "Field":"basicinformationrow.a0",
+            "Sort":"asc"
+        }
+    ],
+    "Page":{
+        "PageNo":"1",
+        "PageSize":"50"
+    },
+    "Compress":"true",
+    "OutField":["BasicInformationRow.A0","BasicInformationRow.A1"],
+    "IgnoreField":["BasicInformationRow.A2","BasicInformationRow.A3"],
+    "FastDateFilterType":"Latest2Year",
+    "FastQuarterReportType":["Q1th","Q4th"],
+    "WriteType":"json"
+}
+
+
+// default value
+
+"Page":{
+    "PageNo":"1",
+    "PageSize":"50"
+},
+"FastDateFilterType":"LatestTime",
+
+
+
+
+```
+
+
+
+
+
+```js
+
+// change
+
+http://10.1.5.203/http-report/query?{"ApiName":"fund.f9.fund_profile.FundManager.BasicInformations","SecuCode":"000011","Names":"阳琨","WriteType":"json","Page":{"PageNo":"11","PageSize":100}}
+
+
+
+```
+
+
+
+location
+
+
+url_path
+
+
+
+
+
+```js
+
+let obj = {"ApiName":"TestProtocol ","WriteType":"json"};
+let str = JSON.stringify(obj);
+let s =  `"`;
+
+str.replace(/[\s]*[\"]/i, s);
+// "{"ApiName":"TestProtocol ","WriteType":"json"}"
+// Group Error
+
+str.replace(/[\s]*\"/ig, s);
+// "{"ApiName":"TestProtocol","WriteType":"json"}"
+// OK
+
+```
+
+

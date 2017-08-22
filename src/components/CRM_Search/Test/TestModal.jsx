@@ -75,7 +75,8 @@ class TestModal extends Component {
         // call parent submit function
     }
     render() {
-        const {checkTestCommands, fetch_url, TestClick} = this.props;
+        const {checkTestCommands, fetch_url, TestClick, disabled_btn} = this.props;
+        // const {disabled_btn} = {...this.props};
         // all props
         const {getFieldsValue, getFieldValue, setFieldsValue, getFieldDecorator} = this.props.form;
         const formItemLayout = {
@@ -88,7 +89,7 @@ class TestModal extends Component {
         };
         // destructuring assignment
         const {visible, loading} = this.state;
-        const commands_url = this.props.fetch_url;
+        const commands_url = fetch_url;
         return (
             <div>
                 {/* query object */}
@@ -137,7 +138,9 @@ class TestModal extends Component {
                                 htmlType="submit"
                                 icon="hourglass"
                                 style={{margin: "auto 10px"}}
-                                loading={loading}>
+                                loading={loading}
+                                disabled={disabled_btn}
+                                >
                                 开始测试
                             </Button>
                             <Button 
@@ -158,9 +161,11 @@ class TestModal extends Component {
 
 TestModal.propTypes = {
     title: PropTypes.string,
-    // badHideModal: PropTypes.func.required,
+    disabled_btn: PropTypes.bool.isRequired,
     hideModal: PropTypes.func.isRequired,
-    checkTestCommands: PropTypes.func.isRequired
+    checkTestCommands: PropTypes.func.isRequired,
+    fetch_url: PropTypes.string.isRequired,
+    TestClick: PropTypes.func.isRequired,
 };
 
 

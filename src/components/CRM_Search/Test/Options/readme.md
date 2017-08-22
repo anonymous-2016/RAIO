@@ -810,6 +810,91 @@ let obj = {A0: "基本资料-成立日期", A1: "基本资料-总经理", A2: "�
 
 
 
+```js
+
+test_url: "",
+test_obj: {},
+
+required_obj: {},
+required_url: "",
+
+option_obj: {},
+option_url: "",
+
+
+test_obj = Object.assign({}, required_obj, option_obj);
+test_url = `${url}?${JSON.stringify(test_obj)}`;
+
+
+```
+
+
+
+
+```jsx
+
+
+    onRadioChange = (e) => {
+        // onChange
+        console.log('radio checked', e.target.value);
+        /* this.setState({
+            radio_value: e.target.value,
+        }); */
+    };
+    onSelectChange = (e) => {
+        // onChange
+        if (debug) {
+            console.log('%c pagination target', color.color_css3, e.target);
+            console.log('pagination target.id', e.target.id);
+            console.log('pagination target.value', e.target.value);
+        }
+        if (e.target.id === "pages") {
+            this.setState({
+                input_value: Object.assign(
+                    this.state.input_value,
+                    {
+                        pages: e.target.value
+                    }
+                )
+            });
+        }
+        if (e.target.id === "size") {
+            this.setState({
+                input_value: Object.assign(
+                    this.state.input_value,
+                    {
+                        size: e.target.value
+                    }
+                )
+            });
+        }
+    };
+    onSelectsChange = (e) => {
+        // onChange
+        console.log('selects checked', e.target.value);
+        /* this.setState({
+            select_value: e.target.value,
+        }); */
+    };
+
+
+
+console.log('%c autoSave ??? = \n', color.css2);
+this.autoSave();
+
+// shit Component, do not auto update!
+
+
+```
+
+
+
+
+
+
+
+
+
 
 
 

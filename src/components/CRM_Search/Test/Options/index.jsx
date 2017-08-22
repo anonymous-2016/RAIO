@@ -9,7 +9,7 @@ import PropTypes from 'prop-types';
  * @extends {Component}
  */
 // utils
-import {debug} from '../../../../app/debug';
+import {debug, xyz_debug} from '../../../../app/debug';
 import {color} from '../../../../app/color';
 
 // libs
@@ -26,132 +26,203 @@ class OptionsItems extends Component {
     constructor(props, context) {
         super(props, context);
         this.state = {
-            radio_value: "",
-            select_value: "",
-            selects_value: "",
-            select_date: "",
             Page: {
                 PageNo: 1,
                 PageSize: 100
             },
             Sorts: [
-                /* 
-                    {
-                        Field: "TableName.A0",
-                        Sort: "desc"
-                    }, 
-                */
+                {
+                    Field: "",
+                    Sort: "no"
+                }
             ],
+            Compress: "true",
             FastQuarterReportType: [],// ["Q1th", "Q2nd", "Q3rd", "Q4th"]
+            FastDateFilterType: "",
             OutField: [], // ["TableName.A0", "BasicInformationRow.A3"]
             IgnoreField: [], // ["TableName.A0", "BasicInformationRow.A5"]
+            Group: "",
             defaultInput: {
                 // 
-            }
+            },
+            url_objs: {},
+            options_obj: {}
         };
+    }
+    autoSave = () => {
+        // onChange={this.autoSave}
+        if (xyz_debug(false)) {
+            alert(`Auto Saving...!`);
+        }
+        /*
+            // empty value
+            // move to options
+            if(value !== ""){
+                obj[key] = value;
+            }
+        */
+        // form item 
+        // Select change bug ???
+        let temp_obj = {};
+        temp_obj.required_obj = this.props.required_datas;
+        // required_obj
+    /* 
+        this.setState(
+            (prevState, props) => {
+                const {Page, Sorts, Compress} = this.state;
+                // const {Page, Sorts, Compress} = {...this.state};
+                if (debug) {
+                    console.log(`%c this.state `, color.color_css3, JSON.stringify(this.state));
+                    console.log(`%c this.state.Page `, color.color_css3, Page);
+                    console.log(`%c this.state.Sorts `, color.color_css3,  Sorts);
+                    console.log(`%c this.state.Compress `, color.color_css3, Compress);
+                    // console.log(`%c this.state.Page `, color.color_css3, Page);
+                }
+                return {
+                    options_obj: Object.assign(
+                        prevState.options_obj, 
+                        {
+                            "Page": Page, 
+                            "Sorts": Sorts, 
+                            "Compress": Compress
+                        }
+                    )
+                }
+            }
+        );
+    */
+        temp_obj.options_obj = this.state.options_obj;
+        // options_obj
+        this.setState({
+            url_objs: temp_obj
+        });
+        this.props.TestClick(temp_obj);
+    };
+    componentDidMount() {
+        let temp_obj = this.state.url_objs;
+        temp_obj.required_obj = this.props.required_datas;
+        if (debug) {
+            console.log(`%c this.props.required_datas `, color.color_css3, JSON.stringify(this.props.required_datas));
+        }
+        this.setState(
+            (prevState, props) => {
+                const {Page, Sorts, Compress} = this.state;
+                // const {Page, Sorts, Compress} = {...this.state};
+                if (debug) {
+                    console.log(`%c this.state `, color.color_css3, JSON.stringify(this.state));
+                    console.log(`%c this.state.Page `, color.color_css3, Page);
+                    console.log(`%c this.state.Sorts `, color.color_css3,  Sorts);
+                    console.log(`%c this.state.Compress `, color.color_css3, Compress);
+                    // console.log(`%c this.state.Page `, color.color_css3, Page);
+                }
+                /* 
+                    console.log('%c autoSave ??? = \n', color.css2);
+                    this.autoSave();
+                */
+                return {
+                    options_obj: Object.assign(
+                        prevState.options_obj, 
+                        {
+                            "Page": Page, 
+                            "Sorts": Sorts, 
+                            "Compress": Compress
+                        }
+                    )
+                }
+            }
+        );
+        if (debug) {
+            console.log(`%c this.state.url_objs `, color.color_css3, JSON.stringify(this.state.url_objs));
+        }
+        temp_obj.options_obj = this.state.options_obj;
+        // options_obj
+        this.setState({
+            url_objs: temp_obj
+        });
+        this.props.TestClick(temp_obj);
     }
     handleSubmit = (e) => {
         e.preventDefault();
         // handleSubmit
-    }
-    onRadioChange = (e) => {
-        // onChange
-        console.log('radio checked', e.target.value);
+        // TestClick(url)
+        let temp_obj = this.state.url_objs;
+        temp_obj.options_obj = this.state.options_obj;
         this.setState({
-            radio_value: e.target.value,
+            url_objs: temp_obj
         });
+        this.props.TestClick(this.state.url_objs);
+        // autosave ???
     };
-    onSelectChange = (e) => {
-        // onChange
-        if (debug) {
-            console.log('%c pagination target', color.color_css3, e.target);
-            console.log('pagination target.id', e.target.id);
-            console.log('pagination target.value', e.target.value);
-        }
-        if (e.target.id === "pages") {
-            this.setState({
-                input_value: Object.assign(
-                    this.state.input_value,
-                    {
-                        pages: e.target.value
-                    }
-                )
-            });
-        }
-        if (e.target.id === "size") {
-            this.setState({
-                input_value: Object.assign(
-                    this.state.input_value,
-                    {
-                        size: e.target.value
-                    }
-                )
-            });
-        }
-    };
-    onSelectsChange = (e) => {
-        // onChange
-        console.log('selects checked', e.target.value);
-        this.setState({
-            select_value: e.target.value,
-        });
-    };
+    // Compress
     onRadioGroupChange = (e) => {
         // onRadioGroupChange
-        console.log('selects checked', e.target);
-        // {value: "false", type: "radio", checked: true, disabled: false, onChange: ƒuntion, ...}
-        console.log('selects checked', e.target.value);
-        // true / false
-        // value={this.state.compress_value}
+        if (debug) {
+            console.log('selects checked', e.target);
+            // {value: "false", type: "radio", checked: true, disabled: false, onChange: ƒuntion, ...}
+            console.log('selects checked', e.target.value);
+            // true / false
+        }
+        let str_bool = e.target.value.toString();
+        this.setState({
+            Compress: str_bool
+        });
+        let temp_obj = this.state.options_obj;
+        temp_obj.Compress = str_bool;
+        this.setState({
+            options_obj: temp_obj
+        });
+        if (debug) {
+            console.log('%c new this.state.Compress = ', color.color_css2, this.state.Compress);
+        }
+        if (debug) {
+            console.log('%c autoSave ??? = \n', color.css2);
+        }
+        this.autoSave();
     };
+    // FastDateFilterTyp
     onSelectDateChange = (e) => {
         if (debug) {
             console.log('%c select Date checked', color.css1, e);
         }
-    };
-    onSelectSortKeyChange = (e) => {
-        // onSelectSortChange
+        this.setState({
+            FastDateFilterType: e
+        });
+        let temp_obj = this.state.options_obj;
+        temp_obj.FastDateFilterType = e;
+        this.setState({
+            options_obj: temp_obj
+        });
         if (debug) {
-            console.log('select Sort Key checked', e);
+            console.log('%c autoSave ??? = \n', color.css2);
         }
+        this.autoSave();
     };
-    onSelectSortMethodChange = (e) => {
-        // onSelectSortChange
+    // FastQuarterReportType
+    onCheckboxGroupChange = (e) => {
         if (debug) {
-            console.log('select Sort Method checked', e);
+            console.log('Checkbox Group checked = ', e);
+            // ["Q1th", "Q2nd", "Q3rd", "Q4th"]
         }
+        this.setState({
+            FastQuarterReportType: e
+        });
+        let temp_obj = this.state.options_obj;
+        temp_obj.FastQuarterReportType = e;
+        this.setState({
+            options_obj: temp_obj
+        });
+        console.log('%c autoSave ??? = \n', color.css2);
+        this.autoSave();
     };
-    onOutFieldChange = (e) => {
-        if (debug) {
-            console.log('%c select OutField checked', color.color_css3, e);
-            // ["BasicInformationRow.A0", "BasicInformationRow.A2", "BasicInformationRow.A5"]
-        }
-    };
-    onGroupChange = (e) => {
-        if (debug) {
-            console.log('%c select Group checked', color.color_css3, e);
-            // ["BasicInformationRow.A0", "BasicInformationRow.A2", "BasicInformationRow.A5"]
-        }
-    };
-    onIgnoreFieldChange = (e) => {
-        if (debug) {
-            console.log('select IgnoreField checked', e);
-        }
-    };
-    onCheckboxGroupChange = (checkedValues) => {
-        if (debug) {
-            console.log('Checkbox Group checked = ', checkedValues);
-        }
-        // array []
-        // "checked = " ["Q1th", "Q2nd", "Q3rd", "Q4th"]
-    };
+    // Page
     onPageInputChange = (e) => {
         if (!debug) {
             console.log('page value', e.target.value);
             console.log('page id', e.target.id);
         }
-        if (debug & (page_i = 1)) {
-            console.log('initial this.state.Page ', this.state.Page);
+        if (debug & (page_i === 1)) {
+            console.log('initial this.state.Page = ', this.state.Page);
+            // {PageNo: "1", PageSize: 100}
             page_i += 1;
         }
         let obj = {};
@@ -168,6 +239,121 @@ class OptionsItems extends Component {
         if (!debug) {
             console.log('changed this.state.Page ', this.state.Page);
         }
+    };
+    // Sorts Key
+    onSelectSortKeyChange = (e) => {
+        // onSelectSortChange
+        if (debug) {
+            console.log('%c select Sort Key checked', color.color_css2, e);
+            console.log('%c old Sort Key = \n', color.css1, JSON.stringify(this.state.Sorts));
+        }
+        let arr = this.state.Sorts;
+        arr[0].Field = e;
+        if (!debug) {
+            console.log('select Sorts Key, arr = ', JSON.stringify(arr));
+        }
+        this.setState({
+            Sorts: arr
+        });
+        if (debug) {
+            console.log('%c new this.state.Sorts Sorts Key = \n', color.css2, JSON.stringify(this.state.Sorts));
+        }
+        if (debug) {
+            console.log('%c autoSave ??? = \n', color.css2);
+        }
+        this.autoSave();
+    };
+    // Sorts Methods
+    onSelectSortMethodChange = (e) => {
+        // onSelectSortChange
+        if (debug) {
+            console.log('%c select Sort Method checked', color.color_css2, e);
+            console.log('%c old Sorts Sort = \n', color.css1, JSON.stringify(this.state.Sorts));
+        }
+        let arr = this.state.Sorts;
+        arr[0].Sort = e;
+        if (!debug) {
+            console.log('select Sorts Sort, arr = ', JSON.stringify(arr));
+        }
+        this.setState({
+            Sorts: arr
+        });
+        if (debug) {
+            console.log('%c new this.state.Sorts Sorts Sort = \n', color.css2, JSON.stringify(this.state.Sorts));
+        }
+        if (debug) {
+            console.log('%c autoSave ??? = \n', color.css2);
+        }
+        this.autoSave();
+    };
+    // OutField
+    onOutFieldChange = (e) => {
+        if (debug) {
+            console.log('%c select OutField checked', color.color_css3, e);
+            // ["BasicInformationRow.A0", "BasicInformationRow.A2", "BasicInformationRow.A5"]
+        }
+        // e.toString()
+        // let out = JSON.stringify(e);
+        // OutField":"[\"A0\",\"A1\"]"
+        // "["A1","A0","A2","A3"]"
+        // out.toString();
+        // "A1,A0,A2,A3"
+        let out = e;
+        if (debug) {
+            console.log('%c new OutField checked', color.color_css3, out);
+            //  ["A1", "A0", "A2", "A3"]
+        }
+        this.setState({
+            OutField: out
+        });
+        let temp_obj = this.state.options_obj;
+        temp_obj.OutField = out;
+        this.setState({
+            options_obj: temp_obj
+        });
+        if (debug) {
+            console.log('%c autoSave ??? = \n', color.css2);
+        }
+        this.autoSave();
+    };
+    // IgnoreField
+    onIgnoreFieldChange = (e) => {
+        if (debug) {
+            console.log('select IgnoreField checked', e);
+            // 
+        }
+        this.setState({
+            IgnoreField: e
+        });
+        let temp_obj = this.state.options_obj;
+        temp_obj.IgnoreField = e;
+        this.setState({
+            options_obj: temp_obj
+        });
+        if (debug) {
+            console.log('%c autoSave ??? = \n', color.css2);
+        }
+        this.autoSave();
+    };
+    // Group
+    onGroupChange = (e) => {
+        if (debug) {
+            console.log('%c select Group checked', color.color_css3, e);
+            // ["BasicInformationRow.A0"/"BasicInformationRow.A2"/ "BasicInformationRow.A5"]
+        }
+        // single select ???
+        this.setState({
+            Group: e
+        });
+        let temp_obj = this.state.options_obj;
+        temp_obj.Group = e;
+        this.setState({
+            options_obj: temp_obj
+        });
+        if (debug) {
+            console.log('%c autoSave ??? = \n', color.css2);
+        }
+        this.autoSave();
     };
     // default
     onDefaultInputChange = (e) => {
@@ -395,6 +581,7 @@ class OptionsItems extends Component {
                                         allowClear
                                         placeholder="排序方式: (升序) 或 (降序) 或 (无序)"
                                         onChange={this.onSelectSortMethodChange}
+                                        defaultValue="no"
                                         > 
                                         <Option value="desc">升序</Option>
                                         <Option value="asc">降序</Option>
@@ -409,6 +596,7 @@ class OptionsItems extends Component {
                                     allowClear
                                     placeholder="数据快速过滤类型"
                                     onChange={this.onSelectDateChange}
+                                    defaultValue="LatestTime"
                                     > 
                                     {
                                         FDFT.map(
@@ -525,7 +713,7 @@ class OptionsItems extends Component {
                                 <RadioGroup
                                     onChange={this.onRadioGroupChange}
                                     >
-                                    <Radio value="true">
+                                    <Radio value="true" defaultChecked>
                                         是
                                     </Radio>
                                     <Radio value="false">
@@ -604,6 +792,7 @@ class OptionsItems extends Component {
                                 />
                             )
                             break;
+                        // id={input_name} ??? dynamic input
                     }
                     return valueType;
                 },
@@ -611,8 +800,8 @@ class OptionsItems extends Component {
             },
             {
                 title: "描述",
-                dataIndex: "description",
-                key: "description",
+                dataIndex: "desc",
+                key: "desc",
                 width: "40%"
             }
         ];
@@ -625,7 +814,9 @@ class OptionsItems extends Component {
                     padding: 0,
                     boxSizing: "borderBox",
                     overflowY: "scroll"
-                }}>
+                }}
+                onChange={this.autoSave}
+                >
                     <Form
                         onSubmit={this.handleSubmit}
                         >
@@ -647,6 +838,7 @@ OptionsItems.propTypes = {
     fields_items: PropTypes.object.isRequired,
     option_datas: PropTypes.array.isRequired,
     TestClick: PropTypes.func.isRequired,
+    required_datas: PropTypes.object.isRequired,
 };
 
 const OI = OptionsItems;

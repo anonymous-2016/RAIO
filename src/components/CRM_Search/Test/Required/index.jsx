@@ -19,12 +19,6 @@ import {debug} from '../../../../app/debug';
 import {Table, Input, Form} from 'antd';
 const FormItem = Form.Item;
 
-// let url_obj = {};
-// let url = "";
-// initial url
-// const value = "";
-
-
 
 class RequiredItems extends Component {
     constructor(props, context) {
@@ -33,7 +27,9 @@ class RequiredItems extends Component {
             datas: this.props.init_datas,
             initialurl: "",
             url: "",
-            url_obj: {}
+            url_obj: {},
+            url_objs: {},
+            required_obj: {}
         }
     }
     onSaveInput = () => {
@@ -41,11 +37,17 @@ class RequiredItems extends Component {
         // let str_obj = JSON.stringify(url_obj);
         // url = `http://10.1.5.31:8080/http/report/query?${str_obj}`;
         // this.onInputChange();
-        if (debug) {
+        let temp_obj = {};
+        temp_obj.options_obj = this.props.options_datas;
+        if (!debug) {
             console.log(`input test url = `, color.css3, this.state.url);
         }
         // TestClick(url)
-        this.props.TestClick(this.state.url);
+        temp_obj.required_obj = this.state.required_obj;
+        this.setState({
+            url_objs: temp_obj
+        });
+        this.props.TestClick(this.state.url_objs);
     };
     autoSave = () => {
         // global url
@@ -88,6 +90,10 @@ class RequiredItems extends Component {
                         console.log(`%c temp_url_obj = ${temp_url_obj} \n`, color.css3);
                         console.log(`%c temp_url_obj[key] = ${temp_url_obj[key]} \n`, color.css3);
                     }
+                }else if(key === "ApiName"){
+                    console.log(`%c ApiName = ${temp_url_obj[key]} \n`, color.css3);
+                    let path = window.location.pathname.substr(8);
+                    temp_url_obj[key] = path;
                 }else{
                     temp_url_obj[key] = value;
                     this.setState({
@@ -103,19 +109,10 @@ class RequiredItems extends Component {
         if (debug) {
             console.log(`%c init temp_url_obj = \n`, color.color_css2, temp_url_obj);
         }
-        let str_obj = JSON.stringify(temp_url_obj);
-        // get changed table values ?
-        // global url ??? update bug (only one input can be update, overwrite)
         this.setState({
-            url: `${urls.test}?${str_obj}`
+            required_obj: temp_url_obj
         });
-        let init = 0;
-        if (debug && (init === 0)) {
-            console.log(`%c initial test url = \n`, color.color_css3, this.state.url);
-            init += 1;
-        }else{
-            console.log(`%c update new test url, index:${init} = \n`, color.color_css3, this.state.url);
-        }
+//no need any more
         // initial url
         this.autoSave();
         // this.onSaveInput();
@@ -150,14 +147,23 @@ class RequiredItems extends Component {
             console.log(`%c before change temp_url_obj = \n`, color.color_css2, temp_url_obj);
         }
         let key =  e.target.id;
-        let value = e.target.value;
+        let value = e.target.value.trim();
+        // trim();
+
         temp_url_obj[key] = value;
+        let str_obj = JSON.stringify(temp_url_obj);
         if (debug) {
             console.log(`%c after change temp_url_obj = \n`, color.color_css2, temp_url_obj);
+            console.log(`%c after change str_obj = \n`, color.color_css2, str_obj);
         }
-        let str_obj = JSON.stringify(temp_url_obj);
-        // get changed table values ?
-        // global url ??? update bug (only one input can be update, overwrite)
+        // regex test / keys, value === ""
+        // /""/ig.test(str_obj)
+        if(/""/ig.test(str_obj)){
+            this.props.disableBTN(true);
+        }else{
+            this.props.disableBTN(false);
+        }
+        // get changed table values
         this.setState({
             url: `${urls.test}?${str_obj}`
         });
@@ -225,27 +231,54 @@ class RequiredItems extends Component {
                             />
                         );
                     }else{
-                        return(
-                            <FormItem>
-                                {
-                                    getFieldDecorator(index.name, {
-                                        rules: [
-                                            {
-                                                required: true,
-                                                message: '请输入必填字段值, 必填字段值不可为空!'
-                                            }
-                                        ],
-                                        initialValue: text
-                                    })(
-                                        <Input 
-                                            onChange={this.onInputChange}
-                                            type="text"
-                                            placeholder="☹️ 暂无默认的示例命令值 !"
-                                        />
-                                    )
-                                }
-                            </FormItem>
-                        );
+                        if(index.name === "EndDate" || index.name === "BeginDate" ){
+                            const date = new Date().toLocaleDateString().replace(/\//ig, `-`);
+                            let date_placeholder = `☹️ 请输入 ${date } 格式的时间!`;
+                            // "2017-8-22"
+                            return(
+                                <FormItem>
+                                    {
+                                        getFieldDecorator(index.name, {
+                                            rules: [
+                                                {
+                                                    required: true,
+                                                    message: '请输入必填字段值, 必填字段值不可为空!'
+                                                }
+                                            ],
+                                            initialValue: text
+                                        })(
+                                            <Input 
+                                                onChange={this.onInputChange}
+                                                type="text"
+                                                placeholder={date_placeholder}
+                                            />
+                                        )
+                                    }
+                                </FormItem>
+                            );
+                        }else{
+                            return(
+                                <FormItem>
+                                    {
+                                        getFieldDecorator(index.name, {
+                                            rules: [
+                                                {
+                                                    required: true,
+                                                    message: '请输入必填字段值, 必填字段值不可为空!'
+                                                }
+                                            ],
+                                            initialValue: text
+                                        })(
+                                            <Input 
+                                                onChange={this.onInputChange}
+                                                type="text"
+                                                placeholder="☹️ 暂无默认的示例命令值 !"
+                                            />
+                                        )
+                                    }
+                                </FormItem>
+                            );
+                        }
                     }
                 },
                 // width: "40%"
@@ -280,6 +313,7 @@ RequiredItems.propTypes = {
     init_datas: PropTypes.array.isRequired,
     TestClick: PropTypes.func.isRequired,
     disableBTN: PropTypes.func.isRequired,
+    options_datas: PropTypes.object.isRequired,
 };
 
 const RI = Form.create()(RequiredItems);

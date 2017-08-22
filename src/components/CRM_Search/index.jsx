@@ -49,7 +49,7 @@ class CRMS extends Component {
         });
         let fetch_url = "";
         // ljs_info 
-        if(debug){
+        if(!debug){
             fetch_url = `${ljs_urls.ljs_info}`;
         }else{
             // GetAllLoadSearch
