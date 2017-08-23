@@ -13,6 +13,7 @@ import {NAL}from './NewAppLayout';
 
 import {CRMS} from './CRM_Search';
 import {TE} from '../components/CRM_Search/TreeMenus/demo';
+import {DemoTree} from '../components/CRM_Search/TreeMenus/Example';
 import {TM} from '../components/CRM_Search/TableMash';
 
 
@@ -20,17 +21,18 @@ class TestItem extends Component {
     render() {
         return (
             <div>
+                {/* <CRMS />  */}
                 {/* <a href="#">TestItem</a> */}
                 {/* <ModalName /> */}
                 {/* <PM /> */}
                 {/* <NAL /> */}
                 {/* <FUFM /> */}
                 {/* <MM /> */}
-                <CRMS /> 
-                <TE style={{width: 240}} />
+                {/* <TE style={{width: 240}} /> */}
+                <DemoTree />
                 {/* 
                     <TM />
-                 */}
+                */}
             </div>
         );
     }

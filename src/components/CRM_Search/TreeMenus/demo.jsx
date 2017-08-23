@@ -5,7 +5,9 @@ import PropTypes from 'prop-types';
 // import ReactDOM from 'react-dom';
 
 import {Treebeard} from 'react-treebeard';
-import {datas} from './datas';
+// import {datas} from './datas';
+import {trees} from './datas';
+// import {datas} from './fetch_tree.js';
 
 /* const data = {
     name: 'root',
@@ -38,12 +40,19 @@ import {datas} from './datas';
     ]
 };
  */
+let debug=false;
+
+if(debug ? debug : true) {
+    // console.log(`fetched json datas = \n`, datas);
+    console.log(`fetched json trees = \n`, trees);
+}
+
 class TreeExample extends React.Component {
     constructor(props){
         super(props);
         // feedback datas
         this.state = {
-            datas: (this.props.datas || datas)
+            datas: (this.props.datas || trees)
         };
         // key = (undefined || 'value');
         // key === 'value'
@@ -67,15 +76,28 @@ class TreeExample extends React.Component {
         this.setState({
             cursor: node
         });
-    }
+    };
+    Decorators = () => {
+        // Decorators
+    };
     render(){
         // const {datas} = this.props;
         const {datas} = this.state;
+        // const {datas} = {...this.state};
         return (
-            <Treebeard
-                data={datas}
-                onToggle={this.onToggle}
-            />
+            <div style={{
+                minWidth: 300,
+                maxWidth: 400,
+                maxHeight: 500,
+                border: "1px solid red",
+                overflowY: "scroll",
+            }}>
+                <Treebeard
+                    data={datas}
+                    onToggle={this.onToggle}
+                />
+            </div>
+            
         );
     }
 }
@@ -84,7 +106,7 @@ class TreeExample extends React.Component {
 
 // auto assignment
 TreeExample.defaultProps = {
-    datas
+    trees
 };
 
 /*
@@ -96,7 +118,8 @@ TreeExample.defaultProps = {
 */
 
 TreeExample.propTypes = {
-    datas: PropTypes.object.isRequired,
+    // datas: PropTypes.object.isRequired,
+    trees: PropTypes.object.isRequired,
 };
 const TE = TreeExample;
 export {TE};
