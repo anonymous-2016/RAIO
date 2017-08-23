@@ -1,26 +1,27 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import 'whatwg-fetch';
+/**
+ * xgqfrms
+ * 2017.08.08
+ */
 
+//utils
+import {debug} from '../../app/debug';
+
+// components
+import {DM}from './DynamicMenus';
+
+// libs
+import 'whatwg-fetch';
 import {
     BrowserRouter as Router,
     Route,
     Link
 } from 'react-router-dom';
 
-// global Constant
-// const debug = true;
-// false
-
-import {debug} from '../../app/debug';
-
-import {DM}from './DynamicMenus';
-
 import {Layout, Menu, Icon} from 'antd';
-
 import 'antd/dist/antd.css';
-
 const SubMenu = Menu.SubMenu;
 const SubItem = Menu.Item;
 

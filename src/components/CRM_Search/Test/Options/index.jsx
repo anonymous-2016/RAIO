@@ -98,12 +98,15 @@ class OptionsItems extends Component {
         });
         this.props.TestClick(temp_obj);
     };
+    // init
     componentDidMount() {
         let temp_obj = this.state.url_objs;
         temp_obj.required_obj = this.props.required_datas;
         if (debug) {
             console.log(`%c this.props.required_datas `, color.color_css3, JSON.stringify(this.props.required_datas));
         }
+        // this
+        let that = this;
         this.setState(
             (prevState, props) => {
                 const {Page, Sorts, Compress} = this.state;
@@ -119,6 +122,13 @@ class OptionsItems extends Component {
                     console.log('%c autoSave ??? = \n', color.css2);
                     this.autoSave();
                 */
+                // init sort key
+                let sort_key_init = this.props.sort_items;
+                let arr = this.state.Sorts;
+                arr[0].Field = sort_key_init[Object.keys(sort_key_init)[0]];
+                that.setState({
+                    Sorts: arr
+                });
                 return {
                     options_obj: Object.assign(
                         prevState.options_obj, 
@@ -272,6 +282,9 @@ class OptionsItems extends Component {
         }
         let arr = this.state.Sorts;
         arr[0].Sort = e;
+        /* if (!arr[0].Field) {
+            arr[0].Field = ""
+        } */
         if (!debug) {
             console.log('select Sorts Sort, arr = ', JSON.stringify(arr));
         }
@@ -551,6 +564,18 @@ class OptionsItems extends Component {
                                         allowClear
                                         placeholder="排序字段，支持排序组合"
                                         onChange={this.onSelectSortKeyChange}
+                                        defaultActiveFirstOption
+                                        showSearch
+                                        // defaultValue={sort_items[Object.keys(sort_items)[0]]}
+                                        // ??? Select dynamic Options, how to set defaultValue ???
+                                        /*
+                                            obj = {k1: 1, k2: 2, k3: 3};
+                                            // {k1: 1, k2: 2, k3: 3}
+                                            Object.keys(obj)[0];
+                                            // "k1"
+                                            obj[Object.keys(obj)[0]];
+                                            // 1
+                                        */
                                         >
                                         {/* 
                                             Select.js:630 Uncaught TypeError: Cannot read property 'type' of null
@@ -563,7 +588,7 @@ class OptionsItems extends Component {
                                                     for(let key in sort_items){
                                                         arr.push(
                                                             <Option
-                                                                key={key.toString()+i}
+                                                                key={i}
                                                                 value={key}>
                                                                 {
                                                                     sort_items[key]
@@ -581,10 +606,11 @@ class OptionsItems extends Component {
                                         allowClear
                                         placeholder="排序方式: (升序) 或 (降序) 或 (无序)"
                                         onChange={this.onSelectSortMethodChange}
-                                        defaultValue="no"
+                                        showSearch
+                                        // defaultValue="no"
                                         > 
-                                        <Option value="desc">升序</Option>
-                                        <Option value="asc">降序</Option>
+                                        <Option value="asc">升序</Option>
+                                        <Option value="desc">降序</Option>
                                         <Option value="no">无序</Option>
                                     </Select>
                                 </div>

@@ -894,6 +894,313 @@ this.autoSave();
 
 
 
+```md
+
+
+endDate:754
+beginDate:449
+secuCode:395
+innerCode:101
+reportDate:84
+level:75
+standard:61
+industryCode:49
+reportType:46
+beganDate:44
+year:43
+dateTime:37
+mark:36
+gilCode:32
+companyCode:28
+currency:26
+secCode:25
+imageType:21
+orgTye:19
+statisPeriod:18
+queryType:17
+dateType:17
+type:17
+investAdvisorCode:16
+transType:15
+marketType:15
+agentCode:14
+bondCode:13
+queryImage:13
+category:13
+tradeType:11
+top:11
+INVALIDDATE:10
+tradingDay:10
+
+
+
+companyType:9
+industryType:9
+gilCodes:8
+orgCode:8
+listedType:8
+code:8
+fundType:8
+statPeriod:8
+tradeDate:8
+timingCycle:7
+lx:7
+industryStandardCode:7
+sectorNums:6
+holdTypeSet:6
+secuType:6
+date:6
+endYear:6
+holdType:6
+industry:5
+dataType:5
+dayRangeType:5
+sorTing:5
+industryCategory:5
+statisPeriodType:5
+countTypes:5
+period:5
+shType:5
+report:5
+num:5
+standcode:5
+market:5
+endMonth:5
+delRule:5
+process:5
+Beta:4
+companyCodes:4
+RF:4
+RM:4
+shKindCode:4
+statisType:4
+areaCode:4
+codeFlag:4
+currencyType:4
+gildCode:4
+industryNum:4
+industryLevel:4
+calcuType:4
+dateLX:4
+ifAdjusted:4
+shKindCodeSet:4
+imageQueryType:4
+indexCode:3
+sourceType:3
+tradeTypes:3
+issueID:3
+statisRangeType:3
+nodeId:3
+personalCode:3
+ifMerged:3
+repurchaseType:3
+forecastYear:3
+id:3
+MktMakeCode:3
+agencyType:3
+standardCode:3
+categoryCode:3
+mType:3
+names:3
+statDateType:3
+ListState:3
+yearDiv:3
+ratingCode:3
+ranks:3
+yearDate:3
+repurchaseTypeSet:3
+tradeTypeSet:3
+cost:3
+marketTypes:3
+quartType:3
+bondType:3
+monthDay:2
+issuePlanDateType:2
+calcType:2
+marketPlates:2
+circle:2
+secuCoBelongedCode:2
+planState:2
+imageID:2
+sectorCode:2
+tradingDate:2
+pyShortName:2
+shareHolderCode:2
+publDate:2
+stageDateType:2
+wglx:2
+EndDate:2
+reportDates:2
+shList:2
+awardUnit:2
+periodtype:2
+indexCodes:2
+departmentName:2
+mTypeSet:2
+reportYear:2
+stageLengthType:2
+stateType:2
+tradeDayType:2
+reportDataType:2
+removeRule:2
+MarketType:2
+indexType:2
+sortType:2
+innerCodes:2
+induCode:2
+cflx:2
+rid:2
+zdf1:2
+zdf2:2
+secuMarketType:2
+flagDate:2
+trusteeCode:2
+countMethod:2
+order:2
+classification:2
+secondIndustryCode:2
+baseDate:2
+sourceTypes:2
+serverName:2
+dataTypes:2
+brokerCode:2
+flagCode:2
+removeDE:2
+pointDesc:2
+selectDate:2
+StartDate:2
+secuCoName:2
+publicIssueDateType:2
+author:2
+userDefined:2
+dsr:2
+TransType:2
+dividType:2
+oID:2
+changeType:2
+beganYear:2
+listed:2
+ignoreNull:1
+unLimitDate:1
+analystID:1
+shareType:1
+sortFieldInfo:1
+sectorCodes:1
+groupFiled:1
+AF:1
+modConfigId:1
+posnNum:1
+securityCompany:1
+Code:1
+assetType:1
+ignoreFieldList:1
+leaderName:1
+sHName:1
+configIDs:1
+holderType:1
+association:1
+SD:1
+SR:1
+flg:1
+dateFilterType:1
+changeTypes:1
+procedure:1
+preferStockBasicDateType:1
+abnorReason:1
+ranking:1
+TR:1
+quarter:1
+holderCode:1
+parentNodeId:1
+typeSelect:1
+language:1
+source:1
+exclude:1
+wglx_MA:1
+adj:1
+titleSN:1
+eventProcedures:1
+posnNumSet:1
+EV:1
+name:1
+researchDes:1
+adjustment:1
+zzl1:1
+dateInterval:1
+zzl2:
+
+```
+
+
+
+
+
+## 
+
+```jsx
+
+<Select
+    allowClear
+    placeholder="排序字段，支持排序组合"
+    onChange={this.onSelectSortKeyChange}
+    defaultActiveFirstOption
+    showSearch
+    defaultValue
+    // ??? Select dynamic Options, how to set defaultValue ???
+    >
+    {/* 
+        Select.js:630 Uncaught TypeError: Cannot read property 'type' of null
+    */}
+    {
+        [sort_items].map(
+            (sort_items) => {
+                let i = 0;
+                let arr = [];
+                for(let key in sort_items){
+                    arr.push(
+                        <Option
+                            key={i}
+                            value={key}>
+                            {
+                                sort_items[key]
+                            }
+                        </Option>
+                    )
+                }
+                return arr;
+            }
+        )
+    }
+</Select>
+
+
+
+
+    <Select
+        allowClear
+        placeholder="排序字段，支持排序组合"
+        onChange={this.onSelectSortKeyChange}
+        defaultActiveFirstOption
+        showSearch
+        defaultValue={Object.keys(sort_items)[0]}
+        // ??? Select dynamic Options, how to set defaultValue ???
+        /*
+            obj = {k1: 1, k2: 2, k3: 3};
+            // {k1: 1, k2: 2, k3: 3}
+            Object.keys(obj)[0];
+            // "k1"
+            obj[Object.keys(obj)[0]];
+            // 1
+        */
+        >
+    </Select>
+
+```
+
+
+
+
+
 
 
 

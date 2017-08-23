@@ -27,7 +27,7 @@ class OutputTables extends Component {
             <div 
                 style={{
                     minHeight: 900,
-                    maxHeight: 900,
+                    maxHeight: 1000,
                     overflowY: "scroll",
                     boxSizing: "borderBox"
                 }}>

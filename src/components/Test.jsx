@@ -27,8 +27,10 @@ class TestItem extends Component {
                 {/* <FUFM /> */}
                 {/* <MM /> */}
                 <CRMS /> 
-                {/* <TE style={{width: 240}} /> 
-                <TM />  */}
+                <TE style={{width: 240}} />
+                {/* 
+                    <TM />
+                 */}
             </div>
         );
     }

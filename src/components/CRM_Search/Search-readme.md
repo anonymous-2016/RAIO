@@ -236,8 +236,11 @@ fund.f9.fund_profile.FundManager
 
 http://10.1.64.117;8081/http/manage/admin?{'Admin':'report','Action':'GetTreeSchema','WriteType':'json'}
 
+// TreeMenus
 
-// 
+http://10.1.5.203/http-manage/admin?{'Admin':'report','Action':'GetTreeSchema','WriteType':'json'}
+
+http://10.1.5.203/http-manage/admin?{%27Admin%27:%27report%27,%27Action%27:%27GetTreeSchema%27,%27WriteType%27:%27json%27}
 
 
 // all

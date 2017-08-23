@@ -492,7 +492,135 @@ this.setState(
 
 
 
+## DatePicker
 
+```jsx
+
+const { DatePicker } = antd;
+
+onChange = (date, dateString) => {
+    if(debug){
+        console.log(`date = ${date}`);
+        console.log(`dateString = ${dateString}`);
+    }
+};
+
+<DatePicker 
+    onChange={this.onChange} 
+    placeholder="日期选择框 2017-08-08 格式"
+    style={{minWidth: 200}}
+/>
+
+
+    <Input 
+        onChange={this.onInputChange}
+        type="text"
+        placeholder={date_placeholder}
+    />
+
+```
+
+
+```jsx
+
+// OK
+
+if(index.name === "EndDate" || index.name === "BeginDate" ){
+    const date = new Date().toLocaleDateString().replace(/\//ig, `-`);
+    let date_placeholder = `☹️ 请输入 ${date } 格式的时间!`;
+    // "2017-8-22"
+    return(
+        <FormItem>
+            {
+                getFieldDecorator(index.name, {
+                    rules: [
+                        {
+                            required: true,
+                            message: '请输入必填字段值, 必填字段值不可为空!'
+                        }
+                    ],
+                    initialValue: text
+                })(
+                    <Input 
+                        onChange={this.onInputChange}
+                        type="text"
+                        placeholder={date_placeholder}
+                    />
+                )
+            }
+        </FormItem>
+    );
+}
+
+
+
+// shit api
+
+if(index.name === "EndDate" || index.name === "BeginDate" ){
+    const date = new Date().toLocaleDateString().replace(/\//ig, `-`);
+    let date_placeholder = `☹️ 请输入 ${date } 格式的时间!`;
+    // "2017-8-22"
+    return(
+        <FormItem>
+            {
+                getFieldDecorator(index.name, {
+                    rules: [
+                        {
+                            required: true,
+                            message: '请输入必填字段值, 必填字段值不可为空!'
+                        }
+                    ],
+                    // initialValue: text
+                })(
+                    <DatePicker 
+                        onChange={this.onDateChange} 
+                        placeholder="日期格式 2017-08-08"
+                        style={{minWidth: 300}}
+                        allowClear
+                        id={index.name}
+                        showToday
+                    />
+                )
+            }
+        </FormItem>
+    );
+}
+
+
+
+// resue component
+
+// save codes ???
+
+    <DatePicker 
+        onChange={
+            (index.name === "EndDate" ? this.onEndDateChange : this.onBeginDateChange)
+        } 
+        placeholder="日期格式 2017-08-08"
+        style={{minWidth: 300}}
+        allowClear
+        id={index.name}
+        showToday
+    />
+
+
+
+
+```
+## set state
+
+> todo DatePicker ???
+
+```js
+
+
+BeginDate: "",
+EndDate: ""
+
+
+onChange={(index.name === "EndDate" ? this.onEndDateChange : this.onBeginDateChange)} 
+
+```
 
 
 

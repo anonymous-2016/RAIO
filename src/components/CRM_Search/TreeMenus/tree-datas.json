@@ -1,0 +1,80 @@
+{
+    "Success": true,
+    "Info": {
+        "apiname": null,
+        "name": "root",
+        "toggled": true,
+        "children": [{
+                "apiname": "TestProtocol",
+                "name": "测试协议",
+                "toggled": false,
+                "children": null,
+                "active": false,
+                "loading": false
+            },
+            {
+                "apiname": null,
+                "name": "WEBF10",
+                "toggled": false,
+                "children": [{
+                    "apiname": null,
+                    "name": "财务概况",
+                    "toggled": false,
+                    "children": [{
+                        "apiname": null,
+                        "name": "财务指标",
+                        "toggled": false,
+                        "children": [{
+                            "apiname": "F10.FinanceIndicator.Primary",
+                            "name": "主要指标",
+                            "toggled": false,
+                            "children": null,
+                            "active": false,
+                            "loading": false
+                        }],
+                        "active": false,
+                        "loading": false
+                    }],
+                    "active": false,
+                    "loading": false
+                }],
+                "active": false,
+                "loading": false
+            },
+            {
+                "apiname": "StaticReportImageData",
+                "name": "REPORT 中关联的报表图形数据 @IMAGEID 图像数据的ID，一般由报表事先返回",
+                "toggled": false,
+                "children": null,
+                "active": false,
+                "loading": false
+            },
+            {
+                "apiname": "DBMarketSequence",
+                "name": "行情序列",
+                "toggled": false,
+                "children": null,
+                "active": false,
+                "loading": false
+            },
+            {
+                "apiname": "StaticReportImageDataSet",
+                "name": "REPORT 中关联的报表图形数据集合 @IMAGEID 图像数据的ID，一般由报表事先返回",
+                "toggled": false,
+                "children": null,
+                "active": false,
+                "loading": false
+            },
+            {
+                "apiname": "MacroTree",
+                "name": "宏观行业指标树",
+                "toggled": false,
+                "children": null,
+                "active": false,
+                "loading": false
+            }
+        ],
+        "active": false,
+        "loading": false
+    }
+}

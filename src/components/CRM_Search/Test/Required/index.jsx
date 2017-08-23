@@ -16,9 +16,8 @@ import {debug} from '../../../../app/debug';
 
 
 // libs
-import {Table, Input, Form} from 'antd';
+import {Table, Input, Form, DatePicker} from 'antd';
 const FormItem = Form.Item;
-
 
 class RequiredItems extends Component {
     constructor(props, context) {
@@ -29,7 +28,9 @@ class RequiredItems extends Component {
             url: "",
             url_obj: {},
             url_objs: {},
-            required_obj: {}
+            required_obj: {},
+            BeginDate: "",
+            EndDate: ""
         }
     }
     onSaveInput = () => {
@@ -52,11 +53,13 @@ class RequiredItems extends Component {
     autoSave = () => {
         // global url
         setTimeout(() => {
+            // this.onBeginDateChange();
+            // this.onEndDateChange();
             this.onSaveInput();
         }, 0);
     };
     // before onChange & update after render
-    componentDidMount() {
+    componentDidMount() { 
         // input value === init datas
         const initial_datas = this.props.init_datas;
         let temp_url_obj = this.state.url_obj;
@@ -112,29 +115,12 @@ class RequiredItems extends Component {
         this.setState({
             required_obj: temp_url_obj
         });
-//no need any more
+        //no need any more
         // initial url
         this.autoSave();
         // this.onSaveInput();
     }
     // get methods from props
-    handleSubmit = (e) => {
-        e.preventDefault();
-        this.props.form.validateFields(
-            (err, values) => {
-                if (!err) {
-                    if (debug) {
-                        console.log('Received values of form: ', values);
-                    }
-                    this.autoSave();
-                }
-                else{
-                    // when required is empty
-                    this.props.disableBTN(true);
-                }
-            }
-        );
-    };
     onInputChange = (e) => {
         if (debug) {
             // console.log(`%c e.target = `, color.green_23, e.target);
@@ -158,6 +144,79 @@ class RequiredItems extends Component {
         }
         // regex test / keys, value === ""
         // /""/ig.test(str_obj)
+        if(/""/ig.test(str_obj)){
+            this.props.disableBTN(true);
+        }else{
+            this.props.disableBTN(false);
+        }
+        // get changed table values
+        this.setState({
+            url: `${urls.test}?${str_obj}`
+        });
+    };
+    // DatePicker
+    onBeginDateChange = (date, dateString) => {
+        if(debug){
+            console.log(`BeginDate  dateString = ${dateString}`);
+        }
+        // BeginDate
+        // temp_url_obj["BeginDate"] = dateString;
+        let temp_url_obj = this.state.url_obj;
+        // index.name === "EndDate" || index.name === "BeginDate"
+        temp_url_obj["BeginDate"] = dateString;
+        let str_obj = JSON.stringify(temp_url_obj);
+        if(/""/ig.test(str_obj)){
+            this.props.disableBTN(true);
+        }else{
+            this.props.disableBTN(false);
+        }
+        // get changed table values
+        this.setState({
+            url: `${urls.test}?${str_obj}`
+        });
+        this.autoSave();
+    };
+    onEndDateChange = (date, dateString) => {
+        if(debug){
+            console.log(`EndDate dateString = ${dateString}`);
+        }
+        // EndDate
+        // temp_url_obj["EndDate"] = dateString;
+        let temp_url_obj = this.state.url_obj;
+        // index.name === "EndDate" || index.name === "BeginDate"
+        temp_url_obj["EndDate"] = dateString;
+        let str_obj = JSON.stringify(temp_url_obj);
+        if(/""/ig.test(str_obj)){
+            this.props.disableBTN(true);
+        }else{
+            this.props.disableBTN(false);
+        }
+        // get changed table values
+        this.setState({
+            url: `${urls.test}?${str_obj}`
+        });
+        this.autoSave();
+    };
+    onDateChange = (date, dateString) => {
+        if(debug){
+            console.log(`date = ${date}`);
+            // date = 1503455602216
+            console.log(`dateString = ${dateString}`);
+            // dateString = 2017-08-23
+            // console.log(`date e = ${e}`);
+            // console.log(`date e = ${JSON.stringify(e)}`);
+            // undefined
+        }
+        let temp_url_obj = this.state.url_obj;
+        // index.name === "EndDate" || index.name === "BeginDate"
+        if(temp_url_obj["BeginDate"]){
+            temp_url_obj["BeginDate"] = dateString;
+        }
+        if(temp_url_obj["EndDate"]){
+            temp_url_obj["EndDate"] = dateString;
+        }
+        // (index.name === "EndDate" ? this.onEndDateChange : this.onBeginDateChange)
+        let str_obj = JSON.stringify(temp_url_obj);
         if(/""/ig.test(str_obj)){
             this.props.disableBTN(true);
         }else{
@@ -231,7 +290,7 @@ class RequiredItems extends Component {
                             />
                         );
                     }else{
-                        if(index.name === "EndDate" || index.name === "BeginDate" ){
+                        if(index.name === "EndDate" || index.name === "BeginDate"){
                             const date = new Date().toLocaleDateString().replace(/\//ig, `-`);
                             let date_placeholder = `☹️ 请输入 ${date } 格式的时间!`;
                             // "2017-8-22"
@@ -245,12 +304,16 @@ class RequiredItems extends Component {
                                                     message: '请输入必填字段值, 必填字段值不可为空!'
                                                 }
                                             ],
-                                            initialValue: text
+                                            // initialValue: text
                                         })(
-                                            <Input 
-                                                onChange={this.onInputChange}
-                                                type="text"
+                                            <DatePicker 
+                                                onChange={(index.name === "EndDate" ? this.onEndDateChange : this.onBeginDateChange)} 
+                                                // placeholder="日期格式 2017-08-08"
                                                 placeholder={date_placeholder}
+                                                style={{minWidth: 300}}
+                                                allowClear
+                                                id={index.name}
+                                                showToday
                                             />
                                         )
                                     }
