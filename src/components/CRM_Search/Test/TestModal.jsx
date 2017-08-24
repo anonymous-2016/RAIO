@@ -55,7 +55,9 @@ class TestModal extends Component {
                     }
                     // fetch data
                     let url = values.textarea;
-                    this.props.TestClick(url);
+                    // this.props.TestClick(url);
+                    // once bug ??? TestClick(url_objs)
+                    // this.props.startTest();
                     this.props.checkTestCommands();
                     // this.onTest();
                 }else{
@@ -165,7 +167,7 @@ TestModal.propTypes = {
     hideModal: PropTypes.func.isRequired,
     checkTestCommands: PropTypes.func.isRequired,
     fetch_url: PropTypes.string.isRequired,
-    TestClick: PropTypes.func.isRequired,
+    // TestClick: PropTypes.func.isRequired,
 };
 
 

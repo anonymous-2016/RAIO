@@ -70,6 +70,7 @@ class CRMS extends Component {
         )
         .then((json)=> {
             let datas = json.Info;
+            // create routes
             let routes = datas.map(
                 (data) => {
                     if(!debug){
@@ -79,9 +80,14 @@ class CRMS extends Component {
                         path: `/api/sc/${data.name}`,
                         exact: true,
                         main: () => {
+                            if (debug) {
+                                console.log(`%c SCT data = ${JSON.stringify(data, null, 4)}`, color.color_css3);
+                            }
                             return(
                                 <div>
-                                    <SCT data={data} urlname={data.name}/>
+                                    {/* <SCT data={data} urlname={data.name}/> */}
+                                    {/* <SCT data={data} urlname={`${window.location.hash.substr(1)}`}/> */}
+                                    <SCT data={data} urlname={`${window.location.pathname.substr(8)}`}/>
                                     {/* SCT  */}
                                 </div>
                             );

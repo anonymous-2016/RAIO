@@ -303,6 +303,10 @@ class SCT extends Component {
     render() {
         const {input_datas, output_datas, in_out_data} = this.state;
         // const {input_datas, output_datas} = this.props.datas;
+        const {data} = {...this.props};
+        if (debug) {
+            console.log(`%c SCT data = ${JSON.stringify(data, null, 4)}`, color.color_css2);
+        }
         return (
             <div>
                 {/* this.state.data = {JSON.stringify(this.state.data)} */}

@@ -30,21 +30,20 @@ class OptionsItems extends Component {
                 PageNo: 1,
                 PageSize: 100
             },
-            Sorts: [
+            Sorts: [{}], 
+            /* 
                 {
-                    Field: "",
-                    Sort: "no"
+                    // Field: "",
+                    // Sort: ""
                 }
-            ],
+             */
             Compress: "true",
             FastQuarterReportType: [],// ["Q1th", "Q2nd", "Q3rd", "Q4th"]
             FastDateFilterType: "",
             OutField: [], // ["TableName.A0", "BasicInformationRow.A3"]
             IgnoreField: [], // ["TableName.A0", "BasicInformationRow.A5"]
             Group: "",
-            defaultInput: {
-                // 
-            },
+            defaultInput: {},
             url_objs: {},
             options_obj: {}
         };
@@ -123,18 +122,18 @@ class OptionsItems extends Component {
                     this.autoSave();
                 */
                 // init sort key
-                let sort_key_init = this.props.sort_items;
+                /* let sort_key_init = this.props.sort_items;
                 let arr = this.state.Sorts;
-                arr[0].Field = sort_key_init[Object.keys(sort_key_init)[0]];
+                arr[0].Field = Object.keys(sort_key_init)[0];
                 that.setState({
                     Sorts: arr
-                });
+                }); */
                 return {
                     options_obj: Object.assign(
                         prevState.options_obj, 
                         {
                             "Page": Page, 
-                            "Sorts": Sorts, 
+                            // "Sorts": Sorts, 
                             "Compress": Compress
                         }
                     )
@@ -257,47 +256,86 @@ class OptionsItems extends Component {
             console.log('%c select Sort Key checked', color.color_css2, e);
             console.log('%c old Sort Key = \n', color.css1, JSON.stringify(this.state.Sorts));
         }
-        let arr = this.state.Sorts;
-        arr[0].Field = e;
-        if (!debug) {
-            console.log('select Sorts Key, arr = ', JSON.stringify(arr));
+        let temp_obj = this.state.options_obj,
+            arr = this.state.Sorts,
+            obj = {};
+        if(arr.length === 0){
+            arr.push(obj);
         }
-        this.setState({
-            Sorts: arr
-        });
-        if (debug) {
-            console.log('%c new this.state.Sorts Sorts Key = \n', color.css2, JSON.stringify(this.state.Sorts));
+        if(e !== undefined){
+            obj.Field = e;
+            // in case arr === [], caouse error
+            arr[0] = Object.assign(arr[0],obj);
+           /*  this.setState({
+                Sorts: arr
+            }); */
+            temp_obj.Sorts = arr;
+            this.setState({
+                options_obj: temp_obj
+            });
+            this.autoSave();
+        }else if(e === undefined){
+            // no key, no value ???
+            // Sort
+            if(arr[0].Key === undefined){
+                // arr
+                arr = [];
+                // reset []
+                /* this.setState({
+                    Sorts: arr
+                }); */
+                temp_obj.Sorts = arr;
+                this.setState({
+                    options_obj: temp_obj
+                });
+                this.autoSave();
+            }
         }
-        if (debug) {
-            console.log('%c autoSave ??? = \n', color.css2);
-        }
-        this.autoSave();
     };
     // Sorts Methods
     onSelectSortMethodChange = (e) => {
         // onSelectSortChange
         if (debug) {
             console.log('%c select Sort Method checked', color.color_css2, e);
+            // asc/desc/no
+            // undefined
             console.log('%c old Sorts Sort = \n', color.css1, JSON.stringify(this.state.Sorts));
         }
-        let arr = this.state.Sorts;
-        arr[0].Sort = e;
-        /* if (!arr[0].Field) {
-            arr[0].Field = ""
-        } */
-        if (!debug) {
-            console.log('select Sorts Sort, arr = ', JSON.stringify(arr));
+        let temp_obj = this.state.options_obj,
+            arr = this.state.Sorts,
+            obj = {};
+        if(arr.length === 0){
+            arr.push(obj);
         }
-        this.setState({
-            Sorts: arr
-        });
-        if (debug) {
-            console.log('%c new this.state.Sorts Sorts Sort = \n', color.css2, JSON.stringify(this.state.Sorts));
+        if(e !== undefined){
+            obj.Sort = e;
+            // in case arr === [], caouse error
+            arr[0] = Object.assign(arr[0],obj);
+            /* this.setState({
+                Sorts: arr
+            }); */
+            temp_obj.Sorts = arr;
+            this.setState({
+                options_obj: temp_obj
+            });
+            this.autoSave();
+        }else if(e === undefined){
+            // no key, no value ???
+            // Field
+            if(arr[0].Key === undefined){
+                // arr
+                arr = [];
+                // reset []
+                /* this.setState({
+                    Sorts: arr
+                }); */
+                temp_obj.Sorts = arr;
+                this.setState({
+                    options_obj: temp_obj
+                });
+                this.autoSave();
+            }
         }
-        if (debug) {
-            console.log('%c autoSave ??? = \n', color.css2);
-        }
-        this.autoSave();
     };
     // OutField
     onOutFieldChange = (e) => {

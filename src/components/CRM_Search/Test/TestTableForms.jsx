@@ -48,7 +48,7 @@ class TestTableForms extends Component {
             visible: false,
             test_datas: this.props.test_datas, // init_datas url
             fetch_url: "",
-            disable_btn: true,
+            disable_btn: false,
             isCollapsed: true,
             loading: false,
             required_obj: {},
@@ -174,7 +174,7 @@ class TestTableForms extends Component {
                     );
                     // result table A0 = key
                     if (debug) {
-                        console.log(`%c fecthed data = \n`, color.color_css3, JSON.stringify(fecth_data));
+                        console.log(`%c fecthed data = \n`, color.color_css3, JSON.stringify(fecth_data, null, 4));
                     }
                     that.setState({
                         test_datas: {fecth_data}
@@ -280,7 +280,7 @@ class TestTableForms extends Component {
     };
     componentDidMount() {
         this.setState({
-            disable_btn: true
+            disable_btn: false
         });
     }
     /* eslint-disable no-console */
@@ -459,6 +459,7 @@ class TestTableForms extends Component {
                             checkTestCommands={this.checkTestCommands}
                             fetch_url={this.state.fetch_url}
                             TestClick={this.TestClick}
+                            startTest={this.startTest}
                             disabled_btn={this.state.disable_btn}
                         />
                         :

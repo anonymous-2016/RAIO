@@ -21,6 +21,20 @@ export const test = `http://10.1.5.203/http-report/query`;
 // http://10.1.5.31:8080/http/report/query?
 
 
+/* 
+
+Tree
+
+// GetTreeSchema
+
+http://10.1.5.203/http-manage/admin?{'Admin':'report','Action':'GetTreeSchema','WriteType':'json'}:
+
+http://10.1.5.203/http-manage/admin?{"Admin":"report","Action":"GetTreeSchema","WriteType":"json","KeyWord":"测试协议"}
+http://10.1.5.203/http-manage/admin?{"Admin":"report","Action":"GetTreeSchema","WriteType":"json","ReportName":"TestProtocol"}
+
+
+*/
+
 
 // local JSON sever
 

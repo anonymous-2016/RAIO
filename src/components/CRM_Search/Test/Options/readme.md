@@ -1199,10 +1199,28 @@ zzl2:
 
 
 
+```js
 
 
 
+"orgCode": "001"
 
+"orgCode": ["001", "002", "003"]
+
+
+
+"orgCode": []
+
+orgCode.push(value);
+
+if(orgCode.length === 1){
+    "orgCode": orgCode.[0].toString()
+}
+if(orgCode.length > 1){
+    "orgCode": orgCode
+}
+
+```
 
 
 

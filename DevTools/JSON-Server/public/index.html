@@ -203,22 +203,26 @@
                 (json) => {
                     console.log(`%c fetch json \n`, color, json);
                     let data = JSON.stringify(json);
-                    let format_data = json.map(
-                        (data) => {
-                            return (
-                                data + "<br/>"
-                            );
-                        }
-                    );
+                    let format_data = JSON.stringify(json, null, 4);
+                    /* 
+                        let format_data = json.map(
+                            (data) => {
+                                return (
+                                    data + "<br/>"
+                                );
+                            }
+                        );
+                     */
                     // regex format
+                    // JSON.stringify(fecth_data, null, 4);
                     // CodeMirror js lib
                     document.querySelector(dom_id).innerText = `loading...`;
                     // mock async
                     setTimeout(() => {
                         document.querySelector(dom_id).innerText = format_data;
-                        console.log(`%c fetch format_data \n`, color, format_data);
-                        document.querySelector(dom_id).innerText = data;
-                        console.log(`%c fetch stringify data \n`, color, data);
+                        console.log(`%c fetch format_data = JSON.stringify(json, null, 4) \n`, color, format_data);
+                        // document.querySelector(dom_id).innerText = data;
+                        // console.log(`%c fetch stringify data \n`, color, data);
                     }, 1000);
                     return data;
                 }
@@ -244,7 +248,9 @@
                     document.querySelector(dom_id).innerText = `loading...`;
                     if (json.length > 0) {
                         setTimeout(() => {
-                            document.querySelector(dom_id).innerText = JSON.stringify(json);
+                            document.querySelector(dom_id).innerText = JSON.stringify(json, null, 4);
+                            // JSON.stringify(json, null, 4)
+                            // getdata(dom_id)
                         }, 1000);
                     } else {
                         document.querySelector(dom_id).innerText = "no result datas";

@@ -7,7 +7,7 @@
         "build": "react-scripts build",
         "test": "react-scripts test --env=jsdom",
         "eject": "react-scripts eject",
-        "app": "cd build & browser-sync start --server --files 'index.html'",
+        "app": "npm run build && cd build && browser-sync start --server --files 'index.html'",
         "bat": "start start-browser.bat",
         "starts": "start http://localhost:7777/datas/ && start http://localhost:7777/Info/"
     },
