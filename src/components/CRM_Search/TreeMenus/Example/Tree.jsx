@@ -42,7 +42,13 @@ class Tree extends Component {
     }
     render() {
         return (
-            <div id="app">
+            <div
+                id="app"
+                style={{
+                    maxWidth: 200,
+                    overflowX: "auto"
+                }} 
+                >
                 {/*  */}
             </div>
         );

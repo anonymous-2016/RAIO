@@ -33,7 +33,7 @@ class SCT extends Component {
             out_data: [],
             developer: "",
             url_name: this.props.urlname,
-            new_example: {}
+            example_obj: {}
         };
     }
     // url_name
@@ -93,24 +93,34 @@ class SCT extends Component {
                     }
                     // key === index
                     arr.push(datas[key]);
+                    // return arr;
+                    // arr = values.map()
                 }
             }
-            // console.log(`arr result = `, arr);
+            if (debug) {
+                console.log(`input_datas === arr result = `, arr);
+                // [{},{}, ...]
+            }
             this.setState(
                 {
                     input_datas: arr
                 }
             );
             // commandexample
-            /* 
             if(json.Info.commandexample){
                 // "{            \"SecuCode\":  000011,            \"ApiName\": \"fund.f9.fund_profile.FundIntroduce\" }"
                 // regex ""
-                let new_example = JSON.parse(json.Info.commandexample);
+                let temp_obj = JSON.parse(json.Info.commandexample);
+                if (debug) {
+                    console.log(`%c json.Info.commandexample = `, color.color_css1, temp_obj);
+                }
                 // object
                 // {SecuCode: "000011", ApiName: "fund.f9.fund_profile.FundIntroduce"}
+                this.setState({
+                    example_obj: Object.assign({}, temp_obj)
+                });
+                // reset inputs
             }
-            */
             return arr;
         });
         // console.log(`new arr = `, arr);
@@ -301,23 +311,28 @@ class SCT extends Component {
         this.outputClick(url_out);
     }
     render() {
-        const {input_datas, output_datas, in_out_data} = this.state;
+        const {input_datas, output_datas, in_out_data, example_obj} = this.state;
         // const {input_datas, output_datas} = this.props.datas;
         const {data} = {...this.props};
         if (debug) {
             console.log(`%c SCT data = ${JSON.stringify(data, null, 4)}`, color.color_css2);
+            console.log(`%c SCT example_obj = ${JSON.stringify(example_obj, null, 4)}`, color.color_css1);
+            
         }
         return (
             <div>
                 {/* this.state.data = {JSON.stringify(this.state.data)} */}
                 {/* {this.state.new_data.key}<br />  */}
                 <hr/>
-                <div style={{color: 'green'}}>
+                <div style={{}}>
                     <TCB 
-                        developer={this.state.developer || (Math.random()*10 > 5 ? "xgqfrms" : "admin")} 
+                        // developer={this.state.developer || (Math.random()*10 > 5 ? "xgqfrms" : "admin")} 
+                        developer={this.state.developer || "☹️ 暂无数据!"} 
+                        // ☹️ 请输入 2017-8-25 格式的时间!
                         input_datas={input_datas}
                         output_datas={output_datas}
                         in_out_data={in_out_data}
+                        example_obj={example_obj}
                     />
                 </div>
             </div>

@@ -33,16 +33,18 @@ class TabsContentBox extends Component {
         this.state = {
             input_datas: this.props.input_datas,
             output_datas: this.props.output_datas,
-            in_out_data: this.props.in_out_data
+            in_out_data: this.props.in_out_data,
+            example_obj: this.props.example_obj
         };
     }
     // shape datas ???
     render() {
-        const {input_datas, output_datas, in_out_data, developer} = {...this.props};
+        const {input_datas, output_datas, in_out_data, developer, example_obj} = {...this.props};
         if (!debug) {
             console.log(`%c TCB input_datas = ${input_datas}`, color.color_css3);
             console.log(`%c TCB output_datas = ${output_datas}`, color.color_css2);
             console.log(`%c TCB developer = ${developer}`, color.color_css1);
+            console.log(`%c TCB example_obj = ${example_obj}`, color.color_css3);
         }
         // input_datas & output_datas
         if (!debug) {
@@ -222,6 +224,7 @@ class TabsContentBox extends Component {
                             inputs={input_datas}
                             options={options_obj}
                             url_path={url_path}
+                            example_obj={example_obj || {}}
                         />
                         {/* muilt test components */}
                     </TabPane>
@@ -231,7 +234,14 @@ class TabsContentBox extends Component {
                                 此报表开发者:
                                 <input
                                     type="text"
-                                    style={{width: 100, margin: "auto 5px", textAlign: "center", color: "red"}}
+                                    style={{
+                                        width: 100,
+                                        margin: "auto 5px",
+                                        textAlign: "center",
+                                        color: "#777",
+                                        bordeRadius: 5,
+                                        border: "1px solid #fff"
+                                    }}
                                     value={developer}
                                     disabled
                                     contentEditable="false"

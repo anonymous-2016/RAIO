@@ -52,7 +52,8 @@ class TestTableForms extends Component {
             isCollapsed: true,
             loading: false,
             required_obj: {},
-            options_obj: {}
+            options_obj: {},
+            test_results: {}
         }
     }
     disableBTN = (value=false) =>{
@@ -177,7 +178,8 @@ class TestTableForms extends Component {
                         console.log(`%c fecthed data = \n`, color.color_css3, JSON.stringify(fecth_data, null, 4));
                     }
                     that.setState({
-                        test_datas: {fecth_data}
+                        // test_datas: {fecth_data}
+                        test_results: Object.assign({}, fecth_data)
                     });
                     /*
                         setTimeout(() => {
@@ -286,10 +288,10 @@ class TestTableForms extends Component {
     /* eslint-disable no-console */
     render() {
         const {show, test_datas} = {...this.state};
-        const {inputs, outputs, options, url_path} = {...this.props};
+        const {inputs, outputs, options, url_path, example_obj} = {...this.props};
         // options
         const {sort, fields, datas} = options;
-        if (!debug) {
+        if (debug) {
             console.log(`%c ri inputs`, color.color_css3, inputs);
             console.log(`%c ri outputs`, color.css2, outputs);
             // options
@@ -303,7 +305,8 @@ class TestTableForms extends Component {
         let ri_datas = [];
         let op_datas = [];
         // commandexample
-        if(inputs.commandexample){
+        // example_obj ??? multi example
+        if(example_obj === false){
             /* 
             "commandexample" : "{            \"SecuCode\": 000011,            \"ApiName\": \"fund.f9.fund_profile.FundIntroduce\" }",
             // bug ???
@@ -311,12 +314,13 @@ class TestTableForms extends Component {
             http://10.1.5.203/http-manage/admin?{%27Admin%27:%27report%27,%27Action%27:%27GetSchema%27,%27WriteType%27:%27json%27,%27KeyWord%27:%27%E5%9F%BA%E9%87%91-%3EF9-%3E%20%E5%9F%BA%E9%87%91%E6%A6%82%E5%86%B5%27}
             基金->F9-> 基金概况->基金介绍
             // input 
-            http://10.1.5.203/http-manage/admin?{%22Admin%22:%22report%22,%22Action%22:%22GetSchema%22,%22WriteType%22:%22json%22,%20%22ReportName%22:%22fund.f9.fund_profile.FundIntroduce%22}
+            http://10.1.5.203/http-manage/admin?{%27Admin%27:%27report%27,%27Action%27:%27GetSchema%27,%27WriteType%27:%27json%27,%20%27ReportName%27:%27fund.f9.fund_profile.FundIntroduce%27}
             基金->F9->基金概况 ->基金管理人(基金公司基本资料,基金公司基本联系方式)
             基金->F9->基金概况 ->基金经理(信息显示表格)
              */
             if (debug) {
-                console.log(`%c ri inputs.commandexample = `, color.color_css2, inputs.commandexample);
+                console.log(`%c ri commandexample example_obj = `, color.color_css2, example_obj);
+                // {SecuCode: "000011", ApiName: "fund.f9.fund_profile.FundIntroduce"}
             }
             // ri_datas = inputs.commandexample
             // JSON.parse();
@@ -387,7 +391,7 @@ class TestTableForms extends Component {
             };
             ri_datas.push(fixed_obj);
         }
-        if ( debug) {
+        if (debug) {
             console.log(`%c finished ri_datas = `, color.css2, ri_datas);
             console.log(`%c finished op_datas = `, color.css2,  op_datas);
         }
@@ -491,7 +495,9 @@ class TestTableForms extends Component {
                         </Collapse>
                     }
                 </div>
-                <div style={{visibility: "hidden"}}>
+                <div 
+                    style={{visibility: "hidden"}}
+                    >
                     <h2 className="title-color">测试结果</h2>
                     {/* Tabs & Tables */}
                     {/* // tab.name === "AnyManagedFundsRow":[]  */}
@@ -515,7 +521,8 @@ TestTableForms.propTypes = {
     outputs: PropTypes.array.isRequired,
     options: PropTypes.object.isRequired,
     url_path: PropTypes.string.isRequired,
-    test_datas: PropTypes.array.isRequired
+    test_datas: PropTypes.array.isRequired,
+    example_obj: PropTypes.object.isRequired,
 };
 
 const TTF = TestTableForms;

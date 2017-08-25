@@ -2,17 +2,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-
-import {
-    BrowserRouter as Router,
-    Route,
-    Link
-} from 'react-router-dom';
-
-// libs
-import {StyleRoot} from 'radium';
-import {Treebeard, decorators} from 'react-treebeard';
-
 // components
 import {data} from './data';
 import styles from './styles';
@@ -23,9 +12,35 @@ import './a-link-color.css';
 
 // import {NodeViewer} from './NodeViewer';
 
+
+// libs
+import {
+    BrowserRouter as Router,
+    Route,
+    Link
+} from 'react-router-dom';
+
+import {StyleRoot} from 'radium';
+import {Treebeard, decorators} from 'react-treebeard';
+
+/* import {Layout, Menu, Icon} from 'antd';
+import 'antd/dist/antd.css';
+const SubMenu = Menu.SubMenu;
+const SubItem = Menu.Item;
+ */
+
+import {SearchBox} from './SearchBox';
+
+// utils
+import {debug} from '../../../../app/debug';
+import {color} from '../../../../app/color';
+
 let apiname = "";
 
 
+
+const api = `http://10.1.5.203/http-manage/admin`;
+const init_obj = {'Admin':'report','Action':'GetTreeSchema','WriteType':'json'};
 
 // Example: Customising The Header Decorator To Include Icons
 decorators.Header = ({style, node}) => {
@@ -66,65 +81,32 @@ decorators.Header = ({style, node}) => {
     node.apiname ? window.location.hash = `${node.apiname}` : ``;
     node.apiname ? apiname = node.apiname : "node.apiname";
     return (
-        <div style={style.base
-            // {background: "#ccc",
-            // color: "#fff"  }
-      }>
+        <div style={style.base} className="li-width">
             <div style={style.title} className="a-link-color">
-                <Link to={`/api/sc/${node.apiname ? node.apiname : ""}`}>
-                    <i className={iconClass} style={iconStyle}/>
-                    {/* {node.name} & {`${node.apiname ? "api = "+node.apiname : "☹️"}`} */}
-                    {/* {node.name} & {`${node.apiname ? "❤" : "☹️"}`} */}
-                    {node.name}
-                    {/* 
-                        {(node.apiname ? window.location.hash = `${node.apiname}` : ``)}
-                    */}
-                    {/* {setTimeout(() => {
-                        (node.apiname ? window.location.hash = `${node.apiname}` : ``)
-                    }, 0)}  */}
-                </Link>
+            <Link to={`/api/sc/${node.apiname ? node.apiname : ""}`}>
+                <i className={iconClass} style={iconStyle}/>
+                {/* {node.name} & {`${node.apiname ? "api = "+node.apiname : "☹️"}`} */}
+                {/* {node.name} & {`${node.apiname ? "❤" : "☹️"}`} */}
+                {node.name}
+                {/* 
+                    {(node.apiname ? window.location.hash = `${node.apiname}` : ``)}
+                */}
+                {/* {setTimeout(() => {
+                    (node.apiname ? window.location.hash = `${node.apiname}` : ``)
+                }, 0)}  */}
+            </Link>
                 {/* {JSON.stringify(node)} */}
             </div>
         </div>
     );
 };
 
-/* 
-
-        <div style={style.base}>
-            <div style={style.title}>
-
-*/
-
-// decorators ???
-
-/* 
-
-Header === menus apiname
-
-if(apiname !== undefined){
-    // pass apiname
-}else{
-    // nothing need to do
-}
-
-Container
-
-Loading
-
-Toggle
-
-*/
-
-// content ??? get apiname
-
-
 
 class DemoTree extends React.Component {
     constructor(props, context) {
         super(props, context);
         this.state = {
-            data: data,
+            data: [],
             url : ""
         };
     }
@@ -152,6 +134,45 @@ class DemoTree extends React.Component {
         // (such as within `render` or another component's constructor). 
         // Render methods should be a pure function of props and state; 
         // constructor side-effects are an anti-pattern, but can be moved to `componentWillMount`.
+        // this.fetchTree();
+    }
+    componentDidMount() {
+        // init data
+        let str_obj = JSON.stringify(init_obj);
+        this.fetchTree(str_obj);
+    }
+    fetchTree = (str_obj) => {
+        // key value
+        let datas = {};
+        let new_url = ``;
+        if(str_obj === undefined){
+            let str_init_obj = JSON.stringify(init_obj);
+            new_url = `${api}?${str_init_obj}`;
+            console.log(`obj === undefined`);
+            // all tree data
+        }else{
+            new_url = `${api}?${str_obj}`;
+            // {"KeyWord":"测试协议"}
+            // {"ReportName":"TestProtocol"}
+            // {"Admin":"report","Action":"GetTreeSchema","WriteType":"json",}:
+        }
+        const that = this;
+        fetch(new_url)
+        .then((res) => res.json())
+        .then(
+            (json) => {
+                if (debug) {
+                    console.log(`fetched json`, json);
+                }
+                let 
+                datas = json.Info.children;
+                that.setState({
+                    data: datas
+                })
+                // do something in here!
+                return datas;
+            }
+        );
     }
 /*     onFilterMouseUp = (e) => {
         const filter = e.target.value.trim();
@@ -163,7 +184,7 @@ class DemoTree extends React.Component {
         this.setState({data: filtered});
     } */
     render() {
-        const {data: stateData, cursor} = this.state;
+        const {cursor} = this.state;
         return (
             <StyleRoot>
                 {/* <div style={styles.searchBox}>
@@ -184,11 +205,25 @@ class DemoTree extends React.Component {
                                onToggle={this.onToggle}/>
                 </div> */}
                 <div>
+                    <SearchBox fetchTree={this.fetchTree}/>
                     <Treebeard
-                        data={stateData}
+                        data={this.state.data || []}
                         decorators={decorators}
                         onToggle={this.onToggle}
                     />
+                    {/* 
+                    
+                    #treebox ul{
+                        list-style: none;
+                        background-color: rgb(13, 86, 197);
+                        margin: 0px;
+                        padding: 0px;
+                        color: rgb(157, 165, 171);
+                        font-family: "lucida grande", tahoma, verdana, arial, sans-serif;
+                        font-size: 14px;
+                        width: 300px;
+                    }
+                     */}
                 </div>
                 {/* content */}
                 {/* <div style={styles.component}>
@@ -207,38 +242,3 @@ export default DemoTree;
 // const content = document.getElementById('content');
 // ReactDOM.render(<DemoTree/>, content);
 
-/* 
-
-
-
-
-const data = {
-    "apiname": null,
-    "name": "root",
-    "toggled": true,
-    "children": [
-        {
-            "apiname": "TestProtocol",
-            "name": "测试协议",
-            "toggled": false,
-            "children": null,
-            "active": false,
-            "loading": false
-        },
-        {
-            "apiname": "StaticReportImageData",
-            "name": "REPORT 中关联的报表图形数据 @IMAGEID 图像数据的ID，一般由报表事先返回",
-            "toggled": false,
-            "children": null,
-            "active": false,
-            "loading": false
-        }
-    ]
-};
-
-
-
-
-
-
-*/

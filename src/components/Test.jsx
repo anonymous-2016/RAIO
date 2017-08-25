@@ -23,7 +23,13 @@ class TestItem extends Component {
     render() {
         return (
             <div>
-                {/* <Tree /> */}<DemoTree />
+                {/* <Tree /> */}
+               {/*  <div 
+                    id="treebox"
+                    style={{maxWidth: "200px !important", overflowX: "hidden !important"}}
+                    className="treebox">
+                    <DemoTree />
+                </div> */}
                 {/*  */}<CRMS />
                 {/* <a href="#">TestItem</a> */}
                 {/* <ModalName /> */}

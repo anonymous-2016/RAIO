@@ -39,7 +39,7 @@ const TreeMenus = (data, hasChildren=true) => {
             // Submenu found. 
             // Calling recursively same method (and wrapping it in a div)
         } else {
-            html += data[item].name
+            html += data[item].name;
             // No submenu
         }
         html += `</li>`;

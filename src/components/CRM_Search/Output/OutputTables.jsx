@@ -27,8 +27,8 @@ class OutputTables extends Component {
             <div 
                 style={{
                     minHeight: 900,
-                    maxHeight: 1000,
-                    overflowY: "scroll",
+                    // maxHeight: 1000,
+                    // overflowY: "scroll",
                     boxSizing: "borderBox"
                 }}>
                 {/* map Tables*/}
@@ -82,3 +82,5 @@ OutputTables.propTypes = {
 const OTS = OutputTables;
 export {OTS}
 export default OTS;
+
+

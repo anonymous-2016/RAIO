@@ -134,7 +134,9 @@ class ContentBox extends Component {
                 <div style={{display: 'flex'}} >
                     <div 
                         style={{
-                            background: '#333'
+                            background: '#333',
+                            display: "none",
+                            width: 0
                         }}
                         className={this.props.styles ? this.props.styles : 'null'}
                         >
@@ -168,124 +170,7 @@ class ContentBox extends Component {
                                     </Link>
                                 </Menu.Item>
                             </SubMenu>
-                            <SubMenu 
-                                    key="sub1"
-                                    title={
-                                        <span>
-                                            <Icon type="area-chart" style={{fontSize: 18, color: '#0f0'}} className=""/>
-                                            <span style={{fontSize: 16, color: 'rgba(255, 255, 255, 0.7)'}} className="">用户管理</span>
-                                        </span>
-                                    }
-                                >
-                                <Menu.Item key="1">
-                                    <Link to="/item1">
-                                        <Icon type="area-chart" style={{fontSize: 12, color: '#ff0'}}/>
-                                        用户查询
-                                    </Link>
-                                </Menu.Item>
-                                <Menu.Item key="2">
-                                    <Link to="/item1">
-                                        <Icon type="area-chart" style={{fontSize: 12, color: '#ff0'}}/>
-                                        登录统计
-                                    </Link>
-                                </Menu.Item>
-                                <Menu.Item key="3">
-                                    <Link to="/item1">
-                                        <Icon type="area-chart" style={{fontSize: 12, color: '#ff0'}}/>
-                                        行为分析
-                                    </Link>
-                                </Menu.Item>
-                            </SubMenu>
-                            <SubMenu 
-                                    key="sub2" 
-                                    title={
-                                        <span>
-                                            <Icon type="setting" style={{fontSize: 18, color: '#fff'}}/>
-                                            <span>权限管理</span>
-                                        </span>
-                                    }
-                                >
-                                <Menu.Item key="4">
-                                    <Link to="/amrm">
-                                        <Icon type="setting" style={{fontSize: 12, color: '#f0f'}}/>
-                                        角色管理
-                                    </Link>
-                                </Menu.Item>
-                                <Menu.Item key="5">
-                                    <Link to="/item2">
-                                        <Icon type="setting" style={{fontSize: 12, color: '#f0f'}}/>
-                                        绑定设置</Link>
-                                </Menu.Item>
-                                <Menu.Item key="6">
-                                    <Link to="/item2">
-                                        <Icon type="setting" style={{fontSize: 12, color: '#f0f'}}/>
-                                        限制设置
-                                    </Link>
-                                </Menu.Item>
-                                <Menu.Item key="7">
-                                    <Link to="/item2">
-                                        <Icon type="setting" style={{fontSize: 12, color: '#f0f'}}/>
-                                        用户权限设置
-                                    </Link>
-                                </Menu.Item>
-                                <Menu.Item key="8">
-                                    <Link to="/item2">
-                                        <Icon type="setting" style={{fontSize: 12, color: '#f0f'}}/>
-                                        用户限制
-                                    </Link>
-                                </Menu.Item>
-                                <Menu.Item key="9">
-                                    <Link to="/item2">
-                                        <Icon type="setting" style={{fontSize: 12, color: '#f0f'}}/>
-                                        角色权限设置
-                                    </Link>
-                                </Menu.Item>
-                            </SubMenu>
-                            <SubMenu 
-                                key="sub3" 
-                                title={
-                                    <span>
-                                        <Icon type="idcard" style={{fontSize: 18, color: '#0f0'}}/>
-                                        <span>信息管理</span>
-                                    </span>
-                                }
-                                >
-                                <Menu.Item key="10">
-                                    <Link to="/impm">
-                                        <Icon type="idcard" style={{fontSize: 12, color: '#fff'}}/>
-                                        产品管理
-                                    </Link>
-                                </Menu.Item>
-                                <Menu.Item key="11">
-                                    <Link to="/imnmm">
-                                        <Icon type="idcard" style={{fontSize: 12, color: '#fff'}}/>
-                                        模块管理
-                                    </Link>
-                                </Menu.Item>
-                                <Menu.Item key="12">
-                                    <Link to="/imlm">
-                                        <Icon type="idcard" style={{fontSize: 12, color: '#fff'}}/>
-                                        类库管理
-                                    </Link>
-                                </Menu.Item>
-                                <Menu.Item key="13">
-                                    <Link to="/imfm">
-                                        <Icon type="idcard" style={{fontSize: 12, color: '#fff'}}/>
-                                        功能管理
-                                    </Link>
-                                </Menu.Item>
-                                <Menu.Item key="14">
-                                    <Link to="/imnrm">
-                                        <Icon type="idcard" style={{fontSize: 12, color: '#fff'}}/>
-                                        资源管理
-                                    </Link>
-                                </Menu.Item>
-                                <Menu.Item key="15">
-                                    <Link to="/immm">
-                                    <Icon type="idcard" style={{fontSize: 12, color: '#fff'}}/>
-                                    菜单管理</Link>
-                                </Menu.Item>
-                            </SubMenu>
+                            {/* cb backup */}
                         </Menu>
                     </div>
                     {/*menu-fold menu-unfold*/}
@@ -293,7 +178,7 @@ class ContentBox extends Component {
                         flex: 1,
                         padding: '10px',
                         overflow: 'auto',
-                        marginLeft: this.props.marginLeft,
+                        // marginLeft: this.props.marginLeft,
                         transition: 'all 0.5s ease 0.1s'
                         }}
                         className="App-Container"
@@ -302,15 +187,19 @@ class ContentBox extends Component {
                             <div>
                                 <img src={this.props.logo} className="App-logo" alt="logo" style={this.props.width}/>
                             </div>
-                            <h3 className="CRM-title">CRM 权限认证管理系统</h3>
+                            {/* <h3 className="CRM-title">CRM 权限认证管理系统</h3> */}
+                            <h3 className="CRM-title">CRM 权限认证管理系统 - API 查询工具</h3>
                         </div>
                         <Button
                             icon="swap"
                             onClick={this.props.ClickHandler}
                             id="btn_style"
                             className="btnStyles"
-                            style={{left: 10, transition: 'all 0.5s ease 0.1s'}}
-                            >
+                            style={{
+                                left: 10,
+                                transition: 'all 0.5s ease 0.1s',
+                                display: "none"
+                            }}>
                         </Button>
                         {/* left: (this.props.marginLeft - 20) */}
                         {

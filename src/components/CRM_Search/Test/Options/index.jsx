@@ -857,6 +857,7 @@ class OptionsItems extends Component {
                             )
                             break;
                         // id={input_name} ??? dynamic input
+                        // form warp like required
                     }
                     return valueType;
                 },
@@ -873,11 +874,11 @@ class OptionsItems extends Component {
             <div
                 style={{
                     maxWidth: "100%",
-                    maxHeight: 600,
+                    // maxHeight: 600,
                     margin: 0,
                     padding: 0,
                     boxSizing: "borderBox",
-                    overflowY: "scroll"
+                    // overflowY: "scroll"
                 }}
                 onChange={this.autoSave}
                 >

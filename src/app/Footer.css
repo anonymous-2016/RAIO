@@ -15,6 +15,14 @@
     font-size: 16px;
 }
 
+#a-link {
+    color: #777 !important;
+}
+
+#a-link:hover {
+    color: #0f0 !important;
+}
+
 
 /* #crm_footer {
     position: absolute;

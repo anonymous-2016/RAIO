@@ -9,7 +9,7 @@ class XFooter extends Component {
         const agy = () => {
             let yid = document.querySelector('#autoGetYear');
             const year =  new Date().getFullYear();
-             let alink = document.createElement('a');
+            let alink = document.createElement('a');
             alink.href = "https://www.gildata.com/";
             const name = `<a href="https://www.gildata.com/">Gildata</a>`; 
             /* 
@@ -35,7 +35,9 @@ class XFooter extends Component {
                 </p> */}
                 <p className="autoGetAll">
                     {/*  Copyright © ? ShangHai Gildata Inc. All Rights Reserved  */}
-                    <span id="autoGetYear"></span> <a href="https://www.gildata.com/">Gildata</a> Inc. All Rights Reserved
+                    <span id="autoGetYear"></span>
+                    <a id="a-link" href="https://www.gildata.com/"> Gildata </a>
+                    <span> Inc. All Rights Reserved </span>
                 </p>
             </div>
         );

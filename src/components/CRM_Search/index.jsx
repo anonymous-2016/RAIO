@@ -196,7 +196,7 @@ class CRMS extends Component {
     render() {
         return (
             <div>
-                <SF xyzSearch={this.xyzSearch}/>
+                {/* <SF xyzSearch={this.xyzSearch}/> */}
                 {/* menus */}
                 {
                     <Spin

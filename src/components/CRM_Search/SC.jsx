@@ -11,6 +11,8 @@ import {debug} from '../../app/debug';
 
 // components
 import {DM}from './DynamicMenus';
+// tree
+import {DemoTree} from './TreeMenus/Example';
 
 // libs
 import 'whatwg-fetch';
@@ -19,6 +21,7 @@ import {
     Route,
     Link
 } from 'react-router-dom';
+
 
 import {Layout, Menu, Icon} from 'antd';
 import 'antd/dist/antd.css';
@@ -135,8 +138,8 @@ class SC extends Component {
             <div
                 style={{
                     border: '1px solid #ccc',
-                    minHeight: 1000,
-                    overflowY: "scroll",
+                    // minHeight: 1000,
+                    // overflowY: "scroll",
                     boxSizing:" borderBox"
                 }} >
                 <Router>
@@ -149,52 +152,15 @@ class SC extends Component {
                             border: '1px solid #fff',
                             overflowX: "hidden",
                         }}>
+                        {/* sc backup */}
+                        {/* <DemoTree /> */}
                         <div 
+                            id="treebox"
                             style={{
-                                background: "#404040",
-                                border: "1px solid #ccc"
+                                // width: "300px !important",
                             }}
-                            >
-                            <Menu
-                                theme={this.state.theme}
-                                onClick={this.handleClick}
-                                style={{
-                                    width: 220,
-                                    minHeight: 1000,
-                                    maxHeight: 1400,
-                                    overflowY: "scroll"
-                                }}
-                                defaultOpenKeys={['sub1']}
-                                mode="inline"
-                                >
-                                <SubMenu 
-                                    key="sub1"
-                                    title={
-                                        <span>
-                                            <Icon type="area-chart" style={{fontSize: 16, color: '#0f0'}} className=""/>
-                                            <span
-                                                style={{fontSize: 16, color: 'rgba(255, 255, 255, 0.7)'}}
-                                                className=""
-                                                >
-                                                API 查询工具
-                                            </span>
-                                        </span>
-                                    }>
-                                    {
-                                        this.props.datas.map((data, index) => (
-                                            <SubItem key={(index)}>
-                                                <Link to={`/api/sc/${data.name}`}>
-                                                    <Icon
-                                                        type={data.name ? this.randomIcons(data.description.substr(0, 2)) : "bar-chart"}
-                                                        style={{fontSize: 12, color: '#fff'}}
-                                                    />
-                                                    {data.description.substr(0,2)}
-                                                </Link>
-                                            </SubItem>
-                                        ))
-                                    }
-                                </SubMenu>
-                            </Menu>
+                            className="treebox">
+                            <DemoTree />
                         </div>
                         {/* style={{display: 'flex', overflowX: "scroll"}} */}
                         <div >

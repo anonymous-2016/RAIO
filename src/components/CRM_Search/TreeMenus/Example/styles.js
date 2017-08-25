@@ -1,7 +1,7 @@
 'use strict';
 
 export default {
-    component: {
+/*     component: {
         width: '50%',
         display: 'inline-block',
         verticalAlign: 'top',
@@ -10,7 +10,7 @@ export default {
             width: '100%',
             display: 'block'
         }
-    },
+    }, */
     searchBox: {
         padding: '20px 20px 0 20px'
     },
