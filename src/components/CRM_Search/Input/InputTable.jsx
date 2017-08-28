@@ -15,11 +15,13 @@ class InputTable extends Component {
         return (
             <div
                 style={{
-                    maxHeight: 1000,
+                    // maxHeight: 1000,
                     boxSizing: "borderBox",
                     margin: 10, 
                     padding: 10,
-                    // overflowY: "scroll"
+                    width: "100%",
+                    // overflowX: "hidden",
+                    // height: "100%"
                 }}>
                 <Table
                     dataSource={this.props.dataSource}

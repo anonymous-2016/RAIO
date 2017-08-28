@@ -151,7 +151,7 @@ class TabsContentBox extends Component {
                 title: "注释",
                 dataIndex: "Description",
                 key: "Description",
-                // width: '70%'
+                // width: '40%'
             }
         ];
         const output_columns = [
@@ -186,7 +186,8 @@ class TabsContentBox extends Component {
                         tab={<span><Icon type="apple" />输入</span>}
                         key="1"
                         style={{
-                            maxWidth: "100%",
+                            width: "100%",
+                            paddingRight: 20,
                             boxSizing: "borderBox"
                         }}>
                         {/* onTabClick={this.testClick} */}

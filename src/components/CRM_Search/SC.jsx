@@ -22,14 +22,12 @@ import {
     Link
 } from 'react-router-dom';
 
+import './sc.css';
 
 import {Layout, Menu, Icon} from 'antd';
 import 'antd/dist/antd.css';
 const SubMenu = Menu.SubMenu;
 const SubItem = Menu.Item;
-
-
-
 
 class SC extends Component {
     constructor(props, context) {
@@ -137,33 +135,29 @@ class SC extends Component {
         return (
             <div
                 style={{
-                    border: '1px solid #ccc',
+                    // border: '1px solid #ccc',
                     // minHeight: 1000,
                     // overflowY: "scroll",
-                    boxSizing:" borderBox"
+                    boxSizing:" borderBox",
+                    // overflow: "hidden",
+                    height: "100%",
                 }} >
                 <Router>
                     {/* display: 'flex', */}
                     <div 
                         style={{
                             display: 'flex',
-                            maxWidth: "100%",
+                            // width: "100%",
+                            // height: "100%",
                             boxSizing: "borderBox",
-                            border: '1px solid #fff',
-                            overflowX: "hidden",
+                            // border: '1px solid #fff',
+                            // overflow: "hidden",
                         }}>
-                        {/* sc backup */}
-                        {/* <DemoTree /> */}
-                        <div 
-                            id="treebox"
-                            style={{
-                                // width: "300px !important",
-                            }}
-                            className="treebox">
+                        <div className="treebox" id="treebox" >
                             <DemoTree />
                         </div>
                         {/* style={{display: 'flex', overflowX: "scroll"}} */}
-                        <div >
+                        <div className="atnt-conten">
                             {
                                 this.props.routes.map((route, index) => (
                                     <Route

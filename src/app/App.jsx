@@ -129,8 +129,8 @@ class App extends Component {
                     <ContentBox
                         routes={routes}
                         ClickHandler={this.handlerMenuClick}
-                        styles={this.state.styles}
-                        marginLeft={this.state.marginLeft}
+                        // styles={this.state.styles}
+                        // marginLeft={this.state.marginLeft}
                         logo={logo}
                         message={'just for test message'}
                     />

@@ -22,7 +22,9 @@ import {TM} from '../components/CRM_Search/TableMash';
 class TestItem extends Component {
     render() {
         return (
-            <div>
+            <div style={{
+                overflow: "hidden"
+            }}>
                 {/* <Tree /> */}
                {/*  <div 
                     id="treebox"

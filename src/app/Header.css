@@ -1,0 +1,27 @@
+@charset "UTF-8";
+.app-header {
+    box-sizing: border-box;
+    /* text-align: center; */
+    position: fixed;
+    z-index: 99999;
+    background: #fff;
+    /* color: #fff; */
+    color: #777;
+    opacity: 1;
+    width: 100%;
+    height: 67px;
+    /* line-height: 67px; */
+}
+
+.app-header .app-logo {
+    /* border: 1px solid rgba(0, 0, 0, 1); */
+    /* margin-left: -50%; */
+    /* margin-right: 50%; */
+    /* transform: translateX(50%); */
+}
+
+.crm-title {
+    font-size: 2rem;
+    text-align: center;
+    /* margin-left: 20%; */
+}

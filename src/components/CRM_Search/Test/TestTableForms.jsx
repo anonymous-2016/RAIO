@@ -308,15 +308,15 @@ class TestTableForms extends Component {
         // example_obj ??? multi example
         if(example_obj === false){
             /* 
-            "commandexample" : "{            \"SecuCode\": 000011,            \"ApiName\": \"fund.f9.fund_profile.FundIntroduce\" }",
-            // bug ???
-            000011 => "000011" 
-            http://10.1.5.203/http-manage/admin?{%27Admin%27:%27report%27,%27Action%27:%27GetSchema%27,%27WriteType%27:%27json%27,%27KeyWord%27:%27%E5%9F%BA%E9%87%91-%3EF9-%3E%20%E5%9F%BA%E9%87%91%E6%A6%82%E5%86%B5%27}
-            基金->F9-> 基金概况->基金介绍
-            // input 
-            http://10.1.5.203/http-manage/admin?{%27Admin%27:%27report%27,%27Action%27:%27GetSchema%27,%27WriteType%27:%27json%27,%20%27ReportName%27:%27fund.f9.fund_profile.FundIntroduce%27}
-            基金->F9->基金概况 ->基金管理人(基金公司基本资料,基金公司基本联系方式)
-            基金->F9->基金概况 ->基金经理(信息显示表格)
+                "commandexample" : "{            \"SecuCode\": 000011,            \"ApiName\": \"fund.f9.fund_profile.FundIntroduce\" }",
+                // bug ???
+                000011 => "000011" 
+                http://10.1.5.203/http-manage/admin?{%27Admin%27:%27report%27,%27Action%27:%27GetSchema%27,%27WriteType%27:%27json%27,%27KeyWord%27:%27%E5%9F%BA%E9%87%91-%3EF9-%3E%20%E5%9F%BA%E9%87%91%E6%A6%82%E5%86%B5%27}
+                基金->F9-> 基金概况->基金介绍
+                // input 
+                http://10.1.5.203/http-manage/admin?{%27Admin%27:%27report%27,%27Action%27:%27GetSchema%27,%27WriteType%27:%27json%27,%20%27ReportName%27:%27fund.f9.fund_profile.FundIntroduce%27}
+                基金->F9->基金概况 ->基金管理人(基金公司基本资料,基金公司基本联系方式)
+                基金->F9->基金概况 ->基金经理(信息显示表格)
              */
             if (debug) {
                 console.log(`%c ri commandexample example_obj = `, color.color_css2, example_obj);
@@ -426,7 +426,7 @@ class TestTableForms extends Component {
             }
         ];
         return (
-            <div>
+            <div className="api-test">
                 <div>
                     <p className="title-color">必填项</p>
                     <RI 
@@ -480,6 +480,10 @@ class TestTableForms extends Component {
                             <Panel
                                 header={ (this.state.isCollapsed === true) ? "展开-可选项" : "收起-可选项"}
                                 key="1"
+                                style={{
+                                    // paddingRight: 20,
+                                    // maxWidth: "calc(100% - 20px)"
+                                }}
                                 >
                                 {/* <Table dataSource={this.props.dataSource} columns={this.props.columns} bordered pagination={false}/> */}
                                 <OI

@@ -177,7 +177,8 @@ class ContentBox extends Component {
                     <div style={{
                         flex: 1,
                         padding: '10px',
-                        overflow: 'auto',
+                        overflow: 'hidden',
+                        // overflow: 'auto',
                         // marginLeft: this.props.marginLeft,
                         transition: 'all 0.5s ease 0.1s'
                         }}

@@ -186,24 +186,7 @@ class DemoTree extends React.Component {
     render() {
         const {cursor} = this.state;
         return (
-            <StyleRoot>
-                {/* <div style={styles.searchBox}>
-                    <div className="input-group">
-                        <span className="input-group-addon">
-                          <i className="fa fa-search"/>
-                        </span>
-                        <input className="form-control"
-                               onKeyUp={this.onFilterMouseUp}
-                               placeholder="Search the tree..."
-                               type="text"/>
-                    </div>
-                </div> */}
-                {/* menus */}
-               {/*  <div style={styles.component}>
-                    <Treebeard data={stateData}
-                               decorators={decorators}
-                               onToggle={this.onToggle}/>
-                </div> */}
+            // <StyleRoot>
                 <div>
                     <SearchBox fetchTree={this.fetchTree}/>
                     <Treebeard
@@ -211,25 +194,8 @@ class DemoTree extends React.Component {
                         decorators={decorators}
                         onToggle={this.onToggle}
                     />
-                    {/* 
-                    
-                    #treebox ul{
-                        list-style: none;
-                        background-color: rgb(13, 86, 197);
-                        margin: 0px;
-                        padding: 0px;
-                        color: rgb(157, 165, 171);
-                        font-family: "lucida grande", tahoma, verdana, arial, sans-serif;
-                        font-size: 14px;
-                        width: 300px;
-                    }
-                     */}
                 </div>
-                {/* content */}
-                {/* <div style={styles.component}>
-                    <NodeViewer node={cursor}/>
-                </div> */}
-            </StyleRoot>
+            // </StyleRoot>
         );
     }
 }
@@ -237,8 +203,4 @@ class DemoTree extends React.Component {
 
 export {DemoTree};
 export default DemoTree;
-
-
-// const content = document.getElementById('content');
-// ReactDOM.render(<DemoTree/>, content);
 

@@ -30,7 +30,8 @@ class RequiredItems extends Component {
             url_objs: {},
             required_obj: {},
             BeginDate: "",
-            EndDate: ""
+            EndDate: "",
+            diasble_btn: false
         }
     }
     onSaveInput = () => {
@@ -71,6 +72,7 @@ class RequiredItems extends Component {
             // {ApiName: "", SecuCode: "", Names: "", WriteType: "json"}
         }
         // example / ""
+        const that = this;
         initial_datas.map(
             (data, index) => {
                 let key = data.name,
@@ -82,6 +84,13 @@ class RequiredItems extends Component {
                     console.log(`%c index = ${index} \n`, color.css2);
                     console.log(`%c key = ${key} \n`, color.css2);
                     console.log(`%c value = ${value} \n`, color.css2);
+                    // console.log(`%c /""/ig.test(value) = ${/""/ig.test(value)} \n`, color.css2);
+                }
+                // disable
+                if(value === ""){
+                    that.setState({
+                        diasble_btn: true
+                    });
                 }
                 // fixed
                 if(key === "WriteType"){
@@ -119,7 +128,29 @@ class RequiredItems extends Component {
         // initial url
         this.autoSave();
         // this.onSaveInput();
+        // id="required-inputs"
+        let inputs_check = document.getElementById("required-inputs");
+        document.onload = () => {
+            alert(`inputs_check!`);
+        }
+        document.addEventListener("DOMContentLoaded", (event) => {
+            // - Code to execute when all DOM content is loaded. 
+            // - including fonts, images, etc.
+            alert(`inputs_check!`);
+        });
+        // OK 
+        setTimeout(() =>{
+            if(this.state.diasble_btn === true){
+                this.props.disableBTN(true);
+                that.handleSubmit();
+            }else{
+                this.props.disableBTN(false);
+            }
+        }, 0);
     }
+    handleSubmit = () => {
+        // check form
+    };
     // get methods from props
     onInputChange = (e) => {
         if (debug) {
@@ -356,7 +387,9 @@ class RequiredItems extends Component {
         return (
             <div 
                 onChange={this.autoSave}
-                style={{margin: 10, padding: 10, boxSizing: "borderBox"}}>
+                style={{margin: 10, padding: 10, boxSizing: "borderBox"}}
+                id="required-inputs"
+                >
                 {/* input 必填项 */}
                 <Form onSubmit={this.handleSubmit}>
                     <Table

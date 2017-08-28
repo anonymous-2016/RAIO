@@ -8,6 +8,7 @@ a {
 
 .li-width {
     max-width: 200px !important;
+    width: 200px !important;
 }
 
 .submit-btn {

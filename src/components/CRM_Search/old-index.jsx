@@ -21,8 +21,6 @@ import {Spin} from 'antd';
 import {IC} from './index-components';
 // {...IC} / IC.SCT
 
-import './index.css';
-
 const {
     SC,
     SCT,
@@ -39,6 +37,11 @@ class CRMS extends Component {
             loading: false
         };
     }
+/*
+    shouldComponentUpdate(nextProps, nextState) {
+        return true;
+    }
+*/
     /* eslint-disable no-console, no-unused-vars */
     componentDidMount() {
          this.setState({
@@ -109,10 +112,92 @@ class CRMS extends Component {
             );
         });
     }
+    xyzSearch = (url) => {
+        this.setState({
+            loading: true
+        });
+        if(debug){
+            // search url
+            console.log(`%c search url = \n`, color.color_css1, url);
+        }
+        /* 
+            "Action":"GetSchemaArray"
+            "Action":"GetRowSchemaArray"
+        */
+        fetch(url)
+        .then((response) => response.json())
+        .then(
+            (json) => {
+                this.setState({
+                    loading: true
+                }); 
+                return json;
+            }
+        )
+        .then(
+            (json) => {
+                if(debug){
+                   ! console.log(`%c Search json.Info = `, color.color_css3, json.Info);
+                }
+                // Properties
+                /* 
+                    {
+                        "Success" : false,
+                        "Info" : "Does't Contain The null Report"
+                    }
+                */
+                let datas = json.Info;
+                if(!debug){
+                    console.log('%C Search datas = ', color.color_css1, datas);
+                }
+                if(!Array.isArray(datas)){
+                    datas = [];
+                }
+                // ??? reportName one object, not array ?
+                /* 
+                    http://localhost:3000/api/sc/TestProtocol
+                    // search bug!
+                */
+                let routes = datas.map(
+                    (route, index) => {
+                        if (xyz_debug(true)) {
+                            console.log(`%c route index = ${index} = `, color.css1);
+                            console.log(`%c route ${index} = `, color.css2, route);
+                        }
+                        return {
+                            path: `/api/sc/${route.name}`,
+                            exact: true,
+                            main: () => (
+                                <div>
+                                    {/* contents */}
+                                    <SCT data={route} urlname={route.name}/>
+                                </div>
+                            )
+                        };
+                    }
+                );
+                if(debug){
+                    console.log('%c routes =', color.css1, routes);
+                }
+                return this.setState(
+                    (prevState, props) => {
+                        // prevState
+                        return{
+                            datas: datas,
+                            routes: routes,
+                            loading: false
+                        }
+                    }
+                );
+            }
+        );
+    };
     /* eslint-enable no-console */
     render() {
         return (
-            <div className="app-api">
+            <div style={{marginTop: 67}}>
+                {/* <SF xyzSearch={this.xyzSearch}/> */}
+                {/* menus */}
                 {
                     <Spin
                         tip="Loading..."
@@ -125,6 +210,10 @@ class CRMS extends Component {
                         />
                     </Spin>
                 }
+                {/* 
+                    // Login Form
+                    <LF /> 
+                */}
             </div>
         );
     }

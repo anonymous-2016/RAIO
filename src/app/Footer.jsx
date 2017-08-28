@@ -45,5 +45,5 @@ class XFooter extends Component {
 }
 
 
-
+export {XFooter};
 export default XFooter;

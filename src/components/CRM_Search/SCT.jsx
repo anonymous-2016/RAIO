@@ -320,21 +320,22 @@ class SCT extends Component {
             
         }
         return (
-            <div>
-                {/* this.state.data = {JSON.stringify(this.state.data)} */}
-                {/* {this.state.new_data.key}<br />  */}
-                <hr/>
-                <div style={{}}>
-                    <TCB 
-                        // developer={this.state.developer || (Math.random()*10 > 5 ? "xgqfrms" : "admin")} 
-                        developer={this.state.developer || "☹️ 暂无数据!"} 
-                        // ☹️ 请输入 2017-8-25 格式的时间!
-                        input_datas={input_datas}
-                        output_datas={output_datas}
-                        in_out_data={in_out_data}
-                        example_obj={example_obj}
-                    />
-                </div>
+            <div style={{
+                // overflow: "hidden", 
+                width: "100%",
+                height: "calc(100% - 100px) !important",
+                // losed height
+                // overflowY: "scroll",
+            }}>
+                <TCB 
+                    // developer={this.state.developer || (Math.random()*10 > 5 ? "xgqfrms" : "admin")} 
+                    developer={this.state.developer || "☹️ 暂无数据!"} 
+                    // ☹️ 请输入 2017-8-25 格式的时间!
+                    input_datas={input_datas}
+                    output_datas={output_datas}
+                    in_out_data={in_out_data}
+                    example_obj={example_obj}
+                />
             </div>
         );
     }

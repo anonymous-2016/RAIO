@@ -1,0 +1,28 @@
+@charset "UTF-8";
+.app-api {
+    padding-top: 67px;
+    /* overflow: hidden; */
+    /* overflow-y: scroll; */
+    /* 
+        duplicate: no need  scroll any more
+    */
+    /* overflow: auto; */
+    /* position: absolute; */
+    box-sizing: border-box;
+    /* overflow-x: hidden; */
+    /* height: calc(100% - 50px); */
+    height: 100%;
+    width: 100%;
+    /* max-height: 800px; */
+}
+
+
+/* .app-api::-webkit-scrollbar {
+    width: 12px;
+    overflow: hidden;
+} */
+
+
+/* .app-api::-webkit-scrollbar {
+    width: 12px;
+} */

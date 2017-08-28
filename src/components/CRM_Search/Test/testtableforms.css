@@ -1,4 +1,9 @@
 @charset "UTF-8";
+.api-test {
+    /* overflow-y: scroll; */
+    height: 100%;
+}
+
 .title-color {
     margin-left: 10px;
     /*     padding-left: 20px;
@@ -20,7 +25,8 @@
 }
 
 .options-panal {
-    margin-left: 30px;
+    margin-left: 20px;
+    max-width: calc(100% - 40px);
 }
 
 
