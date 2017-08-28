@@ -24,7 +24,8 @@ import {
 
 import './sc.css';
 
-import {Layout, Menu, Icon} from 'antd';
+import {Layout, Menu, Icon, Spin} from 'antd';
+
 import 'antd/dist/antd.css';
 const SubMenu = Menu.SubMenu;
 const SubItem = Menu.Item;
@@ -34,7 +35,8 @@ class SC extends Component {
         super(props, context);
         this.state = {
             datas: [],
-            theme: 'dark'
+            theme: 'dark',
+            loading: this.props.loading
         };
     }
     handleClick = () => {
@@ -154,20 +156,25 @@ class SC extends Component {
                             // overflow: "hidden",
                         }}>
                         <div className="treebox" id="treebox" >
-                            <DemoTree />
+                            <DemoTree setLoading={this.props.setLoading}/>
                         </div>
                         {/* style={{display: 'flex', overflowX: "scroll"}} */}
-                        <div className="atnt-conten">
-                            {
-                                this.props.routes.map((route, index) => (
-                                    <Route
-                                        key={index}
-                                        path={route.path}
-                                        exact={route.exact}
-                                        component={route.main}
-                                    />
-                                ))
-                            }
+                        <div className="app-content">
+                            <Spin
+                                tip="Loading..."
+                                size="large"
+                                spinning={this.state.loading}>
+                                {
+                                    this.props.routes.map((route, index) => (
+                                        <Route
+                                            key={index}
+                                            path={route.path}
+                                            exact={route.exact}
+                                            component={route.main}
+                                        />
+                                    ))
+                                }
+                            </Spin>
                         </div>
                     </div>
                 </Router>

@@ -41,7 +41,7 @@ class CRMS extends Component {
     }
     /* eslint-disable no-console, no-unused-vars */
     componentDidMount() {
-         this.setState({
+        this.setState({
             loading: true
         });
         let fetch_url = "";
@@ -84,7 +84,11 @@ class CRMS extends Component {
                                 <div>
                                     {/* <SCT data={data} urlname={data.name}/> */}
                                     {/* <SCT data={data} urlname={`${window.location.hash.substr(1)}`}/> */}
-                                    <SCT data={data} urlname={`${window.location.pathname.substr(8)}`}/>
+                                    <SCT 
+                                        data={data}
+                                        urlname={`${window.location.pathname.substr(8)}`}
+                                        loading={this.state.loading}
+                                        />
                                     {/* SCT  */}
                                 </div>
                             );
@@ -109,6 +113,11 @@ class CRMS extends Component {
             );
         });
     }
+    setLoading = (value) => {
+        this.setState({
+            loading: value
+        }); 
+    };
     /* eslint-enable no-console */
     render() {
         return (
@@ -122,6 +131,8 @@ class CRMS extends Component {
                         <SC 
                             routes={this.state.routes}
                             datas={this.state.datas}
+                            setLoading={this.setLoading}
+                            loading={this.state.loading}
                         />
                     </Spin>
                 }

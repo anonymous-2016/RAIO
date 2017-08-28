@@ -30,3 +30,9 @@ AppIndex.propTypes = {
 
 export {AppIndex}
 export default AppIndex;
+
+/* 
+
+alert("no search data fro mow!");
+
+*/

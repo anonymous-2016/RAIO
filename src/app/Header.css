@@ -11,6 +11,8 @@
     width: 100%;
     height: 67px;
     /* line-height: 67px; */
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 5px;
 }
 
 .app-header .app-logo {
@@ -23,5 +25,7 @@
 .crm-title {
     font-size: 2rem;
     text-align: center;
-    /* margin-left: 20%; */
+    /* text-indent: 20%; */
+    margin-left: 15%;
+    text-shadow: 2px 1px #777;
 }

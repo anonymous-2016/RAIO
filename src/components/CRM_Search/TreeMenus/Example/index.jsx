@@ -20,6 +20,8 @@ import {
     Link
 } from 'react-router-dom';
 
+import { Spin } from 'antd';
+
 import {StyleRoot} from 'radium';
 import {Treebeard, decorators} from 'react-treebeard';
 
@@ -107,7 +109,8 @@ class DemoTree extends React.Component {
         super(props, context);
         this.state = {
             data: [],
-            url : ""
+            url : "",
+            loading: false
         };
     }
     // this.onToggle = this.onToggle.bind(this);
@@ -142,6 +145,10 @@ class DemoTree extends React.Component {
         this.fetchTree(str_obj);
     }
     fetchTree = (str_obj) => {
+        this.setState({
+            loading: true
+        });
+        this.props.setLoading(true);
         // key value
         let datas = {};
         let new_url = ``;
@@ -166,39 +173,46 @@ class DemoTree extends React.Component {
                 }
                 let 
                 datas = json.Info.children;
-                that.setState({
+                /* that.setState({
                     data: datas
-                })
+                }); */
+                setTimeout(function() {
+                    that.setState({
+                        data: datas,
+                        loading: false
+                    });
+                    that.props.setLoading(false);
+                }, 1000);
                 // do something in here!
                 return datas;
             }
         );
-    }
-/*     onFilterMouseUp = (e) => {
-        const filter = e.target.value.trim();
-        if (!filter) {
-            return this.setState({data});
-        }
-        var filtered = filters.filterTree(data, filter);
-        filtered = filters.expandFilteredNodes(filtered, filter);
-        this.setState({data: filtered});
-    } */
+    };
     render() {
         const {cursor} = this.state;
         return (
             // <StyleRoot>
+            // loading... 
                 <div>
-                    <SearchBox fetchTree={this.fetchTree}/>
-                    <Treebeard
-                        data={this.state.data || []}
-                        decorators={decorators}
-                        onToggle={this.onToggle}
-                    />
+                    <Spin
+                        spinning={this.state.loading}
+                        tip="加载中..."
+                        size="large">
+                        <SearchBox fetchTree={this.fetchTree}/>
+                        <Treebeard
+                            data={this.state.data || []}
+                            decorators={decorators}
+                            onToggle={this.onToggle}
+                        />
+                    </Spin>
                 </div>
             // </StyleRoot>
         );
     }
 }
+
+// pt
+
 
 
 export {DemoTree};
