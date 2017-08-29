@@ -300,25 +300,54 @@ class TestTableForms extends Component {
             console.log(`%c fields = \n`, color.green_23, fields);
             // datas
             console.log(`%c datas = \n`, color.green_23, datas);
-        }
-        if (debug) {
             // command example
             console.log(`%c ri commandexample example_obj = `, color.color_css2, example_obj);
-            // {SecuCode: "000011", ApiName: "fund.f9.fund_profile.FundManager"}
-            /* 
-                for (var key in object) {
-                    if (object.hasOwnProperty(key)) {
-                        var element = object[key];
-                    }
-                }
-            */
         }
         // shape input data & example
         let ri_datas = [];
         let op_datas = [];
         // commandexample
         // example_obj ??? multi example
-        if(Array.isArray(inputs)){
+        if(example_obj === false){
+            /* 
+                "commandexample" : "{            \"SecuCode\": 000011,            \"ApiName\": \"fund.f9.fund_profile.FundIntroduce\" }",
+                // bug ???
+                000011 => "000011" 
+                http://10.1.5.203/http-manage/admin?{%27Admin%27:%27report%27,%27Action%27:%27GetSchema%27,%27WriteType%27:%27json%27,%27KeyWord%27:%27%E5%9F%BA%E9%87%91-%3EF9-%3E%20%E5%9F%BA%E9%87%91%E6%A6%82%E5%86%B5%27}
+                基金->F9-> 基金概况->基金介绍
+                // input 
+                http://10.1.5.203/http-manage/admin?{%27Admin%27:%27report%27,%27Action%27:%27GetSchema%27,%27WriteType%27:%27json%27,%20%27ReportName%27:%27fund.f9.fund_profile.FundIntroduce%27}
+                基金->F9->基金概况 ->基金管理人(基金公司基本资料,基金公司基本联系方式)
+                基金->F9->基金概况 ->基金经理(信息显示表格)
+            */
+            if (debug) {
+                console.log(`%c ri commandexample example_obj = `, color.color_css2, example_obj);
+                // {SecuCode: "000011", ApiName: "fund.f9.fund_profile.FundManager"}
+                let keys = Object.keys(example_obj);
+                // ["SecuCode", "ApiName"]
+                /* 
+                    let str = "{            \"SecuCode\": \"000011\",            \"ApiName\": \"fund.f9.fund_profile.FundManager\" }";
+                    let s =  ``;
+                    let str_obj = str.replace(/[\s]*\"/ig, s);
+                    // "{"SecuCode":"000011","ApiName":"fund.f9.fund_profile.FundManager"}"
+                    let obj = JSON.parse(str_obj);
+                    // {SecuCode: "000011", ApiName: "fund.f9.fund_profile.FundManager"}
+                    keys = Object.keys(obj);
+                    // ["SecuCode", "ApiName"]
+                */
+            }
+            // ri_datas = inputs.commandexample
+            // JSON.parse();
+        }else{
+            /*
+                {
+                    key: "k1",
+                    name: "ApiName",
+                    type: "string",
+                    value: "fund.f9.fund_profile.FundManager.BasicInformations",
+                    desc: "报表名称"
+                } 
+            */
             inputs.map(
                 (value, index) => {
                     if (!debug) {
@@ -378,33 +407,8 @@ class TestTableForms extends Component {
         }
         if (debug) {
             console.log(`%c finished ri_datas = `, color.css2, ri_datas);
-            // format json
-            console.log(`%c finished ri_datas = `, color.css2, JSON.stringify(ri_datas, null, 4));
             console.log(`%c finished op_datas = `, color.css2,  op_datas);
         }
-        if (Object.keys(example_obj).length > 0) {
-            // not empty
-            let keys = Object.keys(example_obj);
-            // let value = [keys[i]];
-            ri_datas.map(
-                (obj, index) => {
-                    if (debug) {
-                        // console.log(`%c ri commandexample example_obj = `, color.color_css3, example_obj);
-                        console.log(`obj = `, JSON.stringify(obj, null, 4));
-                        console.log(`index = `, index);
-                    }
-                    for(let k of keys){
-                        if (debug) {
-                            console.log(`k = `, k);
-                        }
-                        if(obj.name === k){
-                            obj.value = example_obj[k];
-                        }
-                    }
-                }
-            );
-        }
-        // mock data
         const testdatas = [
             {
                 key: "k1",

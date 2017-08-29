@@ -13,7 +13,7 @@ import {debug, xyz_debug} from '../../../../app/debug';
 import {color} from '../../../../app/color';
 
 // libs
-import {Table, Input, Icon, Form, Select, Checkbox, Radio} from 'antd';
+import {Table, Input, DatePicker, Form, Select, Checkbox, Radio} from 'antd';
 const Option = Select.Option;
 const FormItem = Form.Item;
 const CheckboxGroup = Checkbox.Group;
@@ -21,6 +21,10 @@ const RadioGroup = Radio.Group;
 
 // global count i
 let page_i = 1;
+
+// BeginDate & EndDate
+const date = new Date().toLocaleDateString().replace(/\//g, "-");
+// "2017-8-29"
 
 class OptionsItems extends Component {
     constructor(props, context) {
@@ -45,7 +49,9 @@ class OptionsItems extends Component {
             Group: "",
             defaultInput: {},
             url_objs: {},
-            options_obj: {}
+            options_obj: {},
+            BeginDate: "",
+            EndDate: "", // "BeginDate":"2017-08-03","EndDate":"2017-08-26"
         };
     }
     autoSave = () => {
@@ -406,6 +412,47 @@ class OptionsItems extends Component {
         }
         this.autoSave();
     };
+    // BeginDate
+    BeginDateChange = (date, dateString) => {
+        // timepicker
+        // "BeginDate":"2017-08-03","EndDate":"2017-08-26"
+        if(debug){
+            console.log(`BeginDate dateString = ${dateString}`);
+        }
+        // dateString
+        this.setState({
+            BeginDate: dateString
+        });
+        let temp_obj = this.state.options_obj;
+        temp_obj["BeginDate"] = dateString;
+        this.setState({
+            options_obj: temp_obj
+        });
+        if (debug) {
+            console.log('%c autoSave ??? = \n', color.css2);
+        }
+        this.autoSave();
+    }
+    // EndDateChange
+    EndDateChange = (date, dateString) => {
+        // timepicker
+        // "BeginDate":"2017-08-03","EndDate":"2017-08-26"
+        if(debug){
+            console.log(`EndDate dateString = ${dateString}`);
+        }
+        this.setState({
+            EndDate: dateString
+        });
+        let temp_obj = this.state.options_obj;
+        temp_obj["EndDate"] = dateString;
+        this.setState({
+            options_obj: temp_obj
+        });
+        if (debug) {
+            console.log('%c autoSave ??? = \n', color.css2);
+        }
+        this.autoSave();
+    };
     // default
     onDefaultInputChange = (e) => {
         // onDefaultInputChange
@@ -429,6 +476,7 @@ class OptionsItems extends Component {
     };
     render() {
         const {sort_items, fields_items, option_datas} = this.props;
+        const { getFieldDecorator } = this.props.form;
         // value === output name & desc
         /* const option_datas = [
             {
@@ -584,6 +632,11 @@ class OptionsItems extends Component {
                         {"label": "三季报", "value": "Q3rd"},
                         {"label": "年报", "value": "Q4th"}
                     ];
+                    // BeginDate & EndDate
+                    // const date = new Date().toLocaleDateString().replace(/\//g, "-");
+                    // "2017-8-29"
+                    const date = new Date().toLocaleDateString().replace(/\//ig, `-`);
+                    let date_placeholder = `☹️ 请输入 ${date } 格式的时间!`;
                     // switch cases
                     let input_name = index.name;
                     switch (index.name) {
@@ -844,6 +897,70 @@ class OptionsItems extends Component {
                                 />
                             )
                             break;
+                        case "BeginDate": 
+                            valueType = (
+                                /* 
+                                    <Input 
+                                        placeholder="可选项 BeginDate 赋值"
+                                        value={this.state.BeginDate ? this.state.BeginDate : date}
+                                        type="text"
+                                        key={index.name}
+                                        onChange={this.BeginDateChange}
+                                        disabled
+                                    /> 
+                                */
+                                <FormItem>
+                                    {
+                                        getFieldDecorator(index.name, {
+                                            rules: [
+                                                {
+                                                    required: false,
+                                                    message: '请输入可选项 BeginDate 字段值, 可选项字段值可为空!'
+                                                }
+                                            ],
+                                            // initialValue: text
+                                        })(
+                                            <DatePicker 
+                                                onChange={this.BeginDateChange} 
+                                                // placeholder="日期格式 2017-08-08"
+                                                placeholder={date_placeholder}
+                                                style={{minWidth: 300}}
+                                                allowClear
+                                                id={index.name}
+                                                showToday
+                                            />
+                                        )
+                                    }
+                                </FormItem>
+                            )
+                            break;
+                        case "EndDate": 
+                            valueType = (
+                                <FormItem>
+                                    {
+                                        getFieldDecorator(index.name, {
+                                            rules: [
+                                                {
+                                                    required: false,
+                                                    message: '请输入可选项 EndDate 字段值, 可选项字段值可为空!'
+                                                }
+                                            ],
+                                            // initialValue: text
+                                        })(
+                                            <DatePicker 
+                                                onChange={this.EndDateChange} 
+                                                // placeholder="日期格式 2017-08-08"
+                                                placeholder={date_placeholder}
+                                                style={{minWidth: 300}}
+                                                allowClear
+                                                id={index.name}
+                                                showToday
+                                            />
+                                        )
+                                    }
+                                </FormItem>
+                            )
+                            break;
                         default:
                             valueType = (
                                 <Input 
@@ -853,9 +970,10 @@ class OptionsItems extends Component {
                                     id={input_name}
                                     key={index.key + 1}
                                     onChange={this.onDefaultInputChange}
-                                />
+                                    disabled
+                                /> 
                             )
-                            break;
+                            // break;
                         // id={input_name} ??? dynamic input
                         // form warp like required
                     }
@@ -897,6 +1015,8 @@ class OptionsItems extends Component {
     }
 }
 
+
+
 OptionsItems.propTypes = {
     // init_options_datas: PropTypes.array.isRequired,
     sort_items: PropTypes.object.isRequired,
@@ -906,6 +1026,8 @@ OptionsItems.propTypes = {
     required_datas: PropTypes.object.isRequired,
 };
 
-const OI = OptionsItems;
+// const OI = OptionsItems;
+
+const OI = Form.create()(OptionsItems);
 export {OI};
 export default OI;

@@ -1223,6 +1223,217 @@ if(orgCode.length > 1){
 ```
 
 
+```js
+
+// BeginDate & EndDate
+
+const date = new Date().toLocaleDateString().replace(/\//g, "-");
+// "2017-8-29"
+
+
+```
+
+
+
+http://exploringjs.com/es2016-es2017/ch_exponentiation-operator.html
+
+```js
+
+/* boolean */
+// result === true
+
+['a', 'b', 'c'].includes('a');
+// true
+['a', 'b', 'c'].includes('d');
+// false
+
+/* first index / -1 */
+// result >= 0
+['a', 'b', 'c'].indexOf('d');
+// -1
+['a', 'b', 'c'].indexOf('a');
+// 0
+['a', 'b', 'c'].indexOf('b');
+// 1
+['a', 'b', 'c'].indexOf('c');
+// 2
+
+[-0].includes(+0);
+// true
+[NaN].includes(NaN);
+// true
+[-0].indexOf(+0);
+// 0
+[NaN].indexOf(NaN);
+// -1
+let TypedArray = Uint8Array.of(12, 5, 3);
+console.log(TypedArray.includes(5));
+// true
+
+
+```
+
+
+
+```js
+
+let x = 2, y = 3;
+
+Math.pow(x, y);
+// 8
+x ** y;
+// 8
+
+
+
+
+```
+
+
+jscomplete
+
+ant-form
+
+es6
+
+raio
+
+```js
+
+// output === any & no table / dynamic table
+
+http://10.1.5.203/http-manage/admin?{%22Admin%22:%22report%22,%22Action%22:%22GetRowSchema%22,%22WriteType%22:%22json%22,%20%22ReportName%22:%22fund.f9.FactSheetReturnHis%22}
+
+?{"Admin":"report","Action":"GetRowSchema","WriteType":"json","ReportName":"fund.f9.FactSheetReturnHis"}
+
+
+{
+    "Success": true,
+    "Info": {
+        "schema": {
+            "type": "any"
+        },
+        "name": "fund.f9.FactSheetReturnHis"
+    }
+}
+
+// output & multi tables 
+
+http://10.1.5.203/http-report/query?{"ApiName":"fund.f9.fund_profile.FundManager.BasicInformations","SecuCode":"000011","Names":"阳琨","WriteType":"json"}
+
+
+
+// test & multi tables 
+
+http://10.1.5.203/http-report/query?{"ApiName":"fund.f9.fund_profile.FundManager.BasicInformations","SecuCode":"000011","Names":"阳琨","WriteType":"json"}
+
+
+
+// input & example ? true : false
+
+// required example & options example ???
+
+
+// no example
+
+http://10.1.5.203/http-manage/admin?{%22Admin%22:%22report%22,%22Action%22:%22GetSchema%22,%22WriteType%22:%22json%22,%20%22ReportName%22:%22fund.f9.FactSheetReturnHis%22}
+
+?{"Admin":"report","Action":"GetSchema","WriteType":"json","ReportName":"fund.f9.FactSheetReturnHis"}
+
+
+
+// input single example
+
+"commandexample": "{            \"SecuCode\": \"000011\",            \"ApiName\": \"fund.f9.fund_profile.FundManager\" }",
+
+
+http://10.1.5.203/http-manage/admin?{"Admin":"report","Action":"GetSchema","ReportName":"fund.f9.fund_profile.FundManager","WriteType":"json"}
+
+
+
+
+
+
+
+let str = "{            \"SecuCode\": \"000011\",            \"ApiName\": \"fund.f9.fund_profile.FundManager\" }";
+
+let s =  ``;
+
+let str_obj = str.replace(/[\s]*\"/ig, s);
+// "{"SecuCode":"000011","ApiName":"fund.f9.fund_profile.FundManager"}"
+
+let obj = JSON.parse(str_obj);
+// {SecuCode: "000011", ApiName: "fund.f9.fund_profile.FundManager"}
+
+keys = Object.keys(obj);
+// ["SecuCode", "ApiName"]
+
+
+
+
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions
+
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/replace
+
+const str = "{            \"SecuCode\":  000011,            \"ApiName\": \"fund.f9.fund_profile.FundIntroduce\" }";
+
+
+let newstr_prefix = str.replace(/\"SecuCode\":[\s]*0/i, `\"SecuCode\":"0`);
+// "{            "SecuCode":"000011,            "ApiName": "fund.f9.fund_profile.FundIntroduce" }"
+
+let newstr_suffix = newstr_prefix.replace(/,[\s]*\"ApiName\":/i, `",\"ApiName\":`);
+// "{            "SecuCode":"000011","ApiName": "fund.f9.fund_profile.FundIntroduce" }"
+
+
+const target_obj = JSON.parse(newstr_suffix);
+
+// {SecuCode: "000011", ApiName: "fund.f9.fund_profile.FundIntroduce"}
+
+
+
+
+
+
+
+
+
+
+
+
+// test & null 
+
+http://10.1.5.203/http-report/query?{%22ApiName%22:%22fund.f9.FactSheetReturnHis%22,%22SecuCode%22:%22000011%22,%22WriteType%22:%22json%22}
+
+
+
+
+
+
+switch (expr) {
+  case 'Oranges':
+    console.log('Oranges are $0.59 a pound.');
+    break;
+  case 'Apples':
+    console.log('Apples are $0.32 a pound.');
+    break;
+  case 'Bananas':
+    console.log('Bananas are $0.48 a pound.');
+    break;
+  case 'Cherries':
+    console.log('Cherries are $3.00 a pound.');
+    break;
+  case 'Mangoes':
+  case 'Papayas':
+    console.log('Mangoes and papayas are $2.79 a pound.');
+    break;
+  default:
+    console.log('Sorry, we are out of ' + expr + '.');
+}
+
+
+
+```
+
 
 
 

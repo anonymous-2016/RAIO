@@ -188,7 +188,7 @@ class RequiredItems extends Component {
     // DatePicker
     onBeginDateChange = (date, dateString) => {
         if(debug){
-            console.log(`BeginDate  dateString = ${dateString}`);
+            console.log(`BeginDate dateString = ${dateString}`);
         }
         // BeginDate
         // temp_url_obj["BeginDate"] = dateString;
