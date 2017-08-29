@@ -991,12 +991,13 @@ class OptionsItems extends Component {
         return (
             <div
                 style={{
-                    maxWidth: "100%",
-                    // maxHeight: 600,
-                    margin: 0,
-                    padding: 0,
-                    boxSizing: "borderBox",
+                    // width: "calc(100% - 300px)",
+                    // margin: 0,
+                    // padding: 0,
+                    width: "100%",
+                    boxSizing: "border-box",
                     // overflowY: "scroll"
+                    overflowX: "hidden",
                 }}
                 onChange={this.autoSave}
                 >

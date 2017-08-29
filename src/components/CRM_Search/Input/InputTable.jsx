@@ -16,11 +16,11 @@ class InputTable extends Component {
             <div
                 style={{
                     // maxHeight: 1000,
-                    boxSizing: "borderBox",
+                    boxSizing: "border-box",
                     margin: 10, 
                     padding: 10,
                     // width: "100%",
-                    // overflowX: "hidden",
+                    overflowX: "hidden",
                     // height: "100%"
                 }}>
                 <Table

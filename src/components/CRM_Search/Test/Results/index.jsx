@@ -51,21 +51,37 @@ class ResultTables extends Component {
     //
     render() {
         const tables = this.props.tabs;
-        if (!debug) {
-            console.log(`%c tables = \n`, color.color_css1, tables);
+        if (debug) {
+            console.log(`%c test tables = \n`, color.color_css1, JSON.stringify(tables, null, 4));
         }
         return (
-            <div style={{maxWidth: 850, margin: 10, padding: 10, boxSizing: "borderBox"}}>
+            <div 
+                style={{
+                    // width: "calc(100% - 300px)",
+                    // width: "100%",
+                    // maxWidth: 850,
+                    margin: 10,
+                    padding: 10,
+                    boxSizing: "border-box",
+                    overflowX: "hidden"
+                }}>
                 {/* map */}
                 {/* 
-                tables === {title: "基金经理详细信息", datas: Array(4)} 
+                    tables === {title: "基金经理详细信息", datas: Array(4)} 
                 */}
-                <Tabs defaultActiveKey="1">
+                <Tabs
+                    defaultActiveKey="1"
+                    style={{
+                        // width: "calc(100% - 300px)",
+                        // maxWidth: 850,
+                        boxSizing: "border-box",
+                        overflowX: "hidden"
+                    }}>
                     {
                         tables.map(
                             (table, index) => {
                                 {/* console.log(`tab key index ${index}`); */}
-                                if (!debug) {
+                                if (debug) {
                                      console.log(`%c table[${index}]= \n`, color.css2, table);
                                 }
                                 // tab.name === "AnyManagedFundsRow":[] 
@@ -78,14 +94,17 @@ class ResultTables extends Component {
                                             </span>
                                         }
                                         key={(++index)}
-                                        style={{}}>
+                                        style={{
+                                            boxSizing: "border-box",
+                                        }}>
                                         {/* test data, output data */}
                                         <RT
                                             dataSource={[]}
                                             columns={table.datas}
                                             style={{
-                                                maxWidth: 850,
-                                                minWidth: 600
+                                                // maxWidth: 850,
+                                                // minWidth: 600
+                                                boxSizing: "border-box",
                                             }}
                                         />
                                     </TabPane>

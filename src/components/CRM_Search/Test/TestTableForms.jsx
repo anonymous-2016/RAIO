@@ -291,7 +291,7 @@ class TestTableForms extends Component {
         const {inputs, outputs, options, url_path, example_obj} = {...this.props};
         // options
         const {sort, fields, datas} = options;
-        if (debug) {
+        if (!debug) {
             console.log(`%c ri inputs`, color.color_css3, inputs);
             console.log(`%c ri outputs`, color.css2, outputs);
             // options
@@ -301,7 +301,7 @@ class TestTableForms extends Component {
             // datas
             console.log(`%c datas = \n`, color.green_23, datas);
         }
-        if (debug) {
+        if (!debug) {
             // command example
             console.log(`%c ri commandexample example_obj = `, color.color_css2, example_obj);
             // {SecuCode: "000011", ApiName: "fund.f9.fund_profile.FundManager"}
@@ -376,7 +376,7 @@ class TestTableForms extends Component {
             };
             ri_datas.push(fixed_obj);
         }
-        if (debug) {
+        if (!debug) {
             console.log(`%c finished ri_datas = `, color.css2, ri_datas);
             // format json
             console.log(`%c finished ri_datas = `, color.css2, JSON.stringify(ri_datas, null, 4));
@@ -510,7 +510,10 @@ class TestTableForms extends Component {
                     }
                 </div>
                 <div 
-                    style={{visibility: "hidden"}}
+                    style={{
+                        // visibility: "hidden",
+                        marginTop: 30
+                    }}
                     >
                     <h2 className="title-color">测试结果</h2>
                     {/* Tabs & Tables */}
@@ -518,7 +521,11 @@ class TestTableForms extends Component {
                     {
                         <RTS
                             tabs={this.props.outputs}
-                            style={{maxWidth: 850}}
+                            style={{
+                                // maxWidth: 850
+                                boxSizing: "border-box",
+                                overflowX: "hidden"
+                            }}
                             results={[]}
                         />
                     }

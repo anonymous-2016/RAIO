@@ -29,9 +29,10 @@ class OutputTables extends Component {
                     // minHeight: 900,
                     // maxHeight: 1000,
                     // overflowY: "scroll",
-                    boxSizing: "borderBox",
-                    // overflowX: "hidden",
-                    width: "calc(100% -300px)"
+                    boxSizing: "border-box",
+                    overflowX: "hidden",
+                    // width: "calc(100% -300px)"
+                    // paddingLeft: 30
                 }}>
                 {/* map Tables*/}
                 {
@@ -42,7 +43,7 @@ class OutputTables extends Component {
                             return(
                                 <div 
                                     key={`key-${index}`}
-                                    style={{margin: 10, padding: 10, boxSizing: "borderBox"}}>
+                                    style={{margin: 10, padding: 10, boxSizing: "border-box"}}>
                                     <p 
                                         style={{textAlign: "center"}}
                                         className="table-title"

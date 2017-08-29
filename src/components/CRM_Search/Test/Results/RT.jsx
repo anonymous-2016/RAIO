@@ -92,7 +92,7 @@ class ResultTables extends Component {
         // A0 = key
         return (
             <div>
-                <Table dataSource={[]} columns={cols} bordered pagination={false}/>
+                {/* <Table dataSource={[]} columns={cols} bordered pagination={false}/> */}
                 {
                     // test.name === output.key
                     show

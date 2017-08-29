@@ -387,7 +387,7 @@ class RequiredItems extends Component {
         return (
             <div 
                 onChange={this.autoSave}
-                style={{margin: 10, padding: 10, boxSizing: "borderBox"}}
+                style={{margin: 10, padding: 10, boxSizing: "border-box"}}
                 id="required-inputs"
                 >
                 {/* input 必填项 */}

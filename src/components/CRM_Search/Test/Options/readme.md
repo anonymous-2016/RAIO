@@ -1434,6 +1434,102 @@ switch (expr) {
 
 ```
 
+## no example
+
+
+http://localhost:3000/api/sc/BasicInformationDeatil
+
+```md
+
+BeginDate
+
+EndDate
+
+
+ApiName	string	报表名称(true)
+BeginDate	string	到任日期(true)
+EndDate	string	离任日期(true)
+InnerCode	integer	证券编码(true)
+SecuCode	string	基金编码(true)
+Names	string	姓名(true)
+
+```
+
+
+
+## style 850px ???
+
+> good
+
+boxSizing: "border-box",
+
+> bad
+
+boxSizing: "borderBox",
+
+> maxWidth: 900,
+
+```jsx
+
+style={{
+    width: "calc(100% - 300px)",
+    // maxWidth: 900,
+    margin: 10,
+    padding: 10,
+    boxSizing: "border-box",
+    overflowX: "hidden"
+}}>
+
+
+
+## overflow-x
+
+```css
+
+
+// box-sizing: border-box;
+
+
+@charset "UTF-8";
+.app-api {
+    padding-top: 67px;
+    box-sizing: border-box;
+    overflow-y: scroll;
+    /* overflow-x: hidden; */
+    height: 100%;
+    width: 100%;
+}
+
+```
+
+## 850
+
+```jsx
+
+style={{
+    // width: "calc(100% - 300px)",
+    //width: "100%",
+    maxWidth: 850,
+    margin: 10,
+    padding: 10,
+    boxSizing: "border-box",
+    overflowX: "hidden"
+}}>
+
+
+
+```
+
+
+
+
+## example
+
+
+
+multi-examples.json
+
+commandexample.json
 
 
 

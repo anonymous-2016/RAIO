@@ -140,7 +140,7 @@ class SC extends Component {
                     // border: '1px solid #ccc',
                     // minHeight: 1000,
                     // overflowY: "scroll",
-                    boxSizing:" borderBox",
+                    boxSizing: "border-box",
                     // overflow: "hidden",
                     height: "100%",
                 }} >
@@ -151,7 +151,7 @@ class SC extends Component {
                             display: 'flex',
                             // width: "100%",
                             // height: "100%",
-                            boxSizing: "borderBox",
+                            boxSizing: "border-box",
                             // border: '1px solid #fff',
                             // overflow: "hidden",
                         }}>

@@ -4,8 +4,9 @@
     /* height: calc(100%-67px); */
     height: 100%;
     position: absolute;
-    overflow-y: scroll;
+    /* overflow-y: scroll; */
     overflow-x: hidden;
+    box-sizing: border-box;
     width: 100%;
     /* top: 67px; */
     /* margin-top: 67px; */

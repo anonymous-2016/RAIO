@@ -186,9 +186,9 @@ class TabsContentBox extends Component {
                         tab={<span><Icon type="apple" />输入</span>}
                         key="1"
                         style={{
-                            width: "100%",
-                            paddingRight: 20,
-                            boxSizing: "borderBox"
+                            // width: "100%",
+                            // paddingRight: 20,
+                            boxSizing: "border-box"
                         }}>
                         {/* onTabClick={this.testClick} */}
                         <IT
@@ -202,8 +202,8 @@ class TabsContentBox extends Component {
                         tab={<span><Icon type="android" />输出</span>}
                         key="2"
                         style={{
-                            maxWidth: "100%",
-                            boxSizing: "borderBox"
+                            // maxWidth: "100%",
+                            boxSizing: "border-box"
                         }}>
                         {/* single table & multi tables */}
                         <OTS
@@ -216,8 +216,8 @@ class TabsContentBox extends Component {
                         tab={<span><Icon type="phone" />测试</span>}
                         key="3"
                         style={{
-                            maxWidth: "100%",
-                            boxSizing: "borderBox"
+                            // maxWidth: "100%",
+                            boxSizing: "border-box"
                         }}>
                         <TTF
                             test_datas={in_out_data}
