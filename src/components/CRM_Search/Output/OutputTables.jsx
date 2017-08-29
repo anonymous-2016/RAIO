@@ -26,10 +26,12 @@ class OutputTables extends Component {
         return (
             <div 
                 style={{
-                    minHeight: 900,
+                    // minHeight: 900,
                     // maxHeight: 1000,
                     // overflowY: "scroll",
-                    boxSizing: "borderBox"
+                    boxSizing: "borderBox",
+                    // overflowX: "hidden",
+                    width: "calc(100% -300px)"
                 }}>
                 {/* map Tables*/}
                 {

@@ -1,5 +1,5 @@
 .tbs-width {
-    max-width: calc(100% - 300px);
+    max-width: calc(100%);
     /* max-width: 1000px; */
     /* min-width: 1000px; */
     margin-left: 300px;

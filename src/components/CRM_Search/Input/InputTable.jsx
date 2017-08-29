@@ -19,7 +19,7 @@ class InputTable extends Component {
                     boxSizing: "borderBox",
                     margin: 10, 
                     padding: 10,
-                    width: "100%",
+                    // width: "100%",
                     // overflowX: "hidden",
                     // height: "100%"
                 }}>

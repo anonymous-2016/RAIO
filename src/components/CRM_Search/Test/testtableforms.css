@@ -2,6 +2,8 @@
 .api-test {
     /* overflow-y: scroll; */
     height: 100%;
+    overflow-x: hidden;
+    width: calc(100%);
 }
 
 .title-color {
