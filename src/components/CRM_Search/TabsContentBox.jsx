@@ -44,7 +44,10 @@ class TabsContentBox extends Component {
             console.log(`%c TCB input_datas = ${input_datas}`, color.color_css3);
             console.log(`%c TCB output_datas = ${output_datas}`, color.color_css2);
             console.log(`%c TCB developer = ${developer}`, color.color_css1);
-            console.log(`%c TCB example_obj = ${example_obj}`, color.color_css3);
+            console.log(`%c TCB JSON.stringify(example_obj) = ${JSON.stringify(example_obj, null, 4)}`, color.color_css3);
+        }
+        if (debug) {
+            console.log(`%c TCB JSON.stringify(example_obj) = ${JSON.stringify(example_obj, null, 4)}`, color.color_css3);
         }
         // input_datas & output_datas
         if (!debug) {

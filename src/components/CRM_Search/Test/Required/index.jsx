@@ -16,8 +16,10 @@ import {debug} from '../../../../app/debug';
 
 
 // libs
+import moment from 'moment';
 import {Table, Input, Form, DatePicker} from 'antd';
 const FormItem = Form.Item;
+const dateFormat = 'YYYY-MM-DD';
 
 class RequiredItems extends Component {
     constructor(props, context) {
@@ -131,12 +133,12 @@ class RequiredItems extends Component {
         // id="required-inputs"
         let inputs_check = document.getElementById("required-inputs");
         document.onload = () => {
-            alert(`inputs_check!`);
+            // alert(`inputs_check!`);
         }
         document.addEventListener("DOMContentLoaded", (event) => {
             // - Code to execute when all DOM content is loaded. 
             // - including fonts, images, etc.
-            alert(`inputs_check!`);
+            // alert(`inputs_check!`);
         });
         // OK 
         setTimeout(() =>{
@@ -156,17 +158,63 @@ class RequiredItems extends Component {
         if (debug) {
             // console.log(`%c e.target = `, color.green_23, e.target);
             // <input type="text" placeholder="☹️ 暂无默认的示例命令值 !" value="111" id="ApiName" data-__meta="[object Object]" class="ant-input ant-input-lg">
-            console.log(`%c e.target.id = `, color.green_23, e.target.id);
-            console.log(`%c e.target.value = `, color.green_23, e.target.value);
+            console.log(`%c e.target.id =`, color.green_23, e.target.id);
+            console.log(`%c e.target.value =`, color.green_23, e.target.value);
         }
         let temp_url_obj = this.state.url_obj;
         if (debug) {
             console.log(`%c before change temp_url_obj = \n`, color.color_css2, temp_url_obj);
         }
-        let key =  e.target.id;
-        let value = e.target.value.trim();
+        let key = e.target.id;
+        let value;
+        if(key === "DatePerformType"){
+            // value = e.target.value.trim().replace(/s*/gi, ",").split(",");
+            value = e.target.value.trim().replace(/([\w]{1})[\s]{1}([\w]{1})/ig, "$1,$2");
+            // space => , comma
+            /* 
+                // enhancement solution
+                // replace(/([\w]{1})[\s]{1}([\w]{1})/ig, "$1,$2");
+                let ss = "xyz,abc, SSS XXX ZZZ, DDD EEE";
+                let multi_arr = s.replace(/([\w]{1})[\s]{1}([\w]{1})/ig, "$1,$2");
+                "xyz,abc, SSS,XXX,ZZZ, DDD,EEE"
+             */
+        }else{
+            value = e.target.value;
+        }
+        // old
+        /* 
+        let value;
+        if (key !== undefined) {
+            // let value = e.target.value.trim();
+            switch (key) {
+                case "DatePerformType":
+                    value = (
+                        e.target.value.trim().split(",")
+                    );
+                    break;
+                case "AnyUnKnow":
+                    value = (
+                        ""
+                    );
+                    break;
+                default:
+                    value = (
+                        e.target.value.trim()
+                    );
+                    break;
+            }
+            return value;
+        }
+        */
         // trim();
-
+        /* 
+            DatePerformType Array ???
+            // id = index.type
+            // data-* 
+            // data-type={index.type}
+            e.target.id = DatePerformType
+            e.target.value = RBX,JYZBX 
+        */
         temp_url_obj[key] = value;
         let str_obj = JSON.stringify(temp_url_obj);
         if (debug) {
@@ -335,7 +383,7 @@ class RequiredItems extends Component {
                                                     message: '请输入必填字段值, 必填字段值不可为空!'
                                                 }
                                             ],
-                                            // initialValue: text
+                                            initialValue: moment(text || date, dateFormat)
                                         })(
                                             <DatePicker 
                                                 onChange={(index.name === "EndDate" ? this.onEndDateChange : this.onBeginDateChange)} 
@@ -345,6 +393,30 @@ class RequiredItems extends Component {
                                                 allowClear
                                                 id={index.name}
                                                 showToday
+                                                // defaultValue={moment(text, dateFormat)}
+                                            />
+                                        )
+                                    }
+                                </FormItem>
+                            );
+                        }else if(index.name === "DatePerformType"){
+                            return(
+                                <FormItem>
+                                    {
+                                        getFieldDecorator(index.name, {
+                                            rules: [
+                                                {
+                                                    required: true,
+                                                    message: '请输入必填字段值, 必填字段值不可为空!'
+                                                }
+                                            ],
+                                            initialValue: text
+                                        })(
+                                            <Input 
+                                                onChange={this.onInputChange}
+                                                type="text"
+                                                // placeholder="☹️ 暂无默认的示例命令值 !"
+                                                placeholder="该数组的值支持逗号(,)、空格( )分词!"
                                             />
                                         )
                                     }
@@ -375,7 +447,7 @@ class RequiredItems extends Component {
                         }
                     }
                 },
-                // width: "40%"
+                width: "40%"
             },
             {
                 title: "描述",

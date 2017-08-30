@@ -449,7 +449,10 @@ class TestTableForms extends Component {
                 <div style={{textAlign: "center"}}>
                     <Button
                         type="primary"
-                        style={{margin: "auto 10px"}}
+                        style={{
+                            margin: "auto 10px",
+                            marginLeft: "-100px"
+                        }}
                         onClick={this.startTest}
                         disabled={this.state.disable_btn}
                         loading={this.state.loading}

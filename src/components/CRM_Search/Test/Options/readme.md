@@ -1533,3 +1533,368 @@ commandexample.json
 
 
 
+如果只是要一个随机的字符， 可以自定义一个 小字典，从中随机取一个字符就行了，字符要有意义！
+
+例如: 
+
+https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/slice
+
+
+```js
+
+let a = "如果只是要一个随机的字符可以自定义一个小字典从中随机取一个字符就行了字符要有意义";
+
+a.length;
+// 40
+
+let value = "";
+
+
+value = a[parseInt(Math.random()*40)];
+// "定"
+value = a[parseInt(Math.random()*40)];
+// "随"
+value = a[parseInt(Math.random()*40)];
+// "个"
+value = a[parseInt(Math.random()*40)];
+// "从"
+value = a[parseInt(Math.random()*40)];
+// "自"
+value = a[parseInt(Math.random()*40)];
+// "取"
+value = a[parseInt(Math.random()*40)];
+// "机"
+value = a[parseInt(Math.random()*40)];
+// "小"
+value = a[parseInt(Math.random()*40)];
+// "机"
+
+
+
+Array.from(a); 
+// (40) ["如", "果", "只", "是", "要", "一", "个", "随", "机", "的", "字", "符", "可", "以", "自", "定", "义", "一", "个", "小", "字", "典", "从", "中", "随", "机", "取", "一", "个", "字", "符", "就", "行", "了", "字", "符", "要", "有", "意", "义"]
+
+a.split("");
+// (40) ["如", "果", "只", "是", "要", "一", "个", "随", "机", "的", "字", "符", "可", "以", "自", "定", "义", "一", "个", "小", "字", "典", "从", "中", "随", "机", "取", "一", "个", "字", "符", "就", "行", "了", "字", "符", "要", "有", "意", "义"]
+
+
+
+
+
+
+
+// string !== array 
+a.map(
+    (str, index) => {
+        console.log(`str = `, str);
+        console.log(`index = `, index);
+    }
+);
+
+```
+
+
+
+
+
+
+
+```js
+
+let s = "The quick brown fox jumps over the lazy dogs.";
+
+const chunk = (str, n) => {
+    let ret = [],
+        i = 0,
+        len = str.length;
+    for(i, len; i < len; i += n) {
+       ret.push(str.substr(i, n))
+    }
+    return ret
+};
+
+chunk("The quick brown fox jumps over the lazy dogs.", 5).join('$');
+// "The q$uick $brown$ fox $jumps$ over$ the $lazy $dogs."
+
+
+```
+
+## regex 
+
+
+```js
+
+
+let num = 1215464565; 
+let newNum = num.toString()
+                .match(/.{2}/g)
+                .join('-');
+
+
+console.log(newNum);
+// 12-15-46-45-65
+
+// match()
+// regex /./ ???
+
+
+let num = 1215464565; 
+let newNum = num.toString()
+                .replace(/(?!^)(\d{2})(?=(?:\d{2})*$)/g, '-$1');
+// "12-15-46-45-65"
+
+// replace()
+// regex \d -$1
+
+```
+
+
+
+##  `regex` & `string.split()` & `array.form() `&` slice() `& `map()` & `JSON.parse()`
+
+
+
+JYTopic.StockSecondaryMarket.StockMarketPeform
+
+主板->专题统计->二级市场->市场表现->个股行情表现
+
+
+http://10.1.5.203/http-report/query?%7B%22Page%22:%7B%22PageNo%22:%221%22,%22PageSize%22:%221%22%7D,%22EndDate%22:%222011-03-11%22,%22MarketType%22:%22HSLS%22,%22DatePerformType%22:%5B%22RBX%22,%22JYZBX%22%5D,%22SecuType%22:%22All%22,%22ApiName%22:%22JYTopic.StockSecondaryMarket.StockMarketPeform%22,%22WriteType%22:%22json%22%7D
+
+
+
+## test
+
+> EndDate ??? bug
+
+`<DatePicker defaultValue={moment('2015-06-06', dateFormat)} disabled />`
+
+
+
+> DatePerformType: array ??? error
+
+
+### String to Array
+
+[eslint] Unexpected lexical declaration in case block. (no-case-declarations)
+
+
+
+
+
+
+```js
+    /* 
+        DatePerformType Array ???
+        // id = index.type
+        // data-* 
+        // data-type={index.type}
+        e.target.id =  DatePerformType
+        e.target.value =  RBX,JYZBX 
+    */
+
+
+let s = "RBX,JYZBX";
+
+let arr = s.split(",");
+
+// ["RBX", "JYZBX"]
+
+```
+
+
+## switch & case
+
+> update bug ???
+
+[eslint] Unexpected lexical declaration in case block. (no-case-declarations)
+
+
+
+```js
+// Ok
+case "DatePerformType":
+    value = (
+        e.target.value.trim().split(",")
+    );
+    break;
+
+// bad
+// console.log(`switch default`, key);
+case "DatePerformType":
+    console.log(`switch array`, key);
+    // String to Array
+    let s = e.target.value.trim();
+    // "RBX,JYZBX"
+    let arr = s.split(",");
+    // ["RBX","JYZBX"]
+    value = (
+        arr
+    );
+    break;
+
+```
+
+## enhancement solution
+
+
+```js
+
+let s = "xyz,abc, SSS XXX";
+let arr = s.replace(/([\w]{1})[\s]{1}([\w]{1})/ig, "$1,$2");
+
+// "xyz,abc, SSS,XXX"
+
+
+let ss = "xyz,abc, SSS XXX ZZZ, DDD EEE";
+
+let multi_arr = s.replace(/([\w]{1})[\s]{1}([\w]{1})/ig, "$1,$2");
+
+// "xyz,abc, SSS,XXX,ZZZ, DDD,EEE"
+
+```
+
+
+http://10.1.5.203/http-report/query?{"ApiName":"JYTopic.StockSecondaryMarket.StockMarketPeform","EndDate":"2011-03-11","SecuType":"All","MarketType":"HSLS","DatePerformType":["RBX","JYZBX"],"WriteType":"json"}
+
+
+"JYTopic.StockSecondaryMarket.StockMarketPeform"
+
+DatePerformType: (2) ["RBX", "JYZBX"]
+EndDate: "2011-03-11"
+MarketType: "HSLS"
+SecuType: "All"
+WriteType: "json"
+
+
+### options ???
+
+> ☹️ 暂无默认的可选项命令值
+
+GilCodes array 聚源代码(可选参数)
+
+SectorNums array 板块代码，一维:表示并集，二维:表示交集(可选参数)
+
+http://localhost:3000/api/sc/JYTopic.StockSecondaryMarket.StockMarketPeform
+
+
+
+# defaultValue
+
+> moment() ??? function
+
+```jsx
+
+    // defaultValue={moment('2015-06-06', dateFormat)} 
+
+
+    // defaultValue={moment('2015-06', 'YYYY-MM')}
+
+    // defaultValue={[moment('2015-06-06', dateFormat), moment('2015-06-06', dateFormat)]}
+
+    import { DatePicker } from 'antd';
+    import moment from 'moment';
+    const { MonthPicker, RangePicker } = DatePicker;
+
+    const dateFormat = 'YYYY-MM-DD';
+    ReactDOM.render(
+    <div>
+        <DatePicker defaultValue={moment('2015-06-06', dateFormat)} disabled />
+        <br />
+        <MonthPicker defaultValue={moment('2015-06', 'YYYY-MM')} disabled />
+        <br />
+        <RangePicker
+        defaultValue={[moment('2015-06-06', dateFormat), moment('2015-06-06', dateFormat)]}
+        disabled
+        />
+    </div>
+    , mountNode);
+
+```
+
+
+## Invalid date & defaultValue
+
+> example_obj = {}
+
+
+BeginDate=""
+
+EndDate=""
+
+
+??? Today
+
+```js
+
+const date = new Date().toLocaleDateString().replace(/\//ig, `-`);
+
+// bad
+initialValue: moment(text, dateFormat) || date
+
+// good
+initialValue: moment(text || date, dateFormat) 
+
+
+
+
+
+
+```
+
+
+
+
+
+
+
+## datepicker bug ???
+
+
+BasicInformationDeatil
+
+http://localhost:3000/api/sc/BasicInformationDeatil
+
+基金->F9->基金概况 ->基金经理->基金经理详细信息(明细)
+
+
+
+## TCB example_obj
+
+http://localhost:3000/api/sc/BasicInformationDeatil
+
+http://localhost:3000/api/sc/JYTopic.StockSecondaryMarket.StockMarketPeform
+
+```js
+
+if (debug) {
+    console.log(`%c TCB input_datas = ${input_datas}`, color.color_css3);
+    console.log(`%c TCB output_datas = ${output_datas}`, color.color_css2);
+    console.log(`%c TCB developer = ${developer}`, color.color_css1);
+    console.log(`%c TCB example_obj = ${example_obj}`, color.color_css3);
+}
+
+```
+
+
+
+
+
+issues/77
+
+issues/78
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -317,7 +317,6 @@ class SCT extends Component {
         if (debug) {
             console.log(`%c SCT data = ${JSON.stringify(data, null, 4)}`, color.color_css2);
             console.log(`%c SCT example_obj = ${JSON.stringify(example_obj, null, 4)}`, color.color_css1);
-            
         }
         return (
             <div style={{
