@@ -166,21 +166,54 @@ class RequiredItems extends Component {
             console.log(`%c before change temp_url_obj = \n`, color.color_css2, temp_url_obj);
         }
         let key = e.target.id;
-        let value;
+        let value = e.target.value;
+        let values = value.trim().replace(/([\w]{1})[\s]([\w]{1})/ig, ",").split(",");
+        if(values.length > 1){
+            // pass array
+            temp_url_obj[key] = values;
+        }else{
+            // pass int string
+            temp_url_obj[key] = value;
+        }
+        /* 
         if(key === "DatePerformType"){
-            // value = e.target.value.trim().replace(/s*/gi, ",").split(",");
-            value = e.target.value.trim().replace(/([\w]{1})[\s]{1}([\w]{1})/ig, "$1,$2");
+            // value = e.target.value.trim().replace(/s/gi, ",").split(",");
+            value = e.target.value.trim().replace(/([\w]{1})[\s]{1,}([\w]{1})/ig, "$1,$2").split();
             // space => , comma
-            /* 
+            // multi spaces
+            // ss.trim().replace(/([\w]{1})[\s]{1,}([\w]{1})/ig, "$1,$2").split();
+            // ss.trim().replace(/([\w]{1})[\s]{1,}([\w]{1})/ig, "$1,$2").split(); 
                 // enhancement solution
                 // replace(/([\w]{1})[\s]{1}([\w]{1})/ig, "$1,$2");
                 let ss = "xyz,abc, SSS XXX ZZZ, DDD EEE";
-                let multi_arr = s.replace(/([\w]{1})[\s]{1}([\w]{1})/ig, "$1,$2");
-                "xyz,abc, SSS,XXX,ZZZ, DDD,EEE"
-             */
+                let multi_arr = ss.replace(/([\w]{1})[\s]{1}([\w]{1})/ig, "$1,$2");
+                // "xyz,abc, SSS,XXX,ZZZ, DDD,EEE"
+                ss.trim().replace(/([\w]{1})[\s]{1}([\w]{1})/ig, "$1,$2").split();
+                // ["xyz,abc, SSS,XXX,ZZZ, DDD,EEE"]
+             
         }else{
             value = e.target.value;
         }
+        */
+        /* 
+        let obj = {};
+        let temp_obj = this.state.options_obj;
+        let key = e.target.id;
+        let value = e.target.value;
+        let values = value.trim().replace(/([\w]{1})[\s]([\w]{1})/ig, ",").split(",");
+        if(values.length > 1){
+            // pass array
+            temp_obj[key] = values;
+            obj[key] = values;
+        }else{
+            // pass int string
+            temp_obj[key] = value;
+            obj[key] = value;
+        }
+        this.setState({
+            options_obj: temp_obj
+        });
+        */
         // old
         /* 
         let value;
@@ -215,7 +248,7 @@ class RequiredItems extends Component {
             e.target.id = DatePerformType
             e.target.value = RBX,JYZBX 
         */
-        temp_url_obj[key] = value;
+        // temp_url_obj[key] = value;
         let str_obj = JSON.stringify(temp_url_obj);
         if (debug) {
             console.log(`%c after change temp_url_obj = \n`, color.color_css2, temp_url_obj);

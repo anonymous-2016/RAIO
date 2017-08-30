@@ -624,3 +624,191 @@ onChange={(index.name === "EndDate" ? this.onEndDateChange : this.onBeginDateCha
 
 
 
+
+
+
+## other ???
+
+orgCode: 8 int/array
+
+fundType: 8 int/array
+
+```js
+
+// default array
+
+// let a = [];
+
+let values = "abc, xyz, ufo";
+let value = "smg";
+
+// space to comma ,
+
+values.replace(/([\w]{1})[\s]([\w]{1})/ig, ",");
+// value = e.target.value.trim().replace(/([\w]{1})[\s]{1}([\w]{1})/ig, "$1,$2");
+
+// /([\w]{1})[\s]([\w]{1})/ig
+// /([\w]{1})[\s]*([\w]{1})/ig
+// https://regexper.com/
+// \s === any space
+
+
+// string to array
+
+let array = values.split(",");
+// (3) ["abc", " xyz", " ufo"]
+let int = value.split(",");
+// ["smg"]
+
+if(array.length > 1){
+    // pass array
+    obj[key] = array;
+}else{
+    // pass int string
+    obj[key] = value;
+}
+
+
+let key = e.target.id;
+let value = e.target.value;
+let values = value.trim().replace(/([\w]{1})[\s]([\w]{1})/ig, ",").split(",");
+
+if(values.length > 1){
+    // pass array
+    obj[key] = values;
+}else{
+    // pass int string
+    obj[key] = value;
+}
+
+
+```
+
+
+
+
+
+## update all array / string
+
+
+```js
+// only one 
+
+    if(key === "DatePerformType"){
+        // value = e.target.value.trim().replace(/s*/gi, ",").split(",");
+        value = e.target.value.trim().replace(/([\w]{1})[\s]{1}([\w]{1})/ig, "$1,$2");
+        // space => , comma
+        /* 
+            // enhancement solution
+            // replace(/([\w]{1})[\s]{1}([\w]{1})/ig, "$1,$2");
+            let ss = "xyz,abc, SSS XXX ZZZ, DDD EEE";
+            let multi_arr = s.replace(/([\w]{1})[\s]{1}([\w]{1})/ig, "$1,$2");
+            "xyz,abc, SSS,XXX,ZZZ, DDD,EEE"
+            */
+    }else{
+        value = e.target.value;
+    }
+
+
+    let obj = {};
+    let temp_obj = this.state.options_obj;
+    let key = e.target.id;
+    let value = e.target.value;
+    let values = value.trim().replace(/([\w]{1})[\s]([\w]{1})/ig, ",").split(",");
+    // multi spaces
+    // ss.trim().replace(/([\w]{1})[\s]{1,}([\w]{1})/ig, "$1,$2").split();
+    if(values.length > 1){
+        // pass array
+        temp_obj[key] = values;
+    }else{
+        // pass int string
+        temp_obj[key] = value;
+    }
+    this.setState({
+        options_obj: temp_obj
+    });
+
+```
+
+## backup
+
+```js
+
+let ss = "xyz,abc, SSS XXX ZZZ, DDD EEE";
+
+let single_arr = ss.replace(/([\w]{1})[\s]{1}([\w]{1})/ig, "$1,$2");
+
+// multi spaces
+
+let multi_arr = ss.trim().replace(/([\w]{1})[\s]{1,}([\w]{1})/ig, "$1,$2").split();
+// {1,} === {1,n}
+
+// [\s]{1,} !=== [\s]{1, }
+
+// x+ 匹配前面的模式 x 1 或多次。等价于 {1,}。
+
+// ??? ss.trim().replace(/([\w]{1})[\s]+([\w]{1})/ig, "$1,$2").split();
+// ??? ss.trim().replace(/([\w]{1})[\s+]([\w]{1})/ig, "$1,$2").split();
+
+
+/*
+
+x{n}	
+n 是一个正整数。前面的模式 x 连续出现 n 次时匹配。
+
+例如，/a{2}/ 不匹配 "candy," 中的 "a"，但是匹配 "caandy," 中的两个 "a"，且匹配 "caaandy." 中的前两个 "a"。
+
+x{n,}	
+n 是一个正整数。前面的模式 x 连续出现至少 n 次时匹配。
+
+例如，/a{2,}/ 不匹配 "candy" 中的 "a"，但是匹配 "caandy" 和 "caaaaaaandy." 中所有的 "a"。
+
+x{n,m}	
+n 和 m 为正整数。前面的模式 x 连续出现至少 n 次，至多 m 次时匹配。
+
+例如，/a{1,3}/ 不匹配 "cndy"，匹配 "candy," 中的 "a"，"caandy," 中的两个 "a"，匹配 "caaaaaaandy" 中的前面三个 "a"。注意，当匹配 "caaaaaaandy" 时，即使原始字符串拥有更多的 "a"，匹配项也是 "aaa"。
+
+https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/RegExp
+
+
+*/
+
+```
+
+```js
+
+        if(key === "DatePerformType"){
+            // value = e.target.value.trim().replace(/s*/gi, ",").split(",");
+            value = e.target.value.trim().replace(/([\w]{1})[\s]{1}([\w]{1})/ig, "$1,$2");
+            // space => , comma
+            /* 
+                // enhancement solution
+                // replace(/([\w]{1})[\s]{1}([\w]{1})/ig, "$1,$2");
+                let ss = "xyz,abc, SSS XXX ZZZ, DDD EEE";
+                let multi_arr = s.replace(/([\w]{1})[\s]{1}([\w]{1})/ig, "$1,$2");
+                "xyz,abc, SSS,XXX,ZZZ, DDD,EEE"
+             */
+        }else{
+            value = e.target.value;
+        }
+        /* 
+        let obj = {};
+        let temp_obj = this.state.options_obj;
+        let key = e.target.id;
+        let value = e.target.value;
+        let values = value.trim().replace(/([\w]{1})[\s]([\w]{1})/ig, ",").split(",");
+        if(values.length > 1){
+            // pass array
+            temp_obj[key] = values;
+            obj[key] = values;
+        }else{
+            // pass int string
+            temp_obj[key] = value;
+            obj[key] = value;
+        }
+        this.setState({
+            options_obj: temp_obj
+        });
+        */
+
+```

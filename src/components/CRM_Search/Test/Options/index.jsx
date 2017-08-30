@@ -178,6 +178,7 @@ class OptionsItems extends Component {
             // true / false
         }
         let str_bool = e.target.value.toString();
+        // value={this.state.Compress}
         this.setState({
             Compress: str_bool
         });
@@ -458,14 +459,31 @@ class OptionsItems extends Component {
         // onDefaultInputChange
         if (debug) {
             console.log('Default Input e.target checked = ', e.target);
+            // <input type="text" placeholder="☹️ 暂无默认的可选项命令值" value="" id="GilCodes" class="ant-input">
             console.log('Default Input e.target.value checked = ', e.target.value);
-            console.log('Default e.target.id checked = ', e.target.id);
-            console.log('Default e.target.key checked = ', e.target.key);
+            // value = this.state.defaultInput[id] ???
+            console.log('Default e.target.id = ', e.target.id);
+            // GilCodes
+            console.log('Default e.target.key = ', e.target.key);
+            // undefined
         }
         let obj = {};
+        let temp_obj = this.state.options_obj;
         let key = e.target.id;
         let value = e.target.value;
-        obj[key] = value;
+        let values = value.trim().replace(/([\w]{1})[\s]([\w]{1})/ig, ",").split(",");
+        if(values.length > 1){
+            // pass array
+            temp_obj[key] = values;
+            obj[key] = values;
+        }else{
+            // pass int string
+            temp_obj[key] = value;
+            obj[key] = value;
+        }
+        this.setState({
+            options_obj: temp_obj
+        });
         this.setState(
             (prevState, props) => {
                 return{
@@ -473,6 +491,24 @@ class OptionsItems extends Component {
                 }
             }
         );
+        if (debug) {
+            console.log('%c autoSave ??? = \n', color.css2);
+        }
+        this.autoSave();
+        // obj[key] = value;
+        /* 
+            let key = e.target.id;
+            let value = e.target.value;
+            let values = value.trim().replace(/([\w]{1})[\s]([\w]{1})/ig, ",").split(",");
+
+            if(values.length > 1){
+                // pass array
+                obj[key] = values;
+            }else{
+                // pass int string
+                obj[key] = value;
+            }
+        */
     };
     render() {
         const {sort_items, fields_items, option_datas} = this.props;
@@ -829,8 +865,10 @@ class OptionsItems extends Component {
                             valueType = (
                                 <RadioGroup
                                     onChange={this.onRadioGroupChange}
+                                    value={this.state.Compress}
+                                    // defaultChecked
                                     >
-                                    <Radio value="true" defaultChecked>
+                                    <Radio value="true">
                                         是
                                     </Radio>
                                     <Radio value="false">
@@ -965,17 +1003,21 @@ class OptionsItems extends Component {
                             valueType = (
                                 <Input 
                                     placeholder="☹️ 暂无默认的可选项命令值"
-                                    value={this.state.defaultInput.input_name ? this.state.defaultInput.input_name : (text ? text : "")}
+                                    value={
+                                        this.state.defaultInput[index.name] 
+                                        ?
+                                        this.state.defaultInput[index.name] 
+                                        :
+                                        (text ? text : "")
+                                    }
                                     type="text"
                                     id={input_name}
                                     key={index.key + 1}
                                     onChange={this.onDefaultInputChange}
-                                    disabled
+                                    // disabled
                                 /> 
                             )
                             // break;
-                        // id={input_name} ??? dynamic input
-                        // form warp like required
                     }
                     return valueType;
                 },

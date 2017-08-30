@@ -1737,6 +1737,8 @@ case "DatePerformType":
 
 ## enhancement solution
 
+placeholder="该数组的值支持逗号(,)、空格( )分词!"
+
 
 ```js
 
@@ -1836,7 +1838,36 @@ initialValue: moment(text, dateFormat) || date
 initialValue: moment(text || date, dateFormat) 
 
 
-
+if(index.name === "EndDate" || index.name === "BeginDate"){
+    const date = new Date().toLocaleDateString().replace(/\//ig, `-`);
+    let date_placeholder = `☹️ 请输入 ${date } 格式的时间!`;
+    // "2017-8-22"
+    return(
+        <FormItem>
+            {
+                getFieldDecorator(index.name, {
+                    rules: [
+                        {
+                            required: true,
+                            message: '请输入必填字段值, 必填字段值不可为空!'
+                        }
+                    ],
+                    initialValue: moment(text || date, dateFormat)
+                })(
+                    <DatePicker 
+                        onChange={(index.name === "EndDate" ? this.onEndDateChange : this.onBeginDateChange)} 
+                        // placeholder="日期格式 2017-08-08"
+                        placeholder={date_placeholder}
+                        style={{minWidth: 300}}
+                        allowClear
+                        id={index.name}
+                        showToday
+                        // defaultValue={moment(text, dateFormat)}
+                    />
+                )
+            }
+        </FormItem>
+    );
 
 
 
@@ -1879,21 +1910,137 @@ if (debug) {
 
 
 
+## Compress & default Checked ???
+
+
+```js
+// bad
+
+case "Compress": 
+    valueType = (
+        <RadioGroup
+            onChange={this.onRadioGroupChange}
+            >
+            <Radio value="true" defaultChecked>
+                是
+            </Radio>
+            <Radio value="false">
+                否
+            </Radio>
+        </RadioGroup>
+    )
+    break;
+
+//ok
+case "Compress": 
+    valueType = (
+        <RadioGroup
+            onChange={this.onRadioGroupChange}
+            value={this.state.Compress}
+            // defaultChecked
+            >
+            <Radio value="true" defaultChecked>
+                是
+            </Radio>
+            <Radio value="false">
+                否
+            </Radio>
+        </RadioGroup>
+    )
+    break;
+
+```
+
+
+
+
+
+
+
+
 
 issues/77
 
 issues/78
 
 
+## other ???
+
+
+holdType:6 string/array
+
+> int to string
+
+> string yto string
 
 
 
+sectorNums:6 二维数组[][]
+
+> [[], [], []]
+
+```js
+
+map
+keys
+push
+
+
+```
+
+http://10.1.5.203/webtool/home.html?resource=tab0&sear_valu=
+
+基金->F9->基金概况 ->基金经理(信息显示表格)
+
+http://10.1.5.203/http-manage/admin?{%22Admin%22:%22report%22,%22Action%22:%22GetSchema%22,%22WriteType%22:%22json%22,%20%22ReportName%22:%22fund.f9.fund_profile.FundManager%22}
+
+
+> 删掉了?
+
+Gender和All我都会给出你枚举值，不过Gender是单选，All是多选
+
+All是中文，Gender是1，2，3
+
+
+我看了下，那俩参数已经没用了，我直接删掉了
+你不用管他们了，等我下次统一升级了就没 
 
 
 
+##  bad api ???
+
+orgCode: 8 int/array
+
+fundType: 8 int/array
+
+
+```js
+
+"orgCode": "001"
+// int
+
+"orgCode": ["001", "002", "003"]
+// array
+
+```
 
 
 
+```js
+
+let key = e.target.id;
+let value = e.target.value;
+let values = value.trim().replace(/([\w]{1})[\s]([\w]{1})/ig, ",").split(",");
+
+if(values.length > 1){
+    // pass array
+    obj[key] = values;
+}else{
+    // pass int string
+    obj[key] = value;
+}
+
+```
 
 
 
