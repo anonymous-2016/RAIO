@@ -2030,7 +2030,7 @@ fundType: 8 int/array
 
 let key = e.target.id;
 let value = e.target.value;
-let values = value.trim().replace(/([\w]{1})[\s]([\w]{1})/ig, ",").split(",");
+let values = value.trim().replace(/([\w]{1})[\s]{1,}([\w]{1})/ig, ",").split(",");
 
 if(values.length > 1){
     // pass array
@@ -2041,6 +2041,111 @@ if(values.length > 1){
 }
 
 ```
+
+## only one item Array ???
+
+> type of input 
+
+enum, Array
+Object
+
+int, string, number
+
+
+
+```js
+
+let ignore_Cap = type.replace(/([A-Z]{1})/g, $1);
+
+let type = "Array";
+
+type.toLowerCase();
+// "array"
+
+
+
+let value = "xyz, abc aaa, ccc";
+
+value.replace(/([\w]{1})[\s]{1,}([\w]{1})/ig, ",").split(",");
+// (4) ["xyz", " ab", "aa", " ccc"]
+
+// object ??? selects || select
+
+
+"Page":{"PageNo":1,"PageSize":100},
+"Sorts":[
+    {"Field":"BasicInformationRow.A2","Sort":"desc"}
+]
+
+```
+
+
+```js
+
+let key = e.target.id;
+let value = e.target.value;
+
+let type = e.target.data_type.toLowerCase();
+
+let values = value.trim().replace(/([\w]{1})[\s]{1,}([\w]{1})/ig, ",").split(",");
+// arr
+
+if(type === "array" || values.length > 1 && type === "array"){
+    // pass array
+    obj[key] = values;
+}else{
+    // pass int string
+    obj[key] = value;
+}
+
+let value;
+
+switch(type){
+    case "array": 
+        obj[key] = values;
+        break;
+    case "enum": 
+        obj[key] = values;
+        break;
+    case "object": 
+        obj[key] = {id: value};
+        break;
+    default:
+        obj[key] = value;
+        break;
+}
+
+
+
+```
+
+
+# LowerCase & UpperCase
+
+
+
+> type.toLocaleUpperCase();
+
+> type.toUpperCase();
+
+```js
+let type = "Array";
+
+type.toLowerCase();
+// "array"
+
+type.toLocaleLowerCase();
+// "array"
+
+type.toLocaleUpperCase();
+// "ARRAY"
+
+type.toUpperCase();
+// "ARRAY"
+
+
+```
+
 
 
 

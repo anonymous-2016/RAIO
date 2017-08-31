@@ -52,14 +52,25 @@ class ResultTables extends Component {
     render() {
         const tables = this.props.tabs;
         if (debug) {
-            console.log(`%c test tables = \n`, color.color_css1, JSON.stringify(tables, null, 4));
+            console.log(`%c tabs === test tables = \n`, color.color_css1, JSON.stringify(tables, null, 4));
         }
+        /* 
+            {
+                "type": "string",
+                "name": "A0",
+                "new_type": "STRING",
+                "desc": "交易日期",
+                "test_name": "A0",
+                "key": "k0000"
+            },
+        */
         return (
             <div 
                 style={{
                     // width: "calc(100% - 300px)",
                     // width: "100%",
-                    // maxWidth: 850,
+                    maxWidth: 850,
+                    // 暂时防止 multi tables overflow ??? 
                     margin: 10,
                     padding: 10,
                     boxSizing: "border-box",
@@ -82,7 +93,23 @@ class ResultTables extends Component {
                             (table, index) => {
                                 {/* console.log(`tab key index ${index}`); */}
                                 if (debug) {
-                                     console.log(`%c table[${index}]= \n`, color.css2, table);
+                                     console.log(`%c table[${index}] = \n`, color.css2, table);
+                                     console.log(`%c JSON.stringify(table, null, 4) = \n`, color.css2, JSON.stringify(table, null, 4));
+                                     console.log(`%c RT JSON.stringify(table.datas) = \n`, color.css2, JSON.stringify(table.datas, null, 4));
+                                    /*
+                                        [
+                                            {
+                                                "type": "string",
+                                                "Description": "交易日期",
+                                                "Format": "date-time",
+                                                "name": "A0",
+                                                "new_type": "STRING",
+                                                "desc": "交易日期",
+                                                "test_name": "A0",
+                                                "key": "k0000"
+                                            },
+                                        ]
+                                    */
                                 }
                                 // tab.name === "AnyManagedFundsRow":[] 
                                 return(
@@ -100,6 +127,7 @@ class ResultTables extends Component {
                                         {/* test data, output data */}
                                         <RT
                                             dataSource={[]}
+                                            // test results
                                             columns={table.datas}
                                             style={{
                                                 // maxWidth: 850,

@@ -71,10 +71,18 @@ class ResultTables extends Component {
                     console.log(`%c 注释: ${obj.title} & obj.title = data.Description \n`, color.css1);
                 }
                 // 编号: A0
-                obj.dataIndex = `${data.name}`;
-                obj.key = `${data.name}`;
-                if (!debug) {
-                    console.log(`%c 编号: ${obj.key} & obj.name = data.name \n`, color.css2);
+                obj.dataIndex = `${data.name.toUpperCase()}`;
+                obj.key = `${data.name.toUpperCase()}`;
+                /* 
+                    "B7_count".toUpperCase();
+                    // "B7_COUNT"
+                    obj.dataIndex = `${data.name}`;
+                    obj.key = `${data.name}`;
+                */
+                if (debug) {
+                    // console.log(`%c 编号: ${obj.key} & obj.name = data.name \n`, color.css2);
+                    console.log(`%c 编号: obj.key.toUpperCase() === ${obj.key} \n`, color.css2);
+                    console.log(`%c 编号: JSON.stringify(obj, null, 4) === ${JSON.stringify(obj, null, 4)} \n`, color.css1);
                 }
                 cols.push(obj);
                 return cols;

@@ -170,16 +170,34 @@ class SCT extends Component {
                     if(!objs.hasOwnProperty(key)) continue;
                     if (objs.hasOwnProperty(key)) {
                         // A0 === name
-                        objs[key].name =  key;
+                        // objs[key].name = key;
+                        objs[key].name = key;
+                        // objs[key].test_name = key.toUpperCase();
+                        // 再多给一个字段，一个用于展示（大小写不变），一个用于比较（统一转成大写）
+                        // toUpperCase() ??? move to test children component shape data ???
+                        // RT 
+                        // obj.key = `${data.name.toUpperCase()}`;
+                        objs[key].new_type = objs[key].type.toUpperCase();
+                        objs[key].desc = objs[key].Description || `☹️ 暂无注释`;
+                        objs[key].test_name = key.toUpperCase() || `☹️ 暂无 test_name`;
                         if(objs[key].Description){
                             // objs[key].name =  key;
+                            // objs[key].Description = "注释"; ???
+                            // 已经有值了，无需 overwrite ！
+                            objs[key].desc = objs[key].Description;
                         }else{
                             // TestProtocol 暂无注释
-                            objs[key].Description = "☹️ 暂无注释";
+                            objs[key].Description = `☹️ ${key} 暂无注释`;
+                            // 没有值了，需要 overwrite === ☹️ 暂无注释！
+                            objs[key].desc = `☹️ 暂无注释`;
                             if (!debug) {
                                 console.log(`%c objs[key].Description === "emoji ☹️ 暂无注释" `, color.color_css2, objs[key].Description);
                             }
                         }
+                        // no need any more 
+                        // Description if / else 
+                        // objs[key].desc = objs[key].Description || `☹️ 暂无注释`;
+                        // objs[key].Description = objs[key].Description || `☹️ 暂无注释`;
                         objs[key].key = ("k000" + i++);
                     }
                     if (!debug) {
@@ -212,24 +230,43 @@ class SCT extends Component {
                         let title = tables[key].desc,
                             tablenamle = key,
                             objs = tables[key].Properties;
+                            // objs
+                        if(!debug){
+                            console.log(`%c $$$$$$$$$$  json.Info.schema[i].Properties  $$$$$$$$$$ \n `, color.css2, JSON.stringify(objs, null, 4));
+                        }
                         for (let key in objs) {
                             if (objs.hasOwnProperty(key)) {
                                 // A0
+                                if(!debug){
+                                    console.log(`%c $$$$$$$$$$  objs[key]  $$$$$$$$$$ \n `, color.css2, JSON.stringify(objs[key], null, 4));
+                                    /* 
+                                        {
+                                            "type": "string",
+                                            "Description": "性别"
+                                        }
+                                    */
+                                }
                                 // TestProtocol 暂无注释
-                                objs[key].name =  key || "暂无注释";
+                                objs[key].name =  key || "暂无 name";
                                 objs[key].key = ("k000" + i++);
+                                // new add
+                                objs[key].desc = objs[key].Description || `☹️ 暂无注释`;
+                                objs[key].test_name = key.toUpperCase() || `☹️ 暂无 test_name`;
+                                objs[key].new_type = objs[key].type.toUpperCase();
                             }
                             arr.push(objs[key]);
                             if (!debug) {
-                                console.log(`arr ${key}`, arr);
+                                // console.log(`arr ${key}`, arr);
+                                console.log(` $$$$$$$$$$  JSON.stringify(arr[key]) = \n`, JSON.stringify(arr[key], null, 4));
                             }
                         }
                         // console.log(`title ${key}`, title);
                         new_obj.title = title;
                         new_obj.tablenamle = tablenamle;
                         new_obj.datas = arr;
-                        if (debug) {
-                            console.log(`%c new output obj = `, color.css2, new_obj);
+                        if (!debug) {
+                            // console.log(`%c $$$$$$$$$$  new output obj = `, color.css2, new_obj);
+                            console.log(` $$$$$$$$$$  JSON.stringify(arr) = \n`, JSON.stringify(arr, null, 4));
                         }
                     }
                     datas.push(new_obj);
@@ -349,173 +386,3 @@ SCT.propTypes = {
 export {SCT};
 export default SCT;
 
-
-
-/*
-
-    // example === input & JSON.parse(json.Info.commandexample
-
-    // 基金->F9-> 基金概况
-
-    "{            "SecuCode": 000011,            "ApiName": "fund.f9.fund_profile.FundIntroduce" }"
-    "{            "SecuCode": 000001,            "ApiName": "fund.f9.fund_profile.FundManagerMent" }"
-    "{            "SecuCode": 000011,            "ApiName": "fund.f9.fund_profile.FundManager" }"
-
-    // 主板F10-->财务概况
-
-    "{            "SecuCode": "600570",            "ApiName": "F10.FinalSummary.FastView.DuBangAnalysis" }"
-    "{            "SecuCode": "601318",            "ApiName": "F10.FinaIndicator.SpecialIndex" }"
-    "{            "SecuCode": "600570",            "ApiName": "F10.FinalSummary.AssetsDebtConstitute.Assets" }"
-    "{            "SecuCode": "600570",            "ApiName": "F10.FinalSummary.FinancialStatementView" }"
-    "{            "SecuCode": "600570",            "ApiName": "F10.FinalSummary.AssetsDebtConstitute.Debt" }"
-    "{            "SecuCode": "600570",            "ApiName": "F10.FinalSummary.FastView.NoticePerformance" }"
-
-
-bad
-
-http://10.1.5.203/http-manage/admin?{%22Admin%22:%22report%22,%22Action%22:%22GetSchema%22,%22WriteType%22:%22json%22,%20%22ReportName%22:%22fund.f9.fund_profile.FundIntroduce%22}
-
-?{"Admin":"report","Action":"GetSchema","WriteType":"json",%20"ReportName":"fund.f9.fund_profile.FundIntroduce"}
-
-
-
-good
-
-http://10.1.5.203/http-manage/admin?{%22Admin%22:%22report%22,%22Action%22:%22GetSchema%22,%22WriteType%22:%22json%22,%20%22ReportName%22:%22F10.FinaIndicator.SpecialIndex%22}
-
-?{"Admin":"report","Action":"GetSchema","WriteType":"json",%20"ReportName":"F10.FinaIndicator.SpecialIndex"}
-
-
-*/
-
-/* 
-
-    // Sorts 单选框
-    // Sorts === json.Info.schema
-    // :基金->F9->基金概况 ->基金经理->基金经理详细信息(基本资料)
-    // multi tables
-    // fund.f9.fund_profile.FundManager.BasicInformations
-    // schema.AnyManagedFundsRow.Properties
-
-    schema: {
-        "AnyManagedFundsRow" : {
-            "Properties": {
-                "A0": {
-                    "type": "string",
-                    "Description": "管理公司"
-                },
-                "A1": {
-                    "type": "string",
-                    "Description": "出生日期"
-                }
-            },
-            "desc" : "基金经理详细信息(历任管理基金)",
-            "type" : "object",
-        },
-        BasicInformationRow : {
-            Properties: {
-                A0: {
-                    "type" : "string",
-                    "Description" : "性别"
-                }
-            },
-            desc : "基金经理详细信息(基本资料)",
-            type : "object",
-        }
-    }
-
-    AnyManagedFundsRow: {
-        "desc" : "基金经理详细信息(历任管理基金)",
-        "cols": {
-            A0: "管理公司",
-            A1: "出生日期"
-        }
-        // {}.keys
-    }
-
-    BasicInformationRow: {
-        desc : "基金经理详细信息(基本资料)",
-        "cols": {
-            A0: "管理公司",
-            A1: "出生日期"
-        }
-    }
-
-
-
-
-    Field : [
-        AnyManagedFundsRow.A0: AnyManagedFundsRow.desc + AnyManagedFundsRow.cols.A0 
-        // 
-    ]
-
-
-
-        基金经理详细信息(基本资料
-
-    "Sorts":[
-        {
-            "Field":"basicinformationrow.a0",
-            "Sort":"asc"
-        }
-    ]
-
-
-
-
-    // OutField 多选框
-
-    AnyManagedFundsRow: {
-        "desc" : "基金经理详细信息(历任管理基金)",
-        "cols": {
-            A0: "管理公司",
-            A1: "出生日期"
-        }
-        // {}.keys
-    }
-
-    "OutField":[
-        "BasicInformationRow.A6",
-        "BasicInformationRow.A7",
-        "AnyManagedFundsRow.A0",
-        "AnyManagedFundsRow.A1",
-        "AnyManagedFundsRow.A2",
-        "HistoricalReturnsRow.A3",
-        "HistoricalReturnsRow.A4"
-    ]
-
-*/
-
-
-/* 
-
-
-    // single table & output
-    // fund.f9.fund_profile.FundIntroduce
-    // schema.Properties
-
-
-    // ??? table name ???
-    http://10.1.5.203/http-manage/admin?{%27Admin%27:%27report%27,%27Action%27:%27GetRowSchema%27,%27WriteType%27:%27json%27,%27ReportName%27:%27fund.f9.fund_profile.FundIntroduce%27}?ran=0.027994435157687736
-
-    "Sorts":[
-        {
-            "Field":"basicinformationrow.a0",
-            "Sort":"asc"
-        }
-    ]
-
-    // A0 ???
-
-    "OutField":[
-        "BasicInformationRow.A6",
-        "BasicInformationRow.A7",
-        "AnyManagedFundsRow.A0",
-        "AnyManagedFundsRow.A1",
-        "AnyManagedFundsRow.A2",
-        "HistoricalReturnsRow.A3",
-        "HistoricalReturnsRow.A4"
-    ]
-    // A0 ???
-
-*/

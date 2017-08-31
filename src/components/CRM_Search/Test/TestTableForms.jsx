@@ -521,17 +521,16 @@ class TestTableForms extends Component {
                     <h2 className="title-color">测试结果</h2>
                     {/* Tabs & Tables */}
                     {/* // tab.name === "AnyManagedFundsRow":[]  */}
-                    {
-                        <RTS
-                            tabs={this.props.outputs}
-                            style={{
-                                // maxWidth: 850
-                                boxSizing: "border-box",
-                                overflowX: "hidden"
-                            }}
-                            results={[]}
-                        />
-                    }
+                    <RTS
+                        tabs={this.props.outputs}
+                        // ??? type ???
+                        style={{
+                            // maxWidth: 850
+                            boxSizing: "border-box",
+                            overflowX: "hidden"
+                        }}
+                        results={[]}
+                    />
                     {/* results={[test_datas]}  */}
                 </div>
             </div>

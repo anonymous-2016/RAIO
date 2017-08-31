@@ -225,6 +225,7 @@ class TabsContentBox extends Component {
                         <TTF
                             test_datas={in_out_data}
                             outputs={output_datas}
+                            // outputs === result tabs
                             inputs={input_datas}
                             options={options_obj}
                             url_path={url_path}
