@@ -53,7 +53,8 @@ class TestTableForms extends Component {
             loading: false,
             required_obj: {},
             options_obj: {},
-            test_results: {}
+            test_results: {},
+            results: []
         }
     }
     disableBTN = (value=false) =>{
@@ -177,9 +178,35 @@ class TestTableForms extends Component {
                     if (debug) {
                         console.log(`%c fecthed data = \n`, color.color_css3, JSON.stringify(fecth_data, null, 4));
                     }
+                    let r = fecth_data;
+                    let result = [];
+                    const test_result = r.map(
+                        // tab
+                        (tab) => {
+                            let keys = Object.keys(tab.columnMeta);
+                            let arrs = tab.rows;
+                            for(let i = 0; i < arrs.length; i++){
+                                let arr = arrs[i];
+                                let temp_obj = {};
+                                keys.map(
+                                    (key, index) => {
+                                        temp_obj.key = `key_000${i+1}`;
+                                        temp_obj[key] = arr[index];
+                                        return temp_obj;
+                                    }
+                                );
+                                result.push(temp_obj);
+                            }
+                            console.log(`result = \n`, JSON.stringify(result, null, 4));
+                            // return c_obj;
+                            return result;
+                        }
+                    );
                     that.setState({
                         // test_datas: {fecth_data}
-                        test_results: Object.assign({}, fecth_data)
+                        // test_results: Object.assign({}, fecth_data)
+                        // results: Object.assign({}, result)
+                        results: result
                     });
                     /*
                         setTimeout(() => {
@@ -529,7 +556,7 @@ class TestTableForms extends Component {
                             boxSizing: "border-box",
                             overflowX: "hidden"
                         }}
-                        results={[]}
+                        results={this.state.result || []}
                     />
                     {/* results={[test_datas]}  */}
                 </div>
@@ -551,3 +578,35 @@ TestTableForms.propTypes = {
 const TTF = TestTableForms;
 export {TTF};
 export default TTF;
+
+
+
+/* 
+
+
+let result = [];
+const test_result = r.map(
+    // tab
+    (tab) => {
+        let keys = Object.keys(tab.columnMeta);
+        let arrs = tab.rows;
+        for(let i = 0; i < arrs.length; i++){
+            let arr = arrs[i];
+            let temp_obj = {};
+            keys.map(
+                (key, index) => {
+                    temp_obj.key = `key_000${i+1}`;
+                    temp_obj[key] = arr[index];
+                    return temp_obj;
+                }
+            );
+            result.push(temp_obj);
+        }
+        console.log(`result = \n`, JSON.stringify(result, null, 4));
+        // return c_obj;
+        return result;
+    }
+);
+
+
+*/

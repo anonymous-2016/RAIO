@@ -579,16 +579,42 @@ r.map(
 
 //
 
+// Ok new 
 
-
+let result = [];
 const test_result = r.map(
     // tab
     (tab) => {
-        let p_obj = {};
+        let keys = Object.keys(tab.columnMeta);
+        let arrs = tab.rows;
+        for(let i = 0; i < arrs.length; i++){
+            let arr = arrs[i];
+            let temp_obj = {};
+            keys.map(
+                (key, index) => {
+                    temp_obj.key = `key_000${i+1}`;
+                    temp_obj[key] = arr[index];
+                    return temp_obj;
+                }
+            );
+            result.push(temp_obj);
+        }
+        console.log(`result = \n`, JSON.stringify(result, null, 4));
+        // return c_obj;
+        return result;
+    }
+);
+
+// [{A0: "", A1: "", A2: "", …}]
+
+
+
+// Ok old
+
+test_result = r.map(
+    // tab
+    (tab) => {
         let c_obj = {};
-        p_obj[tab.name] = [];
-        // object keys length
-        let key_length = Object.keys(tab.columnMeta).length;
         let keys = Object.keys(tab.columnMeta);
         //  ["a0", "a1", "a2", "a3", "a4", "a5", "a6", "a7", "a8"]
         for (let key in tab.columnMeta) {
@@ -599,11 +625,31 @@ const test_result = r.map(
         }
         console.log("%c finish a c_obj!", "color: red", c_obj);
         // c_obj = {"A0": "","A1": "","A2": "",A3: "",A4: "", A5: "", A6: ""}
-        return c_obj;
+        let arrs = tab.rows;
+        for(let i = 0; i < arrs.length; i++){
+            let arr = arrs[i];
+            let temp_obj = {};
+            Object.keys(c_obj).map(
+                (key, index) => {
+                    temp_obj.key = `key_000${i+1}`;
+                    temp_obj[key] = arr[index];
+                    return temp_obj;
+                }
+            );
+            result.push(temp_obj);
+        }
+        console.log(`result = \n`, JSON.stringify(result, null, 4));
+        // return c_obj;
+        return result;
     }
 );
 
-// [{A0: "", A1: "", A2: "", …}]
+
+http://10.1.5.203/http-report/query?{%22ApiName%22:%22JYTopic.StockSecondaryMarket.StockMarketPeform%22,%22EndDate%22:%222011-03-11%22,%22SecuType%22:%22All%22,%22MarketType%22:%22HSLS%22,%22DatePerformType%22:[%22RBX%22,%22JYZBX%22],%22WriteType%22:%22json%22,%22Page%22:{%22PageNo%22:1,%22PageSize%22:2},%22Compress%22:%22true%22}
+
+
+
+
 
 
 tab.rows = [

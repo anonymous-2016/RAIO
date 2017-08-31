@@ -98,16 +98,17 @@ class ResultTables extends Component {
         let test_datas = [{},{}];
         // tab.name === "AnyManagedFundsRow":[] 
         // A0 = key
+        const results = this.props.results;
         return (
             <div>
-                {/* <Table dataSource={[]} columns={cols} bordered pagination={false}/> */}
+                <Table dataSource={results} columns={cols} bordered pagination={false}/>
                 {
                     // test.name === output.key
-                    show
-                    ?
-                    <Table dataSource={test_datas} columns={cols} bordered pagination={false}/>
-                    :
-                    <Table dataSource={[]} columns={cols} bordered pagination={false}/>
+                    // show
+                    // ?
+                    // <Table dataSource={test_datas} columns={cols} bordered pagination={false}/>
+                    // :
+                    // <Table dataSource={results} columns={cols} bordered pagination={false}/>
                 }
             </div>
         );

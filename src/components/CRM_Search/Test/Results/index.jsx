@@ -51,6 +51,7 @@ class ResultTables extends Component {
     //
     render() {
         const tables = this.props.tabs;
+        const results = this.props.results;
         if (debug) {
             console.log(`%c tabs === test tables = \n`, color.color_css1, JSON.stringify(tables, null, 4));
         }
@@ -126,7 +127,7 @@ class ResultTables extends Component {
                                         }}>
                                         {/* test data, output data */}
                                         <RT
-                                            dataSource={[]}
+                                            dataSource={results}
                                             // test results
                                             columns={table.datas}
                                             style={{
