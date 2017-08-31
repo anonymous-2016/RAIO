@@ -182,7 +182,6 @@ class RequiredItems extends Component {
             // space => , comma
             // multi spaces
             // ss.trim().replace(/([\w]{1})[\s]{1,}([\w]{1})/ig, "$1,$2").split();
-            // ss.trim().replace(/([\w]{1})[\s]{1,}([\w]{1})/ig, "$1,$2").split(); 
                 // enhancement solution
                 // replace(/([\w]{1})[\s]{1}([\w]{1})/ig, "$1,$2");
                 let ss = "xyz,abc, SSS XXX ZZZ, DDD EEE";
