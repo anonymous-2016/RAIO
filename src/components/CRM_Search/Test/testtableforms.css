@@ -3,8 +3,10 @@
     /* overflow-y: scroll; */
     height: 100%;
     overflow-x: hidden;
+    /* overflow-x: scroll; */
     /* width: calc(100%-300px); */
     width: 100%;
+    /* max-width: calc(100%-300px); */
 }
 
 .title-color {

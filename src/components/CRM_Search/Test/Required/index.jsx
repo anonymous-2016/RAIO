@@ -33,7 +33,8 @@ class RequiredItems extends Component {
             required_obj: {},
             BeginDate: "",
             EndDate: "",
-            diasble_btn: false
+            diasble_btn: false,
+            init_date: ""
         }
     }
     onSaveInput = () => {
@@ -265,6 +266,13 @@ class RequiredItems extends Component {
             url: `${urls.test}?${str_obj}`
         });
     };
+    //  no Example initial Date
+    noExampleDate = () => {
+        const date = new Date().toLocaleDateString().replace(/\//ig, `-`);
+        this.setState({
+            init_date: date
+        });
+    };
     // DatePicker
     onBeginDateChange = (date, dateString) => {
         if(debug){
@@ -405,6 +413,10 @@ class RequiredItems extends Component {
                             const date = new Date().toLocaleDateString().replace(/\//ig, `-`);
                             let date_placeholder = `☹️ 请输入 ${date } 格式的时间!`;
                             // "2017-8-22"
+                            // ??? initial date
+                            if(text.length === 0){
+                                text = this.state.init_date;
+                            }
                             return(
                                 <FormItem>
                                     {
@@ -415,7 +427,9 @@ class RequiredItems extends Component {
                                                     message: '请输入必填字段值, 必填字段值不可为空!'
                                                 }
                                             ],
-                                            initialValue: moment(text || date, dateFormat)
+                                            initialValue: moment(text || "", dateFormat)
+                                            // initialValue: moment(text || date, dateFormat)
+                                            // initialValue: moment(text || this.state.init_date, dateFormat)
                                         })(
                                             <DatePicker 
                                                 onChange={(index.name === "EndDate" ? this.onEndDateChange : this.onBeginDateChange)} 
@@ -426,6 +440,8 @@ class RequiredItems extends Component {
                                                 id={index.name}
                                                 showToday
                                                 // defaultValue={moment(text, dateFormat)}
+                                                // refs = id
+                                                // ref={index.name}
                                             />
                                         )
                                     }

@@ -178,8 +178,9 @@ class SCT extends Component {
                         // RT 
                         // obj.key = `${data.name.toUpperCase()}`;
                         objs[key].new_type = objs[key].type.toUpperCase();
-                        objs[key].desc = objs[key].Description || `☹️ 暂无注释`;
-                        objs[key].test_name = key.toUpperCase() || `☹️ 暂无 test_name`;
+                        // objs[key].desc = objs[key].Description || `${key}`;
+                        // objs[key].desc = objs[key].Description || `${key} ☹️ 暂无注释`;
+                        objs[key].test_name = key.toUpperCase() || `${key} ☹️ 暂无 test_name`;
                         if(objs[key].Description){
                             // objs[key].name =  key;
                             // objs[key].Description = "注释"; ???
@@ -189,7 +190,7 @@ class SCT extends Component {
                             // TestProtocol 暂无注释
                             objs[key].Description = `☹️ ${key} 暂无注释`;
                             // 没有值了，需要 overwrite === ☹️ 暂无注释！
-                            objs[key].desc = `☹️ 暂无注释`;
+                            objs[key].desc = `${key}`;
                             if (!debug) {
                                 console.log(`%c objs[key].Description === "emoji ☹️ 暂无注释" `, color.color_css2, objs[key].Description);
                             }
@@ -250,8 +251,9 @@ class SCT extends Component {
                                 objs[key].name =  key || "暂无 name";
                                 objs[key].key = ("k000" + i++);
                                 // new add
-                                objs[key].desc = objs[key].Description || `☹️ 暂无注释`;
-                                objs[key].test_name = key.toUpperCase() || `☹️ 暂无 test_name`;
+                                objs[key].desc = objs[key].Description || `${key}`;
+                                // objs[key].desc = objs[key].Description || `${key} ☹️ 暂无注释`;
+                                objs[key].test_name = key.toUpperCase() || `${key} ☹️ 暂无 test_name`;
                                 objs[key].new_type = objs[key].type.toUpperCase();
                             }
                             arr.push(objs[key]);

@@ -71,11 +71,13 @@ class ResultTables extends Component {
                     // width: "calc(100% - 300px)",
                     // width: "100%",
                     maxWidth: 850,
+                    // width: 800,
                     // 暂时防止 multi tables overflow ??? 
                     margin: 10,
                     padding: 10,
                     boxSizing: "border-box",
-                    overflowX: "hidden"
+                    overflowX: "hidden",
+                    // overflowX: "scroll",
                 }}>
                 {/* map */}
                 {/* 
@@ -84,10 +86,10 @@ class ResultTables extends Component {
                 <Tabs
                     defaultActiveKey="1"
                     style={{
-                        // width: "calc(100% - 300px)",
+                        width: "calc(100%)",
                         // maxWidth: 850,
                         boxSizing: "border-box",
-                        overflowX: "hidden"
+                        // overflowX: "scroll"
                     }}>
                     {
                         tables.map(
@@ -113,6 +115,58 @@ class ResultTables extends Component {
                                     */
                                 }
                                 // tab.name === "AnyManagedFundsRow":[] 
+                                let cols_arr = [];
+                                table.datas.map(
+                                    (obj, index) => {
+                                        let temp_obj = {};
+                                        if (debug) {
+                                            console.log(`#@$ obj = \n`, JSON.stringify(obj, null, 4));
+                                            /*
+                                                {
+                                                    "type": "integer",
+                                                    "name": "ByteV",
+                                                    "new_type": "INTEGER",
+                                                    "desc": "☹️ 暂无注释",
+                                                    "test_name": "BYTEV",
+                                                    "Description": "☹️ ByteV 暂无注释",
+                                                    "key": "k0000"
+                                                }
+                                            */
+                                        }
+                                        if(obj.hasOwnProperty("test_name")){
+                                            temp_obj.title = obj["desc"];
+                                            // temp_obj.title = obj["Description"];
+                                            // temp_obj.title = `${obj["name"]}-${obj["desc"]} `;
+                                            // name
+                                            /* 
+                                                // set cell length by Max.value.length ? width: 100,
+                                                // set special value Fixed width ? fixed: 'left'
+                                                // Results/index.jsx
+                                                { title: 'Column 1', dataIndex: 'address', key: '1', width: 150, fixed: 'left', width: 100, },
+                                            */
+                                            if(obj.name === "TableV"){
+                                                // temp_obj.key = "TL;TR";
+                                                // temp_obj.dataIndex = "TL;TR";
+                                                // Too long; to read // ☹️ ByteV 
+                                                temp_obj.key = obj.test_name;
+                                                temp_obj.dataIndex = obj["test_name"];
+                                                // temp_obj.fixed = "right";
+                                                //fixed 列是否固定，可选 true(等效于 left) 'left' 'right', boolean|string, false
+                                                temp_obj.width = "500";
+                                                // width 列宽度 string|number
+                                            }else{
+                                                temp_obj.key = obj.test_name;
+                                                temp_obj.dataIndex = obj["test_name"];
+                                            }
+                                            // temp_obj.dataIndex = obj["test_name"];
+                                        }
+                                        cols_arr.push(temp_obj);
+                                        // TableV ???
+                                    }
+                                );
+                                if (debug) {
+                                    console.log(`%c new cols = \n`, `color: #f0f, font-size: 23px`, JSON.stringify(cols_arr, null, 4));
+                                }
                                 return(
                                     <TabPane 
                                         tab={
@@ -124,14 +178,19 @@ class ResultTables extends Component {
                                         key={(++index)}
                                         style={{
                                             boxSizing: "border-box",
+                                            // maxWidth: 850,
+                                            width: "calc(100%)",
                                         }}>
                                         {/* test data, output data */}
                                         <RT
                                             dataSource={results}
                                             // test results
-                                            columns={table.datas}
+                                            // columns={table.datas}
+                                            columns={cols_arr}
                                             style={{
                                                 // maxWidth: 850,
+                                                width: "calc(100%)",
+                                                // width: 850,
                                                 // minWidth: 600
                                                 boxSizing: "border-box",
                                             }}

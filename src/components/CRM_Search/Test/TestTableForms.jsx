@@ -191,17 +191,60 @@ class TestTableForms extends Component {
                                 keys.map(
                                     (key, index) => {
                                         temp_obj.key = `key_000${i+1}`;
-                                        temp_obj[key] = arr[index];
+                                        /* 
+                                            if(value instanceof Object){
+                                                console.log(`true`);
+                                            }
+                                            // true
+                                        */
+                                        // if (arr[index] instanceof Object || arr[index] instanceof Array)
+                                        // Array instanceof Object
+                                        // true
+                                        if (arr[index] instanceof Object) {
+                                            temp_obj[key.toUpperCase()] = JSON.stringify(arr[index], null, 4);
+                                        }
+                                        else{
+                                            temp_obj[key.toUpperCase()] = arr[index].toString();
+                                            /* if(arr[index]=== null || isNaN(arr[index]) || !isFinite(arr[index])){
+                                                temp_obj[key.toUpperCase()] = "";
+                                            }else{
+                                                temp_obj[key.toUpperCase()] = arr[index].toString();
+                                            } */
+                                        }
+                                        // temp_obj[key.toUpperCase()] = arr[index];
+                                        // .toString();
                                         return temp_obj;
                                     }
                                 );
                                 result.push(temp_obj);
                             }
-                            console.log(`result = \n`, JSON.stringify(result, null, 4));
+                            if (debug) {
+                                console.log(`$$$$$$$ test results = $$$$$$$ \n`, JSON.stringify(result, null, 4));
+                            }
                             // return c_obj;
                             return result;
                         }
                     );
+                    // result[i].attributes.columns = RT cols
+                    /* 
+                        {
+                            cols: [
+                                {name: "交易日期", value: "a0"},
+                                {name: "证券代码", value: "a1"}
+                            ]
+                        }
+                        // convert to
+                        // {name: "交易日期", value: "a0"},
+                        // obj.title = cols[i].name
+                        // obj.title = cols[i].value.toUpperCase(),
+                        cols: [
+                            {
+                                "title": "交易日期 || ☹️ 暂无注释",
+                                "key": "BYTEV",
+                                "dataIndex": "BYTEV"
+                            },
+                        ]
+                    */
                     that.setState({
                         // test_datas: {fecth_data}
                         // test_results: Object.assign({}, fecth_data)
@@ -365,8 +408,14 @@ class TestTableForms extends Component {
                             obj.value = path;
                             // obj.value = url_path;
                         }else{
-                            obj.value = "";
-                        }
+                            if (value.name === "BeginDate" || value.name === "EndDate") {
+                                const date = new Date().toLocaleDateString().replace(/\//ig, `-`);
+                                // obj.value = (value ? value : date); 
+                                obj.value = `${date}`;
+                            }else{
+                                obj.value = "";
+                            }
+                        }                        
                         ri_datas.push(obj);
                         if (!debug) {
                             console.log(`%c ri_datas obj = `, color.css1, obj);
@@ -409,6 +458,7 @@ class TestTableForms extends Component {
             console.log(`%c finished ri_datas = `, color.css2, JSON.stringify(ri_datas, null, 4));
             console.log(`%c finished op_datas = `, color.css2,  op_datas);
         }
+        // example overwrite empty values
         if (Object.keys(example_obj).length > 0) {
             // not empty
             let keys = Object.keys(example_obj);
@@ -542,7 +592,9 @@ class TestTableForms extends Component {
                 <div 
                     style={{
                         // visibility: "hidden",
-                        marginTop: 30
+                        marginTop: 30,
+                        // maxWidth: "calc(100%-300px)",
+                        boxSizing: "border-box",
                     }}
                     >
                     <h2 className="title-color">测试结果</h2>
@@ -551,14 +603,14 @@ class TestTableForms extends Component {
                     <RTS
                         tabs={this.props.outputs}
                         // ??? type ???
+                        results={this.state.results || []}
                         style={{
-                            // maxWidth: 850
+                            // maxWidth: 850,
+                            // maxWidth: "calc(100%-300px)",
                             boxSizing: "border-box",
-                            overflowX: "hidden"
+                            // overflowX: "hidden"
                         }}
-                        results={this.state.result || []}
                     />
-                    {/* results={[test_datas]}  */}
                 </div>
             </div>
         );

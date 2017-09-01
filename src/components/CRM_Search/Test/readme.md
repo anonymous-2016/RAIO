@@ -179,6 +179,33 @@ http://localhost:3000/api/sc/F9Tree#F9Tree
 
 
 
+## test cols
 
+
+```js
+
+
+    // result[i].attributes.columns = RT cols
+    /* 
+        {
+            cols: [
+                {name: "交易日期", value: "a0"},
+                {name: "证券代码", value: "a1"}
+            ]
+        }
+        // convert to
+        // {name: "交易日期", value: "a0"},
+        // obj.title = cols[i].name
+        // obj.title = cols[i].value.toUpperCase(),
+        cols: [
+            {
+                "title": "交易日期 || ☹️ 暂无注释",
+                "key": "BYTEV",
+                "dataIndex": "BYTEV"
+            },
+        ]
+    */
+
+```
 
 

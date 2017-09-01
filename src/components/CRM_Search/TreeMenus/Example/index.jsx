@@ -176,13 +176,14 @@ class DemoTree extends React.Component {
                 /* that.setState({
                     data: datas
                 }); */
+                // no delay
                 setTimeout(function() {
                     that.setState({
                         data: datas,
                         loading: false
                     });
                     that.props.setLoading(false);
-                }, 1000);
+                }, 0);
                 // do something in here!
                 return datas;
             }

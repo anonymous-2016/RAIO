@@ -753,13 +753,13 @@ datas = [
         "key": "key_10001",
         "A0": "2011-03-11", 
         "A1": "000001.SZ", 
-        "A2": "平安银行",
+        "A2": "平安银行"
     },
     {
         "key": "key_10002",
         "A0": "2011-03-11", 
         "A1": "000002.SZ", 
-        "A2": "万 科Ａ",
+        "A2": "万 科Ａ"
     }
 ];
 
@@ -995,7 +995,526 @@ What if your team had a powerful, rapid feedback development environment?
 
 
 
+## RT bug
 
+```jsx
+
+
+let cols = [];
+this.props.columns.map(
+    (data, index) => {
+        if (!debug) {
+            console.log(`%c 注释: ${obj.title} & obj.title = data.Description \n`, color.css1);
+        }
+        let obj = {};
+        // 注释: A份额交易代码
+        obj.title = `${data.Description || "暂无表头" }`;
+        if (!debug) {
+            console.log(`%c 注释: ${obj.title} & obj.title = data.Description \n`, color.css1);
+        }
+        // 编号: A0
+        if(Object.keys(data).length > 1){
+            obj.dataIndex = `${data.name.toUpperCase()}`;
+            obj.key = `${data.name.toUpperCase()}`;
+        }
+        /* 
+            "B7_count".toUpperCase();
+            // "B7_COUNT"
+            obj.dataIndex = `${data.name}`;
+            obj.key = `${data.name}`;
+        */
+        if (debug) {
+            // console.log(`%c 编号: ${obj.key} & obj.name = data.name \n`, color.css2);
+            console.log(`%c 编号: obj.key.toUpperCase() === ${obj.key} \n`, color.css2);
+            console.log(`%c 编号: JSON.stringify(obj, null, 4) === ${JSON.stringify(obj, null, 4)} \n`, color.css1);
+        }
+        cols.push(obj);
+        return cols;
+    }
+);
+
+
+
+
+
+
+
+
+    /* 
+        if(value instanceof Object){
+            console.log(`true`);
+        }
+        // true
+    */
+    // if (arr[index] instanceof Object || arr[index] instanceof Array)
+    // Array instanceof Object
+    // true
+    if (arr[index] instanceof Object) {
+        temp_obj[key.toUpperCase()] = JSON.stringify(arr[index], null, 4);
+    }
+    else{
+        temp_obj[key.toUpperCase()] = arr[index].toString();
+    }
+    // temp_obj[key.toUpperCase()] = arr[index];
+    // .toString();
+
+```
+
+
+
+
+
+
+
+
+
+## multi tables/tabs
+
+
+```js
+
+// Chrome JSON Viewer
+// window.json;
+
+const tra = window.json;
+
+let RT_arr = [];
+
+// tables/tabs
+tra.map(
+    (tab, index) => {
+        let RT_obj = {};
+        let RT_temp_arr = [];
+        // "name": "AnyManagedFundsRow",
+        // RT_obj.name = tab.name;
+        console.log(`%c RT_obj.name = ${tab.name} \n`, `color: #f0f; font-size: 23px`);
+        let temp_obj = {};
+        // keys
+        console.log(`#@$ tab.columnMeta = \n`, JSON.stringify(tab.columnMeta, null, 4));
+        let temp_keys = Object.keys(tab.columnMeta);
+        // values
+        console.log(`#@$ tab.rows = \n`, JSON.stringify(tab.rows, null, 4));
+        let arrs = tab.rows;
+        for(let i = 0; i < arrs.length; i++){
+            let arr = arrs[i];
+            let obj = {};
+            // shaped values
+            temp_keys.map(
+                (key, ii) => {
+                    let k = key.toUpperCase();
+                    obj["key"] = `RT_key 0000${i+1}`;
+                    if(arr[ii] instanceof Object){
+                        obj[k] = JSON.stringify(arr[ii], null, 4);
+                    }else{
+                        obj[k] = arr[ii].toString();
+                    }
+                }
+            );
+            console.log(`cols obj = \n`, JSON.stringify(obj, null, 4));
+            RT_temp_arr.push(obj);
+        }
+        RT_obj[tab.name] = RT_temp_arr;
+        RT_arr.push(RT_obj);
+        // return RT_obj;
+    }
+);
+
+
+
+
+console.log(`RT_arr cols = \n`, JSON.stringify(RT_arr, null, 4));
+
+
+```
+
+
+
+
+
+## tabs Ok
+
+
+```js
+
+const tra = window.json;
+// test result
+let RT_arr = [];
+// tables/tabs
+tra.map(
+    (tab, index) => {
+        let RT_obj = {};
+        let RT_temp_arr = [];
+        // keys
+        let temp_keys = Object.keys(tab.columnMeta);
+        // tabs
+        let arrs = tab.rows;
+        for(let i = 0; i < arrs.length; i++){
+            let arr = arrs[i];
+            let obj = {};
+            // shaped values
+            temp_keys.map(
+                (key, ii) => {
+                    let k = key.toUpperCase();
+                    obj["key"] = `RT_key 0000${i+1}`;
+                    if(arr[ii] instanceof Object){
+                        if(obj[k] !== null){
+                            obj[k] = JSON.stringify(arr[ii], null, 4);
+                        }else{
+                            obj[k] = "";
+                        }
+                    }else{
+                        obj[k] = arr[ii].toString();
+                        // null, undefined, Infinity, NaN
+                        if(obj[k] === null || isNaN(obj[k]) || !isFinite(obj[k])){
+                            obj[k] = "";
+                        }else{
+                            obj[k] = arr[ii].toString();
+                        }
+                    }
+                }
+            );
+            console.log(`cols obj = \n`, JSON.stringify(obj, null, 4));
+            RT_temp_arr.push(obj);
+        }
+        // table name : [{}, {}]
+        RT_obj[tab.name] = RT_temp_arr;
+        RT_arr.push(RT_obj);
+    }
+);
+
+
+
+// 理论上我们所有字段都会存在null的可能性，要记得处理一下。
+// undefined 应该是没有的，数字可能还会出现 NaN 和 Infinity
+
+
+
+
+
+
+
+
+
+
+/*
+
+// Infinity
+
+let z = Infinity;
+// Infinity
+
+typeof(z);
+// "number"
+
+null === Infinity;
+// false
+
+Infinity === Infinity;
+// true
+
+false == Infinity;
+// false
+
+Number == Infinity;
+//false
+
+Infinity instanceof Number;
+// false
+
+Infinity instanceof Object;
+// false
+
+
+
+*/
+
+
+/*
+
+let y = NaN;
+// NaN
+
+y === NaN;
+// false
+
+null === NaN;
+// false
+
+typeof(NaN);
+// "number
+
+NaN === NaN;
+// false
+
+
+
+
+
+
+let x = NaN;
+// NaN
+
+x.length;
+// undefined
+
+x.toString();
+// "NaN"
+
+x === NaN;
+// false
+
+x.toString() === NaN;
+// false
+
+x.toString() === "NaN";
+// true
+
+typeof(NaN);
+// "number"
+
+typeof(x);
+// "number"
+
+typeof(x) === "number";
+// true
+
+*/
+
+
+/*
+
+let x = null;
+// null
+
+x === null;
+// true
+
+!x
+// true
+
+!!x
+// false
+
+
+*/
+
+```
+
+
+## NaN, Null, Infinity & isNaN(), isFinite() 
+
+
+> NaN, Null, Infinity & isNaN(), isFinite() 
+
+
+```js
+
+
+/*
+    isFinite(Infinity);
+    // false
+    isNaN(NaN);
+    // true
+*/
+/*
+
+    let arr = [NaN, null, Infinity];
+    // (3) [NaN, null, Infinity]
+
+    arr.map(
+        (k) => {
+            console.log(`key = \n ${k}`);
+        }
+    );
+
+    // key = NaN
+    // key = null
+    // key = Infinity
+
+    let obj = {};
+
+    let i = 0;
+    for(let k of arr){
+        if(obj[k] === null || isNaN(obj[k]) || !isFinite(obj[k])){
+            obj[k] = "";
+        }else{
+            obj[k] = arr[i].toString();
+        }
+        i++;
+    }
+    console.log(`obj = \n`, JSON.stringify(obj, null, 4));
+
+
+
+
+*/
+/*
+    let x = NaN;
+    x.length;
+    // undefined
+    x.toString();
+    // "NaN"
+    x.toString() === "NaN";
+    // true
+    typeof(NaN);
+    // "number"
+    typeof(x) === "number";
+    // true
+*/
+
+
+```
+
+
+
+
+
+
+
+
+```js
+// keys
+
+k = {
+    "A0": "",
+    "A1": "",
+    "A2": "",
+};
+
+// values
+
+v = [
+    [
+        "2011-03-11",
+        "000001.SZ",
+        "平安银行",
+    ],
+    [
+        "2011-03-11",
+        "000002.SZ",
+        "万  科Ａ",
+    ],
+];
+
+
+
+// target ???
+
+datas = [
+    {
+        "key": "key_10001",
+        "A0": "2011-03-11", 
+        "A1": "000001.SZ", 
+        "A2": "平安银行"
+    },
+    {
+        "key": "key_10002",
+        "A0": "2011-03-11", 
+        "A1": "000002.SZ", 
+        "A2": "万 科Ａ"
+    }
+];
+
+
+
+
+
+
+
+
+
+
+let tables = [
+    {
+        tab1: []
+    },
+    {
+        tab_name: "AnyManagedFundsRow",
+        tab_datas: [
+            {
+                key:"RT_key 00001",
+                A0:"华夏基金管理有限公司",
+                A1:"华夏大中华企业精选灵活配置混合(QDII)",
+                A2:"其他型基金"
+            },
+            {
+                key:"RT_key 00002",
+                A0:"华夏基金管理有限公司",
+                A1:"华夏大盘精选混合",
+                A2:"混合型基金"
+            }
+        ]
+    }
+];
+
+
+
+
+
+
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+## cols
+
+
+```js
+let RT_arr = [];
+
+tra.map(
+    (tab, index) => {
+        let RT_obj = {};
+        let RT_temp_arr = [];
+        // "name": "AnyManagedFundsRow",
+        RT_obj.tab_name = tab.name;
+        console.log(`%c RT_obj.name = ${tab.name} \n`, `color: #f0f; font-size: 23px`);
+        let temp_obj = {};
+        // keys
+        console.log(`#@$ tab.columnMeta = \n`, JSON.stringify(tab.columnMeta, null, 4));
+        let temp_keys = Object.keys(tab.columnMeta);
+        // values
+        console.log(`#@$ tab.rows = \n`, JSON.stringify(tab.rows, null, 4));
+        let arrs = tab.rows;
+        for(let i = 0; i < arrs.length; i++){
+            let arr = arrs[i];
+            let obj = {};
+            // shaped values
+            temp_keys.map(
+                (key, ii) => {
+                    let k = key.toUpperCase();
+                    obj["key"] = `RT_key 0000${i+1}`;
+                    if(arr[ii] instanceof Object){
+                        obj[k] = JSON.stringify(arr[ii], null, 4);
+                    }else{
+                        obj[k] = arr[ii].toString();
+                    }
+                }
+            );
+            console.log(`cols obj = \n`, JSON.stringify(obj, null, 4));
+            RT_temp_arr.push(obj);
+        }
+        RT_obj.tab_datas= RT_temp_arr;
+        RT_arr.push(RT_obj);
+        // return RT_obj;
+    }
+);
+
+
+
+console.log(`RT_arr cols = \n`, JSON.stringify(RT_arr, null, 4));
+
+```
 
 
 

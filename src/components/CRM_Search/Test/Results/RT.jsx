@@ -27,6 +27,7 @@ import {debug}  from '../../../../app/debug';
 // const "debug" is read-only
 
 import {Table} from 'antd';
+import './RT.css';
 
 /* 
 
@@ -61,33 +62,7 @@ class ResultTables extends Component {
             datas ? datas : [];
         }
         */
-        let cols = [];
-        this.props.columns.map(
-            (data, index) => {
-                let obj = {};
-                // 注释: A份额交易代码
-                obj.title = `${data.Description || "暂无表头" }`;
-                if (!debug) {
-                    console.log(`%c 注释: ${obj.title} & obj.title = data.Description \n`, color.css1);
-                }
-                // 编号: A0
-                obj.dataIndex = `${data.name.toUpperCase()}`;
-                obj.key = `${data.name.toUpperCase()}`;
-                /* 
-                    "B7_count".toUpperCase();
-                    // "B7_COUNT"
-                    obj.dataIndex = `${data.name}`;
-                    obj.key = `${data.name}`;
-                */
-                if (debug) {
-                    // console.log(`%c 编号: ${obj.key} & obj.name = data.name \n`, color.css2);
-                    console.log(`%c 编号: obj.key.toUpperCase() === ${obj.key} \n`, color.css2);
-                    console.log(`%c 编号: JSON.stringify(obj, null, 4) === ${JSON.stringify(obj, null, 4)} \n`, color.css1);
-                }
-                cols.push(obj);
-                return cols;
-            }
-        );
+        // bug
         let show = false;
         /* 
         if(test.name === output.key){
@@ -98,10 +73,53 @@ class ResultTables extends Component {
         let test_datas = [{},{}];
         // tab.name === "AnyManagedFundsRow":[] 
         // A0 = key
-        const results = this.props.results;
+        const results = this.props.dataSource;
+        const columns = this.props.columns;
+        // const {columns, results} = {...this.props};
+        if (debug) {
+            console.log(`%c RT: JSON.stringify(results) === ${JSON.stringify(results, null, 4)} \n`, color.css1);
+            console.log(`%c RT: JSON.stringify(columns) === ${JSON.stringify(columns, null, 4)} \n`, color.css1);
+            console.log(`%c RT: columns.length === ${columns.length} \n`, color.css1);
+        }
+        // const x_length = 1500;
+        const x_length = columns.length*150;
+        /* 
+            // set cell length by Max.value.length ? width: 100,
+            // set special value Fixed width ? fixed: 'left'
+            // Results/index.jsx
+            {
+                title: 'Column 1',
+                dataIndex: 'address',
+                key: '1',
+                width: 150,
+                fixed: 'left',
+                width: 100
+            },
+        */
         return (
             <div>
-                <Table dataSource={results} columns={cols} bordered pagination={false}/>
+                <Table
+                    style={{
+                        width: "calc(100%)",
+                        // minWidth: 800,
+                        boxSizing: "border-box",
+                        // overflowX: "scroll"
+                    }}
+                    // className="rt-table"
+                    scroll={{
+                        // x: 4300, TestProtocol ???
+                        // cols.length * 50
+                        // x: 2300,
+                        x: x_length,
+                        // x: 1500,
+                        // y: 500
+                    }}
+                    dataSource={results}
+                    // columns={cols}
+                    columns={columns}
+                    bordered
+                    pagination={false}
+                />
                 {
                     // test.name === output.key
                     // show
