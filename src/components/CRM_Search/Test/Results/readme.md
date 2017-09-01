@@ -1470,6 +1470,8 @@ let tables = [
 
 
 ```js
+
+
 let RT_arr = [];
 
 tra.map(
@@ -1497,7 +1499,18 @@ tra.map(
                     if(arr[ii] instanceof Object){
                         obj[k] = JSON.stringify(arr[ii], null, 4);
                     }else{
-                        obj[k] = arr[ii].toString();
+                        // if(arr[ii] === null || isNaN(arr[ii]) || !isFinite(arr[ii])){
+                        // if(arr[ii] === null || isNaN(arr[ii]) || !isFinite(arr[ii])){
+                        if(arr[ii] === null || isNaN(arr[ii]) || !isFinite(arr[ii])){
+                            // obj[k] = "";
+                            // ??? overwrite bug
+                            obj[k] = arr[ii];
+                            obj[k] = `${arr[ii]}`;
+                            obj[k] = `"${arr[ii]}"`;
+                        }else{
+                           obj[k] = arr[ii].toString();
+                        }
+                        // obj[k] = arr[ii];
                     }
                 }
             );
@@ -1514,10 +1527,142 @@ tra.map(
 
 console.log(`RT_arr cols = \n`, JSON.stringify(RT_arr, null, 4));
 
+
+
+
+
+
+
+
+
 ```
 
 
 
+
+
+
+
+```js
+
+RT_arr = [];
+
+tra.map(
+    (tab, index) => {
+        let RT_obj = {};
+        let RT_temp_arr = [];
+        // "name": "AnyManagedFundsRow",
+        RT_obj.tab_name = tab.name;
+        console.log(`%c RT_obj.name = ${tab.name} \n`, `color: #f0f; font-size: 23px`);
+        let temp_obj = {};
+        // keys
+        console.log(`#@$ tab.columnMeta = \n`, JSON.stringify(tab.columnMeta, null, 4));
+        let temp_keys = Object.keys(tab.columnMeta);
+        // values
+        console.log(`#@$ tab.rows = \n`, JSON.stringify(tab.rows, null, 4));
+        let arrs = tab.rows;
+        for(let i = 0; i < arrs.length; i++){
+            let arr = arrs[i];
+            let obj = {};
+            // shaped values
+            temp_keys.map(
+                (key, ii) => {
+                    let k = key.toUpperCase();
+                    obj["key"] = `RT_key 0000${i+1}`;
+                    if(arr[ii] instanceof Object){
+                        obj[k] = JSON.stringify(arr[ii], null, 4);
+                    }else{
+                        if(arr[ii] === null){
+                            obj[k] = arr[ii];
+                        }else{
+                            obj[k] = arr[ii].toString();
+                            // null ???
+                        }
+                    }
+                }
+            );
+            console.log(`cols obj = \n`, JSON.stringify(obj, null, 4));
+            RT_temp_arr.push(obj);
+        }
+        RT_obj.tab_datas= RT_temp_arr;
+        RT_arr.push(RT_obj);
+        // return RT_obj;
+    }
+);
+
+
+
+console.log(`RT_arr cols = \n`, JSON.stringify(RT_arr, null, 4));
+
+
+
+
+
+
+
+
+
+```
+
+
+
+
+
+
+http://10.1.5.203/http-manage/admin?{%22Admin%22:%22report%22,%22Action%22:%22GetRowSchema%22,%22WriteType%22:%22json%22,%20%22ReportName%22:%22fund.f9.fund_profile.FundManager.BasicInformations%22}
+
+
+
+## output tables & any tables
+
+
+
+
+```js
+
+
+
+
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## 4 tables & dynamic table
+
+JYTopic.StockSecondaryMarket.StockMarketPeform
+
+JYTopic.StockSecondaryMarket.StockMarketPeform
+
+
+http://10.1.5.203/http-report/query?{%22ApiName%22:%22JYTopic.StockSecondaryMarket.StockMarketPeform%22,%22EndDate%22:%222011-03-11%22,%22SecuType%22:%22All%22,%22MarketType%22:%22HSLS%22,%22DatePerformType%22:[%22RBX%22,%22JYZBX%22],%22WriteType%22:%22json%22,%22Page%22:{%22PageNo%22:1,%22PageSize%22:%223%22},%22Compress%22:%22true%22}
+
+
+
+
+
+
+http://10.1.5.203/http-report/query?{%22SecuCode%22:%22600570%22,%22ApiName%22:%22JYCompanyIntroduction%22,%22WriteType%22:%22json%22}
 
 
 
