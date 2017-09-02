@@ -1865,3 +1865,72 @@ console.log(`RT_arr cols = \n`, JSON.stringify(RT_arr, null, 4));
 
 ```
 
+
+
+
+## results OK
+
+
+
+
+```js
+
+
+
+const tra = window.json;
+
+let RT_arr = [];
+
+tra.map(
+    (tab, index) => {
+        let RT_obj = {};
+        let RT_temp_arr = [];
+        // "name": "AnyManagedFundsRow",
+        RT_obj.tab_name = tab.name;
+        // console.log(`%c RT_obj.name = ${tab.name} \n`, `color: #f0f; font-size: 23px`);
+        let temp_obj = {};
+        // keys
+        // console.log(`#@$ tab.columnMeta = \n`, JSON.stringify(tab.columnMeta, null, 4));
+        let temp_keys = Object.keys(tab.columnMeta);
+        // values
+        // console.log(`#@$ tab.rows = \n`, JSON.stringify(tab.rows, null, 4));
+        let arrs = tab.rows;
+        for(let i = 0; i < arrs.length; i++){
+            let arr = arrs[i];
+            let obj = {};
+            // shaped values
+            temp_keys.map(
+                (key, ii) => {
+                    let k = key.toUpperCase();
+                    obj["key"] = `RT_key 0000${i+1}`;
+                    if(arr[ii] instanceof Object){
+                        // obj[k] = JSON.stringify(arr[ii], null, 4);
+                        obj[k] = JSON.stringify(arr[ii]);
+                    }else{
+                        // null.toString()
+                        // Uncaught TypeError: Cannot read property 'toString' of null
+                        if(arr[ii] === null){
+                            obj[k] = "";
+                        }else{
+                           // obj[k] = arr[ii].toString();
+                           obj[k] = arr[ii];
+                        }
+                    }
+                }
+            );
+            // console.log(`cols obj = \n`, JSON.stringify(obj, null, 4));
+            RT_temp_arr.push(obj);
+        }
+        RT_obj.tab_datas= RT_temp_arr;
+        RT_arr.push(RT_obj);
+        // return RT_obj;
+    }
+);
+
+console.log(`RT_arr = \n`, JSON.stringify(RT_arr, null, 4));
+
+
+```
+
+
+
