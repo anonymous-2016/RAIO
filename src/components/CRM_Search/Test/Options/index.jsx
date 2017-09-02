@@ -514,89 +514,16 @@ class OptionsItems extends Component {
         */
     };
     render() {
-        const {sort_items, fields_items, option_datas} = this.props;
+        // const {sort_items, fields_items, option_datas} = this.props;
+        let {sort_items, fields_items, option_datas} = this.props;
         const { getFieldDecorator } = this.props.form;
-        // value === output name & desc
-        /* const option_datas = [
-            {
-                key: "k1",
-                name: "EndDate",
-                type: "string",
-                value: "2016-09-30",
-                description: "报告期"
-            },
-            {
-                key: "k2",
-                name: "InnerCode",
-                type: "integer",
-                value: "报表[267:财务公司,1517:保险,1360:券商,9971:信托,1565:券商集合理财,36721:企业年金,35793:社保基金]",
-                description: "证券内码"
-            },
-            {
-                key: "k3",
-                name: "Mark",
-                type: "integer",
-                value: "仅SHKindCode=3时有效，默认0:券商,1:信托",
-                description: "SHKindCode=3时有效，通用标示用于对以下{默认0:券商,1:信托}特殊处理"
-            },
-            {
-                key: "k4",
-                name: "ShKindCode",
-                type: "integer",
-                value: "json (json文本格式)",
-                description: "机构类型代码{15:财务公司,4:保险,3:券商/信托,37:券商集合理财,35:企业年金,30:社保基金}"
-            },
-            {
-                key: "k-f",
-                name: "Filters",
-                type: "array",
-                value: "数据过滤，支持In、Between、Like、==、quarter(季报) 过滤器，参见具体过滤器的使用",
-                description: "数据过滤，支持In、Between、Like、==、quarter(季报) 过滤器，参见具体过滤器的使用"
-            },
-            {
-                key: "k-s",
-                name: "Sorts",
-                type: "array",
-                value: "select 1 = 请先选择排序字段: (? multi table ? )dynamic output desc; select 2 =  排序方式，升序或者降序: (升序),(降序),(无序)",
-                description: "排序字段，支持排序组合"
-            },
-            {
-                key: "k-p",
-                name: "Page",
-                type: "object",
-                value: "input 1 = 请求的页数：1 ; input 2 = 每页的大小：100",
-                description: "分页参数"
-            },
-            {
-                key: "k-of",
-                name: "OutField",
-                type: "array",
-                value: "multi select options 1 = dynamic output desc (全选/全不选/customize)",
-                description: "数据输出的字段，用于输出字段过滤，当输出字段数量小于不输出字段数量时采用"
-            },
-            {
-                key: "k-if",
-                name: "IgnoreField",
-                type: "array",
-                value: "multi select options 1 = dynamic output desc (全选/全不选/customize)",
-                description: "数据输出的字段，用于输出字段过滤，当输出字段数量大于不输出字段数量时采用"
-            },
-            {
-                key: "k-fdft",
-                name: "FastDateFilterType",
-                type: "array",
-                value: "select 1 = fixed ((最新日期) (今年以来) (近一月) (近三月) (近六月) (近一年) (近二年) (近三年) (近五年) (全部) (上市以前) (上市以后) (自定义 ? datapicker ))",
-                description: "日期 快速过滤类型"
-            },
-            {
-                key: "k-fqrt",
-                name: "FastQuarterReportType",
-                type: "array",
-                value: "multi checkbox 1 = fixed ((一季报) (中报) (三季报) (年报))",
-                description: "季报 快速过滤类型"
-            }
-        ]; */
         // ???
+        if(fields_items === null || fields_items === undefined ){
+            // fields_items = [];
+            // const ???
+            // fields_items = ["特殊的 API", "特殊的 API", "特殊的 API"];
+            fields_items = ["", "", ""];
+        }
         // fixed columns 
         const options_columns = [
             {
@@ -799,6 +726,7 @@ class OptionsItems extends Component {
                                     onChange={this.onOutFieldChange}
                                     >
                                     {
+                                        // fields_items !== null
                                         Object.keys(fields_items).map(
                                             (key, i) => {
                                                 return(

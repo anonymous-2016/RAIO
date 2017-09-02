@@ -1669,6 +1669,95 @@ http://10.1.5.203/http-report/query?{%22SecuCode%22:%22600570%22,%22ApiName%22:%
 
 
 
+## output
+
+> shape data
+
+
+```js
+
+const info = window.json.Info;
+let tabs_cols = [];
+
+
+let output_obj = window.json;
+
+
+if(output_obj.Info.schema.Properties !== undefined){
+    // single table
+    console.log(`%c output = single table`, `color: #0f0`);
+}else{
+    // multi tables
+    console.log(`%c output = multi tables`, `color: #f0f`);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+RT_arr = [];
+
+tra.map(
+    (tab, index) => {
+        let RT_obj = {};
+        let RT_temp_arr = [];
+        // "name": "AnyManagedFundsRow",
+        RT_obj.tab_name = tab.name;
+        console.log(`%c RT_obj.name = ${tab.name} \n`, `color: #f0f; font-size: 23px`);
+        let temp_obj = {};
+        // keys
+        console.log(`#@$ tab.columnMeta = \n`, JSON.stringify(tab.columnMeta, null, 4));
+        let temp_keys = Object.keys(tab.columnMeta);
+        // values
+        console.log(`#@$ tab.rows = \n`, JSON.stringify(tab.rows, null, 4));
+        let arrs = tab.rows;
+        for(let i = 0; i < arrs.length; i++){
+            let arr = arrs[i];
+            let obj = {};
+            // shaped values
+            temp_keys.map(
+                (key, ii) => {
+                    let k = key.toUpperCase();
+                    obj["key"] = `RT_key 0000${i+1}`;
+                    if(arr[ii] instanceof Object){
+                        obj[k] = JSON.stringify(arr[ii], null, 4);
+                    }else{
+                        // null.toString()
+                        // Uncaught TypeError: Cannot read property 'toString' of null
+                        if(arr[ii] === null){
+                            obj[k] = "";
+                        }else{
+                           // obj[k] = arr[ii].toString();
+                           obj[k] = arr[ii];
+                        }
+                    }
+                }
+            );
+            // console.log(`cols obj = \n`, JSON.stringify(obj, null, 4));
+            RT_temp_arr.push(obj);
+        }
+        RT_obj.tab_datas= RT_temp_arr;
+        RT_arr.push(RT_obj);
+        // return RT_obj;
+    }
+);
+
+
+
+console.log(`RT_arr cols = \n`, JSON.stringify(RT_arr, null, 4));
+
+
+
+
+
+```
 
 
 
@@ -1684,4 +1773,95 @@ http://10.1.5.203/http-report/query?{%22SecuCode%22:%22600570%22,%22ApiName%22:%
 
 
 
+
+
+
+
+
+
+
+## set table cell fixed width
+
+> cols.width = 
+
+```jsx
+
+    if(obj.hasOwnProperty("test_name")){
+        temp_obj.title = obj["desc"];
+        // temp_obj.title = obj["Description"];
+        // temp_obj.title = `${obj["name"]}-${obj["desc"]} `;
+        // name
+        /* 
+            // set cell length by Max.value.length ? width: 100,
+            // set special value Fixed width ? fixed: 'left'
+            // Results/index.jsx
+            { title: 'Column 1', dataIndex: 'address', key: '1', width: 150, fixed: 'left', width: 100, },
+        */
+    // new way 1
+        switch (obj.name) {
+            case "TableV":
+                // "TableV"
+                temp_obj.width = "500";
+                break;
+            case "C9":
+                // "基金获奖情况"
+                temp_obj.width = "500";
+                break;
+            case "C8":
+                temp_obj.width = "500";
+                break;
+            case "C4":
+                temp_obj.width = "500";
+                break;
+            default:
+                // temp_obj.width = "500";
+                break;
+        }
+    // new way 2
+        // 多 case - 单一操作
+        // 这种方法使用这样一个技巧，就如果 case 语句之下没有 break,
+        // 它就将继续执行下一个 case 的语句而不论该 case 是否匹配。
+        temp_obj.key = obj.test_name;
+        temp_obj.dataIndex = obj["test_name"];
+        // ??? report name / table name 
+        // in case , some C? no need `temp_obj.width = "400px";`
+        switch (obj.name) {
+            case "TableV":
+                temp_obj.width = "500px";
+                break;
+            case "C9":
+            case "C8":
+            case "C4":
+                // shared break;
+                temp_obj.width = "400px";
+                break;
+            case "C7":
+            case "C6":
+            case "C5":
+            case "C2":
+                temp_obj.width = "200px";
+                break;
+            default:
+                // temp_obj.width = "500";
+                break;
+        }
+    // old way
+        if(obj.name === "TableV" || obj.name === "C9" || obj.name === "C8" || obj.name === "C4"){
+            // temp_obj.key = "TL;TR";
+            // temp_obj.dataIndex = "TL;TR";
+            // Too long; to read // ☹️ ByteV 
+            temp_obj.key = obj.test_name;
+            temp_obj.dataIndex = obj["test_name"];
+            // temp_obj.fixed = "right";
+            //fixed 列是否固定，可选 true(等效于 left) 'left' 'right', boolean|string, false
+            temp_obj.width = "500";
+            // width 列宽度 string|number
+        }else{
+            temp_obj.key = obj.test_name;
+            temp_obj.dataIndex = obj["test_name"];
+        }
+    // temp_obj.dataIndex = obj["test_name"];
+    }
+
+```
 

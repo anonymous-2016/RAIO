@@ -204,7 +204,11 @@ class TestTableForms extends Component {
                                             temp_obj[key.toUpperCase()] = JSON.stringify(arr[index], null, 4);
                                         }
                                         else{
-                                            temp_obj[key.toUpperCase()] = arr[index].toString();
+                                            if(arr[index] !== null){
+                                                temp_obj[key.toUpperCase()] = arr[index].toString();
+                                            }else{
+                                                temp_obj[key.toUpperCase()] = arr[index];
+                                            }
                                             /* if(arr[index]=== null || isNaN(arr[index]) || !isFinite(arr[index])){
                                                 temp_obj[key.toUpperCase()] = "";
                                             }else{
