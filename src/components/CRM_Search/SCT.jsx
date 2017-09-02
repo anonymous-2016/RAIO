@@ -86,8 +86,16 @@ class SCT extends Component {
                     // datas[key].key = i++;
                     datas[key].name = key;
                     datas[key].key = ("1000" + i++);
+                    /* let enums = [];
+                    if(datas[key].enum !== undefined){
+                       enums = datas[key].enum;
+                    } */
                     if(datas[key].Required !== undefined){
-                        datas[key].Description += `(${datas[key].Required})`;
+                        if(datas[key].enum !== undefined){
+                            datas[key].Description += `(${datas[key].Required}) \n 枚举值: ${JSON.stringify(datas[key].enum)}`;
+                        }else{
+                            datas[key].Description += `(${datas[key].Required})`;
+                        }
                     }else{
                         datas[key].Description += `(可选参数)`;
                     }
