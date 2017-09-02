@@ -12,6 +12,9 @@ import PropTypes from 'prop-types';
 import {debug, xyz_debug} from '../../../../app/debug';
 import {color} from '../../../../app/color';
 
+//css
+import './index.css';
+
 // libs
 import {Table, Input, DatePicker, Form, Select, Checkbox, Radio} from 'antd';
 const Option = Select.Option;
@@ -1032,11 +1035,13 @@ class OptionsItems extends Component {
         ];
         return (
             <div
+                // CSS3 media query
+                className="options-media-width"
                 style={{
-                    // width: "calc(100% - 300px)",
+                    // width: "calc(100% - 250px)",
                     // margin: 0,
                     // padding: 0,
-                    width: "100%",
+                    // width: "100%",
                     boxSizing: "border-box",
                     // overflowY: "scroll"
                     overflowX: "hidden",

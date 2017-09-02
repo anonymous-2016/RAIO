@@ -560,7 +560,9 @@ class TestTableForms extends Component {
                         ""
                     }
                 </div>
-                <div style={{visibility: "visible"}}>
+                <div 
+                    style={{visibility: "visible"}}
+                    className="options-width">
                     <h2 className="title-color options-space">可选项</h2>
                     {
                        <Collapse

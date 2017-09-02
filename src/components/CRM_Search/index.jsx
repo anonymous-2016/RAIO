@@ -23,6 +23,8 @@ import {IC} from './index-components';
 
 import './index.css';
 
+// import 'antd/dist/antd.css'; 
+
 const {
     SC,
     SCT,

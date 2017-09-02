@@ -1,0 +1,25 @@
+@charset "UTF-8";
+.options-media-width {
+    width: 100%;
+    box-sizing: border-box;
+    /* overflow-x: scroll; */
+    margin: 10;
+    padding: 10;
+}
+
+
+/* css3 media query  */
+
+@media screen and (max-width: 1366px) {
+    .options-media-width {
+        /* min-width: 850px; */
+        max-width: calc(100% - 250px);
+    }
+}
+
+@media screen and (max-width: 1920px) {
+    .options-media-width {
+        /* min-width: 1000px; */
+        max-width: calc(100% - 20px);
+    }
+}

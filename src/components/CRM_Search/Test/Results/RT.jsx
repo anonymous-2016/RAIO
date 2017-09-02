@@ -29,6 +29,8 @@ import {debug}  from '../../../../app/debug';
 import {Table} from 'antd';
 import './RT.css';
 
+import 'antd/lib/table/style/css';  
+
 /* 
 
 const output_columns = [
@@ -118,7 +120,8 @@ class ResultTables extends Component {
                     // columns={cols}
                     columns={columns}
                     bordered
-                    pagination={false}
+                    // pagination={false}
+                    pagination={true}
                 />
                 {
                     // test.name === output.key

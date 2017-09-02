@@ -14,10 +14,16 @@ import {urls}from '../../../../app/urls.js';
 import {color}from '../../../../app/color';
 import {debug} from '../../../../app/debug';
 
+//css
+import './index.css';
 
 // libs
 import moment from 'moment';
 import {Table, Input, Form, DatePicker} from 'antd';
+
+// import 'antd/dist/antd.css'; 
+import 'antd/lib/date-picker/style/css';  
+
 const FormItem = Form.Item;
 const dateFormat = 'YYYY-MM-DD';
 
@@ -507,7 +513,15 @@ class RequiredItems extends Component {
         return (
             <div 
                 onChange={this.autoSave}
-                style={{margin: 10, padding: 10, boxSizing: "border-box"}}
+                // css3 media query
+                className="required-media-width"
+                style={{
+                    margin: 10,
+                    padding: 10,
+                    boxSizing: "border-box",
+                    maxWidth: "calc(100% - 250px)",
+                    // overflowX: "scroll"
+                }}
                 id="required-inputs"
                 >
                 {/* input 必填项 */}

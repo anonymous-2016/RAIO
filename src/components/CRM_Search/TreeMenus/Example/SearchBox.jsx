@@ -5,6 +5,7 @@ import {debug} from '../../../../app/debug';
 import {color} from '../../../../app/color';
 
 const init_obj = {"Admin":"report","Action":"GetTreeSchema","WriteType":"json"};
+
 class SearchBox extends Component {
     constructor(props, context) {
         super(props, context);

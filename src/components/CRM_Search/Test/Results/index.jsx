@@ -9,8 +9,13 @@ import PropTypes from 'prop-types';
  * @extends {Component}
  */
 
+
+// utils
 import {color}from '../../../../app/color';
 import {debug} from '../../../../app/debug';
+
+// css
+import './index.css';
 
 
 import {RT}from './RT';
@@ -67,27 +72,34 @@ class ResultTables extends Component {
         */
         return (
             <div 
+                // css3 media query 
+                className="results-media-width"
                 style={{
-                    // width: "calc(100% - 300px)",
+                    width: "calc(100% - 300px)",
                     // width: "100%",
-                    maxWidth: 850,
+                    // minWidth: 850,
+                    // maxWidth: 950,
+                    // maxWidth: 850,
                     // width: 800,
                     // 暂时防止 multi tables overflow ??? 
-                    margin: 10,
-                    padding: 10,
+                    // margin: 10,
+                    // padding: 10,
+                    margin: 0,
+                    padding: 0,
+                    marginLeft: 20,
                     boxSizing: "border-box",
-                    overflowX: "hidden",
+                    // overflowX: "hidden",
+                    textAlign: "center",
+                    // paddingRight: -50,
                     // overflowX: "scroll",
                 }}>
-                {/* map */}
-                {/* 
-                    tables === {title: "基金经理详细信息", datas: Array(4)} 
-                */}
                 <Tabs
                     defaultActiveKey="1"
                     style={{
                         width: "calc(100%)",
-                        // maxWidth: 850,
+                        // overflowX: "scroll",
+                        // overflowX: "hidden",
+                        maxWidth: 1000,
                         boxSizing: "border-box",
                         // overflowX: "scroll"
                     }}>

@@ -36,12 +36,17 @@ import {SearchBox} from './SearchBox';
 // utils
 import {debug} from '../../../../app/debug';
 import {color} from '../../../../app/color';
+import {urls}from '../../../../app/urls.js';
 
 let apiname = "";
 
 
+// urls
+// test = `http://10.1.5.203/http-report/query`;
+// search = `http://10.1.5.203/http-manage/admin`;
 
-const api = `http://10.1.5.203/http-manage/admin`;
+// const api = `http://10.1.5.203/http-manage/admin`;
+const api = urls.search;
 const init_obj = {'Admin':'report','Action':'GetTreeSchema','WriteType':'json'};
 
 // Example: Customising The Header Decorator To Include Icons
@@ -132,7 +137,7 @@ class DemoTree extends React.Component {
         const that = this;
         setTimeout(function() {
             console.log(`apiname url = `, that.state.url);
-        }, 1000);
+        }, 0);
         // Warning: setState(...): Cannot update during an existing state transition
         // (such as within `render` or another component's constructor). 
         // Render methods should be a pure function of props and state; 
@@ -177,7 +182,7 @@ class DemoTree extends React.Component {
                     data: datas
                 }); */
                 // no delay
-                setTimeout(function() {
+                setTimeout(() =>{
                     that.setState({
                         data: datas,
                         loading: false
