@@ -360,6 +360,29 @@ if(output.cols.length > 0){
 
 
 
+# any
+
+http://10.1.5.203/http-manage/admin?{%22Admin%22:%22report%22,%22Action%22:%22GetRowSchema%22,%22WriteType%22:%22json%22,%20%22ReportName%22:%22JYTopic.StockSecondaryMarket.StockMarketPeform%22}
+
+
+
+```js
+
+
+{
+    "Success": true,
+    "Info": {
+        "schema": {
+            "type": "any"
+        },
+        "name": "JYTopic.StockSecondaryMarket.StockMarketPeform"
+    }
+}
+
+
+
+```
+
 
 
 
