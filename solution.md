@@ -24,10 +24,13 @@ if(ts.schema !== undefined && ts.schema.Properties !== undefined){
     let keys = Object.keys(objs);
     temp_obj.col_datas = keys.map(
         (key, index) => {
-            let obj = {};
-            obj.title = objs[key].Description;
-            obj.key = key;
-            obj.dataIndex = key;
+            if(objs[key].Description !== undefined){
+                obj.title = objs[key].Description;
+            }else{
+                obj.title = `☹️ ${key} 暂无注释`;
+            }
+            obj.key = key.toUpperCase();
+            obj.dataIndex = key.toUpperCase();
             return obj;
         }
     );
@@ -44,16 +47,23 @@ if(ts.schema !== undefined && ts.schema.Properties !== undefined){
                 col_datas: "",
                 col_tab_title: ""
             };
-            temp_obj.col_name = key;
+            // temp_obj.col_name = key;
+            temp_obj.col_name = `${tabs_obj[key].desc}-${key}`;
             temp_obj.col_tab_title = tabs_obj[key].desc;
             let p_objs = tabs_obj[key].Properties;
             let p_keys = Object.keys(p_objs);
             temp_obj.col_datas = p_keys.map(
                 (p_key, p_index) => {
                     let obj = {};
-                    obj.title = p_objs[p_key].Description;
-                    obj.key = p_key;
-                    obj.dataIndex = p_key;
+                    // undefined ???
+                    if(p_objs[p_key].Description !== undefined){
+                        obj.title = p_objs[p_key].Description;
+                    }else{
+                        obj.title = `☹️ ${p_key} 暂无注释`;
+                    }
+                    // key.toUpperCase();
+                    obj.key = p_key.toUpperCase();
+                    obj.dataIndex = p_key.toUpperCase();
                     return obj;
                 }
             );
@@ -280,7 +290,7 @@ let tabs = [
 // if(cols.length >= tabs.length) cols.map()
 
 // if(cols.length < tabs.length)  tabs.map() ???
-​
+
 if(cols.length >= tabs.length){
     // long length
     cols.map(
@@ -292,7 +302,8 @@ if(cols.length >= tabs.length){
                 if(col_obj.col_name === tabs[i].tab_name){
                     temp_data = tabs[i].tab_datas;
                     console.log(`${i} col_obj.col_name = "${col_obj.col_name}"`);
-                    console.log(`${i} tabs[i].tab_name = "${tabs[i].tab_name}"`);                                                                                             continue; // 
+                    console.log(`${i} tabs[i].tab_name = "${tabs[i].tab_name}"`); 
+                    continue;
                 }else{
                     console.log(`☹️ ${i} tabs[i].tab_name  ☹️ = "${tabs[i].tab_name}"`);
                     // temp_data = [];
@@ -566,6 +577,65 @@ https://cdn.xgqfrms.xyz/json/crm/any-cols-datas.js
         ]
     }
 ]
+
+```
+
+
+
+
+# any
+
+http://10.1.5.203/http-manage/admin?{%22Admin%22:%22report%22,%22Action%22:%22GetRowSchema%22,%22WriteType%22:%22json%22,%20%22ReportName%22:%22JYTopic.StockSecondaryMarket.StockMarketPeform%22}
+
+
+
+```js
+
+
+{
+    "Success": true,
+    "Info": {
+        "schema": {
+            "type": "any"
+        },
+        "name": "JYTopic.StockSecondaryMarket.StockMarketPeform"
+    }
+}
+
+
+
+```
+
+https://github.com/gildata/RAIO/blob/master/solution.md#any-1
+ 
+# temporary solution
+
+```js
+
+     else{
+        // any === single table ???
+        if(ts.schema.type === undefined || ts.schema.type !== "object" ){
+            // multi tables (ts.schema.type === undefined )
+            // single table (ts.schema.type === "object")
+            // any (ts.schema.type === "any")
+            let temp_obj = {
+                col_name: "",
+                col_datas: ""
+            };
+            temp_obj.col_name = ts.name;
+            /* 
+                let obj = {};
+                obj.title = "";
+                obj.key = "";
+                obj.dataIndex = "";
+                temp_obj.col_datas = [obj]; 
+            */
+            // this.state.any ???
+            temp_obj.col_datas = [];
+            cols.push(temp_obj);
+        }
+        console.log(`any cols = \n`, JSON.stringify(cols, null, 4));
+    }
 
 ```
 
