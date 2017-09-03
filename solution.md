@@ -358,6 +358,23 @@ if(output.cols.length > 0){
 
 ```
 
+## output & any
+
+> single table
+
+https://cdn.xgqfrms.xyz/json/crm/single-output.json
+
+![image](https://user-images.githubusercontent.com/29531779/30001468-c963acea-90c1-11e7-8bfd-ffe5ab080df7.png)
+
+
+> multi tables
+
+https://cdn.xgqfrms.xyz/json/crm/output.json
+
+![image](https://user-images.githubusercontent.com/29531779/30001473-fb0e9304-90c1-11e7-9dd6-a327f50af8c3.png)
+
+
+
 
 
 ***
