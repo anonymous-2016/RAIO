@@ -54,7 +54,8 @@ class TestTableForms extends Component {
             required_obj: {},
             options_obj: {},
             test_results: {},
-            results: []
+            results: [],
+            tabs_datas: []
         }
     }
     disableBTN = (value=false) =>{
@@ -159,7 +160,64 @@ class TestTableForms extends Component {
         )
         .then(
             (fecth_data) => {
+                // json
                 // fecth_data === [{}, {}];
+                const tra = fecth_data;
+                // tabs_datas ???
+                // new
+                let tabs = [];
+                // tabs_datas ???
+                tra.map(
+                    (tab, index) => {
+                        let RT_obj = {};
+                        let RT_temp_arr = [];
+                        // "name": "AnyManagedFundsRow",
+                        RT_obj.tab_name = tab.name;
+                        // console.log(`%c RT_obj.name = ${tab.name} \n`, `color: #f0f; font-size: 23px`);
+                        let temp_obj = {};
+                        // keys
+                        // console.log(`#@$ tab.columnMeta = \n`, JSON.stringify(tab.columnMeta, null, 4));
+                        let temp_keys = Object.keys(tab.columnMeta);
+                        // values
+                        // console.log(`#@$ tab.rows = \n`, JSON.stringify(tab.rows, null, 4));
+                        let arrs = tab.rows;
+                        for(let i = 0; i < arrs.length; i++){
+                            let arr = arrs[i];
+                            let obj = {};
+                            // shaped values
+                            temp_keys.map(
+                                (key, ii) => {
+                                    let k = key.toUpperCase();
+                                    obj["key"] = `RT_key 0000${i+1}`;
+                                    if(arr[ii] instanceof Object){
+                                        // obj[k] = JSON.stringify(arr[ii], null, 4);
+                                        obj[k] = JSON.stringify(arr[ii]);
+                                    }else{
+                                        // null.toString()
+                                        // Uncaught TypeError: Cannot read property 'toString' of null
+                                        if(arr[ii] === null){
+                                            obj[k] = "";
+                                        }else{
+                                           // obj[k] = arr[ii].toString();
+                                           obj[k] = arr[ii];
+                                        }
+                                    }
+                                }
+                            );
+                            // console.log(`cols obj = \n`, JSON.stringify(obj, null, 4));
+                            RT_temp_arr.push(obj);
+                        }
+                        RT_obj.tab_datas= RT_temp_arr;
+                        tabs.push(RT_obj);
+                    }
+                );
+                if(debug){
+                    console.log(`tabs = \n`, JSON.stringify(tabs, null, 4));
+                }
+                that.setState({
+                    tabs_datas: tabs
+                });
+                // old
                 let objs = {};
                 if(Array.isArray(fecth_data)){
                     // shape data & pass it to result!
@@ -229,40 +287,13 @@ class TestTableForms extends Component {
                             return result;
                         }
                     );
-                    // result[i].attributes.columns = RT cols
-                    /* 
-                        {
-                            cols: [
-                                {name: "交易日期", value: "a0"},
-                                {name: "证券代码", value: "a1"}
-                            ]
-                        }
-                        // convert to
-                        // {name: "交易日期", value: "a0"},
-                        // obj.title = cols[i].name
-                        // obj.title = cols[i].value.toUpperCase(),
-                        cols: [
-                            {
-                                "title": "交易日期 || ☹️ 暂无注释",
-                                "key": "BYTEV",
-                                "dataIndex": "BYTEV"
-                            },
-                        ]
-                    */
                     that.setState({
                         // test_datas: {fecth_data}
                         // test_results: Object.assign({}, fecth_data)
                         // results: Object.assign({}, result)
-                        results: result
+                        results: result,
+                        // tabs_datas: tabs
                     });
-                    /*
-                        setTimeout(() => {
-                            that.setState({
-                                loading: false
-                            });
-                        }, 1000);
-                        // promise reject ???
-                    */
                 }
             }
         );
@@ -361,8 +392,8 @@ class TestTableForms extends Component {
     }
     /* eslint-disable no-console */
     render() {
-        const {show, test_datas} = {...this.state};
-        const {inputs, outputs, options, url_path, example_obj} = {...this.props};
+        const {show, test_datas, tabs_datas} = {...this.state};
+        const {inputs, outputs, options, url_path, example_obj, tabs_cols} = {...this.props};
         // options
         const {sort, fields, datas} = options;
         if (!debug) {
@@ -605,10 +636,11 @@ class TestTableForms extends Component {
                     >
                     <h2 className="title-color">测试结果</h2>
                     {/* Tabs & Tables */}
-                    {/* // tab.name === "AnyManagedFundsRow":[]  */}
                     <RTS
-                        tabs={this.props.outputs}
+                        tabs={outputs}
                         // ??? type ???
+                        tabs_datas={tabs_datas}
+                        tabs_cols={tabs_cols}
                         results={this.state.results || []}
                         style={{
                             // maxWidth: 850,

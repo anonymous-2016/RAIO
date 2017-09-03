@@ -78,13 +78,13 @@ class ResultTables extends Component {
         const results = this.props.dataSource;
         const columns = this.props.columns;
         // const {columns, results} = {...this.props};
-        if (debug) {
+        if (!debug) {
             console.log(`%c RT: JSON.stringify(results) === ${JSON.stringify(results, null, 4)} \n`, color.css1);
             console.log(`%c RT: JSON.stringify(columns) === ${JSON.stringify(columns, null, 4)} \n`, color.css1);
             console.log(`%c RT: columns.length === ${columns.length} \n`, color.css1);
         }
         // const x_length = 1500;
-        const x_length = columns.length*150;
+        // const x_length = columns.length*150;
         /* 
             // set cell length by Max.value.length ? width: 100,
             // set special value Fixed width ? fixed: 'left'
@@ -98,8 +98,16 @@ class ResultTables extends Component {
                 width: 100
             },
         */
+        const {tabs_datas, tabs_cols} = {...this.props};
+        const x_length = tabs_cols.length*150;
+        if (debug) {
+            console.log(`%c RT: JSON.stringify(tabs_datas) === ${JSON.stringify(tabs_datas, null, 4)} \n`, color.css1);
+            console.log(`%c RT: JSON.stringify(tabs_cols) === ${JSON.stringify(tabs_cols, null, 4)} \n`, color.css1);
+            console.log(`%c RT: tabs_cols.length === ${tabs_cols.length} \n`, color.css1);
+        }
         return (
             <div>
+                {/* 
                 <Table
                     style={{
                         width: "calc(100%)",
@@ -123,14 +131,22 @@ class ResultTables extends Component {
                     // pagination={false}
                     pagination={true}
                 />
-                {
-                    // test.name === output.key
-                    // show
-                    // ?
-                    // <Table dataSource={test_datas} columns={cols} bordered pagination={false}/>
-                    // :
-                    // <Table dataSource={results} columns={cols} bordered pagination={false}/>
-                }
+                 */}
+                {/* <h3>new table</h3> */}
+                <Table
+                    dataSource={tabs_datas}
+                    columns={tabs_cols}
+                    bordered
+                    pagination={false}
+                    style={{
+                        width: "calc(100%)",
+                        boxSizing: "border-box",
+                    }}
+                    // className="rt-table"
+                    scroll={{
+                        x: x_length,
+                    }}
+                />
             </div>
         );
     }

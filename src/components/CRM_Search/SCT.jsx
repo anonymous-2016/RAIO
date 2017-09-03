@@ -33,7 +33,8 @@ class SCT extends Component {
             out_data: [],
             developer: "",
             url_name: this.props.urlname,
-            example_obj: {}
+            example_obj: {},
+            tabs_cols: []
         };
     }
     // url_name
@@ -141,6 +142,93 @@ class SCT extends Component {
         fetch(`${url}`)
         .then((response) => response.json())
         .then((json)=> {
+            // test result cols === tabs_cols
+            const ts = json.Info;
+            let cols = [];
+            if(ts.schema !== undefined && ts.schema.Properties !== undefined){
+                // single table cols
+                let temp_obj = {
+                    col_name: "",
+                    col_datas: ""
+                };
+                temp_obj.col_name = ts.name;
+                let objs = ts.schema.Properties;
+                let keys = Object.keys(objs);
+                temp_obj.col_datas = keys.map(
+                    (key, index) => {
+                        let obj = {};
+                        if(objs[key].Description !== undefined){
+                            obj.title = objs[key].Description;
+                        }else{
+                            obj.title = `☹️ ${key} 暂无注释`;
+                        }
+                        obj.key = key.toUpperCase();
+                        obj.dataIndex = key.toUpperCase();
+                        return obj;
+                    }
+                );
+                cols.push(temp_obj);
+                console.log(`single table cols = \n`, JSON.stringify(cols, null, 4));
+            }else if(ts.schema !== undefined && ts.schema.type !== "any"){
+                // multi tables cols
+                let tabs_obj = ts.schema;
+                let tabs_keys = Object.keys(tabs_obj);
+                tabs_keys.map(
+                    (key, index) => {
+                        let temp_obj = {
+                            col_name: "",
+                            col_datas: "",
+                            col_tab_title: ""
+                        };
+                        // temp_obj.col_name = key;
+                        temp_obj.col_name = `${tabs_obj[key].desc}-${key}`;
+                        temp_obj.col_tab_title = tabs_obj[key].desc;
+                        let p_objs = tabs_obj[key].Properties;
+                        let p_keys = Object.keys(p_objs);
+                        temp_obj.col_datas = p_keys.map(
+                            (p_key, p_index) => {
+                                let obj = {};
+                                // undefined ???
+                                if(p_objs[p_key].Description !== undefined){
+                                    obj.title = p_objs[p_key].Description;
+                                }else{
+                                    obj.title = `☹️ ${p_key} 暂无注释`;
+                                }
+                                // key.toUpperCase();
+                                obj.key = p_key.toUpperCase();
+                                obj.dataIndex = p_key.toUpperCase();
+                                return obj;
+                            }
+                        );
+                        cols.push(temp_obj);
+                    }
+                );
+                console.log(`multi tables cols = \n`, JSON.stringify(cols, null, 4));
+            }else{
+                // any === single table ???
+                if(ts.schema.type === undefined || ts.schema.type !== "object" ){
+                    // multi tables (ts.schema.type === undefined )
+                    // single table (ts.schema.type === "object")
+                    // any (ts.schema.type === "any")
+                    let temp_obj = {
+                        col_name: "",
+                        col_datas: ""
+                    };
+                    temp_obj.col_name = ts.name;
+                    /* 
+                        let obj = {};
+                        obj.title = "";
+                        obj.key = "";
+                        obj.dataIndex = "";
+                        temp_obj.col_datas = [obj]; 
+                    */
+                    // this.state.any ???
+                    temp_obj.col_datas = [];
+                    cols.push(temp_obj);
+                }
+                console.log(`any cols = \n`, JSON.stringify(cols, null, 4));
+            }
+            /* cols */
             if(debug){
                 console.log(`json = ${json}`); 
             }
@@ -294,7 +382,8 @@ class SCT extends Component {
             // console.log(`typeof datas[0] = `, typeof(datas[0]));
             this.setState(
                 {
-                    output_datas: datas
+                    output_datas: datas,
+                    tabs_cols: cols
                 }
             );
             return datas;
@@ -358,7 +447,7 @@ class SCT extends Component {
         this.outputClick(url_out);
     }
     render() {
-        const {input_datas, output_datas, in_out_data, example_obj} = this.state;
+        const {input_datas, output_datas, in_out_data, example_obj, tabs_cols} = this.state;
         // const {input_datas, output_datas} = this.props.datas;
         const {data} = {...this.props};
         if (debug) {
@@ -379,6 +468,7 @@ class SCT extends Component {
                     // ☹️ 请输入 2017-8-25 格式的时间!
                     input_datas={input_datas}
                     output_datas={output_datas}
+                    tabs_cols={tabs_cols}
                     in_out_data={in_out_data}
                     example_obj={example_obj}
                 />

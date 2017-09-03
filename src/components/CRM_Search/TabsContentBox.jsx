@@ -39,7 +39,7 @@ class TabsContentBox extends Component {
     }
     // shape datas ???
     render() {
-        const {input_datas, output_datas, in_out_data, developer, example_obj} = {...this.props};
+        const {input_datas, output_datas, in_out_data, developer, example_obj, tabs_cols} = {...this.props};
         if (!debug) {
             console.log(`%c TCB input_datas = ${input_datas}`, color.color_css3);
             console.log(`%c TCB output_datas = ${output_datas}`, color.color_css2);
@@ -226,6 +226,7 @@ class TabsContentBox extends Component {
                             test_datas={in_out_data}
                             outputs={output_datas}
                             // outputs === result tabs
+                            tabs_cols={tabs_cols}
                             inputs={input_datas}
                             options={options_obj}
                             url_path={url_path}
