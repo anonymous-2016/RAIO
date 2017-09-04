@@ -1,0 +1,49 @@
+[{
+        "prependHeader": false,
+        "maxJsonSize": 400,
+        "alwaysFold": false,
+        "alwaysRenderAllContent": false,
+        "sortKeys": false,
+        "clickableUrls": true,
+        "openLinksInNewWindow": true,
+        "autoHighlight": true
+    },
+
+
+    {
+        "readOnly": true,
+        "lineNumbers": true,
+        "lineWrapping": true,
+        "foldGutter": true,
+        "tabSize": 4,
+        "indentCStyle": false
+    },
+
+
+    /*
+    .CodeMirror {
+        font-family: monaco, Consolas, Menlo, Courier, monospace;
+        font-size: 16px;
+        line-height: 1.5em;
+    }
+    */
+
+
+
+
+
+
+
+
+
+    {
+        "prependHeader": true,
+        "maxJsonSize": 400,
+        "alwaysFold": false,
+        "alwaysRenderAllContent": false,
+        "sortKeys": false,
+        "clickableUrls": true,
+        "openLinksInNewWindow": true,
+        "autoHighlight": true
+    }
+]

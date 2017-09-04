@@ -58,7 +58,7 @@ class ResultTables extends Component {
         const tables = this.props.tabs;
         const results = this.props.results;
         const {tabs_cols: cols, tabs_datas: tabs} = {...this.props};
-        if (debug) {
+        if (!debug) {
             console.log(`%c tabs === test tables = \n`, color.color_css1, JSON.stringify(tables, null, 4));
         }
         /* 
@@ -112,22 +112,42 @@ class ResultTables extends Component {
                                 let temp_data = [],
                                     temp_col = col_obj.col_datas;
                                 for(let i = 0; i < tabs.length; i++){
-                                    if(col_obj.col_name === tabs[i].tab_name){
+                                    console.log(`${i} ??? col_obj = "${JSON.stringify(col_obj, null, 4)}"`);
+                                    console.log(`${i} ??? tab_obj = "${JSON.stringify(tabs[i], null, 4)}"`);
+                                    // console.log(`${i} ??? tabs[i].tab_datas = "${JSON.stringify(tabs[i].tab_datas, null, 4)}"`);
+                                    // if(col_obj.col_name === tabs[i].tab_name)
+                                    // 1: col_name.substr(col_name.indexOf(`-`)+1)
+                                    // 2: new col_title
+                                    if(col_obj.col_tab_title === tabs[i].tab_name){
                                         temp_data = tabs[i].tab_datas;
                                         console.log(`${i} ☺️ ☺️ ☺️ col_obj.col_name = "${col_obj.col_name}"`);
                                         console.log(`${i} ☺️ ☺️ ☺️ tabs[i].tab_name = "${tabs[i].tab_name}"`);
-                                        continue;
+                                        // continue;
                                     }else{
                                         console.log(`☹️ ${i} tabs[i].tab_name  ☹️ = "${tabs[i].tab_name}"`);
                                         // temp_data = [];
                                     }
                                 }
+                                console.log(`${index} ??? temp_data = "${JSON.stringify(temp_data, null, 4)}"`);
+                                console.log(`Table = \n`);
+                                console.log(`
+                                    <Table
+                                        dataSource={${JSON.stringify(temp_data)}}
+                                        columns={${JSON.stringify(temp_col)}}
+                                    />
+                                `);
                                 return(
                                     <TabPane 
                                         tab={
                                             <span style={{fontSize: 12}}>
                                                 <Icon type="apple" />
-                                                {`表${++index}:${col_obj.col_name || ""}`}
+                                                {
+                                                    cols.length > 1
+                                                    ? 
+                                                    `表${++index}:${col_obj.col_name || ""}`
+                                                    :
+                                                    `表:${col_obj.col_name || ""}`
+                                                }
                                             </span>
                                         }
                                         key={(++index)}
@@ -149,6 +169,45 @@ class ResultTables extends Component {
                                         />
                                     </TabPane>
                                 );
+                            /*
+                                return(
+                                    temp_data.length > 0
+                                    ?
+                                    <TabPane 
+                                        tab={
+                                            <span style={{fontSize: 12}}>
+                                                <Icon type="apple" />
+                                                {
+                                                    cols.length > 1
+                                                    ? 
+                                                    `表${++index}:${col_obj.col_name || ""}`
+                                                    :
+                                                    `表:${col_obj.col_name || ""}`
+                                                }
+                                            </span>
+                                        }
+                                        key={(++index)}
+                                        style={{
+                                            boxSizing: "border-box",
+                                            // maxWidth: 850,
+                                            width: "calc(100%)",
+                                        }}>
+                                        <RT
+                                            tabs_datas={temp_data}
+                                            tabs_cols={temp_col}
+                                            style={{
+                                                // maxWidth: 850,
+                                                width: "calc(100%)",
+                                                // width: 850,
+                                                // minWidth: 600
+                                                boxSizing: "border-box",
+                                            }}
+                                        />
+                                    </TabPane>
+                                    :
+                                    ""
+                                );
+                            */
                             }
                         )
                     }

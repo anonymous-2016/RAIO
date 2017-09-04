@@ -75,13 +75,13 @@ class ResultTables extends Component {
         let test_datas = [{},{}];
         // tab.name === "AnyManagedFundsRow":[] 
         // A0 = key
-        const results = this.props.dataSource;
-        const columns = this.props.columns;
+        // const results = this.props.dataSource;
+        // const columns = this.props.columns;
         // const {columns, results} = {...this.props};
         if (!debug) {
-            console.log(`%c RT: JSON.stringify(results) === ${JSON.stringify(results, null, 4)} \n`, color.css1);
-            console.log(`%c RT: JSON.stringify(columns) === ${JSON.stringify(columns, null, 4)} \n`, color.css1);
-            console.log(`%c RT: columns.length === ${columns.length} \n`, color.css1);
+            // console.log(`%c RT: JSON.stringify(results) === ${JSON.stringify(results, null, 4)} \n`, color.css1);
+            // console.log(`%c RT: JSON.stringify(columns) === ${JSON.stringify(columns, null, 4)} \n`, color.css1);
+            // console.log(`%c RT: columns.length === ${columns.length} \n`, color.css1);
         }
         // const x_length = 1500;
         // const x_length = columns.length*150;
@@ -108,39 +108,40 @@ class ResultTables extends Component {
         return (
             <div>
                 {/* 
-                <Table
-                    style={{
-                        width: "calc(100%)",
-                        // minWidth: 800,
-                        boxSizing: "border-box",
-                        // overflowX: "scroll"
-                    }}
-                    // className="rt-table"
-                    scroll={{
-                        // x: 4300, TestProtocol ???
-                        // cols.length * 50
-                        // x: 2300,
-                        x: x_length,
-                        // x: 1500,
-                        // y: 500
-                    }}
-                    dataSource={results}
-                    // columns={cols}
-                    columns={columns}
-                    bordered
-                    // pagination={false}
-                    pagination={true}
-                />
+                    <Table
+                        style={{
+                            width: "calc(100%)",
+                            // minWidth: 800,
+                            boxSizing: "border-box",
+                            // overflowX: "scroll"
+                        }}
+                        // className="rt-table"
+                        scroll={{
+                            // x: 4300, TestProtocol ???
+                            // cols.length * 50
+                            // x: 2300,
+                            x: x_length,
+                            // x: 1500,
+                            // y: 500
+                        }}
+                        dataSource={results}
+                        // columns={cols}
+                        columns={columns}
+                        bordered
+                        // pagination={false}
+                        pagination={true}
+                    />
                  */}
                 {/* <h3>new table</h3> */}
                 <Table
                     dataSource={tabs_datas}
                     columns={tabs_cols}
                     bordered
-                    pagination={false}
+                    pagination={tabs_datas.length > 10 ? true : false}
                     style={{
                         width: "calc(100%)",
                         boxSizing: "border-box",
+                        marginBottom: 20,
                     }}
                     // className="rt-table"
                     scroll={{
@@ -153,8 +154,8 @@ class ResultTables extends Component {
 }
 
 ResultTables.propTypes = {
-    dataSource: PropTypes.array.isRequired,
-    columns: PropTypes.array.isRequired
+    // dataSource: PropTypes.array.isRequired,
+    // columns: PropTypes.array.isRequired
 };
 
 const RT = ResultTables;

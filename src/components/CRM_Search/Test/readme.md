@@ -209,3 +209,82 @@ http://localhost:3000/api/sc/F9Tree#F9Tree
 ```
 
 
+
+
+
+## fetch data
+
+
+```js
+
+
+
+fetch(`http://10.1.5.203/http-report/query?{%22ApiName%22:%22MarketStatisticDetail%22,%22WriteType%22:%22json%22}`)
+.then((response) => response.json())
+.then(
+    (json) => {
+        // this.setState({loading: true});
+        return json;
+    }
+)
+.then(
+    (fecth_data) => {
+        console.log(`fecth_data = \n`, JSON.stringify(fecth_data, null, 4));
+        let tra = [];
+        if(Array.isArray(fecth_data)){
+            tra = fecth_data;
+        }else{
+            // tra = [];
+        }
+        console.log(`tra = \n `, JSON.stringify(tra, null, 4));
+    }
+);
+
+
+
+// .map() empty array is OK!
+
+let tra = [];
+tra.map(
+    (obj, index) => {
+        console.log(`obj = \n `, JSON.stringify(obj, null, 4));
+    }
+);
+
+console.log(`tra = \n `, JSON.stringify(tra, null, 4));
+
+
+
+let tra = [
+    {
+        obj1: "datas1"
+    },
+    {
+        obj2: "datas2"
+    }
+];
+
+tra.map(
+    (obj, index) => {
+        console.log(`obj = \n `, JSON.stringify(obj, null, 4));
+    }
+);
+
+console.log(`tra = \n `, JSON.stringify(tra, null, 4));
+
+
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+

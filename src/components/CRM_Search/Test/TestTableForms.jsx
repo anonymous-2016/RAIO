@@ -162,8 +162,20 @@ class TestTableForms extends Component {
             (fecth_data) => {
                 // json
                 // fecth_data === [{}, {}];
-                const tra = fecth_data;
-                // tabs_datas ???
+                // const tra = fecth_data || [];
+                /* 
+                    // ??? no return datas
+
+                */
+                if (!debug) {
+                    console.log(`fecth_data = \n`, fecth_data);
+                }
+                let tra = [];
+                if(Array.isArray(fecth_data)){
+                    tra = fecth_data;
+                }else{
+                    // tra = [];
+                }
                 // new
                 let tabs = [];
                 // tabs_datas ???
@@ -204,19 +216,19 @@ class TestTableForms extends Component {
                                     }
                                 }
                             );
-                            // console.log(`cols obj = \n`, JSON.stringify(obj, null, 4));
+                            console.log(`cols obj = \n`, JSON.stringify(obj, null, 4));
                             RT_temp_arr.push(obj);
                         }
                         RT_obj.tab_datas= RT_temp_arr;
                         tabs.push(RT_obj);
                     }
                 );
-                if(debug){
-                    console.log(`tabs = \n`, JSON.stringify(tabs, null, 4));
-                }
                 that.setState({
                     tabs_datas: tabs
                 });
+                if(debug){
+                    console.log(`tabs = \n`, JSON.stringify(tabs, null, 4));
+                }
                 // old
                 let objs = {};
                 if(Array.isArray(fecth_data)){
@@ -233,7 +245,7 @@ class TestTableForms extends Component {
                         }
                     );
                     // result table A0 = key
-                    if (debug) {
+                    if (!debug) {
                         console.log(`%c fecthed data = \n`, color.color_css3, JSON.stringify(fecth_data, null, 4));
                     }
                     let r = fecth_data;
@@ -443,14 +455,44 @@ class TestTableForms extends Component {
                             obj.value = path;
                             // obj.value = url_path;
                         }else{
-                            if (value.name === "BeginDate" || value.name === "EndDate") {
+                            const date = new Date().toLocaleDateString().replace(/\//ig, `-`);
+                            switch(value.name){
+                                case "BeginDate":
+                                    obj.value = `${date}`;
+                                    break;
+                                case "EndDate":
+                                    obj.value = `${date}`;
+                                    break;
+                                case "ReportDate":
+                                    obj.value = `${date}`;
+                                    break;
+                                case "beganDate":
+                                    obj.value = `${date}`;
+                                    break;
+                                case "dateTime":
+                                    obj.value = `${date}`;
+                                    break;
+                                case "tradingDay":
+                                    obj.value = `${date}`;
+                                    break;
+                                case "tradeDate":
+                                    obj.value = `${date}`;
+                                    break;
+                                case "date":
+                                    obj.value = `${date}`;
+                                    break;
+                                default:
+                                    obj.value = "";
+                                    break;
+                            }
+                            /* if (value.name === "BeginDate" || value.name === "EndDate" || value.name === "ReportDate") {
                                 const date = new Date().toLocaleDateString().replace(/\//ig, `-`);
                                 // obj.value = (value ? value : date); 
                                 obj.value = `${date}`;
                             }else{
                                 obj.value = "";
-                            }
-                        }                        
+                            } */
+                        } 
                         ri_datas.push(obj);
                         if (!debug) {
                             console.log(`%c ri_datas obj = `, color.css1, obj);
@@ -558,12 +600,16 @@ class TestTableForms extends Component {
                         options_datas={this.state.options_obj || {}}
                     />
                 </div>
-                <div style={{textAlign: "center"}}>
+                <div style={{
+                        textAlign: "center",
+                        marginLeft: "-300px",
+                        boxSizing: "border-box"
+                    }}>
                     <Button
                         type="primary"
                         style={{
                             margin: "auto 10px",
-                            marginLeft: "-100px"
+                            // marginLeft: "-100px"
                         }}
                         onClick={this.startTest}
                         disabled={this.state.disable_btn}
@@ -647,6 +693,7 @@ class TestTableForms extends Component {
                             // maxWidth: "calc(100%-300px)",
                             boxSizing: "border-box",
                             // overflowX: "hidden"
+                            // marginBottom: 30
                         }}
                     />
                 </div>

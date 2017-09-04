@@ -93,12 +93,14 @@ class SCT extends Component {
                     } */
                     if(datas[key].Required !== undefined){
                         if(datas[key].enum !== undefined){
-                            datas[key].Description += `(${datas[key].Required}) \n 枚举值: ${JSON.stringify(datas[key].enum)}`;
+                            datas[key].Description += `-(${datas[key].Required ? "必选参数" : "true"}) \n 枚举值: ${JSON.stringify(datas[key].enum)}`;
+                            // 必选参数 enum
                         }else{
-                            datas[key].Description += `(${datas[key].Required})`;
+                            datas[key].Description += `-(${datas[key].Required ? "必选参数" : "true"})`;
+                            // 必选参数
                         }
                     }else{
-                        datas[key].Description += `(可选参数)`;
+                        datas[key].Description += `-(可选参数)`;
                     }
                     // key === index
                     arr.push(datas[key]);
@@ -149,9 +151,13 @@ class SCT extends Component {
                 // single table cols
                 let temp_obj = {
                     col_name: "",
-                    col_datas: ""
+                    col_datas: "",
+                    col_tab_title: ""
                 };
                 temp_obj.col_name = ts.name;
+                temp_obj.col_tab_title = ts.name;
+                // no desc
+                // temp_obj.col_tab_title = ts.desc;
                 let objs = ts.schema.Properties;
                 let keys = Object.keys(objs);
                 temp_obj.col_datas = keys.map(
@@ -181,8 +187,9 @@ class SCT extends Component {
                             col_tab_title: ""
                         };
                         // temp_obj.col_name = key;
-                        temp_obj.col_name = `${tabs_obj[key].desc}-${key}`;
-                        temp_obj.col_tab_title = tabs_obj[key].desc;
+                        temp_obj.col_name = `${tabs_obj[key].desc}`;
+                        temp_obj.col_tab_title = key;
+                        // temp_obj.col_tab_title = tabs_obj[key].desc;
                         let p_objs = tabs_obj[key].Properties;
                         let p_keys = Object.keys(p_objs);
                         temp_obj.col_datas = p_keys.map(
@@ -206,27 +213,39 @@ class SCT extends Component {
                 console.log(`multi tables cols = \n`, JSON.stringify(cols, null, 4));
             }else{
                 // any === single table ???
-                if(ts.schema.type === undefined || ts.schema.type !== "object" ){
-                    // multi tables (ts.schema.type === undefined )
-                    // single table (ts.schema.type === "object")
-                    // any (ts.schema.type === "any")
-                    let temp_obj = {
-                        col_name: "",
-                        col_datas: ""
-                    };
-                    temp_obj.col_name = ts.name;
-                    /* 
-                        let obj = {};
-                        obj.title = "";
-                        obj.key = "";
-                        obj.dataIndex = "";
-                        temp_obj.col_datas = [obj]; 
-                    */
-                    // this.state.any ???
-                    temp_obj.col_datas = [];
-                    cols.push(temp_obj);
+                // "info": "Lose Param HistoricalFigureReport Report",
+                if(ts.schema !== undefined){
+                    if(ts.schema.type === undefined || ts.schema.type !== "object" ){
+                        // multi tables (ts.schema.type === undefined )
+                        // single table (ts.schema.type === "object")
+                        // any (ts.schema.type === "any")
+                        let temp_obj = {
+                            col_name: "",
+                            col_datas: ""
+                        };
+                        temp_obj.col_name = ts.name;
+                        ///* 
+                            let obj = {};
+                            obj.title = "动态表头";
+                            obj.key = "Any";
+                            obj.dataIndex = "Any";
+                            temp_obj.col_datas = [obj]; 
+                        //*/
+                        // this.state.any ???
+                        temp_obj.col_datas = [];
+                        cols.push(temp_obj);
+                    }
+                    if (debug) {
+                        console.log(`any cols = \n`, JSON.stringify(cols, null, 4));
+                    }
+                }else{
+                    // ts = 
+                    if (debug) {
+                        console.log(`%c ${ts.name} === 特殊中的特殊!\n`, `color: #f00,; font-size: 36px`);
+                        // StaticReportImageData
+                        console.log(`any cols = \n`, JSON.stringify(cols, null, 4));
+                    }
                 }
-                console.log(`any cols = \n`, JSON.stringify(cols, null, 4));
             }
             /* cols */
             if(debug){

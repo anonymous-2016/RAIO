@@ -39,6 +39,12 @@ class RequiredItems extends Component {
             required_obj: {},
             BeginDate: "",
             EndDate: "",
+            ReportDate:"",
+            beganDate:"",
+            dateTime:"",
+            tradingDay:"",
+            tradeDate:"",
+            date:"",
             diasble_btn: false,
             init_date: ""
         }
@@ -322,6 +328,27 @@ class RequiredItems extends Component {
         });
         this.autoSave();
     };
+    onReportDateChange = (date, dateString) => {
+        if(debug){
+            console.log(`ReportDate dateString = ${dateString}`);
+        }
+        // ReportDate
+        // temp_url_obj["EndDate"] = dateString;
+        let temp_url_obj = this.state.url_obj;
+        // index.name === "EndDate" || index.name === "BeginDate"
+        temp_url_obj["ReportDate"] = dateString;
+        let str_obj = JSON.stringify(temp_url_obj);
+        if(/""/ig.test(str_obj)){
+            this.props.disableBTN(true);
+        }else{
+            this.props.disableBTN(false);
+        }
+        // get changed table values
+        this.setState({
+            url: `${urls.test}?${str_obj}`
+        });
+        this.autoSave();
+    };
     onDateChange = (date, dateString) => {
         if(debug){
             console.log(`date = ${date}`);
@@ -334,11 +361,29 @@ class RequiredItems extends Component {
         }
         let temp_url_obj = this.state.url_obj;
         // index.name === "EndDate" || index.name === "BeginDate"
-        if(temp_url_obj["BeginDate"]){
+        /* if(temp_url_obj["BeginDate"]){
             temp_url_obj["BeginDate"] = dateString;
         }
         if(temp_url_obj["EndDate"]){
             temp_url_obj["EndDate"] = dateString;
+        }
+        if(temp_url_obj["ReportDate"]){
+            temp_url_obj["ReportDate"] = dateString;
+        } */
+        if(temp_url_obj["beganDate"]){
+            temp_url_obj["beganDate"] = dateString;
+        }
+        if(temp_url_obj["dateTime"]){
+            temp_url_obj["dateTime"] = dateString;
+        }
+        if(temp_url_obj["tradingDay"]){
+            temp_url_obj["tradingDay"] = dateString;
+        }
+        if(temp_url_obj["tradeDate"]){
+            temp_url_obj["tradeDate"] = dateString;
+        }
+        if(temp_url_obj["date"]){
+            temp_url_obj["date"] = dateString;
         }
         // (index.name === "EndDate" ? this.onEndDateChange : this.onBeginDateChange)
         let str_obj = JSON.stringify(temp_url_obj);
@@ -351,6 +396,7 @@ class RequiredItems extends Component {
         this.setState({
             url: `${urls.test}?${str_obj}`
         });
+        this.autoSave();
     };
     /* eslint-disable no-console */
     // initialize
@@ -415,13 +461,43 @@ class RequiredItems extends Component {
                             />
                         );
                     }else{
-                        if(index.name === "EndDate" || index.name === "BeginDate"){
+                        if(index.name === "EndDate" || index.name === "BeginDate" || index.name === "ReportDate"){
                             const date = new Date().toLocaleDateString().replace(/\//ig, `-`);
                             let date_placeholder = `☹️ 请输入 ${date } 格式的时间!`;
                             // "2017-8-22"
                             // ??? initial date
                             if(text.length === 0){
                                 text = this.state.init_date;
+                            }
+                            let onChangeFunction = "";
+                            // this.onDateChange ??? 
+                            switch(index.name){
+                                case "BeginDate":
+                                    onChangeFunction = this.onBeginDateChange;
+                                    break;
+                                case "EndDate":
+                                    onChangeFunction = this.onEndDateChange;
+                                    break;
+                                case "ReportDate":
+                                    onChangeFunction = this.onReportDateChange;
+                                    break;
+                                case "beganDate":
+                                    onChangeFunction = this.onDateChange;
+                                    break;
+                                case "dateTime":
+                                    onChangeFunction = this.onDateChange;
+                                    break;
+                                case "tradingDay":
+                                    onChangeFunction = this.onDateChange;
+                                    break;
+                                case "tradeDate":
+                                    onChangeFunction = this.onDateChange;
+                                    break;
+                                case "date":
+                                    onChangeFunction = this.onDateChange;
+                                    break;
+                                default:
+                                    break;
                             }
                             return(
                                 <FormItem>
@@ -438,7 +514,8 @@ class RequiredItems extends Component {
                                             // initialValue: moment(text || this.state.init_date, dateFormat)
                                         })(
                                             <DatePicker 
-                                                onChange={(index.name === "EndDate" ? this.onEndDateChange : this.onBeginDateChange)} 
+                                                // onChange={(index.name === "EndDate" ? this.onEndDateChange : this.onBeginDateChange)} 
+                                                onChange={onChangeFunction}
                                                 // placeholder="日期格式 2017-08-08"
                                                 placeholder={date_placeholder}
                                                 style={{minWidth: 300}}

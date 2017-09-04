@@ -812,3 +812,124 @@ https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects
         */
 
 ```
+
+
+
+## datepicker ???
+
+
+ReportDate 【必选】报告日期-(必选参数)
+
+
+http://localhost:3000/api/sc/fund.topic.asset_allocation.bond_portfolio.AllBond.TransferBondPeriodCanTransferDebtDetail#
+
+
+
+```js
+
+    let onChangeFunction = "";
+    switch(index.name ){
+        case "BeginDate":
+            onChangeFunction = this.onBeginDateChange;
+            break;
+        case "EndDate":
+            onChangeFunction = this.onEndDateChange;
+            break;
+        case "ReportDate":
+            onChangeFunction = this.onReportDateChange;
+            break;
+        default:
+            break;
+    }
+
+```
+
+
+## TTF
+
+> p 458
+
+
+```js
+
+// index.name === "ReportDate"
+
+// value.name === "ReportDate"
+    if (value.name === "BeginDate" || value.name === "EndDate" || value.name === "ReportDate") {
+        const date = new Date().toLocaleDateString().replace(/\//ig, `-`);
+        // obj.value = (value ? value : date); 
+        obj.value = `${date}`;
+    }else{
+        obj.value = "";
+    }
+
+switch(){
+
+}
+
+
+
+
+/*
+
+
+
+let onChangeFunction = "";
+switch(index.name ){
+    case "BeginDate":
+        onChangeFunction = this.onBeginDateChange;
+        break;
+    case "EndDate":
+        onChangeFunction = this.onEndDateChange;
+        break;
+    case "ReportDate":
+        onChangeFunction = this.onReportDateChange;
+        break;
+    case "beganDate":
+        onChangeFunction = this.onbeganDateChange;
+        break;
+    case "dateTime":
+        onChangeFunction = this.ondateTimeChange;
+        break;
+    case "tradingDay":
+        onChangeFunction = this.ontradingDayChange;
+        break;
+    case "tradeDate":
+        onChangeFunction = this.ontradeDateChange;
+        break;
+    case "date":
+        onChangeFunction = this.ondateChange;
+        break;
+    default:
+        break;
+}
+
+beganDate
+dateTime
+tradingDay
+tradeDate
+date
+
+*/
+
+
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
