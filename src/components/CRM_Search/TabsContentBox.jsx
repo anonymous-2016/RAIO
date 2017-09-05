@@ -13,6 +13,7 @@ import PropTypes from 'prop-types';
 import {IT} from './Input/InputTable';
 import {OTS} from './Output/OutputTables';
 import {TTF} from './Test/TestTableForms';
+import {DT} from './Dependence';
 
 // css
 import  './tabboxs.css';
@@ -23,7 +24,7 @@ import {color} from '../../app/color';
 import {debug, xyz_debug} from '../../app/debug';
 
 // libs
-import {Tabs, Icon} from 'antd';
+import {Tabs, Icon, Button} from 'antd';
 const TabPane = Tabs.TabPane;
 
 
@@ -34,12 +35,13 @@ class TabsContentBox extends Component {
             input_datas: this.props.input_datas,
             output_datas: this.props.output_datas,
             in_out_data: this.props.in_out_data,
-            example_obj: this.props.example_obj
+            example_obj: this.props.example_obj,
+            dt_datas: this.props.dt_datas,
         };
     }
     // shape datas ???
     render() {
-        const {input_datas, output_datas, in_out_data, developer, example_obj, tabs_cols} = {...this.props};
+        const {input_datas, output_datas, in_out_data, developer, example_obj, tabs_cols, dt_datas} = {...this.props};
         if (!debug) {
             console.log(`%c TCB input_datas = ${input_datas}`, color.color_css3);
             console.log(`%c TCB output_datas = ${output_datas}`, color.color_css2);
@@ -177,6 +179,50 @@ class TabsContentBox extends Component {
                 // width: '25%'
             }
         ];
+        const dt_columns = [
+            {
+                title: "报表名称",
+                dataIndex: "name",
+                key: "name",
+                width: '15%'
+            },
+            {
+                title: "描述",
+                dataIndex: "desc",
+                key: "desc",
+                width: '15%'
+            },
+            {
+                title: "关联的表名",
+                dataIndex: "dtTables",
+                key: "dtTables",
+                width: '20%'
+            },
+            {
+                title: "操作",
+                dataIndex: "operates",
+                key: "operates",
+                width: '200',
+                // fixed width
+                render: (text, index) => {
+                    if (!debug) {
+                        // index === object
+                        console.log(`%c required index = `, color.green_16_border, index);
+                        // {key: 0, value: "", name: "ApiName", desc: "报表名称(true)", type: "string"}
+                        // text === value
+                        console.log(`%c text = `, color.green_23, text);
+                        // "" / "json" / example_value
+                    }
+                    return(
+                        <div className="tcb-operate-btn-box">
+                            <Button type="primary" className="tcb-operate-btn">加载</Button>
+                            <Button type="primary" className="tcb-operate-btn">卸载</Button>
+                            <Button type="primary" className="tcb-operate-btn">重新加载</Button>
+                        </div>
+                    );
+                }
+            }
+        ];
         const url_path = window.location.pathname.substr(8);
         if (!debug) {
             console.log(` \n options_obj = \n`, options_obj);
@@ -234,6 +280,22 @@ class TabsContentBox extends Component {
                         />
                         {/* muilt test components */}
                     </TabPane>
+                    {/**/}
+                    <TabPane 
+                        tab={<span><Icon type="windows" />关联表</span>}
+                        key="4"
+                        style={{
+                            // CSS media query ???
+                            // width: "calc(100% - 20px)",
+                            // paddingRight: 20,
+                            boxSizing: "border-box"
+                        }}>
+                        <DT
+                            dataSource={dt_datas || []}
+                            columns={dt_columns} 
+                        />
+                    </TabPane>
+                    {/**/}
                     <TabPane 
                         tab={
                             <span style={{width: "auto", margin: "auto 5px"}}>
@@ -256,7 +318,7 @@ class TabsContentBox extends Component {
                             </span>
                         } 
                         style={{}}
-                        key="4"
+                        key="5"
                         disabled>
                         {/* no content */}
                     </TabPane>

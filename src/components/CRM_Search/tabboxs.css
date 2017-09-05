@@ -25,3 +25,12 @@
 }
 
 */
+
+.tcb-operate-btn-box {
+    max-width: 300px;
+}
+
+.tcb-operate-btn {
+    margin: 5px;
+    /* !important */
+}
