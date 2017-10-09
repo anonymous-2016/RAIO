@@ -167,3 +167,18 @@ dragleave
 view-source:http://www.zhangxinxu.com/study/201102/html5-drag-and-drop.html
 
 
+```html
+
+<svg version="1.1" viewBox="0 0 16 16" aria-hidden="true" class="octicon octicon-alert" height="16" width="16">
+    <path fill-rule="evenodd" d="M8.865 1.52c-.18-.31-.51-.5-.87-.5s-.69.19-.87.5L.275 13.5c-.18.31-.18.69 0 1 .19.31.52.5.87.5h13.7c.36 0 .69-.19.86-.5.17-.31.18-.69.01-1L8.865 1.52zM8.995 13h-2v-2h2v2zm0-3h-2V6h2v4z"></path>
+</svg>
+
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 16 16" aria-hidden="true" class="octicon octicon-alert" height="16"  width="16" fill="#f00">
+    <path fill-rule="evenodd" d="M8.865 1.52c-.18-.31-.51-.5-.87-.5s-.69.19-.87.5L.275 13.5c-.18.31-.18.69 0 1 .19.31.52.5.87.5h13.7c.36 0 .69-.19.86-.5.17-.31.18-.69.01-1L8.865 1.52zM8.995 13h-2v-2h2v2zm0-3h-2V6h2v4z"></path>
+</svg>
+
+```
+
+
+You can't perform that action at this time.
+

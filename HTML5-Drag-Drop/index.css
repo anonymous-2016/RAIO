@@ -66,3 +66,7 @@
     cursor: -moz-grabbing;
     cursor: -webkit-grabbing;
 }
+
+.flash-error {
+    color: rgb(134, 24, 29);
+}
