@@ -16,21 +16,21 @@
             <!-- flex-layout -->
         </section>
         <section class="">
-            <div class="drop-box" id="idBox" ondragenter="return dragEnter(event)" ondrop="return dragDrop(event)" ondragover="return dragOver(event)">
+            <div class="drop-box" id="idBox" ondragenter="dragEnter(event)" ondragover="dragOver(event)" ondrop="dragDrop(event)">
             </div>
         </section>
         <!-- ondragenter="return dragEnter(event)" ondrop="return dragDrop(event)" -->
-        <section class="section" id="section" ondragover="return dragOver(event)">
-            <div class="drag" id="boxA" draggable="true" ondragstart="return dragStart(event)" ondragend="dragEnd(event)">
+        <section class="section" id="section">
+            <div class="drag" id="boxA" draggable="true" ondragstart="dragStart(event)" ondragover="dragOver(event)" ondragleave="dragLeave(event)" ondragend="dragEnd(event)">
                 boxA
             </div>
-            <div class="drag" id="boxB" draggable="true" ondragstart="return dragStart(event)">
+            <div class="drag" id="boxB" draggable="true" ondragstart="dragStart(event)">
                 boxB
             </div>
-            <div class="drag" id="boxC" draggable="true" ondragstart="return dragStart(event)">
+            <div class="drag" id="boxC" draggable="true" ondragstart="dragStart(event)">
                 boxC
             </div>
-            <div class="drag" id="boxD" draggable="true" ondragstart="return dragStart(event)">
+            <div class="drag" id="boxD" draggable="true" ondragstart="dragStart(event)" ondragover="dragOver(event)" ondragleave="dragLeave(event)" ondragenter="dragEnter(event)" ondragend="dragEnd(event)">
                 boxD
             </div>
         </section>
