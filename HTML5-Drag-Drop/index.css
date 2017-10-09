@@ -5,7 +5,18 @@
     display: inline-block;
     /* margin-right: 10px;*/
     float: left;
+    /* cursor: move; */
+    cursor: grab;
+    cursor: -moz-grab;
+    cursor: -webkit-grab;
 }
+
+
+/* .drag:hover {
+    cursor: grabbing;
+    cursor: -moz-grabbing;
+    cursor: -webkit-grabbing;
+} */
 
 #boxA {
     background: #0f0;
@@ -51,4 +62,7 @@
     float: left;
     width: 400px;
     height: 400px;
+    cursor: grabbing;
+    cursor: -moz-grabbing;
+    cursor: -webkit-grabbing;
 }

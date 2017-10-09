@@ -8,19 +8,30 @@ function dragStart(ev) {
     let unique_value = `${ev.target.id}001`;
     ev.target.setAttribute(unique_name, unique_value);
     ev.dataTransfer.effectAllowed = 'move';
-    ev.dataTransfer.setData("Text", ev.target.getAttribute('id'));
-    // id ??? 
+    // https://developer.mozilla.org/en-US/docs/Web/API/DataTransfer#effectAllowed.28.29
+    // copy, move ,link ,copyLink, copyMove, linkMove, all, none, or uninitialized.
+    ev.dataTransfer.setData("xtext", ev.target.getAttribute('id'));
+    // id ??? xtext
     // ev.dataTransfer.setDragImage(ev.target, 100, 100);
     // console.log(`\n \n`);
     return true;
 }
+
+
+
+function dragEnd(ev) {
+    console.log(`dragEnd = `, ev.target.id);
+    // dragEnd = boxA
+    return true;
+}
+
 
 function dragDrop(ev) {
     console.log(`%c dragDrop .............................`, `color: red`);
     const id = ev.target.id || undefined;
     // console.log(`ev.target.id = \n`, ev.target.id);
     // idBox
-    let data = ev.dataTransfer.getData("Text");
+    let data = ev.dataTransfer.getData("xtext");
     console.log(`data / id = `, data);
     let unique_name = `data-${ev.target.id}`;
     let low_unique_name = unique_name.substr(5).toLowerCase();

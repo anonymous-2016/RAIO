@@ -55,3 +55,97 @@ https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/Comm
 https://developer.mozilla.org/zh-CN/docs/Web/Guide/HTML/Using_data_attributes
 
 
+
+
+https://caniuse.com/#search=draganddrop
+
+https://html.spec.whatwg.org/multipage/dnd.html#dnd
+
+https://developer.mozilla.org/en-US/docs/Web/API/HTML_Drag_and_Drop_API/Recommended_drag_types
+https://developer.mozilla.org/en-US/docs/Web/API/HTML_Drag_and_Drop_API/Multiple_items
+https://developer.mozilla.org/en-US/docs/Web/API/HTML_Drag_and_Drop_API/Drag_operations
+
+https://developer.mozilla.org/zh-CN/docs/Web/API/DataTransfer#document-main
+https://developer.mozilla.org/zh-CN/docs/Web/API/HTML_Drag_and_Drop_API
+
+https://www.sitepoint.com/html5-native-drag-and-drop-api/
+
+https://www.w3schools.com/html/html5_draganddrop.asp
+
+https://www.w3.org/TR/html5/dom.html#dom-dataset
+
+
+https://www.npmjs.com/package/ng2-drag-drop
+https://www.npmjs.com/package/drag-drop-polyfill
+
+https://yq.aliyun.com/articles/31547
+
+https://yq.aliyun.com/articles/55930
+https://yq.aliyun.com/articles/49932
+https://yq.aliyun.com/articles/50531
+
+http://www.cnblogs.com/fsjohnhuang/p/3961066.html?#t3
+http://www.cnblogs.com/fsjohnhuang/p/3961066.html#t12
+
+https://github.com/fsjohnhuang/DnD-polyfill/blob/master/sample/sample3/
+
+http://www.ietester.cn/
+
+
+
+http://www.w3school.com.cn/html5/html_5_draganddrop.asp
+http://www.cnblogs.com/wpfpizicai/archive/2012/04/07/2436454.html
+http://www.kankanews.com/ICkengine/archives/82862.shtml
+http://jingyan.baidu.com/article/6dad5075cf6e62a123e36e11.html
+http://www.zhangxinxu.com/wordpress/2011/02/html5-drag-drop-%E6%8B%96%E6%8B%BD%E4%B8%8E%E6%8B%96%E6%94%BE%E7%AE%80%E4%BB%8B/
+http://my.oschina.net/caixw/blog/102845
+http://www.cnblogs.com/birdshome/archive/2006/07/22/Drag_Drop.html
+《HTML5实战》第11章、HTML5中元素的拖放
+《HTML5用户指南》第8章、拖放
+http://msdn.microsoft.com/en-us/library/ff974353(v=vs.85).aspx
+《HTML5与CSS3权威指南》4.5.拖放
+《论道HTML5》3.3.Drag & Drop API
+
+
+http://www.zhangxinxu.com/wordpress/2011/02/html5-drag-drop-%E6%8B%96%E6%8B%BD%E4%B8%8E%E6%8B%96%E6%94%BE%E7%AE%80%E4%BB%8B/
+
+http://www.zhangxinxu.com/wordpress/2016/11/html5-drag-drop-module-insert-sort-delete-demo/
+
+https://pagead2.googlesyndication.com/pagead/show_ads.js
+
+
+
+
+https://www.sitepoint.com/html5-native-drag-and-drop-api/
+
+
+
+
+https://www.ng-book.com/
+https://www.ng-book.com/2/
+
+
+
+相关重点
+DataTransfer 对象：退拽对象用来传递的媒介，使用一般为Event.dataTransfer。
+draggable 属性：就是标签元素要设置draggable=true，否则不会有效果，例如：
+<div title="拖拽我" draggable="true">列表1</div>
+ondragstart 事件：当拖拽元素开始被拖拽的时候触发的事件，此事件作用在被拖曳元素上
+ondragenter 事件：当拖曳元素进入目标元素的时候触发的事件，此事件作用在目标元素上
+ondragover 事件：拖拽元素在目标元素上移动的时候触发的事件，此事件作用在目标元素上
+ondrop 事件：被拖拽的元素在目标元素上同时鼠标放开触发的事件，此事件作用在目标元素上
+ondragend 事件：当拖拽完成后触发的事件，此事件作用在被拖曳元素上
+Event.preventDefault() 方法：阻止默认的些事件方法等执行。在ondragover中一定要执行preventDefault()，否则ondrop事件不会被触发。另外，如果是从其他应用软件或是文件中拖东西进来，尤其是图片的时候，默认的动作是显示这个图片或是相关信息，并不是真的执行drop。此时需要用用document的ondragover事件把它直接干掉。
+Event.effectAllowed 属性：就是拖拽的效果。
+
+
+https://bestvpn.org/whats-my-ip/litmus#html5-web-applications
+
+http://www.zhangxinxu.com/wordpress/2011/02/html5-drag-drop-拖拽与拖放简介/
+
+
+dragleave 
+
+view-source:http://www.zhangxinxu.com/study/201102/html5-drag-and-drop.html
+
+
