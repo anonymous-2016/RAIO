@@ -4,6 +4,7 @@
     background: blue;
     display: inline-block;
     /* margin-right: 10px;*/
+    float: left;
 }
 
 #boxA {
@@ -12,6 +13,16 @@
 
 #boxB {
     background: #f0f;
+    margin-right: 0px;
+}
+
+#boxC {
+    background: #1C04F1;
+    margin-right: 0px;
+}
+
+#boxD {
+    background: rgb(43, 255, 0);
     margin-right: 0px;
 }
 
@@ -38,4 +49,6 @@
     background: #ccc;
     margin: 0;
     float: left;
+    width: 400px;
+    height: 400px;
 }

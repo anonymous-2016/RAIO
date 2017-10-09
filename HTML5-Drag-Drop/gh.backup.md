@@ -146,4 +146,6 @@ dashTocamelCase(str1);
 let str2 = `index-number-name`;
 dashTocamelCase(str2, true);
 // "indexNumberName"
+
+
 ```

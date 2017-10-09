@@ -45,9 +45,13 @@ http://users.cs.cf.ac.uk/Dave.Marshall/Internet/node122.html
 
 
 
+http://www.imooc.com/course/list?c=javascript&page=4
 
+http://www.imooc.com/learn/820
 
+http://www.imooc.com/learn/21
 
-
+https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/Comma_Operator#document-main
+https://developer.mozilla.org/zh-CN/docs/Web/Guide/HTML/Using_data_attributes
 
 

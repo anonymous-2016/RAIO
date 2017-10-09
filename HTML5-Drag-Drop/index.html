@@ -13,17 +13,25 @@
     <div>
         <section>
             <!-- placeholder -->
+            <!-- flex-layout -->
         </section>
-        <section class="section">
-            <div class="section drop-box" id="idBox" ondragenter="return dragEnter(event)" ondrop="return dragDrop(event)" ondragover="return dragOver(event)">
+        <section class="">
+            <div class="drop-box" id="idBox" ondragenter="return dragEnter(event)" ondrop="return dragDrop(event)" ondragover="return dragOver(event)">
             </div>
         </section>
-        <section class="section" id="section" ondragenter="return dragEnter(event)" ondrop="return dragDrop(event)" ondragover="return dragOver(event)">
+        <!-- ondragenter="return dragEnter(event)" ondrop="return dragDrop(event)" -->
+        <section class="section" id="section" ondragover="return dragOver(event)">
             <div class="drag" id="boxA" draggable="true" ondragstart="return dragStart(event)">
                 boxA
             </div>
             <div class="drag" id="boxB" draggable="true" ondragstart="return dragStart(event)">
                 boxB
+            </div>
+            <div class="drag" id="boxC" draggable="true" ondragstart="return dragStart(event)">
+                boxC
+            </div>
+            <div class="drag" id="boxD" draggable="true" ondragstart="return dragStart(event)">
+                boxD
             </div>
         </section>
     </div>
