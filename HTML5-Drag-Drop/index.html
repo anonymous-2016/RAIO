@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>HTML5 drag & drop</title>
+    <link rel="stylesheet" href="./index.css">
+</head>
+
+<body>
+    <div>
+        <section>
+            <!-- placeholder -->
+        </section>
+        <section class="section">
+            <div class="section drop-box" id="idBox" ondragenter="return dragEnter(event)" ondrop="return dragDrop(event)" ondragover="return dragOver(event)">
+            </div>
+        </section>
+        <section class="section" id="section" ondragenter="return dragEnter(event)" ondrop="return dragDrop(event)" ondragover="return dragOver(event)">
+            <div class="drag" id="boxA" draggable="true" ondragstart="return dragStart(event)">
+                boxA
+            </div>
+            <div class="drag" id="boxB" draggable="true" ondragstart="return dragStart(event)">
+                boxB
+            </div>
+        </section>
+    </div>
+    <script src="./index.js"></script>
+</body>
+
+</html>

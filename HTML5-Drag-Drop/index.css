@@ -1,0 +1,41 @@
+.drag {
+    width: 100px;
+    height: 100px;
+    background: blue;
+    display: inline-block;
+    /* margin-right: 10px;*/
+}
+
+#boxA {
+    background: #0f0;
+}
+
+#boxB {
+    background: #f0f;
+    margin-right: 0px;
+}
+
+#big {
+    box-sizing: border-box;
+    width: 220px;
+    height: 220px;
+    background: #ccc;
+    margin: 10px auto;
+    padding: 5px;
+    float: left;
+}
+
+.section {
+    box-sizing: border-box;
+    width: 200px;
+    height: 200px;
+    background: #737;
+    margin: 5px auto;
+    float: left;
+}
+
+.drop-box {
+    background: #ccc;
+    margin: 0;
+    float: left;
+}
