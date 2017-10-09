@@ -46,6 +46,21 @@ function dragOver(e) {
 }
 
 
+// ondragexit="dragExit(event)"
+function dragExit(e) {
+    console.log(`dragExit = `, e.target.id);
+    event.preventDefault();
+    return true;
+}
+
+// ondrag="drag(event)"
+function drag(e) {
+    console.log(`drag = `, e.target.id);
+    event.preventDefault();
+    return true;
+}
+
+
 function dragDrop(e) {
     // console.log(`%c dragDrop .............................`, `color: red`);
     const id = e.target.id || undefined;

@@ -16,7 +16,29 @@
             <div id="ajax-error-message" class="ajax-error-message flash flash-error visible">
                 <img src="./warning-svg.svg" alt="warning-svg">
             </div>
-            <!-- flex-layout -->
+        </section>
+        <!-- flex-layout -->
+        <section class="flex-contanier">
+            <div class="flex-item">
+                <span>flex-layout 1</span>
+            </div>
+            <div class="flex-item">
+                <span>flex-layout 2</span>
+            </div>
+            <div class="flex-item">
+                <span>flex-layout 3</span>
+            </div>
+        </section>
+        <section class="flex-contanier">
+            <div class="flex-item flex-item3">
+                <span>flex-layout 4</span>
+            </div>
+            <div class="flex-item flex-item2">
+                <span>flex-layout 5</span>
+            </div>
+            <div class="flex-item">
+                <span>flex-layout 6</span>
+            </div>
         </section>
         <section class="">
             <div class="drop-box" id="idBox" ondragenter="dragEnter(event)" ondragover="dragOver(event)" ondrop="dragDrop(event)">
@@ -24,7 +46,7 @@
         </section>
         <!-- ondragenter="return dragEnter(event)" ondrop="return dragDrop(event)" -->
         <section class="section" id="section">
-            <div class="drag" id="boxA" draggable="true" ondragstart="dragStart(event)" ondragover="dragOver(event)" ondragleave="dragLeave(event)" ondragend="dragEnd(event)">
+            <div class="drag" id="boxA" draggable="true" ondragstart="dragStart(event)" ondragover="dragOver(event)" ondragleave="dragLeave(event)" ondragend="dragEnd(event)" ondragexit="dragExit(event)" ondrag="drag(event)">
                 boxA
             </div>
             <div class="drag" id="boxB" draggable="true" ondragstart="dragStart(event)">

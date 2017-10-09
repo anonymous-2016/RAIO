@@ -148,6 +148,19 @@ ondragover 事件：拖拽元素在被拖曳元素/目标元素上移动的时�
 ondrop 事件：被拖拽的元素在目标元素上同时鼠标放开触发的事件，此事件作用在目标元素上
 
 
+ondragexit & ondrag
+
+ondragexit 事件：
+
+The dragexit event is fired when an element is no longer the drag operation's immediate selection target.
+Fired when an element is no longer the drag operation's immediate selection target.
+
+ondrag 事件：
+
+Fired when an element or text selection is being dragged.
+The drag event is fired when an element or text selection is being dragged (every few hundred milliseconds).
+
+
 
 Event.preventDefault() 方法：阻止默认的些事件方法等执行。
 在ondragover中一定要执行preventDefault()，否则ondrop事件不会被触发。
@@ -173,12 +186,35 @@ view-source:http://www.zhangxinxu.com/study/201102/html5-drag-and-drop.html
     <path fill-rule="evenodd" d="M8.865 1.52c-.18-.31-.51-.5-.87-.5s-.69.19-.87.5L.275 13.5c-.18.31-.18.69 0 1 .19.31.52.5.87.5h13.7c.36 0 .69-.19.86-.5.17-.31.18-.69.01-1L8.865 1.52zM8.995 13h-2v-2h2v2zm0-3h-2V6h2v4z"></path>
 </svg>
 
+
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 16 16" aria-hidden="true" class="octicon octicon-alert" height="16"  width="16" fill="#f00">
     <path fill-rule="evenodd" d="M8.865 1.52c-.18-.31-.51-.5-.87-.5s-.69.19-.87.5L.275 13.5c-.18.31-.18.69 0 1 .19.31.52.5.87.5h13.7c.36 0 .69-.19.86-.5.17-.31.18-.69.01-1L8.865 1.52zM8.995 13h-2v-2h2v2zm0-3h-2V6h2v4z"></path>
 </svg>
 
 ```
 
-
 You can't perform that action at this time.
+
+https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/opacity
+
+
+https://developer.mozilla.org/en-US/docs/Web/CSS/flex
+
+
+
+
+ondragexit & ondrag
+
+https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers/ondragexit
+https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers/ondrag
+
+
+
+https://developer.mozilla.org/en-US/docs/Web/API/HTML_Drag_and_Drop_API#Drag_Events
+
+https://developer.mozilla.org/zh-CN/docs/Web/API/DataTransfer#document-main
+
+
+
+https://developer.mozilla.org/zh-CN/docs/Web/API/DataTransfer#Properties
 
