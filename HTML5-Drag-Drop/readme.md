@@ -544,4 +544,21 @@ https://app.pluralsight.com/player?course=html5-fundamentals&author=craig-shoema
 https://app.pluralsight.com/player?course=practical-html5&author=gill-cleeren&name=practical-html5-m1-skeleton&clip=3&mode=live
 
 
+https://code.jquery.com/jquery-3.2.1.slim.min.js
+
+```css
+
+    .module-placeholder:empty::before {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        -ms-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+        color: #aaa;
+        content: '从左侧拖模块放这里';
+        font-size: 20px;
+    }
+
+```
+
 

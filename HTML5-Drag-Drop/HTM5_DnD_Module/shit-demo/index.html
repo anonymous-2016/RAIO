@@ -146,7 +146,7 @@
 
 <body>
     <div id="main">
-        <h1>基于HTML5 drag/drop的模块拖动排序和删除实例页面</h1>
+        <h1>HTML5 drag/drop 模块拖动 排序和删除</h1>
         <div id="body" class="light">
             <div id="content" class="show">
 
@@ -155,17 +155,14 @@
                     <!-- 演示区域 -->
                     <div class="container">
                         <ul id="module" class="module-ul">
-                            <li class="module-li" draggable="true" data-url="http://image.zhangxinxu.com/image/study/s/s512/mm1.jpg">
-                                <img class="module-img" src="http://image.zhangxinxu.com/image/study/s/s128/mm1.jpg" height="96" alt="模块占位图1">
+                            <li class="module-li" draggable="true" data-url="./img/a.png">
+                                <img class="module-img" src="./img/a.png" height="70" alt="模块占位图1">
                             </li>
-                            <li class="module-li" draggable="true" data-url="http://image.zhangxinxu.com/image/study/s/s512/mm2.jpg">
-                                <img class="module-img" src="http://image.zhangxinxu.com/image/study/s/s128/mm2.jpg" height="128" alt="模块占位图2">
+                            <li class="module-li" draggable="true" data-url="./img/b.png">
+                                <img class="module-img" src="./img/b.png" height="70" alt="模块占位图3">
                             </li>
-                            <li class="module-li" draggable="true" data-url="http://image.zhangxinxu.com/image/study/s/s512/mm3.jpg">
-                                <img class="module-img" src="http://image.zhangxinxu.com/image/study/s/s128/mm3.jpg" height="96" alt="模块占位图3">
-                            </li>
-                            <li class="module-li" draggable="true" data-url="http://image.zhangxinxu.com/image/study/s/s512/mm4.jpg">
-                                <img class="module-img" src="http://image.zhangxinxu.com/image/study/s/s128/mm4.jpg" height="86" alt="模块占位图4">
+                            <li class="module-li" draggable="true" data-url="./img/c.png">
+                                <img class="module-img" src="./img/c.png" height="70" alt="模块占位图4">
                             </li>
                         </ul>
                         <div id="moduleRemove" class="module-remove"><span class="module-remove-icon">×</span></div>
@@ -183,7 +180,7 @@
     </div>
 
     <!-- <script src="http://libs.baidu.com/jquery/1.9.0/jquery.min.js"></script> -->
-    <script src="http://10.1.64.125/stock/f9/sulan/js/jquery1.4.0.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
     <script>
         var moduleDrag = (function() {
             // 模块操作类名，标记用
@@ -192,7 +189,6 @@
             var CL_DRAGENTER = 'dragenter';
             var CL_DRAGOVER = 'dragover';
             var CL_DRAGSTART = 'dragstart';
-
             return {
                 el: {},
                 store: {},
@@ -239,7 +235,7 @@
                                 // 在本例子中，就是插入大图
                                 modlder.empty().hide();
                                 // 在占位符元素的前面插入模块
-                                self.insertModule('<img src="' + url + '" height="' + (elDrag.find('img').height() * 4) + '">', modlder, 'before');
+                                self.insertModule('<img src="' + url + '" height="' + (elDrag.find('img').height() * 2) + '">', modlder, 'before');
                             }
                             modlder.removeClass(CL_DRAGENTER);
 
@@ -308,7 +304,6 @@
                             event.preventDefault();
                         },
                         dragenter: function(event) {
-                            // 触发的节奏是： 歘  歘  歘
                             event.preventDefault();
                         },
                         // 模块间的拖来拖去
@@ -375,7 +370,7 @@
                     var htmlWrap = '<div id="' + id + '" class="' + CL_MODULE + ' module-drag" draggable="true">' +
                         html +
                         '</div>';
-
+                    // ??? 排序 上移/下移/删除 & 条件显(上移/下移/)
                     // 缓存颜色
                     var module = $(htmlWrap);
 
