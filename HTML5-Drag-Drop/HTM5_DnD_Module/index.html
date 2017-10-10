@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>HTML5 DnD Module</title>
+    <link rel="stylesheet" href="./index.css">
+</head>
+
+<body>
+    <header>
+        <!-- JSX -->
+    </header>
+    <section class="h5dnd-body" className="h5dnd-body" data-class="h5dnd-body">
+        <!-- classname -->
+        <div class="h5dnd-sidebar-container" data-class="h5dnd-sidebar-container">
+            <!-- map div -->
+            <!-- <pre>
+                data: [
+                    {
+                        id: `uid`,
+                        title: `string`,
+                        icon: `url`,
+                        api: `url`,//get
+                    },
+                    {
+                        id: `uid`,
+                        title: `string`,
+                        icon: `url`,
+                        api: `url`,//get
+                    }
+                ]
+            </pre> -->
+            <!-- ondragenter="return dragEnter(event)" ondrop="return dragDrop(event)" -->
+            <section class="section" id="section">
+                <div id="boxA" draggable="true" ondragstart="dragStart(event)" ondragover="dragOver(event)">
+                    <img src="./img/a.png" alt="boxA">
+                    <!-- bg -->
+                </div>
+                <div id="boxB" draggable="true" ondragstart="dragStart(event)">
+                    <img src="./img/b.png" alt="boxB">
+                </div>
+                <div id="boxC" draggable="true" ondragstart="dragStart(event)">
+                    <img src="./img/c.png" alt="boxC">
+                </div>
+                <!-- <div class="drag" id="boxD" draggable="true" ondragstart="dragStart(event)" ondragover="dragOver(event)" ondragleave="dragLeave(event)" ondragenter="dragEnter(event)" ondragend="dragEnd(event)">
+                    boxD
+                </div> -->
+            </section>
+        </div>
+        <div class="h5dnd-content-container" data-class="h5dnd-content-container" id="idBox" ondrop="dragDrop(event)" ondragover="dragOver(event)">
+            <!-- map module -->
+            <!--  <pre>
+                1. get ID
+                2. fetch Data
+                3. show image/module
+            </pre> -->
+        </div>
+    </section>
+    <footer></footer>
+    <script src="./h5-dnd.js"></script>
+</body>
+
+</html>

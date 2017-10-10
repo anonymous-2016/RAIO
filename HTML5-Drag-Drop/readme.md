@@ -383,3 +383,165 @@ babel-polyfill
     </li>
 ```
 
+http://www.jianshu.com/p/d46bc8cf3afa
+
+```css
+
+@media (min-width: 768px) {
+    .navbar-nav {
+        float:left;
+        margin: 0
+    }
+
+    .navbar-nav>li {
+        float: left
+    }
+}
+
+@media (min-width: 320px) and (max-width:767px) {
+    nav .menu-icon {
+        display:none
+    }
+
+    nav .navbar-collapse {
+        width: 100vw;
+        border: none
+    }
+
+    nav form .search-input,nav form .search-input:focus {
+        width: 100%
+    }
+
+    nav ul.nav.navbar-nav {
+        background: #fff
+    }
+
+    nav .navbar-nav {
+        margin: 0 -15px
+    }
+
+    nav .navbar-nav li {
+        border-bottom: 1px solid #f0f0f0
+    }
+
+    nav .navbar-nav li a {
+        text-align: center
+    }
+
+    nav .notification .dropdown-menu {
+        display: none
+    }
+}
+
+@media (min-width: 768px) and (max-width:1080px) {
+    nav .menu-text {
+        display:none
+    }
+
+    nav .navbar-nav li {
+        margin-right: 5px
+    }
+
+    nav form .search-input,nav form .search-input:focus {
+        width: 150px
+    }
+}
+
+@media (min-width: 1081px) and (max-width:1439px) {
+    nav .menu-icon {
+        display:none
+    }
+}
+
+@media (min-width: 1439px) {
+    nav .menu-icon {
+        margin-right:5px
+    }
+
+    nav form .search-input {
+        width: 240px
+    }
+
+    nav form .search-input:focus {
+        width: 320px
+    }
+}
+
+```
+
+https://regexper.com/#%2F(%5Bhtps%5D%3A%5C%2F%5C%2F%5Ba-zA-Z0-9%5C_%5C.%5D%2B%5C.xgqfrms%5C.xyz)%2Fig
+
+https://regexper.com/#%2F(%5Bhtps%5D%3A%5C%2F%5C%2F%5B%5Cw%5C.%5D%2B%5C.xgqfrms%5C.xyz)%2Fig
+
+```js
+
+/([htps]:\/\/[a-zA-Z0-9\_\.]+\.xgqfrms\.xyz)/ig;
+
+const reg = /([htps]:\/\/[\w\.]+\.xgqfrms\.xyz)/ig;
+
+reg.test(`https://track.xgqfrms.xyz/xyz`);
+// true
+reg.test(`http://track.xgqfrms.xyz/abc`);
+// false
+
+
+
+// ??? bug ???
+// 交替 true/false
+
+/([htps]*:\/\/[\w\.]+\.xgqfrms\.xyz)/ig
+
+// http://blog.csdn.net/changhuzhao/article/details/64922582
+// https://vilic.info/archives/531
+// <img draggable="false" class="emoji" alt="😉" src="https://s.w.org/images/core/emoji/2.3/svg/1f609.svg">
+// https://twitter.github.io/twemoji/
+// https://vane.life/
+// https://emi.life/
+// https://www.packtpub.com/application-development/typescript-design-patterns
+
+
+/*
+     原因在于正则表达式中的 g, 使得搜索过程后, 如果匹配成功, 则记录上一次的位置, 如果匹配不成功, 则会归零. 
+*/
+reg.lastIndex = 0; //归零搜索的位置
+
+// 可以更简单地直接将 g 去掉
+
+```
+
+
+http://lib.csdn.net/article/react/17863
+
+https://react-dnd.github.io/react-dnd/docs-tutorial.html
+
+https://www.npmjs.com/package/react-dnd
+
+https://react-dnd.github.io/react-dnd/examples-chessboard-tutorial-app.html
+
+https://react-dnd.github.io/react-dnd/docs-tutorial.html
+
+Drag and Drop 排序
+
+http://extjs.org.cn/index.php?q=node/153
+
+http://download.csdn.net/download/harry76/5544369
+
+http://www.zhangxinxu.com/wordpress/2016/11/html5-drag-drop-module-insert-sort-delete-demo/
+
+
+http://10.1.64.125/stock/f9/sulan/sulan.html
+
+file:///E:/github/projects/D2Designs/%E8%82%A1%E7%A5%A8/F9/%E5%8E%9F%E5%9E%8B%E6%BC%94%E7%A4%BA%E6%96%87%E4%BB%B6/F9%202.0(%E5%AE%8C%E6%95%B4%E7%89%88)/index.html
+
+
+
+
+
+https://app.pluralsight.com/library/courses/html5-fundamentals/table-of-contents
+
+https://app.pluralsight.com/player?course=html5-fundamentals&author=craig-shoemaker&name=25581aad-ae19-4afe-bd0a-6ca893bf54e4&clip=0&mode=live
+
+https://app.pluralsight.com/player?course=practical-html5&author=gill-cleeren&name=practical-html5-m1-skeleton&clip=3&mode=live
+
+
+
