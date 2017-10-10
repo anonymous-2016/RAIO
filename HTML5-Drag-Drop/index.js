@@ -1,6 +1,6 @@
 let idExist = false;
 
-function dragStart(e) {
+const dragStart = (e) => {
     console.log(`dragStart = `, e.target.id);
     // dragLeave = boxA
     // console.log(`%c dragStart ................................`, `color: #f0f`);
@@ -19,13 +19,13 @@ function dragStart(e) {
     return true;
 }
 
-function dragLeave(e) {
+const dragLeave = (e) => {
     console.log(`dragLeave = `, e.target.id);
     // dragLeave = boxA
     return true;
 }
 
-function dragEnd(e) {
+const dragEnd = (e) => {
     console.log(`dragEnd = `, e.target.id);
     // dragEnd = boxA
     console.log(`\n `);
@@ -33,36 +33,36 @@ function dragEnd(e) {
 }
 
 
-function dragEnter(e) {
+const dragEnter = (e) => {
     console.log(`dragEnter = `, e.target.id);
     event.preventDefault();
     return true;
 }
 
-function dragOver(e) {
+const dragOver = (e) => {
     console.log(`dragOver = `, e.target.id);
     event.preventDefault();
     return true;
 }
 
-
 // ondragexit="dragExit(event)"
-function dragExit(e) {
+const dragExit = (e) => {
     console.log(`dragExit = `, e.target.id);
     event.preventDefault();
     return true;
 }
 
 // ondrag="drag(event)"
-function drag(e) {
+const drag = (e) => {
+    console.log(`%c drag .............................`, `color: red`);
     console.log(`drag = `, e.target.id);
     event.preventDefault();
     return true;
 }
 
 
-function dragDrop(e) {
-    // console.log(`%c dragDrop .............................`, `color: red`);
+const dragDrop = (e) => {
+    console.log(`%c dragDrop .............................`, `color: red`);
     const id = e.target.id || undefined;
     // console.log(`e.target.id = `, e.target.id);
     console.log(`dragDrop = `, e.target.id);
@@ -119,7 +119,27 @@ function dragDrop(e) {
         // console.log(`data = \n`, data);
         // boxA
         let nid = data.toLowerCase();
-        e.target.insertAdjacentHTML(`beforeend`, `<div data-${nid}="${data}"><h3>${data}</h3>😃 🙌 🎉 Tada/Hooray!</div>`);
+        // e.target.insertAdjacentHTML(`beforeend`, `<div data-${nid}="${data}"><h3>${data}</h3>😃 🙌 🎉 Tada/Hooray!</div>`);
+        const url = `https://cdn.xgqfrms.xyz/json/xgqfrms.json?q=${data}`;
+        // firebase
+        fetch(url)
+        .then(res => res.json())
+        .then(
+            (json) => {
+                // console.log(`json datas = \n`, JSON.stringify(json, null, 4));
+                let nd = JSON.stringify(json.user, null, 4);
+                e.target.insertAdjacentHTML(
+                    `beforeend`,
+                    `<div data-${nid}="${data}" draggable="true" class="remove-able-div" ondragstart="dragStart(event)" ondragover="dragOver(event)" ondragleave="dragDelete(event)">
+                        <h3>${json.user.username}</h3>
+                        <img src="${json.user.avatar}" />
+                    </div>`
+                    // <img src="${json.courses.completed[0].badge}" />
+                );
+                // e.target.insertAdjacentHTML(`beforeend`,`<pre>${JSON.stringify(json, null, 4)}</pre>`);
+            }
+        )
+        .catch(err => console.log(`err`, err));
     }
     // console.log(`\n \n`);
     e.stopPropagation();
@@ -129,6 +149,25 @@ function dragDrop(e) {
 
 
 
+// ondragDelete
 
+const dragDelete = (e) => {
+    e.preventDefault();
+    console.log(`dragDelete = `, e.target.id);
+    // idBox
+    // dragLeave = boxA
+    // console.log(`%c dragStart ................................`, `color: #f0f`);
+    // console.log(`e.target.id = `, e.target.id);
+    // boxA
+    // let dielete_id = e.target.id;
+    let idBox = document.querySelector(`#idBox`);
+    let key = e.target.id.toLowerCase();
+    let removeDiv = idBox.querySelector(`div#key`);
+    return true;
+}
 
-
+/* const dragLeave = (e) => {
+    console.log(`dragLeave = `, e.target.id);
+    // dragLeave = boxA
+    return true;
+} */

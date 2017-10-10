@@ -1,6 +1,16 @@
 # HTML5
 
 
+http://2ality.com/2016/02/exponentiation-operator.html
+
+https://babeljs.io/repl/
+
+
+
+
+
+
+
 
 
 
@@ -217,4 +227,33 @@ https://developer.mozilla.org/zh-CN/docs/Web/API/DataTransfer#document-main
 
 
 https://developer.mozilla.org/zh-CN/docs/Web/API/DataTransfer#Properties
+
+
+
+
+
+# effectAllowed
+
+https://developer.mozilla.org/en-US/docs/Web/API/DataTransfer#effectAllowed.28.29
+
+https://developer.mozilla.org/en-US/docs/Web/API/DataTransfer/effectAllowed
+
+https://html.spec.whatwg.org/multipage/dnd.html#dom-datatransfer-effectallowed
+
+https://www.w3.org/TR/html5/dom.html#dom-dataset
+
+
+```js
+    e.dataTransfer.effectAllowed = 'move';
+    // default
+    // https://developer.mozilla.org/en-US/docs/Web/API/DataTransfer#effectAllowed.28.29
+    // copy, move ,link ,copyLink, copyMove, linkMove, all, none, or uninitialized.
+
+```
+
+
+
+
+
+
 

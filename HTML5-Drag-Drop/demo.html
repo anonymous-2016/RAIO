@@ -1,0 +1,100 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <style>
+        #div1,
+        #div2 {
+            float: left;
+            margin: 10px;
+            padding: 10px;
+            border: 1px solid black;
+        }
+        
+        #div1 {
+            width: 100px;
+            height: 35px;
+        }
+        
+        #div2 {
+            width: 200px;
+            height: 100px;
+        }
+    </style>
+    <script>
+        function dragOver(ev) {
+            ev.preventDefault();
+            // return true;
+        }
+
+        function dragStart(e) {
+            // move / copy
+            e.dataTransfer.effectAllowed = 'copy';
+            // https://html.spec.whatwg.org/multipage/dnd.html#dom-datatransfer-effectallowed
+            e.dataTransfer.setData("text", e.target.id);
+            // return true;
+        }
+
+        function drop(ev) {
+            ev.preventDefault();
+            var data = ev.dataTransfer.getData("text");
+            console.log(`data id`, data);
+            // let target = document.querySelector(`#div1`);
+            let target = document.getElementById(`div1`);
+            let imgs = target.querySelectorAll(`img`);
+            let isExist = false;
+            for (var i = 0; i < imgs.length; i++) {
+                if (imgs[i].id === data) {
+                    isExist = true;
+                    break;
+                }
+            }
+            if (!isExist) {
+                let nd = document.getElementById(data);
+                ev.target.appendChild(nd);
+            } else {
+                alert(`duplicate img!`);
+            }
+        }
+
+        function oldDrop(ev) {
+            ev.preventDefault();
+            // ev.dataTransfer.effectAllowed = 'copy';
+            var data = ev.dataTransfer.getData("text");
+            let nd = document.getElementById(data);
+            ev.target.appendChild(nd);
+            return false;
+        }
+        // dropDelete(event)
+        function dropDelete(e) {
+            e.preventDefault();
+            var data = e.dataTransfer.getData("text");
+            console.log(`e.target `, e.target);
+            console.log(`e.target.dataset `, e.target.dataset);
+            // ev.target.appendChild(document.getElementById(data));
+            let img = document.getElementById(data);
+            // append, must be a Element!
+            // appendChild, must be a node!
+            let div = document.createElement(`div`);
+            div.appendChild(img);
+            e.target.insertAdjacentHTML(`beforeend`, `<pre>delete img</pre>`);
+        }
+    </script>
+</head>
+
+<body>
+
+    <h2>Drag and Drop</h2>
+    <p>Drag the image back and forth between the two div elements.</p>
+
+    <div id="div1" ondrop="drop(event)" ondragover="dragOver(event)">
+        <img src="https://www.w3schools.com/html/img_w3slogo.gif" draggable="true" ondragstart="dragStart(event)" id="drag1" width="88" height="31">
+    </div>
+
+    <div id="div2" ondrop="dropDelete(event)" ondragover="dragOver(event)">
+        <img src="https://www.w3schools.com/html/img_w3slogo.gif" draggable="true" ondragstart="dragStart(event)" id="drag1" width="88" height="31">
+    </div>
+
+</body>
+
+</html>
