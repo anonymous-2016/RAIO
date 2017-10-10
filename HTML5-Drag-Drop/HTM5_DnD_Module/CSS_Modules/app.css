@@ -1,0 +1,9 @@
+@charset "UTF-8";
+
+/* import CSS modules */
+
+@import url('./head.css');
+
+/* @import url('./body.css'); */
+
+@import url('./foot.css');

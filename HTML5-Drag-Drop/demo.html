@@ -27,6 +27,11 @@
             // return true;
         }
 
+        function disableDragOver(ev) {
+            // ev.preventDefault();
+            // return false;
+        }
+
         function dragStart(e) {
             // move / copy
             e.dataTransfer.effectAllowed = 'copy';
@@ -92,7 +97,7 @@
     </div>
 
     <div id="div2" ondrop="dropDelete(event)" ondragover="dragOver(event)">
-        <img src="https://www.w3schools.com/html/img_w3slogo.gif" draggable="true" ondragstart="dragStart(event)" id="drag1" width="88" height="31">
+        <img src="https://www.w3schools.com/html/img_w3slogo.gif" draggable="true" ondragstart="dragStart(event)" id="drag1" width="88" height="31" ondragover="disableDragOver(event)">
     </div>
 
 </body>
