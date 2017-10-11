@@ -1,0 +1,26 @@
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>jquery模拟鼠标点击事件-示例</title>
+    <script src="http://127.0.0.1:8080/js/jquery.min.js" type="text/javascript"></script>
+</head>
+
+<body>
+    <script type="text/javascript">
+        $(function() {
+            $("#a").click(function() {
+                alert('当前鼠标点击对象的 id 值为：' + $(this).attr('id'));
+            });
+            $("#b").click(function() {
+                $("#a").trigger("click"); //模拟执行id=a的事件
+                // clearButton.click();
+                // $("#a").click();
+            });
+        });
+    </script>
+</body>
+<div id="a" style="width:300px; height:200px; background-color:#999;">a</div>
+<div id="b" style="width:300px; height:200px; background-color:#999; margin:30px 30px;">b</div>
+
+</html>
