@@ -561,4 +561,72 @@ https://code.jquery.com/jquery-3.2.1.slim.min.js
 
 ```
 
+# PY
+
+> "sjgn" ==== 涉及概念
+
+```json
+
+涉及概念 证金持股,互联网金融概念,参股金融,职业教育, 在线教育,沪港通概念, 融资融券 主营业务 有色金属大宗贸易,电子枪彩件,黑白件的生产,销售,模具,导光板的生产,销售 52周波动率 日均成交量(3个月) 总市值 净资产 总股本 流通股本 股息率 机构家数 前十大机构持有 分析师关注度 目标价格 综合评级
+
+{
+    "sjgn": "互联网金融:蚂蚁金服概念:阿里概念:转融券标的:证金持股:区块链:电商概念:MSCI概念:互联网+:电子信息:融资融券:人工智能:沪港通",
+    "zyyw": "计算机软件的技术开发、咨询、服务、成果转让；计算机系统集成；自动化控制工程设计、承包、安装；计算机及配件的销售；电子设备、通讯设备、计算机硬件及外部设备的生产、销售；自有房屋的租赁；本企业自产产品及技术的出口业务：经营本企业生产、科研所需的原辅材料、机械设备、仪器仪表、零配件及技术的进口业务（国家限定公司经营和国家禁止进出口的商品及技术除外）；经营进料加工和“三来一补”业务。经政府有关部门批准并办理工商登记手续，公司可另开设业务发展所需的投资与经营项目，扩大经营范围。",
+    "bdl": "47.80",
+    "cjl": "2091.80",
+    "jzc": "444031.89",
+    "zgb": "61780.52",
+    "ltgb": "61780.52",
+    "gxl": "0.00",
+    "cgzb": "25.90",
+    "mbjg": "63.19",
+    "zhpj": "维持"
+}
+
+```
+
+
+https://jquery.com/upgrade-guide/
+https://jquery.com/upgrade-guide/1.9/
+https://jquery.com/upgrade-guide/3.0/
+https://jquery.com/upgrade-guide/3.0/#browser-support
+
+https://github.com/jquery/jquery-migrate/#README
+https://github.com/jquery/jquery-migrate/tree/1.x-stable/#README
+
+
+https://developer.microsoft.com/en-us/microsoft-edge/
+https://developer.microsoft.com/en-us/microsoft-edge/tools/staticscan/
+
+https://developer.microsoft.com/en-us/microsoft-edge/tools/vms/
+https://az792536.vo.msecnd.net/vms/release_notes_license_terms_8_1_15.pdf
+
+> These virtual machines expire after 90 days. 
+
+> The password to your VM is "Passw0rd!"
+
+https://theunarchiver.com/
+http://www.oldversion.com/
+
+
+https://www.syncfusion.com/resources/techportal/ebooks/jquery
+
+
+https://stackoverflow.com/questions/10581506/how-to-run-linux-shell-script-on-windows-environment
+http://www.colinux.org/
+
+https://www.cygwin.com/setup-x86_64.exe
+
+
+C:\Users\xiagq\Downloads\html5-fundamentals
+
+
+
+
+
+
+
+
+
+
 
