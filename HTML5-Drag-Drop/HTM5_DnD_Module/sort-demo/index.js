@@ -17,10 +17,8 @@ var moduleDrag = (function() {
                 stage = el.stage;
             // 拖拽模块
             var modlder = el.modlder;
-
             var lis = module.find('li'),
                 elDrag = null;
-
             // 左侧拖拽
             module.delegate('li', {
                 dragstart: function(event) {
@@ -54,31 +52,26 @@ var moduleDrag = (function() {
                         self.insertModule('<img src="' + url + '" height="' + (elDrag.find('img').height() * 2) + '">', modlder, 'before');
                     }
                     modlder.removeClass(CL_DRAGENTER);
-
                     event.preventDefault();
                 }
             });
 
             // 模块响应左侧的拖拽以及其他模块的拖拽
             var body = el.body;
-
             // 实时记录鼠标的位置，方便判断鼠标当前在鼠标的上半区还是下半区
             var pos = {};
             document.addEventListener("dragover", function(event) {
                 pos.y = event.pageY;
             }, false);
-
             body.delegate('.' + CL_MODULE, {
                 dragover: function(event) {
                     // 触发的节奏是：歘歘歘
                     var current = $(this);
                     // 1. 求得模块的水平中心位置
                     var centerY = current.offset().top + current.height() * 0.5;
-
                     if (typeof pos.y != 'number' || this == elDrag[0]) {
                         return;
                     }
-
                     if (!elDrag) {
                         return;
                     }
@@ -125,24 +118,20 @@ var moduleDrag = (function() {
                 // 模块间的拖来拖去
                 dragstart: function(event) {
                     elDrag = $(this).addClass(CL_DRAGSTART);
-
                     // 右侧删除
                     el.remove.addClass(CL_DRAGENTER);
-
                     event.originalEvent.dataTransfer.setData('text/plain', 'for firefox');
                 },
                 dragend: function(event) {
                     /*拖拽结束*/
                     $(this).removeClass(CL_DRAGSTART);
                     elDrag = null;
-
                     // 右侧删除
                     el.remove.removeClass(CL_DRAGENTER);
 
                     event.preventDefault();
                 }
             });
-
             // 拖动到删除元素时候
             el.remove.on({
                 dragenter: function() {
@@ -162,22 +151,18 @@ var moduleDrag = (function() {
                             // 删除该模块存储数据
                             delete self.store[id];
                         }
-
                         elDrag.remove();
 
                         if ($('.' + CL_MODULE).length == 0) {
                             modlder.show();
                         }
                     }
-
                     // 功成身退
                     $(this).removeClass(CL_DRAGENTER).removeClass(CL_DRAGOVER);
-
                     event.preventDefault();
                 }
             });
         },
-
         insertModule: function(html) {
             var self = this;
             // 创建随机id
@@ -189,7 +174,6 @@ var moduleDrag = (function() {
             // ??? 排序 上移/下移/删除 & 条件显(上移/下移/) 
             // 缓存颜色
             var module = $(htmlWrap);
-
             // 是否已经有过此模块
             var isModuled = false;
             $.each(self.store, function(id, obj) {
@@ -199,26 +183,20 @@ var moduleDrag = (function() {
                     return false;
                 }
             });
-
             if (isModuled && window.console) {
                 alert('此模块已经被选择');
                 return self;
             }
-
             // 存储
             self.store[id] = {
                 html: html
             };
-
             // 占位符前面插入内容
             self.el.modlder.before(module);
-
             return self;
         },
-
         init: function() {
             var self = this;
-
             // 一些元素
             self.el = $.extend(self.el, {
                 module: $('#module'),
@@ -227,10 +205,48 @@ var moduleDrag = (function() {
                 stage: $('#moduleStage'),
                 modlder: $('#modulePlaHd')
             });
-
             self.events();
         }
     };
 })();
 
 moduleDrag.init();
+
+
+
+// IIFE
+const json = ((debug = false) => {
+    let body, str = text = "", beforeend = "beforeend", objs = {};
+    body = document.querySelector(`body`);
+    str = body.innerText;
+    // array
+    let o = str.lastIndexOf("}"),
+        a = str.lastIndexOf("]");
+    if (o > a) {
+        str = str.substr(0, str.lastIndexOf("}")+1);
+    }else{
+        str = str.substr(0, str.lastIndexOf("]")+1);
+    }
+    html = body.innerHTML;
+    objs = JSON.parse(str);
+    if (debug) {
+        console.log(`body`, body);
+        console.log(`body.innerHTML`, html);
+        console.log(`body.innerText`, str);
+        console.log(`objs`, objs);
+    }
+    text = JSON.stringify(objs, null, 4);
+    body.innerHTML = "<div></div>";
+    body.firstChild.insertAdjacentHTML(beforeend, `<pre data-uid="string-to-json">${text}</pre>`);
+    copy(text);
+    return text;
+})();
+
+
+// str = document.querySelector(`body`).innerText;
+// objs = JSON.parse(str);
+
+
+
+
+
