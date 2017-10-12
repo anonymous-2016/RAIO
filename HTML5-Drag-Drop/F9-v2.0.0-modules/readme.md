@@ -190,12 +190,78 @@ const json = ((debug = false) => {
 
 > shit pingying
 
+news:新闻，bulletion:公告，research:研报，stockfast13：机构持股变动统计(机构投资者(主表明细数据))
+
+
 重要信息 important information
 
 http://10.1.5.202/webservice/fastview/stock/stockfast01/600570.SH
 
 
 http://10.1.5.202/webservice/fastview/stock/stockfast02/600570.SH
+
+
+
+"stockfast01";//重要信息
+"stockfast02";//近期中重要事项
+"stockfast03";//盈利预测
+"stockfast04";//每股指标
+"stockfast05";//机构评级
+"stockfast06";//股价/成交量
+"stockfast07";//前十大股东
+"stockfast08";//融资余额与融券余额差值走势
+"stockfast09";//近一月资金流向大单统计
+"stockfast10";//股权质押
+"stockfast11";//控股或参股公司
+"stockfast12";//高管持股变动情况(取10条)
+
+
+
+1366px
+
+1100
+
+266/2=133
+
+
+# 去除table每行之间的空白间隙
+
+https://www.w3schools.com/html/html_tables.asp
+https://www.w3schools.com/css/css_table.asp
+
+```css
+
+.fv-important-infos-table {
+    width: 100%;
+    display: block;
+    display: table;
+    /* 去除table每行之间的空白间隙 */
+    border-collapse: collapse;
+    /* border-collapse: 0; */
+    /* invalid property value */
+    border-spacing: 0;
+    /* https://www.w3schools.com/css/css_table.asp */
+    /*
+    border-spacing: 0 !important;
+    */
+    border-color: grey;
+}
+
+
+/* user agent stylesheet */
+
+table {
+    display: table;
+    border-collapse: separate;
+    border-spacing: 2px;
+    border-color: grey;
+}
+
+
+```
+
+
+
 
 
 
