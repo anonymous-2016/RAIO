@@ -328,7 +328,7 @@ ui.map(
     }
 );
 
-
+// 机构持股占比(%) cgzb
 
 ```
 
@@ -357,4 +357,77 @@ $ npm install highcharts --save
 
 
 ```
+
+# DD HTML5 & excel
+
+excel 2007
+
+https://developer.mozilla.org/en-US/docs/Web/API/Blob/Blob
+https://developer.mozilla.org/en-US/docs/Web/API/Blob
+
+
+https://stackoverflow.com/users/5934465/xgqfrms?tab=questions
+https://stackoverflow.com/users/5934465/xgqfrms?tab=answers
+
+
+```js
+
+// typedArray ???
+
+var blob = new Blob(tb, {type: 'application/vnd.ms-excel'}); 
+
+var aBlob = new Blob( array, options );
+
+var aFileParts = ['<a id="a"><b id="b">hey!</b></a>']; // an array consisting of a single DOMString
+var oMyBlob = new Blob(aFileParts, {type : 'text/html'}); // the blob
+
+
+var typedArray = GetTheTypedArraySomehow();
+var blob = new Blob([typedArray], {type: 'application/octet-binary'}); // pass a useful mime type here
+var url = URL.createObjectURL(blob);
+// url will be something like: blob:d3958f5c-0777-0845-9dcf-2cb28783acaf
+// now you can use the url in any context that regular URLs can be used in, for example img.src, etc.
+
+
+
+objectURL = URL.createObjectURL(object);
+
+
+
+
+
+
+application/octet-stream
+
+application/vnd.mspowerpoint, 
+
+application/xml,
+
+application/pdf
+
+.xls === Microsoft Excel application/vnd.ms-excel
+
+```
+
+https://developer.mozilla.org/zh-CN/docs/Web/API/Blob
+
+https://developer.mozilla.org/en-US/docs/Web/API/URL/createObjectURL
+
+https://developer.mozilla.org/zh-CN/docs/Web/API/Blob/type
+
+
+https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Basics_of_HTTP/MIME_types
+
+https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types
+
+https://developer.mozilla.org/en-US/docs/Web/API/MimeType
+
+
+# 完整的MIME类型列表
+
+
+https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Complete_list_of_MIME_types
+
+
+
 
