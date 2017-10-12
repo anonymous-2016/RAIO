@@ -1,7 +1,7 @@
 @charset "UFT-8";
 .fv-module-box {
     box-sizing: border-box;
-    border: 1px solid #d7dbe0;
+    /* border: 1px solid #d7dbe0; */
     display: block;
     /* display: flex; */
     min-width: 328px;

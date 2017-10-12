@@ -263,7 +263,98 @@ table {
 
 
 
+```js 
+
+// jsgn : 涉及概念
+
+{
+    "sjgn":"互联网金融:蚂蚁金服概念:阿里概念:转融券标的:证金持股:区块链:电商概念:MSCI概念:互联网+:电子信息:融资融券:人工智能:沪港通"
+    "涉及概念" : "互联网金融: 蚂蚁金服概念: 阿里概念: 转融券标的: 证金持股: 区块链: 电商概念: MSCI概念: 互联网+: 电子信息: 融资融券: 人工智能: 沪港通"
+}
+let arr = [
+    {
+        key: "涉及概念", 
+        value:"互联网金融: 蚂蚁金服概念: 阿里概念: 转融券标的: 证金持股: 区块链: 电商概念: MSCI概念: 互联网+: 电子信息: 融资融券: 人工智能: 沪港通"
+
+    },
+    {
+        key: "概念", value:"互联网金融: 蚂蚁金服概念: 阿里概念: 转融券标的: 证金持股: 区块链: 电商概念: MSCI概念: 互联网+: 电子信息: 融资融券: 人工智能: 沪港通"
+
+    }
+];
 
 
 
+{
+    "sjgn":{
+        key: "涉及概念", 
+        value:"互联网金融: 蚂蚁金服概念: 阿里概念: 转融券标的: 证金持股: 区块链: 电商概念: MSCI概念: 互联网+: 电子信息: 融资融券: 人工智能: 沪港通"
+    },
+    "gn":{
+        key: "概念",
+        value:"互联网金融: 蚂蚁金服概念: 阿里概念: 转融券标的: 证金持股: 区块链: 电商概念: MSCI概念: 互联网+: 电子信息: 融资融券: 人工智能: 沪港通"
+
+    }
+}
+
+
+// {"涉及概念":"sjgn","互联网金融":"hlwjr","蚂蚁金服概念":"ant"}
+
+
+
+
+let keys = arr.map(
+    obj => obj.key
+);
+
+// ["涉及概念", "概念"]
+
+// "sjgn": "涉及概念"
+// "bdl": "52周波动率"
+
+
+
+let ui = ["概念", "涉及概念"];
+let table = [];
+ui.map(
+    (k, i) => {
+        arr.map(
+            (obj) => {
+                if(k === obj.key){
+                    table.push(obj.value);
+                }
+            }
+        );
+    }
+);
+
+
+
+```
+
+
+
+https://www.highcharts.com/
+https://www.highcharts.com/download
+
+https://code.highcharts.com/
+
+https://www.highcharts.com/demo
+https://www.highcharts.com/stock/demo
+
+file:///C:/Users/xiagq/Downloads/Highcharts-6.0.1/index.htm
+
+https://www.highcharts.com/demo/column-stacked-percent
+
+
+
+
+```js
+
+<script src="https://code.highcharts.com/highcharts.src.js"></script>
+
+$ npm install highcharts --save
+
+
+```
 
