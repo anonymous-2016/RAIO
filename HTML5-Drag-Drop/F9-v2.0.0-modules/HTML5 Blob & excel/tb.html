@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>HTML5 Blob to Excel</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            border: 1px solid #0f0;
+            background-color: #ccc;
+            color: #0f0;
+        }
+        
+        tr {
+            border: 1px solid #0ff;
+            color: #f0f;
+        }
+        
+        td {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+
+<body>
+    <table class="table-test">
+        <tr>
+            <td>key</td>
+            <td>username</td>
+            <td>password</td>
+        </tr>
+        <tr>
+            <td>value1</td>
+            <td>Customer1</td>
+            <td>pwd@001</td>
+        </tr>
+        <tr>
+            <td>value2</td>
+            <td>Customer2</td>
+            <td>pwd@002</td>
+        </tr>
+        <tr>
+            <td>value3</td>
+            <td>Customer3</td>
+            <td>pwd@003</td>
+        </tr>
+        <tr>
+            <td>value4</td>
+            <td>Customer4</td>
+            <td>pwd@004</td>
+        </tr>
+    </table>
+    <!-- js no effect in Excel -->
+    <script>
+        let tds = document.querySelectorAll(`td`);
+        setTimeout(
+            () => {
+                tds.forEach(
+                    (td, index) => {
+                        td.style.fontSize = "23px";
+                    },
+                    this
+                );
+            },
+            3000
+        );
+    </script>
+</body>
+
+</html>

@@ -1,4 +1,4 @@
-// "use strict";
+"use strict";
 
 /* IIFE */
 (
@@ -8,32 +8,118 @@
 )();
 
 /**
+ * xgqfrms
  * 
- * @param {*} url 
+ * @param {* String} url 
+ * @param {* Array} tds 
+ * @param {* Array} ui_arr 
  */
 
-const importantInfos = (url) => {
+const importantInfos = (url=``, tds = [], ui_arr=[]) => {
     // important-infos
-    let tds = document.querySelectorAll('[data-value="data-fv-infos"]');
-    fetch()
-    .then()
-    .
-    for(let key in obj){
-        arr.push(key);
-    }
-    const ui_arr = ["sjgn", "zyyw", "bdl", "cjl", "jzc", "zgb", "ltgb", "gxl", "cgzb", "mbjg", "zhpj"];
-    for (let i = 0; i < tds.length; i++) {
-        var element = array[i];
-        tds[i].innerText = "xxxxxxxxxxx";
-        // 
-    }
+    let data = [];
+    fetch(
+        url,
+        /* {
+            method: 'GET',
+            mode: 'no-cors'
+        } */
+    )
+    .then(
+        (res) => {
+            console.log(`response json = \n`, res);
+            return res.json();
+        }
+    )
+    // .then(res => res.json())
+    // SyntaxError: Unexpected end of input
+    .then(
+        //shaped data 
+        (json) => {
+            // json
+            console.log(`json = \n`, json);
+            data = json;
+            // async
+            console.log(`data = \n`, data);
+            // copy(JSON.stringify(data, null, 4));
+            let arr = [];
+            // get Object keys
+            for(let key in data){
+                arr.push(key);
+            }
+            // shit api, can I trust you?
+            // arr === (11) ["sjgn", "zyyw", "bdl", "cjl", "jzc", "zgb", "ltgb", "gxl", "cgzb", "mbjg", "zhpj"]
+            // dead & hard code
+            // const ui_arr = ["sjgn", "zyyw", "bdl", "cjl", "jzc", "zgb", "ltgb", "gxl", "cgzb", "mbjg", "zhpj"];
+            for (let i = 0; i < tds.length; i++) {
+                let key = ui_arr[i];
+                let value = data[key];
+                tds[i].innerText = value;
+            }
+        }
+    )
+    .catch( error => console.log(`error = \n`, error));
+    // return null;
+    // return data;
 };
 
+
+// call fetch json datas
+setTimeout(() => {
+    // async & await
+    const url = `http://10.1.5.202/webservice/fastview/stock/stockfast01/600570.SH`;
+    let tds = document.querySelectorAll('[data-value="data-fv-infos"]');
+    const ui_arr = ["sjgn", "zyyw", "bdl", "cjl", "jzc", "zgb", "ltgb", "gxl", "cgzb", "mbjg", "zhpj"];
+    importantInfos(url, tds, ui_arr);
+}, 0);
+
+
+
+
 /* 
+
+No 'Access-Control-Allow-Origin' header is present on the requested resource. 
+Origin 'null' is therefore not allowed access. 
+If an opaque response serves your needs, set the request's mode to 'no-cors' to fetch the resource with CORS disabled.
+
+
+// https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch
+
+
+let corsHeaders = new Headers();
+const options = {
+    method: 'GET',// `POST`
+    headers: corsHeaders,
+    mode: 'no-cors',
+    cache: 'default'
+};
+
+fetch(
+    'flowers.jpg',
+    options
+).then(
+    function(response) {
+        return response.blob();
+    }
+).then(
+    function(myBlob) {
+        let objectURL = URL.createObjectURL(myBlob);
+        myImage.src = objectURL;
+        // `<img src="${objectURL}" />`
+    }
+);
 
 
 
 */
+
+
+
+
+
+
+/* 
+
 
 arr = [];
 
@@ -75,7 +161,7 @@ ui.map(
 );
 
 
-
+*/
 
 
 

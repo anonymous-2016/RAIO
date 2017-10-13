@@ -429,5 +429,142 @@ https://developer.mozilla.org/en-US/docs/Web/API/MimeType
 https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Complete_list_of_MIME_types
 
 
+https://www.sitepoint.com/mime-types-complete-list/
+
+
+
+# js no effect in Excel ???
+
+> how Java backend create Excel with & macros
+
+http://www.excel-easy.com/vba/create-a-macro.html
+
+> Create a Macro in Excel - EASY Excel VBA
+
+
+# create excel using js
+
+https://stackoverflow.com/questions/333537/how-to-generate-excel-through-javascript#
+
+https://stackoverflow.com/questions/17836273/export-javascript-data-to-csv-file-without-server-interaction/17836529#17836529
+
+https://github.com/stephenliberty/excel-builder.js
+
+https://github.com/jmaister/excellentexport
+https://github.com/jmaister/excellentexport/blob/master/dist/excellentexport.js
+
+http://jordiburgos.com/post/2014/excellentexport-javascript-export-to-excel-csv.html
+http://jordiburgos.com/post/2013/javascript-export-to-excel.html
+
+
+# Using the Excel Services JavaScript API to Work with Embedded Excel Workbooks
+
+
+https://msdn.microsoft.com/en-us/library/office/hh315812(v=office.14).aspx
+
+https://stackoverflow.com/questions/15567086/generate-excel-sheet-from-html-tables-using-jquery
+
+https://stackoverflow.com/questions/5401351/javascript-to-export-html-tables-to-excel?rq=1
+
+https://stackoverflow.com/questions/6517106/how-to-pass-html-table-values-to-excel-sheet-cells
+
+
+
+
+https://github.com/gildata/node-xlsx/blob/master/src/index.js
+
+
+
+
+http://downloadify.info/
+
+
+https://stackoverflow.com/questions/15567086/generate-excel-sheet-from-html-tables-using-jquery
+
+
+# window.btoa
+
+> he btoa() method encodes a string in base-64.
+
+https://www.w3schools.com/jsref/met_win_btoa.asp
+
+https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/btoa
+
+https://stackoverflow.com/questions/24304166/window-btoa-not-working-in-ie
+https://coderanch.com/t/630782/window-btoa-supported
+http://mdn.beonex.com/en/DOM/window.btoa.html
+
+
+```js
+var encodedData = window.btoa("Hello, world"); // encode a string
+var decodedData = window.atob(encodedData); // decode the string
+
+
+```
+
+
+```js
+
+var TableToExcel = (function () {
+    var uri = `data:application/vnd.ms-excel;base64,`,
+        template = `
+            <html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns="http://www.w3.org/TR/REC-html40">
+                <head>
+                <!--[if gte mso 9]>
+                    <xml>
+                        <x:ExcelWorkbook>
+                            <x:ExcelWorksheets>
+                                <x:ExcelWorksheet>
+                                    <x:Name>
+                                        {worksheet}
+                                    </x:Name>
+                                    <x:WorksheetOptions>
+                                        <x:DisplayGridlines/>
+                                    </x:WorksheetOptions>
+                                </x:ExcelWorksheet>
+                            </x:ExcelWorksheets>
+                        </x:ExcelWorkbook>
+                    </xml>
+                <![endif]-->
+                </head>
+                <body>
+                    <table cellspacing="0" rules="rows" border="1" style="color:Black;background-color:White;border-color:#CCCCCC;border-width:1px;border-style:None;width:100%;border-collapse:collapse;font-size:9pt;text-align:center;">
+                        {table}
+                    </table>
+                </body>
+            </html>
+        `,
+        base64 = function (s) {
+            return window.btoa(unescape(encodeURIComponent(s)))
+        },
+        format = function (s, c) {
+            return s.replace(/{(\w+)}/g, function (m, p) { return c[p]; })
+        };
+    return function (table, name) {
+        if (!table.nodeType){
+            table = document.getElementById(table);
+        }
+        var ctx = {
+            worksheet: name || 'Worksheet',
+            table: table.innerHTML
+        };
+        if (navigator.msSaveBlob) {
+            var blob = new Blob(
+                [format(template, ctx)],
+                {
+                    type: 'application/vnd.ms-excel',
+                    endings: 'native'
+                }
+            );
+            navigator.msSaveBlob(blob, 'export.xls')
+        } else {
+            window.location.href = uri + base64(format(template, ctx));
+        }
+    }
+})()
+
+```
+
+
 
 
