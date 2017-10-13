@@ -624,21 +624,41 @@ C:\Users\xiagq\Downloads\html5-fundamentals
 
 
 
+基金 F9 速览模块化:
+
+完成： 
+1. 组件模块化的设计
+2. 近期重要事项-模块
+3. 重要信息-模块
+4. 前端实现导出 excel 表格
+5. JSON 数据格式化处理 utils
+
+部分完成：
+1. HTML5 模块拖拽 & 模块排序
+2. Grid  响应式模块布局
+3. CSS 模块化 & 分离出公用样式 
+
+整体完成进度 30%
 
 
 
+# How to Install Bash on Windows 10
 
 
 
+https://www.howtogeek.com/249966/how-to-install-and-use-the-linux-bash-shell-on-windows-10/
+
+https://www.howtogeek.com/howto/41382/how-to-use-linux-commands-in-windows-with-cygwin/
 
 
+https://www.sysgeek.cn/enable-bash-on-ubuntu-on-windows/
+
+https://www.sysgeek.cn/tag/linux-shell/
+
+https://msdn.microsoft.com/en-us/commandline/wsl/about
 
 
-
-
-
-
-
+https://blogs.windows.com/buildingapps/2016/03/30/run-bash-on-ubuntu-on-windows/
 
 
 

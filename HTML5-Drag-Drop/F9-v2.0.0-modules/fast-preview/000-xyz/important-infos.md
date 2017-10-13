@@ -1,3 +1,8 @@
+# important-infos
+
+
+
+
 # CORS ???
 
 ```js
@@ -89,6 +94,53 @@ ui.map(
 
 */
 
+
+```
+
+
+
+```css
+
+
+/* tr:nth-child(even) === tr:nth-child(2n+1) & tr:nth-child(odd) === tr:nth-child(2n)*/
+
+
+/*
+
+.fv-important-infos-table-tbody>tr:nth-of-type(2n) {
+    background-color: #f5f5f5;
+}
+
+// reset color OR just after it
+
+.fv-important-infos-table-td-key {
+    background: #e8eefa;
+}
+
+
+??? all in one ???
+
+.fv-important-infos-table-tbody>tr:nth-of-type(2n+1)>td:last-child {
+    color: #0f0;
+}
+
+.fv-important-infos-table-tbody>tr:nth-of-type(2n+1)>td:nth-last-of-type(0) {
+    color: #0f0;
+}
+
+.fv-important-infos-table-tr>td:nth-last-of-type(0) {
+    color: #F306F3;
+}
+
+.fv-important-infos-table-td-value:nth-child(2n) {
+    background: #fff;
+}
+
+.fv-important-infos-table-td-value:nth-child(2n+1) {
+    background: #e9e9e9;
+}
+
+*/
 
 ```
 
