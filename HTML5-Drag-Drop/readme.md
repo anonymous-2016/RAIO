@@ -667,9 +667,12 @@ https://blogs.windows.com/buildingapps/2016/03/30/run-bash-on-ubuntu-on-windows/
 
 
 
+https://addons.mozilla.org/en-US/firefox/addon/firebug/?src=ss
+
+https://developer.mozilla.org/en-US/docs/Tools
 
 
 
-
+https://developer.mozilla.org/en-US/docs/Tools/Debugger
 
 
