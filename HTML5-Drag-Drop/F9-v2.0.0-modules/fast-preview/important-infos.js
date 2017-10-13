@@ -9,13 +9,14 @@
 
 /**
  * xgqfrms
- * 
+ * creadted 2017.10.12
  * @param {* String} url 
  * @param {* Array} tds 
  * @param {* Array} ui_arr 
+ * @param {Boolean} debug 
  */
 
-const importantInfos = (url=``, tds = [], ui_arr=[]) => {
+const importantInfos = (url = ``, tds = [], ui_arr = [], debug = false) => {
     // important-infos
     let data = [];
     fetch(
@@ -27,20 +28,26 @@ const importantInfos = (url=``, tds = [], ui_arr=[]) => {
     )
     .then(
         (res) => {
-            console.log(`response json = \n`, res);
+            if (debug) {
+                console.log(`response json = \n`, res);
+            }
             return res.json();
         }
     )
     // .then(res => res.json())
-    // SyntaxError: Unexpected end of input
+    // SyntaxError: Unexpected end of input ??? CORS
     .then(
         //shaped data 
         (json) => {
             // json
-            console.log(`json = \n`, json);
+            if (debug) {
+                console.log(`json = \n`, json);
+            }
             data = json;
             // async
-            console.log(`data = \n`, data);
+            if (debug) {
+                console.log(`data = \n`, data);
+            }
             // copy(JSON.stringify(data, null, 4));
             let arr = [];
             // get Object keys
@@ -58,7 +65,7 @@ const importantInfos = (url=``, tds = [], ui_arr=[]) => {
             }
         }
     )
-    .catch( error => console.log(`error = \n`, error));
+    .catch(error => console.log(`error = \n`, error));
     // return null;
     // return data;
 };
@@ -71,7 +78,12 @@ setTimeout(() => {
     let tds = document.querySelectorAll('[data-value="data-fv-infos"]');
     const ui_arr = ["sjgn", "zyyw", "bdl", "cjl", "jzc", "zgb", "ltgb", "gxl", "cgzb", "mbjg", "zhpj"];
     importantInfos(url, tds, ui_arr);
+    // const debug = true;
+    // importantInfos(url, tds, ui_arr, debug);
+    // importantInfos(url, tds, ui_arr, true);
 }, 0);
+
+
 
 
 
