@@ -1,0 +1,62 @@
+@charset "UTF-8";
+
+/* common.css & reset.css */
+
+html,
+body,
+header,
+header,
+footer,
+div,
+section {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+/* utils.css */
+
+.clearfix::after {
+    float: left;
+    content: "";
+    display: table;
+    visibility: hidden;
+    overflow: hidden;
+}
+
+.h5dnd-body {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+    height: 100vh;
+}
+
+.h5dnd-sidebar-container {
+    /* background: rgba(red, green, blue, alpha); */
+    /* background: rgba(2, 247, 75, 0.3); */
+    background: #ccc;
+    border: 1px solid #f00;
+    box-sizing: border-box;
+    display: -webkit-flex;
+    display: flex;
+    max-width: 200px;
+    min-width: 30px;
+    height: 100vh;
+    overflow-x: hidden;
+    float: left;
+}
+
+.h5dnd-content-container {
+    /* background: rgba(255, 123, 255, 0.3); */
+    background: #ccc;
+    border: 1px solid #f00;
+    box-sizing: border-box;
+    display: flex;
+    /* max-width: calc(100% - 30px); */
+    width: calc(100% - 200px);
+    height: 100vh;
+    /* min-width: calc(100% - 200px); */
+    float: left;
+}

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>HTML5 drag & drop</title>
+    <link rel="stylesheet" href="./index.css">
+</head>
+
+<body>
+    <div>
+        <section>
+            <!-- placeholder -->
+            <div id="ajax-error-message" class="ajax-error-message flash flash-error visible">
+                <img src="./warning-svg.svg" alt="warning-svg">
+            </div>
+        </section>
+        <!-- flex-layout -->
+        <section class="flex-contanier">
+            <div class="flex-item">
+                <span>flex-layout 1</span>
+            </div>
+            <div class="flex-item">
+                <span>flex-layout 2</span>
+            </div>
+            <div class="flex-item">
+                <span>flex-layout 3</span>
+            </div>
+        </section>
+        <section class="flex-contanier">
+            <div class="flex-item flex-item3">
+                <span>flex-layout 4</span>
+            </div>
+            <div class="flex-item flex-item2">
+                <span>flex-layout 5</span>
+            </div>
+            <div class="flex-item">
+                <span>flex-layout 6</span>
+            </div>
+        </section>
+        <section class="">
+            <div class="drop-box" id="idBox" ondrop="dragDrop(event)" ondragenter="dragEnter(event)" ondragover="dragOver(event)">
+                <!-- ondragenter="dragEnter(event)" ondragover="dragOver(event)"  -->
+            </div>
+        </section>
+        <!-- ondragenter="return dragEnter(event)" ondrop="return dragDrop(event)" -->
+        <section class="section" id="section">
+            <div class="drag" id="boxA" draggable="true" ondragstart="dragStart(event)" ondragover="dragOver(event)" ondragleave="dragLeave(event)" ondragend="dragEnd(event)" ondragexit="dragExit(event)" ondrag="drag(event)">
+                boxA
+            </div>
+            <div class="drag" id="boxB" draggable="true" ondragstart="dragStart(event)">
+                boxB
+            </div>
+            <div class="drag" id="boxC" draggable="true" ondragstart="dragStart(event)">
+                boxC
+            </div>
+            <div class="drag" id="boxD" draggable="true" ondragstart="dragStart(event)" ondragover="dragOver(event)" ondragleave="dragLeave(event)" ondragenter="dragEnter(event)" ondragend="dragEnd(event)">
+                boxD
+            </div>
+        </section>
+    </div>
+    <script src="./index.js"></script>
+</body>
+
+</html>

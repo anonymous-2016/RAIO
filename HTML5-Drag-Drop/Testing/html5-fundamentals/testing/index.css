@@ -1,0 +1,52 @@
+@charset "UTF-8";
+.over {
+    background-color: #5EF804;
+    cursor: move;
+}
+
+.dragstart {
+    background-color: #BF04F8;
+    cursor: move;
+}
+
+.sort-width {
+    /* width: 200px; */
+    /* background: #666; */
+    /* height: 100%; */
+    min-width: 250px;
+    min-height: 100px;
+    box-sizing: border-box;
+    border: 1px solid red;
+}
+
+.icons-width {
+    min-width: 100px;
+    min-height: 100px;
+    box-sizing: border-box;
+    border: 1px solid #f0f;
+}
+
+
+/* customize placeholder */
+
+
+/* :empty */
+
+
+/* 
+    :empty 
+    https://developer.mozilla.org/zh-CN/docs/Web/CSS/:empty 
+    :empty CSS 伪类 代表没有子元素的元素。
+    子元素只可以是元素节点或文本（包括空格），无论一个元素是否为 (empty 或 not), 注释或处理指令都不会产生影响。
+*/
+
+.module-placeholder:empty::before {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    color: #aaa;
+    content: '从左侧拖模块放这里';
+    font-size: 18px;
+}

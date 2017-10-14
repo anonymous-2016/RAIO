@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="description" content="HTML5 drag/drop 模块拖动 排序和删除" />
+    <meta name="keywords" content="web前端, css, jQuery, javascript" />
+    <meta name="author" content="xgqfrms" />
+    <title>HTML5 drag/drop 模块拖动 排序和删除</title>
+    <link rel="stylesheet" href="./index.css">
+</head>
+
+<body>
+    <div id="main">
+        <h1>HTML5 drag/drop 模块拖动 排序和删除</h1>
+        <div id="body" class="light">
+            <div id="content" class="show">
+                <div class="demo">
+                    <!-- 演示区域 -->
+                    <div class="container">
+                        <ul id="module" class="module-ul">
+                            <li class="module-li" draggable="true" data-url="./img/a.png">
+                                <img class="module-img" src="./img/a.png" height="70" alt="模块占位图1">
+                            </li>
+                            <li class="module-li" draggable="true" data-url="./img/b.png">
+                                <img class="module-img" src="./img/b.png" height="70" alt="模块占位图3">
+                            </li>
+                            <li class="module-li" draggable="true" data-url="./img/c.png">
+                                <img class="module-img" src="./img/c.png" height="70" alt="模块占位图4">
+                            </li>
+                        </ul>
+                        <div id="moduleRemove" class="module-remove"><span class="module-remove-icon">×</span></div>
+                        <div id="moduleBody" class="module-body">
+                            <div id="moduleStage" class="module-stage">
+                                <div id="modulePlaHd" class="module-placeholder"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 演示区域 结束 -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- <script src="https://code.jquery.com/jquery-1.9.0.min.js"></script> -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="./index.js"></script>
+</body>
+
+</html>

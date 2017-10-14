@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Bootstrap</title>
+    <link rel="stylesheet" href="http://127.0.0.1:8080/css/bootstrap.css">
+    <link rel="stylesheet" href="./index.css">
+</head>
+
+<body>
+    <div class="row">
+        <div class="col-sm-3">
+            <div id="content" class="push-down-top icons-width">
+                <img draggable="true" src="./a.png" class="thumbnail img-responsive " data-uid="uid-img" />
+                <img draggable="true" src="./b.png" class="thumbnail img-responsive " data-uid="uid-img" />
+            </div>
+        </div>
+        <div class="col-sm-9">
+            <a id="clear" href="#" class="btn btn-mini">Clear Drop Target</a>
+            <div class="row">
+                <!-- ::before -->
+                <!-- Bad: placeholder="Drop Here" -->
+                <!-- :empty CSS 伪类 代表没有子元素的元素。子元素只可以是元素节点或文本（包括空格） -->
+                <!-- "从左侧拖模块放这里" -->
+                <div id="target" class="col-sm-6 well push-down-top-sm sortable sort-width module-placeholder"></div>
+                <div id="target2" class="col-sm-6 well push-down-top-sm sortable sort-width">
+                    <h4>从左侧拖模块放这里</h4>
+                    <!-- "从左侧拖模块放这里" -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- js -->
+    <script src="http://127.0.0.1:8080/js/jquery.min.js" type="text/javascript"></script>
+    <script src="https://cdn.xgqfrms.xyz/jquery-ui/1.11.4/jquery-ui.min.js"></script>
+    <script src="http://127.0.0.1:8080/js/bootstrap.js" type="text/javascript"></script>
+    <script src="./index.js"></script>
+    <script>
+        $(function() {
+            $("#target").sortable();
+            $("#target2").sortable();
+        });
+    </script>
+</body>
+
+</html>

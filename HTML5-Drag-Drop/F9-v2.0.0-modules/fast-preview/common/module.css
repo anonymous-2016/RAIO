@@ -1,0 +1,15 @@
+@charset "UFT-8";
+.fv-module-box {
+    box-sizing: border-box;
+    /* border: 1px solid #d7dbe0; */
+    display: block;
+    /* display: flex; */
+    min-width: 328px;
+    width: 30%;
+    /* width: 100vw; */
+    min-height: 100px;
+    height: 100%;
+    /* position: absolute; */
+    /* margin-left: 50%; */
+    /* transform: translateX(-50%); */
+}
