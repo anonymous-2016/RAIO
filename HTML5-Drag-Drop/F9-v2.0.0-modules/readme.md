@@ -219,9 +219,9 @@ http://10.1.5.202/webservice/fastview/stock/stockfast02/600570.SH
 
 1366px
 
-1100
+1100px
 
-266/2=133
+266/2=133px
 
 
 # 去除table每行之间的空白间隙
@@ -564,6 +564,120 @@ var TableToExcel = (function () {
 })()
 
 ```
+
+
+
+
+
+## Object.prototype.hasOwnProperty ???
+
+
+```js
+
+let obj = { foo: "bar", baz: 42 },
+    keys = Object.keys(obj);
+copy(keys);
+// ["foo","baz"]
+
+typeof json
+// "string"
+
+let obj = JSON.parse(json),
+    keys = Object.keys(obj);
+copy(keys);
+
+
+```
+
+
+https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/keys
+
+https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/values
+
+https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/entries
+
+```js
+
+Object.keys("foo");
+// TypeError: "foo" is not an object (ES5 code)
+
+// ES2015
+Object.keys("foo");
+// ["0", "1", "2"]
+
+
+```
+
+
+##  `Object.keys`  & `Object.values`  & `Object.entries`
+
+> demos
+
+```js
+
+let obj = { foo: "bar", baz: 42 }, 
+    keys = Object.keys(obj);
+// CCAC: Chrome Console Auto Copy
+copy(keys); 
+// ["foo","baz"]
+
+
+let obj = { foo: "bar", baz: 42 }, 
+    values = Object.values(obj);
+// CCAC: Chrome Console Auto Copy
+copy(values); 
+// ["bar",42]
+
+
+let obj = { foo: "bar", baz: 42 }, 
+    entries = Object.entries(obj);
+// CCAC: Chrome Console Auto Copy
+copy(entries); 
+// [["foo", "bar"],["baz", 42]]
+
+```
+
+
+# getAllKeys
+
+```js
+
+let keys = arr.map(// Array
+    obj => obj.key
+);
+copy(keys);
+
+
+let obj = json,// Array like Object
+    arr = [];
+
+for(let key in obj){
+    arr.push(key);
+}
+copy(arr);
+
+// ["sjgn", "zyyw", "bdl", "cjl", "jzc", "zgb", "ltgb", "gxl", "cgzb", "mbjg", "zhpj"]
+
+// Object ??? 
+// typeof json === "string"
+let obj = json,
+    keys = Object.keys(obj);
+copy(keys);
+
+typeof json
+// "string"
+
+let obj = JSON.parse(json),// "string" to Object
+    keys = Object.keys(obj);
+copy(keys);
+
+
+
+```
+
+
+
+
 
 
 

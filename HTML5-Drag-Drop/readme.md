@@ -676,3 +676,34 @@ https://developer.mozilla.org/en-US/docs/Tools
 https://developer.mozilla.org/en-US/docs/Tools/Debugger
 
 
+
+
+## vscode settings
+
+https://github.com/gildata/RAIO/issues/190
+
+```js
+{
+    // When enabled, typing /** triggers documentation automatically.
+    "docthis.automaticForBlockComments": true,
+    // When enabled, type information is added to comment tags.
+    "docthis.includeTypes": true,
+    // When enabled, memberOf information is added to comment tags on class members.
+    "docthis.includeMemberOfOnClassMembers": true,
+    // When enabled, memberOf information is added to comment tags on interface members.
+    "docthis.includeMemberOfOnInterfaceMembers": true,
+    // When enabled, JSDoc comments for functions and methods will include @description.
+    "docthis.includeDescriptionTag": true,
+    // When enabled, hungarian notation will be used as a type hint.
+    "docthis.enableHungarianNotationEvaluation": true,
+    // When enabled, will use names of params & methods as type hints.
+    "docthis.inferTypesFromNames": true,
+    // When enabled, will add the @author tag.
+    "docthis.includeAuthorTag": true,
+    // When docthis.includeAuthorTag is enabled, will add @author tag with this value.
+    "docthis.authorName": "xgqfrms"//,
+}
+
+
+
+```
