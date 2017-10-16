@@ -42,7 +42,7 @@ const recentImportantEvents = (url = ``, td_id = `id`, debug = false) => {
             tr.classList.add(...tr_classes); 
             td.classList.add(...td_classes); 
             arr.map(
-                (obj, index) => {
+                (obj, i) => {
                     let date = arr[i].rq;
                     let description = `${arr[i].rq} ${arr[i].nr}`;
                     let more = `更多 >>`;
@@ -76,3 +76,24 @@ setTimeout(() => {
 
 
 
+/* 
+
+// id="fv-recent-important-tbody"
+
+// insertHTML with data
+
+<tr class="fv-recent-important-events-table-tr">
+    <td class="fv-recent-important-events-table-td-key">涉及概念</td>
+    <td class="fv-recent-important-events-table-td-value" data-value="data-fv-events">
+        <div class="css-data-loading" data-loading="pure-css-data-loading">
+            CSS Loading...
+        </div>
+    </td>
+    <td class="fv-recent-important-events-table-td-value" data-value="data-fv-events">
+        <div class="css-data-loading" data-loading="pure-css-data-loading">
+            CSS Loading...
+        </div>
+    </td>
+</tr>
+
+*/

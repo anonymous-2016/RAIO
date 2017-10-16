@@ -83,6 +83,54 @@ const keys = (() => {
 
 
 
+
+
+
+const getAllKeys = () => {
+    const getAllKeys = (arr_or_obj = {}, debug = false) => {
+        let any = (typeof arr_or_obj === "object") ? arr_or_obj : {};
+        let keys = [];
+        if (Array.isArray(any)) {
+            keys = Object.keys(any[0]);
+        }else{
+            keys = Object.keys(any);
+        }
+        if (debug) {
+            console.log(`arr_or_obj = `, arr_or_obj);
+            console.log(`any = `, any);
+            console.log(`keys = `, keys);
+        }
+        // CCAC: Chrome Console Auto Copy
+        copy(keys);
+        return keys;
+    };
+    let body = document.querySelector(`body`),
+        str = body.innerText;
+    let o = str.lastIndexOf("}"),
+        a = str.lastIndexOf("]");
+    if (o > a) {
+        str = str.substr(0, str.lastIndexOf("}")+1);
+    }else{
+        str = str.substr(0, str.lastIndexOf("]")+1);
+    }
+    let objs = JSON.parse(str),
+        // keys = getAllKeys(objs);
+        keys = getAllKeys(objs, true);
+    text = JSON.stringify(keys, null, 4);
+    body.innerHTML = "<div></div>";
+    body.firstChild.insertAdjacentHTML(`beforeend`, `<pre data-uid="string-to-json">${text}</pre>`);
+    copy(text);
+    return text;
+};
+
+window.utils = {
+    // keys: getAllKeys(),
+    keys: (() => getAllKeys())()
+}
+
+window.utils.keys;
+
+
 ```
 
 
@@ -92,16 +140,44 @@ const keys = (() => {
 
 
 
+"stockfast05";//机构评级
+"stockfast06";//股价/成交量
+"stockfast07";//前十大股东
+"stockfast08";//融资余额与融券余额差值走势
+"stockfast09";//近一月资金流向大单统计
+"stockfast10";//股权质押
+"stockfast11";//控股或参股公司
+"stockfast12";//高管持股变动情况(取10条)
+stockfast13：机构持股变动统计(机构投资者(主表明细数据))
+
+
 ```js
 
 
 {
+    
+    "news": {
+        name: "新闻",
+    },
+    "bulletion": {
+        name: "公告",
+    },
+    "research": {
+        name: "研报/研究报告",
+    },
     "stockfast01": {
-        name: "近期重要事项 / 近期中重要事项",
-        sj: "事件", 
-        nr: "内容",
-        rq: "日期",
-        // 更多>> ???
+        name: "重要信息",
+        sjgn: "涉及概念",
+        zyyw: "主营业务",
+        bdl: "52周波动率",
+        cjl: "日均成交量(3个月)",
+        jzc: "净资产",
+        zgb: "总股本",
+        ltgb: "流通股本",
+        gxl: "股息率",
+        cgzb: " 前十大机构持有 / 机构持股占比(%)",
+        mbjg: "目标价格",
+        zhpj: "综合评级"
     },
     "stockfast02": {
         name: "近期重要事项 / 近期中重要事项",
@@ -128,10 +204,12 @@ const keys = (() => {
         jzc: "每股净资产",
         jycsxjllje: "每股经营活动产生的现金流量净额",
         // 聚源计算...
-    }
+    },
 }
 
 ```
+
+
 
 
 每股指标：
@@ -404,3 +482,11 @@ const keys = (() => {
      * 交易均价
      */
     private String jyjj;
+
+
+
+
+
+
+
+
