@@ -75,9 +75,9 @@ const keys = (() => {
     }else{
         str = str.substr(0, str.lastIndexOf("]")+1);
     }
-    objs = JSON.parse(str);
-    let keys = getAllKeys(objs);
-    // let keys = getAllKeys(objs, true);
+    let objs = JSON.parse(str),
+        // keys = getAllKeys(objs);
+        keys = getAllKeys(objs, true);
     text = JSON.stringify(keys, null, 4);
     body.innerHTML = "<div></div>";
     body.firstChild.insertAdjacentHTML(`beforeend`, `<pre data-uid="string-to-json">${text}</pre>`);

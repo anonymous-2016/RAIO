@@ -13,6 +13,81 @@ research:研报，
 "stockfast12";//高管持股变动情况(取10条)
 stockfast13：机构持股变动统计(机构投资者(主表明细数据))
 
+```js
+
+const json = ((debug = false) => {
+    let body, str = text = "", beforeend = "beforeend", objs = {};
+    body = document.querySelector(`body`);
+    str = body.innerText;
+    let o = str.lastIndexOf("}"),
+        a = str.lastIndexOf("]");
+    if (o > a) {
+        str = str.substr(0, str.lastIndexOf("}")+1);
+    }else{
+        str = str.substr(0, str.lastIndexOf("]")+1);
+    }
+    html = body.innerHTML;
+    objs = JSON.parse(str);
+    if (debug) {
+        console.log(`body`, body);
+        console.log(`body.innerHTML`, html);
+        console.log(`body.innerText`, str);
+        console.log(`objs`, objs);
+    }
+    text = JSON.stringify(objs, null, 4);
+    body.innerHTML = "<div></div>";
+    body.firstChild.insertAdjacentHTML(beforeend, `<pre data-uid="string-to-json">${text}</pre>`);
+    copy(text);
+    return text;
+})();
+
+
+
+
+const keys = (() => {
+    const getAllKeys = (arr_or_obj = {}, debug = false) => {
+        let any = (typeof arr_or_obj === "object") ? arr_or_obj : {};
+        let keys = [];
+        if (Array.isArray(any)) {
+            keys = Object.keys(any[0]);
+        }else{
+            keys = Object.keys(any);
+        }
+        if (debug) {
+            console.log(`arr_or_obj = `, arr_or_obj);
+            console.log(`any = `, any);
+            console.log(`keys = `, keys);
+        }
+        // CCAC: Chrome Console Auto Copy
+        copy(keys);
+        return keys;
+    };
+    let body = document.querySelector(`body`),
+        str = body.innerText;
+    let o = str.lastIndexOf("}"),
+        a = str.lastIndexOf("]");
+    if (o > a) {
+        str = str.substr(0, str.lastIndexOf("}")+1);
+    }else{
+        str = str.substr(0, str.lastIndexOf("]")+1);
+    }
+    let objs = JSON.parse(str),
+        // keys = getAllKeys(objs);
+        keys = getAllKeys(objs, true);
+    text = JSON.stringify(keys, null, 4);
+    body.innerHTML = "<div></div>";
+    body.firstChild.insertAdjacentHTML(`beforeend`, `<pre data-uid="string-to-json">${text}</pre>`);
+    copy(text);
+    return text;
+})();
+
+
+
+```
+
+
+
+
 
 
 
