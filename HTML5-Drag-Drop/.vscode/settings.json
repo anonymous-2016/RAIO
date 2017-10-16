@@ -57,5 +57,8 @@
     // When enabled, will add the @author tag.
     "docthis.includeAuthorTag": true,
     // When docthis.includeAuthorTag is enabled, will add @author tag with this value.
-    "docthis.authorName": "xgqfrms" //,
+    "docthis.authorName": "xgqfrms",
+    // HTML & overwrite User settings.json
+    "html.format.extraLiners": "",
+    "html.format.enable": false
 }

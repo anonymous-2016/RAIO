@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- https://code.highcharts.com/stock/highstock.js -->
+    <title>highstock.js</title>
+    <style>
+        .hs {
+            margin: 0 auto;
+            box-sizing: border-box;
+            border: 1px solid red;
+        }
+        
+        .hs-demo {
+            width: 550px;
+            height: 400px;
+        }
+        /* 设置chart容器的宽度，高度不同，绘制出来的折线效果就不同(会相应的变化) */
+        
+        .hs-test {
+            width: 850px;
+            height: 300px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="hs-test" class="hs hs-test"></div>
+    <div id="container" class="hs hs-demo"></div>
+    <script src="../libs/jquery-3.2.1.slim.min.js"></script>
+    <script src="../libs/highstock.js"></script>
+    <script src="./hs-demo.js"></script>
+</body>
+
+</html>

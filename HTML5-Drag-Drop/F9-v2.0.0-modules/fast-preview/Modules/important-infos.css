@@ -11,6 +11,7 @@
 
 .fv-important-infos-title-box {
     /* width: 100%; */
+    max-width: 30%;
 }
 
 .fv-important-infos-title {

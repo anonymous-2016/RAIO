@@ -181,9 +181,9 @@ stockfast13：机构持股变动统计(机构投资者(主表明细数据))
     },
     "stockfast02": {
         name: "近期重要事项 / 近期中重要事项",
+        rq: "日期",
         sj: "事件", 
         nr: "内容",
-        rq: "日期",
         // 更多>> ???
     },
     "stockfast03": {
@@ -487,6 +487,8 @@ stockfast13：机构持股变动统计(机构投资者(主表明细数据))
 
 
 
-
+// HTML
+    "html.format.extraLiners": "",
+    "html.format.enable": false
 
 

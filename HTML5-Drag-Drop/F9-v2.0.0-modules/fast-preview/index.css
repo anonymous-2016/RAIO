@@ -1,4 +1,33 @@
-@charset "UFT-8";
+@charset "UTF-8";
+
+/* ??? */
+
+html,
+body {
+    margin: 0;
+    /* padding: 0; */
+}
+
+.fv-left-box,
+.fv-right-box {
+    box-sizing: border-box;
+    float: left;
+}
+
+.fv-left-box {
+    /* background: #0f0; */
+    border: 1px solid red;
+    width: 30%;
+    padding-right: 6px;
+}
+
+.fv-right-box {
+    /* background: #f0f; */
+    border: 1px solid #f0f;
+    width: 70%;
+    /* padding-left: 6px; */
+}
+
 
 /* width: 30%; */
 
@@ -8,7 +37,7 @@
     display: block;
     /* display: flex; */
     min-width: 328px;
-    width: 30%;
+    /* width: 30%; */
     /* width: 100vw; */
     min-height: 100px;
     height: 100%;
@@ -27,7 +56,7 @@
     display: block;
     /* display: flex; */
     min-width: 760px;
-    width: 70%;
+    /* width: 70%; */
     /* width: 100vw; */
     min-height: 100px;
     height: 100%;
@@ -35,4 +64,12 @@
     /* margin-left: 50%; */
     /* transform: translateX(-50%); */
     margin-left: 6px;
+}
+
+
+/* overwriter */
+
+.fv-module-box-3,
+.fv-module-box-7 {
+    width: 100%;
 }

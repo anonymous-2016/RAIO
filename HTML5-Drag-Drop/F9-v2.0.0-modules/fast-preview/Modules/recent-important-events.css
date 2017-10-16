@@ -89,6 +89,17 @@
     padding-left: 6px;
     height: 23px;
     line-height: 23px;
+    max-height: 23px;
+}
+
+
+/* date no need `:` */
+
+
+/* 
+
+.fv-recent-important-events-table-td-key::after {
+    content: ":"
 }
 
 .fv-recent-important-events-table-td-key {
@@ -99,19 +110,68 @@
     border-right: 1px solid #c5d2db;
 }
 
-.fv-recent-important-events-table-td-key::after {
-    content: ":"
-}
+*/
 
 .fv-recent-important-events-table-td-value {
     box-sizing: border-box;
-    min-width: 205px;
+    /* min-width: 205px; */
+    min-width: 80px;
     padding-left: 6px;
 }
 
 
 /* CSS3 :nth-of-type & nth-type & nth-child & :first-child & last-child*/
 
+
+/*
 .fv-recent-important-events-table-tbody>tr:nth-of-type(2n)>td:last-child {
     background-color: #f5f5f5;
+}
+*/
+
+.fv-recent-important-events-table-tbody>tr:nth-of-type(2n) {
+    background-color: #f5f5f5;
+}
+
+.fv-recent-important-events-table-tbody>tr:nth-of-type(n)>td {
+    line-height: 23px;
+    height: 23px;
+    box-sizing: border-box;
+}
+
+.fv-recent-important-events-table-tbody>tr:nth-of-type(n)>td:last-child {
+    border-left: 1px solid #d7dbe0;
+    max-width: 70px;
+    box-sizing: border-box;
+}
+
+.fv-recent-important-events-table-tbody>tr:nth-of-type(n)>td:nth-child(2) {
+    min-width: 150px;
+    max-width: 510px;
+    overflow-x: hidden;
+    /* overflow: hidden; */
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    /* color: red; */
+    border-left: 1px solid #d7dbe0;
+    box-sizing: border-box;
+}
+
+
+/* https://css-tricks.com/almanac/properties/t/text-overflow/ */
+
+.fv-recent-important-events-table-tbody>tr:nth-of-type(n)>td:first-child {
+    max-width: 80px;
+}
+
+[data-more="data-link-more"] {
+    text-decoration: none;
+    color: #3385ff;
+    cursor: pointer;
+}
+
+.fv-recent-important-events-table-tbody {
+    /* max-width: 70%; */
+    /* max-height: 50px; */
+    max-width: 760px;
 }
