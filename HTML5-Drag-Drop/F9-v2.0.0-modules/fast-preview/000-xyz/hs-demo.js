@@ -40,6 +40,8 @@ $(function() {
         // colors: ['#ff1919', '#ffff66', '#92d050'],
         // colors: [...colors],
         yAxis: {
+            // x: -50,
+            // y: -50,
             min: 0,
             title: {
                 text: 'yAxis title',
@@ -54,10 +56,16 @@ $(function() {
             }
         },
         legend: {
-            align: 'right',
-            x: -30,
-            verticalAlign: 'top',
-            y: 25,
+            align: 'right',// left, center and right. (Defaults to center.)
+            backgroundColor: `#ff00ff`, //Color,
+            /*
+                x: 0,
+                y: 340,
+                verticalAlign: 'top',
+            */
+            x: 0,
+            y: 0,
+            verticalAlign: "bottom",
             floating: true,
             backgroundColor: (Highcharts.theme && Highcharts.theme.background2) || 'white',
             borderColor: '#CCC',
@@ -68,11 +76,13 @@ $(function() {
             headerFormat: '<b>{point.x}</b><br/>',
             pointFormat: '{series.name}: {point.y}<br/>Total: {point.stackTotal}'
         },
-        // tooltip: {
-        //     formatter: () => {
-        //         return `<b>${this.x}</b><br/>${this.series.name}: ${this.y}<br/>`;
-        //     }
-        // },
+        /* 
+            tooltip: {
+                formatter: () => {
+                    return `<b>${this.x}</b><br/>${this.series.name}: ${this.y}<br/>`;
+                }
+            },
+        */
         plotOptions: {
             column: {
                 stacking: 'normal',
@@ -82,16 +92,20 @@ $(function() {
                 }
             }
         },
-        series: [{
-            name: 'John',
-            data: [5, 3, 4, 7, 2]
-        }, {
-            name: 'Jane',
-            data: [2, 2, 3, 2, 1]
-        }, {
-            name: 'Joe',
-            data: [3, 4, 4, 2, 5]
-        }]
+        series: [
+            {
+                name: 'John',
+                data: [5, 3, 4, 7, 2]
+            },
+            {
+                name: 'Jane',
+                data: [2, 2, 3, 2, 1]
+            },
+            {
+                name: 'Joe',
+                data: [3, 4, 4, 2, 5]
+            }
+        ]
     });
 });
 
