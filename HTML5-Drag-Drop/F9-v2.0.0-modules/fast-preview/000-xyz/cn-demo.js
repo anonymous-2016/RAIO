@@ -107,22 +107,24 @@ $(function() {
                                 text: '股价'
                             },
                             top: '0%',
-                            height: '30%',
+                            height: '60%',
                             lineWidth: 2
                         },
+                        /* 
                         {
                             labels: {
                                 align: 'right',
                                 x: -3
                             },
                             title: {
-                                text: 'XXX 历史股价'
+                                // text: 'XXX 历史股价'
                             },
-                            top: '30%',
-                            left: '30px',
-                            height: '30%',
+                            top: '0%',
+                            // left: '60px',
+                            height: '60%',
                             lineWidth: 2
                         },
+                        */
                         {
                             labels: {
                                 align: 'left',
@@ -131,7 +133,7 @@ $(function() {
                             title: {
                                 text: '成交量'
                             },
-                            top: '100%',
+                            top: '60%',
                             height: '30%',
                             offset: 0,
                             lineWidth: 2
@@ -139,8 +141,8 @@ $(function() {
                     ],
                     series: [
                         {
-                            //type: 'candlestick',
-                            type: 'line',
+                            type: 'candlestick',
+                            // type: 'line',
                             name: 'AAPL',
                             color: 'green',
                             lineColor: 'green',
@@ -156,8 +158,7 @@ $(function() {
                             }
                         },
                         {
-                            //type: 'candlestick',
-                            type: 'line',
+                            type: 'spline',
                             name: 'XXX', // title
                             color: 'green',
                             lineColor: 'green',

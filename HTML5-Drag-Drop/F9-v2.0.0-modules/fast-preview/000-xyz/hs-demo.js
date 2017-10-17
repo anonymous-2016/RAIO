@@ -16,6 +16,21 @@ $(function() {
     const {color, colors, optioncolor, gridColor, legendColor, yAxisColor} = {...chart_css};
     // 
     Highcharts.chart('container', {
+        noData: {// all defualt value
+            attr: undefined,
+            position: {
+                align: `center`,
+                verticalAlign: `middle`,
+                x: 0,
+                y: 0,
+            },
+            style: {
+                color: `#666666`,
+                fontSize: `12px`,
+                fontWeight: `bold`
+            },
+            useHTML: false,
+        },
         chart: {
             type: 'column',
             // backgroundColor: chart_css.color
