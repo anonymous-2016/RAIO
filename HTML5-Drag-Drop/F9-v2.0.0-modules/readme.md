@@ -678,7 +678,20 @@ copy(keys);
 
 
 
+```js
 
+/* IIFE */
+(() => {
+    console.log(`ES6 & IIFE`);
+})();
+
+((json) => {
+    console.log(`ES6 & IIFE`, json);
+    copy(json);
+    return json;
+})(json);
+
+```
 
 
 

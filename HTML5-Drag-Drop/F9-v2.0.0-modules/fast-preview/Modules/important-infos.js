@@ -1,14 +1,7 @@
 "use strict";
 
-/* IIFE */
-(
-    () => {
-        console.log(`ES6 & IIFE`);
-    }
-)();
-
 /**
- * important infos
+ * important infos 重要信息
  * xgqfrms
  * creadted 2017.10.12
  * @param {* String} url 

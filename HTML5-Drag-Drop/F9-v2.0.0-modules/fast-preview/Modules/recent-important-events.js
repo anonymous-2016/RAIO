@@ -1,6 +1,6 @@
 "use strict";
 /**
- * recent important events
+ * recent important events 近期重要事项
  * xgqfrms
  * creadted 2017.10.12
  * @param {* String} url 
