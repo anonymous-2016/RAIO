@@ -76,127 +76,10 @@ Changes in executive stock ownership
 
 changes-shareholding-executives
 
-
-
-```js
-
-const json = ((debug = false) => {
-    let body, str = text = "", beforeend = "beforeend", objs = {};
-    body = document.querySelector(`body`);
-    str = body.innerText;
-    let o = str.lastIndexOf("}"),
-        a = str.lastIndexOf("]");
-    if (o > a) {
-        str = str.substr(0, str.lastIndexOf("}")+1);
-    }else{
-        str = str.substr(0, str.lastIndexOf("]")+1);
-    }
-    html = body.innerHTML;
-    objs = JSON.parse(str);
-    if (debug) {
-        console.log(`body`, body);
-        console.log(`body.innerHTML`, html);
-        console.log(`body.innerText`, str);
-        console.log(`objs`, objs);
-    }
-    text = JSON.stringify(objs, null, 4);
-    body.innerHTML = "<div></div>";
-    body.firstChild.insertAdjacentHTML(beforeend, `<pre data-uid="string-to-json">${text}</pre>`);
-    copy(text);
-    return text;
-})();
+变动日期变动人姓名变动方向变动股份数量(股)成交均价(元)变动比例(‰)与董监高关系
 
 
 
-
-const keys = (() => {
-    const getAllKeys = (arr_or_obj = {}, debug = false) => {
-        let any = (typeof arr_or_obj === "object") ? arr_or_obj : {};
-        let keys = [];
-        if (Array.isArray(any)) {
-            keys = Object.keys(any[0]);
-        }else{
-            keys = Object.keys(any);
-        }
-        if (debug) {
-            console.log(`arr_or_obj = `, arr_or_obj);
-            console.log(`any = `, any);
-            console.log(`keys = `, keys);
-        }
-        // CCAC: Chrome Console Auto Copy
-        copy(keys);
-        return keys;
-    };
-    let body = document.querySelector(`body`),
-        str = body.innerText;
-    let o = str.lastIndexOf("}"),
-        a = str.lastIndexOf("]");
-    if (o > a) {
-        str = str.substr(0, str.lastIndexOf("}")+1);
-    }else{
-        str = str.substr(0, str.lastIndexOf("]")+1);
-    }
-    let objs = JSON.parse(str),
-        // keys = getAllKeys(objs);
-        keys = getAllKeys(objs, true);
-    text = JSON.stringify(keys, null, 4);
-    body.innerHTML = "<div></div>";
-    body.firstChild.insertAdjacentHTML(`beforeend`, `<pre data-uid="string-to-json">${text}</pre>`);
-    copy(text);
-    return text;
-})();
-
-
-
-
-
-
-const getAllKeys = () => {
-    const getAllKeys = (arr_or_obj = {}, debug = false) => {
-        let any = (typeof arr_or_obj === "object") ? arr_or_obj : {};
-        let keys = [];
-        if (Array.isArray(any)) {
-            keys = Object.keys(any[0]);
-        }else{
-            keys = Object.keys(any);
-        }
-        if (debug) {
-            console.log(`arr_or_obj = `, arr_or_obj);
-            console.log(`any = `, any);
-            console.log(`keys = `, keys);
-        }
-        // CCAC: Chrome Console Auto Copy
-        copy(keys);
-        return keys;
-    };
-    let body = document.querySelector(`body`),
-        str = body.innerText;
-    let o = str.lastIndexOf("}"),
-        a = str.lastIndexOf("]");
-    if (o > a) {
-        str = str.substr(0, str.lastIndexOf("}")+1);
-    }else{
-        str = str.substr(0, str.lastIndexOf("]")+1);
-    }
-    let objs = JSON.parse(str),
-        // keys = getAllKeys(objs);
-        keys = getAllKeys(objs, true);
-    text = JSON.stringify(keys, null, 4);
-    body.innerHTML = "<div></div>";
-    body.firstChild.insertAdjacentHTML(`beforeend`, `<pre data-uid="string-to-json">${text}</pre>`);
-    copy(text);
-    return text;
-};
-
-window.utils = {
-    // keys: getAllKeys(),
-    keys: (() => getAllKeys())()
-}
-
-window.utils.keys;
-
-
-```
 
 
 news:新闻，
@@ -416,7 +299,8 @@ let title = `${(arr[i].xwtitle !== undefined) ? arr[i].xwtitle : `🤓暂无 新
         "fx": "方向",// 变动方向
         "sl": "变动数量",// 变动股份数量(股)	
         "glgg": "关联高管",// 成交均价(元)
-        "jyjj": "交易均价"// 变动比例(‰)
+        "jyjj": "交易均价"
+        // 变动比例(‰)
     },
     "stockfast13": {
         name: "机构持股变动统计",
@@ -431,3 +315,121 @@ let title = `${(arr[i].xwtitle !== undefined) ? arr[i].xwtitle : `🤓暂无 新
 
 
 
+
+```js
+
+const json = ((debug = false) => {
+    let body, str = text = "", beforeend = "beforeend", objs = {};
+    body = document.querySelector(`body`);
+    str = body.innerText;
+    let o = str.lastIndexOf("}"),
+        a = str.lastIndexOf("]");
+    if (o > a) {
+        str = str.substr(0, str.lastIndexOf("}")+1);
+    }else{
+        str = str.substr(0, str.lastIndexOf("]")+1);
+    }
+    html = body.innerHTML;
+    objs = JSON.parse(str);
+    if (debug) {
+        console.log(`body`, body);
+        console.log(`body.innerHTML`, html);
+        console.log(`body.innerText`, str);
+        console.log(`objs`, objs);
+    }
+    text = JSON.stringify(objs, null, 4);
+    body.innerHTML = "<div></div>";
+    body.firstChild.insertAdjacentHTML(beforeend, `<pre data-uid="string-to-json">${text}</pre>`);
+    copy(text);
+    return text;
+})();
+
+
+
+const keys = (() => {
+    const getAllKeys = (arr_or_obj = {}, debug = false) => {
+        let any = (typeof arr_or_obj === "object") ? arr_or_obj : {};
+        let keys = [];
+        if (Array.isArray(any)) {
+            keys = Object.keys(any[0]);
+        }else{
+            keys = Object.keys(any);
+        }
+        if (debug) {
+            console.log(`arr_or_obj = `, arr_or_obj);
+            console.log(`any = `, any);
+            console.log(`keys = `, keys);
+        }
+        // CCAC: Chrome Console Auto Copy
+        copy(keys);
+        return keys;
+    };
+    let body = document.querySelector(`body`),
+        str = body.innerText;
+    let o = str.lastIndexOf("}"),
+        a = str.lastIndexOf("]");
+    if (o > a) {
+        str = str.substr(0, str.lastIndexOf("}")+1);
+    }else{
+        str = str.substr(0, str.lastIndexOf("]")+1);
+    }
+    let objs = JSON.parse(str),
+        // keys = getAllKeys(objs);
+        keys = getAllKeys(objs, true);
+    text = JSON.stringify(keys, null, 4);
+    body.innerHTML = "<div></div>";
+    body.firstChild.insertAdjacentHTML(`beforeend`, `<pre data-uid="string-to-json">${text}</pre>`);
+    copy(text);
+    return text;
+})();
+
+
+
+const getAllKeys = () => {
+    const getAllKeys = (arr_or_obj = {}, debug = false) => {
+        let any = (typeof arr_or_obj === "object") ? arr_or_obj : {};
+        let keys = [];
+        if (Array.isArray(any)) {
+            keys = Object.keys(any[0]);
+        }else{
+            keys = Object.keys(any);
+        }
+        if (debug) {
+            console.log(`arr_or_obj = `, arr_or_obj);
+            console.log(`any = `, any);
+            console.log(`keys = `, keys);
+        }
+        // CCAC: Chrome Console Auto Copy
+        copy(keys);
+        return keys;
+    };
+    let body = document.querySelector(`body`),
+        str = body.innerText;
+    let o = str.lastIndexOf("}"),
+        a = str.lastIndexOf("]");
+    if (o > a) {
+        str = str.substr(0, str.lastIndexOf("}")+1);
+    }else{
+        str = str.substr(0, str.lastIndexOf("]")+1);
+    }
+    let objs = JSON.parse(str),
+        // keys = getAllKeys(objs);
+        keys = getAllKeys(objs, true);
+    text = JSON.stringify(keys, null, 4);
+    body.innerHTML = "<div></div>";
+    body.firstChild.insertAdjacentHTML(`beforeend`, `<pre data-uid="string-to-json">${text}</pre>`);
+    copy(text);
+    return text;
+};
+
+
+
+window.utils = {
+    // keys: getAllKeys(),
+    keys: (() => getAllKeys())()
+}
+
+window.utils.keys;
+
+
+```
