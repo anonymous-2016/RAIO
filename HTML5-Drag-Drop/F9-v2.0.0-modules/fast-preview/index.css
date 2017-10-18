@@ -9,6 +9,7 @@ body {
 }
 
 .fv-left-box,
+.fv-center-box,
 .fv-right-box {
     box-sizing: border-box;
     float: left;
@@ -28,6 +29,13 @@ body {
     /* padding-left: 6px; */
 }
 
+.fv-center-box {
+    /* background: #f0f; */
+    border: 1px solid #f0f;
+    width: 50%;
+    /* padding-left: 6px; */
+}
+
 
 /* width: 30%; */
 
@@ -38,6 +46,25 @@ body {
     /* display: flex; */
     min-width: 328px;
     /* width: 30%; */
+    /* width: 100vw; */
+    min-height: 100px;
+    height: 100%;
+    /* position: absolute; */
+    /* margin-left: 50%; */
+    /* transform: translateX(-50%); */
+    margin-right: 6px;
+}
+
+
+/* width: 50%; */
+
+.fv-module-box-5 {
+    box-sizing: border-box;
+    /* border: 1px solid #d7dbe0; */
+    display: block;
+    /* display: flex; */
+    min-width: 545px;
+    /* width: 50%; */
     /* width: 100vw; */
     min-height: 100px;
     height: 100%;
@@ -70,6 +97,23 @@ body {
 /* overwriter */
 
 .fv-module-box-3,
+.fv-module-box-5,
 .fv-module-box-7 {
     width: 100%;
+}
+
+.fv-module-box-5 {
+    clear: both;
+    display: block;
+    margin-left: 6px;
+    overflow-x: hidden;
+    /* width */
+}
+
+.clearfix::after {
+    display: table;
+    /* visibility: hidden; */
+    content: "";
+    overflow: hidden;
+    clear: both;
 }

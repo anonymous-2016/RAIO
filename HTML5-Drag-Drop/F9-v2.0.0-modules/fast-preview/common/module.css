@@ -19,6 +19,25 @@
 }
 
 
+/* width: 50%; */
+
+.fv-module-box-5 {
+    box-sizing: border-box;
+    /* border: 1px solid #d7dbe0; */
+    display: block;
+    /* display: flex; */
+    min-width: 545px;
+    width: 50%;
+    /* width: 100vw; */
+    min-height: 100px;
+    height: 100%;
+    /* position: absolute; */
+    /* margin-left: 50%; */
+    /* transform: translateX(-50%); */
+    margin-left: 6px;
+}
+
+
 /* width: 70%; */
 
 .fv-module-box-7 {
