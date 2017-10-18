@@ -58,7 +58,7 @@ const recentImportantEvents = (url = ``, td_id = `id`, debug = false) => {
                                 ${date}
                             </td>
                             <td class="fv-recent-important-events-table-td-value" data-value="data-fv-events">
-                                ${description}
+                                <a href="#" data-link="fv-recent-important-events-link">${description}</a>
                             </td>
                             <td class="fv-recent-important-events-table-td-value" data-value="data-fv-events" data-more="data-link-more" title="近期重要事项-更多">
                                 ${more}

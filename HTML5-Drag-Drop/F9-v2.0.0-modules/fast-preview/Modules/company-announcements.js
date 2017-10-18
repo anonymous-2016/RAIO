@@ -37,7 +37,7 @@ const companyAnnouncements = (url = ``, td_id = `id`, debug = false) => {
                                 ${publishDate}
                             </td>
                             <td class="fv-company-announcements-table-td-value" data-value="data-fv-company-announcements">
-                                ${title}
+                                <a href="#" data-link="fv-company-announcements-link">${title}</a>
                             </td>
                         </tr>
                     `;

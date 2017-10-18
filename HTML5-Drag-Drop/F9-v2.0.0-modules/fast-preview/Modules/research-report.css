@@ -192,3 +192,14 @@
     color: #3385ff;
     cursor: pointer;
 }
+
+
+/* links */
+
+[data-link="fv-research-report-link"] {
+    text-decoration: none;
+}
+
+[data-link="fv-research-report-link"]:hover {
+    color: #f0f;
+}

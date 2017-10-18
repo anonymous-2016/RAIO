@@ -178,3 +178,14 @@
     /* max-height: 50px; */
     max-width: 760px;
 }
+
+
+/* links */
+
+[data-link="fv-recent-important-events-link"] {
+    text-decoration: none;
+}
+
+[data-link="fv-recent-important-events-link"]:hover {
+    color: #f0f;
+}

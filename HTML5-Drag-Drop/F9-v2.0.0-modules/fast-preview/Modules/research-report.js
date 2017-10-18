@@ -69,7 +69,7 @@ const researchReport = (url = ``, td_id = `id`, debug = false) => {
                                 ${publishDate}
                             </td>
                             <td class="fv-research-report-table-td-value" data-value="data-fv-research-report">
-                                ${title}
+                                <a href="#" data-link="fv-research-report-link">${title}</a>
                             </td>
                         </tr>
                     `;

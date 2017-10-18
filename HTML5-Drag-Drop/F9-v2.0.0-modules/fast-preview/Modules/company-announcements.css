@@ -192,3 +192,14 @@
     color: #3385ff;
     cursor: pointer;
 }
+
+
+/* links */
+
+[data-link="fv-company-announcements-link"] {
+    text-decoration: none;
+}
+
+[data-link="fv-company-announcements-link"]:hover {
+    color: #f0f;
+}

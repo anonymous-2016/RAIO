@@ -37,7 +37,7 @@ const investorRelations = (url = ``, td_id = `id`, debug = false) => {
                                 ${publishDate}
                             </td>
                             <td class="fv-investor-relations-table-td-value" data-value="data-fv-investor-relations">
-                                ${title}
+                                <a href="#" data-link="fv-investor-relations-link">${title}</a>
                             </td>
                         </tr>
                     `;
