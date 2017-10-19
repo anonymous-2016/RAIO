@@ -29,15 +29,16 @@ const companyNews = (url = ``, td_id = `id`, debug = false) => {
             arr.map(
                 (obj, i) => {
                     // undefined
-                    let publishDate = (arr[i].xwsj !== undefined) ? arr[i].xwsj : `😟暂无 新闻日期`;
-                    let title = `${(arr[i].xwtitle !== undefined) ? arr[i].xwtitle : `🤓暂无 新闻标题`}`;
+                    let publishDate = (arr[i].xwsj !== undefined) ? arr[i].xwsj : `😟 暂无数据`;
+                    let title = `${(arr[i].xwtitle !== undefined) ? arr[i].xwtitle : `😟 暂无数据`}`;
+                    let id = `${(arr[i].newid !== undefined) ? arr[i].newid : `😟 暂无数据`}`;
                     html_string += `
                         <tr class="fv-company-news-table-tr">
                             <td class="fv-company-news-table-td-key" data-value="data-fv-company-news">
                                 ${publishDate}
                             </td>
                             <td class="fv-company-news-table-td-value" data-value="data-fv-company-news">
-                                <a href="#" data-link="fv-company-news-link">${title}</a>
+                                <a href="#${id}" data-link="fv-company-news-link" data-link-detail="company-news-link-detail-module" data-newsId="${id}">${title}</a>
                             </td>
                         </tr>
                     `;
@@ -69,3 +70,53 @@ setTimeout(() => {
     // const debug = true;
     // companyNews(url, td_id, debug);
 }, 0);
+
+// newsId
+
+const clickLinkOpenModuleHandler = (uid = `600570`, debug = false) => {
+    // 600570.SH
+    // alert(`uid = `, uid);
+    alert(`uid = ${uid}`);// alert(`desc ${key}`) !== console.log(`desc `, key);
+    // fetch data
+    // show module
+    // cache ?
+};
+setTimeout(function() {
+    let a_links = document.querySelectorAll(`a[data-link-detail="company-news-link-detail-module"]`);
+    for (var i = 0; i < a_links.length; i++) {
+        // let uid = a_links[i].innerText;
+        // let uid = parseInt(a_links[i].dataset.newsId);// dataset ignore Capital!
+        let uid = parseInt(a_links[i].dataset.newsid);
+        // OR, just  get it from URL hash!
+        let hash_id = parseInt((this.window.location.hash).slice(1));
+        console.log(`id = ${uid}`);
+        a_links[i].addEventListener(`click`,
+            (e) => {
+                e.preventDefault();// disable defalut a link event!
+                console.log(`id = ${uid}`);
+                let e_id = parseInt(e.dataset.newsid);
+                console.log(`id = ${e_id}`);
+                clickLinkOpenModuleHandler(uid);
+            }
+        );
+    }
+    // only once ???
+}, 1000);
+
+/* 
+
+this.window.location.hash;
+// "#561479742849"
+
+a_links = document.querySelectorAll(`a[data-link-detail="company-news-link-detail-module"]`);
+
+a_links[0];
+
+a_links[0].dataset.newsId;// dataset ignore Capital
+// undefined
+
+a_links[0].dataset.newsid;
+// "561487482089"
+
+
+*/

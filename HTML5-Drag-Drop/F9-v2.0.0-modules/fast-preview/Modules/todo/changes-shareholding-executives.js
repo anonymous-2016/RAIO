@@ -29,16 +29,16 @@ const changesShareholdingExecutives = (url = ``, td_id = `id`, debug = false) =>
             arr.map(
                 (obj, i) => {
                     // undefined // "bdr", "mc", "fx", "sl", "glgg", "jyjj"
-                    let date = (arr[i].bdr !== undefined) ? arr[i].bdr : `😟暂无 数据`;
-                    let name = (arr[i].mc !== undefined) ? arr[i].mc : `😟暂无 数据`;
-                    let direction = (arr[i].fx !== undefined) ? arr[i].fx : `😟暂无 数据`;
-                    let share_nums = (arr[i].sl !== undefined) ? arr[i].sl : `😟暂无 数据`;
-                    let average_price = `${(arr[i].jyjj !== undefined) ? arr[i].jyjj : `🤓暂无 数据`}`;
-                    let relationship = (arr[i].glgg !== undefined) ? arr[i].glgg : `😟暂无 数据`;
-                    let proportion = (arr[i].xxx !== undefined) ? arr[i].xxx : `😟暂无 数据`;
+                    let date = (arr[i].bdr !== undefined) ? arr[i].bdr : `😟 暂无数据`;
+                    let name = (arr[i].mc !== undefined) ? arr[i].mc : `😟 暂无数据`;
+                    let direction = (arr[i].fx !== undefined) ? arr[i].fx : `😟 暂无数据`;
+                    let share_nums = (arr[i].sl !== undefined) ? arr[i].sl : `😟 暂无数据`;
+                    let average_price = `${(arr[i].jyjj !== undefined) ? arr[i].jyjj : `🤓 暂无数据`}`;
+                    let relationship = (arr[i].glgg !== undefined) ? arr[i].glgg : `😟 暂无数据`;
+                    let proportion = (arr[i].xxx !== undefined) ? arr[i].xxx : `😟 暂无数据`;
                     html_string += `
                         <tr class="fv-changes-shareholding-executives-table-tr">
-                            <td class="fv-changes-shareholding-executives-table-td-key" data-value="data-fv-changes-shareholding-executives">
+                            <td class="fv-changes-shareholding-executives-table-td-value" data-value="data-fv-changes-shareholding-executives">
                                 ${date}
                             </td>
                             <td class="fv-changes-shareholding-executives-table-td-value" data-value="data-fv-changes-shareholding-executives">
@@ -54,13 +54,15 @@ const changesShareholdingExecutives = (url = ``, td_id = `id`, debug = false) =>
                                 ${average_price}
                             </td>
                             <td class="fv-changes-shareholding-executives-table-td-value" data-value="data-fv-changes-shareholding-executives">
-                                ${proportion}
-                            </td>
-                            <td class="fv-changes-shareholding-executives-table-td-value" data-value="data-fv-changes-shareholding-executives">
                                 ${relationship}
                             </td>
                         </tr>
                     `;
+                    /* 
+                        <td class="fv-changes-shareholding-executives-table-td-value" data-value="data-fv-changes-shareholding-executives">
+                            ${proportion}
+                        </td>
+                    */
                 }
             );
             td_id.innerHTML = html_string;

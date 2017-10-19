@@ -73,7 +73,22 @@
 */
 
 .fv-research-report-table-thead {
-    display: none;
+    /* display: none; */
+}
+
+.fv-research-report-table-thead>.fv-research-report-table-tr>td.fv-research-report-table-td-title {
+    background: #e8eefa;
+    border: 1px solid #c5d2db;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.fv-research-report-table-thead>.fv-research-report-table-tr>td.fv-research-report-table-td-title:nth-child(1) {
+    min-width: 80px;
+}
+
+.fv-research-report-table-thead>.fv-research-report-table-tr>td.fv-research-report-table-td-title:nth-child(2) {
+    min-width: 510px;
 }
 
 .fv-research-report-table-tfoot {

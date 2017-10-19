@@ -204,3 +204,28 @@
 [data-link="fv-changes-shareholding-executives-link"]:hover {
     color: #f0f;
 }
+
+.fv-changes-shareholding-executives-table-tr>td {
+    border: 1px solid #c5d2db;
+}
+
+.fv-changes-shareholding-executives-table-tr>td.fv-changes-shareholding-executives-table-td-value:nth-of-type(4),
+.fv-changes-shareholding-executives-table-tr>td.fv-changes-shareholding-executives-table-td-value:nth-of-type(5) {
+    text-align: right;
+}
+
+.fv-changes-shareholding-executives-table-tr>td.fv-changes-shareholding-executives-table-td-value:nth-of-type(7) {
+    text-align: center !important;
+}
+
+.fv-changes-shareholding-executives-table-tr>td.fv-changes-shareholding-executives-table-td-value:last-child {
+    text-align: center !important;
+    /* color: red; */
+}
+
+.fv-changes-shareholding-executives-table-thead>.fv-changes-shareholding-executives-table-tr>td {
+    /* color: red; */
+    background-color: #e8eefa;
+    border: 1px solid #c5d2db;
+    /* text-align: left; */
+}

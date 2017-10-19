@@ -73,7 +73,22 @@
 */
 
 .fv-company-news-table-thead {
-    display: none;
+    /* display: none; */
+}
+
+.fv-company-news-table-thead>.fv-company-news-table-tr>td.fv-company-news-table-td-title {
+    background: #e8eefa;
+    border: 1px solid #c5d2db;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.fv-company-news-table-thead>.fv-company-news-table-tr>td.fv-company-news-table-td-title:nth-child(1) {
+    min-width: 80px;
+}
+
+.fv-company-news-table-thead>.fv-company-news-table-tr>td.fv-company-news-table-td-title:nth-child(2) {
+    min-width: 510px;
 }
 
 .fv-company-news-table-tfoot {

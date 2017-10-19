@@ -61,15 +61,16 @@ const researchReport = (url = ``, td_id = `id`, debug = false) => {
             let arr = data;
             arr.map(
                 (obj, i) => {
-                    let publishDate = (arr[i].publishDate !== undefined) ? arr[i].publishDate : `😟暂无 发布时间`;
-                    let title = `${(arr[i].title !== undefined) ? arr[i].title : `🤓暂无 标题`}`;
+                    let publishDate = (arr[i].publishDate !== undefined) ? arr[i].publishDate : `😟 暂无数据`;
+                    let title = `${(arr[i].title !== undefined) ? arr[i].title : `😟 暂无数据`}`;
+                    let id = `${(arr[i].researchId !== undefined) ? arr[i].researchId : `😟 暂无数据`}`;
                     html_string += `
                         <tr class="fv-research-report-table-tr">
-                            <td class="fv-research-report-table-td-key" data-value="data-fv-research-report">
+                            <td class="fv-research-report-table-td-value" data-value="data-fv-research-report">
                                 ${publishDate}
                             </td>
                             <td class="fv-research-report-table-td-value" data-value="data-fv-research-report">
-                                <a href="#" data-link="fv-research-report-link">${title}</a>
+                                <a href="#${id}" data-link="fv-research-report-link" data-link-detail="research-report-link-detail-module" data-researchId="${id}">${title}</a>
                             </td>
                         </tr>
                     `;
@@ -101,4 +102,58 @@ setTimeout(() => {
     researchReport(url, td_id, true);
     // const debug = true;
     // researchReport(url, td_id, debug);
-}, 0);
+    let a_links = document.querySelectorAll(`a[data-link-detail="research-report-link-detail-module"]`);
+    for (var i = 0; i < a_links.length; i++) {
+        let id = a_links[i].innerText;
+        a_links[i].addEventListener(`click`,
+            (id) => {
+                console.log(`id = ${id}`)
+            }
+        );
+    }
+    // only once ???
+}, 0);// 2000 ??? refresh bink
+
+const clickLinkOpenModuleHandler = (uid = `600570`, debug = false) => {
+    // 600570.SH
+    alert(`uid = `, uid);
+    // fetch data
+    // show module
+    // cache ?
+};
+setTimeout(function() {
+    let a_links = document.querySelectorAll(`a[data-link-detail="research-report-link-detail-module"]`);
+    for (var i = 0; i < a_links.length; i++) {
+        // let uid = a_links[i].innerText;
+        let uid = parseInt(a_links[i].dataset.researchid);
+        console.log(`id = ${uid}`);
+        a_links[i].addEventListener(`click`,
+            (uid) => {
+                console.log(`id = ${uid}`);
+                clickLinkOpenModuleHandler(uid);
+            }
+        );
+    }
+    // only once ???
+}, 1000);
+
+/* 
+// dataset & dataa-*
+
+a_links[0];
+// <a href=​"#561043398497" data-link=​"fv-research-report-link" data-link-detail=​"research-report-link-detail-module" data-researchid=​"561043398497">​恒生电子(600570)点评：抱拥金融科技大趋势​</a>​
+
+typeof a_links[0];
+// "object"
+
+a_links[0].innerText;
+// "恒生电子(600570)点评：抱拥金融科技大趋势"
+
+a_links[0].dataset.researchid;
+// "561043398497"
+
+parseInt(a_links[0].dataset.researchid);
+// 561043398497
+
+
+*/

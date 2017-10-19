@@ -78,6 +78,10 @@ changes-shareholding-executives
 
 变动日期变动人姓名变动方向变动股份数量(股)成交均价(元)变动比例(‰)与董监高关系
 
+③
+
+
+
 
 
 
