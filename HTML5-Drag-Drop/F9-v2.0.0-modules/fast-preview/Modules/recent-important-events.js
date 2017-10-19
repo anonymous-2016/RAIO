@@ -48,17 +48,19 @@ const recentImportantEvents = (url = ``, td_id = `id`, debug = false) => {
             let arr = data;
             arr.map(
                 (obj, i) => {
-                    let date = arr[i].rq;
-                    let description = `${arr[i].sj} ${arr[i].nr}`;
+                    let date = `${(arr[i].rq !== undefined) ? arr[i].rq : `😟 暂无数据`}`;
+                    // let description = `${arr[i].sj} ${arr[i].nr}`;
+                    let description = (arr[i].sj !== undefined && arr[i].nr !== undefined) ? `${arr[i].sj} ${arr[i].nr}` : `😟 暂无数据`;
                     let more = `更多 >>`;
                     // `更多 &gt;&gt;`;
+                    let id = (arr[i].id !== undefined) ? `${arr[i].id}` : `😟 暂无数据`;
                     html_string += `
                         <tr class="fv-recent-important-events-table-tr">
                             <td class="fv-recent-important-events-table-td-key" data-value="data-fv-events">
                                 ${date}
                             </td>
                             <td class="fv-recent-important-events-table-td-value" data-value="data-fv-events">
-                                <a href="#" data-link="fv-recent-important-events-link">${description}</a>
+                                <a href="#${id}" data-link="fv-recent-important-events-link" data-link-detail="recent-important-events-link-detail-module" data-eventsId="${id}">${description}</a>
                             </td>
                             <td class="fv-recent-important-events-table-td-value" data-value="data-fv-events" data-more="data-link-more" title="近期重要事项-更多">
                                 ${more}
@@ -107,6 +109,39 @@ setTimeout(() => {
 }, 0);
 
 
+
+
+
+
+setTimeout(function() {
+    const clickLinkOpenModuleHandler = (uid = `600570`, debug = false) => {
+        // 600570.SH
+        // alert(`uid = `, uid);
+        alert(`uid = ${uid}`);// alert(`desc ${key}`) !== console.log(`desc `, key);
+        // fetch data
+        // show module
+        // cache ?
+    };
+    let a_links = document.querySelectorAll(`a[data-link-detail="recent-important-events-link-detail-module"]`);
+    for (var i = 0; i < a_links.length; i++) {
+        // let uid = a_links[i].innerText;
+        // let uid = parseInt(a_links[i].dataset.newsId);// dataset ignore Capital!
+        let uid = parseInt(a_links[i].dataset.eventsid);
+        // OR, just  get it from URL hash!
+        let hash_id = parseInt((this.window.location.hash).slice(1));
+        console.log(`id = ${uid}`);
+        a_links[i].addEventListener(`click`,
+            (e) => {
+                e.preventDefault();// disable defalut a link event!
+                console.log(`id = ${uid}`);
+                let e_id = parseInt(e.target.dataset.eventsid);// e.target
+                console.log(`id = ${e_id}`);
+                clickLinkOpenModuleHandler(uid);
+            }
+        );
+    }
+    // only once ???
+}, 1000);
 
 
 /* 

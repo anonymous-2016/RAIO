@@ -114,22 +114,45 @@ setTimeout(() => {
     // only once ???
 }, 0);// 2000 ??? refresh bink
 
+
+
+/* 
+
 const clickLinkOpenModuleHandler = (uid = `600570`, debug = false) => {
     // 600570.SH
-    alert(`uid = `, uid);
+    // alert(`uid = `, uid);
+    alert(`uid = ${uid}`);// alert(`desc ${key}`) !== console.log(`desc `, key);
     // fetch data
     // show module
     // cache ?
 };
+
+*/
+
+
 setTimeout(function() {
+    const clickLinkOpenModuleHandler = (uid = `600570`, debug = false) => {
+        // 600570.SH
+        // alert(`uid = `, uid);
+        alert(`uid = ${uid}`);// alert(`desc ${key}`) !== console.log(`desc `, key);
+        // fetch data
+        // show module
+        // cache ?
+    };
     let a_links = document.querySelectorAll(`a[data-link-detail="research-report-link-detail-module"]`);
     for (var i = 0; i < a_links.length; i++) {
         // let uid = a_links[i].innerText;
+        // let uid = parseInt(a_links[i].dataset.researchId);// dataset ignore Capital!
         let uid = parseInt(a_links[i].dataset.researchid);
+        // OR, just  get it from URL hash!
+        let hash_id = parseInt((this.window.location.hash).slice(1));
         console.log(`id = ${uid}`);
         a_links[i].addEventListener(`click`,
-            (uid) => {
+            (e) => {
+                e.preventDefault();// disable defalut a link event!
                 console.log(`id = ${uid}`);
+                let e_id = parseInt(e.target.dataset.researchid);// e.target
+                console.log(`id = ${e_id}`);
                 clickLinkOpenModuleHandler(uid);
             }
         );

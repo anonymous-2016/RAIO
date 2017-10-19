@@ -73,6 +73,8 @@ setTimeout(() => {
 
 // newsId
 
+/* 
+
 const clickLinkOpenModuleHandler = (uid = `600570`, debug = false) => {
     // 600570.SH
     // alert(`uid = `, uid);
@@ -81,7 +83,19 @@ const clickLinkOpenModuleHandler = (uid = `600570`, debug = false) => {
     // show module
     // cache ?
 };
+
+*/
+
+
 setTimeout(function() {
+    const clickLinkOpenModuleHandler = (uid = `600570`, debug = false) => {
+        // 600570.SH
+        // alert(`uid = `, uid);
+        alert(`uid = ${uid}`);// alert(`desc ${key}`) !== console.log(`desc `, key);
+        // fetch data
+        // show module
+        // cache ?
+    };
     let a_links = document.querySelectorAll(`a[data-link-detail="company-news-link-detail-module"]`);
     for (var i = 0; i < a_links.length; i++) {
         // let uid = a_links[i].innerText;
@@ -94,7 +108,7 @@ setTimeout(function() {
             (e) => {
                 e.preventDefault();// disable defalut a link event!
                 console.log(`id = ${uid}`);
-                let e_id = parseInt(e.dataset.newsid);
+                let e_id = parseInt(e.target.dataset.newsid);// e.target
                 console.log(`id = ${e_id}`);
                 clickLinkOpenModuleHandler(uid);
             }
