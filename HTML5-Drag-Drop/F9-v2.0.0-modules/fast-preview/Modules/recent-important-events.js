@@ -53,17 +53,14 @@ const recentImportantEvents = (url = ``, td_id = `id`, debug = false) => {
                     let description = (arr[i].sj !== undefined && arr[i].nr !== undefined) ? `${arr[i].sj} ${arr[i].nr}` : `😟 暂无数据`;
                     let more = `更多 >>`;
                     // `更多 &gt;&gt;`;
-                    let id = (arr[i].id !== undefined) ? `${arr[i].id}` : `😟 暂无数据`;
+                    let id = (arr[i].newid !== undefined) ? `${arr[i].newid}` : `😟 暂无数据`;
                     html_string += `
                         <tr class="fv-recent-important-events-table-tr">
                             <td class="fv-recent-important-events-table-td-key" data-value="data-fv-events">
                                 ${date}
                             </td>
                             <td class="fv-recent-important-events-table-td-value" data-value="data-fv-events">
-                                <a href="#${id}" data-link="fv-recent-important-events-link" data-link-detail="recent-important-events-link-detail-module" data-eventsId="${id}">${description}</a>
-                            </td>
-                            <td class="fv-recent-important-events-table-td-value" data-value="data-fv-events" data-more="data-link-more" title="近期重要事项-更多">
-                                ${more}
+                                <a href="#${id}" data-disabled="${arr[i].newid !== undefined ? `false` : `true`}" data-link="fv-recent-important-events-link" data-link-detail="recent-important-events-link-detail-module" data-eventsId="${id}">${description}</a>
                             </td>
                         </tr>
                     `;
@@ -73,9 +70,19 @@ const recentImportantEvents = (url = ``, td_id = `id`, debug = false) => {
                                 CSS Loading...
                             </div>
                         </td>
+                        <td class="fv-recent-important-events-table-td-value" data-value="data-fv-events" data-more="data-link-more" title="近期重要事项-更多">
+                            ${more}
+                        </td>
                     */
                 }
             );
+            /* 
+                # Disabled elements, no a link
+                https://www.w3.org/TR/html5/disabled-elements.html
+                <input type="text" value="xxxx" disabled="${arr[i].sj !== undefined ? false : true}" />
+                <input type="text" value="xxxx" disabled="${arr[i].newid !== undefined ? false : true}" />
+                <a href="#${id}" data-disabled="${arr[i].newid !== undefined ? `false` : `true`}" data-link="fv-recent-important-events-link" data-link-detail="recent-important-events-link-detail-module" data-eventsId="${id}">${description}</a>
+            */
             // td_id.insertAdjacentElement('beforebegin', html_string);
             // Uncaught TypeError: Failed to execute 'insertAdjacentElement' on 'Element': parameter 2 is not of type 'Element'.
             /*
@@ -130,15 +137,27 @@ setTimeout(function() {
         // OR, just  get it from URL hash!
         let hash_id = parseInt((this.window.location.hash).slice(1));
         console.log(`id = ${uid}`);
-        a_links[i].addEventListener(`click`,
-            (e) => {
-                e.preventDefault();// disable defalut a link event!
-                console.log(`id = ${uid}`);
-                let e_id = parseInt(e.target.dataset.eventsid);// e.target
-                console.log(`id = ${e_id}`);
-                clickLinkOpenModuleHandler(uid);
-            }
-        );
+        let disabled = a_links[i].dataset.disabled;
+        if(disabled === "true"){
+            // "true"
+            a_links[i].addEventListener(`click`,
+                (e) => {
+                    e.preventDefault();
+                    // <a href="/whatever" onclick="return false" />
+                    return false;
+                }
+            );
+        }else{
+            a_links[i].addEventListener(`click`,
+                (e) => {
+                    e.preventDefault();// disable defalut a link event!
+                    console.log(`id = ${uid}`);
+                    let e_id = parseInt(e.target.dataset.eventsid);// e.target
+                    console.log(`id = ${e_id}`);
+                    clickLinkOpenModuleHandler(uid);
+                }
+            );
+        }
     }
     // only once ???
 }, 1000);

@@ -189,3 +189,9 @@
 [data-link="fv-recent-important-events-link"]:hover {
     color: #f0f;
 }
+
+[data-disabled="true"],
+[data-disabled="true"]:hover {
+    cursor: not-allowed;
+    color: grey;
+}

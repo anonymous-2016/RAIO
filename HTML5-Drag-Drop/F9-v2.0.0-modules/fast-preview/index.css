@@ -117,3 +117,8 @@ body {
     overflow: hidden;
     clear: both;
 }
+
+[data-disabled="true"] {
+    cursor: not-allowed;
+    color: grey;
+}
