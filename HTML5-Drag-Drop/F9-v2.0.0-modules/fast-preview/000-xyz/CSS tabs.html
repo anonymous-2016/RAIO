@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>CSS tabs</title>
+    <style>
+        /* @import "compass/css3"; */
+        
+        .tabs {
+            position: relative;
+            width: 25em;
+            list-style: none;
+            padding: 0;
+        }
+        
+        .tabs li {
+            float: left;
+        }
+        
+        .trigger {
+            color: #aaa;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-weight: bold;
+            width: 4em;
+            display: block;
+            padding: 0 .5em;
+        }
+        
+        li:first-child .trigger {
+            margin-left: 4em;
+        }
+        
+        li:last-child .trigger {
+            position: absolute;
+            left: 0;
+        }
+        
+        .content {
+            display: none;
+            position: absolute;
+            top: 2em;
+            left: 0;
+            padding: 0 .5em;
+        }
+        
+        li:target .content,
+        li:last-child .content {
+            display: block;
+        }
+        
+        li:target .trigger,
+        li:last-child .trigger {
+            color: #000;
+        }
+        
+        li:target~li:last-child .content {
+            display: none;
+        }
+        
+        li:target~li:last-child .trigger {
+            color: #aaa;
+        }
+    </style>
+</head>
+
+<body>
+    <ul class="tabs">
+        <li id="tab2">
+            <a href="#tab2" class="trigger">Tab 2</a>
+            <div class="content">
+                Content 2
+            </div>
+        </li>
+        <li id="tab3">
+            <a href="#tab3" class="trigger">Tab 3</a>
+            <div class="content">
+                Content 3
+            </div>
+        </li>
+        <li id="tab1">
+            <a href="#tab1" class="trigger">Tab 1</a>
+            <div class="content">
+                Content 1
+            </div>
+        </li>
+    </ul>
+</body>
+
+</html>

@@ -2,15 +2,69 @@
 
 /* size ??? */
 
+.h5-dnd-nav-container {
+    overflow: hidden;
+    box-sizing: border-box;
+    width: 300px;
+    height: 223px;
+    margin: 0px;
+    padding: 0px;
+}
+
+.h5-dnd-nav-container .h5-dnd-nav-box {
+    clear: both;
+    box-sizing: border-box;
+    width: 300px;
+    height: 200px;
+    background: #ccc;
+    /* float: left; */
+    /* overflow: hidden; */
+    margin: 0px;
+    padding: 0px;
+}
+
+
+/* hover & `dispaly: block;` */
+
+nav.h5-dnd-nav-container>ul.h5-dnd-nav-ul {
+    margin: 0px;
+    padding: 0px;
+}
+
 ul.h5-dnd-nav-ul>li {
     float: left;
     list-style: none;
+    background: #ccc;
+    /* border: 1px solid red; */
+    box-sizing: border-box;
+    width: 100px;
+    height: 23px;
+    line-height: 23px;
+    text-align: center;
+}
+
+ul.h5-dnd-nav-ul>li:nth-of-type(n):hover {
+    border: 1px solid red;
+    background: #eee;
+    display: inline-block;
+}
+
+.h5-dnd-nav-container>ul.h5-dnd-nav-ul>li:nth-of-type(n):hover~.h5-dnd-nav-container>div:nth-of-type(n) {
+    background: rgb(8, 247, 8);
+}
+
+ul.h5-dnd-nav-ul:first-child:hover {
+    border: 1px solid red;
+    background: #eee;
 }
 
 ul.h5-dnd-nav-ul>li>a {
     text-decoration: none;
     margin: auto 5px;
 }
+
+
+/* icons */
 
 .h5-dnd-icon-container {
     /* border: 1px solid #777; */

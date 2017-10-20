@@ -12,8 +12,9 @@
 </head>
 
 <body>
-    <header class="container">
-        <nav class="container-fluid">
+    <!-- data-bt-class="container container-fluid" -->
+    <header>
+        <nav class="h5-dnd-nav-container">
             <ul class="h5-dnd-nav-ul">
                 <li>
                     <a href="#模块选择">模块选择</a>
@@ -25,6 +26,15 @@
                     <a href="#模块设置">模块设置</a>
                 </li>
             </ul>
+            <div class="h5-dnd-nav-box">
+                div 1
+            </div>
+            <div class="h5-dnd-nav-box">
+                div 2
+            </div>
+            <div class="h5-dnd-nav-box">
+                div 3
+            </div>
         </nav>
         <!-- show/hidden === display: block/none; -->
         <section class="h5-dnd-icon-container">
@@ -87,7 +97,16 @@
                 <p class="h5-dnd-icon-p">高管持股变动情况</p>
             </div>
         </section>
-
+        <section class="h5-dnd-template-container section-display" data-display="false">
+            <div class="h5-dnd-template-box" draggable="true">
+                <p class="h5-dnd-template-p">模板选择</p>
+            </div>
+        </section>
+        <section class="h5-dnd-module-container section-hidden" data-display="true">
+            <div class="h5-dnd-module-box" draggable="true">
+                <p class="h5-dnd-module-p">模块设置</p>
+            </div>
+        </section>
     </header>
     <!-- js -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
