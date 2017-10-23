@@ -6,7 +6,8 @@
     overflow: hidden;
     box-sizing: border-box;
     width: 300px;
-    height: 223px;
+    /* height: 223px; */
+    height: 100vh;
     margin: 0px;
     padding: 0px;
 }
@@ -15,7 +16,7 @@
     clear: both;
     box-sizing: border-box;
     width: 300px;
-    height: 200px;
+    /* height: 200px; */
     background: #ccc;
     /* float: left; */
     /* overflow: hidden; */
@@ -56,10 +57,14 @@ ul.h5-dnd-nav-ul>li>a {
     margin: auto 5px;
 }
 
-.h5-dnd-nav-li-active {
-    background: rgb(1, 237, 245);
-    display: inline-block;
-    box-sizing: border-box;
+ul.h5-dnd-nav-ul>li.h5-dnd-nav-li-active {
+    /* background: rgb(1, 237, 245); */
+    background: #eee;
+}
+
+ul.h5-dnd-nav-ul>li.h5-dnd-nav-li-hidden {
+    /* background: rgb(1, 237, 245); */
+    background: #ccc;
 }
 
 .h5-dnd-nav-container .h5-dnd-nav-box-active {
@@ -72,6 +77,21 @@ ul.h5-dnd-nav-ul>li>a {
     background: #ccc;
     display: none;
     box-sizing: border-box;
+}
+
+
+/* btn */
+
+.h5-dnd-nav-btn {
+    clear: both;
+    box-sizing: border-box;
+    width: 100%;
+    height: 18px;
+    line-height: 18px;
+    background: #deecfc;
+    border: 1px solid #d4e7fc;
+    cursor: pointer;
+    text-align: center;
 }
 
 
@@ -97,11 +117,21 @@ ul.h5-dnd-nav-ul>li:nth-of-type(n):hover~div.h5-dnd-nav-box:nth-of-type(n) {
     width: 238px;
     /* 8,10,8 + 8 */
     /* 270 + 10 */
-    min-height: 700px;
-    height: 100vh;
+    min-height: 600px;
+    /* height: calc(100vh - 50px); */
+    height: calc(100vh - 41px);
     /* background: #ccc; */
     background: rgba(244, 249, 255, 1);
     overflow-y: scroll;
+}
+
+.h5-dnd-nav-container-normal {
+    /* width: 240px !important; */
+    width: 300px;
+}
+
+.h5-dnd-nav-container-small {
+    width: 10px !important;
 }
 
 

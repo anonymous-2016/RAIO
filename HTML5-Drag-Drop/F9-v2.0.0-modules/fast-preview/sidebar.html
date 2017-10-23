@@ -14,99 +14,99 @@
 <body>
     <!-- data-bt-class="container container-fluid" -->
     <header>
-        <nav class="h5-dnd-nav-container">
+        <nav class="h5-dnd-nav-container h5-dnd-nav-container-normal" data-nav-container="nav-container">
             <ul class="h5-dnd-nav-ul">
                 <li class="h5-dnd-nav-li-active" data-nav-li="nav-li">
                     <a href="#模块选择" data-uid="uid-a">模块选择</a>
                 </li>
-                <li class="h5-dnd-nav-li-active" data-nav-li="nav-li">
+                <li class="h5-dnd-nav-li-hidden" data-nav-li="nav-li">
                     <a href="#模板选择">模板选择</a>
                 </li>
-                <li class="h5-dnd-nav-li-active" data-nav-li="nav-li">
+                <li class="h5-dnd-nav-li-hidden" data-nav-li="nav-li">
                     <a href="#模块设置">模块设置</a>
                 </li>
             </ul>
+            <div class="h5-dnd-nav-btn" data-nav-btn="nav-btn">
+                <!-- btn -->
+            </div>
             <div class="h5-dnd-nav-box h5-dnd-nav-box-active" data-nav-box="nav-box">
-                div 1
+                <section class="h5-dnd-icon-container">
+                    <div class="h5-dnd-icon-box" draggable="true">
+                        <!-- <img src="../icons/company-news.png" alt=""> -->
+                        <!-- CSS before -->
+                        <p class="h5-dnd-icon-p">重要信息</p>
+                    </div>
+                    <div class="h5-dnd-icon-box" draggable="true">
+                        <p class="h5-dnd-icon-p">近期重要事项</p>
+                    </div>
+                    <div class="h5-dnd-icon-box" draggable="true">
+                        <p class="h5-dnd-icon-p">盈利预告</p>
+                    </div>
+                    <div class="h5-dnd-icon-box" draggable="true">
+                        <p class="h5-dnd-icon-p">每股指标</p>
+                    </div>
+                    <div class="h5-dnd-icon-box" draggable="true">
+                        <p class="h5-dnd-icon-p">机构评级</p>
+                    </div>
+                    <div class="h5-dnd-icon-box" draggable="true">
+                        <p class="h5-dnd-icon-p">机构持股变动统计</p>
+                    </div>
+                    <div class="h5-dnd-icon-box" draggable="true">
+                        <p class="h5-dnd-icon-p">股价/成交量</p>
+                    </div>
+                    <div class="h5-dnd-icon-box" draggable="true">
+                        <p class="h5-dnd-icon-p">机构调研统计</p>
+                    </div>
+                    <div class="h5-dnd-icon-box" draggable="true">
+                        <p class="h5-dnd-icon-p">前十大股东</p>
+                    </div>
+                    <div class="h5-dnd-icon-box" draggable="true">
+                        <p class="h5-dnd-icon-p">研究报告</p>
+                    </div>
+                    <div class="h5-dnd-icon-box" draggable="true">
+                        <p class="h5-dnd-icon-p">公司公告</p>
+                    </div>
+                    <div class="h5-dnd-icon-box" draggable="true">
+                        <p class="h5-dnd-icon-p">公司新闻</p>
+                    </div>
+                    <!-- 
+                        <div class="h5-dnd-icon-box" draggable="true">
+                            <p class="h5-dnd-icon-p">投资者关系</p>
+                        </div>
+                    -->
+                    <div class="h5-dnd-icon-box" draggable="true">
+                        <p class="h5-dnd-icon-p">融资余额与融券余额差值走势</p>
+                    </div>
+                    <div class="h5-dnd-icon-box" draggable="true">
+                        <p class="h5-dnd-icon-p">近一个月资金流向大单统计</p>
+                    </div>
+                    <div class="h5-dnd-icon-box" draggable="true">
+                        <p class="h5-dnd-icon-p">股权质押</p>
+                    </div>
+                    <div class="h5-dnd-icon-box" draggable="true">
+                        <p class="h5-dnd-icon-p">控股参股情况</p>
+                    </div>
+                    <div class="h5-dnd-icon-box" draggable="true">
+                        <p class="h5-dnd-icon-p">高管持股变动情况</p>
+                    </div>
+                </section>
             </div>
             <div class="h5-dnd-nav-box h5-dnd-nav-box-hidden" data-nav-box="nav-box">
-                div 2
+                <section class="h5-dnd-template-container section-display" data-display="false">
+                    <div class="h5-dnd-template-box" draggable="true">
+                        <p class="h5-dnd-template-p">模板选择</p>
+                    </div>
+                </section>
             </div>
             <div class="h5-dnd-nav-box h5-dnd-nav-box-hidden" data-nav-box="nav-box">
-                div 3
+                <section class="h5-dnd-module-container section-hidden" data-display="true">
+                    <div class="h5-dnd-module-box" draggable="true">
+                        <p class="h5-dnd-module-p">模块设置</p>
+                    </div>
+                </section>
             </div>
         </nav>
         <!-- show/hidden === display: block/none; -->
-        <section class="h5-dnd-icon-container">
-            <div class="h5-dnd-icon-box" draggable="true">
-                <!-- <img src="../icons/company-news.png" alt=""> -->
-                <!-- CSS before -->
-                <p class="h5-dnd-icon-p">重要信息</p>
-            </div>
-            <div class="h5-dnd-icon-box" draggable="true">
-                <p class="h5-dnd-icon-p">近期重要事项</p>
-            </div>
-            <div class="h5-dnd-icon-box" draggable="true">
-                <p class="h5-dnd-icon-p">盈利预告</p>
-            </div>
-            <div class="h5-dnd-icon-box" draggable="true">
-                <p class="h5-dnd-icon-p">每股指标</p>
-            </div>
-            <div class="h5-dnd-icon-box" draggable="true">
-                <p class="h5-dnd-icon-p">机构评级</p>
-            </div>
-            <div class="h5-dnd-icon-box" draggable="true">
-                <p class="h5-dnd-icon-p">机构持股变动统计</p>
-            </div>
-            <div class="h5-dnd-icon-box" draggable="true">
-                <p class="h5-dnd-icon-p">股价/成交量</p>
-            </div>
-            <div class="h5-dnd-icon-box" draggable="true">
-                <p class="h5-dnd-icon-p">机构调研统计</p>
-            </div>
-            <div class="h5-dnd-icon-box" draggable="true">
-                <p class="h5-dnd-icon-p">前十大股东</p>
-            </div>
-            <div class="h5-dnd-icon-box" draggable="true">
-                <p class="h5-dnd-icon-p">研究报告</p>
-            </div>
-            <div class="h5-dnd-icon-box" draggable="true">
-                <p class="h5-dnd-icon-p">公司公告</p>
-            </div>
-            <div class="h5-dnd-icon-box" draggable="true">
-                <p class="h5-dnd-icon-p">公司新闻</p>
-            </div>
-            <!-- 
-                <div class="h5-dnd-icon-box" draggable="true">
-                    <p class="h5-dnd-icon-p">投资者关系</p>
-                </div>
-            -->
-            <div class="h5-dnd-icon-box" draggable="true">
-                <p class="h5-dnd-icon-p">融资余额与融券余额差值走势</p>
-            </div>
-            <div class="h5-dnd-icon-box" draggable="true">
-                <p class="h5-dnd-icon-p">近一个月资金流向大单统计</p>
-            </div>
-            <div class="h5-dnd-icon-box" draggable="true">
-                <p class="h5-dnd-icon-p">股权质押</p>
-            </div>
-            <div class="h5-dnd-icon-box" draggable="true">
-                <p class="h5-dnd-icon-p">控股参股情况</p>
-            </div>
-            <div class="h5-dnd-icon-box" draggable="true">
-                <p class="h5-dnd-icon-p">高管持股变动情况</p>
-            </div>
-        </section>
-        <section class="h5-dnd-template-container section-display" data-display="false">
-            <div class="h5-dnd-template-box" draggable="true">
-                <p class="h5-dnd-template-p">模板选择</p>
-            </div>
-        </section>
-        <section class="h5-dnd-module-container section-hidden" data-display="true">
-            <div class="h5-dnd-module-box" draggable="true">
-                <p class="h5-dnd-module-p">模块设置</p>
-            </div>
-        </section>
     </header>
     <!-- js -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>

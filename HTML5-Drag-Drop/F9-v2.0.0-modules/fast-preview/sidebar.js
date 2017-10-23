@@ -1,46 +1,47 @@
 // h5-dnd-nav-box
 
-
-
-
 let lis = document.querySelectorAll(`[data-nav-li="nav-li"]`);
-
 let divs = document.querySelectorAll(`[data-nav-box="nav-box"]`);
 
-// divs[0].attributes;
+const debug = false;
 
-// NamedNodeMap {0: class, length: 1}
-// lis.map((i) => console.log(`i`, i));
-// Uncaught TypeError: lis.map is not a function
-
-lis.forEach(function(obj, i, arr) {
-    console.log(`obj = `, obj);
-    console.log(`i = `, i);
-    if (i === 0) {
-        console.log(`arr = \n`, arr);
-    }
-    // e === a ???
-    // screenX: 67, screenY: 76, clientX: 67, clientY: 10
+for (let i = 0; i < lis.length; i++) {
     lis[i].addEventListener(`click`, (e) => {
-        console.log(`e = `, e);
-        console.log(`typeof e = `, typeof e);
-        let e_classes = e.target.classList;
-        let e_datas = e.target.dataset;
-        console.log(`e classes= `, e_classes);
-        console.log(`e datas= `, e_datas);
-        // divs[0].getAttribute()
-        // divs[0].setAttribute()
-        // Uncaught TypeError: Cannot read property 'hasAttribute' of undefined
-        console.log(`divs[i] = `, divs[i]);
-        console.log(`divs[i].classList = `, divs[i].classList);
-        // console.log(`divs[i].hasAttribute("show") = `, divs[i].hasAttribute("show"));
-        // console.log(`divs[i].classList.contains(\`show\`) = `, divs[i].classList.contains(`show`));
-        // divs[0].attributes.class
-        // "h5-dnd-nav-box h5-dnd-nav-box-active show"
-        // divs[i].hasAttribute("show")
-        // h5-dnd-nav-box-hidden
+        if (debug) {
+            let e_classes = e.target.classList;
+            let e_datas = e.target.dataset;
+            console.log(`e = `, e);
+            console.log(`typeof e = `, typeof e);
+            console.log(`e classes= `, e_classes);
+            console.log(`e datas= `, e_datas);
+            console.log(`divs[i] = `, divs[i]);
+            console.log(`divs[i].classList = `, divs[i].classList);
+            console.log(`i = `, i);
+            console.log(`show ${divs[i].classList.contains(`h5-dnd-nav-box-hidden`)}`);
+        }
         console.log(`i = `, i);
-        console.log(`show ${divs[i].classList.contains(`h5-dnd-nav-box-hidden`)}`);
+        // lis.h5-dnd-nav-li-active
+        if (lis[i].classList.contains("h5-dnd-nav-li-active")) {
+            // lis[i].classList.add("h5-dnd-nav-li-active");
+            // lis[i].classList.remove("h5-dnd-nav-li-hidden");
+        }else{
+            lis[i].classList.add("h5-dnd-nav-li-active");
+            lis[i].classList.remove("h5-dnd-nav-li-hidden");
+            let arr = [0,1,2];
+            // arr remove i ??? arr.shift();
+            arr.map(
+                (item, index) =>{
+                    console.log(`item = ${item}`);
+                    console.log(`index = ${index}`);
+                    if(item !== i){
+                        if (lis[i].classList.contains(`h5-dnd-nav-li-active`)) {
+                            lis[item].classList.remove("h5-dnd-nav-li-active");
+                            lis[item].classList.add("h5-dnd-nav-li-hidden");
+                        }
+                    }
+                }
+            );
+        };
         if (divs[i].classList.contains(`h5-dnd-nav-box-active`)) {
             // divs[i].classList.add("h5-dnd-nav-box-hidden");
             // divs[i].classList.remove("h5-dnd-nav-box-active");
@@ -48,7 +49,7 @@ lis.forEach(function(obj, i, arr) {
             divs[i].classList.add("h5-dnd-nav-box-active");
             divs[i].classList.remove("h5-dnd-nav-box-hidden");
             let arr = [0,1,2];
-            // arr rempove i
+            // arr remove i ??? arr.shift();
             arr.map(
                 (item, index) =>{
                     console.log(`item = ${item}`);
@@ -63,7 +64,65 @@ lis.forEach(function(obj, i, arr) {
             );
         };
     });
-}, this);// this ???
+}
+
+let btn = document.querySelector(`[data-nav-btn="nav-btn"]`);
+let container = document.querySelector(`[data-nav-container="nav-container"]`);
+
+
+btn.onclick = () => {
+    console.log(`btn = ${container.classList.contains("h5-dnd-nav-container-normal")}`);
+    if (container.classList.contains("h5-dnd-nav-container-normal")) {
+        container.classList.add("h5-dnd-nav-container-small");
+        container.classList.remove("h5-dnd-nav-container-normal");
+    }else{
+        container.classList.remove("h5-dnd-nav-container-small");
+        container.classList.add("h5-dnd-nav-container-normal");
+        // toggle() ???
+    }
+}
+
+/* 
+
+
+arr = [11,22,33];
+// (3) [11, 22, 33]
+arr.pop(22);
+// 33
+arr
+// (2) [11, 22]
+// end
+
+arr = [11,22,33];
+// (3) [11, 22, 33]
+arr.shift(22);
+// 11
+arr
+// (2) [22, 33]
+// before
+
+
+
+delete arr[1];
+// true
+arr
+// (3) [11, empty × 1, 33]
+arr.length;
+// 3
+
+
+obj = {a: 1, b:2, c:3};
+// {a: 1, b: 2, c: 3}
+delete obj.b;
+// true
+obj
+// {a: 1, c: 3}
+
+
+
+
+*/
+
 
 /* 
 
