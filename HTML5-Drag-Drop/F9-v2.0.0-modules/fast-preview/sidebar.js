@@ -5,6 +5,7 @@ let divs = document.querySelectorAll(`[data-nav-box="nav-box"]`);
 
 const debug = false;
 
+// tabs
 for (let i = 0; i < lis.length; i++) {
     lis[i].addEventListener(`click`, (e) => {
         if (debug) {
@@ -24,9 +25,12 @@ for (let i = 0; i < lis.length; i++) {
         if (lis[i].classList.contains("h5-dnd-nav-li-active")) {
             // lis[i].classList.add("h5-dnd-nav-li-active");
             // lis[i].classList.remove("h5-dnd-nav-li-hidden");
+            // lis[i].classList.add("no-bottom-margin");
         }else{
             lis[i].classList.add("h5-dnd-nav-li-active");
             lis[i].classList.remove("h5-dnd-nav-li-hidden");
+            lis[i].classList.remove("add-bottom-margin");
+            lis[i].classList.add("no-bottom-margin");
             let arr = [0,1,2];
             // arr remove i ??? arr.shift();
             arr.map(
@@ -34,7 +38,9 @@ for (let i = 0; i < lis.length; i++) {
                     console.log(`item = ${item}`);
                     console.log(`index = ${index}`);
                     if(item !== i){
-                        if (lis[i].classList.contains(`h5-dnd-nav-li-active`)) {
+                        if (lis[item].classList.contains(`h5-dnd-nav-li-active`)) {
+                            lis[item].classList.remove("no-bottom-margin");
+                            lis[item].classList.add("add-bottom-margin");
                             lis[item].classList.remove("h5-dnd-nav-li-active");
                             lis[item].classList.add("h5-dnd-nav-li-hidden");
                         }
@@ -66,12 +72,14 @@ for (let i = 0; i < lis.length; i++) {
     });
 }
 
-let btn = document.querySelector(`[data-nav-btn="nav-btn"]`);
-let container = document.querySelector(`[data-nav-container="nav-container"]`);
-
+// btns
+let btn = document.querySelector(`[data-nav-btn="nav-btn"]`),
+    small_btn = document.querySelector(`[data-nav-small-btn="nav-small-btn"]`),
+    container = document.querySelector(`[data-nav-container="nav-container"]`),
+    small_container = document.querySelector(`[data-nav-small-container="nav-small-container"]`);;
 
 btn.onclick = () => {
-    console.log(`btn = ${container.classList.contains("h5-dnd-nav-container-normal")}`);
+    // console.log(`btn = ${container.classList.contains("h5-dnd-nav-container-normal")}`);
     if (container.classList.contains("h5-dnd-nav-container-normal")) {
         container.classList.add("h5-dnd-nav-container-small");
         container.classList.remove("h5-dnd-nav-container-normal");
@@ -80,7 +88,61 @@ btn.onclick = () => {
         container.classList.add("h5-dnd-nav-container-normal");
         // toggle() ???
     }
-}
+    if (small_container.classList.contains("h5-dnd-nav-small-btn-hidden")) {
+        small_container.classList.add("h5-dnd-nav-small-btn-show");
+        small_container.classList.remove("h5-dnd-nav-small-btn-hidden");
+    }else{
+        small_container.classList.add("h5-dnd-nav-small-btn-hidden");
+        small_container.classList.remove("h5-dnd-nav-small-btn-show");
+    }
+};
+
+small_btn.onclick = () => {
+    if (small_container.classList.contains("h5-dnd-nav-small-btn-hidden")) {
+        small_container.classList.add("h5-dnd-nav-small-btn-show");
+        small_container.classList.remove("h5-dnd-nav-small-btn-hidden");
+    }else{
+        small_container.classList.add("h5-dnd-nav-small-btn-hidden");
+        small_container.classList.remove("h5-dnd-nav-small-btn-show");
+    }
+    if (container.classList.contains("h5-dnd-nav-container-normal")) {
+        container.classList.add("h5-dnd-nav-container-small");
+        container.classList.remove("h5-dnd-nav-container-normal");
+    }else{
+        container.classList.remove("h5-dnd-nav-container-small");
+        container.classList.add("h5-dnd-nav-container-normal");
+        // toggle() ???
+    }
+};
+
+
+
+
+let url_params = decodeURIComponent(window.location.search);
+// "?gilcode=600570.SH&skin=white&type=4&name=恒生电子"
+let url_params = window.location.search;
+// "?gilcode=600570.SH&skin=white&type=4&name=%E6%81%92%E7%94%9F%E7%94%B5%E5%AD%90"
+
+let gilcode = url_params.substr(url_params.indexOf(`=`)+1, url_params.indexOf(`.SH`) - url_params.indexOf(`=`) -1);
+// "600570"
+
+gilcode = url_params.substr(url_params.indexOf(`=`)+1, 6);
+// "600570"
+
+
+gilcode = url_params.slice(url_params.indexOf(`=`)+1, url_params.indexOf(`.SH`));
+// "600570"
+
+
+
+
+
+
+
+
+
+
+
 
 /* 
 
