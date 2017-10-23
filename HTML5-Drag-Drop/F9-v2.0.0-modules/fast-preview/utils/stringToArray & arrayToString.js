@@ -1,4 +1,9 @@
-
+/**
+ * stringToArray & arrayToString
+ * xgqfrms
+ * created 2017.10.20
+ * @param {Boolean} debug 
+ */
 
 
 
