@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>OOP</title>
+    <style>
+        div[class*="oop-data"] {
+            width: 300px;
+            height: 200px;
+            background-color: #0f0;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="oop-box">
+        <!-- HTML ""/'' !=== JS `` -->
+        <!-- data-obj="{uid: `007`, name: `hacker`, age: `unkown`, address: `UFO`}" -->
+        <!-- data-obj="{'uid': `007`, 'name': `hacker`, 'age': `unkown`, 'address': `UFO`}" -->
+        <!-- data-obj="{'uid': '007', 'name': 'hacker', 'age': 'unkown', 'address': 'UFO'}" -->
+        <div class="oop-data-test" data-obj='{"uid":"007","name":"hacker","age":"unkown","address":"UFO"}'>
+            <!-- `{"uid":"007","name":"hacker","age":"unkown","address":"UFO"}` -->
+            <!-- obj === '{"key":"value"}' -->
+            <!-- data-obj='{"uid":"007","name":"hacker","age":"unkown","address":"UFO"}' -->
+        </div>
+    </div>
+    <script>
+        // let test = document.querySelector('[data-obj="{uid: `007`, name: `hacker`, age: `unkown`, address: `UFO`}"');
+        /* data-*="any value of all values" */
+        let test = document.querySelector('[data-obj*="uid"');
+        // OK
+        test.dataset;
+        // DOMStringMap {obj: "{uid: `007`, name: `hacker`, age: `unkown`, address: `UFO`}"}
+        test.dataset.obj;
+        // "{uid: `007`, name: `hacker`, age: `unkown`, address: `UFO`}"
+        test.dataset.obj.uid;
+        // undefined
+        test.dataset.obj[`uid`];
+        // undefined
+        let data_obj = JSON.parse(test.dataset.obj);
+        // Uncaught SyntaxError: Unexpected token u in JSON at position 1 at JSON.parse (<anonymous>)
+        // Uncaught SyntaxError: Unexpected token ' in JSON at position 1 at JSON.parse (<anonymous>)
+        /* {uid: "007", name: "hacker", age: "unkown", address: "UFO"} */
+        let obj = {
+            uid: `007`,
+            name: `hacker`,
+            age: `unkown`,
+            address: `UFO`
+        };
+        // {uid: "007", name: "hacker", age: "unkown", address: "UFO"}
+        JSON.stringify(obj);
+        // "{"uid":"007","name":"hacker","age":"unkown","address":"UFO"}"
+        JSON.parse(`{"uid":"007","name":"hacker","age":"unkown","address":"UFO"}`);
+        // {uid: "007", name: "hacker", age: "unkown", address: "UFO"}
+    </script>
+</body>
+
+</html>

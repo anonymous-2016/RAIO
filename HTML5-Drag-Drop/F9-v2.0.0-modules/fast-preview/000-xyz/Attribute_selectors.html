@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Attribute_selectors</title>
+    <style>
+        /* All divs with a `lang` attribute are bold. */
+        
+        div[lang] {
+            font-weight: bold;
+        }
+        /* All divs in US English are blue. */
+        
+        div[lang~="en-us"] {
+            color: blue;
+        }
+        /* All divs in Portuguese are green. */
+        
+        div[lang="pt"] {
+            color: green;
+        }
+        /* All divs in Chinese are red, whether simplified (zh-CN) or traditional (zh-TW). */
+        
+        div[lang|="zh"] {
+            color: red;
+        }
+        
+        div[data-lang="zh-TW"] {
+            color: purple;
+        }
+        /* All divs with a Traditional Chinese `data-lang` are purple. */
+        /* Note: You could also use hyphenated (连字符) attributes without double quotes */
+        /* 
+            // OK 双引号
+            div[data-lang="zh-TW"] {
+                color: purple;
+            }
+            // OK 连字符
+            div[data-lang=zh-TW] {
+                color: purple;
+            }
+            // Bad 下划线
+            div[data-lang=zh_TW] {
+                color: purple;
+            }
+        */
+    </style>
+</head>
+
+<body>
+    <div lang="en-us en-gb en-au en-nz">Hello World!</div>
+    <div lang="pt">Olá Mundo!</div>
+    <div lang="zh-CN">世界您好！</div>
+    <div lang="zh-TW">世界您好！</div>
+    <div data-lang="zh-TW">世界您好！</div>
+</body>
+
+</html>

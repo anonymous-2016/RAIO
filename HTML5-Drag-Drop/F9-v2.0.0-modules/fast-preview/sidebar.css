@@ -225,7 +225,7 @@ ul.h5-dnd-nav-ul>li:nth-of-type(n):hover~div.h5-dnd-nav-box:nth-of-type(n) {
     position: relative;
     margin: 0;
     padding: 0;
-    margin-right: 8px;
+    /* margin-right: 8px; */
     float: left;
     box-sizing: border-box;
     height: 100vh;
@@ -257,14 +257,19 @@ ul.h5-dnd-nav-ul>li:nth-of-type(n):hover~div.h5-dnd-nav-box:nth-of-type(n) {
 }
 
 [data-nav-small-btn="nav-small-btn"]:hover {
-    background: #d4e7fc;
-    /* e5eeff */
+    /* background: #d4e7fc; */
+    background: #fff;
 }
 
 [data-nav-small-btn="nav-small-btn"]::before {
     content: url("../icons/btn-icon.png");
     width: 10px;
     height: 9px;
+    /*
+    background: #f0f;
+    width: 80%;
+    height: 80%; 
+    */
     line-height: 9px;
     margin: auto;
     display: block;
@@ -468,4 +473,142 @@ div.h5-dnd-icon-box:nth-of-type(0) {
 
 .h5-dnd-icon-container>div.h5-dnd-icon-box:nth-child(17)>p.h5-dnd-icon-p::before {
     content: url("../icons/changes-shareholding-executives.png");
+}
+
+
+/* h5-dnd-header-container */
+
+.h5-dnd-header-container {
+    box-sizing: border-box;
+    float: left;
+}
+
+
+/* h5-dnd-body-container */
+
+.h5-dnd-body-container {
+    box-sizing: border-box;
+    /* width: calc(100% - 238px); */
+    height: 100vh;
+    overflow-y: scroll;
+    /* rollback */
+    /* min-width: 400px; */
+    /* min-height: 300px; */
+    margin: 0;
+    padding: 0;
+    background: rgb(4, 252, 128);
+    float: left;
+}
+
+.h5-dnd-body-container-small {
+    width: calc(100% - 238px);
+}
+
+.h5-dnd-body-container-big {
+    width: calc(100% - 10px);
+}
+
+
+/* [data-body-container="data-body-container"] */
+
+.h5-dnd-template-container,
+.h5-dnd-module-container {
+    /* border: 1px solid #777; */
+    box-sizing: border-box;
+    width: 238px;
+    min-height: 300px;
+    height: calc(100vh - 41px);
+    /* height: 1000px; */
+    /* background: #ccc; */
+    background: rgba(244, 249, 255, 1);
+    /* overflow-y: scroll; */
+    /* float: left; */
+}
+
+.h5-dnd-template-box,
+.h5-dnd-module-box {
+    border: 1px solid rgba(229, 229, 229, 1);
+    background: #fff;
+    box-sizing: border-box;
+    width: 102px;
+    height: 108px;
+    float: left;
+    margin: 8px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+div.h5-dnd-template-box:nth-of-type(1),
+div.h5-dnd-template-box:nth-of-type(2) {
+    margin-top: 12px;
+}
+
+div.h5-dnd-template-box:nth-of-type(1) {
+    margin-right: 5px;
+}
+
+div.h5-dnd-template-box:nth-of-type(2) {
+    margin-left: 5px;
+}
+
+
+/* CSS ??? div.h5-dnd-module-box */
+
+div.h5-dnd-module-box:nth-of-type(1) {
+    margin: 12px 50%;
+    transform: translateX(-50%);
+}
+
+.h5-dnd-template-p,
+.h5-dnd-module-p {
+    box-sizing: border-box;
+    text-align: center;
+    margin-top: 66px;
+    position: relative;
+    /* position: absolute; */
+    font-size: 12px;
+    color: rgba(112, 112, 112, 1);
+    line-height: 16px;
+    height: 16px;
+    padding-left: 7px;
+    padding-right: 7px;
+    word-break: break-all;
+    overflow-wrap: break-word;
+}
+
+.h5-dnd-template-p::before,
+.h5-dnd-module-p::before {
+    content: "no icon!";
+    width: 40px;
+    height: 40px;
+    display: block;
+    position: absolute;
+    /* top: -58px; */
+    bottom: 26px;
+    left: 31px;
+    box-sizing: border-box;
+}
+
+.h5-dnd-template-container>div.h5-dnd-template-box:nth-child(1)>p.h5-dnd-template-p::before {
+    content: url(../icons/universal.png);
+}
+
+.h5-dnd-template-container>div.h5-dnd-template-box:nth-child(2)>p.h5-dnd-template-p::before {
+    content: url(../icons/customize.png);
+}
+
+
+/* data-uid="module-setting" */
+
+.h5-dnd-module-container>div.h5-dnd-module-box:nth-child(1)>p.h5-dnd-module-p::before {
+    content: url(../icons/customize.png);
+}
+
+
+/* css3-attr-selector-test */
+
+.css3-attr-selector-test {
+    text-align: center;
+    /* align: left; */
+    /* [css] Unknown property. */
 }
