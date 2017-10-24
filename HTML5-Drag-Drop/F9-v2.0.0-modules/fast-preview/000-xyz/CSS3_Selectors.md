@@ -2,6 +2,158 @@
 
 
 https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Selectors
+https://developer.mozilla.org/en-US/docs/Web/CSS/Attribute_selectors
+
+
+https://developer.mozilla.org/zh-CN/docs/Learn/CSS
+https://developer.mozilla.org/en-US/docs/Learn/CSS/Introduction_to_CSS
+https://developer.mozilla.org/en-US/docs/Learn/CSS/Introduction_to_CSS/Selectors
+
+
+https://developer.mozilla.org/en-US/docs/Web/CSS/CSS3
+https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout
+https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout
+
+
+## CSS Selectors
+
+https://www.w3.org/TR/selectors/
+
+
+Selectors Level 3
+W3C Recommendation 29 September 2011
+
+https://www.w3.org/TR/css3-selectors/
+
+
+Selectors Level 4
+W3C Working Draft 2 May 2013
+
+https://www.w3.org/TR/selectors4/
+
+
+https://www.w3.org/TR/2009/PR-css3-selectors-20091215/
+https://www.w3.org/TR/2011/WD-selectors4-20110929/
+
+http://www.w3.org/TR/CSS2/selector.html
+http://www.w3.org/TR/CSS1/
+
+
+https://www.w3schools.com/cssref/css_selectors.asp
+
+
+```md
+
+Basic Selectors
+    Type selectors
+    Class selectors
+    ID selectors
+    Universal selectors
+    Attribute selectors
+
+Combinators
+    Adjacent sibling combinator
+    General sibling combinator
+    Child combinator
+    Descendant combinator
+
+> 🐛 This is an experimental API that should not be used in production code.
+
+Pseudo-classes
+    :active
+🐛   :any
+🐛    :any-link
+    :checked
+    :default
+🐛    :dir()
+    :disabled
+    :empty
+    :enabled
+    :first
+    :first-child
+    :first-of-type
+🐛    :fullscreen
+    :focus
+    :focus-within
+    :hover
+    :indeterminate
+    :in-range
+    :invalid
+    :lang()
+    :last-child
+    :last-of-type
+    :left
+    :link
+    :not()
+    :nth-child()
+    :nth-last-child()
+    :nth-last-of-type()
+    :nth-of-type()
+    :only-child
+    :only-of-type
+    :optional
+    :out-of-range
+🐛    :placeholder-shown
+    :read-only
+    :read-write
+    :required
+    :right
+    :root
+    :scope
+    :target
+    :valid
+    :visited
+
+> This API has not been standardized.
+
+Pseudo-elements
+😩    ::-moz-progress-bar
+😩    ::-moz-range-progress
+😩    ::-moz-range-thumb
+😩    ::-moz-range-track
+😩    ::-ms-fill
+😩    ::-ms-fill-lower
+😩    ::-ms-fill-upper
+😩    ::-ms-thumb
+😩    ::-ms-track
+😩    ::-webkit-progress-bar
+😩    ::-webkit-progress-value
+😩    ::-webkit-slider-runnable-track
+😩    ::-webkit-slider-thumb
+    ::after (:after)
+    ::backdrop
+    ::before (:before)
+    ::first-letter (:first-letter)
+    ::first-line (:first-line)
+🐛    ::placeholder
+    ::selection
+    ::cue (:cue)
+
+
+
+
+
+😋 Get Emoji — List of all Emojis to ✂️ Copy and 📋 Paste 👌
+📙 Emojipedia — 😃 Home of Emoji Meanings 💁👌🎍😍
+😋 Get Emoji — List of all Emojis to ✂️ Copy and ...
+Copy and Paste Emoji 👍 No apps required. 😄😊😉😍😘😚😜😝😳😁😣😢😂😭😪😥😰😩
+
+getemoji.com
+
+emojipedia.org
+
+
+```
+
+
+
+
+
+https://developer.mozilla.org/zh-CN/docs/Web/API/XMLHttpRequest/Synchronous_and_Asynchronous_Requests
+https://developer.mozilla.org/zh-CN/docs/Web/API/Element/classList
+https://developer.mozilla.org/en-US/docs/Web/API/DataTransfer#effectAllowed.28.29
+https://developer.mozilla.org/en-US/docs/Web/API/HTML_Drag_and_Drop_API#Drag_Events
+
 
 
 
@@ -166,12 +318,12 @@ h5 = document.querySelectorAll(`p[class*="icon"]`);
 
 
 
+https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Introduction_to_Object-Oriented_JavaScript
 
 
+http://www.jb51.net/html5/152511.html
 
-
-
-
+https://jingyan.baidu.com/article/63f236280a56680209ab3d58.html
 
 
 
