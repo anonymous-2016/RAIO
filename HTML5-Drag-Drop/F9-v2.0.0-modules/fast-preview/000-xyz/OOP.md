@@ -66,16 +66,39 @@ moduleTest.init(url);
 
 
 
+## HTML5 Atrribute ???
 
-https://jingyan.baidu.com/article/63f236280a56680209ab3d58.html
+> CSS Attributes ???
+
+
+https://developer.mozilla.org/zh-CN/docs/Web/HTML/Global_attributes
+
+
+https://developer.mozilla.org/zh-CN/docs/Web/HTML/Global_attributes/data-*
+
+
+## data-*
+
+> HTML5 这类的属性，被称为自定义属性，允许HTML与和它对应DOM表现形式之间的专有信息交换，这或许对script来说有用。
+
+
+https://developer.mozilla.org/zh-CN/docs/Web/HTML/Global_attributes/data-*
+
+
+https://developer.mozilla.org/zh-CN/docs/Web/API/XMLHttpRequest/Synchronous_and_Asynchronous_Requests
+
+
 
 
 ```js
 
-// Object
+// Object (must be , data-obj=`{"key":"value"}`)
 
-// data-obj="{uid: `007`, name: `hacker`, age: `unkown`, address: `UFO`}"
+// data-obj='{"uid":"007","name":"hacker","age":"unkown","address":"UFO"}'
+
+
+let test = document.querySelector('[data-obj*="uid"');
+
+let data_obj = JSON.parse(test.dataset.obj);
 
 ```
-
-

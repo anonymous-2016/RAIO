@@ -126,7 +126,20 @@ div[data-lang="zh-TW"] {
 
 ## HTML5 Atrribute ???
 
-> CSS attribute
+> CSS Attributes ???
+
+
+https://developer.mozilla.org/zh-CN/docs/Web/HTML/Global_attributes
+
+
+https://developer.mozilla.org/zh-CN/docs/Web/HTML/Global_attributes/data-*
+
+
+## data-*
+
+> HTML5 这类的属性，被称为自定义属性，允许HTML与和它对应DOM表现形式之间的专有信息交换，这或许对script来说有用。
+
+
 
 
 ```js
