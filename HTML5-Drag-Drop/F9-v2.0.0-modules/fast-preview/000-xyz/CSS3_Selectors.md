@@ -321,9 +321,47 @@ h5 = document.querySelectorAll(`p[class*="icon"]`);
 https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Introduction_to_Object-Oriented_JavaScript
 
 
-http://www.jb51.net/html5/152511.html
 
-https://jingyan.baidu.com/article/63f236280a56680209ab3d58.html
+
+
+> 这种方式通过访问一个元素的 dataset 属性来存取 data-* 自定义属性的值。
+这个 dataset 属性是HTML5 JavaScript API的一部分，用来返回一个所有选择元素 data- 属性的DOMStringMap对象。
+
+1. Element.getAttribute() & Element.setAttribute()
+2. dataset: 使用这种方法时，不是使用完整的属性名，如 data-uid 来存取数据，应该去掉data- 前缀;  data- 属性名如果包含了连字符，例如：data-date-of-birth, 连字符将被去掉，并转换为驼峰式的命名, dateOfBirth 。
+3. CSS3 Attribute Selectors: [data-test*="test"]
+
+
+
+```js
+
+<div id = "user" data-uid = "12345" data-uname = "脚本之家"></div> 
+
+// 使用getAttribute获取 data- 属性
+var user = document.getElementById('user');
+var userName = plant.getAttribute('data-uname'); // userName = 'xgqfrms'
+var userId = plant.getAttribute('data-uid'); // userId = '007'
+
+// 使用setAttribute设置 data- 属性
+user.setAttribute('data-site','https://www.xgqfrms.xyz') ;
+
+
+
+
+```
+
+## using `data-*` store Object!
+
+```js
+
+<div id="awesome-json" data-awesome='{"game":"on"}'></div> 
+
+
+var gameStatus= jQuery("#awesome-json").data('awesome').game; console.log(gameStatus); 
+
+
+
+```
 
 
 
