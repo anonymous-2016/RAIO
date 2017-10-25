@@ -49,6 +49,34 @@ const formatNumbersWithTitle = (num = 1234567890.001, debug = false) => {
     return fn_str;
 };
 
+// test
+
+formatNumbersWithTitle();
+formatNumbersWithTitle(1234567890.000001);
+formatNumbersWithTitle(1234567890.000001, true);
+// "1,234,567,890.000001"
+
+
+// bug ??? js 30 days
+
+let NumberWithCommas = (str=``) => {
+    // regex
+    let regex = new RegExp(/\B(\d{3}+)?/, gi);
+}
+
+/* 
+
+https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/RegExp
+
+https://regexper.com/
+
+https://github.com/wesbos/JavaScript30
+
+https://javascript30.com/
+
+*/
+
+
 
 
 /**
