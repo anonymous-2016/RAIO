@@ -81,3 +81,19 @@ switch (weight) {
 */
 // IIFE
 
+
+
+// OOP
+
+
+const Base64Utils = (str=``) => {
+    let result = ``;
+    // decode 解码 (ASCII to base-64)
+    result = window.atob(str);
+    // encode 编码 (base-64 to ASCII)
+    result = window.btoa(str);
+    return {
+        decode: () => console.log(`base64 decoder`),
+        encode: () => console.log(`base64 encoder`)
+    }
+};
