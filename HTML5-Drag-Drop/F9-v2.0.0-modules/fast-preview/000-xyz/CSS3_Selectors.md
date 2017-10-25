@@ -321,7 +321,7 @@ h5 = document.querySelectorAll(`p[class*="icon"]`);
 https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Introduction_to_Object-Oriented_JavaScript
 
 
-
+http://www.jb51.net/html5/152511.html
 
 
 > 这种方式通过访问一个元素的 dataset 属性来存取 data-* 自定义属性的值。

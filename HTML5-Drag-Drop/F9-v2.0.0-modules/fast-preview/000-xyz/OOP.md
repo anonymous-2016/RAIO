@@ -88,6 +88,8 @@ https://developer.mozilla.org/zh-CN/docs/Web/HTML/Global_attributes/data-*
 https://developer.mozilla.org/zh-CN/docs/Web/API/XMLHttpRequest/Synchronous_and_Asynchronous_Requests
 
 
+http://www.jb51.net/html5/152511.html
+
 
 
 ```js

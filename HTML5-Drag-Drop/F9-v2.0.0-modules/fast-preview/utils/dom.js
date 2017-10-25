@@ -85,4 +85,12 @@ Dom = {
         return this.sibling(elem,"previousSibling");
     }
 
-}
+};
+
+
+
+
+
+
+
+

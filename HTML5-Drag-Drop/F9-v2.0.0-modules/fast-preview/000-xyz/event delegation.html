@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>event delegation</title>
+    <style>
+        .parent-div {
+            box-sizing: border-box;
+            background: #777;
+            border: 1px solid #f0f;
+            width: 50vw;
+            height: 50vh;
+            min-width: 300px;
+            min-height: 300px;
+            position: relative;
+            margin: auto;
+            text-align: center;
+            vertical-align: center;
+            cursor: pointer;
+        }
+        
+        .parent-div>.child-div {
+            box-sizing: border-box;
+            background: #000;
+            color: #0f0;
+            border: 1px solid #0ff;
+            width: 100px;
+            height: 100px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body id="body-count">
+    <div class="parent-div" id="parent" data-uid="parent node">
+        this is a parent node!
+        <div class="child-div" id="child" data-uid="child node">
+            this is a child node!
+        </div>
+    </div>
+    <script>
+        const pn = document.querySelector(`#parent`);
+        const cn = document.querySelector(`#child`);
+        pn.addEventListener(`click`, (e) => {
+            let uid = e.target.dataset.uid;
+            // console.count();
+            console.log(`parent uid = ${uid}`);
+            console.log(`clicked the parent node!\n`);
+        });
+        cn.addEventListener(`click`, (e) => {
+            let uid = e.target.dataset.uid;
+            // console.count();
+            console.log(`child uid = ${uid}`);
+            console.log(`clicked the child node!\n`);
+        });
+        // counter 
+        const bc = document.querySelector(`#body-count`);
+        bc.addEventListener(`click`, (e) => {
+            let et = e.target;
+            console.log(`e = ${e}\n`);
+            console.log(`e.target = ${e.target}\n`);
+            console.log(`e.target = ${et}\n`);
+            console.count();
+        });
+    </script>
+</body>
+
+</html>
