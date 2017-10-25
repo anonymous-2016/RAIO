@@ -1,1 +1,25 @@
 @charset "UTF-8";
+.hs {
+    margin: 0 auto;
+    box-sizing: border-box;
+    border: 1px solid red;
+}
+
+
+/* 
+    width: 100%;
+    height: 275px;
+*/
+
+.hs-demo {
+    width: 850px;
+    height: 275px;
+}
+
+
+/* 设置chart容器的宽度，高度不同，绘制出来的折线效果就不同(会相应的变化) */
+
+.hs-test {
+    width: 850px;
+    height: 275px;
+}

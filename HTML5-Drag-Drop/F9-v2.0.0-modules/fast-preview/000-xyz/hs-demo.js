@@ -31,6 +31,9 @@ $(function() {
             },
             useHTML: false,
         },
+        /* rangeSelector: {
+            selected: 4
+        }, */
         chart: {
             type: 'column',
             // backgroundColor: chart_css.color
@@ -41,7 +44,7 @@ $(function() {
             // text: 'Stacked column chart'
         },
         xAxis: {
-            categories: ['Apples', 'Oranges', 'Pears', 'Grapes', 'Bananas'],
+            categories: ['2017-02', '2017-02', '2017-02', '2017-02', '2017-02'],
             // xAxis datas
         },
         credits: {
@@ -54,22 +57,44 @@ $(function() {
         colors: ['#ff1919', '#ffff66', '#92d050'],
         // colors: ['#ff1919', '#ffff66', '#92d050'],
         // colors: [...colors],
-        yAxis: {
-            // x: -50,
-            // y: -50,
-            min: 0,
-            title: {
-                text: 'yAxis title',
-                // text: 'Total fruit consumption'
-            },
-            stackLabels: {
-                enabled: true,
-                style: {
-                    fontWeight: 'bold',
-                    color: (Highcharts.theme && Highcharts.theme.textColor) || 'gray'
+        yAxis: [
+            // yAxis 1
+            {
+                // x: -50,
+                // y: -50,
+                // min: 0,
+                title: {
+                    text: 'yAxis title 1',
+                    // text: 'Total fruit consumption'
+                },
+                stackLabels: {
+                    // enabled: true,// counter all cols values
+                    style: {
+                        fontWeight: 'bold',
+                        color: (Highcharts.theme && Highcharts.theme.textColor) || 'gray'
+                    }
                 }
+            },
+            // yAxis 2
+            {
+                // x: -50,
+                // y: -50,
+                // min: 0,// bug ???
+                title: {
+                    text: 'yAxis title 2',
+                    // text: 'Total fruit consumption'
+                },
+                stackLabels: {
+                    // enabled: true,
+                    style: {
+                        fontWeight: 'bold',
+                        color: (Highcharts.theme && Highcharts.theme.textColor) || 'gray'
+                    }
+                },
+                opposite: true,
+                gridLineColor: '#2D3039'
             }
-        },
+        ],
         legend: {
             align: 'right',// left, center and right. (Defaults to center.)
             backgroundColor: `#ff00ff`, //Color,
@@ -81,26 +106,37 @@ $(function() {
             x: 0,
             y: 0,
             verticalAlign: "bottom",
-            floating: true,
+            // floating: true,
+            floating: false,
             backgroundColor: (Highcharts.theme && Highcharts.theme.background2) || 'white',
             borderColor: '#CCC',
             borderWidth: 1,
             shadow: false
         },
+        // tooltip ??? array
         tooltip: {
-            headerFormat: '<b>{point.x}</b><br/>',
-            pointFormat: '{series.name}: {point.y}<br/>Total: {point.stackTotal}'
+            headerFormat: `
+                <strong>
+                    {point.x}
+                </strong>
+                <br/>
+            `,
+            pointFormat: `
+                {series.name}: {point.y}
+                <br/>
+                总数/总共/总量/总额/共有/总数 : 
+                {point.stackTotal}
+            `,
+            // {${point.stackTotal ? point.stackTotal : point.y}} ???
+            // {point.stackTotal || point.y}
+            // {point.stackTotal ? point.stackTotal : point.y}
         },
-        /* 
-            tooltip: {
-                formatter: () => {
-                    return `<b>${this.x}</b><br/>${this.series.name}: ${this.y}<br/>`;
-                }
-            },
-        */
+        // 情节/绘图选项
         plotOptions: {
+            // (series) type = column (chart)
             column: {
-                stacking: 'normal',
+                stacking: 'normal',// 是否将每个系列的值叠加在一起, 默认是：null
+                // stacking: 'null',
                 dataLabels: {
                     enabled: true,
                     color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white'
@@ -109,15 +145,24 @@ $(function() {
         },
         series: [
             {
-                name: 'John',
-                data: [5, 3, 4, 7, 2]
+                name: '上调',// type = column (chart)
+                data: [5, 3, 4, 7, 2],
+                // ??? Rectangular style 矩形 
+                // https://api.hcharts.cn/highstock#series<column>
             },
             {
-                name: 'Jane',
+                name: '维持',
                 data: [2, 2, 3, 2, 1]
             },
             {
-                name: 'Joe',
+                name: '下调',
+                data: [3, 4, 4, 2, 5]
+            },
+            {
+                type:'spline',
+                yAxis: 1,
+                color:"skyblue",
+                name: '平均',
                 data: [3, 4, 4, 2, 5]
             }
         ]
