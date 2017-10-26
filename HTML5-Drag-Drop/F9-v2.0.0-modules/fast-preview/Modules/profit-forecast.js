@@ -99,7 +99,8 @@ const profitForecast = (url = ``, debug = false, uid = `default_dom_uid`) => {
                         up = (obj.st !== undefined) ? obj.st : `😟 暂无数据`;
                         down = (obj.xt !== undefined) ? obj.xt : `😟 暂无数据`;
                         // average = -1.7976931348623157e+308;
-                        average = (obj.pj !== undefined) ? (obj.pj >= 0 ? obj.pj : `--`) : `😟 暂无数据`;
+                        average = (obj.pj !== undefined) ? (obj.pj >= 0 ? obj.pj : null) : `😟 暂无数据`;
+                        // average = (obj.pj !== undefined) ? (obj.pj >= 0 ? obj.pj : `--`) : `😟 暂无数据`;
                         // invalid value === 展示“--”
                         keep = (obj.wc !== undefined) ? obj.wc : `😟 暂无数据`;
                         // arr[i] ??? bug
@@ -168,7 +169,7 @@ const drawHS = (datas = {}, container_uid = `#container`, container_div = `dom_e
     // container_div
     // Highcharts.stockChart
     // Highcharts.chart
-    Highcharts.stockChart('container', {
+    Highcharts.chart('container', {
         noData: {// all defualt value
             attr: undefined,
             position: {
@@ -200,7 +201,7 @@ const drawHS = (datas = {}, container_uid = `#container`, container_div = `dom_e
             // categories: ['2017-02', '2017-02', '2017-02', '2017-02', '2017-02'],
             categories: time,
             min: 0,
-            max: 8
+            max: 10
             // xAxis datas
         },
         credits: {
@@ -280,9 +281,10 @@ const drawHS = (datas = {}, container_uid = `#container`, container_div = `dom_e
             pointFormat: `
                 {series.name}: {point.y}
                 <br/>
-                总数/总共/总量/总额/共有/总数 : 
+                总数 : 
                 {point.stackTotal}
             `,
+            // 总数/总共/总量/总额/共有/总数
             // {${point.stackTotal ? point.stackTotal : point.y}} ???
             // {point.stackTotal || point.y}
             // {point.stackTotal ? point.stackTotal : point.y}
@@ -322,18 +324,19 @@ const drawHS = (datas = {}, container_uid = `#container`, container_div = `dom_e
                 name: '平均',
                 // data: [3, 4, 4, 2, 5],
                 data: average,
+                connectNulls: true,// OK
             }
         ],
-        navigator: {
-            enabled: false,
-            // adaptToUpdatedData: 
-        },
         scrollbar: {
             enabled: true
         },
-        rangeSelector: {
-            enabled: false,
-        },
+        // rangeSelector: {
+        //     enabled: false,
+        // },
+        // navigator: {
+        //     enabled: false,
+        //     // adaptToUpdatedData: 
+        // },
     });
 }
 

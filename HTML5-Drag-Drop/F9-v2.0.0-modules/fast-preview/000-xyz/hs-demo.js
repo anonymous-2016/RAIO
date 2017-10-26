@@ -14,8 +14,12 @@ $(function() {
         yAxisColor: `#FFB400`,
     };
     const {color, colors, optioncolor, gridColor, legendColor, yAxisColor} = {...chart_css};
-    // 
+    // Highcharts.stockChart
     Highcharts.chart('container', {
+        // add scrollbar
+        scrollbar: {
+            enabled: true
+        },
         noData: {// all defualt value
             attr: undefined,
             position: {
@@ -40,12 +44,14 @@ $(function() {
             // backgroundColor: color
         },
         title: {
-            text: '',
+            text: '百分比堆叠柱形图',
             // text: 'Stacked column chart'
         },
         xAxis: {
-            categories: ['2017-02', '2017-02', '2017-02', '2017-02', '2017-02'],
+            categories: ['2017-01', '2017-02', '2017-03', '2017-04', '2017-05', '2017-06', '2017-07'],
             // xAxis datas
+            min: 0,
+            max: 8
         },
         credits: {
             enabled: true,// enabled: false,
@@ -62,18 +68,18 @@ $(function() {
             {
                 // x: -50,
                 // y: -50,
-                // min: 0,
+                min: 0,
                 title: {
-                    text: 'yAxis title 1',
-                    // text: 'Total fruit consumption'
+                    // text: 'yAxis title 1',
+                    text: ''
                 },
-                stackLabels: {
-                    // enabled: true,// counter all cols values
-                    style: {
-                        fontWeight: 'bold',
-                        color: (Highcharts.theme && Highcharts.theme.textColor) || 'gray'
-                    }
-                }
+                // stackLabels: {
+                //     // enabled: true,// counter all cols values
+                //     style: {
+                //         fontWeight: 'bold',
+                //         color: (Highcharts.theme && Highcharts.theme.textColor) || 'gray'
+                //     }
+                // }
             },
             // yAxis 2
             {
@@ -81,11 +87,11 @@ $(function() {
                 // y: -50,
                 // min: 0,// bug ???
                 title: {
-                    text: 'yAxis title 2',
-                    // text: 'Total fruit consumption'
+                    // text: 'yAxis title 2',
+                    text: ''
                 },
                 stackLabels: {
-                    // enabled: true,
+                    // enabled: true,// counter all cols values
                     style: {
                         fontWeight: 'bold',
                         color: (Highcharts.theme && Highcharts.theme.textColor) || 'gray'
@@ -111,7 +117,8 @@ $(function() {
             backgroundColor: (Highcharts.theme && Highcharts.theme.background2) || 'white',
             borderColor: '#CCC',
             borderWidth: 1,
-            shadow: false
+            shadow: false,
+            // name
         },
         // tooltip ??? array
         tooltip: {
@@ -124,9 +131,10 @@ $(function() {
             pointFormat: `
                 {series.name}: {point.y}
                 <br/>
-                总数/总共/总量/总额/共有/总数 : 
-                {point.stackTotal}
+                百分比 : 
+                {point.stackTotal}%
             `,
+            // 总数/总共/总量/总额/共有/
             // {${point.stackTotal ? point.stackTotal : point.y}} ???
             // {point.stackTotal || point.y}
             // {point.stackTotal ? point.stackTotal : point.y}
@@ -135,37 +143,49 @@ $(function() {
         plotOptions: {
             // (series) type = column (chart)
             column: {
-                stacking: 'normal',// 是否将每个系列的值叠加在一起, 默认是：null
+                // stacking: 'normal',// 是否将每个系列的值叠加在一起, 默认是：null
                 // stacking: 'null',
                 dataLabels: {
-                    enabled: true,
+                    // enabled: true, // show num
                     color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white'
-                }
-            }
+                },
+                stacking: 'percent'
+            },
         },
         series: [
             {
                 name: '上调',// type = column (chart)
-                data: [5, 3, 4, 7, 2],
+                data: [5, 3, 4, 7, 2, 0, 0],
                 // ??? Rectangular style 矩形 
                 // https://api.hcharts.cn/highstock#series<column>
             },
             {
                 name: '维持',
-                data: [2, 2, 3, 2, 1]
+                data: [2, 2, 3, 2, 1, 0, 3]
             },
             {
                 name: '下调',
-                data: [3, 4, 4, 2, 5]
+                data: [3, 4, 4, 0.5, 5, 0, 0]
             },
             {
                 type:'spline',
                 yAxis: 1,
                 color:"skyblue",
                 name: '平均',
-                data: [3, 4, 4, 2, 5]
+                data: [3, 4, null, 2, 5, 1, 3],
+                connectNulls: true,// OK
+                tooltip: {
+                    // overwrite
+                    headerFormat: `
+                        <strong>
+                            {point.x}
+                        </strong>
+                        <br/>
+                    `,
+                }
             }
         ]
+        // 100% 
     });
 });
 

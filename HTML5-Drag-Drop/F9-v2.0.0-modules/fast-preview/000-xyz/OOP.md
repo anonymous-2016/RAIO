@@ -1192,6 +1192,43 @@ formatter: function
 
 
 
+https://api.highcharts.com/highcharts/yAxis.showEmpty
+
+
+
+
+
+
+
+# 找到了 # api
+
+https://api.highcharts.com/highcharts/series.column.connectNulls
+
+https://api.highcharts.com/highcharts/series.line.connectNulls
+
+
+> old api , 不能用了!
+
+https://api.highcharts.com/highcharts/#plotOptions.series.connectNulls
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
