@@ -731,5 +731,483 @@ https://developer.mozilla.org/zh-CN/docs/Web/API/Document_Object_Model/Introduct
 
 
 
+图灵机器人
+
+http://www.tuling123.com/openapi/api?key=4dcd4c3776104a52be5e8002ee40df45&&info=不懂你说的是什么～
+
+
+
+http://xyxiao.cn/
+
+http://xyxiao.cn/vue-blog/
+
+
+
+
+
+
+
+# highstock & navigator / scrollbar / rangeSelector
+
+
+https://www.highcharts.com/stock/demo
+
+
+https://api.highcharts.com/highstock/scrollbar
+
+
+http://www.highcharts.com/docs/chart-design-and-style/style-by-css
+
+.highcharts-scrollbar-thumb,
+.highcharts-scrollbar-arrow,
+.highcharts-scrollbar-button,
+.highcharts-scrollbar-rifles,
+.highcharts-scrollbar-track
+
+
+```js
+
+    scrollbar: {
+        barBackgroundColor: 'gray',// bar
+        barBorderColor: "#cccccc",
+        barBorderRadius: 7,
+        barBorderWidth: 1,
+        buttonArrowColor: '#333333',
+        buttonBackgroundColor: '#e6e6e6',// button
+        buttonBorderColor: "#cccccc",
+        buttonBorderRadius: 3,
+        buttonBorderWidth: 1,
+        enabled: true,
+        height: undefined,
+        liveRedraw: undefined,
+        margin: 10,
+        minWidth: 6,
+        rifleColor: "#333333",
+        showFull: true,
+        step: 0.2,
+        trackBackgroundColor: "#f2f2f2",
+        trackBorderColor: "#f2f2f2",
+        trackBorderRadius: 0,
+        trackBorderWidth: 1,
+        zIndex: 3,
+    },
+
+```
+
+# highcharts-navigator
+
+https://api.highcharts.com/highstock/navigator
+
+
+
+```js
+// navigator
+
+    navigator: {
+       enabled: false,
+       adaptToUpdatedData:
+    },
+
+
+
+
+```
+
+
+
+
+
+
+https://api.highcharts.com/highstock/rangeSelector
+
+https://api.highcharts.com/highstock/rangeSelector.buttons
+
+
+http://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/stock/rangeselector/input-datepicker/
+
+> rangeselector & input-datepicker
+
+
+```js
+// rangeSelector
+
+Highcharts.stockChart('container', {
+        chart: {
+            height: 300,
+            type: 'column',
+        },
+        rangeSelector: {
+            enabled: true,
+            floating: false,
+            allButtonsEnabled: true,
+            buttonSpacing: 0,
+            verticalAlign: 'top',// top, middle, bottom.
+            x: 0,
+            y: 0,
+            buttons: [
+                {
+                    type: 'month',// undefined, "millisecond", "second", "minute", "hour", "day", "week", "month", "ytd", "all".
+                    count: 1,
+                    text: '1m',// undefined
+                    dataGrouping: {
+                        forced: true,
+                        units: [['day', [1]]]
+                    },
+                    offsetMax: 0,
+                    offsetMin: 0,
+                    events: {
+                        click: function(e) {
+                            console.log(this);
+                        },
+                    },// undefined
+                },
+                {
+                    type: 'month',
+                    count: 3,
+                    text: '3m'
+                },
+                {
+                    type: 'month',
+                    count: 6,
+                    text: '6m'
+                },
+                {
+                    type: 'ytd',
+                    text: 'YTD'
+                },
+                {
+                    type: 'year',
+                    count: 1,
+                    text: '1y'
+                },
+                {
+                    type: 'all',
+                    text: 'All'
+                }
+            ],
+            buttonPosition: {
+                align: 'right',// Zoom
+                // left, center, right
+                x: 0,
+                y: 0,
+            },
+            buttonTheme: {
+                height: 18,
+                width: 28,
+                padding: 2,
+                undefined: 0,
+                zIndex: 7,
+                fill: 'none',
+                // ???
+                stroke: 'none',
+                'stroke-width': 0,
+                r: 8,
+                style: {
+                    color: '#039',
+                    fontWeight: 'bold'
+                },
+                states: {
+                    hover: {
+                    },
+                    select: {
+                        fill: '#039',
+                        style: {
+                            color: 'white'
+                        }
+                    }
+                    // disabled: { ... }
+                }
+            },
+            selected: 2,
+            // height: undefined,
+            inputBoxBorderColor: "#cccccc",
+            inputBoxHeight: 17,
+            // inputBoxStyle: undefined,
+            inputBoxWidth: 90,
+            inputDateFormat: "%b %e %Y",
+            inputDateParser: function (value) {
+                // Custom parser to parse the %H:%M:%S.%L format
+                // return a valid JavaScript time as milliseconds since 1970.
+                value = value.split(/[:\.]/);
+                return Date.UTC(
+                    1970,
+                    0,
+                    1,
+                    parseInt(value[0], 10),
+                    parseInt(value[1], 10),
+                    parseInt(value[2], 10),
+                    parseInt(value[3], 10)
+                );
+            },
+            inputEditDateFormat: "%Y-%m-%d",
+            // inputEnabled: undefined,
+            inputPosition:{
+                align: "right", // left, center, right.
+                x: 0,
+                y: 0,
+            },
+            inputStyle: {
+                color: '#039',
+                fontWeight: 'bold'
+            },
+            labelStyle: {
+                color: "#666666",
+                fontWeight: 'bold'
+            },
+            selected: undefined,
+        },
+        _navigator: {
+            enabled: false
+        },
+        title: {
+            text: 'AAPL Stock Price'
+        },
+        subtitle: {
+            text: 'Custom data grouping tied to range selector'
+        },
+        series: [
+            {
+                name: 'AAPL',
+                data: data,
+                marker: {
+                    enabled: null, // auto
+                    radius: 3,
+                    lineWidth: 1,
+                    lineColor: '#FF00FF'
+                },
+                tooltip: {
+                    valueDecimals: 3
+                }
+            },
+            {
+                data: [324, 124, 547, 221],
+                yAxis: 1,
+                tooltip: {
+                    valueDecimals: 2
+                }
+            }
+        ],
+        plotOptions: {
+            column: {
+                borderRadius: 5
+            }
+        },
+        yAxis: [
+            {
+                className: 'highcharts-color-0',
+                title: {
+                    text: 'Primary axis'
+                }
+            },
+            {
+                className: 'highcharts-color-1',
+                opposite: true,// ???
+                title: {
+                    text: 'Secondary axis'
+                }
+            }
+        ],
+        xAxis: {
+            tickPixelInterval: 120
+        },
+        scrollbar: {
+            barBackgroundColor: 'gray',
+            barBorderRadius: 7,
+            barBorderWidth: 0,
+            buttonBackgroundColor: 'gray',
+            buttonBorderWidth: 0,
+            buttonArrowColor: 'yellow',
+            buttonBorderRadius: 7,
+            rifleColor: 'yellow',
+            trackBackgroundColor: 'white',
+            trackBorderWidth: 1,
+            trackBorderColor: 'silver',
+            trackBorderRadius: 7
+        },
+    }
+);
+
+```
+
+https://www.highcharts.com/docs/chart-design-and-style/style-by-css
+https://codepen.io/TorsteinHonsi/pen/KMNbRN
+https://github.com/highcharts/highcharts/blob/master/css/highcharts.scss
+
+
+
+```html
+
+<div id="container" style="height: 400px; min-width: 600px; max-width: 800px; margin: 0 auto"></div>
+
+
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script src="https://code.highcharts.com/stock/highstock.js"></script>
+<script src="https://code.highcharts.com/stock/modules/exporting.js"></script>
+
+```
+
+
+
+http://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/area-basic/
+
+
+area-basic
+
+```js
+
+Highcharts.chart('container', {
+    chart: {
+        type: 'area'
+    },
+    title: {
+        text: 'US and USSR nuclear stockpiles'
+    },
+    subtitle: {
+        text: `
+            Source:
+            <a href="http://thebulletin.metapress.com/content/c4120650912x74k7/fulltext.pdf">
+                thebulletin.metapress.com
+            </a>
+        `
+    },
+    xAxis: {
+        allowDecimals: false,
+        labels: {
+            formatter: function () {
+                return this.value; // clean, unformatted number for year
+            }
+            // ???
+        }
+    },
+    yAxis: {
+        title: {
+            text: 'Nuclear weapon states'
+        },
+        labels: {
+            formatter: function () {
+                return this.value / 1000 + 'k';
+            }
+        }
+    },
+    tooltip: {
+        pointFormat: '{series.name} produced <b>{point.y:,.0f}</b><br/>warheads in {point.x}'
+    },
+    plotOptions: {
+        area: {
+            pointStart: 1940,
+            marker: {
+                enabled: false,
+                symbol: 'circle',
+                radius: 2,
+                states: {
+                    hover: {
+                        enabled: true
+                    }
+                }
+            }
+        }
+    },
+    series: [{
+        name: 'USA',
+        data: [null, null, null, null, null, 6, 11, 32, 110, 235, 369, 640,
+            1005, 1436, 2063, 3057, 4618, 6444, 9822, 15468, 20434, 24126,
+            27387, 29459, 31056, 31982, 32040, 31233, 29224, 27342, 26662,
+            26956, 27912, 28999, 28965, 27826, 25579, 25722, 24826, 24605,
+            24304, 23464, 23708, 24099, 24357, 24237, 24401, 24344, 23586,
+            22380, 21004, 17287, 14747, 13076, 12555, 12144, 11009, 10950,
+            10871, 10824, 10577, 10527, 10475, 10421, 10358, 10295, 10104]
+    }, {
+        name: 'USSR/Russia',
+        data: [null, null, null, null, null, null, null, null, null, null,
+            5, 25, 50, 120, 150, 200, 426, 660, 869, 1060, 1605, 2471, 3322,
+            4238, 5221, 6129, 7089, 8339, 9399, 10538, 11643, 13092, 14478,
+            15915, 17385, 19055, 21205, 23044, 25393, 27935, 30062, 32049,
+            33952, 35804, 37431, 39197, 45000, 43000, 41000, 39000, 37000,
+            35000, 33000, 31000, 29000, 27000, 25000, 24000, 23000, 22000,
+            21000, 20000, 19000, 18000, 18000, 17000, 16000]
+    }]
+});
+
+```
+
+
+
+# tooltip
+
+https://api.highcharts.com/highstock/tooltip.formatter
+
+formatter: function
+
+
+pointFormat: String
+
+https://api.highcharts.com/highstock/tooltip.pointFormat
+
+pointFormatter: function
+
+https://api.highcharts.com/highstock/tooltip.pointFormatter
+
+
+https://api.highcharts.com/highstock/tooltip.dateTimeLabelFormats
+
+dateTimeLabelFormats
+
+https://api.highcharts.com/highstock/tooltip.dateTimeLabelFormats#Highcharts.dateFormat
+
+
+
+```js
+
+{
+    millisecond:"%A, %b %e, %H:%M:%S.%L",
+    second:"%A, %b %e, %H:%M:%S",
+    minute:"%A, %b %e, %H:%M",
+    hour:"%A, %b %e, %H:%M",
+    day:"%A, %b %e, %Y",
+    week:"Week from %A, %b %e, %Y",
+    month:"%B %Y",
+    year:"%Y"
+}
+
+```
+
+headerFormat: String
+
+https://api.highcharts.com/highstock/tooltip.headerFormat
+
+
+https://api.highcharts.com/highstock/tooltip.footerFormat
+
+footerFormat: String
+
+https://api.highcharts.com/highstock/tooltip.formatter
+
+formatter: function
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 

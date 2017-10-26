@@ -5,9 +5,8 @@
  * xgqfrms
  * creadted 2017.10.17
  * @param {* String} url 
- * @param {* Array} tds 
- * @param {* Array} ui_arr 
- * @param {Boolean} debug 
+ * @param {* DOM Element} uid
+ * @param {* Boolean} debug 
  */
 
 // todo
@@ -94,11 +93,13 @@ const profitForecast = (url = ``, debug = false, uid = `default_dom_uid`) => {
                         // let time = up = down = average = keep = ``;
                         // ReferenceError: keep is not defined
                         // time.push();
-                        time = `${(obj.rq !== undefined) ? obj.rq : `😟 暂无数据`}`;
+                        // time = `${(obj.rq !== undefined) ? obj.rq : `😟 暂无数据`}`;
+                        time = (obj.rq !== undefined) ? obj.rq : `😟 暂无数据`;
                         // no string, just keep number!
                         up = (obj.st !== undefined) ? obj.st : `😟 暂无数据`;
                         down = (obj.xt !== undefined) ? obj.xt : `😟 暂无数据`;
-                        average = (obj.pj !== undefined) ? obj.pj : `😟 暂无数据`;
+                        // average = -1.7976931348623157e+308;
+                        average = (obj.pj !== undefined) ? (obj.pj >= 0 ? obj.pj : `--`) : `😟 暂无数据`;
                         // invalid value === 展示“--”
                         keep = (obj.wc !== undefined) ? obj.wc : `😟 暂无数据`;
                         // arr[i] ??? bug
@@ -148,6 +149,11 @@ const drawHS = (datas = {}, container_uid = `#container`, container_div = `dom_e
         title2: `title 2`
     }
     let {time, up, down, average, keep} = {...datas};
+    console.log(`time = \n`, time);
+    console.log(`up = \n`, up);
+    console.log(`down = \n`, down);
+    console.log(`average = \n`, average);
+    console.log(`keep = \n`, keep);
     // datas
     const chart_css = {
         color: `#0B1016`,
@@ -160,7 +166,9 @@ const drawHS = (datas = {}, container_uid = `#container`, container_div = `dom_e
     // css_obj ???
     const {color, colors, optioncolor, gridColor, legendColor, yAxisColor} = {...chart_css};
     // container_div
-    Highcharts.chart('container', {
+    // Highcharts.stockChart
+    // Highcharts.chart
+    Highcharts.stockChart('container', {
         noData: {// all defualt value
             attr: undefined,
             position: {
@@ -189,8 +197,10 @@ const drawHS = (datas = {}, container_uid = `#container`, container_div = `dom_e
             // text: 'Stacked column chart'
         },
         xAxis: {
-            categories: ['2017-02', '2017-02', '2017-02', '2017-02', '2017-02'],
-            // categories: time,
+            // categories: ['2017-02', '2017-02', '2017-02', '2017-02', '2017-02'],
+            categories: time,
+            min: 0,
+            max: 8
             // xAxis datas
         },
         credits: {
@@ -213,13 +223,13 @@ const drawHS = (datas = {}, container_uid = `#container`, container_div = `dom_e
                     text: 'yAxis title 1',
                     // text: 'Total fruit consumption'
                 },
-                stackLabels: {
+               /*  stackLabels: {
                     // enabled: true,// counter all cols values
                     style: {
                         fontWeight: 'bold',
                         color: (Highcharts.theme && Highcharts.theme.textColor) || 'gray'
                     }
-                }
+                } */
             },
             // yAxis 2
             {
@@ -313,18 +323,33 @@ const drawHS = (datas = {}, container_uid = `#container`, container_div = `dom_e
                 // data: [3, 4, 4, 2, 5],
                 data: average,
             }
-        ]
+        ],
+        navigator: {
+            enabled: false,
+            // adaptToUpdatedData: 
+        },
+        scrollbar: {
+            enabled: true
+        },
+        rangeSelector: {
+            enabled: false,
+        },
     });
-
-
 }
 
+
+/* 
+
 // jQuery onload/onready
+
 
 $(function() {
     // fetch data
     // chart {} insert `${vars}`
 });
+
+
+*/
 
 // call fetch json datas
 setTimeout(() => {
