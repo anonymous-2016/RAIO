@@ -586,6 +586,146 @@ https://stackoverflow.com/questions/2734025/is-javascript-guaranteed-to-be-singl
 
 
 
+## collection
+
+https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Map
+https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/WeakMap
+
+
+// forEach & map
+
+https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/map
+
+```js
+
+map() 方法创建一个新数组，其结果是该数组中的每个元素都调用一个提供的函数后返回的结果。
+
+// ES6
+let numbers = [1, 5, 10, 15];
+let doubles = numbers.map( x => x ** 2);
+
+// doubles is now [1, 25, 100, 225]
+// numbers is still [1, 5, 10, 15]
+
+
+https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach
+
+forEach() 方法对数组的每个元素执行一次提供的函数。
+Note: not return a new array! & no return value!
+应用场景：为一些相同的元素，绑定事件处理器！
+demo： https://codepen.io/forEach_demo
+
+```
+
+## matches() ??? js-30-days
+
+
+https://developer.mozilla.org/en-US/docs/Web/API/Element/matches
+https://developer.mozilla.org/zh-CN/docs/Web/API/Element/matches
+
+
+match()
+https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/String/match
+
+
+filter()
+
+
+http://www.w3.org/TR/DOM-Level-2-Events/events.html#Events-EventListener
+
+https://developer.mozilla.org/zh-CN/docs/Web/API/EventListener
+
+https://developer.mozilla.org/zh-CN/docs/Web/API/EventTarget/dispatchEvent
+
+https://developer.mozilla.org/zh-CN/docs/Web/API/EventTarget/removeEventListener
+
+https://developer.mozilla.org/zh-CN/docs/Web/API/EventTarget/addEventListener
+
+
+```js
+
+target.addEventListener(type, listener [,{capture: Boolean, bubbling: Boolean, once: Boolean}]);
+
+
+once
+capture
+bubbling
+propagation 传播
+
+event.preventDefault();
+event.stopPropagation();
+event.stopImmediatePropagation();
+
+useCapture
+
+
+```
+
+https://developer.mozilla.org/zh-CN/docs/Web/Events/dblclick
+
+https://developer.mozilla.org/zh-CN/docs/Web/Events/click
+
+
+
+
+
+https://developer.mozilla.org/zh-CN/docs/Web/API/Event/stopImmediatePropagation
+
+https://developer.mozilla.org/zh-CN/docs/Web/API/Document_Object_Model/Examples#Example_5:_Event_Propagation
+
+
+https://developer.mozilla.org/zh-CN/docs/Web/API/Event/Event
+https://developer.mozilla.org/zh-CN/docs/Web/API/Event/createEvent
+
+https://developer.mozilla.org/zh-CN/docs/Web/API/Event/srcElement
+> Event.srcElement 是标准的 Event.target 属性的一个别名。
+
+https://developer.mozilla.org/zh-CN/docs/Web/API/Event/bubbles
+https://developer.mozilla.org/zh-CN/docs/Web/API/Event/cancelable
+https://developer.mozilla.org/zh-CN/docs/Web/API/Event/composed
+
+https://developer.mozilla.org/zh-CN/docs/Web/API/Event/deepPath
+
+https://developer.mozilla.org/zh-CN/docs/Web/API/CSSValue
+https://developer.mozilla.org/zh-CN/docs/Web/API/Attr
+https://developer.mozilla.org/zh-CN/docs/Web/API/Element/getAttribute
+https://developer.mozilla.org/zh-CN/docs/Web/API/Element/getAttributeNode
+
+
+
+https://developer.mozilla.org/zh-CN/docs/Web/API/Document_Object_Model
+
+http://www.w3.org/TR/DOM-Level-2-Events/events.html#Events-Event
+
+
+https://developer.mozilla.org/zh-CN/docs/Web/API/Event/target
+
+> event.target 属性可以用来实现 事件委托 (event delegation)。
+
+https://developer.mozilla.org/zh-CN/docs/Web/API/Event/currentTarget
+
+> event.currentTarget 很有用, 当将相同的事件处理程序附加到多个元素时。
+
+
+https://developer.mozilla.org/zh-CN/docs/Web/API/Document_Object_Model/Introduction
+
+
+
+
+
+
+
+
+```js
+
+// numberWithCommas ??? js 30 days
+
+// let regex = new RegExp(/\B(?(\d{3}+)?(\d))/, g);
+
+// Uncaught SyntaxError: Invalid regular expression: /\B(?(\d{3}+)?(\d))/: Invalid group
+
+
+```
 
 
 
