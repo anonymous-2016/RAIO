@@ -39,10 +39,12 @@ onmessage = function (e){
     )
     .catch(err => console.log(`fetch error = \n`, err));
     // postMessage(datas);// 将获取的数据发送到主线程
+    return datas;
 }
 /* 
 
 ??? 动态加载 js modules
+
 
 
 */

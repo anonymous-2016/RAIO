@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>html5_web_sql 🚧</title>
+    <link rel="shortcut icon" href="https://w3c.github.io/IndexedDB/logo-db.png" type="image/x-icon">
+    <!-- <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"> -->
+</head>
+
+<body>
+    <div id="status" name="status">Status Message</div>
+    <!-- js -->
+    <noscript>
+            <a href="https://www.w3.org/TR/webdatabase/">https://www.w3.org/TR/webdatabase/</a>
+            <a href="https://sqlite.org/">https://sqlite.org/ <span>Version 3.21.0 (2017-10-24)</span></a>
+            <h1>User agents must implement the SQL dialect supported by Sqlite 3.6.19 (2009-10-14)</h1>
+            <a href="https://www.tutorialspoint.com/html5/html5_web_sql.htm">Demo Tutorial</a>
+            <!-- dialect 方言 -->
+    </noscript>
+    <script>
+        // SQLite Database ???
+        let db = openDatabase('mydb', '1.0', 'Test DB', 2 * 1024 * 1024);
+        let msg = ``;
+        db.transaction(function(tx) {
+            // SQL ???
+            // CREATE TABLE IF NOT EXISTS & INSERT INTO & VALUES
+            tx.executeSql('CREATE TABLE IF NOT EXISTS LOGS (id unique, log)');
+            tx.executeSql('INSERT INTO LOGS (id, log) VALUES (1, "foobar")');
+            tx.executeSql('INSERT INTO LOGS (id, log) VALUES (2, "logmsg")');
+            msg = '<h1>Log message created and row inserted.</h1>';
+            // 创建日志消息并插入行。
+            document.querySelector('#status').innerHTML = msg;
+        });
+        db.transaction(function(tx) {
+            // SQL ???
+            // SELECT * FROM
+            tx.executeSql('SELECT * FROM LOGS', [], function(tx, results) {
+                let len = results.rows.length,
+                    i = 0;
+                msg = "<p>Found rows: " + len + "</p>";
+                document.querySelector('#status').innerHTML += msg;
+                for (i; i < len; i++) {
+                    msg = "<p><b>" + results.rows.item(i).log + "</b></p>";
+                    document.querySelector('#status').innerHTML += msg;
+                    console.log(results.rows.item(i).log);
+                }
+            }, null);
+        });
+    </script>
+</body>
+
+</html>

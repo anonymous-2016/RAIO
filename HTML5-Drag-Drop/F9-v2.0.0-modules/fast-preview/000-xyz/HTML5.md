@@ -233,4 +233,258 @@ https://developers.google.com/web/updates/2015/03/push-notifications-on-the-open
 
 
 
+http://matplotlib.org/
+https://github.com/matplotlib/matplotlib
+
+> Matplotlib is a Python 2D plotting library which produces publication quality figures in a variety of hardcopy formats and interactive environments across platforms. 
+
+
+https://www.shiyanlou.com/courses/881
+
+
+
+## data-* Name conversion
+
+> dash-style to camelCase & 破折号样式到匹配
+
+
+
+
+可以使用 worker.terminate() 来终止一个worker的执行。
+
+
+
+https://cdn.xgqfrms.xyz/sw.js
+
+https://cdn.xgqfrms.xyz/worker.js
+
+
+https://nerget.com/rayjs-mt/rayjs.html
+
+
+https://dbushell.com/sw.js
+https://github.com/dbushell/
+
+
+```js
+
+const url = `https://cdn.xgqfrms.xyz/json/xgqfrms.json`;
+
+let worker = new Worker("https://cdn.xgqfrms.xyz/worker.js");
+// ES6 & %c
+// Uncaught SyntaxError: missing ) after argument list
+
+// worker.postMessage();
+worker.postMessage(url);
+
+// Uncaught DOMException: Failed to construct 'Worker': 
+// Script at 'https://cdn.xgqfrms.xyz/worker.js' cannot be accessed from origin 'http://www.cnblogs.com'.
+
+// es5
+
+// https://babeljs.io/repl/#?babili=false&browsers=&build=&builtIns=false&code_lz=PQKgBA7g9gTg1gUxmQ_X6GgvMYTAFA-MGAIYB2UALgBZJglEC2CAzgA5EDGCYA_L2O1BJNy_JkxwChI9mLABeMAAMcmTAIA2sAFxgAxAAYAZoYDcK1YcHkAtEwCWALwQ6ATAGYWADzOKzk4aJMAPqGACbySuZqUJowOgaG-maqYJYkNvZOrh7eOL54BPxE6uoARhxwqQCuJOzkdoI4goxiRADmXAqGNXUNJGAAFAgAlADeUWCF6ggiduEKCAB0oUTkRCYEgFgJgOPxCABu5MurRIDtwYDp-oCLyoCACYCm5oAhboAOpoB2xhP-MUuabQOKAKTsYIBuOXQYE6SgANIEISNkqpCgBZZhMdoIACiewQ6TAozsTAAKjAqsIEKEdOQCQgISs1joAETUEpQSCwdShGkQ2B2Np2Ei0tlgdREYRojHkACSJLANL5TCgVRgnB0JCqJTBAALAGQEAF8JoUqURaZRyOQWEwtAR2KESItPG0AI6GGD0JjWgCeDmAACsZSRgDb7Y7nV7BDS8ClCm9potPt8gRg5hFFBC5sMYZhCrGwPGFGB6ZomTAWTrCIYZuxKGA9a9BAE9UwIgBtAC6G0Io21YcI_hEcvUCcNxtN5st1rtDqdrvdQZ9frHge9-RS027BYiSz1qcmhFCCAE24AqgAlUUDYZVoTvKNQL6_f4ZnsRAA6JETkKUNIAJKMe5qaYoUxMS3IMsBnvBRFH7E0zWAC0rRnAMJ09b1fVHeCpz_CZFioDEBhgZh5AAPjAXC50EE9hkKABlF10iITwURgGBtDAPcSAQTwWB3chiTAcgoEQfpCG5MAACkKIAeQAOWIEQWCgex6kEMB9Gk1JS0oTDqCtYjBmgeAkEWL0tAARgADlPFINOwiYUgGKdhgIrFrJSWFO2rC9o0UQCy24qdH2fCFRMkxZhBgbkuUMF1bO9CElRVMAABZhn_ZyUv5GYwEJJBRRISw6wUKdFkymAN1S_g3MjDy_gypgspyuS_JfGRgjCALxIk4KyTCuwIpAmqYGy3KYuVdQIUS5LStUWtFhYQlKF62rcvGiawFk4QEVaDp5v6uqmCWibCkAMB0TkANeVHiea5AAYlWMnMwdtVHM1RFnYVZgKQZA5EIiMPivb4vPLN7YAaqEGKSjdClW8h1qRTbaxTQ6TrOy7rpSXDyDlfpazMbVQDAPBeG4MBAAqlQBAA0AAqVAF94sAvTAegoFCZVmDwHBsBwIA&debug=false&circleciRepo=&evaluate=true&lineWrap=false&presets=es2015%2Creact%2Cstage-2&targets=&version=6.26.0
+
+
+
+
+```
+
+
+```js
+window.onload =function(){
+    var worker = new Worker('fibonacci.js');  
+    var timer = (new Date()).valueOf();
+    console.log('开始计算：40','时间:'+ timer);
+    setTimeout(function(){
+        console.log('定时器函数在计算数列时执行了', '时间:'+ (new Date()).valueOf());
+    },1000);
+    worker.postMessage(40);
+    worker.addEventListener('message', function(event) {
+        var timer2 = (new Date()).valueOf();
+        console.log('结果:'+ event.data, '时间:'+ timer2, '用时:'+ (timer2 - timer));
+    }, false);
+    console.log('我在计算数列的时候执行了', '时间:'+ (new Date()).valueOf());
+}
+
+
+//fibonacci.js
+var fibonacci = function(n) {
+    return n <2? n : arguments.callee(n -1) + arguments.callee(n -2);
+    // callee ??? this, selft
+    // ??? arguments.callee();
+};
+onmessage =function(event) {
+    var n = parseInt(event.data, 10);
+    postMessage(fibonacci(n));
+    // importScripts(url)
+};
+
+
+/* 
+
+局限性:
+
+1. 不能跨域加载 JS
+
+2. worker 内代码不能访问 DOM ???
+
+3. 各个浏览器对 Worker 的实现不大一致，例如FF里允许worker中创建新的worker,而Chrome中就不行
+
+4. 不是每个浏览器都支持这个新特性
+
+
+
+*/
+
+/* 
+
+fibonacci(36);
+// 14,930,352
+
+fibonacci(40);
+// 102,334,155
+
+fibonacci(50);
+// crashed ??? 崩溃
+
+1,000 ms = 1 s
+1,000 mm = 1 ms
+
+*/
+```
+
+
+
+
+# Web SQL Database
+
+
+https://www.w3.org/TR/webdatabase/
+
+> User agents must implement the SQL dialect supported by Sqlite 3.6.19.
+
+https://www.w3.org/TR/webstorage/
+
+Web Storage (Second Edition)
+W3C Recommendation 19 April 2016
+
+
+
+https://sqlite.org/quickstart.html
+https://www.sqlite.org/docs.html
+https://www.sqlite.org/src/timeline
+
+
+https://www.sqlite.org/lang.html
+https://www.sqlite.org/lang_createtable.html
+https://github.com/mackyle/sqlite
+https://www.sqlite.org/src/doc/trunk/README.md
+
+https://github.com/sqlitebrowser/sqlitebrowser
+https://github.com/sqlitebrowser/sqlitebrowser/releases
+
+
+https://www.tutorialspoint.com/html5/html5_web_sql.htm
+
+
+
+
+```js
+
+let db = openDatabase('mydb', '1.0', 'Test DB', 2 * 1024 * 1024);
+
+db.transaction(function (tx) {
+    tx.executeSql('CREATE TABLE IF NOT EXISTS LOGS (id unique, log)');
+    tx.executeSql('INSERT INTO LOGS (id, log) VALUES (1, "foobar")');
+    tx.executeSql('INSERT INTO LOGS (id, log) VALUES (2, "logmsg")');
+});
+
+let db = openDatabase('mydb', '1.0', 'Test DB', 2 * 1024 * 1024);
+
+db.transaction(function (tx) {  
+    tx.executeSql('CREATE TABLE IF NOT EXISTS LOGS (id unique, log)');
+    tx.executeSql('INSERT INTO LOGS (id,log) VALUES (?, ?'), [e_id, e_log];
+});
+
+
+
+var db = openDatabase('mydb', '1.0', 'Test DB', 2 * 1024 * 1024);
+
+db.transaction(function (tx) {
+    tx.executeSql('CREATE TABLE IF NOT EXISTS LOGS (id unique, log)');
+    tx.executeSql('INSERT INTO LOGS (id, log) VALUES (1, "foobar")');
+    tx.executeSql('INSERT INTO LOGS (id, log) VALUES (2, "logmsg")');
+});
+
+db.transaction(function (tx) {
+    tx.executeSql('SELECT * FROM LOGS', [], function (tx, results) {
+        var len = results.rows.length, i;
+        // i ??? undefined
+        msg = "<p>Found rows: " + len + "</p>";
+        document.querySelector('#status').innerHTML +=  msg;	
+        for (i = 0; i < len; i++){
+            console.log(results.rows.item(i).log);
+        }
+    }, null);
+});
+
+
+
+```
+
+
+
+https://www.w3.org/TR/IndexedDB/
+
+Indexed Database API
+W3C Recommendation 08 January 2015
+
+https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API
+
+
+Indexed Database API 2.0
+Editor’s Draft, 26 October 2017
+
+https://www.w3.org/TR/IndexedDB-2/
+https://w3c.github.io/IndexedDB/
+
+```js
+
+
+// IDBDatabase; & openDatabase();
+
+
+let db = openDatabase('mydb', '1.0', 'test', 2*1024*024, function(db){
+    // webSQL / SQLite ???
+});
+
+db.transaction(function (tx) {
+    //在连接的回调函数中执行SQL语句
+    tx.executeSql('CREATE TABLE IF NOT EXISTS SETS (key unique, value)');
+});
+
+
+```
+
+
+http://www.cnblogs.com/feng_013/archive/2011/03/07/1975212.html
+
+
+
+
+
+# browser-sync 
+
+```js
+
+$ browser-sync start --server --files "./*.*"
+
+```
+
+
+
+
+
+
+
 

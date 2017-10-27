@@ -48,10 +48,10 @@ $(function() {
             // text: 'Stacked column chart'
         },
         xAxis: {
-            categories: ['2017-01', '2017-02', '2017-03', '2017-04', '2017-05', '2017-06', '2017-07'],
+            categories: ['2017-01', '2017-02', '2017-03', '2017-04', '2017-05', '2017-06', '2017-07', '2017-08', '2017-09'],
             // xAxis datas
             min: 0,
-            max: 8
+            max: 4
         },
         credits: {
             enabled: true,// enabled: false,
@@ -155,24 +155,25 @@ $(function() {
         series: [
             {
                 name: '上调',// type = column (chart)
-                data: [5, 3, 4, 7, 2, 0, 0],
+                data: [5, 3, 4, 7, 2, 0, 0, 3, 3]
                 // ??? Rectangular style 矩形 
                 // https://api.hcharts.cn/highstock#series<column>
             },
             {
                 name: '维持',
-                data: [2, 2, 3, 2, 1, 0, 3]
+                data: [2, 2, 3, 2, 1, 0, 3, 2, 2]
             },
             {
                 name: '下调',
-                data: [3, 4, 4, 0.5, 5, 0, 0]
+                data: [3, 4, 4, 0.5, 5, 0, 0, 1, 1]
             },
             {
                 type:'spline',
                 yAxis: 1,
                 color:"skyblue",
                 name: '平均',
-                data: [3, 4, null, 2, 5, 1, 3],
+                // data: [3, 4, null, 2, 5, 1, 3, null, 1],
+                data: [3, 4, null, 2, 5, 1, 3, null, null],
                 connectNulls: true,// OK
                 tooltip: {
                     // overwrite
@@ -181,7 +182,7 @@ $(function() {
                             {point.x}
                         </strong>
                         <br/>
-                    `,
+                    `//,
                 }
             }
         ]

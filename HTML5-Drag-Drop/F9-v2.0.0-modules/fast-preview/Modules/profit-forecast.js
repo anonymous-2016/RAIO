@@ -201,7 +201,7 @@ const drawHS = (datas = {}, container_uid = `#container`, container_div = `dom_e
             // categories: ['2017-02', '2017-02', '2017-02', '2017-02', '2017-02'],
             categories: time,
             min: 0,
-            max: 10
+            max: 8
             // xAxis datas
         },
         credits: {
@@ -221,7 +221,7 @@ const drawHS = (datas = {}, container_uid = `#container`, container_div = `dom_e
                 // y: -50,
                 // min: 0,
                 title: {
-                    text: 'yAxis title 1',
+                    text: '',
                     // text: 'Total fruit consumption'
                 },
                /*  stackLabels: {
@@ -238,7 +238,7 @@ const drawHS = (datas = {}, container_uid = `#container`, container_div = `dom_e
                 // y: -50,
                 // min: 0,// bug ???
                 title: {
-                    text: 'yAxis title 2',
+                    text: '',
                     // text: 'Total fruit consumption'
                 },
                 stackLabels: {
