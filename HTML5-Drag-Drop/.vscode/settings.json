@@ -60,5 +60,6 @@
     "docthis.authorName": "xgqfrms",
     // HTML & overwrite User settings.json
     "html.format.extraLiners": "",
-    "html.format.enable": false
+    "html.format.enable": false,
+    "html.format.contentUnformatted": "body, div, section, script, pre,code,textarea"
 }

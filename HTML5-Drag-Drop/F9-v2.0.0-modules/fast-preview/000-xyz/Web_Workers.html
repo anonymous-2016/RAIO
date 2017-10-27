@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Web Workers</title>
+</head>
+
+<body>
+    <!-- Web Workers -->
+    <script>
+        const css = `
+            color: #f0f;
+            font-size: 23px;
+        `;
+        const url = `https://cdn.xgqfrms.xyz/json/xgqfrms.json`;
+        /* js 主线程  */
+        // 创建一个Worker对象并向它传递将在新线程中执行的脚本的URL
+        let worker = new Worker("worker.js");
+        // 向 worker 发送数据
+        worker.postMessage(url);
+        // 接收 worker 传过来的数据函数
+        /* 
+            Uncaught DOMException: Failed to construct 'Worker': 
+            Script at 'file:///E:/000-xyz/worker.js' cannot be accessed from origin 'null'.
+            // to run this demo, you need to using a web server as an container!
+        */
+        worker.onmessage = function(e) {
+            console.log(`%c worker 线程 e = \n`, css, e);
+            console.log(`%c worker 线程 data = \n`, css, e.data);
+            // 输出 worker 发送来的数据
+        }
+    </script>
+</body>
+
+</html>
