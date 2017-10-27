@@ -1,17 +1,20 @@
 "use strict";
 
 /**
- * agency-rating 机构评级 
+ * financing-and-margin-balance-difference-trend 融资余额与融券余额差值走势 
  * xgqfrms
- * creadted 2017.10.16
+ * creadted 2017.10.27
  * @param {* String} url 
- * @param {* Array} tds 
- * @param {* Array} ui_arr 
- * @param {Boolean} debug 
+ * @param {* DOM Element} uid
+ * @param {* Boolean} debug 
  */
 
-const agencyRating = (url = ``, debug = false, uid = `default_dom_uid`) => {
-    // agencyRating
+// todo
+
+// financing-and-margin-balance-difference-trend FMBDT
+
+const FMBDtrend = (url = ``, debug = false, uid = `default_dom_uid`) => {
+    // profitForecast
         // debug = true;
         let datas = {};
         fetch(url)
@@ -45,6 +48,15 @@ const agencyRating = (url = ``, debug = false, uid = `default_dom_uid`) => {
                         // return arr[i];
                     }
                 );
+                /* 
+                    [
+                        {
+                            "sj": "2014-12-31",
+                            "bl": 44.800000000000004,
+                            "gj": 54.76
+                        },
+                    ]
+                */
                 // Array.isArray(arr);
                 let keys = Object.keys(arr[0]);
                 // (5) ["rq", "pj", "st", "wc", "xt"]
@@ -59,17 +71,11 @@ const agencyRating = (url = ``, debug = false, uid = `default_dom_uid`) => {
                             case "sj":
                                 new_key = `time`;
                                 break;
-                            case "st":
-                                new_key = `up`;
-                                break;
-                            case "xt":
-                                new_key = `down`;
+                            case "bl":
+                                new_key = `shares`;
                                 break;
                             case "gj":
                                 new_key = `stock_price`;
-                                break;
-                            case "wc":
-                                new_key = `keep`;
                                 break;
                             default:
                                 new_key = `😟 暂无数据`;
@@ -79,24 +85,25 @@ const agencyRating = (url = ``, debug = false, uid = `default_dom_uid`) => {
                     }
                 );
                 console.log(`arr_obj = `, JSON.stringify(arr_obj, null, 4));
+                // {"rq":[],"pj":[],"st":[],"wc":[],"xt":[]}
+                // 5 array
+                // keys.map(k => console.log(typeof k));// string
+                // ["rq", "pj", "st", "wc", "xt"].map(k => console.log(k));
+                // let time = shares = stock_price = average = keep = [];
                 let counter = 1;
                 arr.map(
                     (obj, i) => {
                         // console.log(`obj = `, JSON.stringify(obj, null, 4));
-                        let time = ``, up = ``, down = ``, stock_price = ``, keep = ``;
+                        let time = ``, shares = ``, stock_price = ``;
                         time = (obj.sj !== undefined) ? obj.sj : `😟 暂无数据`;
                         // no string, just keep number!
-                        up = (obj.st !== undefined) ? obj.st : `😟 暂无数据`;
-                        down = (obj.xt !== undefined) ? obj.xt : `😟 暂无数据`;
-                        // 股价 
-                        stock_price = (obj.gj !== undefined) ? (obj.gj >= 0 ? obj.gj : null) : `😟 暂无数据`;
-                        // invalid value === 展示“--”
-                        keep = (obj.wc !== undefined) ? obj.wc : `😟 暂无数据`;
+                        shares = (obj.bl !== undefined) ? obj.bl : `😟 暂无数据`;
+                        stock_price = (obj.gj !== undefined) ? obj.gj : `😟 暂无数据`;
+                        // average = -1.7976931348623157e+308;
+                        // average = (obj.pj !== undefined) ? (obj.pj >= 0 ? obj.pj : null) : `😟 暂无数据`;
                         arr_obj.time.push(time);
-                        arr_obj.up.push(up);
-                        arr_obj.down.push(down);
+                        arr_obj.shares.push(shares);
                         arr_obj.stock_price.push(stock_price);
-                        arr_obj.keep.push(keep);
                         // return arr_obj;
                         if (counter === 1) {
                             console.log(`arr_obj = `, JSON.stringify(arr_obj, null, 4));
@@ -105,7 +112,13 @@ const agencyRating = (url = ``, debug = false, uid = `default_dom_uid`) => {
                     }
                 );
                 console.log(`arr_obj = `, JSON.stringify(arr_obj, null, 4));
+                // let {...arr_obj} = {rq: [], st: [], xt: [], pj: [], wc: []};
+                // Object.assign()
+                // arr.forEach() just use for addEventListener() / do somthing, no return value / undefined!
+                // arr.map(), return an shaped new array!
                 datas = Object.assign(datas, arr_obj);
+                // return Object.assign(datas, arr_obj);
+                // return arr_obj;
             }
         )
         .catch(error => console.log(`error = \n`, error));
@@ -119,30 +132,16 @@ const agencyRating = (url = ``, debug = false, uid = `default_dom_uid`) => {
  * 
  * @param {* Object} datas 
  * @param {* String} container_uid 
- * @param {* DOM Element} container_div 
  * @param {* Boolean} debug
  */
 
-const drawHS_agencyRating = (datas = {}, container_uid = `container`, container_div = `dom_element`, debug = false) => {
-    // let container = document.querySelector(`#container`);
-    // let container = document.querySelector(`#${container_uid}`);
-    // ???
-    let titles = {
-        title1: `title 1`,
-        title2: `title 2`
-    }
-    // let {time, up, down, stock_price, keep} = {...datas};
-    // babel ??? ES5 
+const FMBDTdrawHS = (datas = {}, container_uid = `container`, debug = false) => {
     let time = datas.time,
-        up = datas.up,
-        down = datas.down, 
-        stock_price = datas.stock_price,
-        keep = datas.keep;
+        shares = datas.shares,
+        stock_price = datas.stock_price;
     console.log(`time = \n`, time);
-    console.log(`up = \n`, up);
-    console.log(`down = \n`, down);
+    console.log(`shares = \n`, shares);
     console.log(`stock_price = \n`, stock_price);
-    console.log(`keep = \n`, keep);
     // datas
     const chart_css = {
         color: `#0B1016`,
@@ -154,9 +153,6 @@ const drawHS_agencyRating = (datas = {}, container_uid = `container`, container_
     };
     // css_obj ???
     const {color, colors, optioncolor, gridColor, legendColor, yAxisColor} = {...chart_css};
-    // container_div
-    // Highcharts.stockChart
-    // Highcharts.chart
     Highcharts.chart(container_uid, {
         noData: {// all defualt value
             attr: undefined,
@@ -180,7 +176,7 @@ const drawHS_agencyRating = (datas = {}, container_uid = `container`, container_
             type: 'column',
             // backgroundColor: chart_css.color
             // backgroundColor: color
-            height: (9 / 16 * 100) + '%',
+            // height: (9 / 16 * 100) + '%',
             // 16:9 ratio
         },
         title: {
@@ -191,7 +187,7 @@ const drawHS_agencyRating = (datas = {}, container_uid = `container`, container_
             // categories: ['2017-02', '2017-02', '2017-02', '2017-02', '2017-02'],
             categories: time,
             min: 0,
-            max: 8
+            max: 8,
             // xAxis datas
         },
         credits: {
@@ -209,21 +205,17 @@ const drawHS_agencyRating = (datas = {}, container_uid = `container`, container_
             {
                 // x: -50,
                 // y: -50,
-                // type: 'logarithmic',
                 min: 0,
-                floor: 0,
-                ceiling: 100,
-                max: 100, // 0-100 ???
                 title: {
                     text: '',
                     // text: 'Total fruit consumption'
                 },
-                labels: {
-                    format: '{value}%',// 百分比
-                    style: {
-                        color: Highcharts.getOptions().colors[1]
-                    }
-                }
+                // labels: {
+                //     format: '{value}%',// 百分比
+                //     style: {
+                //         color: Highcharts.getOptions().colors[1]
+                //     }
+                // }
                /*  stackLabels: {
                     // enabled: true,// counter all cols values
                     style: {
@@ -236,27 +228,18 @@ const drawHS_agencyRating = (datas = {}, container_uid = `container`, container_
             {
                 // x: -50,
                 // y: -50,
-                // min: 0,
-                // max: 100, // 0-100 ???
-                // ceiling: 100,
-                // step: 10,
+                // min: 0,// bug ???
                 title: {
                     text: '',
                     // text: 'Total fruit consumption'
                 },
-                // labels: {
-                //     format: '{value}',
-                //     style: {
-                //         color: Highcharts.getOptions().colors[1]
-                //     }
-                // },
-                // stackLabels: {
-                //     // enabled: true,
-                //     style: {
-                //         fontWeight: 'bold',
-                //         color: (Highcharts.theme && Highcharts.theme.textColor) || 'gray'
-                //     }
-                // },
+                stackLabels: {
+                    // enabled: true,
+                    style: {
+                        fontWeight: 'bold',
+                        color: (Highcharts.theme && Highcharts.theme.textColor) || 'gray'
+                    }
+                },
                 opposite: true,
                 gridLineColor: '#2D3039'
             }
@@ -289,10 +272,13 @@ const drawHS_agencyRating = (datas = {}, container_uid = `container`, container_
             `,
             pointFormat: `
                 <span style="color:{point.color}">\u25CF</span>
-                {series.name}: {point.y} <br/>
-                <span style="color:{point.color}">\u25CF</span> 百分比 :{point.percentage:.0f}%
+                {series.name}: {point.y}<br/>
             `,
-            // shared: true
+            // <span style="color:{point.color}">\u25CF</span> 百分比 :{point.percentage:.0f}%
+            // 总数/总共/总量/总额/共有/总数
+            // {${point.stackTotal ? point.stackTotal : point.y}} ???
+            // {point.stackTotal || point.y}
+            // {point.stackTotal ? point.stackTotal : point.y}
         },
         // 情节/绘图选项
         plotOptions: {
@@ -300,37 +286,24 @@ const drawHS_agencyRating = (datas = {}, container_uid = `container`, container_
             column: {
                 // stacking: 'normal',// 是否将每个系列的值叠加在一起, 默认是：null
                 // stacking: 'null',
-                stacking: 'percent',// 百分比堆叠柱形图
+                // stacking: 'percent',// 百分比堆叠柱形图
                 dataLabels: {
                     // enabled: true,
                     color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white'
                 }
-            },
-            spline: {
-                stacking: 'normal',
             }
         },
         series: [
             {
-                name: '上调',// type = column (chart)
+                name: '融资余额与融券余额差值',// type = column (chart)
                 // data: [5, 3, 4, 7, 2],
-                data: up,
-            },
-            {
-                name: '维持',
-                // data: [2, 2, 3, 2, 1],
-                data: keep,
-            },
-            {
-                name: '下调',
-                // data: [3, 4, 4, 2, 5],
-                data: down,
+                data: shares,
             },
             {
                 type:'spline',
                 yAxis: 1,
                 color:"skyblue",
-                name: '股价',
+                name: '每股收益',
                 // data: [3, 4, 4, 2, 5],
                 data: stock_price,
                 connectNulls: true,// OK
@@ -356,29 +329,27 @@ const drawHS_agencyRating = (datas = {}, container_uid = `container`, container_
 }
 
 
-/* 
-
-// jQuery onload/onready
-
-
-$(function() {
-    // fetch data
-    // chart {} insert `${vars}`
-});
-
-
-*/
 
 // call fetch json datas
 setTimeout(() => {
     // async & await
-    const sf_num= `stockfast05`;
+    const sf_num= `stockfast08`;
     const url = `http://10.1.5.202/webservice/fastview/stock/${sf_num}/600570.SH`;
-    let hs_datas = agencyRating(url, true);
+    let hs_datas = FMBDtrend(url, true);
     console.log(`hs_datas = \n`, JSON.stringify(hs_datas, null, 4));
-    let uid = `agency_rating_hs_container`;
+    let uid = `financing_and_margin_balance_difference_trend_hs_container`;
     setTimeout(() => {
-        drawHS_agencyRating(hs_datas, uid);
+        FMBDTdrawHS(hs_datas, uid);
     }, 0);
 }, 0);
+
+
+
+
+
+
+
+
+
+
 

@@ -212,6 +212,8 @@ const drawHS = (datas = {}, container_uid = `container`, container_div = `dom_el
             type: 'column',
             // backgroundColor: chart_css.color
             // backgroundColor: color
+            height: (9 / 16 * 100) + '%',
+            // 16:9 ratio
         },
         title: {
             text: '',

@@ -16,7 +16,34 @@
     /* height: 275px; */
     /* overflow-x: scroll; */
     height: 100%;
+    min-height: 275px;
 }
 
 
 /* 设置chart容器的宽度，高度不同，绘制出来的折线效果就不同(会相应的变化) */
+
+
+/* commons-title */
+
+.fv-profit-forecast-title {
+    position: relative;
+    color: #000;
+    text-indent: 15px;
+    margin-left: 3px;
+    font-weight: 600;
+    font-size: 14px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.fv-profit-forecast-title::before {
+    position: absolute;
+    top: 0px;
+    left: 5px;
+    content: "";
+    display: inline-block;
+    border: 2px solid #f79530;
+    width: 0;
+    height: 16px;
+    /* line-height: 22px; */
+}
