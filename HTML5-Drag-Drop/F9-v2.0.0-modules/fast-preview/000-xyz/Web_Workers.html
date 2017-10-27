@@ -6,11 +6,49 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Web Workers</title>
+    <style>
+        [data-uid*="dom"] {
+            border: 1px solid red;
+            box-sizing: border-box;
+            background: #000;
+            color: #0f0;
+            min-width: 300px;
+            min-height: 100px;
+            width: 100vw;
+            height: 100%;
+        }
+        
+        .pre-select {
+            border: 1px solid rgb(0, 255, 64);
+            box-sizing: border-box;
+            cursor: pointer;
+        }
+        
+        .pre-select::selection {
+            color: #f0f;
+            background: #0f0;
+            /* font-size: 23px; */
+        }
+    </style>
 </head>
 
 <body>
+    <div id="uid" data-uid="dom-data-uid">
+        <!-- data-uid -->
+    </div>
+    <div>
+        <button data-btn="send-btn">
+            send worker meesage!
+        </button>
+        <button data-btn="show-btn">
+            show worker data!
+        </button>
+    </div>
     <!-- Web Workers -->
     <script>
+        let uid = document.querySelector(`[data-uid="dom-data-uid"]`);
+        let send_btn = document.querySelector(`[data-btn="send-btn"]`);
+        let show_btn = document.querySelector(`[data-btn="show-btn"]`);
         const css = `
             color: #f0f;
             font-size: 23px;
@@ -20,18 +58,73 @@
         // 创建一个Worker对象并向它传递将在新线程中执行的脚本的URL
         let worker = new Worker("worker.js");
         // 向 worker 发送数据
-        worker.postMessage(url);
-        // 接收 worker 传过来的数据函数
-        /* 
-            Uncaught DOMException: Failed to construct 'Worker': 
-            Script at 'file:///E:/000-xyz/worker.js' cannot be accessed from origin 'null'.
-            // to run this demo, you need to using a web server as an container!
-        */
-        worker.onmessage = function(e) {
-            console.log(`%c worker 线程 e = \n`, css, e);
-            console.log(`%c worker 线程 data = \n`, css, e.data);
-            // 输出 worker 发送来的数据
-        }
+        const postWM = (msg) => {
+            let url = ``;
+            url = (msg === undefined ? `https://cdn.xgqfrms.xyz/json/xgqfrms.json` : msg);
+            worker.postMessage(url);
+            // 接收 worker 传过来的数据函数
+        };
+        send_btn.addEventListener(`click`, (e) => {
+            console.log(`send_btn e`, e);
+            console.log(`send_btn this`, this);
+            postWM(url);
+        }, {
+            captrue: true,
+            // once: false,
+        });
+        const showWD = () => {
+            let data = `smg`;
+            console.log(`1 showWD data = \n`, data);
+            // e ??? this
+            worker.onmessage = function(e) {
+                console.log(`%c worker 线程 e = \n`, css, e);
+                console.log(`%c worker 线程 data = \n`, css, e.data);
+                // 输出 worker 发送来的数据
+                console.log(`showWD data = `, data, typeof data);
+                // string / object
+                // local varibale ???
+                data = e.data;
+                // local copy ??? 
+                // smg string / {...data} object
+                console.log(`%c showWD data = \n`, css, data);
+                // return data;
+                /* how to return this worker received data??? */
+            }
+            console.log(`2 showWD data = \n`, data);
+            // let html = ``;
+            // html = JSON.stringify(data, null, 4);
+            // let pre = document.createElement(`pre`);
+            // pre.classList.add(`pre-select`);
+            // // pre.dataset[`pre-uid`] = `pre-uid`;
+            // // Uncaught DOMException: Failed to set the 'pre-uid' property on 'DOMStringMap': 'pre-uid' is not a valid property name.
+            // pre.dataset.preUid = `pre-uid`;
+            // pre.innerHTML = html;
+            setTimeout(function() {
+                console.log(`3 showWD data = \n`, data);
+                let html = ``;
+                html = JSON.stringify(data, null, 4);
+                let pre = document.createElement(`pre`);
+                pre.classList.add(`pre-select`);
+                // pre.dataset[`pre-uid`] = `pre-uid`;
+                // Uncaught DOMException: Failed to set the 'pre-uid' property on 'DOMStringMap': 'pre-uid' is not a valid property name.
+                pre.dataset.preUid = `pre-uid`;
+                pre.innerHTML = html;
+                uid.insertAdjacentElement(`beforeend`, pre);
+            }, 0);
+        };
+        show_btn.addEventListener(`click`, () => {
+            // console.log(`show_btn e`, e);
+            // console.log(`show_btn this`, this);
+            showWD();
+        });
+    </script>
+    <script>
+        ///*
+        // Uncaught DOMException: Failed to construct 'Worker': 
+        // Script at 'file:///E:/000-xyz/worker.js' cannot be accessed from origin 'null'.
+        // to run this demo, you need to using a web server as an container!
+        //*/
+        // smg ???
     </script>
 </body>
 
