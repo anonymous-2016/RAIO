@@ -142,14 +142,21 @@ const profitForecast = (url = ``, debug = false, uid = `default_dom_uid`) => {
  * @param {* Boolean} debug
  */
 
-const drawHS = (datas = {}, container_uid = `#container`, container_div = `dom_element`, debug = false) => {
+const drawHS = (datas = {}, container_uid = `container`, container_div = `dom_element`, debug = false) => {
     // let container = document.querySelector(`#container`);
-    let container = document.querySelector(`${container_uid}`);
+    // let container = document.querySelector(`#${container_uid}`);
+    // ???
     let titles = {
         title1: `title 1`,
         title2: `title 2`
-    }
-    let {time, up, down, average, keep} = {...datas};
+    };
+    // let {time, up, down, average, keep} = {...datas};
+    // babel ??? ES5 
+    let time = datas.time,
+        up = datas.up,
+        down = datas.down, 
+        average = datas.average,
+        keep = datas.keep;
     console.log(`time = \n`, time);
     console.log(`up = \n`, up);
     console.log(`down = \n`, down);
@@ -169,7 +176,7 @@ const drawHS = (datas = {}, container_uid = `#container`, container_div = `dom_e
     // container_div
     // Highcharts.stockChart
     // Highcharts.chart
-    Highcharts.chart('container', {
+    Highcharts.chart(container_uid, {
         noData: {// all defualt value
             attr: undefined,
             position: {
@@ -219,11 +226,17 @@ const drawHS = (datas = {}, container_uid = `#container`, container_div = `dom_e
             {
                 // x: -50,
                 // y: -50,
-                // min: 0,
+                min: 0,
                 title: {
                     text: '',
                     // text: 'Total fruit consumption'
                 },
+                labels: {
+                    format: '{value}%',// 百分比
+                    style: {
+                        color: Highcharts.getOptions().colors[1]
+                    }
+                }
                /*  stackLabels: {
                     // enabled: true,// counter all cols values
                     style: {
@@ -279,10 +292,9 @@ const drawHS = (datas = {}, container_uid = `#container`, container_div = `dom_e
                 <br/>
             `,
             pointFormat: `
-                {series.name}: {point.y}
-                <br/>
-                总数 : 
-                {point.stackTotal}
+                <span style="color:{point.color}">\u25CF</span>
+                {series.name}: {point.y}<br/>
+                <span style="color:{point.color}">\u25CF</span> 百分比 :{point.percentage:.0f}%
             `,
             // 总数/总共/总量/总额/共有/总数
             // {${point.stackTotal ? point.stackTotal : point.y}} ???
@@ -293,8 +305,9 @@ const drawHS = (datas = {}, container_uid = `#container`, container_div = `dom_e
         plotOptions: {
             // (series) type = column (chart)
             column: {
-                stacking: 'normal',// 是否将每个系列的值叠加在一起, 默认是：null
+                // stacking: 'normal',// 是否将每个系列的值叠加在一起, 默认是：null
                 // stacking: 'null',
+                stacking: 'percent',// 百分比堆叠柱形图
                 dataLabels: {
                     enabled: true,
                     color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white'
@@ -362,8 +375,8 @@ setTimeout(() => {
     let hs_datas = profitForecast(url, true);
     console.log(`hs_datas = \n`, JSON.stringify(hs_datas, null, 4));
     // profitForecast(url, true, uid);
-    // let hs_container_uid = document.querySelector('[data-hs-container="data-profit-forecast-container-uid"]');
-    let uid = `#container`;
+    // let hs_container_uid = document.querySelector(`[data-hs-container="data-profit-forecast-container-uid"]`);
+    let uid = `profit_forecast_hs_container`;
     setTimeout(() => {
         drawHS(hs_datas, uid);
     }, 0);

@@ -73,6 +73,12 @@ $(function() {
                     // text: 'yAxis title 1',
                     text: ''
                 },
+                labels: {
+                    format: '{value}%',// 百分比
+                    style: {
+                        color: Highcharts.getOptions().colors[1]
+                    }
+                }
                 // stackLabels: {
                 //     // enabled: true,// counter all cols values
                 //     style: {
@@ -120,7 +126,7 @@ $(function() {
             shadow: false,
             // name
         },
-        // tooltip ??? array
+        // tooltip ??? array ??? 百分比
         tooltip: {
             headerFormat: `
                 <strong>
@@ -132,7 +138,7 @@ $(function() {
                 {series.name}: {point.y}
                 <br/>
                 百分比 : 
-                {point.stackTotal}%
+                {point.y} / {point.stackTotal}%
             `,
             // 总数/总共/总量/总额/共有/
             // {${point.stackTotal ? point.stackTotal : point.y}} ???
@@ -149,7 +155,7 @@ $(function() {
                     // enabled: true, // show num
                     color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white'
                 },
-                stacking: 'percent'
+                stacking: 'percent'// 百分比堆叠柱形图
             },
         },
         series: [
@@ -165,7 +171,7 @@ $(function() {
             },
             {
                 name: '下调',
-                data: [3, 4, 4, 0.5, 5, 0, 0, 1, 1]
+                data: [3, 8, 4, 0.5, 5, 0, 0, 1, 1]
             },
             {
                 type:'spline',
@@ -280,7 +286,7 @@ function drawchart(id, STOCK_SKIN){
                     }
                 },
                 labels: {
-                    format: '{value}%',
+                    format: '{value}%',// 百分比
                     style: {
                         color: Highcharts.getOptions().colors[1]
                     }

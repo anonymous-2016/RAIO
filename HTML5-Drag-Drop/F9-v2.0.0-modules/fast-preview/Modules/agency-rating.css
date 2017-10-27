@@ -1,1 +1,25 @@
 @charset "UTF-8";
+.fv-agency-rating-hs {
+    margin: 0 auto;
+    box-sizing: border-box;
+    border: 1px solid red;
+}
+
+.fv-agency-rating-hs-container {
+    /* width: 850px; */
+    /* height: 275px; */
+    /* height: 270px; */
+    height: 100%;
+    /* max-height: 275px;
+    overflow-y: scroll; */
+}
+
+
+/* 
+
+https://stackoverflow.com/questions/8809852/highcharts-how-to-have-a-chart-with-dynamic-height
+https://stackoverflow.com/questions/16330237/highcharts-full-width-issue
+
+https://forum.highcharts.com/highstock-usage/responsive-height-and-width-t25780/
+
+*/
