@@ -324,6 +324,28 @@ https://www.hcharts.cn/demo/highcharts/renderer
 https://www.hcharts.cn/demo/highcharts/wordcloud
 
 
+https://www.hcharts.cn/demo/highcharts/dynamic-master-detail
+https://www.hcharts.cn/demo/highcharts/column-negative
+
+
+
+https://www.hcharts.cn/demo/highstock
+
+https://www.hcharts.cn/demo/highstock/navigator-multiple-series
+https://www.hcharts.cn/demo/highstock/compare
+
+
+https://www.hcharts.cn/demo/highcharts/combo-dual-axes
+https://www.hcharts.cn/demo/highcharts/line-time-series
+
+
+https://www.hcharts.cn/demo/highcharts/combo-meteogram
+https://www.hcharts.cn/demo/highcharts/column-drilldown
+https://www.hcharts.cn/demo/highcharts/column-parsed
+https://www.hcharts.cn/demo/highcharts/combo-timeline
+
+
+
 https://xueqiu.com/
 
 https://xueqiu.com/S/HKHSI
