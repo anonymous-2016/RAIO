@@ -75,7 +75,14 @@ https://laod.cn/security/wifi-wpa2.html
 
 
 
+# danymic loading module.js
 
+
+```js
+<script src="module.js" data-index="" data-script="" ></script>
+
+
+```
 
 
 

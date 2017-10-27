@@ -1217,10 +1217,114 @@ https://api.highcharts.com/highcharts/#plotOptions.series.connectNulls
 https://www.highcharts.com/demo/column-stacked-percent/
 
 
+```css
+.fv-agency-rating-hs-container {
+    /* width: 850px; */
+    /* height: 275px; */
+    /* height: 270px; */
+    height: 100%;
+    /* max-height: 275px;
+    overflow-y: scroll; */
+}
+
+```
+
+
+```js
+
+    yAxis: [
+        // yAxis 1
+        {
+            // x: -50,
+            // y: -50,
+            min: 0,
+            title: {
+                text: '',
+                // text: 'Total fruit consumption'
+            },
+            labels: {
+                format: '{value}%',// 百分比
+                style: {
+                    color: Highcharts.getOptions().colors[1]
+                }
+            }
+        }
+    ],
+    tooltip: {
+        headerFormat: `
+            <strong>
+                {point.x}
+            </strong>
+            <br/>
+        `,
+        pointFormat: `
+            <span style="color:{point.color}">\u25CF</span>
+            {series.name}: {point.y}<br/>
+            <span style="color:{point.color}">\u25CF</span> 百分比 :{point.percentage:.0f}%
+        `,
+        // 总数/总共/总量/总额/共有/总数
+        // {${point.stackTotal ? point.stackTotal : point.y}} ???
+        // {point.stackTotal || point.y}
+        // {point.stackTotal ? point.stackTotal : point.y}
+    },
+    // 情节/绘图选项
+    plotOptions: {
+        // (series) type = column (chart)
+        column: {
+            // stacking: 'normal',// 是否将每个系列的值叠加在一起, 默认是：null
+            // stacking: 'null',
+            stacking: 'percent',// 百分比堆叠柱形图
+            dataLabels: {
+                enabled: true,
+                color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white'
+            }
+        }
+    }
+    ,
+    scrollbar: {
+        enabled: true
+    },
+    series: [
+        {
+            name: '上调',// type = column (chart)
+            // data: [5, 3, 4, 7, 2],
+            data: up,
+        },
+        {
+            name: '维持',
+            // data: [2, 2, 3, 2, 1],
+            data: keep,
+        },
+        {
+            name: '下调',
+            // data: [3, 4, 4, 2, 5],
+            data: down,
+        },
+        {
+            type:'spline',
+            yAxis: 1,
+            color:"skyblue",
+            name: '平均',
+            // data: [3, 4, 4, 2, 5],
+            data: average,
+            connectNulls: true,// OK null !== 0
+        }
+    ],
+```
 
 
 
 
+
+
+# danymic loading module.js
+
+
+```js
+<script src="module.js" data-index="" data-script="" ></script>
+
+
+```
 
 
 

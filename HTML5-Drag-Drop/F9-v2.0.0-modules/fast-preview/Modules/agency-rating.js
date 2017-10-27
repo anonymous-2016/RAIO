@@ -25,6 +25,26 @@ const agencyRating = (url = ``, debug = false, uid = `default_dom_uid`) => {
                 if (debug) {
                     console.log(`data = \n`, json);
                 }
+                let strs = json.map(
+                    (obj) => {
+                        console.log(obj.sj);
+                        return obj.sj;
+                        //return num = parseInt(obj.sj.replace(/-/g, ``));
+                    }
+                );
+                strs = strs.sort();
+                //  ["2007-04-30", "2009-10-31", "2010-02-28", "2016-10-31", "2017-09-30"]
+                arr = strs.map(
+                    (date) => {
+                        // "2007-04-30"
+                        for (var i = 0; i < strs.length; i++) {
+                            if(date === arr[i].sj){
+                                return arr[i];
+                            }
+                        }
+                        // return arr[i];
+                    }
+                );
                 // Array.isArray(arr);
                 let keys = Object.keys(arr[0]);
                 // (5) ["rq", "pj", "st", "wc", "xt"]

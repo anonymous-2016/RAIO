@@ -28,6 +28,26 @@ const profitForecast = (url = ``, debug = false, uid = `default_dom_uid`) => {
                 if (debug) {
                     console.log(`data = \n`, json);
                 }
+                let strs = json.map(
+                    (obj) => {
+                        console.log(obj.rq);
+                        return obj.rq;
+                        //return num = parseInt(obj.rq.replace(/-/g, ``));
+                    }
+                );
+                strs = strs.sort();
+                //  ["2007-04-30", "2009-10-31", "2010-02-28", "2016-10-31", "2017-09-30"]
+                arr = strs.map(
+                    (date) => {
+                        // "2007-04-30"
+                        for (var i = 0; i < strs.length; i++) {
+                            if(date === arr[i].rq){
+                                return arr[i];
+                            }
+                        }
+                        // return arr[i];
+                    }
+                );
                 /* 
                     [
                         {
@@ -36,13 +56,6 @@ const profitForecast = (url = ``, debug = false, uid = `default_dom_uid`) => {
                             "st": 0,
                             "wc": 1,
                             "xt": 0
-                        },
-                        {
-                            "rq": "2017-09-30",
-                            "pj": 0.71,
-                            "st": 3,
-                            "wc": 2,
-                            "xt": 2
                         }
                     ]
                 */
@@ -338,6 +351,19 @@ const drawHS = (datas = {}, container_uid = `container`, container_div = `dom_el
                 // data: [3, 4, 4, 2, 5],
                 data: average,
                 connectNulls: true,// OK
+                tooltip: {
+                    headerFormat: `
+                        <strong>
+                            {point.x}
+                        </strong>
+                        <br/>
+                    `,
+                    pointFormat: `
+                        <span style="color:{point.color}">\u25CF</span>
+                        {series.name}: <b>{point.y}</b><br/>
+                    `,
+                    // <span style="color:{point.color}">\u25CF</span> 百分比 :{point.percentage:.0f}%
+                },
             }
         ],
         scrollbar: {

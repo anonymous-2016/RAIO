@@ -484,7 +484,14 @@ $ browser-sync start --server --files "./*.*"
 
 
 
+# danymic loading module.js
 
+
+```js
+<script src="module.js" data-index="" data-script="" ></script>
+
+
+```
 
 
 
