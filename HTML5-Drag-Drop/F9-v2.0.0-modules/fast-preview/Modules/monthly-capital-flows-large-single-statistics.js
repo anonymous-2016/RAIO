@@ -1,9 +1,9 @@
 "use strict";
 
 /**
- * financing-and-margin-balance-difference-trend 融资余额与融券余额差值走势 
+ * monthly-capital-flows-large-single-statistics 盈利预告近一月资金流向大单统计
  * xgqfrms
- * creadted 2017.10.27
+ * creadted 2017.10.17
  * @param {* String} url 
  * @param {* DOM Element} uid
  * @param {* Boolean} debug 
@@ -11,9 +11,9 @@
 
 // todo
 
-// financing-and-margin-balance-difference-trend FMBDT
+// monthly-capital-flows-large-single-statistics MCFLSStatistics
 
-const FMBDtrend = (url = ``, debug = false, uid = `default_dom_uid`) => {
+const MCFLSStatistics = (url = ``, debug = false, uid = `default_dom_uid`) => {
     // profitForecast
     console.log(`uid = `, uid);
     // debug = true;
@@ -52,20 +52,17 @@ const FMBDtrend = (url = ``, debug = false, uid = `default_dom_uid`) => {
             /* 
                 [
                     {
-                        "sj": "2014-12-31",
-                        "bl": 44.800000000000004,
-                        "gj": 54.76
+                        "sj": "2017-10-27",
+                        "bl": -522.69,
+                        "gj": 52.12
                     },
                 ]
             */
             // Array.isArray(arr);
             let keys = Object.keys(arr[0]);
-            // (5) ["rq", "pj", "st", "wc", "xt"]
             const arr_obj = {};
             keys.forEach(
                 (key, index) => {
-                    // console.log(`key, index = \n`, key, index);
-                    // arr_obj[key] = [];
                     // as / alias
                     let new_key = ``;
                     switch (key) {
@@ -73,10 +70,10 @@ const FMBDtrend = (url = ``, debug = false, uid = `default_dom_uid`) => {
                             new_key = `time`;
                             break;
                         case "bl":
-                            new_key = `shares`;
+                            new_key = `purchase_amount`;
                             break;
                         case "gj":
-                            new_key = `stock_price`;
+                            new_key = `closing_price`;
                             break;
                         default:
                             new_key = `😟 暂无数据`;
@@ -86,25 +83,23 @@ const FMBDtrend = (url = ``, debug = false, uid = `default_dom_uid`) => {
                 }
             );
             console.log(`arr_obj = `, JSON.stringify(arr_obj, null, 4));
-            // {"rq":[],"pj":[],"st":[],"wc":[],"xt":[]}
-            // 5 array
-            // keys.map(k => console.log(typeof k));// string
-            // ["rq", "pj", "st", "wc", "xt"].map(k => console.log(k));
-            // let time = shares = stock_price = average = keep = [];
             let counter = 1;
             arr.map(
                 (obj, i) => {
                     // console.log(`obj = `, JSON.stringify(obj, null, 4));
-                    let time = ``, shares = ``, stock_price = ``;
+                    let time = ``, purchase_amount = ``, closing_price = ``;
                     time = (obj.sj !== undefined) ? obj.sj : `😟 暂无数据`;
                     // no string, just keep number!
-                    shares = (obj.bl !== undefined) ? obj.bl : `😟 暂无数据`;
-                    stock_price = (obj.gj !== undefined) ? obj.gj : `😟 暂无数据`;
+                    purchase_amount = (obj.bl !== undefined) ? obj.bl : `😟 暂无数据`;
+                    closing_price = (obj.gj !== undefined) ? obj.gj : `😟 暂无数据`;
                     // average = -1.7976931348623157e+308;
                     // average = (obj.pj !== undefined) ? (obj.pj >= 0 ? obj.pj : null) : `😟 暂无数据`;
+                    // average = (obj.pj !== undefined) ? (obj.pj >= 0 ? obj.pj : `--`) : `😟 暂无数据`;
+                    // invalid value === 展示“--”
+                    // console.log(`keep = `, keep);
                     arr_obj.time.push(time);
-                    arr_obj.shares.push(shares);
-                    arr_obj.stock_price.push(stock_price);
+                    arr_obj.purchase_amount.push(purchase_amount);
+                    arr_obj.closing_price.push(closing_price);
                     // return arr_obj;
                     if (counter === 1) {
                         console.log(`arr_obj = `, JSON.stringify(arr_obj, null, 4));
@@ -113,20 +108,12 @@ const FMBDtrend = (url = ``, debug = false, uid = `default_dom_uid`) => {
                 }
             );
             console.log(`arr_obj = `, JSON.stringify(arr_obj, null, 4));
-            // let {...arr_obj} = {rq: [], st: [], xt: [], pj: [], wc: []};
-            // Object.assign()
-            // arr.forEach() just use for addEventListener() / do somthing, no return value / undefined!
-            // arr.map(), return an shaped new array!
             datas = Object.assign(datas, arr_obj);
-            // return Object.assign(datas, arr_obj);
-            // return arr_obj;
-            // uid ???
-            FMBDTdrawHS(datas, uid);
+            MCFLSSdrawHS(datas, uid);
         }
     )
     .catch(error => console.log(`error = \n`, error));
     return datas;
-    // return new Promise();
 };
 
 
@@ -136,16 +123,23 @@ const FMBDtrend = (url = ``, debug = false, uid = `default_dom_uid`) => {
  * 
  * @param {* Object} datas 
  * @param {* String} container_uid 
+ * @param {* DOM Element} container_div 
  * @param {* Boolean} debug
  */
 
-const FMBDTdrawHS = (datas = {}, container_uid = `container`, debug = false) => {
+const MCFLSSdrawHS = (datas = {}, container_uid = `container`, debug = false) => {
+    let titles = {
+        title1: `title 1`,
+        title2: `title 2`
+    };
+    // let {time, purchase_amount, closing_price, average, keep} = {...datas};
+    // babel ??? ES5 
     let time = datas.time,
-        shares = datas.shares,
-        stock_price = datas.stock_price;
+        purchase_amount = datas.purchase_amount,
+        closing_price = datas.closing_price;
     console.log(`time = \n`, time);
-    console.log(`shares = \n`, shares);
-    console.log(`stock_price = \n`, stock_price);
+    console.log(`purchase_amount = \n`, purchase_amount);
+    console.log(`closing_price = \n`, closing_price);
     // datas
     const chart_css = {
         color: `#0B1016`,
@@ -157,6 +151,9 @@ const FMBDTdrawHS = (datas = {}, container_uid = `container`, debug = false) => 
     };
     // css_obj ???
     const {color, colors, optioncolor, gridColor, legendColor, yAxisColor} = {...chart_css};
+    // container_div
+    // Highcharts.stockChart
+    // Highcharts.chart
     Highcharts.chart(container_uid, {
         noData: {// all defualt value
             attr: undefined,
@@ -180,7 +177,7 @@ const FMBDTdrawHS = (datas = {}, container_uid = `container`, debug = false) => 
             type: 'column',
             // backgroundColor: chart_css.color
             // backgroundColor: color
-            // height: (9 / 16 * 100) + '%',
+            height: (9 / 16 * 100) + '%',
             // 16:9 ratio
         },
         title: {
@@ -191,7 +188,7 @@ const FMBDTdrawHS = (datas = {}, container_uid = `container`, debug = false) => 
             // categories: ['2017-02', '2017-02', '2017-02', '2017-02', '2017-02'],
             categories: time,
             min: 0,
-            max: 8,
+            max: 8
             // xAxis datas
         },
         credits: {
@@ -209,17 +206,18 @@ const FMBDTdrawHS = (datas = {}, container_uid = `container`, debug = false) => 
             {
                 // x: -50,
                 // y: -50,
-                min: 0,
+                min: -6000,// in case auto change range, fixed range
+                max: 12000,// in case auto change range, fixed range
                 title: {
                     text: '',
                     // text: 'Total fruit consumption'
                 },
-                // labels: {
-                //     format: '{value}%',// 百分比
-                //     style: {
-                //         color: Highcharts.getOptions().colors[1]
-                //     }
-                // }
+                labels: {
+                    // format: '{value}%',// 百分比
+                    style: {
+                        color: Highcharts.getOptions().colors[1]
+                    }
+                }
                /*  stackLabels: {
                     // enabled: true,// counter all cols values
                     style: {
@@ -277,8 +275,8 @@ const FMBDTdrawHS = (datas = {}, container_uid = `container`, debug = false) => 
             pointFormat: `
                 <span style="color:{point.color}">\u25CF</span>
                 {series.name}: {point.y}<br/>
+                <span style="color:{point.color}">\u25CF</span> 百分比 :{point.percentage:.0f}%
             `,
-            // <span style="color:{point.color}">\u25CF</span> 百分比 :{point.percentage:.0f}%
             // 总数/总共/总量/总额/共有/总数
             // {${point.stackTotal ? point.stackTotal : point.y}} ???
             // {point.stackTotal || point.y}
@@ -288,28 +286,26 @@ const FMBDTdrawHS = (datas = {}, container_uid = `container`, debug = false) => 
         plotOptions: {
             // (series) type = column (chart)
             column: {
-                // stacking: 'normal',// 是否将每个系列的值叠加在一起, 默认是：null
+                stacking: 'normal',// 是否将每个系列的值叠加在一起, 默认是：null
                 // stacking: 'null',
                 // stacking: 'percent',// 百分比堆叠柱形图
                 dataLabels: {
-                    // enabled: true,
+                    enabled: true,
                     color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white'
                 }
             }
         },
         series: [
             {
-                name: '融资余额与融券余额差值',// type = column (chart)
-                // data: [5, 3, 4, 7, 2],
-                data: shares,
+                name: '大单净买入额',// type = column (chart)
+                data: purchase_amount,
             },
             {
                 type:'spline',
                 yAxis: 1,
                 color:"skyblue",
-                name: '每股收益',
-                // data: [3, 4, 4, 2, 5],
-                data: stock_price,
+                name: '最新收盘价',
+                data: closing_price,
                 connectNulls: true,// OK
                 tooltip: {
                     headerFormat: `
@@ -333,27 +329,13 @@ const FMBDTdrawHS = (datas = {}, container_uid = `container`, debug = false) => 
 }
 
 
-
 // call fetch json datas
 setTimeout(() => {
     // async & await
-    const sf_num= `stockfast08`;
+    const sf_num= `stockfast09`;
     const url = `http://10.1.5.202/webservice/fastview/stock/${sf_num}/600570.SH`;
-    let uid = `financing_and_margin_balance_difference_trend_hs_container`;
-    let hs_datas = FMBDtrend(url, true, uid);
+    let uid = `monthly_capital_flows_large_single_statistics_hs_container`;
+    let hs_datas = MCFLSStatistics(url, true, uid);
     console.log(`hs_datas = \n`, JSON.stringify(hs_datas, null, 4));
-    // setTimeout(() => {
-    //     // FMBDTdrawHS(hs_datas, uid);
-    // }, 0);
 }, 0);
-
-
-
-
-
-
-
-
-
-
 

@@ -15,133 +15,135 @@
 
 const profitForecast = (url = ``, debug = false, uid = `default_dom_uid`) => {
     // profitForecast
-        // debug = true;
-        let datas = {};
-        fetch(url)
-        .then(res => res.json())
-        .then(
-            //shaped data 
-            (json) => {
-                // json
-                let arr = json;// Array
-                // async
-                if (debug) {
-                    console.log(`data = \n`, json);
-                }
-                let strs = json.map(
-                    (obj) => {
-                        console.log(obj.rq);
-                        return obj.rq;
-                        //return num = parseInt(obj.rq.replace(/-/g, ``));
-                    }
-                );
-                strs = strs.sort();
-                //  ["2007-04-30", "2009-10-31", "2010-02-28", "2016-10-31", "2017-09-30"]
-                arr = strs.map(
-                    (date) => {
-                        // "2007-04-30"
-                        for (var i = 0; i < strs.length; i++) {
-                            if(date === arr[i].rq){
-                                return arr[i];
-                            }
-                        }
-                        // return arr[i];
-                    }
-                );
-                /* 
-                    [
-                        {
-                            "rq": "2017-10-25",
-                            "pj": 0.66,
-                            "st": 0,
-                            "wc": 1,
-                            "xt": 0
-                        }
-                    ]
-                */
-                // Array.isArray(arr);
-                let keys = Object.keys(arr[0]);
-                // (5) ["rq", "pj", "st", "wc", "xt"]
-                const arr_obj = {};
-                keys.forEach(
-                    (key, index) => {
-                        // console.log(`key, index = \n`, key, index);
-                        // arr_obj[key] = [];
-                        // as / alias
-                        let new_key = ``;
-                        switch (key) {
-                            case "rq":
-                                new_key = `time`;
-                                break;
-                            case "st":
-                                new_key = `up`;
-                                break;
-                            case "xt":
-                                new_key = `down`;
-                                break;
-                            case "pj":
-                                new_key = `average`;
-                                break;
-                            case "wc":
-                                new_key = `keep`;
-                                break;
-                            default:
-                                new_key = `😟 暂无数据`;
-                                break;
-                        }
-                        arr_obj[new_key] = [];
-                    }
-                );
-                console.log(`arr_obj = `, JSON.stringify(arr_obj, null, 4));
-                // {"rq":[],"pj":[],"st":[],"wc":[],"xt":[]}
-                // 5 array
-                // keys.map(k => console.log(typeof k));// string
-                // ["rq", "pj", "st", "wc", "xt"].map(k => console.log(k));
-                // let time = up = down = average = keep = [];
-                let counter = 1;
-                arr.map(
-                    (obj, i) => {
-                        // console.log(`obj = `, JSON.stringify(obj, null, 4));
-                        let time = ``, up = ``, down = ``, average = ``, keep = ``;
-                        // let time = up = down = average = keep = ``;
-                        // ReferenceError: keep is not defined
-                        // time.push();
-                        // time = `${(obj.rq !== undefined) ? obj.rq : `😟 暂无数据`}`;
-                        time = (obj.rq !== undefined) ? obj.rq : `😟 暂无数据`;
-                        // no string, just keep number!
-                        up = (obj.st !== undefined) ? obj.st : `😟 暂无数据`;
-                        down = (obj.xt !== undefined) ? obj.xt : `😟 暂无数据`;
-                        // average = -1.7976931348623157e+308;
-                        average = (obj.pj !== undefined) ? (obj.pj >= 0 ? obj.pj : null) : `😟 暂无数据`;
-                        // average = (obj.pj !== undefined) ? (obj.pj >= 0 ? obj.pj : `--`) : `😟 暂无数据`;
-                        // invalid value === 展示“--”
-                        keep = (obj.wc !== undefined) ? obj.wc : `😟 暂无数据`;
-                        // arr[i] ??? bug
-                        // console.log(`keep = `, keep);
-                        arr_obj.time.push(time);
-                        arr_obj.up.push(up);
-                        arr_obj.down.push(down);
-                        arr_obj.average.push(average);
-                        arr_obj.keep.push(keep);
-                        // return arr_obj;
-                        if (counter === 1) {
-                            console.log(`arr_obj = `, JSON.stringify(arr_obj, null, 4));
-                            counter ++;
-                        }
-                    }
-                );
-                console.log(`arr_obj = `, JSON.stringify(arr_obj, null, 4));
-                // let {...arr_obj} = {rq: [], st: [], xt: [], pj: [], wc: []};
-                // Object.assign()
-                // arr.forEach() just use for addEventListener() / do somthing, no return value / undefined!
-                // arr.map(), return an shaped new array!
-                datas = Object.assign(datas, arr_obj);
-                // return Object.assign(datas, arr_obj);
-                // return arr_obj;
+    console.log(`uid = `, uid);
+    // debug = true;
+    let datas = {};
+    fetch(url)
+    .then(res => res.json())
+    .then(
+        //shaped data 
+        (json) => {
+            // json
+            let arr = json;// Array
+            // async
+            if (debug) {
+                console.log(`data = \n`, json);
             }
-        )
-        .catch(error => console.log(`error = \n`, error));
-        return datas;
+            let strs = json.map(
+                (obj) => {
+                    console.log(obj.rq);
+                    return obj.rq;
+                    //return num = parseInt(obj.rq.replace(/-/g, ``));
+                }
+            );
+            strs = strs.sort();
+            //  ["2007-04-30", "2009-10-31", "2010-02-28", "2016-10-31", "2017-09-30"]
+            arr = strs.map(
+                (date) => {
+                    // "2007-04-30"
+                    for (var i = 0; i < strs.length; i++) {
+                        if(date === arr[i].rq){
+                            return arr[i];
+                        }
+                    }
+                    // return arr[i];
+                }
+            );
+            /* 
+                [
+                    {
+                        "rq": "2017-10-25",
+                        "pj": 0.66,
+                        "st": 0,
+                        "wc": 1,
+                        "xt": 0
+                    }
+                ]
+            */
+            // Array.isArray(arr);
+            let keys = Object.keys(arr[0]);
+            // (5) ["rq", "pj", "st", "wc", "xt"]
+            const arr_obj = {};
+            keys.forEach(
+                (key, index) => {
+                    // console.log(`key, index = \n`, key, index);
+                    // arr_obj[key] = [];
+                    // as / alias
+                    let new_key = ``;
+                    switch (key) {
+                        case "rq":
+                            new_key = `time`;
+                            break;
+                        case "st":
+                            new_key = `up`;
+                            break;
+                        case "xt":
+                            new_key = `down`;
+                            break;
+                        case "pj":
+                            new_key = `average`;
+                            break;
+                        case "wc":
+                            new_key = `keep`;
+                            break;
+                        default:
+                            new_key = `😟 暂无数据`;
+                            break;
+                    }
+                    arr_obj[new_key] = [];
+                }
+            );
+            console.log(`arr_obj = `, JSON.stringify(arr_obj, null, 4));
+            // {"rq":[],"pj":[],"st":[],"wc":[],"xt":[]}
+            // 5 array
+            // keys.map(k => console.log(typeof k));// string
+            // ["rq", "pj", "st", "wc", "xt"].map(k => console.log(k));
+            // let time = up = down = average = keep = [];
+            let counter = 1;
+            arr.map(
+                (obj, i) => {
+                    // console.log(`obj = `, JSON.stringify(obj, null, 4));
+                    let time = ``, up = ``, down = ``, average = ``, keep = ``;
+                    // let time = up = down = average = keep = ``;
+                    // ReferenceError: keep is not defined
+                    // time.push();
+                    // time = `${(obj.rq !== undefined) ? obj.rq : `😟 暂无数据`}`;
+                    time = (obj.rq !== undefined) ? obj.rq : `😟 暂无数据`;
+                    // no string, just keep number!
+                    up = (obj.st !== undefined) ? obj.st : `😟 暂无数据`;
+                    down = (obj.xt !== undefined) ? obj.xt : `😟 暂无数据`;
+                    // average = -1.7976931348623157e+308;
+                    average = (obj.pj !== undefined) ? (obj.pj >= 0 ? obj.pj : null) : `😟 暂无数据`;
+                    // average = (obj.pj !== undefined) ? (obj.pj >= 0 ? obj.pj : `--`) : `😟 暂无数据`;
+                    // invalid value === 展示“--”
+                    keep = (obj.wc !== undefined) ? obj.wc : `😟 暂无数据`;
+                    // arr[i] ??? bug
+                    // console.log(`keep = `, keep);
+                    arr_obj.time.push(time);
+                    arr_obj.up.push(up);
+                    arr_obj.down.push(down);
+                    arr_obj.average.push(average);
+                    arr_obj.keep.push(keep);
+                    // return arr_obj;
+                    if (counter === 1) {
+                        console.log(`arr_obj = `, JSON.stringify(arr_obj, null, 4));
+                        counter ++;
+                    }
+                }
+            );
+            console.log(`arr_obj = `, JSON.stringify(arr_obj, null, 4));
+            // let {...arr_obj} = {rq: [], st: [], xt: [], pj: [], wc: []};
+            // Object.assign()
+            // arr.forEach() just use for addEventListener() / do somthing, no return value / undefined!
+            // arr.map(), return an shaped new array!
+            datas = Object.assign(datas, arr_obj);
+            // return Object.assign(datas, arr_obj);
+            // return arr_obj;
+            drawHS(datas, uid);
+        }
+    )
+    .catch(error => console.log(`error = \n`, error));
+    return datas;
 };
 
 
@@ -242,6 +244,7 @@ const drawHS = (datas = {}, container_uid = `container`, container_div = `dom_el
                 // x: -50,
                 // y: -50,
                 min: 0,
+                max: 100,
                 title: {
                     text: '',
                     // text: 'Total fruit consumption'
@@ -400,13 +403,13 @@ setTimeout(() => {
     // async & await
     const sf_num= `stockfast03`;
     const url = `http://10.1.5.202/webservice/fastview/stock/${sf_num}/600570.SH`;
-    let hs_datas = profitForecast(url, true);
+    let uid = `profit_forecast_hs_container`;
+    let hs_datas = profitForecast(url, true, uid);
     console.log(`hs_datas = \n`, JSON.stringify(hs_datas, null, 4));
     // profitForecast(url, true, uid);
     // let hs_container_uid = document.querySelector(`[data-hs-container="data-profit-forecast-container-uid"]`);
-    let uid = `profit_forecast_hs_container`;
-    setTimeout(() => {
-        drawHS(hs_datas, uid);
-    }, 0);
+    // setTimeout(() => {
+    //     drawHS(hs_datas, uid);
+    // }, 0);
 }, 0);
 
