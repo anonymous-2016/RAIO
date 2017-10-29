@@ -216,6 +216,7 @@ const ISCSdrawHS = (datas = {}, container_uid = `container`, debug = false) => {
                 labels: {
                     format: '{value}%',// 百分比
                     style: {
+                        // color: `#0f0`,// 
                         color: Highcharts.getOptions().colors[1]
                     }
                 }
@@ -248,7 +249,7 @@ const ISCSdrawHS = (datas = {}, container_uid = `container`, debug = false) => {
             }
         ],
         legend: {
-            align: 'right',// left, center and right. (Defaults to center.)
+            align: 'center',// left, center and right. (Defaults to center.)
             backgroundColor: `#ff00ff`, //Color,
             /*
                 x: 0,
@@ -294,6 +295,13 @@ const ISCSdrawHS = (datas = {}, container_uid = `container`, debug = false) => {
                     // enabled: true,
                     color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white'
                 }
+            },
+            spline: {
+                // stacking: 'normal',
+                dataLabels: {
+                    enabled: true,
+                    color: "#434348"
+                }
             }
         },
         series: [
@@ -301,11 +309,12 @@ const ISCSdrawHS = (datas = {}, container_uid = `container`, debug = false) => {
                 name: '机构持股比例',// type = column (chart)
                 // data: [5, 3, 4, 7, 2],
                 data: shares,
+                color:"#1a75bc",
             },
             {
                 type:'spline',
                 yAxis: 1,
-                color:"skyblue",
+                color:"#fbb728",
                 name: '股价',
                 // data: [3, 4, 4, 2, 5],
                 data: stock_price,
@@ -329,6 +338,16 @@ const ISCSdrawHS = (datas = {}, container_uid = `container`, debug = false) => {
             enabled: true
         }
     });
+    // svg style
+    let svg_legend = document.querySelector(`.highcharts-legend-item`);
+    svg_legend;
+    svg_legend.lastChild;
+    svg_legend.lastChild.setAttribute(`x`, 0);
+    svg_legend.lastChild.setAttribute(`y`, 5);
+    svg_legend.lastChild.setAttribute(`width`, 17);
+    svg_legend.lastChild.setAttribute(`height`, 10);
+    svg_legend.lastChild.setAttribute(`rx`, 0);
+    svg_legend.lastChild.setAttribute(`ry`, 0);
 }
 
 

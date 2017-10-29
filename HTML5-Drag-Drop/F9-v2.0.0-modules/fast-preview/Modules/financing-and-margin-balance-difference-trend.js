@@ -249,7 +249,7 @@ const FMBDTdrawHS = (datas = {}, container_uid = `container`, debug = false) => 
             }
         ],
         legend: {
-            align: 'right',// left, center and right. (Defaults to center.)
+            align: 'center',// left, center and right. (Defaults to center.)
             backgroundColor: `#ff00ff`, //Color,
             /*
                 x: 0,
@@ -295,18 +295,27 @@ const FMBDTdrawHS = (datas = {}, container_uid = `container`, debug = false) => 
                     // enabled: true,
                     color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white'
                 }
+            },
+            spline: {
+                // stacking: 'normal',
+                dataLabels: {
+                    enabled: true,
+                    color: "#434348"
+                }
             }
         },
         series: [
             {
-                name: '融资余额与融券余额差值',// type = column (chart)
-                // data: [5, 3, 4, 7, 2],
+                name: '净利润',
+                // type = column (chart)
+                // 净利润/融资余额与融券余额差值
                 data: shares,
+                color: `#1a75bc`
             },
             {
                 type:'spline',
                 yAxis: 1,
-                color:"skyblue",
+                color:"#fbb728",
                 name: '每股收益',
                 // data: [3, 4, 4, 2, 5],
                 data: stock_price,
@@ -330,6 +339,20 @@ const FMBDTdrawHS = (datas = {}, container_uid = `container`, debug = false) => 
             enabled: true
         }
     });
+    // svg style
+    let svg_legend = document.querySelector(`.highcharts-legend-item`);
+    svg_legend;
+    svg_legend.lastChild;
+    svg_legend.lastChild.setAttribute(`x`, 0);
+    svg_legend.lastChild.setAttribute(`y`, 5);
+    svg_legend.lastChild.setAttribute(`width`, 17);
+    svg_legend.lastChild.setAttribute(`height`, 10);
+    svg_legend.lastChild.setAttribute(`rx`, 0);
+    svg_legend.lastChild.setAttribute(`ry`, 0);
+    /* 
+        <rect x="2" y="4" width="17" height="12" fill="#1a75bc" rx="0" ry="0" class="highcharts-point"></rect>
+        <rect x="0" y="5" width="17" height="10" fill="#1a75bc" rx="0" ry="0" class="highcharts-point"></rect>
+    */
 }
 
 

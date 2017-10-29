@@ -247,7 +247,7 @@ const MCFLSSdrawHS = (datas = {}, container_uid = `container`, debug = false) =>
             }
         ],
         legend: {
-            align: 'right',// left, center and right. (Defaults to center.)
+            align: 'center',// left, center and right. (Defaults to center.)
             backgroundColor: `#ff00ff`, //Color,
             /*
                 x: 0,
@@ -293,17 +293,26 @@ const MCFLSSdrawHS = (datas = {}, container_uid = `container`, debug = false) =>
                     enabled: true,
                     color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white'
                 }
+            },
+            spline: {
+                // stacking: 'normal',
+                dataLabels: {
+                    enabled: true,
+                    color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white'
+                }
             }
         },
         series: [
             {
                 name: '大单净买入额',// type = column (chart)
                 data: purchase_amount,
+                // color: "#00ce9b",// "" 
+                color: "#7cb5ec",
             },
             {
                 type:'spline',
                 yAxis: 1,
-                color:"skyblue",
+                color: "#434348",
                 name: '最新收盘价',
                 data: closing_price,
                 connectNulls: true,// OK
@@ -326,6 +335,16 @@ const MCFLSSdrawHS = (datas = {}, container_uid = `container`, debug = false) =>
             enabled: true
         }
     });
+    // svg style
+    let svg_legend = document.querySelector(`.highcharts-legend-item`);
+    svg_legend;
+    svg_legend.lastChild;
+    svg_legend.lastChild.setAttribute(`x`, 0);
+    svg_legend.lastChild.setAttribute(`y`, 5);
+    svg_legend.lastChild.setAttribute(`width`, 17);
+    svg_legend.lastChild.setAttribute(`height`, 10);
+    svg_legend.lastChild.setAttribute(`rx`, 0);
+    svg_legend.lastChild.setAttribute(`ry`, 0);
 }
 
 

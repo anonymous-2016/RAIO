@@ -327,6 +327,70 @@ https://www.hcharts.cn/demo/highcharts/wordcloud
 https://www.hcharts.cn/demo/highcharts/dynamic-master-detail
 https://www.hcharts.cn/demo/highcharts/column-negative
 
+https://www.highcharts.com/docs/chart-concepts/labels-and-string-formatting#html
+http://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/legend/navigation/
+
+
+
+# SVG
+
+> modify css style
+
+```js
+
+    // svg style
+    let svg_legends = document.querySelectorAll(`.highcharts-legend-item`);
+    // svg_legend;
+    console.log(`svg_legends = `, svg_legends);
+    svg_legends.forEach(
+        (svg_legend, index) => {
+            console.log(`svg_legend, index`, svg_legend, index);
+            svg_legend.lastChild;
+            svg_legend.lastChild.setAttribute(`x`, 0);
+            svg_legend.lastChild.setAttribute(`y`, 5);
+            svg_legend.lastChild.setAttribute(`width`, 17);
+            svg_legend.lastChild.setAttribute(`height`, 10);
+            svg_legend.lastChild.setAttribute(`rx`, 0);
+            svg_legend.lastChild.setAttribute(`ry`, 0);
+        }
+    );
+
+    // svg style
+    let svg_legend = document.querySelector(`.highcharts-legend-item`);
+    svg_legend;
+    svg_legend.lastChild;
+    svg_legend.lastChild.setAttribute(`x`, 0);
+    svg_legend.lastChild.setAttribute(`y`, 5);
+    svg_legend.lastChild.setAttribute(`width`, 17);
+    svg_legend.lastChild.setAttribute(`height`, 10);
+    svg_legend.lastChild.setAttribute(`rx`, 0);
+    svg_legend.lastChild.setAttribute(`ry`, 0);
+    /* 
+        <rect x="2" y="4" width="17" height="12" fill="#1a75bc" rx="0" ry="0" class="highcharts-point"></rect>
+        <rect x="0" y="5" width="17" height="10" fill="#1a75bc" rx="0" ry="0" class="highcharts-point"></rect>
+    */
+
+```
+
+
+```css
+
+.fv-financing-and-margin-balance-difference-trend-hs-container {
+    /* max-width: 544px;
+    max-height: 295px; */
+    box-sizing: border-box;
+    /* width: 850px; */
+    /* height: 275px; */
+    /* overflow-x: scroll; */
+    height: 100%;
+    width: 100%;
+    min-height: 295px;
+    min-width: 544px;
+}
+
+```
+
+
 
 
 https://www.hcharts.cn/demo/highstock

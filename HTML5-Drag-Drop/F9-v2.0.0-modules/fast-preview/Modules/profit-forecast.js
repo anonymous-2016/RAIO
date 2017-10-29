@@ -268,6 +268,8 @@ const drawHS = (datas = {}, container_uid = `container`, container_div = `dom_el
                 // x: -50,
                 // y: -50,
                 // min: 0,// bug ???
+                // min: 0,
+                // max: 4,
                 title: {
                     text: '',
                     // text: 'Total fruit consumption'
@@ -284,7 +286,7 @@ const drawHS = (datas = {}, container_uid = `container`, container_div = `dom_el
             }
         ],
         legend: {
-            align: 'right',// left, center and right. (Defaults to center.)
+            align: 'center',// left, center and right. (Defaults to center.)
             backgroundColor: `#ff00ff`, //Color,
             /*
                 x: 0,
@@ -330,6 +332,13 @@ const drawHS = (datas = {}, container_uid = `container`, container_div = `dom_el
                     enabled: true,
                     color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white'
                 }
+            },
+            spline: {
+                // stacking: 'normal',
+                dataLabels: {
+                    // enabled: true,
+                    color: "#7cb5ec"
+                }
             }
         },
         series: [
@@ -351,7 +360,7 @@ const drawHS = (datas = {}, container_uid = `container`, container_div = `dom_el
             {
                 type:'spline',
                 yAxis: 1,
-                color:"skyblue",
+                color: "skyblue",
                 name: '平均',
                 // data: [3, 4, 4, 2, 5],
                 data: average,
@@ -382,6 +391,22 @@ const drawHS = (datas = {}, container_uid = `container`, container_div = `dom_el
         //     // adaptToUpdatedData: 
         // },
     });
+    // svg style
+    let svg_legends = document.querySelectorAll(`.highcharts-legend-item`);
+    // svg_legend;
+    console.log(`svg_legends = `, svg_legends);
+    svg_legends.forEach(
+        (svg_legend, index) => {
+            console.log(`svg_legend, index`, svg_legend, index);
+            svg_legend.lastChild;
+            svg_legend.lastChild.setAttribute(`x`, 0);
+            svg_legend.lastChild.setAttribute(`y`, 5);
+            svg_legend.lastChild.setAttribute(`width`, 17);
+            svg_legend.lastChild.setAttribute(`height`, 10);
+            svg_legend.lastChild.setAttribute(`rx`, 0);
+            svg_legend.lastChild.setAttribute(`ry`, 0);
+        }
+    );
 }
 
 
