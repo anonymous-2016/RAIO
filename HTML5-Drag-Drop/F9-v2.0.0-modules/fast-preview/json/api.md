@@ -345,13 +345,15 @@ http://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/sample
     svg_legends.forEach(
         (svg_legend, index) => {
             console.log(`svg_legend, index`, svg_legend, index);
-            svg_legend.lastChild;
-            svg_legend.lastChild.setAttribute(`x`, 0);
-            svg_legend.lastChild.setAttribute(`y`, 5);
-            svg_legend.lastChild.setAttribute(`width`, 17);
-            svg_legend.lastChild.setAttribute(`height`, 10);
-            svg_legend.lastChild.setAttribute(`rx`, 0);
-            svg_legend.lastChild.setAttribute(`ry`, 0);
+            if (index < svg_legends.length - 1) {
+                svg_legend.lastChild;
+                svg_legend.lastChild.setAttribute(`x`, 0);
+                svg_legend.lastChild.setAttribute(`y`, 5);
+                svg_legend.lastChild.setAttribute(`width`, 17);
+                svg_legend.lastChild.setAttribute(`height`, 10);
+                svg_legend.lastChild.setAttribute(`rx`, 0);
+                svg_legend.lastChild.setAttribute(`ry`, 0);
+            }
         }
     );
 

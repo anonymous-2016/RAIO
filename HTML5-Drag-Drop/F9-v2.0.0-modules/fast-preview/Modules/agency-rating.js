@@ -262,7 +262,7 @@ const drawHS_agencyRating = (datas = {}, container_uid = `container`, container_
             }
         ],
         legend: {
-            align: 'right',// left, center and right. (Defaults to center.)
+            align: 'center',// left, center and right. (Defaults to center.)
             backgroundColor: `#ff00ff`, //Color,
             /*
                 x: 0,
@@ -353,6 +353,24 @@ const drawHS_agencyRating = (datas = {}, container_uid = `container`, container_
             enabled: true
         }
     });
+    // svg style
+    let svg_legends = document.querySelectorAll(`.highcharts-legend-item`);
+    // svg_legend;
+    console.log(`svg_legends = `, svg_legends);
+    svg_legends.forEach(
+        (svg_legend, index) => {
+            console.log(`svg_legend, index`, svg_legend, index);
+            if (index < svg_legends.length - 1) {
+                svg_legend.lastChild;
+                svg_legend.lastChild.setAttribute(`x`, 0);
+                svg_legend.lastChild.setAttribute(`y`, 5);
+                svg_legend.lastChild.setAttribute(`width`, 17);
+                svg_legend.lastChild.setAttribute(`height`, 10);
+                svg_legend.lastChild.setAttribute(`rx`, 0);
+                svg_legend.lastChild.setAttribute(`ry`, 0);
+            }
+        }
+    );
 }
 
 
