@@ -1,15 +1,46 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-Hans">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>股价/成交量 stock-price-turnover</title>
+    <title>股价/成交量</title>
+    <link rel="stylesheet" href="./stock-price-turnover.css">
 </head>
 
 <body>
-
+    <section class="fv-module-box-7">
+        <div class="fv-stock-price-turnover-title-box">
+            <p class="fv-stock-price-turnover-title">股价/成交量</p>
+            <!-- <fieldset disabled="disabled"></fieldset> -->
+        </div>
+        <table class="fv-stock-price-turnover-table">
+            <thead class="fv-stock-price-turnover-table-thead">
+                <tr class="fv-stock-price-turnover-table-tr">
+                    <td class="fv-stock-price-turnover-table-td-title">股价/成交量</td>
+                </tr>
+            </thead>
+            <tbody class="fv-stock-price-turnover-table-tbody" id="fv-recent-important-tbody">
+                <!--
+                    <tr class="fv-stock-price-turnover-table-tr">
+                        <td class="fv-stock-price-turnover-table-td-key">涉及概念</td>
+                        <td class="fv-stock-price-turnover-table-td-value" data-value="data-fv-events">
+                            <div class="css-data-loading" data-loading="pure-css-data-loading">
+                                CSS Loading...
+                            </div>
+                        </td>
+                    </tr>
+                -->
+            </tbody>
+            <tfoot class="fv-stock-price-turnover-table-tfoot">
+                <tr class="fv-stock-price-turnover-table-tr">
+                    <td class="fv-stock-price-turnover-table-td-value" data-value="data-fv-events"></td>
+                </tr>
+            </tfoot>
+        </table>
+    </section>
+    <script src="./stock-price-turnover.js"></script>
 </body>
 
 </html>
