@@ -1,11 +1,9 @@
-// stock-price-turnover 股价/成交量
-
 "use strict";
 
 /**
- * institutional-shareholding-change-statistics 机构持股变动统计
+ * stock-price-turnover 股价/成交量
  * xgqfrms
- * creadted 2017.10.27
+ * creadted 2017.10.29
  * @param {* String} url 
  * @param {* DOM Element} uid
  * @param {* Boolean} debug 
@@ -13,9 +11,9 @@
 
 // todo
 
-// institutional-shareholding-change-statistics ISCS
+// stock-price-turnover SPTurnover
 
-const ISCstatistics = (url = ``, debug = false, uid = `default_dom_uid`) => {
+const SPTurnover = (url = ``, debug = false, uid = `default_dom_uid`) => {
     // profitForecast
     console.log(`uid = `, uid);
     // debug = true;
@@ -122,7 +120,7 @@ const ISCstatistics = (url = ``, debug = false, uid = `default_dom_uid`) => {
             datas = Object.assign(datas, arr_obj);
             // return Object.assign(datas, arr_obj);
             // return arr_obj;
-            ISCSdrawHS(datas, uid);
+            SPTdrawHS(datas, uid);
         }
     )
     .catch(error => console.log(`error = \n`, error));
@@ -139,7 +137,7 @@ const ISCstatistics = (url = ``, debug = false, uid = `default_dom_uid`) => {
  * @param {* Boolean} debug
  */
 
-const ISCSdrawHS = (datas = {}, container_uid = `container`, debug = false) => {
+const SPTdrawHS = (datas = {}, container_uid = `container`, debug = false) => {
     let time = datas.time,
         shares = datas.shares,
         stock_price = datas.stock_price;
@@ -157,7 +155,7 @@ const ISCSdrawHS = (datas = {}, container_uid = `container`, debug = false) => {
     };
     // css_obj ???
     const {color, colors, optioncolor, gridColor, legendColor, yAxisColor} = {...chart_css};
-    Highcharts.chart(container_uid, {
+    Highcharts.stockChart(container_uid, {
         noData: {// all defualt value
             attr: undefined,
             position: {
@@ -359,15 +357,44 @@ setTimeout(() => {
     // async & await
     const sf_num= `stockfast13`;
     const url = `http://10.1.5.202/webservice/fastview/stock/${sf_num}/600570.SH`;
-    let uid = `institutional_shareholding_change_statistics_hs_container`;
-    let hs_datas = ISCstatistics(url, true, uid);
+    let uid = `stock_price_turnover_hs_container`;
+    let hs_datas = SPTurnover(url, true, uid);
     console.log(`hs_datas = \n`, JSON.stringify(hs_datas, null, 4));
     // profitForecast(url, true, uid);
     // let hs_container_uid = document.querySelector(`[data-hs-container="data-profit-forecast-container-uid"]`);
     // setTimeout(() => {
-    //     ISCSdrawHS(hs_datas, uid);
+    //     SPTdrawHS(hs_datas, uid);
     // }, 0);
 }, 0);
 
 
+/* 
 
+
+
+
+https://www.highcharts.com/stock/demo/compare
+http://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/stock/demo/compare/
+
+https://www.highcharts.com/stock/demo/yaxis-plotlines
+
+
+¥7.06 +0.05 +0.71%
+
+
+
+
+今年以来涨跌幅 1.52%
+3个月涨跌幅 0.89%
+52周涨跌幅 -12.74%
+52周Beta 0.32
+
+#ff2323
+
+14px
+24px
+
+
+
+
+*/
