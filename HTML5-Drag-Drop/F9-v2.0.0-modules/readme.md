@@ -1,5 +1,25 @@
+# 速览
 
-## 速览
+
+## fast-preview & path
+
+http://localhost:3000/fast-preview/sidebar.html#模块选择
+
+```sh
+
+# ..\F9-v2.0.0-modules\
+# in case of path error, cause icons 404!
+
+$ browser-sync start --server --files "./fast-preview/*.*"
+
+# http://localhost:3000/fast-preview/sidebar.html#模块选择
+
+````
+
+face, 😑 😩 🤖 🦊 😒 😧 😟 🐭 🐻 🤓 😪 🦁 🐹 😌 😢 😠 🤗 🐮 😞
+
+https://emojipedia.org/search/?q=face
+
 
 Quick Overview / Quick Overview 快速预览
 

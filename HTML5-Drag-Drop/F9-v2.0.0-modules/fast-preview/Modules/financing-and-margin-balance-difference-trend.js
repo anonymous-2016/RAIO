@@ -268,6 +268,7 @@ const FMBDTdrawHS = (datas = {}, container_uid = `container`, debug = false) => 
         },
         // tooltip ??? array
         tooltip: {
+            shared: true,// ???
             headerFormat: `
                 <strong>
                     {point.x}
@@ -320,19 +321,20 @@ const FMBDTdrawHS = (datas = {}, container_uid = `container`, debug = false) => 
                 // data: [3, 4, 4, 2, 5],
                 data: stock_price,
                 connectNulls: true,// OK
-                tooltip: {
-                    headerFormat: `
-                        <strong>
-                            {point.x}
-                        </strong>
-                        <br/>
-                    `,
-                    pointFormat: `
-                        <span style="color:{point.color}">\u25CF</span>
-                        {series.name}: <b>{point.y}</b><br/>
-                    `,
-                    // <span style="color:{point.color}">\u25CF</span> 百分比 :{point.percentage:.0f}%
-                },
+                // tooltip: {
+                //     headerFormat: `
+                //         <strong>
+                //             {point.x}
+                //         </strong>
+                //         <br/>
+                //     `,
+                //     pointFormat: `
+                //         <span style="color:{point.color}">\u25CF</span>
+                //         {series.name}: <b>{point.y}</b><br/>
+                //     `,
+                //     // <span style="color:{point.color}">\u25CF</span> 百分比 :{point.percentage:.0f}%
+                // },
+                // overwrite
             }
         ],
         scrollbar: {

@@ -268,6 +268,7 @@ const ISCSdrawHS = (datas = {}, container_uid = `container`, debug = false) => {
         },
         // tooltip ??? array
         tooltip: {
+            shared: true,
             headerFormat: `
                 <strong>
                     {point.x}

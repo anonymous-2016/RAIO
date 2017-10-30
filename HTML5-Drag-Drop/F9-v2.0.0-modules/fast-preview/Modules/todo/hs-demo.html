@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>jianshukeji.com</title>
+    <title>苹果历史股价</title>
 </head>
 
 <body>
@@ -22,16 +22,16 @@
                     rangeSelectorZoom: ''
                 }
             });
-            // jsonp
+            // jsonp & callback function
             $.getJSON('https://data.jianshukeji.com/jsonp?filename=json/aapl-ohlcv.json&callback=?', function(data) {
-                console.log(JSON.stringify(data, null, 4));
+                console.log(JSON.stringify(data[0], null, 4));
                 /* if (typeof(window.copy) === "function") {
                     let json = JSON.stringify(data, null, 4)
                     window.copy(json);
                     // Uncaught ReferenceError: copy is not defined at Object.success
                 }
                 copy(json); */
-                let json = JSON.stringify(data, null, 4);
+                let json = JSON.stringify(data[0], null, 4);
                 // copyJSON(json);
                 console.log(json);
                 var ohlc = [],
@@ -50,17 +50,19 @@
                     i = 0;
                 for (i; i < dataLength; i += 1) {
                     ohlc.push([
-                        data[i][0], // the date
-                        data[i][1], // open
-                        data[i][2], // high
-                        data[i][3], // low
-                        data[i][4] // close
+                        data[i][0], // the date ??? 1147651200000 (ms) ??? new Date(oldTime);
+                        data[i][1], // open 67.37,
+                        data[i][2], // high 68.38,
+                        data[i][3], // low 67.12,
+                        data[i][4] // close  67.79,
                     ]);
                     volume.push([
-                        data[i][0], // the date
-                        data[i][5] // the volume
+                        data[i][0], // the date ??? 1147651200000
+                        data[i][5] // the volume ??? 18921051
                     ]);
                 }
+                console.log(ohlc[0]);
+                console.log(volume[0]);
                 // create the chart
                 $('#container').highcharts('StockChart', {
                     rangeSelector: {

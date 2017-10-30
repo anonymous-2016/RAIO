@@ -27,13 +27,18 @@ const SPTurnover = (url = ``, debug = false, uid = `default_dom_uid`) => {
             let arr = json;// Array
             // async
             if (debug) {
-                console.log(`data = \n`, json);
+                console.log(`json = \n`, json);
             }
-            let strs = json.map(
+            // 今年以来涨跌幅：+1.52% 三个月涨跌幅：+1.52%52 周涨跌幅：+1.52% 52周Beta：+1.52%
+            // "zd": "涨跌", "zdf": "涨跌幅(%)", 
+            // [json.zd, json.zdf, json.jnzdf, json.zdf3, json.zdf12, json.beta]
+            // "sjz": "时间轴", "gj": "股价", "cjl": "成交量", "szzs": "上证指数"
+            // ["sjz", "gj", "cjl", "szzs"]
+            // sort 时间轴
+            let strs = json.details.map(
                 (obj) => {
-                    console.log(obj.sj);
-                    return obj.sj;
-                    //return num = parseInt(obj.sj.replace(/-/g, ``));
+                    console.log(obj.sjz);
+                    return obj.sjz;
                 }
             );
             strs = strs.sort();
@@ -42,41 +47,32 @@ const SPTurnover = (url = ``, debug = false, uid = `default_dom_uid`) => {
                 (date) => {
                     // "2007-04-30"
                     for (var i = 0; i < strs.length; i++) {
-                        if(date === arr[i].sj){
-                            return arr[i];
+                        if(date === arr.details[i].sjz){
+                            return arr.details[i];
                         }
                     }
-                    // return arr[i];
                 }
             );
-            /* 
-                [
-                    {
-                        "sj": "2014-12-31",
-                        "bl": 44.800000000000004,
-                        "gj": 54.76
-                    },
-                ]
-            */
             // Array.isArray(arr);
             let keys = Object.keys(arr[0]);
-            // (5) ["rq", "pj", "st", "wc", "xt"]
+            // ["sjz", "gj", "cjl", "szzs"]
             const arr_obj = {};
             keys.forEach(
                 (key, index) => {
-                    // console.log(`key, index = \n`, key, index);
-                    // arr_obj[key] = [];
-                    // as / alias
+                    // "sjz": "时间轴", "gj": "股价", "cjl": "成交量", "szzs": "上证指数"
                     let new_key = ``;
                     switch (key) {
-                        case "sj":
+                        case "sjz":
                             new_key = `time`;
-                            break;
-                        case "bl":
-                            new_key = `shares`;
                             break;
                         case "gj":
                             new_key = `stock_price`;
+                            break;
+                        case "cjl":
+                            new_key = `turn_over`;
+                            break;
+                        case "szzs":
+                            new_key = `SH_Index`;
                             break;
                         default:
                             new_key = `😟 暂无数据`;
@@ -86,25 +82,22 @@ const SPTurnover = (url = ``, debug = false, uid = `default_dom_uid`) => {
                 }
             );
             console.log(`arr_obj = `, JSON.stringify(arr_obj, null, 4));
-            // {"rq":[],"pj":[],"st":[],"wc":[],"xt":[]}
-            // 5 array
-            // keys.map(k => console.log(typeof k));// string
-            // ["rq", "pj", "st", "wc", "xt"].map(k => console.log(k));
-            // let time = shares = stock_price = average = keep = [];
             let counter = 1;
             arr.map(
                 (obj, i) => {
                     // console.log(`obj = `, JSON.stringify(obj, null, 4));
-                    let time = ``, shares = ``, stock_price = ``;
-                    time = (obj.sj !== undefined) ? obj.sj : `😟 暂无数据`;
+                    let time = ``, turn_over = ``, stock_price = ``, SH_Index = ``;
+                    time = (obj.sjz !== undefined) ? obj.sjz : `😟 暂无数据`;
                     // no string, just keep number!
-                    shares = (obj.bl !== undefined) ? obj.bl : `😟 暂无数据`;
+                    turn_over = (obj.cjl !== undefined) ? obj.cjl : `😟 暂无数据`;
                     stock_price = (obj.gj !== undefined) ? obj.gj : `😟 暂无数据`;
+                    SH_Index = (obj.szzs !== undefined) ? obj.szzs : `😟 暂无数据`;
                     // average = -1.7976931348623157e+308;
                     // average = (obj.pj !== undefined) ? (obj.pj >= 0 ? obj.pj : null) : `😟 暂无数据`;
                     arr_obj.time.push(time);
-                    arr_obj.shares.push(shares);
                     arr_obj.stock_price.push(stock_price);
+                    arr_obj.turn_over.push(turn_over);
+                    arr_obj.SH_Index.push(SH_Index);
                     // return arr_obj;
                     if (counter === 1) {
                         console.log(`arr_obj = `, JSON.stringify(arr_obj, null, 4));
@@ -113,13 +106,7 @@ const SPTurnover = (url = ``, debug = false, uid = `default_dom_uid`) => {
                 }
             );
             console.log(`arr_obj = `, JSON.stringify(arr_obj, null, 4));
-            // let {...arr_obj} = {rq: [], st: [], xt: [], pj: [], wc: []};
-            // Object.assign()
-            // arr.forEach() just use for addEventListener() / do somthing, no return value / undefined!
-            // arr.map(), return an shaped new array!
             datas = Object.assign(datas, arr_obj);
-            // return Object.assign(datas, arr_obj);
-            // return arr_obj;
             SPTdrawHS(datas, uid);
         }
     )
@@ -139,11 +126,13 @@ const SPTurnover = (url = ``, debug = false, uid = `default_dom_uid`) => {
 
 const SPTdrawHS = (datas = {}, container_uid = `container`, debug = false) => {
     let time = datas.time,
-        shares = datas.shares,
+        SH_Index = datas.SH_Index,
+        turn_over = datas.turn_over,
         stock_price = datas.stock_price;
-    console.log(`time = \n`, time);
-    console.log(`shares = \n`, shares);
-    console.log(`stock_price = \n`, stock_price);
+    console.log(`time = \n`, time[0]);
+    // console.log(`time = \n`, new Date(time[0]).getTime());
+    // 2012-12-31 => var oldTime = (new Date("2012/12/31 20:11:11").getTime(); 
+    // 得到毫秒数  
     // datas
     const chart_css = {
         color: `#0B1016`,
@@ -155,42 +144,53 @@ const SPTdrawHS = (datas = {}, container_uid = `container`, debug = false) => {
     };
     // css_obj ???
     const {color, colors, optioncolor, gridColor, legendColor, yAxisColor} = {...chart_css};
+    Highcharts.setOptions({
+        lang: {
+            rangeSelectorZoom: ''
+        }
+    });
+    // console.log(json);
+    var ohlc = [],
+        volume = [],
+        sh_index = [],
+        dataLength = datas.time.length,
+        // set the allowed units for data grouping
+        groupingUnits = [
+            [
+                'week', // unit name
+                [1] // allowed multiples
+            ],
+            [
+                'month', [1, 2, 3, 4, 6]
+            ]
+        ],
+        i = 0;
+    // datas.time = datas.time.map((k, i) => datas.time[datas.time.length - 1 - i]);
+    // reverse 逆序
+    console.log(`datas.time = \n`, datas.time);
+    for (i; i < dataLength; i ++) {
+        let new_ms_time = new Date(datas.time[i]).getTime();
+        ohlc.push([
+            new_ms_time, // the date ??? 1147651200000 (ms) ??? new Date(oldTime);
+            datas.stock_price[i],
+            datas.SH_Index[i]
+        ]);
+        volume.push([
+            new_ms_time,
+            datas.turn_over[i]
+        ]);
+        sh_index.push([
+            new_ms_time,
+            datas.SH_Index[i]
+        ]);
+    }
+    console.log(ohlc);
+    console.log(volume);
+    console.log(sh_index);
     Highcharts.stockChart(container_uid, {
-        noData: {// all defualt value
-            attr: undefined,
-            position: {
-                align: `center`,
-                verticalAlign: `middle`,
-                x: 0,
-                y: 0,
-            },
-            style: {
-                color: `#666666`,
-                fontSize: `12px`,
-                fontWeight: `bold`
-            },
-            useHTML: false,
-        },
-        /* rangeSelector: {
-            selected: 4
-        }, */
-        chart: {
-            type: 'column',
-            // backgroundColor: chart_css.color
-            // backgroundColor: color
-            // height: (9 / 16 * 100) + '%',
-            // 16:9 ratio
-        },
-        title: {
-            text: '',
-            // text: 'Stacked column chart'
-        },
-        xAxis: {
-            // categories: ['2017-02', '2017-02', '2017-02', '2017-02', '2017-02'],
-            categories: time,
-            min: 0,
-            max: 8
-            // xAxis datas
+        rangeSelector: {
+            selected: 1,
+            inputDateFormat: '%Y-%m-%d'
         },
         credits: {
             enabled: true,// enabled: false,
@@ -199,155 +199,115 @@ const SPTdrawHS = (datas = {}, container_uid = `container`, debug = false) => {
             // position: https://api.highcharts.com/highstock/credits.style,
             // style: https://api.highcharts.com/highstock/credits.style
         },
-        colors: ['#ff1919', '#ffff66', '#92d050'],
-        // colors: ['#ff1919', '#ffff66', '#92d050'],
-        // colors: [...colors],
+        title: {
+            // text: '股价/成交量'
+        },
+        xAxis: {
+            dateTimeLabelFormats: {
+                millisecond: '%H:%M:%S.%L',
+                second: '%H:%M:%S',
+                minute: '%H:%M',
+                hour: '%H:%M',
+                day: '%m-%d',
+                week: '%m-%d',
+                month: '%y-%m',
+                year: '%Y'
+            }
+        },
         yAxis: [
-            // yAxis 1
             {
-                // x: -50,
-                // y: -50,
-                min: 0,
-                max: 100,
-                title: {
-                    text: '',
-                    // text: 'Total fruit consumption'
-                },
                 labels: {
-                    format: '{value}%',// 百分比
-                    style: {
-                        // color: `#0f0`,// 
-                        color: Highcharts.getOptions().colors[1]
-                    }
-                }
-               /*  stackLabels: {
-                    // enabled: true,// counter all cols values
-                    style: {
-                        fontWeight: 'bold',
-                        color: (Highcharts.theme && Highcharts.theme.textColor) || 'gray'
-                    }
-                } */
-            },
-            // yAxis 2
-            {
-                // x: -50,
-                // y: -50,
-                // min: 0,// bug ???
+                    align: 'right',
+                    x: -3,
+                    // formatter: () => {
+                    //     console.log(`this.value`, this.value);
+                    //     // undefined
+                    //     // ??? -20 / 30
+                    //     return this.value > 0 ? `+${this.value}%` : `${this.value}%`;
+                    // },
+                },
                 title: {
-                    text: '',
-                    // text: 'Total fruit consumption'
+                    text: '股价/上证指数'//股价
                 },
-                stackLabels: {
-                    // enabled: true,
-                    style: {
-                        fontWeight: 'bold',
-                        color: (Highcharts.theme && Highcharts.theme.textColor) || 'gray'
-                    }
+                height: '60%',
+                lineWidth: 2,
+                plotLines: [{
+                    value: 0,
+                    width: 2,
+                    color: 'silver'
+                }]
+            },
+            {
+                labels: {
+                    align: 'right',
+                    x: -3
                 },
-                opposite: true,
-                gridLineColor: '#2D3039'
+                title: {
+                    text: '成交量'
+                },
+                top: '62.5%',
+                height: '37.5%',
+                offset: 0,
+                lineWidth: 2
+            },
+            {
+                labels: {
+                    align: 'right',
+                    x: -3
+                },
+                title: {
+                    // text: '上证指数'
+                },
+                height: '60%',
+                offset: 0,
+                lineWidth: 2
             }
         ],
-        legend: {
-            align: 'center',// left, center and right. (Defaults to center.)
-            backgroundColor: `#ff00ff`, //Color,
-            /*
-                x: 0,
-                y: 340,
-                verticalAlign: 'top',
-            */
-            x: 0,
-            y: 0,
-            verticalAlign: "bottom",
-            // floating: true,
-            floating: false,
-            backgroundColor: (Highcharts.theme && Highcharts.theme.background2) || 'white',
-            borderColor: '#CCC',
-            borderWidth: 1,
-            shadow: false
-        },
-        // tooltip ??? array
-        tooltip: {
-            headerFormat: `
-                <strong>
-                    {point.x}
-                </strong>
-                <br/>
-            `,
-            pointFormat: `
-                <span style="color:{point.color}">\u25CF</span>
-                {series.name}: {point.y}<br/>
-            `,
-            // <span style="color:{point.color}">\u25CF</span> 百分比 :{point.percentage:.0f}%
-            // 总数/总共/总量/总额/共有/总数
-            // {${point.stackTotal ? point.stackTotal : point.y}} ???
-            // {point.stackTotal || point.y}
-            // {point.stackTotal ? point.stackTotal : point.y}
-        },
-        // 情节/绘图选项
-        plotOptions: {
-            // (series) type = column (chart)
-            column: {
-                // stacking: 'normal',// 是否将每个系列的值叠加在一起, 默认是：null
-                // stacking: 'null',
-                // stacking: 'percent',// 百分比堆叠柱形图
-                dataLabels: {
-                    // enabled: true,
-                    color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white'
-                }
-            },
-            spline: {
-                // stacking: 'normal',
-                dataLabels: {
-                    enabled: true,
-                    color: "#434348"
-                }
-            }
-        },
         series: [
             {
-                name: '机构持股比例',// type = column (chart)
-                // data: [5, 3, 4, 7, 2],
-                data: shares,
-                color:"#1a75bc",
+                // type: 'candlestick',
+                type: 'line',// 样条 "spline"
+                name: '股价',
+                color: 'green',
+                lineColor: 'green',
+                upColor: 'red',
+                upLineColor: 'red',
+                tooltip: {},
+                navigatorOptions: {
+                    color: Highcharts.getOptions().colors[0]
+                },
+                data: ohlc,
+                dataGrouping: {
+                    units: groupingUnits
+                },
+                // compare: 'percent',
+                // showInNavigator: true
             },
             {
-                type:'spline',
+                type: 'column',
+                name: '成交量',
+                data: volume,
                 yAxis: 1,
-                color:"#fbb728",
-                name: '股价',
-                // data: [3, 4, 4, 2, 5],
-                data: stock_price,
-                connectNulls: true,// OK
-                tooltip: {
-                    headerFormat: `
-                        <strong>
-                            {point.x}
-                        </strong>
-                        <br/>
-                    `,
-                    pointFormat: `
-                        <span style="color:{point.color}">\u25CF</span>
-                        {series.name}: <b>{point.y}</b><br/>
-                    `,
-                    // <span style="color:{point.color}">\u25CF</span> 百分比 :{point.percentage:.0f}%
-                },
-            }
-        ],
-        scrollbar: {
-            enabled: true
-        }
+                dataGrouping: {
+                    units: groupingUnits
+                }
+            },
+            {
+                type: 'line',
+                name: '上证指数',
+                data: sh_index,
+                color:"#1a75bc",
+                yAxis: 2,
+                dataGrouping: {
+                    units: groupingUnits
+                }
+            },
+        ]
     });
     // svg style
-    let svg_legend = document.querySelector(`.highcharts-legend-item`);
-    svg_legend;
-    svg_legend.lastChild;
-    svg_legend.lastChild.setAttribute(`x`, 0);
-    svg_legend.lastChild.setAttribute(`y`, 5);
-    svg_legend.lastChild.setAttribute(`width`, 17);
-    svg_legend.lastChild.setAttribute(`height`, 10);
-    svg_legend.lastChild.setAttribute(`rx`, 0);
-    svg_legend.lastChild.setAttribute(`ry`, 0);
+    // let svg_ranges = document.querySelectorAll(`.highcharts-range-label`);
+    // svg_ranges[0].lastChild.innerHTML = `从`;// 从到
+    // svg_ranges[1].lastChild.innerHTML = `到`;// 从
 }
 
 
@@ -355,7 +315,7 @@ const SPTdrawHS = (datas = {}, container_uid = `container`, debug = false) => {
 // call fetch json datas
 setTimeout(() => {
     // async & await
-    const sf_num= `stockfast13`;
+    const sf_num= `stockfast06`;
     const url = `http://10.1.5.202/webservice/fastview/stock/${sf_num}/600570.SH`;
     let uid = `stock_price_turnover_hs_container`;
     let hs_datas = SPTurnover(url, true, uid);
@@ -397,4 +357,27 @@ https://www.highcharts.com/stock/demo/yaxis-plotlines
 
 
 
+
+
 */
+
+/* 
+
+    recurve 反
+    Reverse 逆序
+    let a = [1,2,3,4,5,6,7,8,9],
+        l = a.length;
+        aa = a.map(
+        (key, index) => {
+            console.log(`key, index = \n`, key, index);
+            let ni = l - 1 - index;
+            console.log(`new index = \n`, ni);
+            return a[ni];
+        }
+    );
+    aa;
+    // [9, 8, 7, 6, 5, 4, 3, 2, 1]
+
+    // aa = a.map((k, i) => a[a.length - 1 - i]);
+*/
+

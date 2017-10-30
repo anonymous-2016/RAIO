@@ -206,8 +206,8 @@ const MCFLSSdrawHS = (datas = {}, container_uid = `container`, debug = false) =>
             {
                 // x: -50,
                 // y: -50,
-                min: -6000,// in case auto change range, fixed range
-                max: 12000,// in case auto change range, fixed range
+                // min: -6000,// in case auto change range, fixed range
+                // max: 12000,// in case auto change range, fixed range
                 title: {
                     text: '',
                     // text: 'Total fruit consumption'
@@ -275,12 +275,9 @@ const MCFLSSdrawHS = (datas = {}, container_uid = `container`, debug = false) =>
             pointFormat: `
                 <span style="color:{point.color}">\u25CF</span>
                 {series.name}: {point.y}<br/>
-                <span style="color:{point.color}">\u25CF</span> 百分比 :{point.percentage:.0f}%
             `,
             // 总数/总共/总量/总额/共有/总数
-            // {${point.stackTotal ? point.stackTotal : point.y}} ???
-            // {point.stackTotal || point.y}
-            // {point.stackTotal ? point.stackTotal : point.y}
+            // <span style="color:{point.color}">\u25CF</span> 百分比 :{point.percentage:.0f}%
         },
         // 情节/绘图选项
         plotOptions: {
@@ -290,14 +287,14 @@ const MCFLSSdrawHS = (datas = {}, container_uid = `container`, debug = false) =>
                 // stacking: 'null',
                 // stacking: 'percent',// 百分比堆叠柱形图
                 dataLabels: {
-                    enabled: true,
+                    // enabled: true,
                     color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white'
                 }
             },
             spline: {
                 // stacking: 'normal',
                 dataLabels: {
-                    enabled: true,
+                    // enabled: true,
                     color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white'
                 }
             }
@@ -308,6 +305,7 @@ const MCFLSSdrawHS = (datas = {}, container_uid = `container`, debug = false) =>
                 data: purchase_amount,
                 // color: "#00ce9b",// "" 
                 color: "#7cb5ec",
+                negativeColor: '#00ce9b'
             },
             {
                 type:'spline',

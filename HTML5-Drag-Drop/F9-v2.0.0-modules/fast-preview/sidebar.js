@@ -128,7 +128,7 @@ small_btn.onclick = () => {
 };
 
 
-// 
+// init ???
 
 window.onload = () => {
     let btn_universal = document.querySelector(`[data-uid="universal"]`),
@@ -137,12 +137,16 @@ window.onload = () => {
     let a_modules = document.querySelector(`[data-uid="modules-a-link"]`);
     btn_universal.onclick = (e) => {
         // data-title="通用"
-        alert(`e.target.dataset.title = ${e.target.dataset.title}`);
+        alert(`e.target.dataset.title = ${e.target.dataset.title} \n this click will call loadAllModules()!`);
         // ??? reset modules
+        a_modules.click();
+        // load all modules & default layout ???
+        loadAllModules();
+        // moduleTest.loadAllModules();
     }
     btn_customize.onclick = (e) => {
         // data-title="自定义"
-        alert(`e.target.dataset.title = ${e.target.dataset.title}`);
+        // alert(`e.target.dataset.title = ${e.target.dataset.title}`);
         // data-uid="modules-a-link"
         a_modules.click();
         // H5 DnD modules
@@ -151,7 +155,8 @@ window.onload = () => {
     btn_module_setting.addEventListener(`click`, (e) => {
         // data-title="模块设置"
         const title = `Sorry for that, it still in developing!`;
-        alert(`e.target.dataset.title = ${e.target.dataset.title} \n\n\n\n\n\n\n ${title} \n\n\n\n\n\n\n Coming soon ...`);
+        // alert(`e.target.dataset.title = ${e.target.dataset.title} \n\n\n\n\n\n\n ${title} \n\n\n\n\n\n\n Coming soon ...`);
+        alert(`😃😃😃Coming soon ... 😧😒😟`);
     });
     btn_module_setting.addEventListener(`click`, (e) => {
         let debug = true;
@@ -167,6 +172,7 @@ window.onload = () => {
 // recent-important-events
 
 let uids_arr = document.querySelectorAll(`[data-icon-*="stockfast01"]`);
+// uids_arr = document.querySelectorAll(`[data-icon-uid*="stockfast"]`);
 
 for (let i = 0; i < uids_arr.length; i++) {
     let icon = uids_arr[i];
@@ -176,7 +182,274 @@ for (let i = 0; i < uids_arr.length; i++) {
 }
 
 
+/**
+ * loadAllModules 
+ * @description initial all modules
+ * @argument dom_container_uid 
+ */
 
+const loadAllModules = (debug = false) => {
+    // ??? uids
+    // data-icon-uid="module-data-stockfast01"
+    let uids = document.querySelectorAll(`[data-icon-uid*="module-data"]`);
+    for (let i = 0; i <uids.length; i++) {
+        let uid = uids[i].dataset.iconUid.substr(12);
+        console.log(`icon uid = ${uid}`);
+        // insert DOM
+        // add addEventListener
+    }
+    alert(`loading  All Modules!`);
+    return {
+        dragstart: function(e) {
+            // console.log(`e = \n`, e);
+            // console.log(`e.target = \n`, e.target);
+            // console.log(`e.target.dataset = \n`, e.target.dataset);
+            console.log(`e.target.dataset.iconUid = %c ${e.target.dataset.iconUid}\n`, console_css);
+            // iconUid 
+            let uid = e.target.dataset.iconUid.substr(12);
+            e.effectAllowed = `move`;
+            e.dataTransfer.setData("text/plain", uid);
+            // e.dataTransfer.setData("xyz", uid);
+            // event.originalEvent.dataTransfer.setData('text/plain', uid);
+            console.log(`%c dragstart & e.dataTransfer = \n`, console_css3, e.dataTransfer);
+        },
+        drop: function(e) {
+            // isExistCheck();
+            // e.dropEffect = `copy`;
+            console.log(`drop & e.dataTransfer = \n`, e.dataTransfer);
+            let uid = e.dataTransfer.getData("text/plain");
+            // let data = e.dataTransfer.getData("xyz");
+            console.log(`drop & uid = %c ${uid}\n`, console_css1);
+            // console.log(`drop & data = %c ${data}\n`, console_css3);
+            // fetch data / module
+            // load js ??? show hide
+            // 
+            // insertAdjacentHTML ??? display none 
+            // insertAdjacentHTML() parses the specified text as HTML or XML and inserts the resulting nodes into the DOM tree at a specified position. 
+            let div = document.createElement(`div`),
+                sub_div = document.createElement(`div`);
+            sub_div.dataset.deleteModuleUid = `delete-module-${uid}`;
+            sub_div.style.background = `#777`;
+            sub_div.insertAdjacentHTML(`beforeend`, `<span>☠️⚠️🚨⚡😷${data}🎃 👻 🌙</span>`);
+            // data-div-module-uid="delete-module-stockfast01"
+            sub_div.firstChild.dataset.deleteModuleUid = `delete-module-${uid}`;
+            sub_div.firstChild.addEventListener(`click`, (e) => {
+                console.log(`this`, this);
+                // dom
+                console.log(`e`, e);
+                // MouseEvent
+                console.log(`delete-module`, e.target.dataset.deleteModuleUid);
+                // undefined
+                let uid = e.target.dataset.deleteModuleUid;
+                // span ??? 
+                // let uid = this.target.dataset.deleteModuleUid;
+                console.log(`uid`, uid);
+                // delete-module-stockfast01
+                moduleTest.deleteModule(uid);
+                // moduleTest.deleteModule(this.target.dataset.deleteModuleUid);/
+                // Uncaught TypeError: Cannot read property 'dataset' of undefined
+            });
+            // icons ??? sub div ???
+            div.dataset.divModuleUid = `div-module-${uid}`;
+            div.appendChild(sub_div);
+            div.insertAdjacentHTML(`beforeend`, `<h1>${data}</h1>`);
+            let module_exist_checker = document.querySelector(`[data-div-module-uid="div-module-${uid}"]`);
+            // null
+            // module_exist_checker = document.querySelector(`[data-div-module-uid="div-module-stockfast01"]`);
+            if (module_exist_checker === null) {
+                module_container.insertAdjacentElement(`beforeend`, div);
+                // insert script.js ??? excute time!
+                // insert DOM
+                // insert CSS
+            }else{
+                alert(`duplication & 重复!`);
+            }
+        },
+        init: () => {
+            // 
+        }
+    };
+};
+
+
+
+/**
+ * loadCutomizeModules
+ * @description load each module once & check is exist before drop it
+ * @author xgqfrms
+ * @argument module_uid's
+ * 
+ */
+
+
+let moduleTest = (function() {
+    const V = `this is a constant value!`;
+    const console_css = `
+        color: #f0f;
+        font-size: 23px;
+    `;
+    const console_css1 = `
+        color: #f00;
+        font-size: 23px;
+    `;
+    const console_css2 = `
+        color: #ff0;
+        font-size: 23px;
+    `;
+    const console_css3 = `
+        color: #0ff;
+        font-size: 23px;
+    `;
+    let module_datas = document.querySelectorAll(`[data-icon-uid*="module-data"]`);
+    let module_container = document.querySelector(`[data-body-container="data-body-container"]`);
+    // return obj
+    return {
+        isExistCheck: function(uid=``){
+            // isExistCheck
+        },
+        loadAllModules: () => {
+            // loadAllModules
+        },
+        deleteModule: (dom_uid=``, script_uid=``) => {
+            // script.js ??? excute sequence
+            // remove DOM
+            // remove css
+            console.log(`dom_uid = `, dom_uid);
+            // dom_uid = delete-module-stockfast01
+            let div_uid = dom_uid.replace(`delete`, `div`);
+            // let div_uid = dom_uid.substr(14);
+            // let this.target.dataset.deleteModuleUid;
+            let tdu = document.querySelector(`[data-div-module-uid="${div_uid}"]`);
+            // tdu = document.querySelector(`[data-div-module-uid="div-module-stockfast01"]`);
+            // module_container.removeChild(tdu);
+            // alert(`Are sure delete this module?`);
+            // conform !== confirm
+            let result = window.confirm(`Are sure delete this module?`);
+            // true
+            if(result){
+                // window.open("exit.html", "Thanks for Visiting!");
+                // alert(`just remove this module!`);
+                // remove DOM node ???
+                module_container.removeChild(tdu);
+            }else{
+                alert(`not too bad!`);
+            }
+        },
+        // api: `https://developer.mozilla.org/API`,
+        dragstart: function(e) {
+            // console.log(`e = \n`, e);
+            // console.log(`e.target = \n`, e.target);
+            // console.log(`e.target.dataset = \n`, e.target.dataset);
+            console.log(`e.target.dataset.iconUid = %c ${e.target.dataset.iconUid}\n`, console_css);
+            // iconUid 
+            let uid = e.target.dataset.iconUid.substr(12);
+            e.effectAllowed = `move`;
+            e.dataTransfer.setData("text/plain", uid);
+            // e.dataTransfer.setData("xyz", uid);
+            // event.originalEvent.dataTransfer.setData('text/plain', uid);
+            console.log(`%c dragstart & e.dataTransfer = \n`, console_css3, e.dataTransfer);
+        },
+        dragend: function(e) {
+            e.preventDefault();
+        },
+        dragenter: (e) => {
+            // console.log(`%c dragEnter = `, console_css1, e.target.id);
+            e.preventDefault();
+            return true;
+        },
+        dragover: (e) => {
+            // console.log(`%c dragOver = `, console_css1, e.target.id);
+            e.preventDefault();
+            return true;
+        },
+        drop: function(e) {
+            // isExistCheck();
+            // e.dropEffect = `copy`;
+            console.log(`drop & e.dataTransfer = \n`, e.dataTransfer);
+            let uid = e.dataTransfer.getData("text/plain");
+            // let data = e.dataTransfer.getData("xyz");
+            console.log(`drop & uid = %c ${uid}\n`, console_css1);
+            // console.log(`drop & data = %c ${data}\n`, console_css3);
+            // fetch data / module
+            // load js ??? show hide
+            // 
+            // insertAdjacentHTML ??? display none 
+            // insertAdjacentHTML() parses the specified text as HTML or XML and inserts the resulting nodes into the DOM tree at a specified position. 
+            let div = document.createElement(`div`),
+                sub_div = document.createElement(`div`);
+            sub_div.dataset.deleteModuleUid = `delete-module-${uid}`;
+            sub_div.style.background = `#777`;
+            sub_div.insertAdjacentHTML(`beforeend`, `<span>☠️⚠️🚨⚡😷${uid}🎃 👻 🌙</span>`);
+            // data-div-module-uid="delete-module-stockfast01"
+            sub_div.firstChild.dataset.deleteModuleUid = `delete-module-${uid}`;
+            sub_div.firstChild.addEventListener(`click`, (e) => {
+                console.log(`this`, this);
+                // dom
+                console.log(`e`, e);
+                // MouseEvent
+                console.log(`delete-module`, e.target.dataset.deleteModuleUid);
+                // undefined
+                let uid = e.target.dataset.deleteModuleUid;
+                // span ??? 
+                // let uid = this.target.dataset.deleteModuleUid;
+                console.log(`uid`, uid);
+                // delete-module-stockfast01
+                moduleTest.deleteModule(uid);
+                // moduleTest.deleteModule(this.target.dataset.deleteModuleUid);/
+                // Uncaught TypeError: Cannot read property 'dataset' of undefined
+            });
+            // icons ??? sub div ???
+            div.dataset.divModuleUid = `div-module-${uid}`;
+            div.appendChild(sub_div);
+            div.insertAdjacentHTML(`beforeend`, `<h1>${uid}</h1>`);
+            let module_exist_checker = document.querySelector(`[data-div-module-uid="div-module-${uid}"]`);
+            // null
+            // module_exist_checker = document.querySelector(`[data-div-module-uid="div-module-stockfast01"]`);
+            if (module_exist_checker === null) {
+                module_container.insertAdjacentElement(`beforeend`, div);
+                // insert script.js ??? excute time!
+                // insert DOM
+                // insert CSS
+            }else{
+                alert(`duplication & 重复!`);
+            }
+        },
+        init: function() {
+            // console.log(`this obj = ,`, this);
+            // {dragstart: ƒ, dragend: ƒ, drop: ƒ, init: ƒ}
+            module_datas.forEach(
+                (obj, index) => {
+                    // console.log(`obj, index`, obj, index);
+                    obj.addEventListener(`dragstart`, moduleTest.dragstart);
+                }
+            );
+            // console.log(`module_container`, module_container);
+            module_container.addEventListener(`dragenter`, moduleTest.dragenter);
+            module_container.addEventListener(`dragover`, moduleTest.dragover);
+            module_container.addEventListener(`drop`, moduleTest.drop);
+        }
+    };
+})();
+
+moduleTest.init();
+
+
+/// todo & enhancement
+
+/**
+ * localStorage
+ * application cache
+ * webSQL (sqlite)
+ * MongoDB
+ */
+
+const saveToLocalStorage = () => {
+    // write
+};
+
+const readFromLocalStorage = () => {
+    // read
+};
 
 
 /* 
