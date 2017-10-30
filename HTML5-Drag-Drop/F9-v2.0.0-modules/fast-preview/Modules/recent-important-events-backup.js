@@ -9,57 +9,11 @@
  * @param {Boolean} debug 
  */
 
-/* 
+const RIE = {
+    // 
+};
 
-
-    const oop = {
-        xyz_func: () => {
-            console.log(`oop this, `, this);
-        },
-    };
-
-    "use strict";
-
-    var oop = {
-        xyz_func: function xyz_func() {
-            console.log("oop this, ", this);
-        }
-    };
-
-    window.oop.xyz_func();
-    // oop this,  {xyz_func: ƒ}
-
-
-    typeof window.oop;
-
-    delete window.oop;
-
-
-    // Object OK 
-
-    //  "use strict"; ??? bug
-
-
-    var func = function() {
-        console.log("func this, ", this);
-    };
-
-    typeof window.func;
-    // "function"
-
-    delete window.func;
-    // false
-
-    func();
-    // func this, Window {frames: Window, postMessage: ƒ, blur: ƒ, focus: ƒ, close: ƒ, …}
-
-
-    // function Error
-
-*/
-
-// const bug ???
-var recentImportantEvents = (url = ``, td_id = `id`, debug = false) => {
+const recentImportantEvents = (url = ``, td_id = `id`, debug = false) => {
     // debug = true;
     let data = [];
     fetch(url)
@@ -168,6 +122,49 @@ setTimeout(() => {
 
 
 
+
+
+setTimeout(function() {
+    const clickLinkOpenModuleHandler = (uid = `600570`, debug = false) => {
+        // 600570.SH
+        // alert(`uid = `, uid);
+        alert(`uid = ${uid}`);// alert(`desc ${key}`) !== console.log(`desc `, key);
+        // fetch data
+        // show module
+        // cache ?
+    };
+    let a_links = document.querySelectorAll(`a[data-link-detail="recent-important-events-link-detail-module"]`);
+    for (var i = 0; i < a_links.length; i++) {
+        // let uid = a_links[i].innerText;
+        // let uid = parseInt(a_links[i].dataset.newsId);// dataset ignore Capital!
+        let uid = parseInt(a_links[i].dataset.eventsid);
+        // OR, just  get it from URL hash!
+        let hash_id = parseInt((this.window.location.hash).slice(1));
+        console.log(`id = ${uid}`);
+        let disabled = a_links[i].dataset.disabled;
+        if(disabled === "true"){
+            // "true"
+            a_links[i].addEventListener(`click`,
+                (e) => {
+                    e.preventDefault();
+                    // <a href="/whatever" onclick="return false" />
+                    return false;
+                }
+            );
+        }else{
+            a_links[i].addEventListener(`click`,
+                (e) => {
+                    e.preventDefault();// disable defalut a link event!
+                    console.log(`id = ${uid}`);
+                    let e_id = parseInt(e.target.dataset.eventsid);// e.target
+                    console.log(`id = ${e_id}`);
+                    clickLinkOpenModuleHandler(uid);
+                }
+            );
+        }
+    }
+    // only once ???
+}, 1000);
 
 
 /* 

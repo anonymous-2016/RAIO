@@ -302,6 +302,7 @@ let moduleTest = (function() {
     `;
     let module_datas = document.querySelectorAll(`[data-icon-uid*="module-data"]`);
     let module_container = document.querySelector(`[data-body-container="data-body-container"]`);
+    // let droppedUid_datas = document.querySelectorAll(`[data-droppe-uid*="module-data"]`);
     // return obj
     return {
         isExistCheck: function(uid=``){
@@ -330,7 +331,21 @@ let moduleTest = (function() {
                 // window.open("exit.html", "Thanks for Visiting!");
                 // alert(`just remove this module!`);
                 // remove DOM node ???
+                // [data-delete-script-dom="delete-script-dom-stockfast01"]
                 module_container.removeChild(tdu);
+                // delete recentImportantEvents; ??? JavaScript 注册全局函数
+                switch(div_uid) {
+                    case "stockfast01":
+                        delete recentImportantEvents;
+                        // delete window.recentImportantEvents;
+                        // fasle;
+                        break;
+                    case "stockfast02":
+                        delete recentImportantEvents;
+                        break;
+                    default:
+                        break;
+                }
             }else{
                 alert(`not too bad!`);
             }
@@ -341,8 +356,13 @@ let moduleTest = (function() {
             // console.log(`e.target = \n`, e.target);
             // console.log(`e.target.dataset = \n`, e.target.dataset);
             console.log(`e.target.dataset.iconUid = %c ${e.target.dataset.iconUid}\n`, console_css);
+            console.log(`e.target.dataset.droppedUid = %c ${e.target.dataset.iconUid}\n`, console_css);
             // iconUid 
-            let uid = e.target.dataset.iconUid.substr(12);
+            let iconUid = e.target.dataset.iconUid.substr(12),
+                droppedUid = e.target.dataset.droppedUid ? e.target.dataset.droppedUid.substr(12) : ``;
+            let uid = iconUid ? iconUid : droppedUid;
+            // or droppedUid="module-data-stockfast01";
+            // or new dragstart function ???
             e.effectAllowed = `move`;
             e.dataTransfer.setData("text/plain", uid);
             // e.dataTransfer.setData("xyz", uid);
@@ -377,9 +397,13 @@ let moduleTest = (function() {
             // insertAdjacentHTML() parses the specified text as HTML or XML and inserts the resulting nodes into the DOM tree at a specified position. 
             let div = document.createElement(`div`),
                 sub_div = document.createElement(`div`);
+            // <div ></div>
+            // Uncaught DOMException: Failed to execute 'createElement' on 'Document': The tag name provided
+            // onmousedown="event.preventDefault ? event.preventDefault() : event.returnValue = false"
+            // <element draggable="true|false|auto">
             sub_div.dataset.deleteModuleUid = `delete-module-${uid}`;
             sub_div.style.background = `#777`;
-            sub_div.insertAdjacentHTML(`beforeend`, `<span>☠️⚠️🚨⚡😷${uid}🎃 👻 🌙</span>`);
+            sub_div.insertAdjacentHTML(`beforeend`, `<span>⚠️${uid}</span>`);
             // data-div-module-uid="delete-module-stockfast01"
             sub_div.firstChild.dataset.deleteModuleUid = `delete-module-${uid}`;
             sub_div.firstChild.addEventListener(`click`, (e) => {
@@ -400,15 +424,284 @@ let moduleTest = (function() {
             });
             // icons ??? sub div ???
             div.dataset.divModuleUid = `div-module-${uid}`;
+            div.setAttribute(`draggable`, "true");
+            // draggable="true"
+            div.dataset.droppedUid="module-data-stockfast01";
+            // data-icon-uid="module-data-stockfast01";
+            // ??? conflict name
+            switch (uid) {
+                case "stockfast01":
+                    div.classList.add(`fv-left-box`);
+                    break;
+                case "stockfast02":
+                    div.classList.add(`fv-right-box`);
+                    break;
+                case "stockfast03":
+                    div.classList.add(`fv-right-box`);
+                    break;
+                    case "stockfast04":
+                    div.classList.add(`fv-left-box`);
+                    break;
+                case "stockfast05":
+                    div.classList.add(`fv-left-box`);
+                    break;
+                case "stockfast06":
+                    div.classList.add(`fv-left-box`);
+                    break;
+                case "stockfast07":
+                    div.classList.add(`fv-left-box`);
+                    break;
+                case "stockfast08":
+                    div.classList.add(`fv-left-box`);
+                    break;
+                case "stockfast09":
+                    div.classList.add(`fv-left-box`);
+                    break;
+                case "stockfast10":
+                    div.classList.add(`fv-left-box`);
+                    break;
+                case "stockfast11":
+                    div.classList.add(`fv-left-box`);
+                    break;
+                case "stockfast12":
+                    div.classList.add(`fv-left-box`);
+                    break;
+                case "stockfast13":
+                    div.classList.add(`fv-left-box`);
+                    break;
+                case "news":
+                    div.classList.add(`fv-left-box`);
+                    break;
+                case "bulletion":
+                    div.classList.add(`fv-left-box`);
+                    break;
+                case "research":
+                    div.classList.add(`fv-left-box`);
+                    break;
+                default:
+                    break;
+            }
+            // if(width/type) {fv-left-box ? fv-right-box fv-center-box}
             div.appendChild(sub_div);
-            div.insertAdjacentHTML(`beforeend`, `<h1>${uid}</h1>`);
+            // div.insertAdjacentHTML(`beforeend`, `<h1>${uid}</h1>`);
+            // switch 
             let module_exist_checker = document.querySelector(`[data-div-module-uid="div-module-${uid}"]`);
             // null
             // module_exist_checker = document.querySelector(`[data-div-module-uid="div-module-stockfast01"]`);
             if (module_exist_checker === null) {
+                let htmlstr = ``;
+                switch (uid) {
+                    case "stockfast01":
+                        console.log(`laoding ... recent-important-events.js`);// recent-important-events.js
+                        setTimeout(function() {
+                            let box = document.querySelector(`.fv-important-infos-table`),
+                                script_dom = document.createElement(`script`);
+                            script_dom.dataset.deleteScriptDom = `delete-script-dom-${uid}`;
+                            // [data-delete-script-dom="delete-script-dom-stockfast01"]
+                            script_dom.setAttribute(`src`, `./Modules/important-infos.js`);
+                            box.insertAdjacentElement(`afterend`, script_dom);
+                            // Uncaught SyntaxError: Identifier 'recentImportantEvents' has already been declared
+                        }, 0);
+                        htmlstr += `
+                            <section class="fv-module-box-3">
+                                <!-- 重要信息 -->
+                                <div class="fv-important-infos-title-box">
+                                    <p class="fv-important-infos-title">重要信息</p>
+                                    <!-- <fieldset disabled="disabled"></fieldset> -->
+                                </div>
+                                <table class="fv-important-infos-table">
+                                    <thead class="fv-important-infos-table-thead">
+                                        <tr class="fv-important-infos-table-tr">
+                                            <td class="fv-important-infos-table-td-title">重要信息</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="fv-important-infos-table-tbody">
+                                        <tr class="fv-important-infos-table-tr">
+                                            <td class="fv-important-infos-table-td-key">涉及概念</td>
+                                            <td class="fv-important-infos-table-td-value" data-value="data-fv-infos">
+                                                <div class="css-data-loading" data-loading="pure-css-data-loading">
+                                                    CSS Loading...
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr class="fv-important-infos-table-tr">
+                                            <td class="fv-important-infos-table-td-key">主营业务</td>
+                                            <td class="fv-important-infos-table-td-value" data-value="data-fv-infos"></td>
+                                        </tr>
+                                        <tr class="fv-important-infos-table-tr">
+                                            <td class="fv-important-infos-table-td-key" data-alias="3个月波动率(%)">52周波动率</td>
+                                            <td class="fv-important-infos-table-td-value" data-value="data-fv-infos"></td>
+                                        </tr>
+                                        <tr class="fv-important-infos-table-tr">
+                                            <td class="fv-important-infos-table-td-key" data-alias="近90天日均成交量(万股)">日均成交量(3个月)</td>
+                                            <td class="fv-important-infos-table-td-value" data-value="data-fv-infos"></td>
+                                        </tr>
+                                        <!-- 
+                                            <tr class="fv-important-infos-table-tr">
+                                                <td class="fv-important-infos-table-td-key">总市值</td>
+                                                <td class="fv-important-infos-table-td-value" data-value="data-fv-infos"></td>
+                                            </tr>
+                                        -->
+                                        <tr class="fv-important-infos-table-tr">
+                                            <td class="fv-important-infos-table-td-key">净资产(万元)</td>
+                                            <td class="fv-important-infos-table-td-value" data-value="data-fv-infos"></td>
+                                        </tr>
+                                        <tr class="fv-important-infos-table-tr">
+                                            <td class="fv-important-infos-table-td-key">总股本(万股)</td>
+                                            <td class="fv-important-infos-table-td-value" data-value="data-fv-infos"></td>
+                                        </tr>
+                                        <tr class="fv-important-infos-table-tr">
+                                            <td class="fv-important-infos-table-td-key">流通股本(万股)</td>
+                                            <td class="fv-important-infos-table-td-value" data-value="data-fv-infos"></td>
+                                        </tr>
+                                        <tr class="fv-important-infos-table-tr">
+                                            <td class="fv-important-infos-table-td-key">股息率</td>
+                                            <td class="fv-important-infos-table-td-value" data-value="data-fv-infos"></td>
+                                        </tr>
+                                        <!--
+                                            <tr class="fv-important-infos-table-tr">
+                                                <td class="fv-important-infos-table-td-key">机构家数</td>
+                                                <td class="fv-important-infos-table-td-value" data-value="data-fv-infos"></td>
+                                            </tr>
+                                        -->
+                                        <tr class="fv-important-infos-table-tr">
+                                            <td class="fv-important-infos-table-td-key" data-alias="机构持股占比(%)">前十大机构持有</td>
+                                            <td class="fv-important-infos-table-td-value" data-value="data-fv-infos"></td>
+                                        </tr>
+                                        <!--
+                                            <tr class="fv-important-infos-table-tr">
+                                                <td class="fv-important-infos-table-td-key">分析师关注度</td>
+                                                <td class="fv-important-infos-table-td-value" data-value="data-fv-infos"></td>
+                                            </tr>
+                                        -->
+                                        <tr class="fv-important-infos-table-tr">
+                                            <td class="fv-important-infos-table-td-key">目标价格</td>
+                                            <td class="fv-important-infos-table-td-value" data-value="data-fv-infos"></td>
+                                        </tr>
+                                        <tr class="fv-important-infos-table-tr">
+                                            <td class="fv-important-infos-table-td-key">综合评级</td>
+                                            <td class="fv-important-infos-table-td-value" data-value="data-fv-infos"></td>
+                                        </tr>
+                                    </tbody>
+                                    <tfoot class="fv-important-infos-table-tfoot">
+                                        <tr class="fv-important-infos-table-tr">
+                                            <td class="fv-important-infos-table-td-value" data-value="data-fv-infos"></td>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </section>
+                        `;
+                        break;
+                    case "stockfast02":
+                        setTimeout(function() {
+                            let box = document.querySelector(`.fv-recent-important-events-table`),
+                                script_dom = document.createElement(`script`);
+                            script_dom.dataset.deleteScriptDom = `delete-script-dom-${uid}`;
+                            script_dom.setAttribute(`src`, `./Modules/recent-important-events.js`);
+                            box.insertAdjacentElement(`afterend`, script_dom);
+                        }, 0);
+                        htmlstr += `
+                            <section class="fv-module-box-7">
+                                <div class="fv-recent-important-events-title-box">
+                                    <p class="fv-recent-important-events-title">近期重要事项</p>
+                                    <!-- <fieldset disabled="disabled"></fieldset> -->
+                                </div>
+                                <table class="fv-recent-important-events-table">
+                                    <thead class="fv-recent-important-events-table-thead">
+                                        <tr class="fv-recent-important-events-table-tr">
+                                            <td class="fv-recent-important-events-table-td-title">重要信息</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="fv-recent-important-events-table-tbody" id="fv-recent-important-tbody">
+                                        <!--
+                                            <tr class="fv-recent-important-events-table-tr">
+                                                <td class="fv-recent-important-events-table-td-key">涉及概念</td>
+                                                <td class="fv-recent-important-events-table-td-value" data-value="data-fv-events">
+                                                    <div class="css-data-loading" data-loading="pure-css-data-loading">
+                                                        CSS Loading...
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        -->
+                                    </tbody>
+                                    <tfoot class="fv-recent-important-events-table-tfoot">
+                                        <tr class="fv-recent-important-events-table-tr">
+                                            <td class="fv-recent-important-events-table-td-value" data-value="data-fv-events"></td>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </section>
+                        `;
+                        break;
+                    case "stockfast03":
+                        setTimeout(function() {
+                            let box = document.querySelector(`.fv-profit-forecast-container`),
+                                script_dom = document.createElement(`script`);
+                            script_dom.dataset.deleteScriptDom = `delete-script-dom-${uid}`;
+                            script_dom.setAttribute(`src`, `./Modules/profit-forecast.js`);
+                            box.insertAdjacentElement(`afterend`, script_dom);
+                            // Uncaught SyntaxError: Identifier 'recentImportantEvents' has already been declared
+                        }, 0);
+                        htmlstr += `
+                            <section class="fv-module-box-7">
+                                <div class="fv-profit-forecast-title-box">
+                                    <p class="fv-profit-forecast-title">盈利预告</p>
+                                </div>
+                                <div class="fv-profit-forecast-container">
+                                    <!-- 盈利预告 placeholder -->
+                                    <div id="profit_forecast_hs_container" class="fv-profit-forecast-hs fv-profit-forecast-hs-container" data-hs-container="data-profit-forecast-container-uid">
+                                        <!--  -->
+                                    </div>
+                                </div>
+                            </section>
+                        `;
+                        break;
+                    case "stockfast04":
+                        htmlstr += ``;
+                        break;
+                    case "stockfast05":
+                        htmlstr += ``;
+                        break;
+                    case "stockfast06":
+                        htmlstr += ``;
+                        break;
+                    case "stockfast07":
+                        htmlstr += ``;
+                        break;
+                    case "stockfast08":
+                        htmlstr += ``;
+                        break;
+                    case "stockfast09":
+                        htmlstr += ``;
+                        break;
+                    case "stockfast10":
+                        htmlstr += ``;
+                        break;
+                    case "stockfast11":
+                        htmlstr += ``;
+                        break;
+                    case "stockfast12":
+                        htmlstr += ``;
+                        break;
+                    case "stockfast13":
+                        htmlstr += ``;
+                        break;
+                    case "news":
+                        htmlstr += `<span>news</span>`;
+                        break;
+                    case "bulletion":
+                        htmlstr += `<span>bulletion</span>`;
+                        break;
+                    case "research":
+                        htmlstr += `<span>research</span>`;
+                        break;
+                    default:
+                        break;
+                }
+                div.insertAdjacentHTML(`beforeend`, `<div>${htmlstr}</div>`);
                 module_container.insertAdjacentElement(`beforeend`, div);
                 // insert script.js ??? excute time!
-                // insert DOM
+                // insert DOM 
                 // insert CSS
             }else{
                 alert(`duplication & 重复!`);
@@ -450,6 +743,20 @@ const saveToLocalStorage = () => {
 const readFromLocalStorage = () => {
     // read
 };
+
+/* 
+
+# sweetalert
+
+https://sweetalert.js.org/
+
+https://github.com/t4t5/sweetalert
+
+https://limonte.github.io/sweetalert2/
+
+https://github.com/limonte/sweetalert2
+
+*/
 
 
 /* 

@@ -12,8 +12,8 @@
 // todo
 
 
-
-const profitForecast = (url = ``, debug = false, uid = `default_dom_uid`) => {
+// const
+var profitForecast = (url = ``, debug = false, uid = `default_dom_uid`) => {
     // profitForecast
     console.log(`uid = `, uid);
     // debug = true;
@@ -157,7 +157,8 @@ const profitForecast = (url = ``, debug = false, uid = `default_dom_uid`) => {
  * @param {* Boolean} debug
  */
 
-const drawHS = (datas = {}, container_uid = `container`, container_div = `dom_element`, debug = false) => {
+// const
+var drawHS = (datas = {}, container_uid = `container`, container_div = `dom_element`, debug = false) => {
     // let container = document.querySelector(`#container`);
     // let container = document.querySelector(`#${container_uid}`);
     // ???

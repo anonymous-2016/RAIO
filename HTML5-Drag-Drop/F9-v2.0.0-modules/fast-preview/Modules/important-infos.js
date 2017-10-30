@@ -10,7 +10,8 @@
  * @param {Boolean} debug 
  */
 
-const importantInfos = (url = ``, tds = [], ui_arr = [], debug = false) => {
+ // const bug
+var importantInfos = (url = ``, tds = [], ui_arr = [], debug = false) => {
     // important-infos
     let data = [];
     fetch(
