@@ -15,7 +15,6 @@
     hasSVG = H.hasSVG;
     isTouchDevice = H.isTouchDevice;
     var defaultOptionsZhCn = {
-
         lang: {
             contextButtonTitle: '图表导出菜单',
             decimalPoint: '.',
@@ -33,7 +32,7 @@
             resetZoomTitle: '重置为原始大小',
             shortMonths: ['一', '二', '三', '四', '五', '六', '七', '八', '九', '十', '十一', '十二'],
             thousandsSep: ',',
-	    shortWeekdays: ['周天', '周一', '周二', '周三', '周四', '周五', '周六'],
+            shortWeekdays: ['周天', '周一', '周二', '周三', '周四', '周五', '周六'],
             weekdays: ['星期天','星期一', '星期二', '星期三', '星期四', '星期五', '星期六']
         },
 

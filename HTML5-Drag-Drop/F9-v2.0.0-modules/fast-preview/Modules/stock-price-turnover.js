@@ -49,6 +49,15 @@ var SPTurnover = (url = ``, debug = false, uid = `default_dom_uid`) => {
                     // "2007-04-30"
                     for (var i = 0; i < strs.length; i++) {
                         if(date === arr.details[i].sjz){
+                            // arr.details[i].sjz = new Date(arr.details[i].sjz).getTime();
+                            /*
+                                x = "2017-10-25";
+                                // "2017-10-25"
+                                new Date(x);
+                                // Wed Oct 25 2017 08:00:00 GMT+0800 (中国标准时间)
+                                new Date(x).getTime();
+                                // 1508889600000
+                            */
                             return arr.details[i];
                         }
                     }
@@ -86,8 +95,9 @@ var SPTurnover = (url = ``, debug = false, uid = `default_dom_uid`) => {
             let counter = 1;
             arr.map(
                 (obj, i) => {
-                    // console.log(`obj = `, JSON.stringify(obj, null, 4));
+                    console.log(`obj = `, JSON.stringify(obj, null, 4));
                     let time = ``, turn_over = ``, stock_price = ``, SH_Index = ``;
+                    // time ms ???
                     time = (obj.sjz !== undefined) ? obj.sjz : `😟 暂无数据`;
                     // no string, just keep number!
                     turn_over = (obj.cjl !== undefined) ? obj.cjl : `😟 暂无数据`;
@@ -189,9 +199,112 @@ var SPTdrawHS = (datas = {}, container_uid = `container`, debug = false) => {
     // console.log(volume);
     // console.log(sh_index);
     Highcharts.stockChart(container_uid, {
+        noData: {
+            attr: undefined,
+            position: {
+                align: "center",
+                verticalAlign: "middle",
+                x: 0,
+                y: 0
+            },
+            style: { "fontSize": "12px", "fontWeight": "bold", "color": "#777" },
+            useHTML: false
+        },
+        lang:{
+            noData: "没有数据显示!"
+        },
+        // lang: {
+        //     contextButtonTitle: '图表导出菜单',
+        //     decimalPoint: '.',
+        //     downloadJPEG: "下载JPEG图片",
+        //     downloadPDF: "下载PDF文件",
+        //     downloadPNG: "下载PNG文件",
+        //     downloadSVG: "下载SVG文件",
+        //     drillUpText: "返回 {series.name}",
+        //     loading: '加载中...',
+        //     months: ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月'],
+        //     noData: "没有数据",
+        //     numericSymbols: ['k', 'M', 'G', 'T', 'P', 'E'],
+        //     printChart: "打印图表",
+        //     resetZoom: '重置缩放比例',
+        //     resetZoomTitle: '重置为原始大小',
+        //     shortMonths: ['一', '二', '三', '四', '五', '六', '七', '八', '九', '十', '十一', '十二'],
+        //     thousandsSep: ',',
+        //     shortWeekdays: ['周天', '周一', '周二', '周三', '周四', '周五', '周六'],
+        //     weekdays: ['星期天','星期一', '星期二', '星期三', '星期四', '星期五', '星期六']
+        // },
         rangeSelector: {
-            selected: 1,
-            inputDateFormat: '%Y-%m-%d'
+            selected: 0,// button index
+            inputDateFormat: '%Y-%m-%d',//'%Y年%m月%d日' 
+            // inputDateFormat: '%Y年 %m月 %d日'
+            allButtonsEnabled: true,
+            buttons: [
+                {
+                    type: 'day',
+                    count: 1,
+                    text: '一天',
+                    dataGrouping: {
+                        forced: true,
+                        units: [['day', [1]]]
+                    }
+                },
+                {
+                    type: 'week',
+                    count: 1,
+                    text: '一周',
+                    dataGrouping: {
+                        forced: true,
+                        units: [['week', [1]]]
+                    }
+                },
+                {
+                    type: 'month',
+                    count: 1,
+                    text: '一月',
+                    dataGrouping: {
+                        forced: true,
+                        units: [['month', [1]]]
+                    }
+                },
+                {
+                    type: 'month',
+                    count: 3,
+                    text: '三月',
+                    dataGrouping: {
+                        forced: true,
+                        units: [['month', [1]]]
+                    }
+                },
+                {
+                    type: 'month',
+                    count: 6,
+                    text: '六月',
+                    dataGrouping: {
+                        forced: true,
+                        units: [['month', [1]]]
+                    }
+                },
+                {
+                    type: 'year',
+                    count: 1,
+                    text: '一年',
+                    dataGrouping: {
+                        forced: true,
+                        units: [['year', [1]]]
+                    }
+                },
+                {
+                    type: 'all',
+                    text: '全部',
+                    dataGrouping: {
+                        forced: true,
+                        units: [['year', [1]]]
+                    }
+                }
+            ],
+            buttonTheme: {
+                width: 30
+            }
         },
         credits: {
             enabled: true,// enabled: false,
@@ -205,15 +318,28 @@ var SPTdrawHS = (datas = {}, container_uid = `container`, debug = false) => {
         },
         xAxis: {
             dateTimeLabelFormats: {
+                // millisecond: '%H:%M:%S.%L',
+                // second: '%H:%M:%S',
+                // minute: '%H:%M',
+                // hour: '%H:%M',
+                // day: '%m-%d',
+                // week: '%m-%d',
+                // month: '%y-%m',
+                // year: '%Y'
                 millisecond: '%H:%M:%S.%L',
                 second: '%H:%M:%S',
                 minute: '%H:%M',
                 hour: '%H:%M',
-                day: '%m-%d',
-                week: '%m-%d',
-                month: '%y-%m',
-                year: '%Y'
-            }
+                day: '%m月%d日',
+                week: '%m月 %d日',
+                month: '%y年 %m月',
+                year: '%Y年'
+            },
+            tooltip: {
+                xDateFormat: '%Y年 %m月 %d日',
+                // valueDecimals: 3
+            },
+            // tickPixelInterval: 120
         },
         yAxis: [
             {
@@ -228,7 +354,8 @@ var SPTdrawHS = (datas = {}, container_uid = `container`, debug = false) => {
                     // },
                 },
                 title: {
-                    text: '股价/上证指数'//股价
+                    // text: '股价/上证指数',
+                    text: '股价'
                 },
                 height: '60%',
                 lineWidth: 2,
@@ -236,30 +363,34 @@ var SPTdrawHS = (datas = {}, container_uid = `container`, debug = false) => {
                     value: 0,
                     width: 2,
                     color: 'silver'
-                }]
+                }],
+                // min: 0,
+                opposite: false,// default true
+            },
+            {
+                // opposite: true,
+                labels: {
+                    align: 'left',
+                    x: 3
+                },
+                title: {
+                    text: '上证指数'
+                },
+                height: '60%',
+                offset: 0,
+                lineWidth: 2,
+                // min: 0,
             },
             {
                 labels: {
-                    align: 'right',
-                    x: -3
+                    align: 'left',
+                    x: 3
                 },
                 title: {
                     text: '成交量'
                 },
                 top: '62.5%',
                 height: '37.5%',
-                offset: 0,
-                lineWidth: 2
-            },
-            {
-                labels: {
-                    align: 'right',
-                    x: -3
-                },
-                title: {
-                    // text: '上证指数'
-                },
-                height: '60%',
                 offset: 0,
                 lineWidth: 2
             }
@@ -273,7 +404,23 @@ var SPTdrawHS = (datas = {}, container_uid = `container`, debug = false) => {
                 lineColor: 'green',
                 upColor: 'red',
                 upLineColor: 'red',
-                tooltip: {},
+                tooltip: {
+                    // formatter: () => {
+                    //     return `
+                    //         <b> ${this.series.name} </b><br/>
+                    //     `;
+                    // },
+                    valueSuffix: ' 元'
+                },
+                // tooltip: {
+                //     formatter: () => {
+                //         return `
+                //         <b> ${this.series.name} </b><br/>
+                //         ${Highcharts.dateFormat('%Y年%m月%e日', this.x)}:
+                //         ${this.y} m
+                //         `;
+                //     }
+                // },
                 navigatorOptions: {
                     color: Highcharts.getOptions().colors[0]
                 },
@@ -281,6 +428,7 @@ var SPTdrawHS = (datas = {}, container_uid = `container`, debug = false) => {
                 dataGrouping: {
                     units: groupingUnits
                 },
+                yAxis: 0
                 // compare: 'percent',
                 // showInNavigator: true
             },
@@ -288,27 +436,74 @@ var SPTdrawHS = (datas = {}, container_uid = `container`, debug = false) => {
                 type: 'column',
                 name: '成交量',
                 data: volume,
-                yAxis: 1,
+                yAxis: 2,
                 dataGrouping: {
                     units: groupingUnits
-                }
+                },
+                tooltip: {
+                    // formatter: () => {
+                    //     return `
+                    //         <b> ${this.series.name} </b><br/>
+                    //     `;
+                    // },
+                    valueSuffix: ' 万手'
+                },
             },
             {
                 type: 'line',
                 name: '上证指数',
                 data: sh_index,
                 color:"#1a75bc",
-                yAxis: 2,
+                yAxis: 1,
                 dataGrouping: {
                     units: groupingUnits
-                }
+                },
+                tooltip: {
+                    // formatter: () => {
+                    //     return `
+                    //         <b> ${this.series.name} </b><br/>
+                    //     `;
+                    // },
+                    valueSuffix: ' 点'
+                },
             },
-        ]
+        ],
+        tooltip: {
+            xDateFormat: '%Y年 %m月 %d日',
+            shared: true,
+            // valueDecimals: 3
+        },
+        // plotOptions: {
+        //     series: {
+        //         pointStart: Date.UTC(2012, 0, 1),
+        //         pointInterval: 24 * 3600 * 1000
+        //     }
+        // }
     });
     // svg style
     let svg_ranges = document.querySelectorAll(`.highcharts-range-label`);
     svg_ranges[0].lastChild.innerHTML = `从`;// 从到
     svg_ranges[1].lastChild.innerHTML = `到`;// 从
+    // highcharts-axis-labels highcharts-yaxis-labels  <text x="710"
+    let svg_buttons = document.querySelectorAll(`.highcharts-range-selector-buttons > .highcharts-button`);
+    // (6) [g, g, g, g, g, g]
+// svg_buttons[0].lastChild.innerHTML = `一月`;
+// svg_buttons[1].lastChild.innerHTML = `三月`;
+// svg_buttons[2].lastChild.innerHTML = `六月`;
+// svg_buttons[3].lastChild.innerHTML = `YTD`;
+    // svg_buttons[3].firstChild.style.width = `50px`;
+    // svg_buttons[3].lastChild.innerHTML = `YTD年初至今`;// YTD
+    // svg_buttons[3].style.transform = "translate(223, 0)";
+// svg_buttons[4].lastChild.innerHTML = `一年`;
+// svg_buttons[5].lastChild.innerHTML = `全部`;
+    // highcharts-range-selector-buttons
+    // highcharts-button highcharts-button-normal
+    // highcharts-button highcharts-button-pressed
+    // highcharts-button highcharts-button-disabled
+    // ▲ 
+    // 年初至今(Year to Date)；年初到今日(Year To Days)；本年迄今
+    // Year To Date (YTD)//本年迄今 
+    // Month To Date // 当月,本月[MTD]
 }
 
 
