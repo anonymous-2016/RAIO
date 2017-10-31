@@ -13,9 +13,10 @@
 
 // stock-price-turnover SPTurnover
 
-const SPTurnover = (url = ``, debug = false, uid = `default_dom_uid`) => {
+// const
+var SPTurnover = (url = ``, debug = false, uid = `default_dom_uid`) => {
     // profitForecast
-    console.log(`uid = `, uid);
+    // console.log(`uid = `, uid);
     // debug = true;
     let datas = {};
     fetch(url)
@@ -27,7 +28,7 @@ const SPTurnover = (url = ``, debug = false, uid = `default_dom_uid`) => {
             let arr = json;// Array
             // async
             if (debug) {
-                console.log(`json = \n`, json);
+                // console.log(`json = \n`, json);
             }
             // 今年以来涨跌幅：+1.52% 三个月涨跌幅：+1.52%52 周涨跌幅：+1.52% 52周Beta：+1.52%
             // "zd": "涨跌", "zdf": "涨跌幅(%)", 
@@ -37,7 +38,7 @@ const SPTurnover = (url = ``, debug = false, uid = `default_dom_uid`) => {
             // sort 时间轴
             let strs = json.details.map(
                 (obj) => {
-                    console.log(obj.sjz);
+                    // console.log(obj.sjz);
                     return obj.sjz;
                 }
             );
@@ -81,7 +82,7 @@ const SPTurnover = (url = ``, debug = false, uid = `default_dom_uid`) => {
                     arr_obj[new_key] = [];
                 }
             );
-            console.log(`arr_obj = `, JSON.stringify(arr_obj, null, 4));
+            // console.log(`arr_obj = `, JSON.stringify(arr_obj, null, 4));
             let counter = 1;
             arr.map(
                 (obj, i) => {
@@ -100,12 +101,12 @@ const SPTurnover = (url = ``, debug = false, uid = `default_dom_uid`) => {
                     arr_obj.SH_Index.push(SH_Index);
                     // return arr_obj;
                     if (counter === 1) {
-                        console.log(`arr_obj = `, JSON.stringify(arr_obj, null, 4));
+                        // console.log(`arr_obj = `, JSON.stringify(arr_obj, null, 4));
                         counter ++;
                     }
                 }
             );
-            console.log(`arr_obj = `, JSON.stringify(arr_obj, null, 4));
+            // console.log(`arr_obj = `, JSON.stringify(arr_obj, null, 4));
             datas = Object.assign(datas, arr_obj);
             SPTdrawHS(datas, uid);
         }
@@ -123,13 +124,13 @@ const SPTurnover = (url = ``, debug = false, uid = `default_dom_uid`) => {
  * @param {* String} container_uid 
  * @param {* Boolean} debug
  */
-
-const SPTdrawHS = (datas = {}, container_uid = `container`, debug = false) => {
+// const
+var SPTdrawHS = (datas = {}, container_uid = `container`, debug = false) => {
     let time = datas.time,
         SH_Index = datas.SH_Index,
         turn_over = datas.turn_over,
         stock_price = datas.stock_price;
-    console.log(`time = \n`, time[0]);
+    // console.log(`time = \n`, time[0]);
     // console.log(`time = \n`, new Date(time[0]).getTime());
     // 2012-12-31 => var oldTime = (new Date("2012/12/31 20:11:11").getTime(); 
     // 得到毫秒数  
@@ -167,7 +168,7 @@ const SPTdrawHS = (datas = {}, container_uid = `container`, debug = false) => {
         i = 0;
     // datas.time = datas.time.map((k, i) => datas.time[datas.time.length - 1 - i]);
     // reverse 逆序
-    console.log(`datas.time = \n`, datas.time);
+    // console.log(`datas.time = \n`, datas.time);
     for (i; i < dataLength; i ++) {
         let new_ms_time = new Date(datas.time[i]).getTime();
         ohlc.push([
@@ -184,9 +185,9 @@ const SPTdrawHS = (datas = {}, container_uid = `container`, debug = false) => {
             datas.SH_Index[i]
         ]);
     }
-    console.log(ohlc);
-    console.log(volume);
-    console.log(sh_index);
+    // console.log(ohlc);
+    // console.log(volume);
+    // console.log(sh_index);
     Highcharts.stockChart(container_uid, {
         rangeSelector: {
             selected: 1,
@@ -305,9 +306,9 @@ const SPTdrawHS = (datas = {}, container_uid = `container`, debug = false) => {
         ]
     });
     // svg style
-    // let svg_ranges = document.querySelectorAll(`.highcharts-range-label`);
-    // svg_ranges[0].lastChild.innerHTML = `从`;// 从到
-    // svg_ranges[1].lastChild.innerHTML = `到`;// 从
+    let svg_ranges = document.querySelectorAll(`.highcharts-range-label`);
+    svg_ranges[0].lastChild.innerHTML = `从`;// 从到
+    svg_ranges[1].lastChild.innerHTML = `到`;// 从
 }
 
 
@@ -319,7 +320,7 @@ setTimeout(() => {
     const url = `http://10.1.5.202/webservice/fastview/stock/${sf_num}/600570.SH`;
     let uid = `stock_price_turnover_hs_container`;
     let hs_datas = SPTurnover(url, true, uid);
-    console.log(`hs_datas = \n`, JSON.stringify(hs_datas, null, 4));
+    // console.log(`hs_datas = \n`, JSON.stringify(hs_datas, null, 4));
     // profitForecast(url, true, uid);
     // let hs_container_uid = document.querySelector(`[data-hs-container="data-profit-forecast-container-uid"]`);
     // setTimeout(() => {

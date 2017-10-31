@@ -13,9 +13,10 @@
 
 // institutional-shareholding-change-statistics ISCS
 
-const ISCstatistics = (url = ``, debug = false, uid = `default_dom_uid`) => {
+// const
+var ISCstatistics = (url = ``, debug = false, uid = `default_dom_uid`) => {
     // profitForecast
-    console.log(`uid = `, uid);
+    // console.log(`uid = `, uid);
     // debug = true;
     let datas = {};
     fetch(url)
@@ -27,11 +28,11 @@ const ISCstatistics = (url = ``, debug = false, uid = `default_dom_uid`) => {
             let arr = json;// Array
             // async
             if (debug) {
-                console.log(`data = \n`, json);
+                // console.log(`data = \n`, json);
             }
             let strs = json.map(
                 (obj) => {
-                    console.log(obj.sj);
+                    // console.log(obj.sj);
                     return obj.sj;
                     //return num = parseInt(obj.sj.replace(/-/g, ``));
                 }
@@ -85,7 +86,7 @@ const ISCstatistics = (url = ``, debug = false, uid = `default_dom_uid`) => {
                     arr_obj[new_key] = [];
                 }
             );
-            console.log(`arr_obj = `, JSON.stringify(arr_obj, null, 4));
+            // console.log(`arr_obj = `, JSON.stringify(arr_obj, null, 4));
             // {"rq":[],"pj":[],"st":[],"wc":[],"xt":[]}
             // 5 array
             // keys.map(k => console.log(typeof k));// string
@@ -107,12 +108,12 @@ const ISCstatistics = (url = ``, debug = false, uid = `default_dom_uid`) => {
                     arr_obj.stock_price.push(stock_price);
                     // return arr_obj;
                     if (counter === 1) {
-                        console.log(`arr_obj = `, JSON.stringify(arr_obj, null, 4));
+                        // console.log(`arr_obj = `, JSON.stringify(arr_obj, null, 4));
                         counter ++;
                     }
                 }
             );
-            console.log(`arr_obj = `, JSON.stringify(arr_obj, null, 4));
+            // console.log(`arr_obj = `, JSON.stringify(arr_obj, null, 4));
             // let {...arr_obj} = {rq: [], st: [], xt: [], pj: [], wc: []};
             // Object.assign()
             // arr.forEach() just use for addEventListener() / do somthing, no return value / undefined!
@@ -137,13 +138,14 @@ const ISCstatistics = (url = ``, debug = false, uid = `default_dom_uid`) => {
  * @param {* Boolean} debug
  */
 
-const ISCSdrawHS = (datas = {}, container_uid = `container`, debug = false) => {
+// const
+var ISCSdrawHS = (datas = {}, container_uid = `container`, debug = false) => {
     let time = datas.time,
         shares = datas.shares,
         stock_price = datas.stock_price;
-    console.log(`time = \n`, time);
-    console.log(`shares = \n`, shares);
-    console.log(`stock_price = \n`, stock_price);
+    // console.log(`time = \n`, time);
+    // console.log(`shares = \n`, shares);
+    // console.log(`stock_price = \n`, stock_price);
     // datas
     const chart_css = {
         color: `#0B1016`,
@@ -360,7 +362,7 @@ setTimeout(() => {
     const url = `http://10.1.5.202/webservice/fastview/stock/${sf_num}/600570.SH`;
     let uid = `institutional_shareholding_change_statistics_hs_container`;
     let hs_datas = ISCstatistics(url, true, uid);
-    console.log(`hs_datas = \n`, JSON.stringify(hs_datas, null, 4));
+    // console.log(`hs_datas = \n`, JSON.stringify(hs_datas, null, 4));
     // profitForecast(url, true, uid);
     // let hs_container_uid = document.querySelector(`[data-hs-container="data-profit-forecast-container-uid"]`);
     // setTimeout(() => {

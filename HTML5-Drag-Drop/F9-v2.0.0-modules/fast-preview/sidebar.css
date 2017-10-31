@@ -2,6 +2,10 @@
 
 /* size ??? */
 
+div {
+    box-sizing: border-box;
+}
+
 [data-delete-module-uid*="delete-module"] {
     max-width: 100px;
     width: 100px;

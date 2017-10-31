@@ -48,7 +48,9 @@
 */
 /// indicatorsPerShare
 
-const indicatorsPerShare = (url = ``, tds = [], ui_arr = [], debug = false) => {
+// const
+// overwrite function
+var indicatorsPerShare = (url = ``, tds = [], ui_arr = [], debug = false) => {
     // important-infos
     let data = [];
     fetch(url)

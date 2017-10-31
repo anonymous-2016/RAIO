@@ -8,8 +8,8 @@
  * @param {* Array} ui_arr 
  * @param {Boolean} debug 
  */
-
-const equityPledge = (url = ``, td_id = `id`, debug = false) => {
+// const 
+var equityPledge = (url = ``, td_id = `id`, debug = false) => {
     // debug = true;
     let data = [];
     fetch(url)
@@ -21,7 +21,7 @@ const equityPledge = (url = ``, td_id = `id`, debug = false) => {
             data = json;// Array
             // async
             if (debug) {
-                console.log(`data = \n`, data);
+                // console.log(`data = \n`, data);
             }
             // copy(JSON.stringify(data, null, 4));
             let html_string = ``;

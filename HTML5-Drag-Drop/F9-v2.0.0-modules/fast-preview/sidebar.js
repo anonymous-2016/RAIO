@@ -359,8 +359,8 @@ let moduleTest = (function() {
             // console.log(`e = \n`, e);
             // console.log(`e.target = \n`, e.target);
             // console.log(`e.target.dataset = \n`, e.target.dataset);
-            console.log(`e.target.dataset.iconUid = %c ${e.target.dataset.iconUid}\n`, console_css);
-            console.log(`e.target.dataset.droppedUid = %c ${e.target.dataset.iconUid}\n`, console_css);
+            // console.log(`e.target.dataset.iconUid = %c ${e.target.dataset.iconUid}\n`, console_css);
+            // console.log(`e.target.dataset.droppedUid = %c ${e.target.dataset.iconUid}\n`, console_css);
             // iconUid 
             let iconUid = e.target.dataset.iconUid.substr(12),
                 droppedUid = e.target.dataset.droppedUid ? e.target.dataset.droppedUid.substr(12) : ``;
@@ -371,7 +371,7 @@ let moduleTest = (function() {
             e.dataTransfer.setData("text/plain", uid);
             // e.dataTransfer.setData("xyz", uid);
             // event.originalEvent.dataTransfer.setData('text/plain', uid);
-            console.log(`%c dragstart & e.dataTransfer = \n`, console_css3, e.dataTransfer);
+            // console.log(`%c dragstart & e.dataTransfer = \n`, console_css3, e.dataTransfer);
         },
         dragend: function(e) {
             e.preventDefault();
@@ -389,7 +389,7 @@ let moduleTest = (function() {
         drop: function(e) {
             // isExistCheck();
             // e.dropEffect = `copy`;
-            console.log(`drop & e.dataTransfer = \n`, e.dataTransfer);
+            // console.log(`drop & e.dataTransfer = \n`, e.dataTransfer);
             let uid = e.dataTransfer.getData("text/plain");
             // let data = e.dataTransfer.getData("xyz");
             console.log(`drop & uid = %c ${uid}\n`, console_css1);
@@ -405,18 +405,19 @@ let moduleTest = (function() {
             // Uncaught DOMException: Failed to execute 'createElement' on 'Document': The tag name provided
             // onmousedown="event.preventDefault ? event.preventDefault() : event.returnValue = false"
             // <element draggable="true|false|auto">
+            // if exist ??? sub_div
             sub_div.dataset.deleteModuleUid = `delete-module-${uid}`;
             sub_div.style.background = `#777`;
             sub_div.insertAdjacentHTML(`beforeend`, `<span>⚠️${uid}</span>`);
             // data-div-module-uid="delete-module-stockfast01"
             sub_div.firstChild.dataset.deleteModuleUid = `delete-module-${uid}`;
             sub_div.firstChild.addEventListener(`click`, (e) => {
-                console.log(`this`, this);
-                // dom
-                console.log(`e`, e);
-                // MouseEvent
-                console.log(`delete-module`, e.target.dataset.deleteModuleUid);
-                // undefined
+                // console.log(`this`, this);
+                // // dom
+                // console.log(`e`, e);
+                // // MouseEvent
+                // console.log(`delete-module`, e.target.dataset.deleteModuleUid);
+                // // undefined
                 let uid = e.target.dataset.deleteModuleUid;
                 // span ??? 
                 // let uid = this.target.dataset.deleteModuleUid;
@@ -443,56 +444,57 @@ let moduleTest = (function() {
                 case "stockfast03":
                     div.classList.add(`fv-right-box`);
                     break;
-                    case "stockfast04":
+                case "stockfast04":
                     div.classList.add(`fv-left-box`);
                     break;
                 case "stockfast05":
-                    div.classList.add(`fv-left-box`);
+                    div.classList.add(`fv-right-box`);
                     break;
                 case "stockfast06":
-                    div.classList.add(`fv-left-box`);
+                    div.classList.add(`fv-right-box`);
                     break;
                 case "stockfast07":
-                    div.classList.add(`fv-left-box`);
+                    div.classList.add(`fv-all-box`);
                     break;
                 case "stockfast08":
-                    div.classList.add(`fv-left-box`);
+                    div.classList.add(`fv-center-box`);
                     break;
                 case "stockfast09":
-                    div.classList.add(`fv-left-box`);
+                    div.classList.add(`fv-center-box`);
                     break;
                 case "stockfast10":
-                    div.classList.add(`fv-left-box`);
+                    div.classList.add(`fv-all-box`);
                     break;
                 case "stockfast11":
-                    div.classList.add(`fv-left-box`);
+                    div.classList.add(`fv-center-box`);
                     break;
                 case "stockfast12":
-                    div.classList.add(`fv-left-box`);
+                    div.classList.add(`fv-center-box`);
                     break;
                 case "stockfast13":
-                    div.classList.add(`fv-left-box`);
+                    div.classList.add(`fv-right-box`);
                     break;
                 case "news":
-                    div.classList.add(`fv-left-box`);
+                    div.classList.add(`fv-center-box`);
                     break;
                 case "bulletion":
-                    div.classList.add(`fv-left-box`);
+                    div.classList.add(`fv-center-box`);
                     break;
                 case "research":
-                    div.classList.add(`fv-left-box`);
+                    div.classList.add(`fv-center-box`);
                     break;
                 default:
                     break;
             }
             // if(width/type) {fv-left-box ? fv-right-box fv-center-box}
-            div.appendChild(sub_div);
+            // div.appendChild(sub_div);
             // div.insertAdjacentHTML(`beforeend`, `<h1>${uid}</h1>`);
             // switch 
             let module_exist_checker = document.querySelector(`[data-div-module-uid="div-module-${uid}"]`);
             // null
             // module_exist_checker = document.querySelector(`[data-div-module-uid="div-module-stockfast01"]`);
             if (module_exist_checker === null) {
+                div.appendChild(sub_div);
                 let htmlstr = ``;
                 switch (uid) {
                     case "stockfast01":
@@ -661,13 +663,169 @@ let moduleTest = (function() {
                         `;
                         break;
                     case "stockfast04":
-                        htmlstr += ``;
+                        setTimeout(function() {
+                            let box = document.querySelector(`.fv-indicators-per-share-table`),
+                                script_dom = document.createElement(`script`);
+                            script_dom.dataset.deleteScriptDom = `delete-script-dom-${uid}`;
+                            script_dom.setAttribute(`src`, `./Modules/indicators-per-share.js`);
+                            box.insertAdjacentElement(`afterend`, script_dom);
+                            // Uncaught SyntaxError: Identifier 'recentImportantEvents' has already been declared
+                        }, 0);
+                        htmlstr += `
+                            <section class="fv-module-box-3">
+                                <div class="fv-indicators-per-share-title-box">
+                                    <p class="fv-indicators-per-share-title">每股指标</p>
+                                    <!-- <fieldset disabled="disabled"></fieldset> -->
+                                </div>
+                                <table class="fv-indicators-per-share-table">
+                                    <thead class="fv-indicators-per-share-table-thead">
+                                        <tr class="fv-indicators-per-share-table-tr">
+                                            <td class="fv-indicators-per-share-table-td-title">每股指标</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="fv-indicators-per-share-table-tbody">
+                                        <!-- 上市公司公告 -->
+                                        <tr class="fv-indicators-per-share-table-tr">
+                                            <td class="fv-indicators-per-share-table-td-key" title="fbrq 发布日期">上市公司公告</td>
+                                            <td class="fv-indicators-per-share-table-td-value" data-value="data-fv-indicators-per-share"></td>
+                                        </tr>
+                                        <tr class="fv-indicators-per-share-table-tr">
+                                            <td class="fv-indicators-per-share-table-td-key">每股收益-基本(元)</td>
+                                            <td class="fv-indicators-per-share-table-td-value" data-value="data-fv-indicators-per-share"></td>
+                                        </tr>
+                                        <tr class="fv-indicators-per-share-table-tr">
+                                            <td class="fv-indicators-per-share-table-td-key">每股收益-稀释(元)</td>
+                                            <td class="fv-indicators-per-share-table-td-value" data-value="data-fv-indicators-per-share"></td>
+                                        </tr>
+                                        <tr class="fv-indicators-per-share-table-tr">
+                                            <td class="fv-indicators-per-share-table-td-key">每股收益-扣除／基本(元)</td>
+                                            <td class="fv-indicators-per-share-table-td-value" data-value="data-fv-indicators-per-share"></td>
+                                        </tr>
+                                        <tr class="fv-indicators-per-share-table-tr">
+                                            <td class="fv-indicators-per-share-table-td-key" data-alias="每股收益-扣除／稀释(元)">每股收益-扣除／稀释(元)</td>
+                                            <td class="fv-indicators-per-share-table-td-value" data-value="data-fv-indicators-per-share"></td>
+                                        </tr>
+                                        <tr class="fv-indicators-per-share-table-tr">
+                                            <td class="fv-indicators-per-share-table-td-key" data-alias="每股净资产(元)">每股净资产(元)</td>
+                                            <td class="fv-indicators-per-share-table-td-value" data-value="data-fv-indicators-per-share"></td>
+                                        </tr>
+                                        <tr class="fv-indicators-per-share-table-tr">
+                                            <td class="fv-indicators-per-share-table-td-key">每股经营活动产生的现金流量净额(元)</td>
+                                            <td class="fv-indicators-per-share-table-td-value" data-value="data-fv-indicators-per-share"></td>
+                                        </tr>
+                                        <!-- 聚源计算 -->
+                                        <tr class="fv-indicators-per-share-table-tr">
+                                            <td class="fv-indicators-per-share-table-td-key">聚源计算</td>
+                                            <td class="fv-indicators-per-share-table-td-value" data-value="data-fv-indicators-per-share"></td>
+                                        </tr>
+                                        <tr class="fv-indicators-per-share-table-tr">
+                                            <td class="fv-indicators-per-share-table-td-key">每股收益-期末股本摊薄(元)</td>
+                                            <td class="fv-indicators-per-share-table-td-value" data-value="data-fv-indicators-per-share"></td>
+                                        </tr>
+                                        <tr class="fv-indicators-per-share-table-tr">
+                                            <td class="fv-indicators-per-share-table-td-key">每股收益-扣除/期末股本摊薄(元)</td>
+                                            <td class="fv-indicators-per-share-table-td-value" data-value="data-fv-indicators-per-share"></td>
+                                        </tr>
+                                        <tr class="fv-indicators-per-share-table-tr">
+                                            <td class="fv-indicators-per-share-table-td-key">每股营业总收入(元)</td>
+                                            <td class="fv-indicators-per-share-table-td-value" data-value="data-fv-indicators-per-share"></td>
+                                        </tr>
+                                        <tr class="fv-indicators-per-share-table-tr">
+                                            <td class="fv-indicators-per-share-table-td-key">每股营业收入(元)</td>
+                                            <td class="fv-indicators-per-share-table-td-value" data-value="data-fv-indicators-per-share"></td>
+                                        </tr>
+                                        <tr class="fv-indicators-per-share-table-tr">
+                                            <td class="fv-indicators-per-share-table-td-key">每股息税前利润(元)</td>
+                                            <td class="fv-indicators-per-share-table-td-value" data-value="data-fv-indicators-per-share"></td>
+                                        </tr>
+                                        <tr class="fv-indicators-per-share-table-tr">
+                                            <td class="fv-indicators-per-share-table-td-key" data-alias="每股资本公积">每股资本公积(元)</td>
+                                            <td class="fv-indicators-per-share-table-td-value" data-value="data-fv-indicators-per-share"></td>
+                                        </tr>
+                                        <tr class="fv-indicators-per-share-table-tr">
+                                            <td class="fv-indicators-per-share-table-td-key">每股盈余公积(元)</td>
+                                            <td class="fv-indicators-per-share-table-td-value" data-value="data-fv-indicators-per-share"></td>
+                                        </tr>
+                                        <tr class="fv-indicators-per-share-table-tr">
+                                            <td class="fv-indicators-per-share-table-td-key">每股未分配利润(元)</td>
+                                            <td class="fv-indicators-per-share-table-td-value" data-value="data-fv-indicators-per-share"></td>
+                                        </tr>
+                                        <tr class="fv-indicators-per-share-table-tr">
+                                            <td class="fv-indicators-per-share-table-td-key">每股留存收益(元)</td>
+                                            <td class="fv-indicators-per-share-table-td-value" data-value="data-fv-indicators-per-share"></td>
+                                        </tr>
+                                        <tr class="fv-indicators-per-share-table-tr">
+                                            <td class="fv-indicators-per-share-table-td-key">每股现金流量净额(元)</td>
+                                            <td class="fv-indicators-per-share-table-td-value" data-value="data-fv-indicators-per-share"></td>
+                                        </tr>
+                                        <tr class="fv-indicators-per-share-table-tr">
+                                            <td class="fv-indicators-per-share-table-td-key">每股企业自由现金流量(元)</td>
+                                            <td class="fv-indicators-per-share-table-td-value" data-value="data-fv-indicators-per-share"></td>
+                                        </tr>
+                                        <tr class="fv-indicators-per-share-table-tr">
+                                            <td class="fv-indicators-per-share-table-td-key">每股股东自由现金流量(元)</td>
+                                            <td class="fv-indicators-per-share-table-td-value" data-value="data-fv-indicators-per-share"></td>
+                                        </tr>
+                                        <!-- 
+                                            <tr class="fv-indicators-per-share-table-tr">
+                                                <td class="fv-indicators-per-share-table-td-key">
+                                                    ["每股指标", "报表格式", "报表类型", "报告期", "发布日期", "上市前后" ]
+                                                </td>
+                                                <td class="fv-indicators-per-share-table-td-value" data-value="data-fv-indicators-per-share"></td>
+                                            </tr>
+                                        -->
+                                    </tbody>
+                                    <tfoot class="fv-indicators-per-share-table-tfoot">
+                                        <tr class="fv-indicators-per-share-table-tr">
+                                            <td class="fv-indicators-per-share-table-td-value" data-value="data-fv-indicators-per-share"></td>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </section>
+                        `;
                         break;
                     case "stockfast05":
-                        htmlstr += ``;
+                        setTimeout(function() {
+                            let box = document.querySelector(`.fv-agency-rating-container`),
+                                script_dom = document.createElement(`script`);
+                            script_dom.dataset.deleteScriptDom = `delete-script-dom-${uid}`;
+                            script_dom.setAttribute(`src`, `./Modules/agency-rating.js`);
+                            box.insertAdjacentElement(`afterend`, script_dom);
+                            // Uncaught SyntaxError: Identifier 'recentImportantEvents' has already been declared
+                        }, 0);
+                        htmlstr += `
+                            <section class="fv-module-box-7">
+                                <div class="fv-agency-rating-title-box">
+                                    <p class="fv-agency-rating-title">机构评级</p>
+                                </div>
+                                <div class="fv-agency-rating-container">
+                                    <!-- 机构评级 placeholder -->
+                                    <div id="agency_rating_hs_container" class="fv-agency-rating-hs fv-agency-rating-hs-container" data-hs-container="data-agency-rating-container-uid"></div>
+                                </div>
+                            </section>
+                        `;
                         break;
                     case "stockfast06":
-                        htmlstr += ``;
+                        setTimeout(function() {
+                            let box = document.querySelector(`.fv-stock-price-turnover-container`),
+                                script_dom = document.createElement(`script`);
+                            script_dom.dataset.deleteScriptDom = `delete-script-dom-${uid}`;
+                            script_dom.setAttribute(`src`, `./Modules/stock-price-turnover.js`);
+                            box.insertAdjacentElement(`afterend`, script_dom);
+                            // Uncaught SyntaxError: Identifier 'recentImportantEvents' has already been declared
+                        }, 0);
+                        htmlstr += `
+                            <section class="fv-module-box-7">
+                                <!-- <section data-uid="stock-price-turnover"></section> -->
+                                <div class="fv-stock-price-turnover-title-box">
+                                    <p class="fv-stock-price-turnover-title">股价/成交量</p>
+                                </div>
+                                <div class="fv-stock-price-turnover-container">
+                                    <!-- 盈利预告 placeholder -->
+                                    <div id="stock_price_turnover_hs_container" class="fv-stock-price-turnover-hs fv-stock-price-turnover-hs-container" data-hs-container="data-stock-price-turnover-container-uid"></div>
+                                </div>
+                            </section>
+                        `;
                         break;
                     case "stockfast07":
                         htmlstr += ``;
@@ -679,16 +837,68 @@ let moduleTest = (function() {
                         htmlstr += ``;
                         break;
                     case "stockfast10":
-                        htmlstr += ``;
+                        setTimeout(function() {
+                            let box = document.querySelector(`.fv-equity-pledge-table`),
+                                script_dom = document.createElement(`script`);
+                            script_dom.dataset.deleteScriptDom = `delete-script-dom-${uid}`;
+                            script_dom.setAttribute(`src`, `./Modules/equity-pledge.js`);
+                            box.insertAdjacentElement(`afterend`, script_dom);
+                        }, 0);
+                        htmlstr += `
+                            <section class="fv-module-box-10">
+                                <div class="fv-equity-pledge-title-box">
+                                    <p class="fv-equity-pledge-title" data-more="equity-pledge-title">股权质押</p>
+                                    <!-- <fieldset disabled="disabled"></fieldset> -->
+                                </div>
+                                <table class="fv-equity-pledge-table">
+                                    <thead class="fv-equity-pledge-table-thead">
+                                        <tr class="fv-equity-pledge-table-tr">
+                                            <td class="fv-equity-pledge-table-td-title fv-changes-shareholding-executives-table-td-value" data-value="data-fv-changes-shareholding-executives">质押公告日期</td>
+                                            <td class="fv-equity-pledge-table-td-title">出质人</td>
+                                            <td class="fv-equity-pledge-table-td-title">质权人</td>
+                                            <td class="fv-equity-pledge-table-td-title">质押股数(万股)</td>
+                                            <td class="fv-equity-pledge-table-td-title">占流通A股比例</td>
+                                            <td class="fv-equity-pledge-table-td-title">质押起始日期</td>
+                                            <td class="fv-equity-pledge-table-td-title">质押结束日期</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="fv-equity-pledge-table-tbody" id="fv-equity-pledge-tbody"></tbody>
+                                    <tfoot class="fv-equity-pledge-table-tfoot">
+                                        <tr class="fv-equity-pledge-table-tr">
+                                            <td class="fv-equity-pledge-table-td-value" data-value="data-fv-equity-pledge"></td>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </section>
+                        `;
                         break;
                     case "stockfast11":
                         htmlstr += ``;
                         break;
                     case "stockfast12":
+                        //
                         htmlstr += ``;
                         break;
                     case "stockfast13":
-                        htmlstr += ``;
+                        setTimeout(function() {
+                            let box = document.querySelector(`.fv-institutional-shareholding-change-statistics-container`),
+                                script_dom = document.createElement(`script`);
+                            script_dom.dataset.deleteScriptDom = `delete-script-dom-${uid}`;
+                            script_dom.setAttribute(`src`, `./Modules/institutional-shareholding-change-statistics.js`);
+                            box.insertAdjacentElement(`afterend`, script_dom);
+                            // Uncaught SyntaxError: Identifier 'recentImportantEvents' has already been declared
+                        }, 0);
+                        htmlstr += `
+                            <section class="fv-module-box-7">
+                                <div class="fv-institutional-shareholding-change-statistics-title-box">
+                                    <p class="fv-institutional-shareholding-change-statistics-title">机构持股变动统计</p>
+                                </div>
+                                <div class="fv-institutional-shareholding-change-statistics-container">
+                                    <!-- 盈利预告 placeholder -->
+                                    <div id="institutional_shareholding_change_statistics_hs_container" class="fv-institutional-shareholding-change-statistics-hs fv-institutional-shareholding-change-statistics-hs-container" data-hs-container="data-institutional-shareholding-change-statistics-container-uid"></div>
+                                </div>
+                            </section>
+                        `;
                         break;
                     case "news":
                         htmlstr += `<span>news</span>`;

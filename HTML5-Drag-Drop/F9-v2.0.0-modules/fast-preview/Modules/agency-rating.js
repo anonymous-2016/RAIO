@@ -10,7 +10,8 @@
  * @param {Boolean} debug 
  */
 
-const agencyRating = (url = ``, debug = false, uid = `default_dom_uid`) => {
+// const
+var agencyRating = (url = ``, debug = false, uid = `default_dom_uid`) => {
     // agencyRating
         // debug = true;
         let datas = {};
@@ -106,6 +107,7 @@ const agencyRating = (url = ``, debug = false, uid = `default_dom_uid`) => {
                 );
                 console.log(`arr_obj = `, JSON.stringify(arr_obj, null, 4));
                 datas = Object.assign(datas, arr_obj);
+                drawHS_agencyRating(datas, uid);
             }
         )
         .catch(error => console.log(`error = \n`, error));
@@ -123,7 +125,8 @@ const agencyRating = (url = ``, debug = false, uid = `default_dom_uid`) => {
  * @param {* Boolean} debug
  */
 
-const drawHS_agencyRating = (datas = {}, container_uid = `container`, container_div = `dom_element`, debug = false) => {
+// const
+var drawHS_agencyRating = (datas = {}, container_uid = `container`, container_div = `dom_element`, debug = false) => {
     // let container = document.querySelector(`#container`);
     // let container = document.querySelector(`#${container_uid}`);
     // ???
@@ -392,11 +395,12 @@ setTimeout(() => {
     // async & await
     const sf_num= `stockfast05`;
     const url = `http://10.1.5.202/webservice/fastview/stock/${sf_num}/600570.SH`;
-    let hs_datas = agencyRating(url, true);
-    console.log(`hs_datas = \n`, JSON.stringify(hs_datas, null, 4));
     let uid = `agency_rating_hs_container`;
-    setTimeout(() => {
-        drawHS_agencyRating(hs_datas, uid);
-    }, 0);
+    agencyRating(url, true, uid);
+    // let hs_datas = agencyRating(url, true, uid);
+    // console.log(`hs_datas = \n`, JSON.stringify(hs_datas, null, 4));
+    // setTimeout(() => {
+    //     drawHS_agencyRating(hs_datas, uid);
+    // }, 0);
 }, 0);
 
