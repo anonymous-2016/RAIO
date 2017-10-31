@@ -303,6 +303,10 @@ let moduleTest = (function() {
     let module_datas = document.querySelectorAll(`[data-icon-uid*="module-data"]`);
     let module_container = document.querySelector(`[data-body-container="data-body-container"]`);
     // let droppedUid_datas = document.querySelectorAll(`[data-droppe-uid*="module-data"]`);
+    // ??? sortable.js
+    let sortable_container = document.querySelector(`#section-sortable-container`);
+    let sortable = Sortable.create(sortable_container);
+    // Sortable.create(sortable_container);
     // return obj
     return {
         isExistCheck: function(uid=``){
