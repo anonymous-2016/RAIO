@@ -828,10 +828,75 @@ let moduleTest = (function() {
                         `;
                         break;
                     case "stockfast07":
-                        htmlstr += ``;
+                        setTimeout(function() {
+                            let box = document.querySelector(`.fv-top-ten-shareholders-table`),
+                                script_dom = document.createElement(`script`);
+                            script_dom.dataset.deleteScriptDom = `delete-script-dom-${uid}`;
+                            script_dom.setAttribute(`src`, `./Modules/top-ten-shareholders.js`);
+                            box.insertAdjacentElement(`afterend`, script_dom);
+                            // Uncaught SyntaxError: Identifier 'recentImportantEvents' has already been declared
+                        }, 0);
+                        htmlstr += `
+                            <section class="fv-module-box-10">
+                                <div class="fv-top-ten-shareholders-title-box">
+                                    <p class="fv-top-ten-shareholders-title" data-more="top-ten-shareholders-title">前十大股东</p>
+                                    <!-- <fieldset disabled="disabled"></fieldset> -->
+                                </div>
+                                <table class="fv-top-ten-shareholders-table">
+                                    <thead class="fv-top-ten-shareholders-table-thead">
+                                        <tr class="fv-top-ten-shareholders-table-tr">
+                                            <td class="fv-top-ten-shareholders-table-td-title fv-top-ten-shareholders-table-td-value" data-value="data-fv-top-ten-shareholders">时间</td>
+                                            <td class="fv-top-ten-shareholders-table-td-title">机构或基金名称</td>
+                                            <td class="fv-top-ten-shareholders-table-td-title">持有数量</td>
+                                            <td class="fv-top-ten-shareholders-table-td-title">占流通股比例(%))</td>
+                                            <td class="fv-top-ten-shareholders-table-td-title">股本性质</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="fv-top-ten-shareholders-table-tbody" id="fv-top-ten-shareholders-tbody"></tbody>
+                                    <tfoot class="fv-top-ten-shareholders-table-tfoot">
+                                        <tr class="fv-top-ten-shareholders-table-tr">
+                                            <td class="fv-top-ten-shareholders-table-td-value" data-value="data-fv-top-ten-shareholders"></td>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </section>
+                        `;
                         break;
                     case "stockfast08":
-                        htmlstr += ``;
+                        // 
+                        htmlstr += `
+                            <section class="fv-module-box-5">
+                                <div class="fv-research-report-title-box">
+                                    <p class="fv-research-report-title" data-more="research-report-title">研究报告</p>
+                                    <!-- <fieldset disabled="disabled"></fieldset> -->
+                                </div>
+                                <table class="fv-research-report-table">
+                                    <thead class="fv-research-report-table-thead">
+                                        <tr class="fv-research-report-table-tr">
+                                            <td class="fv-research-report-table-td-title">日期</td>
+                                            <td class="fv-research-report-table-td-title">标题</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="fv-research-report-table-tbody" id="fv-research-report-tbody">
+                                        <!--
+                                            <tr class="fv-research-report-table-tr">
+                                                <td class="fv-research-report-table-td-key">涉及概念</td>
+                                                <td class="fv-research-report-table-td-value" data-value="data-fv-events">
+                                                    <div class="css-data-loading" data-loading="pure-css-data-loading">
+                                                        CSS Loading...
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        -->
+                                    </tbody>
+                                    <tfoot class="fv-research-report-table-tfoot">
+                                        <tr class="fv-research-report-table-tr">
+                                            <td class="fv-research-report-table-td-value" data-value="data-fv-research-report"></td>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </section>
+                        `;
                         break;
                     case "stockfast09":
                         htmlstr += ``;
@@ -901,13 +966,66 @@ let moduleTest = (function() {
                         `;
                         break;
                     case "news":
+                    setTimeout(function() {
+                        let box = document.querySelector(`.fv-research-report-table`),
+                            script_dom = document.createElement(`script`);
+                        script_dom.dataset.deleteScriptDom = `delete-script-dom-${uid}`;
+                        script_dom.setAttribute(`src`, `./Modules/research-report.js`);
+                        box.insertAdjacentElement(`afterend`, script_dom);
+                    }, 0);
                         htmlstr += `<span>news</span>`;
                         break;
                     case "bulletion":
+                    setTimeout(function() {
+                        let box = document.querySelector(`.fv-research-report-table`),
+                            script_dom = document.createElement(`script`);
+                        script_dom.dataset.deleteScriptDom = `delete-script-dom-${uid}`;
+                        script_dom.setAttribute(`src`, `./Modules/research-report.js`);
+                        box.insertAdjacentElement(`afterend`, script_dom);
+                    }, 0);
                         htmlstr += `<span>bulletion</span>`;
                         break;
                     case "research":
-                        htmlstr += `<span>research</span>`;
+                        setTimeout(function() {
+                            let box = document.querySelector(`.fv-research-report-table`),
+                                script_dom = document.createElement(`script`);
+                            script_dom.dataset.deleteScriptDom = `delete-script-dom-${uid}`;
+                            script_dom.setAttribute(`src`, `./Modules/research-report.js`);
+                            box.insertAdjacentElement(`afterend`, script_dom);
+                        }, 0);
+                        htmlstr += `
+                            <section class="fv-module-box-5">
+                                <div class="fv-research-report-title-box">
+                                    <p class="fv-research-report-title" data-more="research-report-title">研究报告</p>
+                                    <!-- <fieldset disabled="disabled"></fieldset> -->
+                                </div>
+                                <table class="fv-research-report-table">
+                                    <thead class="fv-research-report-table-thead">
+                                        <tr class="fv-research-report-table-tr">
+                                            <td class="fv-research-report-table-td-title">日期</td>
+                                            <td class="fv-research-report-table-td-title">标题</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="fv-research-report-table-tbody" id="fv-research-report-tbody">
+                                        <!--
+                                            <tr class="fv-research-report-table-tr">
+                                                <td class="fv-research-report-table-td-key">涉及概念</td>
+                                                <td class="fv-research-report-table-td-value" data-value="data-fv-events">
+                                                    <div class="css-data-loading" data-loading="pure-css-data-loading">
+                                                        CSS Loading...
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        -->
+                                    </tbody>
+                                    <tfoot class="fv-research-report-table-tfoot">
+                                        <tr class="fv-research-report-table-tr">
+                                            <td class="fv-research-report-table-td-value" data-value="data-fv-research-report"></td>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </section>
+                        `;
                         break;
                     default:
                         break;

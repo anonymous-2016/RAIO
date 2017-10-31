@@ -41,8 +41,8 @@
 
 
 */
-
-const researchReport = (url = ``, td_id = `id`, debug = false) => {
+//const
+var researchReport = (url = ``, td_id = `id`, debug = false) => {
     // debug = true;
     let data = [];
     fetch(url)

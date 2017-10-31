@@ -8,8 +8,8 @@
  * @param {* Array} ui_arr 
  * @param {Boolean} debug 
  */
-
-const companyNews = (url = ``, td_id = `id`, debug = false) => {
+// const
+var companyNews = (url = ``, td_id = `id`, debug = false) => {
     // debug = true;
     let data = [];
     fetch(url)

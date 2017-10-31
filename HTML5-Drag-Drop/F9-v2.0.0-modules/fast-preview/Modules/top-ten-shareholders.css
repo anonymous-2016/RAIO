@@ -1,0 +1,243 @@
+@charset "UFT-8";
+
+/* top-ten-shareholders.css */
+
+
+/* @import url("./common/reset.css"); */
+
+@import url("../common/module.css");
+
+/* module title*/
+
+.fv-top-ten-shareholders-title-box {
+    /* width: 100%; */
+}
+
+.fv-top-ten-shareholders-title {
+    position: relative;
+    color: #000;
+    text-indent: 15px;
+    margin-left: 3px;
+    font-weight: 600;
+    font-size: 14px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.fv-top-ten-shareholders-title::before {
+    position: absolute;
+    top: 0px;
+    left: 5px;
+    content: "";
+    display: inline-block;
+    border: 2px solid #f79530;
+    width: 0;
+    height: 16px;
+    /* line-height: 22px; */
+}
+
+
+/* table */
+
+.fv-top-ten-shareholders-table {
+    width: 100%;
+    /* åŽ»é™¤tableæ¯è¡Œä¹‹é—´çš„ç©ºç™½é—´éš™ */
+    border-collapse: collapse;
+    border-spacing: 0;
+    /* border-collapse: separate; */
+    /* border-spacing: 1px */
+    /* border-color: #c5d2db; */
+    font-size: 13px;
+    font-weight: normal;
+}
+
+.fv-top-ten-shareholders-table tr td::selection {
+    color: #0f0;
+    background: #000;
+}
+
+
+/* CSS transform & transition*/
+
+
+/*
+.fv-top-ten-shareholders-table tr td:hover {
+    font-size: 16px;
+    transform: scale(1.2);
+    -webkit-transition: all 0.5s ease 0s;
+    -moz-transition: all 0.5s ease 0s;
+    transition: all 0.5s ease 0s;
+    width: 100%;
+    overflow: scroll;
+}
+*/
+
+.fv-top-ten-shareholders-table-thead {
+    /* display: none; */
+    text-align: center;
+}
+
+.fv-top-ten-shareholders-table-tfoot {
+    display: none;
+}
+
+.fv-top-ten-shareholders-table-tr {
+    box-sizing: border-box;
+    /* border: 1px solid #e9e9e9; */
+    border: 1px solid #c5d2db;
+    /* border-left: 0; */
+    /* border-right: 0; */
+    padding-left: 6px;
+    height: 23px;
+    line-height: 23px;
+    max-height: 23px;
+}
+
+
+/* date no need `:` */
+
+
+/* 
+
+.fv-top-ten-shareholders-table-td-key::after {
+    content: ":"
+}
+
+.fv-top-ten-shareholders-table-td-key {
+    box-sizing: border-box;
+    min-width: 120px;
+    background: #e8eefa;
+    padding-left: 6px;
+    border-right: 1px solid #c5d2db;
+}
+
+*/
+
+.fv-top-ten-shareholders-table-td-value {
+    box-sizing: border-box;
+    /* min-width: 205px; */
+    min-width: 80px;
+    padding-left: 6px;
+}
+
+
+/* CSS3 :nth-of-type & nth-type & nth-child & :first-child & last-child*/
+
+
+/*
+.fv-top-ten-shareholders-table-tbody>tr:nth-of-type(2n)>td:last-child {
+    background-color: #f5f5f5;
+}
+*/
+
+.fv-top-ten-shareholders-table-tbody>tr:nth-of-type(2n) {
+    background-color: #f5f5f5;
+}
+
+.fv-top-ten-shareholders-table-tbody>tr:nth-of-type(n)>td {
+    line-height: 23px;
+    height: 23px;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.fv-top-ten-shareholders-table-tbody>tr:nth-of-type(n)>td:last-child {
+    border-left: 1px solid #d7dbe0;
+    max-width: 70px;
+    box-sizing: border-box;
+    text-align: left;
+}
+
+.fv-top-ten-shareholders-table-tbody>tr:nth-of-type(n)>td:nth-child(2) {
+    /* min-width: 150px; */
+    /* max-width: 510px; */
+    /* overflow-x: hidden; */
+    /* overflow: hidden; */
+    /* text-overflow: ellipsis; */
+    /* white-space: nowrap; */
+    /* color: red; */
+    /* border-left: 1px solid #d7dbe0; */
+    /* box-sizing: border-box; */
+}
+
+
+/* https://css-tricks.com/almanac/properties/t/text-overflow/ */
+
+.fv-top-ten-shareholders-table-tbody>tr:nth-of-type(n)>td:first-child {
+    min-width: 81px;
+    width: 81px;
+}
+
+.fv-top-ten-shareholders-table-tbody>tr:nth-of-type(n)>td:nth-of-type(2) {
+    min-width: 80px;
+    width: 80px;
+}
+
+.fv-top-ten-shareholders-table-tbody>tr:nth-of-type(n)>td:nth-of-type(3) {
+    min-width: 90px;
+    width: 90px;
+}
+
+.fv-top-ten-shareholders-table-tbody>tr:nth-of-type(n)>td:nth-of-type(4) {
+    min-width: 110px;
+    width: 110px;
+    text-align: right;
+}
+
+.fv-top-ten-shareholders-table-tbody>tr:nth-of-type(n)>td:nth-of-type(5) {
+    min-width: 178px;
+    width: 178px;
+    /* text-align: center; */
+}
+
+[data-more="data-link-more"] {
+    text-decoration: none;
+    color: #3385ff;
+    cursor: pointer;
+}
+
+.fv-top-ten-shareholders-table-tbody {
+    /* max-width: 70%; */
+    /* max-height: 50px; */
+    max-width: 760px;
+}
+
+[data-value="data-fv-top-ten-shareholders"] {
+    border: 1px solid #c5d2db;
+    box-sizing: border-box;
+}
+
+.fv-top-ten-shareholders-table-td-title {
+    border: 1px solid #c5d2db;
+    background: #e8eefa;
+    color: #4d4d4d;
+}
+
+.fv-changes-shareholding-executives-table-td-value {
+    border: 1px solid #108be0;
+}
+
+.fv-top-ten-shareholders-table-thead>tr:nth-of-type(n)>td:nth-of-type(n) {
+    /* min-width: 140px; */
+    /* width: 80px; */
+    width: 140px;
+    text-align: center;
+}
+
+.fv-top-ten-shareholders-table-thead>tr:nth-of-type(n)>td:nth-of-type(2) {
+    min-width: 535px;
+}
+
+.fv-top-ten-shareholders-table-tbody>tr[data-value="fv-top-ten-shareholders-table-tr"]>td:nth-of-type(2) {
+    text-align: left;
+    min-width: 535px;
+}
+
+.fv-top-ten-shareholders-table-tbody>tr[data-value="fv-top-ten-shareholders-table-tr"]>td:nth-of-type(3),
+.fv-top-ten-shareholders-table-tbody>tr[data-value="fv-top-ten-shareholders-table-tr"]>td:nth-of-type(4) {
+    text-align: right;
+}
+
+.fv-top-ten-shareholders-table-tbody>tr[data-value="fv-top-ten-shareholders-table-tr"]>td:nth-of-type(5) {
+    text-align: center;
+}
