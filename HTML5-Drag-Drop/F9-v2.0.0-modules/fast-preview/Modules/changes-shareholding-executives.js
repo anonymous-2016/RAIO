@@ -9,7 +9,8 @@
  * @param {Boolean} debug 
  */
 
-const changesShareholdingExecutives = (url = ``, td_id = `id`, debug = false) => {
+// const
+var changesShareholdingExecutives = (url = ``, td_id = `id`, debug = false) => {
     // debug = true;
     let data = [];
     fetch(url)
@@ -74,22 +75,10 @@ const changesShareholdingExecutives = (url = ``, td_id = `id`, debug = false) =>
 
 // call fetch json datas
 setTimeout(() => {
-    // async & await
-    const url = `http://10.1.5.202/webservice/fastview/stock/stockfast12/600570.SH`;
-    let link_more = document.querySelector(`[data-more="changes-shareholding-executives-title"]`);
-    let link_html = `
-        <span id="changes_shareholding_executives_link_more">
-            <a href="#" title="changes-shareholding-executives" data-uid="changes_shareholding_executives_link_more">更多 >></a>
-        </span>
-    `;
-    link_more.insertAdjacentHTML('beforeend', link_html);
-    let more = document.querySelector(`#changes_shareholding_executives_link_more`);
-    more.classList.add("link-more");
-    // more
+    let num = `12`;
+    const url = `http://10.1.5.202/webservice/fastview/stock/stockfast${num}/600570.SH`;
     let td_id = document.querySelector('#fv-changes-shareholding-executives-tbody');
     changesShareholdingExecutives(url, td_id, true);
-    // const debug = true;
-    // changesShareholdingExecutives(url, td_id, debug);
 }, 0);
 
 

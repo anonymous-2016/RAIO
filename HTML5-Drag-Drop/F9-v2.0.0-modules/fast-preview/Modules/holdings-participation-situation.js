@@ -9,7 +9,8 @@
  * @param {Boolean} debug 
  */
 
-const holdingsParticipationSituation = (url = ``, td_id = `id`, debug = false) => {
+ //const
+var holdingsParticipationSituation = (url = ``, td_id = `id`, debug = false) => {
     // debug = true;
     let data = [];
     fetch(url)
@@ -21,14 +22,13 @@ const holdingsParticipationSituation = (url = ``, td_id = `id`, debug = false) =
             data = json;// Array
             // async
             if (debug) {
-                console.log(`data = \n`, data);
+                // console.log(`data = \n`, data);
             }
             // copy(JSON.stringify(data, null, 4));
             let html_string = ``;
             let arr = data;
             arr.map(
                 (obj, i) => {
-                    // undefined 
                     // "gs": "被参控公司", "gx": "参控关系", "bl": "参控比例",// 参控比例（%） "jlr": "被参控股公司净利润", "yw": "被参控股公司主营业务"
                     let company = (arr[i].gs !== undefined) ? arr[i].gs : `😟暂无 数据`;
                     let relationship = (arr[i].gx !== undefined) ? arr[i].gx : `😟暂无 数据`;
@@ -66,21 +66,10 @@ const holdingsParticipationSituation = (url = ``, td_id = `id`, debug = false) =
 // call fetch json datas
 setTimeout(() => {
     // async & await
-    const url = `http://10.1.5.202/webservice/fastview/stock/stockfast11/600570.SH`;
-    let link_more = document.querySelector(`[data-more="holdings-participation-situation-title"]`);
-    let link_html = `
-        <span id="holdings_participation_situation_link_more">
-            <a href="#" title="holdings-participation-situation" data-uid="holdings_participation_situation_link_more">更多 >></a>
-        </span>
-    `;
-    link_more.insertAdjacentHTML('beforeend', link_html);
-    let more = document.querySelector(`#holdings_participation_situation_link_more`);
-    more.classList.add("link-more");
-    // more
+    let num = `11`;
+    const url = `http://10.1.5.202/webservice/fastview/stock/stockfast${num}/600570.SH`;
     let td_id = document.querySelector('#fv-holdings-participation-situation-tbody');
     holdingsParticipationSituation(url, td_id, true);
-    // const debug = true;
-    // holdingsParticipationSituation(url, td_id, debug);
 }, 0);
 
 

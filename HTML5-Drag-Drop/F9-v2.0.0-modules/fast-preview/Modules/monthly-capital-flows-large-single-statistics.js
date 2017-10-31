@@ -13,7 +13,8 @@
 
 // monthly-capital-flows-large-single-statistics MCFLSStatistics
 
-const MCFLSStatistics = (url = ``, debug = false, uid = `default_dom_uid`) => {
+// const
+var MCFLSStatistics = (url = ``, debug = false, uid = `default_dom_uid`) => {
     // profitForecast
     console.log(`uid = `, uid);
     // debug = true;
@@ -40,7 +41,6 @@ const MCFLSStatistics = (url = ``, debug = false, uid = `default_dom_uid`) => {
             //  ["2007-04-30", "2009-10-31", "2010-02-28", "2016-10-31", "2017-09-30"]
             arr = strs.map(
                 (date) => {
-                    // "2007-04-30"
                     for (var i = 0; i < strs.length; i++) {
                         if(date === arr[i].sj){
                             return arr[i];
@@ -49,16 +49,6 @@ const MCFLSStatistics = (url = ``, debug = false, uid = `default_dom_uid`) => {
                     // return arr[i];
                 }
             );
-            /* 
-                [
-                    {
-                        "sj": "2017-10-27",
-                        "bl": -522.69,
-                        "gj": 52.12
-                    },
-                ]
-            */
-            // Array.isArray(arr);
             let keys = Object.keys(arr[0]);
             const arr_obj = {};
             keys.forEach(
@@ -126,8 +116,8 @@ const MCFLSStatistics = (url = ``, debug = false, uid = `default_dom_uid`) => {
  * @param {* DOM Element} container_div 
  * @param {* Boolean} debug
  */
-
-const MCFLSSdrawHS = (datas = {}, container_uid = `container`, debug = false) => {
+// const
+var MCFLSSdrawHS = (datas = {}, container_uid = `container`, debug = false) => {
     let titles = {
         title1: `title 1`,
         title2: `title 2`
@@ -353,6 +343,6 @@ setTimeout(() => {
     const url = `http://10.1.5.202/webservice/fastview/stock/${sf_num}/600570.SH`;
     let uid = `monthly_capital_flows_large_single_statistics_hs_container`;
     let hs_datas = MCFLSStatistics(url, true, uid);
-    console.log(`hs_datas = \n`, JSON.stringify(hs_datas, null, 4));
+    // console.log(`hs_datas = \n`, JSON.stringify(hs_datas, null, 4));
 }, 0);
 

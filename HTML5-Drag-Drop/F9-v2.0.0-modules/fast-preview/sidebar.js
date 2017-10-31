@@ -407,7 +407,7 @@ let moduleTest = (function() {
             // <element draggable="true|false|auto">
             // if exist ??? sub_div
             sub_div.dataset.deleteModuleUid = `delete-module-${uid}`;
-            sub_div.style.background = `#777`;
+            // sub_div.style.background = `#777`;
             sub_div.insertAdjacentHTML(`beforeend`, `<span>⚠️${uid}</span>`);
             // data-div-module-uid="delete-module-stockfast01"
             sub_div.firstChild.dataset.deleteModuleUid = `delete-module-${uid}`;
@@ -863,43 +863,45 @@ let moduleTest = (function() {
                         `;
                         break;
                     case "stockfast08":
-                        // 
+                        setTimeout(function() {
+                            let box = document.querySelector(`.fv-financing-and-margin-balance-difference-trend-container`),
+                            script_dom = document.createElement(`script`);
+                            script_dom.dataset.deleteScriptDom = `delete-script-dom-${uid}`;
+                            script_dom.setAttribute(`src`, `./Modules/financing-and-margin-balance-difference-trend.js`);
+                            box.insertAdjacentElement(`afterend`, script_dom);
+                        }, 0);
                         htmlstr += `
-                            <section class="fv-module-box-5">
-                                <div class="fv-research-report-title-box">
-                                    <p class="fv-research-report-title" data-more="research-report-title">研究报告</p>
-                                    <!-- <fieldset disabled="disabled"></fieldset> -->
+                            <section class="fv-module-box-7">
+                                <!-- <section data-uid="financing-and-margin-balance-difference-trend"></section> -->
+                                <div class="fv-financing-and-margin-balance-difference-trend-title-box">
+                                    <p class="fv-financing-and-margin-balance-difference-trend-title">融资余额与融券余额差值走势</p>
                                 </div>
-                                <table class="fv-research-report-table">
-                                    <thead class="fv-research-report-table-thead">
-                                        <tr class="fv-research-report-table-tr">
-                                            <td class="fv-research-report-table-td-title">日期</td>
-                                            <td class="fv-research-report-table-td-title">标题</td>
-                                        </tr>
-                                    </thead>
-                                    <tbody class="fv-research-report-table-tbody" id="fv-research-report-tbody">
-                                        <!--
-                                            <tr class="fv-research-report-table-tr">
-                                                <td class="fv-research-report-table-td-key">涉及概念</td>
-                                                <td class="fv-research-report-table-td-value" data-value="data-fv-events">
-                                                    <div class="css-data-loading" data-loading="pure-css-data-loading">
-                                                        CSS Loading...
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                        -->
-                                    </tbody>
-                                    <tfoot class="fv-research-report-table-tfoot">
-                                        <tr class="fv-research-report-table-tr">
-                                            <td class="fv-research-report-table-td-value" data-value="data-fv-research-report"></td>
-                                        </tr>
-                                    </tfoot>
-                                </table>
+                                <div class="fv-financing-and-margin-balance-difference-trend-container">
+                                    <!-- 融资余额与融券余额差值走势 placeholder -->
+                                    <div id="financing_and_margin_balance_difference_trend_hs_container" class="fv-financing-and-margin-balance-difference-trend-hs fv-financing-and-margin-balance-difference-trend-hs-container" data-hs-container="data-financing-and-margin-balance-difference-trend-container-uid"></div>
+                                </div>
                             </section>
                         `;
                         break;
                     case "stockfast09":
-                        htmlstr += ``;
+                        setTimeout(function() {
+                            let box = document.querySelector(`.fv-monthly-capital-flows-large-single-statistics-container`),
+                            script_dom = document.createElement(`script`);
+                            script_dom.dataset.deleteScriptDom = `delete-script-dom-${uid}`;
+                            script_dom.setAttribute(`src`, `./Modules/monthly-capital-flows-large-single-statistics.js`);
+                            box.insertAdjacentElement(`afterend`, script_dom);
+                        }, 0);
+                        htmlstr += `
+                            <section class="fv-module-box-7">
+                                <div class="fv-monthly-capital-flows-large-single-statistics-title-box">
+                                    <p class="fv-monthly-capital-flows-large-single-statistics-title">近一月资金流向大单统计</p>
+                                </div>
+                                <div class="fv-monthly-capital-flows-large-single-statistics-container">
+                                    <!-- 近一月资金流向大单统计 placeholder -->
+                                    <div id="monthly_capital_flows_large_single_statistics_hs_container" class="fv-monthly-capital-flows-large-single-statistics-hs fv-monthly-capital-flows-large-single-statistics-hs-container" data-hs-container="data-monthly-capital-flows-large-single-statistics-container-uid"></div>
+                                </div>
+                            </section>
+                        `;
                         break;
                     case "stockfast10":
                         setTimeout(function() {
@@ -938,11 +940,73 @@ let moduleTest = (function() {
                         `;
                         break;
                     case "stockfast11":
-                        htmlstr += ``;
+                        setTimeout(function() {
+                            let box = document.querySelector(`.fv-holdings-participation-situation-table`),
+                                script_dom = document.createElement(`script`);
+                            script_dom.dataset.deleteScriptDom = `delete-script-dom-${uid}`;
+                            script_dom.setAttribute(`src`, `./Modules/holdings-participation-situation.js`);
+                            box.insertAdjacentElement(`afterend`, script_dom);
+                        }, 0);
+                        htmlstr += `
+                            <section class="fv-module-box-5">
+                                <div class="fv-holdings-participation-situation-title-box">
+                                    <p class="fv-holdings-participation-situation-title" data-more="holdings-participation-situation-title">控股参股情况</p>
+                                    <!-- <fieldset disabled="disabled"></fieldset> -->
+                                </div>
+                                <table class="fv-holdings-participation-situation-table">
+                                    <thead class="fv-holdings-participation-situation-table-thead">
+                                        <tr class="fv-holdings-participation-situation-table-tr">
+                                            <td class="fv-holdings-participation-situation-table-td-title fv-changes-shareholding-executives-table-td-value" data-value="data-fv-changes-shareholding-executives">被参控公司</td>
+                                            <td class="fv-holdings-participation-situation-table-td-title">参控关系</td>
+                                            <td class="fv-holdings-participation-situation-table-td-title">参控比例 (%)</td>
+                                            <td class="fv-holdings-participation-situation-table-td-title">被参控公司净利润</td>
+                                            <td class="fv-holdings-participation-situation-table-td-title">被参控公司主营业务</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="fv-holdings-participation-situation-table-tbody" id="fv-holdings-participation-situation-tbody"></tbody>
+                                    <tfoot class="fv-holdings-participation-situation-table-tfoot">
+                                        <tr class="fv-holdings-participation-situation-table-tr">
+                                            <td class="fv-holdings-participation-situation-table-td-value" data-value="data-fv-holdings-participation-situation"></td>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </section>
+                        `;
                         break;
                     case "stockfast12":
-                        //
-                        htmlstr += ``;
+                        setTimeout(function() {
+                            let box = document.querySelector(`.fv-changes-shareholding-executives-table`),
+                                script_dom = document.createElement(`script`);
+                            script_dom.dataset.deleteScriptDom = `delete-script-dom-${uid}`;
+                            script_dom.setAttribute(`src`, `./Modules/changes-shareholding-executives.js`);
+                            box.insertAdjacentElement(`afterend`, script_dom);
+                        }, 0);
+                        htmlstr += `
+                            <section class="fv-module-box-5">
+                                <div class="fv-changes-shareholding-executives-title-box">
+                                    <p class="fv-changes-shareholding-executives-title" data-more="changes-shareholding-executives-title">高管持股变动情况</p>
+                                </div>
+                                <table class="fv-changes-shareholding-executives-table">
+                                    <thead class="fv-changes-shareholding-executives-table-thead">
+                                        <tr class="fv-changes-shareholding-executives-table-tr">
+                                            <td class="fv-changes-shareholding-executives-table-td-title">变动日期</td>
+                                            <td class="fv-changes-shareholding-executives-table-td-title">变动人姓名</td>
+                                            <td class="fv-changes-shareholding-executives-table-td-title">变动方向</td>
+                                            <td class="fv-changes-shareholding-executives-table-td-title">变动股份数量(股)</td>
+                                            <td class="fv-changes-shareholding-executives-table-td-title">成交均价(元)</td>
+                                            <!-- <td class="fv-changes-shareholding-executives-table-td-title">变动比例(‰)</td> -->
+                                            <td class="fv-changes-shareholding-executives-table-td-title">与董监高关系</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="fv-changes-shareholding-executives-table-tbody" id="fv-changes-shareholding-executives-tbody"></tbody>
+                                    <tfoot class="fv-changes-shareholding-executives-table-tfoot">
+                                        <tr class="fv-changes-shareholding-executives-table-tr">
+                                            <td class="fv-changes-shareholding-executives-table-td-value" data-value="data-fv-changes-shareholding-executives"></td>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </section>
+                        `;
                         break;
                     case "stockfast13":
                         setTimeout(function() {
@@ -966,24 +1030,58 @@ let moduleTest = (function() {
                         `;
                         break;
                     case "news":
-                    setTimeout(function() {
-                        let box = document.querySelector(`.fv-research-report-table`),
-                            script_dom = document.createElement(`script`);
-                        script_dom.dataset.deleteScriptDom = `delete-script-dom-${uid}`;
-                        script_dom.setAttribute(`src`, `./Modules/research-report.js`);
-                        box.insertAdjacentElement(`afterend`, script_dom);
-                    }, 0);
-                        htmlstr += `<span>news</span>`;
+                        setTimeout(function() {
+                            let box = document.querySelector(`.fv-company-news-table`),
+                                script_dom = document.createElement(`script`);
+                            script_dom.dataset.deleteScriptDom = `delete-script-dom-${uid}`;
+                            script_dom.setAttribute(`src`, `./Modules/company-news.js`);
+                            box.insertAdjacentElement(`afterend`, script_dom);
+                        }, 0);
+                        htmlstr += `
+                            <section class="fv-module-box-5">
+                                <div class="fv-company-news-title-box">
+                                    <p class="fv-company-news-title" data-more="company-news-title">公司新闻</p>
+                                </div>
+                                <table class="fv-company-news-table">
+                                    <thead class="fv-company-news-table-thead">
+                                        <tr class="fv-company-news-table-tr">
+                                            <td class="fv-company-news-table-td-title">日期</td>
+                                            <td class="fv-company-news-table-td-title">标题</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="fv-company-news-table-tbody" id="fv-company-news-tbody"></tbody>
+                                    <tfoot class="fv-company-news-table-tfoot">
+                                        <tr class="fv-company-news-table-tr">
+                                            <td class="fv-company-news-table-td-value" data-value="data-fv-company-news"></td>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </section>
+                        `;
                         break;
                     case "bulletion":
-                    setTimeout(function() {
-                        let box = document.querySelector(`.fv-research-report-table`),
-                            script_dom = document.createElement(`script`);
-                        script_dom.dataset.deleteScriptDom = `delete-script-dom-${uid}`;
-                        script_dom.setAttribute(`src`, `./Modules/research-report.js`);
-                        box.insertAdjacentElement(`afterend`, script_dom);
-                    }, 0);
-                        htmlstr += `<span>bulletion</span>`;
+                        setTimeout(function() {
+                            let box = document.querySelector(`.fv-company-announcements-table`),
+                                script_dom = document.createElement(`script`);
+                            script_dom.dataset.deleteScriptDom = `delete-script-dom-${uid}`;
+                            script_dom.setAttribute(`src`, `./Modules/company-announcements.js`);
+                            box.insertAdjacentElement(`afterend`, script_dom);
+                        }, 0);
+                        htmlstr += `
+                            <section class="fv-module-box-5">
+                                <div class="fv-company-announcements-title-box">
+                                    <p class="fv-company-announcements-title" data-more="company-announcements-title">公司公告</p>
+                                </div>
+                                <table class="fv-company-announcements-table">
+                                    <tbody class="fv-company-announcements-table-tbody" id="fv-company-announcements-tbody"></tbody>
+                                    <tfoot class="fv-company-announcements-table-tfoot">
+                                        <tr class="fv-company-announcements-table-tr">
+                                            <td class="fv-company-announcements-table-td-value" data-value="data-fv-company-announcements"></td>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </section>
+                        `;
                         break;
                     case "research":
                         setTimeout(function() {

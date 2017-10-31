@@ -138,14 +138,14 @@ const FMBDtrend = (url = ``, debug = false, uid = `default_dom_uid`) => {
  * @param {* String} container_uid 
  * @param {* Boolean} debug
  */
-
-const FMBDTdrawHS = (datas = {}, container_uid = `container`, debug = false) => {
+// const
+var FMBDTdrawHS = (datas = {}, container_uid = `container`, debug = false) => {
     let time = datas.time,
         shares = datas.shares,
         stock_price = datas.stock_price;
-    console.log(`time = \n`, time);
-    console.log(`shares = \n`, shares);
-    console.log(`stock_price = \n`, stock_price);
+    // console.log(`time = \n`, time);
+    // console.log(`shares = \n`, shares);
+    // console.log(`stock_price = \n`, stock_price);
     // datas
     const chart_css = {
         color: `#0B1016`,
@@ -366,7 +366,7 @@ setTimeout(() => {
     const url = `http://10.1.5.202/webservice/fastview/stock/${sf_num}/600570.SH`;
     let uid = `financing_and_margin_balance_difference_trend_hs_container`;
     let hs_datas = FMBDtrend(url, true, uid);
-    console.log(`hs_datas = \n`, JSON.stringify(hs_datas, null, 4));
+    // console.log(`hs_datas = \n`, JSON.stringify(hs_datas, null, 4));
     // setTimeout(() => {
     //     // FMBDTdrawHS(hs_datas, uid);
     // }, 0);
