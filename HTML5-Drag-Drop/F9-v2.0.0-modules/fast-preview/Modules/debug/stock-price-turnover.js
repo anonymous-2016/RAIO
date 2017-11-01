@@ -95,7 +95,9 @@ var SPTurnover = (url = ``, debug = false, uid = `default_dom_uid`) => {
             let counter = 1;
             arr.map(
                 (obj, i) => {
-                    console.log(`obj = `, JSON.stringify(obj, null, 4));
+                    if (i === 0) {
+                        console.log(`obj = `, JSON.stringify(obj, null, 4));
+                    }
                     let time = ``, turn_over = ``, stock_price = ``, SH_Index = ``;
                     // time ms ???
                     time = (obj.sjz !== undefined) ? obj.sjz : `😟 暂无数据`;
@@ -155,33 +157,27 @@ var SPTdrawHS = (datas = {}, container_uid = `container`, debug = false) => {
     };
     // css_obj ???
     const {color, colors, optioncolor, gridColor, legendColor, yAxisColor} = {...chart_css};
-    // Highcharts.setOptions({
-    //     lang: {
-    //         rangeSelectorZoom: ''
-    //     }
-    // });
     // console.log(json);
     var ohlc = [],
         volume = [],
         sh_index = [],
-        dataLength = datas.time.length,
         // set the allowed units for data grouping
-        groupingUnits = [
-            [
-                'week', // unit name
-                [1] // allowed multiples
-            ],
-            [
-                'month', [1, 2, 3, 4, 6]
-            ]
-        ],
-        i = 0;
+        // groupingUnits = [
+        //     [
+        //         'week', // unit name
+        //         [1] // allowed multiples
+        //     ],
+        //     [
+        //         'month', [1, 2, 3, 4, 6]
+        //     ]
+        // ],
+        dataLength = datas.time.length;
     // datas.time = datas.time.map((k, i) => datas.time[datas.time.length - 1 - i]);
     // reverse 逆序
     // console.log(`datas.time = \n`, datas.time);
-    for (i; i < dataLength; i ++) {
+    for (let i = 0; i < dataLength; i ++) {
         let new_ms_time = new Date(datas.time[i]).getTime();
-
+        // ms ???
         ohlc.push([
             new_ms_time, // the date ??? 1147651200000 (ms) ??? new Date(oldTime);
             datas.stock_price[i],
@@ -199,6 +195,7 @@ var SPTdrawHS = (datas = {}, container_uid = `container`, debug = false) => {
     // console.log(ohlc);
     // console.log(volume);
     // console.log(sh_index);
+    console.log(ohlc[0]);
     /* 
         Highcharts lang 配置是全局配置
         针对所有图表有效，所有不能单独设置在某个图表中在，
@@ -243,9 +240,7 @@ var SPTdrawHS = (datas = {}, container_uid = `container`, debug = false) => {
             useHTML: false
         },
         rangeSelector: {
-            // enabled: false,
-            selected: undefined,// button index 
-            // The index of the button to appear pre-selected. 默认是：undefined.
+            selected: 0,// button index
             inputDateFormat: '%Y-%m-%d',//'%Y年%m月%d日' 
             // inputDateFormat: '%Y年 %m月 %d日'
             allButtonsEnabled: true,
@@ -342,7 +337,7 @@ var SPTdrawHS = (datas = {}, container_uid = `container`, debug = false) => {
                 second: '%H:%M:%S',
                 minute: '%H:%M',
                 hour: '%H:%M',
-                day: '%m月 %d日',
+                day: '%m月%d日',
                 week: '%m月 %d日',
                 month: '%y年 %m月',
                 year: '%Y年'
@@ -437,9 +432,9 @@ var SPTdrawHS = (datas = {}, container_uid = `container`, debug = false) => {
                     color: Highcharts.getOptions().colors[0]
                 },
                 data: ohlc,
-                dataGrouping: {
-                    units: groupingUnits
-                },
+                // dataGrouping: {
+                //     units: groupingUnits
+                // },
                 yAxis: 0
                 // compare: 'percent',
                 // showInNavigator: true
@@ -449,9 +444,9 @@ var SPTdrawHS = (datas = {}, container_uid = `container`, debug = false) => {
                 name: '成交量',
                 data: volume,
                 yAxis: 2,
-                dataGrouping: {
-                    units: groupingUnits
-                },
+                // dataGrouping: {
+                //     units: groupingUnits
+                // },
                 tooltip: {
                     // formatter: () => {
                     //     return `
@@ -467,9 +462,9 @@ var SPTdrawHS = (datas = {}, container_uid = `container`, debug = false) => {
                 data: sh_index,
                 color:"#1a75bc",
                 yAxis: 1,
-                dataGrouping: {
-                    units: groupingUnits
-                },
+                // dataGrouping: {
+                //     units: groupingUnits
+                // },
                 tooltip: {
                     // formatter: () => {
                     //     return `
@@ -485,107 +480,46 @@ var SPTdrawHS = (datas = {}, container_uid = `container`, debug = false) => {
             shared: true,
             // valueDecimals: 3
         },
-        plotOptions: {
-            series: {
-                pointStart: Date.UTC(2012, 0, 1),
-                pointInterval: 24 * 3600 * 1000
-            }
-        }
+        // plotOptions: {
+        //     series: {
+        //         pointStart: Date.UTC(2012, 0, 1),
+        //         pointInterval: 24 * 3600 * 1000
+        //     }
+        // }
     });
-    // svg style
-// let svg_ranges = document.querySelectorAll(`.highcharts-range-label`);
-// svg_ranges[0].lastChild.innerHTML = `从`;// 从到
-// svg_ranges[1].lastChild.innerHTML = `到`;// 从
-    // highcharts-axis-labels highcharts-yaxis-labels  <text x="710"
-// let svg_buttons = document.querySelectorAll(`.highcharts-range-selector-buttons > .highcharts-button`);
-    // (6) [g, g, g, g, g, g]
-// svg_buttons[0].lastChild.innerHTML = `一月`;
-// svg_buttons[1].lastChild.innerHTML = `三月`;
-// svg_buttons[2].lastChild.innerHTML = `六月`;
-// svg_buttons[3].lastChild.innerHTML = `YTD`;
-    // svg_buttons[3].firstChild.style.width = `50px`;
-    // svg_buttons[3].lastChild.innerHTML = `YTD年初至今`;// YTD
-    // svg_buttons[3].style.transform = "translate(223, 0)";
-// svg_buttons[4].lastChild.innerHTML = `一年`;
-// svg_buttons[5].lastChild.innerHTML = `全部`;
-    // highcharts-range-selector-buttons
-    // highcharts-button highcharts-button-normal
-    // highcharts-button highcharts-button-pressed
-    // highcharts-button highcharts-button-disabled
-    // ▲ 
-    // 年初至今(Year to Date)；年初到今日(Year To Days)；本年迄今
-    // Year To Date (YTD)//本年迄今 
-    // Month To Date // 当月,本月[MTD]
 }
 
 
 
 // call fetch json datas
 setTimeout(() => {
-    // async & await
     const sf_num= `stockfast06`;
     const url = `http://10.1.5.202/webservice/fastview/stock/${sf_num}/600570.SH`;
     let uid = `stock_price_turnover_hs_container`;
     let hs_datas = SPTurnover(url, true, uid);
     // console.log(`hs_datas = \n`, JSON.stringify(hs_datas, null, 4));
-    // profitForecast(url, true, uid);
-    // let hs_container_uid = document.querySelector(`[data-hs-container="data-profit-forecast-container-uid"]`);
-    // setTimeout(() => {
-    //     SPTdrawHS(hs_datas, uid);
-    // }, 0);
 }, 0);
 
 
 /* 
 
+    https://www.highcharts.com/stock/demo/compare
+    http://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/stock/demo/compare/
+
+    https://www.highcharts.com/stock/demo/yaxis-plotlines
 
 
+    ¥7.06 +0.05 +0.71%
 
-https://www.highcharts.com/stock/demo/compare
-http://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/stock/demo/compare/
+    今年以来涨跌幅 1.52%
+    3个月涨跌幅 0.89%
+    52周涨跌幅 -12.74%
+    52周Beta 0.32
 
-https://www.highcharts.com/stock/demo/yaxis-plotlines
+    #ff2323
 
+    14px
+    24px
 
-¥7.06 +0.05 +0.71%
-
-
-
-
-今年以来涨跌幅 1.52%
-3个月涨跌幅 0.89%
-52周涨跌幅 -12.74%
-52周Beta 0.32
-
-#ff2323
-
-14px
-24px
-
-
-
-
-
-
-*/
-
-/* 
-
-    recurve 反
-    Reverse 逆序
-    let a = [1,2,3,4,5,6,7,8,9],
-        l = a.length;
-        aa = a.map(
-        (key, index) => {
-            console.log(`key, index = \n`, key, index);
-            let ni = l - 1 - index;
-            console.log(`new index = \n`, ni);
-            return a[ni];
-        }
-    );
-    aa;
-    // [9, 8, 7, 6, 5, 4, 3, 2, 1]
-
-    // aa = a.map((k, i) => a[a.length - 1 - i]);
 */
 
