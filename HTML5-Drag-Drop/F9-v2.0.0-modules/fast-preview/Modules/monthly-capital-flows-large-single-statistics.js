@@ -16,7 +16,9 @@
 // const
 var MCFLSStatistics = (url = ``, debug = false, uid = `default_dom_uid`) => {
     // profitForecast
-    console.log(`uid = `, uid);
+    if (debug) {
+        console.log(`uid = `, uid);
+    }
     // debug = true;
     let datas = {};
     fetch(url)
@@ -32,7 +34,9 @@ var MCFLSStatistics = (url = ``, debug = false, uid = `default_dom_uid`) => {
             }
             let strs = json.map(
                 (obj) => {
-                    console.log(obj.sj);
+                    if (debug) {
+                        console.log(obj.sj);
+                    }
                     return obj.sj;
                     //return num = parseInt(obj.sj.replace(/-/g, ``));
                 }
@@ -72,7 +76,9 @@ var MCFLSStatistics = (url = ``, debug = false, uid = `default_dom_uid`) => {
                     arr_obj[new_key] = [];
                 }
             );
-            console.log(`arr_obj = `, JSON.stringify(arr_obj, null, 4));
+            if (debug) {
+                console.log(`arr_obj = `, JSON.stringify(arr_obj, null, 4));
+            }
             let counter = 1;
             arr.map(
                 (obj, i) => {
@@ -92,12 +98,16 @@ var MCFLSStatistics = (url = ``, debug = false, uid = `default_dom_uid`) => {
                     arr_obj.closing_price.push(closing_price);
                     // return arr_obj;
                     if (counter === 1) {
-                        console.log(`arr_obj = `, JSON.stringify(arr_obj, null, 4));
+                        if (debug) {
+                            console.log(`arr_obj = `, JSON.stringify(arr_obj, null, 4));
+                        }
                         counter ++;
                     }
                 }
             );
-            console.log(`arr_obj = `, JSON.stringify(arr_obj, null, 4));
+            if (debug) {
+                console.log(`arr_obj = `, JSON.stringify(arr_obj, null, 4));
+            }
             datas = Object.assign(datas, arr_obj);
             MCFLSSdrawHS(datas, uid);
         }
@@ -127,9 +137,11 @@ var MCFLSSdrawHS = (datas = {}, container_uid = `container`, debug = false) => {
     let time = datas.time,
         purchase_amount = datas.purchase_amount,
         closing_price = datas.closing_price;
-    console.log(`time = \n`, time);
-    console.log(`purchase_amount = \n`, purchase_amount);
-    console.log(`closing_price = \n`, closing_price);
+    if (debug) {
+        console.log(`time = \n`, time);
+        console.log(`purchase_amount = \n`, purchase_amount);
+        console.log(`closing_price = \n`, closing_price);
+    }
     // datas
     const chart_css = {
         color: `#0B1016`,
@@ -342,7 +354,8 @@ setTimeout(() => {
     const sf_num= `stockfast09`;
     const url = `http://10.1.5.202/webservice/fastview/stock/${sf_num}/600570.SH`;
     let uid = `monthly_capital_flows_large_single_statistics_hs_container`;
-    let hs_datas = MCFLSStatistics(url, true, uid);
+    MCFLSStatistics(url, false, uid);
+    // let hs_datas = MCFLSStatistics(url, true, uid);
     // console.log(`hs_datas = \n`, JSON.stringify(hs_datas, null, 4));
 }, 0);
 

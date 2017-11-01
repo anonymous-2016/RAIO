@@ -306,8 +306,8 @@ let moduleTest = (function() {
     // let droppedUid_datas = document.querySelectorAll(`[data-droppe-uid*="module-data"]`);
     // ??? sortable.js
     let sortable_container = document.querySelector(`#section-sortable-container`);
-    let sortable = Sortable.create(sortable_container);
-    // Sortable.create(sortable_container);
+    // let sortable = Sortable.create(sortable_container);
+    Sortable.create(sortable_container);
     // return obj
     return {
         isExistCheck: function(uid=``){
@@ -492,23 +492,64 @@ let moduleTest = (function() {
             // div.insertAdjacentHTML(`beforeend`, `<h1>${uid}</h1>`);
             // switch 
             let module_exist_checker = document.querySelector(`[data-div-module-uid="div-module-${uid}"]`);
-            // null
+            /**
+             * @author xgqfrms 
+             * @description load Module (2017.11.01)
+             * @param {* String} module_uid_name 
+             * @param {* Boolean} isTable 
+             */
+            const loadModule = (module_uid_name=``, isTable=`false`) => {
+                console.log(`module_uid_name = \n`, module_uid_name);
+                console.log(`isTable = \n`, isTable);
+                if (isTable === true) {
+                    console.log(`document.querySelector('.fv-${module_uid_name}-table')`);
+                }else{
+                    console.log(`document.querySelector('.fv-${module_uid_name}-container')`);
+                }
+                // setTimeout & IIFE & Closure ???
+                setTimeout(function() {
+                    ((module_uid_name, isTable) => {
+                        let box = (isTable === true)
+                            ? document.querySelector(`.fv-${module_uid_name}-table`)
+                            : document.querySelector(`.fv-${module_uid_name}-container`),
+                            // box = document.querySelector(`.fv-top-ten-shareholders-table`),
+                            link_css = document.createElement(`link`),
+                            script_dom = document.createElement(`script`);
+                        console.log(`box = \n`, box);
+                        link_css.setAttribute(`rel`, `stylesheet`);
+                        link_css.setAttribute(`href`, `./Modules/${module_uid_name}.css`);
+                        link_css.dataset.deleteLinkCss = `delete-link-css-${uid}`;
+                        script_dom.dataset.deleteScriptDom = `delete-script-dom-${uid}`;
+                        script_dom.setAttribute(`src`, `./Modules/${module_uid_name}.js`);
+                        box.insertAdjacentElement(`afterend`, link_css);
+                        link_css.insertAdjacentElement(`afterend`, script_dom);
+                    })(module_uid_name, isTable);
+                }, 0);
+            };
             // module_exist_checker = document.querySelector(`[data-div-module-uid="div-module-stockfast01"]`);
             if (module_exist_checker === null) {
                 div.appendChild(sub_div);
                 let htmlstr = ``;
                 switch (uid) {
                     case "stockfast01":
-                        console.log(`laoding ... recent-important-events.js`);// recent-important-events.js
-                        setTimeout(function() {
-                            let box = document.querySelector(`.fv-important-infos-table`),
-                                script_dom = document.createElement(`script`);
-                            script_dom.dataset.deleteScriptDom = `delete-script-dom-${uid}`;
-                            // [data-delete-script-dom="delete-script-dom-stockfast01"]
-                            script_dom.setAttribute(`src`, `./Modules/important-infos.js`);
-                            box.insertAdjacentElement(`afterend`, script_dom);
-                            // Uncaught SyntaxError: Identifier 'recentImportantEvents' has already been declared
-                        }, 0);
+                        // console.log(`laoding ... recent-important-events.js`);// recent-important-events.js
+                        /* 
+                            setTimeout(function() {
+                                let box = document.querySelector(`.fv-important-infos-table`),
+                                    link_css = document.createElement(`link`),
+                                    script_dom = document.createElement(`script`);
+                                // <link rel="stylesheet" data-css="data-css-uid" href="./Modules/important-infos.css">
+                                link_css.setAttribute(`rel`, `stylesheet`);
+                                link_css.setAttribute(`href`, `./Modules/important-infos.css`);
+                                link_css.dataset.deleteLinkCss = `delete-link-css-${uid}`;
+                                box.insertAdjacentElement(`afterend`, link_css);
+                                script_dom.dataset.deleteScriptDom = `delete-script-dom-${uid}`;
+                                // [data-delete-script-dom="delete-script-dom-stockfast01"]
+                                script_dom.setAttribute(`src`, `./Modules/important-infos.js`);
+                                link_css.insertAdjacentElement(`afterend`, script_dom);
+                            }, 0);
+                        */
+                        loadModule(`important-infos`, true);
                         htmlstr += `
                             <section class="fv-module-box-3">
                                 <!-- 重要信息 -->
@@ -600,13 +641,21 @@ let moduleTest = (function() {
                         `;
                         break;
                     case "stockfast02":
-                        setTimeout(function() {
-                            let box = document.querySelector(`.fv-recent-important-events-table`),
-                                script_dom = document.createElement(`script`);
-                            script_dom.dataset.deleteScriptDom = `delete-script-dom-${uid}`;
-                            script_dom.setAttribute(`src`, `./Modules/recent-important-events.js`);
-                            box.insertAdjacentElement(`afterend`, script_dom);
-                        }, 0);
+                        /* 
+                            setTimeout(function() {
+                                let box = document.querySelector(`.fv-recent-important-events-table`),
+                                    link_css = document.createElement(`link`),
+                                    script_dom = document.createElement(`script`);
+                                link_css.setAttribute(`rel`, `stylesheet`);
+                                link_css.setAttribute(`href`, `./Modules/recent-important-events.css`);
+                                link_css.dataset.deleteLinkCss = `delete-link-css-${uid}`;
+                                script_dom.dataset.deleteScriptDom = `delete-script-dom-${uid}`;
+                                script_dom.setAttribute(`src`, `./Modules/recent-important-events.js`);
+                                box.insertAdjacentElement(`afterend`, link_css);
+                                link_css.insertAdjacentElement(`afterend`, script_dom);
+                            }, 0);
+                        */
+                        loadModule(`recent-important-events`, true);
                         htmlstr += `
                             <section class="fv-module-box-7">
                                 <div class="fv-recent-important-events-title-box">
@@ -641,14 +690,21 @@ let moduleTest = (function() {
                         `;
                         break;
                     case "stockfast03":
-                        setTimeout(function() {
-                            let box = document.querySelector(`.fv-profit-forecast-container`),
-                                script_dom = document.createElement(`script`);
-                            script_dom.dataset.deleteScriptDom = `delete-script-dom-${uid}`;
-                            script_dom.setAttribute(`src`, `./Modules/profit-forecast.js`);
-                            box.insertAdjacentElement(`afterend`, script_dom);
-                            // Uncaught SyntaxError: Identifier 'recentImportantEvents' has already been declared
-                        }, 0);
+                        /* 
+                            setTimeout(function() {
+                                let box = document.querySelector(`.fv-profit-forecast-container`),
+                                    link_css = document.createElement(`link`),
+                                    script_dom = document.createElement(`script`);
+                                link_css.setAttribute(`rel`, `stylesheet`);
+                                link_css.setAttribute(`href`, `./Modules/profit-forecast.css`);
+                                link_css.dataset.deleteLinkCss = `delete-link-css-${uid}`;
+                                script_dom.dataset.deleteScriptDom = `delete-script-dom-${uid}`;
+                                script_dom.setAttribute(`src`, `./Modules/profit-forecast.js`);
+                                box.insertAdjacentElement(`afterend`, link_css);
+                                link_css.insertAdjacentElement(`afterend`, script_dom);
+                            }, 0);
+                        */
+                        loadModule(`profit-forecast`);
                         htmlstr += `
                             <section class="fv-module-box-7">
                                 <div class="fv-profit-forecast-title-box">
@@ -664,14 +720,21 @@ let moduleTest = (function() {
                         `;
                         break;
                     case "stockfast04":
-                        setTimeout(function() {
-                            let box = document.querySelector(`.fv-indicators-per-share-table`),
-                                script_dom = document.createElement(`script`);
-                            script_dom.dataset.deleteScriptDom = `delete-script-dom-${uid}`;
-                            script_dom.setAttribute(`src`, `./Modules/indicators-per-share.js`);
-                            box.insertAdjacentElement(`afterend`, script_dom);
-                            // Uncaught SyntaxError: Identifier 'recentImportantEvents' has already been declared
-                        }, 0);
+                        /* 
+                            setTimeout(function() {
+                                let box = document.querySelector(`.fv-indicators-per-share-table`),
+                                    link_css = document.createElement(`link`),
+                                    script_dom = document.createElement(`script`);
+                                link_css.setAttribute(`rel`, `stylesheet`);
+                                link_css.setAttribute(`href`, `./Modules/indicators-per-share.css`);
+                                link_css.dataset.deleteLinkCss = `delete-link-css-${uid}`;
+                                script_dom.dataset.deleteScriptDom = `delete-script-dom-${uid}`;
+                                script_dom.setAttribute(`src`, `./Modules/indicators-per-share.js`);
+                                box.insertAdjacentElement(`afterend`, link_css);
+                                link_css.insertAdjacentElement(`afterend`, script_dom);
+                            }, 0);
+                        */
+                        loadModule(`indicators-per-share`, true);
                         htmlstr += `
                             <section class="fv-module-box-3">
                                 <div class="fv-indicators-per-share-title-box">
@@ -786,14 +849,21 @@ let moduleTest = (function() {
                         `;
                         break;
                     case "stockfast05":
-                        setTimeout(function() {
-                            let box = document.querySelector(`.fv-agency-rating-container`),
-                                script_dom = document.createElement(`script`);
-                            script_dom.dataset.deleteScriptDom = `delete-script-dom-${uid}`;
-                            script_dom.setAttribute(`src`, `./Modules/agency-rating.js`);
-                            box.insertAdjacentElement(`afterend`, script_dom);
-                            // Uncaught SyntaxError: Identifier 'recentImportantEvents' has already been declared
-                        }, 0);
+                        /* 
+                            setTimeout(function() {
+                                let box = document.querySelector(`.fv-agency-rating-container`),
+                                    link_css = document.createElement(`link`),
+                                    script_dom = document.createElement(`script`);
+                                link_css.setAttribute(`rel`, `stylesheet`);
+                                link_css.setAttribute(`href`, `./Modules/agency-rating.css`);
+                                link_css.dataset.deleteLinkCss = `delete-link-css-${uid}`;
+                                script_dom.dataset.deleteScriptDom = `delete-script-dom-${uid}`;
+                                script_dom.setAttribute(`src`, `./Modules/agency-rating.js`);
+                                box.insertAdjacentElement(`afterend`, link_css);
+                                link_css.insertAdjacentElement(`afterend`, script_dom);
+                            }, 0);
+                        */
+                        loadModule(`agency-rating`);
                         htmlstr += `
                             <section class="fv-module-box-7">
                                 <div class="fv-agency-rating-title-box">
@@ -807,14 +877,21 @@ let moduleTest = (function() {
                         `;
                         break;
                     case "stockfast06":
-                        setTimeout(function() {
-                            let box = document.querySelector(`.fv-stock-price-turnover-container`),
-                                script_dom = document.createElement(`script`);
-                            script_dom.dataset.deleteScriptDom = `delete-script-dom-${uid}`;
-                            script_dom.setAttribute(`src`, `./Modules/stock-price-turnover.js`);
-                            box.insertAdjacentElement(`afterend`, script_dom);
-                            // Uncaught SyntaxError: Identifier 'recentImportantEvents' has already been declared
-                        }, 0);
+                        /* 
+                            setTimeout(function() {
+                                let box = document.querySelector(`.fv-stock-price-turnover-container`),
+                                    link_css = document.createElement(`link`),
+                                    script_dom = document.createElement(`script`);
+                                link_css.setAttribute(`rel`, `stylesheet`);
+                                link_css.setAttribute(`href`, `./Modules/stock-price-turnover.css`);
+                                link_css.dataset.deleteLinkCss = `delete-link-css-${uid}`;
+                                script_dom.dataset.deleteScriptDom = `delete-script-dom-${uid}`;
+                                script_dom.setAttribute(`src`, `./Modules/stock-price-turnover.js`);
+                                box.insertAdjacentElement(`afterend`, link_css);
+                                link_css.insertAdjacentElement(`afterend`, script_dom);
+                            }, 0);
+                        */
+                        loadModule(`stock-price-turnover`);
                         htmlstr += `
                             <section class="fv-module-box-7">
                                 <!-- <section data-uid="stock-price-turnover"></section> -->
@@ -829,14 +906,21 @@ let moduleTest = (function() {
                         `;
                         break;
                     case "stockfast07":
-                        setTimeout(function() {
-                            let box = document.querySelector(`.fv-top-ten-shareholders-table`),
-                                script_dom = document.createElement(`script`);
-                            script_dom.dataset.deleteScriptDom = `delete-script-dom-${uid}`;
-                            script_dom.setAttribute(`src`, `./Modules/top-ten-shareholders.js`);
-                            box.insertAdjacentElement(`afterend`, script_dom);
-                            // Uncaught SyntaxError: Identifier 'recentImportantEvents' has already been declared
-                        }, 0);
+                        /* 
+                            setTimeout(function() {
+                                let box = document.querySelector(`.fv-top-ten-shareholders-table`),
+                                    script_dom = document.createElement(`script`);
+                                script_dom.dataset.deleteScriptDom = `delete-script-dom-${uid}`;
+                                script_dom.setAttribute(`src`, `./Modules/top-ten-shareholders.js`);
+                                box.insertAdjacentElement(`afterend`, script_dom);
+                            }, 0);
+                        */
+                        /* 
+                            setTimeout(function() {
+                                loadModule(`top-ten-shareholders`, true);// table
+                            }, 0);
+                        */
+                        loadModule(`top-ten-shareholders`, true);// table
                         htmlstr += `
                             <section class="fv-module-box-10">
                                 <div class="fv-top-ten-shareholders-title-box">
@@ -864,13 +948,16 @@ let moduleTest = (function() {
                         `;
                         break;
                     case "stockfast08":
-                        setTimeout(function() {
-                            let box = document.querySelector(`.fv-financing-and-margin-balance-difference-trend-container`),
-                            script_dom = document.createElement(`script`);
-                            script_dom.dataset.deleteScriptDom = `delete-script-dom-${uid}`;
-                            script_dom.setAttribute(`src`, `./Modules/financing-and-margin-balance-difference-trend.js`);
-                            box.insertAdjacentElement(`afterend`, script_dom);
-                        }, 0);
+                        /* 
+                             setTimeout(function() {
+                                let box = document.querySelector(`.fv-financing-and-margin-balance-difference-trend-container`),
+                                script_dom = document.createElement(`script`);
+                                script_dom.dataset.deleteScriptDom = `delete-script-dom-${uid}`;
+                                script_dom.setAttribute(`src`, `./Modules/financing-and-margin-balance-difference-trend.js`);
+                                box.insertAdjacentElement(`afterend`, script_dom);
+                            }, 0);
+                        */
+                        loadModule(`financing-and-margin-balance-difference-trend`, false);// container
                         htmlstr += `
                             <section class="fv-module-box-7">
                                 <!-- <section data-uid="financing-and-margin-balance-difference-trend"></section> -->
@@ -885,13 +972,16 @@ let moduleTest = (function() {
                         `;
                         break;
                     case "stockfast09":
-                        setTimeout(function() {
-                            let box = document.querySelector(`.fv-monthly-capital-flows-large-single-statistics-container`),
-                            script_dom = document.createElement(`script`);
-                            script_dom.dataset.deleteScriptDom = `delete-script-dom-${uid}`;
-                            script_dom.setAttribute(`src`, `./Modules/monthly-capital-flows-large-single-statistics.js`);
-                            box.insertAdjacentElement(`afterend`, script_dom);
-                        }, 0);
+                        /* 
+                            setTimeout(function() {
+                                let box = document.querySelector(`.fv-monthly-capital-flows-large-single-statistics-container`),
+                                script_dom = document.createElement(`script`);
+                                script_dom.dataset.deleteScriptDom = `delete-script-dom-${uid}`;
+                                script_dom.setAttribute(`src`, `./Modules/monthly-capital-flows-large-single-statistics.js`);
+                                box.insertAdjacentElement(`afterend`, script_dom);
+                            }, 0);
+                        */
+                        loadModule(`monthly-capital-flows-large-single-statistics`);// false
                         htmlstr += `
                             <section class="fv-module-box-7">
                                 <div class="fv-monthly-capital-flows-large-single-statistics-title-box">
@@ -905,13 +995,16 @@ let moduleTest = (function() {
                         `;
                         break;
                     case "stockfast10":
-                        setTimeout(function() {
-                            let box = document.querySelector(`.fv-equity-pledge-table`),
-                                script_dom = document.createElement(`script`);
-                            script_dom.dataset.deleteScriptDom = `delete-script-dom-${uid}`;
-                            script_dom.setAttribute(`src`, `./Modules/equity-pledge.js`);
-                            box.insertAdjacentElement(`afterend`, script_dom);
-                        }, 0);
+                        /* 
+                            setTimeout(function() {
+                                let box = document.querySelector(`.fv-equity-pledge-table`),
+                                    script_dom = document.createElement(`script`);
+                                script_dom.dataset.deleteScriptDom = `delete-script-dom-${uid}`;
+                                script_dom.setAttribute(`src`, `./Modules/equity-pledge.js`);
+                                box.insertAdjacentElement(`afterend`, script_dom);
+                            }, 0);
+                        */
+                        loadModule(`equity-pledge`, true);
                         htmlstr += `
                             <section class="fv-module-box-10">
                                 <div class="fv-equity-pledge-title-box">
@@ -941,13 +1034,16 @@ let moduleTest = (function() {
                         `;
                         break;
                     case "stockfast11":
-                        setTimeout(function() {
-                            let box = document.querySelector(`.fv-holdings-participation-situation-table`),
-                                script_dom = document.createElement(`script`);
-                            script_dom.dataset.deleteScriptDom = `delete-script-dom-${uid}`;
-                            script_dom.setAttribute(`src`, `./Modules/holdings-participation-situation.js`);
-                            box.insertAdjacentElement(`afterend`, script_dom);
-                        }, 0);
+                        /* 
+                            setTimeout(function() {
+                                let box = document.querySelector(`.fv-holdings-participation-situation-table`),
+                                    script_dom = document.createElement(`script`);
+                                script_dom.dataset.deleteScriptDom = `delete-script-dom-${uid}`;
+                                script_dom.setAttribute(`src`, `./Modules/holdings-participation-situation.js`);
+                                box.insertAdjacentElement(`afterend`, script_dom);
+                            }, 0);
+                        */
+                        loadModule(`holdings-participation-situation`, true);
                         htmlstr += `
                             <section class="fv-module-box-5">
                                 <div class="fv-holdings-participation-situation-title-box">
@@ -975,13 +1071,16 @@ let moduleTest = (function() {
                         `;
                         break;
                     case "stockfast12":
-                        setTimeout(function() {
-                            let box = document.querySelector(`.fv-changes-shareholding-executives-table`),
-                                script_dom = document.createElement(`script`);
-                            script_dom.dataset.deleteScriptDom = `delete-script-dom-${uid}`;
-                            script_dom.setAttribute(`src`, `./Modules/changes-shareholding-executives.js`);
-                            box.insertAdjacentElement(`afterend`, script_dom);
-                        }, 0);
+                        /* 
+                            setTimeout(function() {
+                                let box = document.querySelector(`.fv-changes-shareholding-executives-table`),
+                                    script_dom = document.createElement(`script`);
+                                script_dom.dataset.deleteScriptDom = `delete-script-dom-${uid}`;
+                                script_dom.setAttribute(`src`, `./Modules/changes-shareholding-executives.js`);
+                                box.insertAdjacentElement(`afterend`, script_dom);
+                            }, 0);
+                        */
+                        loadModule(`changes-shareholding-executives`, true);
                         htmlstr += `
                             <section class="fv-module-box-5">
                                 <div class="fv-changes-shareholding-executives-title-box">
@@ -1010,14 +1109,17 @@ let moduleTest = (function() {
                         `;
                         break;
                     case "stockfast13":
-                        setTimeout(function() {
-                            let box = document.querySelector(`.fv-institutional-shareholding-change-statistics-container`),
-                                script_dom = document.createElement(`script`);
-                            script_dom.dataset.deleteScriptDom = `delete-script-dom-${uid}`;
-                            script_dom.setAttribute(`src`, `./Modules/institutional-shareholding-change-statistics.js`);
-                            box.insertAdjacentElement(`afterend`, script_dom);
-                            // Uncaught SyntaxError: Identifier 'recentImportantEvents' has already been declared
-                        }, 0);
+                        /* 
+                            setTimeout(function() {
+                                let box = document.querySelector(`.fv-institutional-shareholding-change-statistics-container`),
+                                    script_dom = document.createElement(`script`);
+                                script_dom.dataset.deleteScriptDom = `delete-script-dom-${uid}`;
+                                script_dom.setAttribute(`src`, `./Modules/institutional-shareholding-change-statistics.js`);
+                                box.insertAdjacentElement(`afterend`, script_dom);
+                                // Uncaught SyntaxError: Identifier 'recentImportantEvents' has already been declared
+                            }, 0);
+                        */
+                        loadModule(`institutional-shareholding-change-statistics`);
                         htmlstr += `
                             <section class="fv-module-box-7">
                                 <div class="fv-institutional-shareholding-change-statistics-title-box">
@@ -1031,13 +1133,16 @@ let moduleTest = (function() {
                         `;
                         break;
                     case "news":
-                        setTimeout(function() {
-                            let box = document.querySelector(`.fv-company-news-table`),
-                                script_dom = document.createElement(`script`);
-                            script_dom.dataset.deleteScriptDom = `delete-script-dom-${uid}`;
-                            script_dom.setAttribute(`src`, `./Modules/company-news.js`);
-                            box.insertAdjacentElement(`afterend`, script_dom);
-                        }, 0);
+                        /* 
+                            setTimeout(function() {
+                                let box = document.querySelector(`.fv-company-news-table`),
+                                    script_dom = document.createElement(`script`);
+                                script_dom.dataset.deleteScriptDom = `delete-script-dom-${uid}`;
+                                script_dom.setAttribute(`src`, `./Modules/company-news.js`);
+                                box.insertAdjacentElement(`afterend`, script_dom);
+                            }, 0);
+                        */
+                        loadModule(`company-news`, true);
                         htmlstr += `
                             <section class="fv-module-box-5">
                                 <div class="fv-company-news-title-box">
@@ -1061,13 +1166,15 @@ let moduleTest = (function() {
                         `;
                         break;
                     case "bulletion":
-                        setTimeout(function() {
-                            let box = document.querySelector(`.fv-company-announcements-table`),
-                                script_dom = document.createElement(`script`);
-                            script_dom.dataset.deleteScriptDom = `delete-script-dom-${uid}`;
-                            script_dom.setAttribute(`src`, `./Modules/company-announcements.js`);
-                            box.insertAdjacentElement(`afterend`, script_dom);
-                        }, 0);
+                        /* 
+                            setTimeout(function() {
+                                let box = document.querySelector(`.fv-company-announcements-table`),
+                                    script_dom = document.createElement(`script`);
+                                script_dom.dataset.deleteScriptDom = `delete-script-dom-${uid}`;
+                                script_dom.setAttribute(`src`, `./Modules/company-announcements.js`);
+                                box.insertAdjacentElement(`afterend`, script_dom);
+                            }, 0);
+                        */
                         htmlstr += `
                             <section class="fv-module-box-5">
                                 <div class="fv-company-announcements-title-box">
@@ -1083,15 +1190,19 @@ let moduleTest = (function() {
                                 </table>
                             </section>
                         `;
+                        loadModule(`company-announcements`, true);
                         break;
                     case "research":
-                        setTimeout(function() {
-                            let box = document.querySelector(`.fv-research-report-table`),
-                                script_dom = document.createElement(`script`);
-                            script_dom.dataset.deleteScriptDom = `delete-script-dom-${uid}`;
-                            script_dom.setAttribute(`src`, `./Modules/research-report.js`);
-                            box.insertAdjacentElement(`afterend`, script_dom);
-                        }, 0);
+                        /* 
+                            setTimeout(function() {
+                                let box = document.querySelector(`.fv-research-report-table`),
+                                    script_dom = document.createElement(`script`);
+                                script_dom.dataset.deleteScriptDom = `delete-script-dom-${uid}`;
+                                script_dom.setAttribute(`src`, `./Modules/research-report.js`);
+                                box.insertAdjacentElement(`afterend`, script_dom);
+                            }, 0);
+                        */
+                        loadModule(`research-report`, true);
                         htmlstr += `
                             <section class="fv-module-box-5">
                                 <div class="fv-research-report-title-box">
@@ -1131,7 +1242,7 @@ let moduleTest = (function() {
                 }
                 div.insertAdjacentHTML(`beforeend`, `<div>${htmlstr}</div>`);
                 module_container.insertAdjacentElement(`beforeend`, div);
-                // insert script.js ??? excute time!
+                // insert script.js ??? execute timeline!
                 // insert DOM 
                 // insert CSS
             }else{

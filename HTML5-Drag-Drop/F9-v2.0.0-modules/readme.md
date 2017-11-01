@@ -14,7 +14,7 @@ $ browser-sync start --server --files "./fast-preview/*.*"
 
 # http://localhost:3000/fast-preview/sidebar.html#模块选择
 
-````
+```
 
 face, 😑 😩 🤖 🦊 😒 😧 😟 🐭 🐻 🤓 😪 🦁 🐹 😌 😢 😠 🤗 🐮 😞
 
@@ -31,6 +31,63 @@ http://fanyi.baidu.com/#zh/en/%E5%BF%AB%E9%80%9F%E9%A2%84%E8%A7%88
 
 
 /projects/D2Designs/股票/F9/原型演示文件/F9%202.0(完整版)/index.html
+
+
+# HTML5 DnD
+
+http://www.runoob.com/try/try.php?filename=jqueryui-example-sortable
+
+https://www.w3schools.com/HTML/html5_draganddrop.asp
+
+http://www.cnblogs.com/linxin/p/6794542.html
+
+https://segmentfault.com/a/1190000008209715
+
+http://www.cnblogs.com/linxin/p/6794542.html
+
+
+
+
+## npm
+
+
+```json
+// regexp
+// https://regexper.com/
+// ^(?:@[a-z0-9-~][a-z0-9-._~]*/)?[a-z0-9-~][a-z0-9-._~]*$
+
+// String does not match the pattern of "^(?:@[a-z0-9-~][a-z0-9-._~]*/)?[a-z0-9-~][a-z0-9-._~]*$" The name of the package.
+
+{
+     "files.exclude": {
+        "**/.git": true,
+        "**/.DS_Store": true,
+        "**/jspm_packages": true,
+        "**/node_modules": true,
+        "**/.zip": true,
+        "**/.sh": true
+    },
+    "search.exclude": {
+        "**/node_modules": true,
+        "**/bower_components": true
+    },
+    "files.watcherExclude": {
+        "**/.git/objects/**": true,
+        "**/.git/subtree-cache/**": true,
+        "**/node_modules/*/**": true
+    },
+}
+
+```
+
+
+
+
+
+
+
+
+
 
 
 

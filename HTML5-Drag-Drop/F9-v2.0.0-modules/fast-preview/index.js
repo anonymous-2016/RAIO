@@ -11,6 +11,8 @@ const clickLinkOpenModuleHandler = (uid = `600570`, debug = false) => {
 
 
 setTimeout(function() {
-   let uid = document.querySelector([`data-sortable="data-sortable-uid"`]);
-   
+    let uid = document.querySelector(`[data-sortable="data-sortable-uid"]`);
+    // let sortable = Sortable.create(uid,{});
+    // options: {}
+    Sortable.create(uid);
 }, 0);

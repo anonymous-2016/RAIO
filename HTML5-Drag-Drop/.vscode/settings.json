@@ -3,8 +3,8 @@
     "files.exclude": {
         "**/.git": true,
         "**/.DS_Store": true,
-        "jspm_packages": true,
-        "node_modules": true,
+        "**/jspm_packages": true,
+        "**/node_modules": true,
         "**/.zip": true,
         "**/.sh": true
     },

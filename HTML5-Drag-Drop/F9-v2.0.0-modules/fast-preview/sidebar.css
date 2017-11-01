@@ -1,8 +1,23 @@
 @charset "UTF-8";
 
+/* @import url('./common/reset.css'); */
+
+
+/* @import url("../common/module.css"); */
+
+
 /* size ??? */
 
-div {
+html,
+body {
+    margin: 0;
+    padding: 0;
+}
+
+header,
+section,
+div,
+footer {
     box-sizing: border-box;
 }
 
