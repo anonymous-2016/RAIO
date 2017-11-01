@@ -17,28 +17,28 @@ body {
 
 .fv-left-box {
     /* background: #0f0; */
-    border: 1px solid red;
+    /* border: 1px solid red; */
     width: 30%;
     padding-right: 6px;
 }
 
 .fv-right-box {
     /* background: #f0f; */
-    border: 1px solid #f0f;
+    /* border: 1px solid #f0f; */
     width: 70%;
     /* padding-left: 6px; */
 }
 
 .fv-center-box {
     /* background: #f0f; */
-    border: 1px solid #f0f;
+    /* border: 1px solid #f0f; */
     width: 50%;
     /* padding-left: 6px; */
 }
 
 .fv-all-box {
     /* background: #f0f; */
-    border: 1px solid #f0f;
+    /* border: 1px solid #f0f; */
     width: 100%;
     /* padding-left: 6px; */
 }
@@ -59,7 +59,8 @@ body {
     /* position: absolute; */
     /* margin-left: 50%; */
     /* transform: translateX(-50%); */
-    margin-right: 6px;
+    margin-right: 3px;
+    margin-left: 6px;
     float: left;
 }
 
@@ -99,7 +100,8 @@ body {
     /* position: absolute; */
     /* margin-left: 50%; */
     /* transform: translateX(-50%); */
-    margin-left: 6px;
+    margin-left: 3px;
+    margin-right: 6px;
     float: left;
 }
 

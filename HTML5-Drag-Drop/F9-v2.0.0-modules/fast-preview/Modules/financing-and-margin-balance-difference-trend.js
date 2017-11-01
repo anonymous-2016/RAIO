@@ -13,7 +13,8 @@
 
 // financing-and-margin-balance-difference-trend FMBDT
 
-const FMBDtrend = (url = ``, debug = false, uid = `default_dom_uid`) => {
+// const
+var FMBDtrend = (url = ``, debug = false, uid = `default_dom_uid`) => {
     // profitForecast
     console.log(`uid = `, uid);
     // debug = true;
@@ -107,12 +108,12 @@ const FMBDtrend = (url = ``, debug = false, uid = `default_dom_uid`) => {
                     arr_obj.stock_price.push(stock_price);
                     // return arr_obj;
                     if (counter === 1) {
-                        console.log(`arr_obj = `, JSON.stringify(arr_obj, null, 4));
+                        // console.log(`arr_obj = `, JSON.stringify(arr_obj, null, 4));
                         counter ++;
                     }
                 }
             );
-            console.log(`arr_obj = `, JSON.stringify(arr_obj, null, 4));
+            // console.log(`arr_obj = `, JSON.stringify(arr_obj, null, 4));
             // let {...arr_obj} = {rq: [], st: [], xt: [], pj: [], wc: []};
             // Object.assign()
             // arr.forEach() just use for addEventListener() / do somthing, no return value / undefined!
@@ -365,12 +366,14 @@ setTimeout(() => {
     const sf_num= `stockfast08`;
     const url = `http://10.1.5.202/webservice/fastview/stock/${sf_num}/600570.SH`;
     let uid = `financing_and_margin_balance_difference_trend_hs_container`;
-    let hs_datas = FMBDtrend(url, true, uid);
+    FMBDtrend(url, false, uid);
+    // let hs_datas = FMBDtrend(url, true, uid);
     // console.log(`hs_datas = \n`, JSON.stringify(hs_datas, null, 4));
     // setTimeout(() => {
     //     // FMBDTdrawHS(hs_datas, uid);
     // }, 0);
 }, 0);
+// setTimeout === IIFE ???
 
 
 

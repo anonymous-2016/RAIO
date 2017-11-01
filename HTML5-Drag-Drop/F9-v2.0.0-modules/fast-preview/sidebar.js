@@ -281,6 +281,7 @@ const loadAllModules = (debug = false) => {
  * 
  */
 
+// IIFE === Closure!
 
 let moduleTest = (function() {
     const V = `this is a constant value!`;
@@ -1154,7 +1155,11 @@ let moduleTest = (function() {
     };
 })();
 
-moduleTest.init();
+// setTimeout === Closure!
+setTimeout(function() {
+    moduleTest.init();
+}, 0);
+// moduleTest.init();
 
 
 /// todo & enhancement

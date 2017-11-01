@@ -8,3 +8,9 @@ const clickLinkOpenModuleHandler = (uid = `600570`, debug = false) => {
     // show module
     // cache ?
 };
+
+
+setTimeout(function() {
+   let uid = document.querySelector([`data-sortable="data-sortable-uid"`]);
+   
+}, 0);

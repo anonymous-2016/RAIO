@@ -333,8 +333,78 @@
         }
     }(typeof window !== 'undefined' ? window : this, function(win) {
         console.log(`win = this \n`, win);
+        // IIFE
+        var OOPMT = (function() {
+            // global win
+            var doc = win.document,
+                SVG_NS = 'http://www.w3.org/2000/svg',
+                userAgent = (win.navigator && win.navigator.userAgent) || '',
+                svg = doc && doc.createElementNS && !!doc.createElementNS(SVG_NS, 'svg').createSVGRect,
+                isMS = /(edge|msie|trident)/i.test(userAgent) && !win.opera,
+                isFirefox = /Firefox/.test(userAgent),
+                hasBidiBug = isFirefox && parseInt(userAgent.split('Firefox/')[1], 10) < 4; 
+                // issue #38
+            var OOPMT = win.OOPMT ? win.OOPMT.error(16, true) : {
+                product: 'OOPMT',
+                version: '6.0.2',
+                deg2rad: Math.PI * 2 / 360,
+                doc: doc,
+                hasBidiBug: hasBidiBug,
+                hasTouch: doc && doc.documentElement.ontouchstart !== undefined,
+                isMS: isMS,
+                isWebKit: /AppleWebKit/.test(userAgent),
+                isFirefox: isFirefox,
+                isTouchDevice: /(Mobile|Android|Windows Phone)/.test(userAgent),
+                SVG_NS: SVG_NS,
+                chartCount: 0,
+                seriesTypes: {},
+                symbolSizes: {},
+                svg: svg,
+                win: win,
+                marginNames: ['plotTop', 'marginRight', 'marginBottom', 'plotLeft'],
+                noop: function() {
+                    return undefined;
+                },
+                charts: []
+            };
+            return OOPMT;
+        }());
         // return Object
         return OOPMT;
     }));
+
+*/
+
+
+/* 
+
+# navigator.userAgent
+
+Chrome
+Safari ???
+Firefox
+Edge
+Trident
+
+// Chrome Canary
+window.navigator.userAgent;
+// "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3246.2 Safari/537.36"
+
+
+// Chrome
+window.navigator.userAgent;
+// "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36"
+
+// Firefox
+window.navigator.userAgent;
+// "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:56.0) Gecko/20100101 Firefox/56.0"
+
+// Edge
+window.navigator.userAgent;
+// "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36 Edge/15.15063"
+
+// IE 11
+window.navigator.userAgent;
+// "Mozilla/5.0 (Windows NT 10.0; WOW64; Trident/7.0; .NET4.0C; .NET4.0E; rv:11.0) like Gecko"
 
 */

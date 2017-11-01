@@ -95,7 +95,7 @@ var SPTurnover = (url = ``, debug = false, uid = `default_dom_uid`) => {
             let counter = 1;
             arr.map(
                 (obj, i) => {
-                    console.log(`obj = `, JSON.stringify(obj, null, 4));
+                    // console.log(`obj = `, JSON.stringify(obj, null, 4));
                     let time = ``, turn_over = ``, stock_price = ``, SH_Index = ``;
                     // time ms ???
                     time = (obj.sjz !== undefined) ? obj.sjz : `😟 暂无数据`;
@@ -155,33 +155,34 @@ var SPTdrawHS = (datas = {}, container_uid = `container`, debug = false) => {
     };
     // css_obj ???
     const {color, colors, optioncolor, gridColor, legendColor, yAxisColor} = {...chart_css};
-    // Highcharts.setOptions({
-    //     lang: {
-    //         rangeSelectorZoom: ''
-    //     }
-    // });
     // console.log(json);
     var ohlc = [],
         volume = [],
         sh_index = [],
         dataLength = datas.time.length,
         // set the allowed units for data grouping
-        groupingUnits = [
-            [
-                'week', // unit name
-                [1] // allowed multiples
-            ],
-            [
-                'month', [1, 2, 3, 4, 6]
-            ]
-        ],
+        // groupingUnits = [
+        //     [
+        //         'week', // unit name
+        //         [1] // allowed multiples
+        //     ],
+        //     [
+        //         'month', [1, 2, 3, 4, 6]
+        //     ]
+        // ],
+        data = [],
         i = 0;
     // datas.time = datas.time.map((k, i) => datas.time[datas.time.length - 1 - i]);
     // reverse 逆序
     // console.log(`datas.time = \n`, datas.time);
     for (i; i < dataLength; i ++) {
         let new_ms_time = new Date(datas.time[i]).getTime();
-
+        data.push([
+            new_ms_time, // the date ??? 1147651200000 (ms) ??? new Date(oldTime);
+            datas.stock_price[i],
+            datas.turn_over[i],
+            datas.SH_Index[i]
+        ]);
         ohlc.push([
             new_ms_time, // the date ??? 1147651200000 (ms) ??? new Date(oldTime);
             datas.stock_price[i],
@@ -244,7 +245,7 @@ var SPTdrawHS = (datas = {}, container_uid = `container`, debug = false) => {
         },
         rangeSelector: {
             // enabled: false,
-            selected: undefined,// button index 
+            selected: 0,// button index 
             // The index of the button to appear pre-selected. 默认是：undefined.
             inputDateFormat: '%Y-%m-%d',//'%Y年%m月%d日' 
             // inputDateFormat: '%Y年 %m月 %d日'
@@ -259,15 +260,15 @@ var SPTdrawHS = (datas = {}, container_uid = `container`, debug = false) => {
                         units: [['day', [1]]]
                     }
                 },
-                {
-                    type: 'week',
-                    count: 1,
-                    text: '一周',
-                    dataGrouping: {
-                        forced: true,
-                        units: [['week', [1]]]
-                    }
-                },
+                // {
+                //     type: 'week',
+                //     count: 1,
+                //     text: '一周',
+                //     dataGrouping: {
+                //         forced: true,
+                //         units: [['week', [1]]]
+                //     }
+                // },
                 {
                     type: 'month',
                     count: 1,
@@ -437,9 +438,9 @@ var SPTdrawHS = (datas = {}, container_uid = `container`, debug = false) => {
                     color: Highcharts.getOptions().colors[0]
                 },
                 data: ohlc,
-                dataGrouping: {
-                    units: groupingUnits
-                },
+                // dataGrouping: {
+                //     units: groupingUnits
+                // },
                 yAxis: 0
                 // compare: 'percent',
                 // showInNavigator: true
@@ -449,9 +450,9 @@ var SPTdrawHS = (datas = {}, container_uid = `container`, debug = false) => {
                 name: '成交量',
                 data: volume,
                 yAxis: 2,
-                dataGrouping: {
-                    units: groupingUnits
-                },
+                // dataGrouping: {
+                //     units: groupingUnits
+                // },
                 tooltip: {
                     // formatter: () => {
                     //     return `
@@ -467,9 +468,9 @@ var SPTdrawHS = (datas = {}, container_uid = `container`, debug = false) => {
                 data: sh_index,
                 color:"#1a75bc",
                 yAxis: 1,
-                dataGrouping: {
-                    units: groupingUnits
-                },
+                // dataGrouping: {
+                //     units: groupingUnits
+                // },
                 tooltip: {
                     // formatter: () => {
                     //     return `
@@ -486,11 +487,20 @@ var SPTdrawHS = (datas = {}, container_uid = `container`, debug = false) => {
             // valueDecimals: 3
         },
         plotOptions: {
+            // series: {
+            //     pointStart: Date.UTC(2012, 0, 1),
+            //     pointInterval: 24 * 3600 * 1000
+            // }
+        },
+        navigator: {
+            adaptToUpdatedData: true,
             series: {
-                pointStart: Date.UTC(2012, 0, 1),
-                pointInterval: 24 * 3600 * 1000
+                data: data
             }
-        }
+        },
+        scrollbar: {
+            liveRedraw: true
+        },
     });
     // svg style
 // let svg_ranges = document.querySelectorAll(`.highcharts-range-label`);
