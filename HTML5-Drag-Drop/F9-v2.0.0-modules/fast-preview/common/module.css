@@ -20,10 +20,51 @@ body {
 
 .fv-left-box {
     /* background: #0f0; */
-    /* border: 1px solid red; */
-    width: 30%;
-    padding-right: 6px;
+    box-sizing: border-box;
+    border: 1px solid red;
+    /* width: 30%; */
+    min-width: calc(328px - 6px);
+    /* padding-left: 6px; */
+    /* padding-right: 3px; */
+    margin-left: 6px;
+    width: calc(30% - 6px);
+    /* height: 100%; */
 }
+
+
+/* ??? js dynamic change padding-left / padding-right values */
+
+.fv-parent-box>div:nth-of-type(even) {
+    /* 50%, 30% left: 2n === 0, 2, 4, 6*/
+}
+
+.fv-parent-box>div:nth-of-type(odd) {
+    /* 50%, 70% right: 2n+1 === 1, 3, 5, 7, 9*/
+}
+
+.fv-parent-box>div.center-box:nth-of-type(uid) {
+    /* overwrite css ??? */
+    /* uid: 1~n */
+}
+
+
+/* 
+
+    let module_divs = document.querySelectorAll(`.fv-parent-box>[data-icon-uid*="module-data"]`);
+    module_divs.forEach(
+        (div, index) => {
+            div
+            div.dataset.paddingModuleUid = `padding-module-${uid}`;
+            // div.style.background = `#777`;
+            div.setAttribute(`draggable`, "true");
+            div.classList.add(`class`, "fv-parent-box center-box");
+            // div.insertAdjacentHTML(`beforeend`, `<span>⚠️${uid}</span>`);
+            // data-div-module-uid="padding-module-stockfast01"
+            // div.firstChild.dataset.paddingModuleUid = `padding-module-${uid}`;
+        }
+    );
+
+*/
 
 .fv-right-box {
     /* background: #f0f; */
@@ -55,16 +96,15 @@ body {
     display: block;
     /* display: flex; */
     min-width: 328px;
-    width: 30%;
-    /* width: 100vw; */
+    width: 100%;
     min-height: 100px;
     height: 100%;
     /* position: absolute; */
     /* margin-left: 50%; */
     /* transform: translateX(-50%); */
-    margin-right: 3px;
-    margin-left: 6px;
-    float: left;
+    /* margin-right: 3px; */
+    /* margin-left: 6px; */
+    /* float: left; */
 }
 
 

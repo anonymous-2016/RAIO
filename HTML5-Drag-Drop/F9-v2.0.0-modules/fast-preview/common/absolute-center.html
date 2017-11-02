@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>absolute-center</title>
+    <style>
+        html,
+        body,
+        section,
+        div {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            height: 100vh;
+        }
+        
+        .sider {
+            width: 20%;
+            height: 100vh;
+            background: #0f0;
+            float: left;
+            overflow: hidden;
+        }
+        
+        .content-body {
+            width: 80%;
+            height: 100vh;
+            background: #ccc;
+            /* float: left; */
+            margin-left: 20%;
+            overflow-y: scroll;
+            position: relative;
+        }
+        
+        .modules {
+            /* width: 80%; */
+            width: 500px;
+            height: 2000px;
+            background: #fff;
+            /* position: absolute; */
+            margin: 50px auto;
+            /* padding: 10px auto; */
+            padding-top: 50px;
+        }
+        
+        .module {
+            width: 40%;
+            height: 200px;
+            margin: 10px 5%;
+            float: left;
+        }
+        
+        .module1 {
+            background: rgb(3, 247, 255);
+        }
+        
+        .module2 {
+            background: rgb(139, 3, 250);
+        }
+        
+        .module3 {
+            background: rgb(255, 238, 4);
+        }
+        
+        .module4 {
+            background: rgb(250, 3, 3);
+        }
+        
+        .module-big {
+            width: 90%;
+            height: 300px;
+            margin: 10px 5%;
+            float: left;
+        }
+        
+        .module-half {
+            width: 40%;
+            height: 300px;
+            margin: 10px 5%;
+            float: left;
+        }
+        
+        .module-left {
+            width: 20%;
+            height: 200px;
+            margin: 10px 5%;
+            float: left;
+        }
+        
+        .module-right {
+            width: 60%;
+            height: 200px;
+            margin: 10px 5%;
+            float: left;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="sider"></div>
+    <div class="content-body">
+        <div class="modules" id="modules-sortable-container">
+            <section class="module module1">
+                重要信息
+            </section>
+            <section class="module module2">
+                涉及概念
+            </section>
+            <section class="module module3">
+                主营业务
+            </section>
+            <section class="module module4">
+                52周波动率
+            </section>
+            <section class="module-big module1">
+                日均成交量
+            </section>
+            <section class="module-left module2">
+                净资产
+            </section>
+            <section class="module-right module3">
+                总股本
+            </section>
+            <section class="module-right module4">
+                股息率
+            </section>
+            <section class="module-left module1">
+                目标价格
+            </section>
+            <section class="module module2">
+                综合评级
+            </section>
+            <section class="module module3">
+                流通股本
+            </section>
+            <section class="module module4">
+                蚂蚁金服
+            </section>
+        </div>
+    </div>
+    <!-- js -->
+    <script src="../libs/Sortable.min.js"></script>
+    <script>
+        window.onload = function() {
+            let sortable_container = document.querySelector(`#modules-sortable-container`);
+            Sortable.create(sortable_container);
+        };
+    </script>
+</body>
+
+</html>

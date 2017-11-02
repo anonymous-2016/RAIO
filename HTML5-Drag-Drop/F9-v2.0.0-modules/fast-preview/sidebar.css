@@ -638,3 +638,7 @@ div.h5-dnd-module-box:nth-of-type(1) {
     /* align: left; */
     /* [css] Unknown property. */
 }
+
+[data-body-container="data-body-container"] {
+    margin: 0px auto;
+}

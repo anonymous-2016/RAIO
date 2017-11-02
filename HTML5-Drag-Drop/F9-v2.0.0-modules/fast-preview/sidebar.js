@@ -402,8 +402,6 @@ let moduleTest = (function() {
             // insertAdjacentHTML() parses the specified text as HTML or XML and inserts the resulting nodes into the DOM tree at a specified position. 
             let div = document.createElement(`div`),
                 sub_div = document.createElement(`div`);
-            // <div ></div>
-            // Uncaught DOMException: Failed to execute 'createElement' on 'Document': The tag name provided
             // onmousedown="event.preventDefault ? event.preventDefault() : event.returnValue = false"
             // <element draggable="true|false|auto">
             // if exist ??? sub_div
@@ -430,7 +428,7 @@ let moduleTest = (function() {
             });
             // icons ??? sub div ???
             div.dataset.divModuleUid = `div-module-${uid}`;
-            div.setAttribute(`draggable`, "true");
+            // div.setAttribute(`draggable`, "true");
             // draggable="true"
             div.dataset.droppedUid="module-data-stockfast01";
             // data-icon-uid="module-data-stockfast01";
@@ -1240,7 +1238,7 @@ let moduleTest = (function() {
                     default:
                         break;
                 }
-                div.insertAdjacentHTML(`beforeend`, `<div>${htmlstr}</div>`);
+                div.insertAdjacentHTML(`beforeend`, `${htmlstr}`);// no needs container any more!
                 module_container.insertAdjacentElement(`beforeend`, div);
                 // insert script.js ??? execute timeline!
                 // insert DOM 
