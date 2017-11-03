@@ -2,11 +2,50 @@
     "name": "f9-v2.0.0-modules",
     "version": "1.0.0",
     "description": "http://localhost:3000/fast-preview/sidebar.html#模块选择",
+    "keywords": ["fast-preview", "sidebar", "sortable"],
+    "license": "MIT",
+    "author": "xgqfrms",
     "main": "sortable.js",
     "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1"
+        "test": "echo \"Error: no test specified\" && exit 1",
+        //"watch": "webpack --watch", // webpack.config.js
+        "watch": "webpack --progress --watch",
+        "server": "node server.js",
+        // "start": "webpack-dev-server --open",
+        // "start": "webpack --config webpack.config.js",
+        "dev": "webpack --config webpack.dev.js",
+        "start": "webpack-dev-server --open --config webpack.dev.js",
+        // "build": "webpack",
+        "prod": "webpack --config webpack.prod.js",
+        "build": "webpack --config webpack.prod.js"
     },
-    "keywords": [],
-    "author": "",
-    "license": "MIT"
+    "dependencies": {
+        "webpack": "^3.0.0",
+        "babel": "^7.0.0",
+        "express": "^4.15.3"
+    },
+    "devDependencies": {
+        "style-loader": "^0.18.2",
+        "css-loader": "^0.28.4",
+        "file-loader": "^0.11.2",
+        "sass-loader": "^0.11.2",
+        "xml-loader": "^1.2.1",
+        "csv-loader": "^2.1.1",
+        "clean-webpack-plugin": "^0.1.16",
+        "html-webpack-plugin": "^2.29.0"
+    }
 }
+
+/* 
+
+$ npm run watch
+
+$ npm i -S (package list)
+
+# js/react/angular/vue
+
+$ npm i -D (package list)
+
+# devtools/utils/plugins/libs
+
+*/

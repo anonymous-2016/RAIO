@@ -24,17 +24,37 @@ var config = {
 module.exports = config;
 
 
+
+
 /* 
 
-const path = require('path');
+    // https://doc.webpack-china.org/concepts
+    const HtmlWebpackPlugin = require('html-webpack-plugin'); //installed via npm
+    const webpack = require('webpack'); //to access built-in plugins
+    const path = require('path');
 
-module.exports = {
-    entry: './src/index.js',
-    output: {
-        filename: 'bundle.js',
-        path: path.resolve(__dirname, 'dist')
-    }
-};
+    const config = {
+        entry: './path/to/my/entry/file.js',
+        output: {
+            path: path.resolve(__dirname, 'dist'),
+            filename: 'my-first-webpack.bundle.js'
+        },
+        module: {
+            rules: [
+                {
+                    test: /\.txt$/,
+                    use: 'raw-loader'
+                }
+            ]
+        },
+        plugins: [
+            new webpack.optimize.UglifyJsPlugin(),
+            new HtmlWebpackPlugin({
+                template: './src/index.html'
+            })
+        ]
+    };
 
+    module.exports = config;
 
 */

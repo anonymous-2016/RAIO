@@ -1,7 +1,7 @@
 "use strict";
 
 
-/* NameSpace 股票F9 - 速览 stock*/
+/* NameSpace 股票 F9 速览*/
 
 /**
  * @description Modules Loader
@@ -27,75 +27,234 @@
     console.log(`layout = `, arguments[3]);
     console.log(`debug = `, arguments[4]);
     console.log(`arguments.lenth = `, arguments.length);
-})(`https://cdn.xgqfrms.xyz/`, `007`);
+})(`https://cdn.gildata.xyz/`, `007`);
 
 
 
 */
 
 (function argsTest (url = `url`, uid = `id`, size = `default`, layout = `default`, debug = `false`) {
-    console.log(`url = `, arguments[0], typeof(arguments[0]));
-    console.log(`uid = `, arguments[1], typeof(arguments[1]));
-    console.log(`size = `, arguments[2], typeof(arguments[2]));
+    console.log(`url = `, arguments[0], typeof(arguments[0]));// string
+    console.log(`uid = `, arguments[1], typeof(arguments[1]));// string
+    console.log(`size = `, arguments[2], typeof(arguments[2]));// undefined
     console.log(`layout = `, arguments[3]);
     console.log(`debug = `, arguments[4]);
     console.log(`arguments.lenth = `, arguments.length);
-})(`https://cdn.xgqfrms.xyz/`, `007`);
+})(`https://cdn.gildata.xyz/`, `007`);
 
 
+/* 
+
+check = (params = [`x`,`y`,`z`]) => {
+    let al = params.length;
+    if(al >= 3 &&params[0] === `url` && params[1] === `id`){
+        // arguments.length;
+        // typeof(arguments[0] !== undefined)
+    }
+    if (debug) {
+        console.log(`url = `, params[0], typeof(params[0]));// string
+        console.log(`uid = `, params[1], typeof(params[1]));// string
+        console.log(`size = `, params[2], typeof(params[2]));// undefined
+        console.log(`layout = `, params[3]);
+        console.log(`debug = `, params[4]);
+        console.log(`arguments.lenth = `, params.length);
+    }
+};
+
+*/
 
 // const
 var NS_Stock_F9_FV = NS_Stock_F9_FV || function(url = `url`, uid = `id`, size = `default`, layout = `default`, debug = `false`) {
-    let paramsIsValid = false,
-        al = arguments.length;
-    const check = function (params) {
-        if(al >=3 && arguments[0] === `url` && arguments[1] === `id`){
-            // arguments.length;
-            // typeof(arguments[0] !== undefined)
-        }
-    };
+    let paramsIsValid = false;
     return {
+        check: (params = arguments) => {
+            let al = params.length;
+            if(al >= 3 &&params[0] === `url` && params[1] === `id`){
+                // arguments.length;
+                // typeof(arguments[0] !== undefined)
+            }
+            if (debug) {
+                console.log(`url = `, params[0], typeof(params[0]));// string
+                console.log(`uid = `, params[1], typeof(params[1]));// string
+                console.log(`size = `, params[2], typeof(params[2]));// undefined
+                console.log(`layout = `, params[3]);
+                console.log(`debug = `, params[4]);
+                console.log(`arguments.lenth = `, params.length);
+            }
+        },
         init: function() {
             // call methods
-            // this.check();
-            NS_Stock_F9_FV.check(al);
+            this.check();
+            // NS_Stock_F9_FV.check();
+            console.log(`check init`);
         }
     }
 };
+
+let arr = [`x`,`y`,`z`];
+NS_Stock_F9_FV(...arr).init();
+
+// fast-preview/Modules/important-infos.
+
+// NS_Stock_F9_FV.Modules.importantInfos();
+
+
+setTimeout(function() {
+    //IIFE
+}, 0);
+
+
+
+/* 
+
+url =  x string
+uid =  y string
+size =  z string
+layout =  undefined
+debug =  undefined
+arguments.lenth =  3
+check init
+
+*/
+
 
 
 // namespace
 if (typeof MYAPPLICATION === "undefined") {
     var MYAPPLICATION = {};
     // in case overwrite
+}else{
+    MYAPPLICATION = MYAPPLICATION;
 }
 
 
-function Book () {
-    var name = '';
-    Object.defineProperty(this, 'name', {
-        get: function () {
-            return name;
-        },
-        set: function (val) {
-            console.log(val);
-            name = val;
+
+
+var NS_Stock_F9_FV = NS_Stock_F9_FV || {};
+
+NS_Stock_F9_FV.modules = NS_Stock_F9_FV.modules || {};
+
+NS_Stock_F9_FV.DOM = NS_Stock_F9_FV.DOM || {};
+
+
+
+
+
+
+
+// namespace
+var Stock_F9 = Stock_F9 || {};
+
+// sub namespace
+Stock_F9.Modules = Stock_F9.Modules || {};
+
+
+/**
+ * @description Stock_F9 Modules infos
+ * @author xgqfrms
+ * @created 2017.11.03
+ * 
+ * @copyright https://www.gildata.com
+ * @license MIT
+ * @namespace NS_Stock_F9.Modules.infos
+ *
+ * @param {String} constainer_uid (Required)
+ * @param {String} files_path (Required)
+ * @param {String} api_path (Required)
+ * @param {String} api_uid (Required)
+ * @param {Number} sh_code (Required)
+ * @param {Number} sh_code (Optional)
+ * @param {Boolean} debug (Optional)
+ * @example let args = [`#constainer_uid`, `https://cdn.gildata.xyz/files/fastview/stock/F9/`, `http://10.1.5.202/webservice/fastview/stock/`, `stockfast07`, `600570`, true];
+ * @example Stock_F9.Modules.infos.init(args);
+ * @argument 
+ */
+
+// http://10.1.5.202/webservice/fastview/stock/stockfast07/600570.SH
+
+
+
+
+// infos module
+Stock_F9.Modules.infos = Stock_F9.Modules.infos || (
+    // IIFE
+    function(url = ``, uid = ``, sh_code = ``, debug = `false`){
+        let args = (arguments && arguments.length > 0) ? arguments : [];
+        if (debug) {
+            console.log(`args = \n`, JSON.stringify(args, null, 4));
+            // console.log(`this.name = \n`, this.name);
+            // ??? function name
         }
-    });
-}
-
-let b = new Book;
-b.name = `xgqfrms`;
+        const tester = (...args) => {
+            args.forEach(
+                (arg, i) => {
+                    console.log(`arr[${i}] =`, arg, `\ni = ${i}`);
+                }
+            );
+        };
+        const CSSLoader = () => {
+            // 
+        };
+        const HTMLLoader = () => {
+            // 
+        };
+        const JSLoader = () => {
+            // 
+        };
+        const demo = (constainer_uid = `body`) => {
+            // let args = [`#constainer_uid`, `https://cdn.gildata.xyz/files/fastview/stock/F9/`, `http://10.1.5.202/webservice/fastview/stock/`, `stockfast07`, `600570`, true];
+            // Stock_F9.Modules.infos.init(args);
+            let obj = {
+                step1: `let arr = ['#constainer_uid', 'https://cdn.gildata.xyz/files/fastview/stock/F9/', 'http://10.1.5.202/webservice/fastview/stock/', 'stockfast07', '600570', true];`,
+                step2: `Stock_F9.Modules.infos.init(args);`
+            };
+            console.table(obj);
+            let arr = ["#constainer_uid", "https://cdn.gildata.xyz/files/fastview/stock/F9/", "http://10.1.5.202/webservice/fastview/stock/", "stockfast07", "600570", true];
+            console.table(arr);
+            console.log(`let arr = [\n\t"#constainer_uid", \n\t"https://cdn.gildata.xyz/files/fastview/stock/F9/", \n\t"http://10.1.5.202/webservice/fastview/stock/", \n\t"stockfast07", \t\n\t"600570", \n\ttrue\n]; \nStock_F9.Modules.infos.init(args);`);
+            let app_root = constainer_uid,
+                target_dom = ``;
+            if (app_root !== `body`) {
+                if (app_root.includes(`#`)) {
+                    target_dom = document.querySelector(app_root);
+                }else{
+                    target_dom = document.querySelector(`#${app_root}`);
+                }
+            }else{
+                target_dom = document.querySelector(`body`);
+            }
+            let pre = document.createElement(`pre`);
+            pre.innerHTML = `${JSON.stringify(obj, null, 4)}`;
+            target_dom.insertAdjacentElement(`afterbegin`, pre);
+            // let str = `let arr = [\n\t"#constainer_uid", \n\t"https://cdn.gildata.xyz/files/fastview/stock/F9/", \n\t"http://10.1.5.202/webservice/fastview/stock/", \n\t"stockfast07", \t\n\t"600570", \n\ttrue\n]; \nStock_F9.Modules.infos.init(args);`;
+            // target_dom.insertAdjacentHTML(`beforeend`, `<div>${str}</div>`);
+            // append / appendChild
+        };
+        const init = (arr = []) => {
+            // this.tester(...args);
+            // Uncaught TypeError: this.tester is not a function at Object.init
+            // Stock_F9.Modules.infos.tester(...args);
+            // console.log(`this.name = \n`, this.name);
+            tester(...((arr.length > 0) ? arr : args));
+        };
+        return {
+            init,
+            tester,
+            demo
+        }
+    }
+)(`https://cdn.gildata.xyz/`, `stockfast07`, `600570`, true);
 
 
 
 /* 
 
-
+![image](https://user-images.githubusercontent.com/18028768/32372633-aa8b8100-c0d0-11e7-9198-cdde88261e77.png)
 
 var NS_Stock_F9_FV = function NS_Stock_F9_FV() {
     // 
 };
+
 
 
 
