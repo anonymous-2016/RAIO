@@ -122,3 +122,25 @@ Stock_F9.Modules.infos = Stock_F9.Modules.infos || (
     }
 )(`https://cdn.gildata.xyz/`, `stockfast07`, `600570`, true);
 
+
+(function argsTest (obj = {url: `url`, uid: `id`, size: `default`, layout: `default`, debug: `false`}) {
+    console.log(`url = `, arguments[0], typeof(arguments[0]));// string
+    console.log(`uid = `, arguments[1], typeof(arguments[1]));// string
+    console.log(`size = `, arguments[2], typeof(arguments[2]));// undefined
+    console.log(`layout = `, arguments[3]);
+    console.log(`debug = `, arguments[4]);
+    console.log(`arguments.lenth = `, arguments.length);
+})({"url": `https://cdn.gildata.xyz/`, "uid": `007`});
+
+
+
+
+(function argsTest (url = `url`, uid = `id`, size = `default`, layout = `default`, debug = `false`) {
+    console.log(`url = `, arguments[0], typeof(arguments[0]));// string
+    console.log(`uid = `, arguments[1], typeof(arguments[1]));// string
+    console.log(`size = `, arguments[2], typeof(arguments[2]));// undefined
+    console.log(`layout = `, arguments[3]);
+    console.log(`debug = `, arguments[4]);
+    console.log(`arguments.lenth = `, arguments.length);
+})(`https://cdn.gildata.xyz/`, `007`);
+
