@@ -20,7 +20,7 @@ Stock_F9.Modules = Stock_F9.Modules || {};
  * @param {String} api_path (Required)
  * @param {String} api_uid (Required)
  * @param {Number} sh_code (Required)
- * @param {Number} sh_code (Optional)
+ * @param {String} layout (Optional)
  * @param {Boolean} debug (Optional)
  * @example let args = [`#constainer_uid`, `https://cdn.gildata.xyz/files/fastview/stock/F9/`, `http://10.1.5.202/webservice/fastview/stock/`, `stockfast07`, `600570`, true];
  * @example Stock_F9.Modules.infos.init(args);
