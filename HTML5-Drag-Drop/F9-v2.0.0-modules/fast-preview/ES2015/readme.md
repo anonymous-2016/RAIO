@@ -342,5 +342,103 @@ plugins: [require('@babel/plugin-transform-class-properties'), require('@babel/p
 ```
 
 
+# module formats & module loaders
+
+
+## server side js (node.js & Sync)
+
+> CommonJS (systemjs) 
+
+
+## browser side js (Async)
+
+> AMD (requirejs)
+
+```js
+// no dependency
+define([], function(){
+    function funcA() {
+        // 
+    };
+    return {
+        funcA: funcA
+    };
+});
+
+// dependency
+// no need `.js`
+define(['a', 'b', ...], function(){
+    // 
+});
+
+```
+
+
+## build-in module loader (node.js)
+
+> commonjs
+
+```js
+
+// no dependency
+var ABC = "";
+function fucA() {
+    // m
+}
+
+exports.fucA = fucA;
+exports.ABC = ABC;
+
+
+// dependency
+const ma = require(`a.js`);
+const mb = require(`b.js`);
+
+function fucA() {
+    // ma
+}
+function fucB() {
+    // mnb
+}
+
+// exports.fucA = fucA;
+// exports.fucB = fucB;
+module.exports = {
+    fucA: fucA,
+    fucB: fucB
+};
+
+// module.exports === exports !!!
+
+```
+
+
+
+
+
+
+## TypeScript & Babel
+
+> UMD
+
+## ES6 Module
+
+> JS build-in
+
+## SystemJS-system.register
+
+## CommonJS shortcut
+
+> module.exports === exports
+
+
+
+
+
+
+
+
+
+
 
 
