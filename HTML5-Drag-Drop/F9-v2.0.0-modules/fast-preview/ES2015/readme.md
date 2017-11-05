@@ -367,7 +367,7 @@ define([], function(){
 
 // dependency
 // no need `.js`
-define(['a', 'b', ...], function(){
+define(['a', 'b', ...], function(a, b){
     // 
 });
 
@@ -412,7 +412,28 @@ module.exports = {
 
 ```
 
+```js
+// module format
+System.config({
+    meta: {
+        format: 'cjs'
+    }
+});
+// entry js
+System.import('js/app.js');
 
+
+/* 
+
+# CJS !== CMD
+
+> CommonJS
+
+> CMD seajs(smg ???)
+
+
+*/
+```
 
 
 
