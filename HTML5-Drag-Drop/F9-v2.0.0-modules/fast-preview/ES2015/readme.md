@@ -324,9 +324,22 @@ decodeURIComponent(`%2f38638210%2f`);
 
 ```
 
+## babel/plugin
+
+https://babeljs.io/docs/plugins/transform-class-properties/
+
+https://babeljs.io/docs/plugins/transform-object-rest-spread
 
 
+```js
 
+plugins: [require('@babel/plugin-transform-class-properties')]
+plugins: [require('@babel/plugin-transform-object-rest-spread')]
+
+
+plugins: [require('@babel/plugin-transform-class-properties'), require('@babel/plugin-transform-object-rest-spread')]
+
+```
 
 
 
