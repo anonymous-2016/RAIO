@@ -194,6 +194,11 @@ var FMBDTdrawHS = (datas = {}, container_uid = `container`, debug = false) => {
             min: 0,
             max: 8,
             // xAxis datas
+            labels: {
+                // autoRotation:'false',
+                autoRotation: [0],
+                step: 2
+            }
         },
         credits: {
             enabled: true,// enabled: false,

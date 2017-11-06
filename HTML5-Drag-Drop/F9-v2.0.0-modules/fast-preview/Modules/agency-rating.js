@@ -194,8 +194,13 @@ var drawHS_agencyRating = (datas = {}, container_uid = `container`, container_di
             // categories: ['2017-02', '2017-02', '2017-02', '2017-02', '2017-02'],
             categories: time,
             min: 0,
-            max: 8
+            max: 8,
             // xAxis datas
+            labels: {
+                // autoRotation:'false',
+                autoRotation: [0],
+                step: 2
+            }
         },
         credits: {
             enabled: true,// enabled: false,

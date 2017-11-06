@@ -774,6 +774,63 @@ copy(keys);
 })(json);
 
 ```
+### Webpack
+
+> code spiltting & dynamic imports module at runtime
+
+https://github.com/tc39/proposal-dynamic-import
+
+https://webpack.js.org/
+
+
+### Rollup
+
+> Tree-shaking
+
+https://rollupjs.org/
+
+https://rollupjs.org/repl
+
+https://github.com/rollup/rollup
+
+https://medium.com/@Rich_Harris/tree-shaking-versus-dead-code-elimination-d3765df85c80#.jnypozs9n
+
+
+CommonJS modules, AMD modules, and IIFE-style scripts. 
+
+https://github.com/rollup/rollup/wiki/Command-Line-Interface
+https://github.com/rollup/rollup/wiki/JavaScript-API
+
+
+
+```sh
+
+$ npm install --global rollup
+
+$ rollup --help
+
+```
+
+```sh
+
+
+#For browsers:
+# compile to a <script> containing a self-executing function ('iife')
+$ rollup main.js --o bundle.js --f iife
+
+# For Node.js:
+# compile to a CommonJS module ('cjs')
+$ rollup main.js --o bundle.js --f cjs
+
+# For both browsers and Node.js:
+# UMD format requires a bundle name
+$ rollup main.js --o bundle.js -f umd --name "myBundle"
+
+```
+
+
+
+
 
 
 

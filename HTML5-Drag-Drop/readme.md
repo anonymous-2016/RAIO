@@ -707,3 +707,42 @@ https://github.com/gildata/RAIO/issues/190
 
 
 ```
+
+
+# 如何处理拖拽后模块对齐的问题 ???
+
+https://api.hcharts.cn/highcharts#xAxis.labels
+
+
+
+```js
+
+    xAxis: {
+        categories: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+        labels: {
+            // autoRotation:'false',
+            autoRotation: [0],
+            step: 3,// dynamic step ??? width change listener ???
+            // enabled: false,
+            // format: String
+            // formatter: () => `<a href="${categoryLinks[this.value]}">${this.value}</a>`;
+            reserveSpace: false,  // 轴标签不占用空间
+            // staggerLines: 2,
+            // rotation: -90,
+            // align: 'left',
+            // y: -5,
+            // style: {
+            //     color: '#FFFFFF',
+            //     fontSize: '12pt',
+            //     fontWeight: 'bold',
+            //     textOutline: '1px contrast'
+            // }
+        },
+        // tickWidth: 0
+    },
+
+
+```
+
+
+

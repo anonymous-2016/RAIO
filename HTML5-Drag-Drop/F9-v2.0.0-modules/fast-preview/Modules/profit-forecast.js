@@ -226,8 +226,27 @@ var drawHS = (datas = {}, container_uid = `container`, container_div = `dom_elem
             // categories: ['2017-02', '2017-02', '2017-02', '2017-02', '2017-02'],
             categories: time,
             min: 0,
-            max: 8
+            max: 8,
             // xAxis datas
+            labels: {
+                // autoRotation:'false',
+                autoRotation: [0],
+                step: 2,// dynamic step ??? width change listener ???
+                // enabled: false,
+                // format: String
+                // formatter: () => `<a href="${categoryLinks[this.value]}">${this.value}</a>`;
+                // reserveSpace: false,  // 轴标签不占用空间
+                // staggerLines: 2,
+                // rotation: -90,
+                // align: 'left',
+                // y: -5,
+                // style: {
+                //     color: '#FFFFFF',
+                //     fontSize: '12pt',
+                //     fontWeight: 'bold',
+                //     textOutline: '1px contrast'
+                // }
+            },
         },
         credits: {
             enabled: true,// enabled: false,

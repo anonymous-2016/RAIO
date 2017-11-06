@@ -353,6 +353,11 @@ var SPTdrawHS = (datas = {}, container_uid = `container`, debug = false) => {
                 // valueDecimals: 3
             },
             // tickPixelInterval: 120
+            labels: {
+                // autoRotation:'false',
+                autoRotation: [0],
+                step: 2
+            }
         },
         yAxis: [
             {
