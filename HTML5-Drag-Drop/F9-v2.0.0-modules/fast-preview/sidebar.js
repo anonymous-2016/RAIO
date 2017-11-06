@@ -1,11 +1,23 @@
 // h5-dnd-nav-box
 
+const debug = false;
+
+
+// const debug = false;
+
+/* 
+    // var debug = debug || false;
+    if (typeof debug === "undefined") {
+        var debug = false;
+    }else{
+        console.log(`debug =`, debug);
+    }
+*/
+
+// tabs
 let lis = document.querySelectorAll(`[data-nav-li="nav-li"]`);
 let divs = document.querySelectorAll(`[data-nav-box="nav-box"]`);
 
-const debug = false;
-
-// tabs
 for (let i = 0; i < lis.length; i++) {
     lis[i].addEventListener(`click`, (e) => {
         if (debug) {
@@ -168,6 +180,8 @@ window.onload = () => {
 };
 
 
+/* 
+
 // const url = `http://10.1.5.202/webservice/fastview/stock/stockfast02/600570.SH`;
 // recent-important-events
 
@@ -180,6 +194,8 @@ for (let i = 0; i < uids_arr.length; i++) {
         console.log(`icon = \n ${icon}`);
     }
 }
+
+*/
 
 
 /**
@@ -245,7 +261,8 @@ const loadAllModules = (debug = false) => {
                 // let uid = this.target.dataset.deleteModuleUid;
                 console.log(`uid`, uid);
                 // delete-module-stockfast01
-                moduleTest.deleteModule(uid);
+                // moduleTest.deleteModule(uid);
+                STOCK_F9_FV.Modules.moduleTest.deleteModule(uid);
                 // moduleTest.deleteModule(this.target.dataset.deleteModuleUid);/
                 // Uncaught TypeError: Cannot read property 'dataset' of undefined
             });
@@ -272,6 +289,16 @@ const loadAllModules = (debug = false) => {
 };
 
 
+/**
+ * resetAllModules 
+ * @description initial all modules
+ * @argument dom_container_uid 
+ */
+
+const resetAllModules = () => {
+    // 
+}
+
 
 /**
  * loadCutomizeModules
@@ -281,10 +308,20 @@ const loadAllModules = (debug = false) => {
  * 
  */
 
-// IIFE === Closure!
 
-let moduleTest = (function() {
-    const V = `this is a constant value!`;
+
+// namespaces
+var STOCK_F9_FV = STOCK_F9_FV || {};
+
+// sub namespaces
+
+STOCK_F9_FV.Modules = STOCK_F9_FV.Modules || {};
+
+// IIFE === Closure!
+STOCK_F9_FV.Modules.moduleTest = STOCK_F9_FV.Modules.moduleTest || 
+(function() {
+    // const V = `this is a constant value!`;
+    // const this_name = STOCK_F9_FV.Modules.moduleTest;
     const console_css = `
         color: #f0f;
         font-size: 23px;
@@ -422,7 +459,8 @@ let moduleTest = (function() {
                 // let uid = this.target.dataset.deleteModuleUid;
                 console.log(`uid`, uid);
                 // delete-module-stockfast01
-                moduleTest.deleteModule(uid);
+                // moduleTest.deleteModule(uid);
+                STOCK_F9_FV.Modules.moduleTest.deleteModule(uid);
                 // moduleTest.deleteModule(this.target.dataset.deleteModuleUid);/
                 // Uncaught TypeError: Cannot read property 'dataset' of undefined
             });
@@ -1253,22 +1291,33 @@ let moduleTest = (function() {
             module_datas.forEach(
                 (obj, index) => {
                     // console.log(`obj, index`, obj, index);
-                    obj.addEventListener(`dragstart`, moduleTest.dragstart);
+                    // obj.addEventListener(`dragstart`, moduleTest.dragstart);
+                    obj.addEventListener(`dragstart`, STOCK_F9_FV.Modules.moduleTest.dragstart);
                 }
             );
             // console.log(`module_container`, module_container);
-            module_container.addEventListener(`dragenter`, moduleTest.dragenter);
-            module_container.addEventListener(`dragover`, moduleTest.dragover);
-            module_container.addEventListener(`drop`, moduleTest.drop);
+            module_container.addEventListener(`dragenter`, STOCK_F9_FV.Modules.moduleTest.dragenter);
+            module_container.addEventListener(`dragover`, STOCK_F9_FV.Modules.moduleTest.dragover);
+            module_container.addEventListener(`drop`, STOCK_F9_FV.Modules.moduleTest.drop);
+            // module_container.addEventListener(`dragenter`, moduleTest.dragenter);
+            // module_container.addEventListener(`dragover`, moduleTest.dragover);
+            // module_container.addEventListener(`drop`, moduleTest.drop);
         }
     };
 })();
 
+// let moduleTest = (function(){})();
+
+
+
 // setTimeout === Closure!
 setTimeout(function() {
-    moduleTest.init();
+    STOCK_F9_FV.Modules.moduleTest.init();
 }, 0);
 // moduleTest.init();
+
+// ??? Uncaught ReferenceError: moduleTest is not defined
+// ??? obj.addEventListener(`dragstart`, moduleTest.dragstart);
 
 
 /// todo & enhancement
