@@ -30,7 +30,7 @@ Stock_F9.Modules = Stock_F9.Modules || {};
 // http://10.1.5.202/webservice/fastview/stock/stockfast07/600570.SH
 
 
-
+// object as args {key: "value"}
 
 // infos module
 Stock_F9.Modules.infos = Stock_F9.Modules.infos || (

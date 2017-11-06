@@ -7,6 +7,113 @@
 3. node.js in browser
 
 
+## SystemJS
+
+https://github.com/systemjs/systemjs
+https://github.com/systemjs/plugin-babel
+
+```js
+
+SystemJS.config({
+    map: {
+        'plugin-babel': 'path/to/systemjs-plugin-babel/plugin-babel.js',
+        'systemjs-babel-build': 'path/to/systemjs-plugin-babel/systemjs-babel-browser.js'
+    },
+    transpiler: 'plugin-babel'
+});
+
+```
+
+https://www.sitepoint.com/modular-javascript-systemjs-jspm/
+
+https://github.com/ModuleLoader/es-module-loader
+
+https://www.codeschool.com/blog/2015/12/11/es2015-a-systemjs-odyssey/
+
+https://stackoverflow.com/questions/tagged/systemjs
+https://stackoverflow.com/questions/26858855/how-to-make-it-possible-to-use-typescript-with-systemjs-and-angular
+
+
+
+
+
+```html
+
+<script src="systemjs/dist/system.js"></script>
+<script>
+    // System.config({ ... }) 
+    System.config({
+        meta: {
+            format: 'cjs'
+            // module format
+        }
+    });
+    // entry js
+    SystemJS.import('/js/main.js');
+</script>
+
+
+```
+
+
+
+
+
+
+## JSPM
+
+https://jspm.io/
+https://github.com/jspm/jspm-cli
+
+https://jspm.io/docs/getting-started.html
+
+
+```sh
+
+$ npm i -g jspm
+
+$ jspm init
+
+$ jspm install npm:lodash-node
+$ jspm install github:components/jquery
+$ jspm install jquery
+$ jspm install myname=npm:underscore
+
+$ jspm bundle lib/main --inject
+
+
+```
+
+```js
+
+System.import('lib/main.js');
+
+
+// # Loading NodeJS core browserify libraries
+
+System.import('buffer').then(function(buffer) {
+    console.log(new buffer.Buffer('base64 encoded').toString('base64'));
+});
+
+
+// # Loading from npm
+
+System.import('npm:lodash').then(function(_) {
+    console.log(_.max([1, 2, 3, 4]));
+});
+
+
+// # Loading jQuery
+
+System.import('jquery').then(function($) {
+    $(window).scrollTop(0);
+});
+
+```
+
+
+
+
 
 
 # webapck (CMD/AMD/UMD/ES6)
@@ -175,6 +282,68 @@ module.exports = {
 
 
 
+
+
+## build-in module loader (node.js)
+
+> commonjs
+
+```js
+
+// no dependency
+var ABC = "";
+function fucA() {
+    // m
+}
+
+exports.fucA = fucA;
+exports.ABC = ABC;
+
+
+// dependency
+const ma = require(`a.js`);
+const mb = require(`b.js`);
+
+function fucA() {
+    // ma
+}
+function fucB() {
+    // mnb
+}
+
+// exports.fucA = fucA;
+// exports.fucB = fucB;
+module.exports = {
+    fucA: fucA,
+    fucB: fucB
+};
+
+// module.exports === exports !!!
+
+```
+
+```js
+// module format
+System.config({
+    meta: {
+        format: 'cjs'
+    }
+});
+// entry js
+System.import('js/app.js');
+
+
+/* 
+
+# CJS !== CMD
+
+> CommonJS
+
+> CMD seajs(smg ???)
+
+
+*/
+```
 
 
 

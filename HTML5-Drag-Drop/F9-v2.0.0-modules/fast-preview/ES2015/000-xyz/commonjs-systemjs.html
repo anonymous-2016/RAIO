@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>CommonJS & SystemJS</title>
+</head>
+
+<body>
+    <!-- <script src="../libs/system.min.js"></script> -->
+    <script src="../libs/system.js"></script>
+    <script>
+        // System.config({ ... })
+        // Uncaught TypeError: The SystemJS production build does not support the "meta" configuration option.
+        System.config({
+            meta: {
+                format: 'cjs'
+                    // module format
+            }
+        });
+        SystemJS.import('./app/commonjs-main.js');
+        // entry js
+    </script>
+</body>
+
+</html>

@@ -242,12 +242,31 @@ https://doc.webpack-china.org/
 http://www.requirejs.org/
 http://www.requirejs.org/docs/start.html
 
+http://www.requirejs.org/docs/download.html#requirejs
+
+```sh
+
+$ npm i -g requirejs
+
+
+```
+
+http://www.requirejs.org/docs/jquery.html#modulename
+https://github.com/requirejs/requirejs/wiki/Upgrading-to-RequireJS-2.0
+
+
 
 ## browser-side require() the node.js way
 
 https://browserify.org/
 
 https://github.com/browserify/browserify
+
+```sh
+
+$ npm i -g browserify
+
+```
 
 
 
