@@ -6,12 +6,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>AMD & RequireJS</title>
+    <style>
+        .app {
+            --bg-color: #000;
+            --text-color: rgb(225, 11, 253);
+        }
+        /* :root === golbal var ???*/
+        
+         :root {
+            --bg-color: #000;
+            --text-color: #0f0;
+        }
+        /* bug ??? CSS var, can only using in the same context ??? */
+        
+        .test-var {
+            /* --bg-color: #000; */
+            /* --text-color: #0f0; */
+            color: var(--text-color);
+            background-color: var(--bg-color);
+        }
+    </style>
 </head>
 
 <body>
+    <h1>AMD & RequireJS</h1>
+    <section>
+        <p>see <code class="test-var">console.log()</code> for more infos!</p>
+    </section>
     <script src="../../libs/require.min.js"></script>
     <!-- <script src="./amd_app.js"></script> -->
     <script src="./amd_main.js"></script>
+    <!-- path error ??? -->
 </body>
 
 </html>

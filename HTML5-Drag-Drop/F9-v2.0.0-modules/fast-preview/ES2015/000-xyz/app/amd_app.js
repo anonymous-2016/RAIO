@@ -4,6 +4,13 @@ require(['amd_main'], function(amd_main) {
 });
 
 
+/* 
+
+1. define amd_main
+
+2. require amd_main
+
+*/
 
 /* 
 

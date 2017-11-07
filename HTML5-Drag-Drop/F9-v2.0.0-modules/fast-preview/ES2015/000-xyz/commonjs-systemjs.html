@@ -6,9 +6,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>CommonJS & SystemJS</title>
+    <style>
+        .app {
+            --bg-color: #000;
+            --text-color: rgb(225, 11, 253);
+        }
+        /* bug ??? CSS var, can only using in the same context ??? */
+        
+        .test-var {
+            --bg-color: #000;
+            --text-color: #0f0;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+        }
+    </style>
 </head>
 
 <body>
+    <h1>CommonJS & SystemJS</h1>
+    <section>
+        <p>see <code class="test-var">console.log()</code> for more infos!</p>
+    </section>
     <!-- <script src="../libs/system.min.js"></script> -->
     <script src="../libs/system.js"></script>
     <script>

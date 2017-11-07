@@ -25,6 +25,8 @@ require(['amd_module1','amd_module2'], function(amd_module1, amd_module2) {
 
 
 
+// Uncaught ReferenceError: require is not defined ???
+
 
 // ??? require in define ???
 // https://stackoverflow.com/questions/15371918/mismatched-anonymous-define-module
