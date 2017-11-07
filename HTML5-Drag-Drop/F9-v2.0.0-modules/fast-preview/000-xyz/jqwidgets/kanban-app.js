@@ -1,4 +1,4 @@
-
+// IIFE & jQuery
 $(document).ready(function() {
     $('#splitter').jqxSplitter({
         width: getWidth("Splitter"),
