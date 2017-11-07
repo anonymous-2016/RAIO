@@ -642,3 +642,47 @@ div.h5-dnd-module-box:nth-of-type(1) {
 [data-body-container="data-body-container"] {
     margin: 0px auto;
 }
+
+
+/* [data-delete-icon="delete-icon"] {
+    width: 23px;
+    height: 23px;
+} */
+
+[data-delete-icon="delete-icon"] {
+    width: 100px;
+    height: 23px;
+    float: right;
+    top: -2px;
+    position: absolute;
+    right: 100px;
+    cursor: pointer;
+    /* display: inline-block; */
+    background: #f0f;
+}
+
+[data-delete-span="delete-span"] {
+    text-indent: 20px;
+    width: 50px;
+    height: 23px;
+    float: right;
+    display: block;
+    position: absolute;
+    top: -2px;
+    right: 7px;
+    cursor: pointer;
+    background: url("../icons/delete-icon.png") 3px 2px #fff no-repeat;
+    box-sizing: border-box;
+}
+
+
+/* ??? ::before */
+
+[data-delete-span="delete-span"]:hover {
+    /* background: url("../icons/delete-icon.png") 3px 2px #f00 no-repeat; */
+    /* new image highlight */
+    color: red;
+    /* background-color: #333; */
+    /* border-radius: 7px; */
+    /* border: 1px solid rgb(46, 253, 4); */
+}

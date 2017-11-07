@@ -746,3 +746,42 @@ https://api.hcharts.cn/highcharts#xAxis.labels
 
 
 
+## F9 FS new version
+
+
+
+
+```css
+
+/* cursor: move */
+
+.module-draggable{
+    cursor: move;
+}
+
+/* 多行文本溢出显示省略号(…) text-overflow: ellipsis */
+/* text-overflow: ellipsis; 不可独立使用必须结合overflow:hidden;  white-space:nowrap;才生效。 */
+/* 然而white-space:nowrap; 是指不换行，就是说只能一行显示。 */
+
+.long-text-ignore{
+    text-wrap: all;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    width:200px;
+    height: 32px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    font-size: 14;
+}
+
+
+
+```
+
+delete-icon.png
+
+
+
+

@@ -463,9 +463,29 @@ STOCK_F9_FV.Modules.moduleTest = STOCK_F9_FV.Modules.moduleTest ||
             // if exist ??? sub_div
             sub_div.dataset.deleteModuleUid = `delete-module-${uid}`;
             // sub_div.style.background = `#777`;
-            sub_div.insertAdjacentHTML(`beforeend`, `<span>⚠️${uid}</span>`);
+            // sub_div.insertAdjacentHTML(`beforeend`, `<span>⚠️${uid}</span>`);
+            // span & background-image ???
+            sub_div.insertAdjacentHTML(
+                `beforeend`,
+                `<span 
+                    data-delete-span="delete-span"
+                    title="⚠️: 你确定要删除此模块？">
+                    删除
+                </span>`
+            );
+            /* sub_div.insertAdjacentHTML(
+                `beforeend`,
+                `<span data-delete-span="delete-span">⚠️删除</span><img 
+                    data-delete-icon="delete-icon"
+                    src="../icons/delete-icon.png"
+                    title="⚠️: Are you sure delete this module?"
+                />`
+            ); */
+            // 是否确实要删除此模块
+            // delete-icon.png
             // data-div-module-uid="delete-module-stockfast01"
             sub_div.firstChild.dataset.deleteModuleUid = `delete-module-${uid}`;
+            // sub img ???
             sub_div.firstChild.addEventListener(`click`, (e) => {
                 // console.log(`this`, this);
                 // // dom
@@ -583,8 +603,9 @@ STOCK_F9_FV.Modules.moduleTest = STOCK_F9_FV.Modules.moduleTest ||
             };
             // module_exist_checker = document.querySelector(`[data-div-module-uid="div-module-stockfast01"]`);
             if (module_exist_checker === null) {
-                div.appendChild(sub_div);
+                // div.appendChild(sub_div);
                 let htmlstr = ``;
+                let delete_uid = ``;
                 switch (uid) {
                     case "stockfast01":
                         // console.log(`laoding ... recent-important-events.js`);// recent-important-events.js
@@ -604,6 +625,7 @@ STOCK_F9_FV.Modules.moduleTest = STOCK_F9_FV.Modules.moduleTest ||
                                 link_css.insertAdjacentElement(`afterend`, script_dom);
                             }, 0);
                         */
+                        delete_uid = `important-infos`;
                         loadModule(`important-infos`, true);
                         htmlstr += `
                             <section class="fv-module-box-3">
@@ -710,6 +732,7 @@ STOCK_F9_FV.Modules.moduleTest = STOCK_F9_FV.Modules.moduleTest ||
                                 link_css.insertAdjacentElement(`afterend`, script_dom);
                             }, 0);
                         */
+                        delete_uid = `recent-important-events`;
                         loadModule(`recent-important-events`, true);
                         htmlstr += `
                             <section class="fv-module-box-7">
@@ -759,6 +782,7 @@ STOCK_F9_FV.Modules.moduleTest = STOCK_F9_FV.Modules.moduleTest ||
                                 link_css.insertAdjacentElement(`afterend`, script_dom);
                             }, 0);
                         */
+                        delete_uid = `profit-forecast`;
                         loadModule(`profit-forecast`);
                         htmlstr += `
                             <section class="fv-module-box-7">
@@ -789,6 +813,7 @@ STOCK_F9_FV.Modules.moduleTest = STOCK_F9_FV.Modules.moduleTest ||
                                 link_css.insertAdjacentElement(`afterend`, script_dom);
                             }, 0);
                         */
+                        delete_uid = `indicators-per-share`;
                         loadModule(`indicators-per-share`, true);
                         htmlstr += `
                             <section class="fv-module-box-3">
@@ -918,6 +943,7 @@ STOCK_F9_FV.Modules.moduleTest = STOCK_F9_FV.Modules.moduleTest ||
                                 link_css.insertAdjacentElement(`afterend`, script_dom);
                             }, 0);
                         */
+                        delete_uid = `agency-rating`;
                         loadModule(`agency-rating`);
                         htmlstr += `
                             <section class="fv-module-box-7">
@@ -946,6 +972,7 @@ STOCK_F9_FV.Modules.moduleTest = STOCK_F9_FV.Modules.moduleTest ||
                                 link_css.insertAdjacentElement(`afterend`, script_dom);
                             }, 0);
                         */
+                        delete_uid = `stock-price-turnover`;
                         loadModule(`stock-price-turnover`);
                         htmlstr += `
                             <section class="fv-module-box-7">
@@ -975,6 +1002,7 @@ STOCK_F9_FV.Modules.moduleTest = STOCK_F9_FV.Modules.moduleTest ||
                                 loadModule(`top-ten-shareholders`, true);// table
                             }, 0);
                         */
+                        delete_uid = `top-ten-shareholders`;
                         loadModule(`top-ten-shareholders`, true);// table
                         htmlstr += `
                             <section class="fv-module-box-10">
@@ -1012,6 +1040,7 @@ STOCK_F9_FV.Modules.moduleTest = STOCK_F9_FV.Modules.moduleTest ||
                                 box.insertAdjacentElement(`afterend`, script_dom);
                             }, 0);
                         */
+                        delete_uid = `financing-and-margin-balance-difference-trend`;
                         loadModule(`financing-and-margin-balance-difference-trend`, false);// container
                         htmlstr += `
                             <section class="fv-module-box-7">
@@ -1036,6 +1065,7 @@ STOCK_F9_FV.Modules.moduleTest = STOCK_F9_FV.Modules.moduleTest ||
                                 box.insertAdjacentElement(`afterend`, script_dom);
                             }, 0);
                         */
+                        delete_uid = `monthly-capital-flows-large-single-statistics`;
                         loadModule(`monthly-capital-flows-large-single-statistics`);// false
                         htmlstr += `
                             <section class="fv-module-box-7">
@@ -1059,6 +1089,7 @@ STOCK_F9_FV.Modules.moduleTest = STOCK_F9_FV.Modules.moduleTest ||
                                 box.insertAdjacentElement(`afterend`, script_dom);
                             }, 0);
                         */
+                        delete_uid = `equity-pledge`;
                         loadModule(`equity-pledge`, true);
                         htmlstr += `
                             <section class="fv-module-box-10">
@@ -1098,6 +1129,7 @@ STOCK_F9_FV.Modules.moduleTest = STOCK_F9_FV.Modules.moduleTest ||
                                 box.insertAdjacentElement(`afterend`, script_dom);
                             }, 0);
                         */
+                        delete_uid = `holdings-participation-situation`;
                         loadModule(`holdings-participation-situation`, true);
                         htmlstr += `
                             <section class="fv-module-box-5">
@@ -1135,6 +1167,7 @@ STOCK_F9_FV.Modules.moduleTest = STOCK_F9_FV.Modules.moduleTest ||
                                 box.insertAdjacentElement(`afterend`, script_dom);
                             }, 0);
                         */
+                        delete_uid = `changes-shareholding-executives`;
                         loadModule(`changes-shareholding-executives`, true);
                         htmlstr += `
                             <section class="fv-module-box-5">
@@ -1174,6 +1207,7 @@ STOCK_F9_FV.Modules.moduleTest = STOCK_F9_FV.Modules.moduleTest ||
                                 // Uncaught SyntaxError: Identifier 'recentImportantEvents' has already been declared
                             }, 0);
                         */
+                        delete_uid = `institutional-shareholding-change-statistics`;
                         loadModule(`institutional-shareholding-change-statistics`);
                         htmlstr += `
                             <section class="fv-module-box-7">
@@ -1197,6 +1231,7 @@ STOCK_F9_FV.Modules.moduleTest = STOCK_F9_FV.Modules.moduleTest ||
                                 box.insertAdjacentElement(`afterend`, script_dom);
                             }, 0);
                         */
+                        delete_uid = `company-news`;
                         loadModule(`company-news`, true);
                         htmlstr += `
                             <section class="fv-module-box-5">
@@ -1230,6 +1265,8 @@ STOCK_F9_FV.Modules.moduleTest = STOCK_F9_FV.Modules.moduleTest ||
                                 box.insertAdjacentElement(`afterend`, script_dom);
                             }, 0);
                         */
+                        delete_uid = `company-announcements`;
+                        loadModule(`company-announcements`, true);
                         htmlstr += `
                             <section class="fv-module-box-5">
                                 <div class="fv-company-announcements-title-box">
@@ -1245,7 +1282,6 @@ STOCK_F9_FV.Modules.moduleTest = STOCK_F9_FV.Modules.moduleTest ||
                                 </table>
                             </section>
                         `;
-                        loadModule(`company-announcements`, true);
                         break;
                     case "research":
                         /* 
@@ -1257,6 +1293,7 @@ STOCK_F9_FV.Modules.moduleTest = STOCK_F9_FV.Modules.moduleTest ||
                                 box.insertAdjacentElement(`afterend`, script_dom);
                             }, 0);
                         */
+                        delete_uid = `research-report`;
                         loadModule(`research-report`, true);
                         htmlstr += `
                             <section class="fv-module-box-5">
@@ -1300,6 +1337,12 @@ STOCK_F9_FV.Modules.moduleTest = STOCK_F9_FV.Modules.moduleTest ||
                 // insert script.js ??? execute timeline!
                 // insert DOM 
                 // insert CSS
+                setTimeout(function() {
+                    // let delete_box = document.querySelector(`.fv-${delete_uid}-title-box`);
+                    // :: after ??? fv-important-infos-title
+                    let delete_box = document.querySelector(`.fv-${delete_uid}-title`);
+                    delete_box.appendChild(sub_div);
+                }, 0);
             }else{
                 alert(`duplication & 重复!`);
             }
