@@ -9,7 +9,8 @@ require(['amd_module1','amd_module2'], function(amd_module1, amd_module2) {
         console.log('AMD_init = ', params);
         console.log('calling AMD modules');
         amd_module1.AMDM1('AMD module1');
-        amd_module2.AMDM2('AMD module2');
+        // amd_module2.AMDM2('AMD module2');
+        // async test ???
     };
     // AMD_init('AMD is running!');
     setTimeout(function() {

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>li-list-sort</title>
+</head>
+
+<body>
+    <div>
+        <h1>Bugs in the DOM</h1>
+        <ul>
+            <li>Horse Flies</li>
+            <li>Bed bugs</li>
+            <li>Mosquito</li>
+            <li>Ants</li>
+            <li>Mites</li>
+            <li>Cricket</li>
+            <li>Woolly Bear Caterpillar</li>
+            <li>Fleas</li>
+            <li>Worms</li>
+            <li>Leeches</li>
+        </ul>
+    </div>
+    <!-- js -->
+    <script>
+        (function() {
+            var list = document.getElementsByTagName("ul");
+            // typeof list
+            // "object" DOM element
+            for (var i = 0; i < list.length; i++) {
+                var items = list[i].getElementsByTagName("li");
+                for (var j = 0; j < items.length; j++) {
+                    console.log(items[j]);
+                }
+            }
+            var newList = Array.prototype.slice.call(document.getElementsByTagName("li"), 0);
+            newList.forEach(function(item) {
+                console.log(item);
+            });
+        }());
+    </script>
+</body>
+
+</html>

@@ -14,6 +14,25 @@ const debug = false;
     }
 */
 
+
+
+/* 
+
+// namespaces
+var STOCK_F9_FV = STOCK_F9_FV || {};
+
+// sub namespaces
+
+STOCK_F9_FV.Modules = STOCK_F9_FV.Modules || {};
+
+// IIFE === Closure!
+STOCK_F9_FV.Modules.moduleTest = STOCK_F9_FV.Modules.moduleTest || (() => {})();
+
+
+
+*/
+
+
 // tabs
 let lis = document.querySelectorAll(`[data-nav-li="nav-li"]`);
 let divs = document.querySelectorAll(`[data-nav-box="nav-box"]`);
