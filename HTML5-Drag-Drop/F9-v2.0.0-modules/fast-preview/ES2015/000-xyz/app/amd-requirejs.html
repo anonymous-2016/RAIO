@@ -11,13 +11,13 @@
             --bg-color: #000;
             --text-color: rgb(225, 11, 253);
         }
-        /* :root === golbal var ???*/
+        /* :root === golbal var OK*/
         
          :root {
             --bg-color: #000;
             --text-color: #0f0;
         }
-        /* bug ??? CSS var, can only using in the same context ??? */
+        /* bug ??? CSS var, local var can only using in the same context ??? */
         
         .test-var {
             /* --bg-color: #000; */
@@ -37,6 +37,8 @@
     <!-- <script src="./amd_app.js"></script> -->
     <script src="./amd_main.js"></script>
     <!-- path error ??? -->
+    <!-- http://localhost:3000/fast-preview/ES2015/000-xyz/app/amd-requirejs.html OK -->
+    <!-- http://localhost:3000/fast-preview/ES2015/000-xyz/amd-requirejs.html Error -->
 </body>
 
 </html>
