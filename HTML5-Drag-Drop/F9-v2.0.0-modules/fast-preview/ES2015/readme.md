@@ -61,7 +61,7 @@ https://babeljs.io/docs/setup
 
 # all in one
 
-$ npm i -D babel-cli babel-preset-env babel-polyfill babel-preset-react
+$ npm i -D babel babel-cli babel-preset-env babel-polyfill babel-preset-react
 
 $ npm i -D babel-cli babel-preset-env
 
