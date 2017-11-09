@@ -835,6 +835,72 @@ $ rollup main.js --o bundle.js -f umd --name "myBundle"
 
 
 
+实例化 prototype 添加方法 
+测试
+实例的 新方法是否可用
+
+
+Dom 封装在module 的内部
+
+3.CSS classname 使用 JS处理成 hash 
+
+处理前保存到origin对象中
+
+node.sj 读取流，替换 css name
+
+https://developer.mozilla.org/en-US/docs/Web/CSS/Attribute_selectors
+
+https://stackoverflow.com/questions/15000163/how-to-get-all-css-of-element
+
+
+https://developer.mozilla.org/en-US/docs/Web/API/Window/getComputedStyle
+
+
+
+
+http://xahlee.info/js/js_get_elements.html
+
+
+```js
+
+document.getElementById(id_string)
+
+document.getElementsByTagName(tag_name)
+
+document.getElementsByClassName("class_values")
+
+document.getElementsByName("name_value")
+
+document.querySelector(css_selector)
+document.querySelectorAll(css_selector)
+
+// *
+
+```
+http://xahlee.info/js/css_selector_syntax.html
+
+
+
+https://stackoverflow.com/questions/5315033/all-css-classes-in-page-using-js
+
+
+```js
+
+function getStyle(className) {
+    var classes = document.styleSheets[0].rules || document.styleSheets[0].cssRules
+    for(var x=0;x<classes.length;x++) {
+        if(classes[x].selectorText==className) {
+                (classes[x].cssText) ? alert(classes[x].cssText) : alert(classes[x].style.cssText);
+        }
+    }
+}
+getStyle('.test')
+
+```
+https://stackoverflow.com/questions/324486/how-do-you-read-css-rule-values-with-javascript
+
+
+
 
 
 
