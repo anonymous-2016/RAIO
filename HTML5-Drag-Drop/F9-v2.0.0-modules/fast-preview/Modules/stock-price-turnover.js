@@ -145,6 +145,7 @@ var SPTdrawHS = (datas = {}, container_uid = `container`, debug = false) => {
     // 2012-12-31 => var oldTime = (new Date("2012/12/31 20:11:11").getTime(); 
     // 得到毫秒数  
     // datas
+    console.log(`datas = \n`, datas);
     const chart_css = {
         color: `#0B1016`,
         colors: ['#ff1919', '#ffff66', '#92d050'],

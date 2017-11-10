@@ -358,7 +358,8 @@ STOCK_F9_FV.Modules.moduleTest = STOCK_F9_FV.Modules.moduleTest ||
         font-size: 23px;
     `;
     let module_datas = document.querySelectorAll(`[data-icon-uid*="module-data"]`);
-    let module_container = document.querySelector(`[data-body-container="data-body-container"]`);
+    // let module_container = document.querySelector(`[data-body-container="data-body-container"]`);
+    let module_container = document.querySelector(`[data-div-inner-box="data-div-inner-box"]`);
     // let droppedUid_datas = document.querySelectorAll(`[data-droppe-uid*="module-data"]`);
     // ??? sortable.js
     let sortable_container = document.querySelector(`#section-sortable-container`);
