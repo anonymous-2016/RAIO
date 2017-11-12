@@ -555,7 +555,24 @@ STOCK_F9_FV.Modules.moduleTest = STOCK_F9_FV.Modules.moduleTest ||
             // div.appendChild(sub_div);
             // div.insertAdjacentHTML(`beforeend`, `<h1>${uid}</h1>`);
             // switch 
+            // console.log(`uid = `, uid);
             let module_exist_checker = document.querySelector(`[data-div-module-uid="div-module-${uid}"]`);
+            // try {
+            //     console.log(`module_exist_checker = `, module_exist_checker);
+            // } catch (error) {
+            //     // console.log(`error = \n`, error);
+            //     console.log(`%c Sorry, some errors occurred!`, `color: #f0f`);
+            // }
+            /* 
+                // Promise ???
+                let module_exist_checker = ``;
+                try {
+                    module_exist_checker = document.querySelector(`[data-div-module-uid="div-module-${uid}"]`);
+                } catch (error) {
+                    // console.log(`error = \n`, error);
+                    console.log(`%c Sorry, some errors occurred!`, `color: #f0f`);
+                }
+            */
             /**
              * @author xgqfrms 
              * @description load Module (2017.11.01)
@@ -1333,6 +1350,12 @@ STOCK_F9_FV.Modules.moduleTest = STOCK_F9_FV.Modules.moduleTest ||
                     delete_box.appendChild(sub_div);
                 }, 0);
             }else{
+                try {
+                    console.log(`module_exist_checker = `, module_exist_checker);
+                } catch (error) {
+                    // console.log(`error = \n`, error);
+                    console.log(`%c Sorry, some errors occurred!`, `color: #f0f`);
+                }
                 alert(`duplication & 重复!`);
             }
         },

@@ -109,14 +109,25 @@ STOCK_F9_FV.Modules.recentImportantEvents = STOCK_F9_FV.Modules.recentImportantE
 });
 
 
+STOCK_F9_FV.Modules.recentImportantEvents.init = STOCK_F9_FV.Modules.recentImportantEvents.init || (
+    (url= `http://localhost:3000/fast-preview/json/datas/2.json`) => {
+        let td_id = document.querySelector('#fv-recent-important-tbody');
+        STOCK_F9_FV.Modules.recentImportantEvents(url, td_id, true);
+    }
+);
+
+STOCK_F9_FV.Modules.recentImportantEvents.init();// url
+
 // call fetch json datas
 setTimeout(() => {
     // async & await
-    // const url = `http://10.1.5.202/webservice/fastview/stock/stockfast02/600570.SH`;
-    const url = `http://localhost:3000/fast-preview/json/datas/2.json`;
-    // let td_id = document.querySelector('[data-value="data-fv-infos"]');
-    let td_id = document.querySelector('#fv-recent-important-tbody');
-    STOCK_F9_FV.Modules.recentImportantEvents(url, td_id, true);
+    /* 
+        // const url = `http://10.1.5.202/webservice/fastview/stock/stockfast02/600570.SH`;
+        const url = `http://localhost:3000/fast-preview/json/datas/2.json`;
+        // let td_id = document.querySelector('[data-value="data-fv-infos"]');
+        let td_id = document.querySelector('#fv-recent-important-tbody');
+        STOCK_F9_FV.Modules.recentImportantEvents(url, td_id, true);
+    */
     // const debug = true;
     // recentImportantEvents(url, td_id, debug);
 }, 0);

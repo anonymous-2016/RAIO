@@ -65,7 +65,9 @@ STOCK_F9_FV.Utils.getURL = STOCK_F9_FV.Utils.getURL || ((gil_obj = {
         // url = `${protocol}://${ip}/${gil_path}/${gil_uid}/${gil_code}`;
         url += `/${gil_code}`;
     }
-    console.log(`url =`, url);
+    if (debug) {
+        console.log(`url =`, url);
+    }
     return url;
 });
 
@@ -99,7 +101,7 @@ const gil_obj = {
     gil_code
 };
 
-const url = STOCK_F9_FV.Utils.getURL(gil_obj);
+const url = STOCK_F9_FV.Utils.getURL(gil_obj, true);
 // const url = STOCK_F9_FV.Utils.getURL({protocol, ip, gil_path, gil_uid, gil_code});
 
 

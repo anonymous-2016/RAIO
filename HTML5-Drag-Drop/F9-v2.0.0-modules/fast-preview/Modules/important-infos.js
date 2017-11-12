@@ -78,7 +78,45 @@ STOCK_F9_FV.Modules.importantInfos.init = STOCK_F9_FV.Modules.importantInfos.ini
     }
 );
 
-STOCK_F9_FV.Modules.importantInfos.init();// url
+STOCK_F9_FV.Modules.importantInfos.init();
+
+var url = ((obj) => {
+    // STOCK_F9_FV.Utils.getURL(obj = {})
+    const {protocol, ip, gil_path, gil_uid, gil_code} = {
+        protocol: "http",
+        ip: "10.1.5.202",
+        gil_path: "webservice/fastview/stock",
+        gil_uid: "stockfast01",
+        gil_code: "600570.SH"
+    };
+    const gil_obj = {
+        protocol,
+        ip,
+        gil_path,
+        gil_uid,
+        gil_code
+    };
+    // const url = STOCK_F9_FV.Utils.getURL(gil_obj, true);
+    // const url = STOCK_F9_FV.Utils.getURL({protocol, ip, gil_path, gil_uid, gil_code});
+    if (typeof obj === "object") {
+        // const url = STOCK_F9_FV.Utils.getURL((obj ? obj : gil_obj), true);
+        const url = (obj ? JSON.stringify(obj) : JSON.stringify(gil_obj));
+        console.log(`url`, url);
+        return url;
+    } else {
+        const url = (obj ? JSON.stringify(obj) : JSON.stringify(gil_obj));
+        console.log(`param is not an Object`, url);
+        // return "";
+    }
+})({
+    protocol: "http",
+    ip: "10.1.5.202",
+    gil_path: "webservice/fastview/stock",
+    gil_uid: "stockfast01",
+    gil_code: "600570.SH"
+});
+
+// STOCK_F9_FV.Modules.importantInfos.init(url);
 
 // call fetch json datas
 setTimeout(() => {
