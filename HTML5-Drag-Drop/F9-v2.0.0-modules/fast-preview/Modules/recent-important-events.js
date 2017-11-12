@@ -9,57 +9,12 @@
  * @param {Boolean} debug 
  */
 
-/* 
-
-
-    const oop = {
-        xyz_func: () => {
-            console.log(`oop this, `, this);
-        },
-    };
-
-    "use strict";
-
-    var oop = {
-        xyz_func: function xyz_func() {
-            console.log("oop this, ", this);
-        }
-    };
-
-    window.oop.xyz_func();
-    // oop this,  {xyz_func: ƒ}
-
-
-    typeof window.oop;
-
-    delete window.oop;
-
-
-    // Object OK 
-
-    //  "use strict"; ??? bug
-
-
-    var func = function() {
-        console.log("func this, ", this);
-    };
-
-    typeof window.func;
-    // "function"
-
-    delete window.func;
-    // false
-
-    func();
-    // func this, Window {frames: Window, postMessage: ƒ, blur: ƒ, focus: ƒ, close: ƒ, …}
-
-
-    // function Error
-
-*/
-
-// const bug ???
-var recentImportantEvents = (url = ``, td_id = `id`, debug = false) => {
+// namespaces
+var STOCK_F9_FV = STOCK_F9_FV || {};
+// sub namespaces
+STOCK_F9_FV.Modules = STOCK_F9_FV.Modules || {};
+// IIFE === Closure!
+STOCK_F9_FV.Modules.recentImportantEvents = STOCK_F9_FV.Modules.recentImportantEvents || ((url = ``, td_id = `id`, debug = false) => {
     // debug = true;
     let data = [];
     fetch(url)
@@ -151,16 +106,17 @@ var recentImportantEvents = (url = ``, td_id = `id`, debug = false) => {
     .catch(error => console.log(`error = \n`, error));
     // return null;
     // return data;
-};
+});
 
 
 // call fetch json datas
 setTimeout(() => {
     // async & await
-    const url = `http://10.1.5.202/webservice/fastview/stock/stockfast02/600570.SH`;
+    // const url = `http://10.1.5.202/webservice/fastview/stock/stockfast02/600570.SH`;
+    const url = `http://localhost:3000/fast-preview/json/datas/2.json`;
     // let td_id = document.querySelector('[data-value="data-fv-infos"]');
     let td_id = document.querySelector('#fv-recent-important-tbody');
-    recentImportantEvents(url, td_id, true);
+    STOCK_F9_FV.Modules.recentImportantEvents(url, td_id, true);
     // const debug = true;
     // recentImportantEvents(url, td_id, debug);
 }, 0);

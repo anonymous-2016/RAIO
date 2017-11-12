@@ -41,6 +41,7 @@
 
 .fv-recent-important-events-table {
     width: 100%;
+    max-width: 542px;
     /* 去除table每行之间的空白间隙 */
     border-collapse: collapse;
     border-spacing: 0;
@@ -149,7 +150,8 @@
 
 .fv-recent-important-events-table-tbody>tr:nth-of-type(n)>td:nth-child(2) {
     min-width: 150px;
-    max-width: 510px;
+    /* max-width: 510px; */
+    max-width: 462px;
     overflow-x: hidden;
     /* overflow: hidden; */
     text-overflow: ellipsis;

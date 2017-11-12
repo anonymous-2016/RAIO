@@ -5,6 +5,63 @@
 
 http://localhost:3000/fast-preview/sidebar.html#模块选择
 
+```js
+
+const url = `http://10.1.5.202/webservice/fastview/stock/stockfast01/600570.SH`;
+const url = `http://localhost:3000/fast-preview/json/datas/1.json`;
+
+
+// 重要信息
+涉及概念 sjgn
+3个月波动率(%) bdl
+主营业务 zyyw
+近90天日均成交量(万股) cjl
+净资产(万元) jzc
+总股本(万股) zgb
+流通股本(万股) ltgb
+股息率 gxl
+机构持股占比(%) cgzb
+目标价格 mbjg
+综合评级 zhpj
+
+```
+
+# namespaces
+
+```js
+
+// namespaces
+var STOCK_F9_FV = STOCK_F9_FV || {};
+// sub namespaces
+STOCK_F9_FV.Modules = STOCK_F9_FV.Modules || {};
+
+// Modules && IIFE === Closure!
+STOCK_F9_FV.Modules.importantInfos = STOCK_F9_FV.Modules.importantInfos || (() => {});
+
+// Utils && IIFE === Closure!
+STOCK_F9_FV.Utils.getURL = STOCK_F9_FV.Utils.getURL || (() => {});
+
+// STOCK_F9_FV.Utils.getURL(obj = {})
+const {protocol, ip, gil_path, gil_uid, gil_code} = {
+    protocol: "http",
+    ip: "10.1.5.202",
+    gil_path: "webservice/fastview/stock",
+    gil_uid: "stockfast01",
+    gil_code: "600570.SH"
+};
+const gil_obj = {
+    protocol,
+    ip,
+    gil_path,
+    gil_uid,
+    gil_code
+};
+const url = STOCK_F9_FV.Utils.getURL(gil_obj);
+// const url = STOCK_F9_FV.Utils.getURL({protocol, ip, gil_path, gil_uid, gil_code});
+
+
+```
+
 ```sh
 
 # ..\F9-v2.0.0-modules\

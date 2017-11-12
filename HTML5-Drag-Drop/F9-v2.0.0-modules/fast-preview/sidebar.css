@@ -741,7 +741,8 @@ div.h5-dnd-module-box:nth-of-type(1) {
 }
 
 .absolute-center-placeholder {
-    background-color: #f0f !important;
+    background-color: #ccc !important;
+    color: #fff;
     text-align: center;
     margin: 0 auto;
     padding-top: 300px;

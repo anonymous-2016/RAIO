@@ -1,36 +1,15 @@
-// h5-dnd-nav-box
-
-const debug = false;
-
-
-// const debug = false;
-
-/* 
-    // var debug = debug || false;
-    if (typeof debug === "undefined") {
-        var debug = false;
-    }else{
-        console.log(`debug =`, debug);
-    }
-*/
-
-
-
-/* 
+// "use strict";
+// recentImportantEvents & Uncaught SyntaxError: Delete of an unqualified identifier in strict mode.
 
 // namespaces
 var STOCK_F9_FV = STOCK_F9_FV || {};
-
 // sub namespaces
-
 STOCK_F9_FV.Modules = STOCK_F9_FV.Modules || {};
 
-// IIFE === Closure!
-STOCK_F9_FV.Modules.moduleTest = STOCK_F9_FV.Modules.moduleTest || (() => {})();
 
 
-
-*/
+const debug = false;
+// const debug = false;
 
 
 // tabs
@@ -160,7 +139,6 @@ small_btn.onclick = () => {
 
 
 // init ???
-
 window.onload = () => {
     let btn_universal = document.querySelector(`[data-uid="universal"]`),
         btn_customize = document.querySelector(`[data-uid="customize"]`),
@@ -198,23 +176,6 @@ window.onload = () => {
     });
 };
 
-
-/* 
-
-// const url = `http://10.1.5.202/webservice/fastview/stock/stockfast02/600570.SH`;
-// recent-important-events
-
-let uids_arr = document.querySelectorAll(`[data-icon-*="stockfast01"]`);
-// uids_arr = document.querySelectorAll(`[data-icon-uid*="stockfast"]`);
-
-for (let i = 0; i < uids_arr.length; i++) {
-    let icon = uids_arr[i];
-    if (!debug) {
-        console.log(`icon = \n ${icon}`);
-    }
-}
-
-*/
 
 
 /**
@@ -329,12 +290,6 @@ const resetAllModules = () => {
 
 
 
-// namespaces
-var STOCK_F9_FV = STOCK_F9_FV || {};
-
-// sub namespaces
-
-STOCK_F9_FV.Modules = STOCK_F9_FV.Modules || {};
 
 // IIFE === Closure!
 STOCK_F9_FV.Modules.moduleTest = STOCK_F9_FV.Modules.moduleTest || 
@@ -397,18 +352,19 @@ STOCK_F9_FV.Modules.moduleTest = STOCK_F9_FV.Modules.moduleTest ||
                 // [data-delete-script-dom="delete-script-dom-stockfast01"]
                 module_container.removeChild(tdu);
                 // delete recentImportantEvents; ??? JavaScript 注册全局函数
-                switch(div_uid) {
-                    case "stockfast01":
-                        delete recentImportantEvents;
-                        // delete window.recentImportantEvents;
-                        // fasle;
-                        break;
-                    case "stockfast02":
-                        delete recentImportantEvents;
-                        break;
-                    default:
-                        break;
-                }
+                // switch(div_uid) {
+                //     case "stockfast01":
+                //         delete recentImportantEvents;
+                //         // delete window.recentImportantEvents;
+                //         // Uncaught SyntaxError: Delete of an unqualified identifier in strict mode.
+                //         // fasle;
+                //         break;
+                //     case "stockfast02":
+                //         delete recentImportantEvents;
+                //         break;
+                //     default:
+                //         break;
+                // }
             }else{
                 alert(`not too bad!`);
             }
@@ -436,35 +392,47 @@ STOCK_F9_FV.Modules.moduleTest = STOCK_F9_FV.Modules.moduleTest ||
             e.preventDefault();
         },
         dragenter: (e) => {
-            console.log(`%c dragEnter = `, console_css1, e.target.id);
+            // console.log(`%c dragEnter = `, console_css1, e.target.id);
             e.preventDefault();
             return true;
         },
         dragover: (e) => {
-            console.log(`%c dragOver = `, console_css1, e.target.id);
+            // console.log(`%c dragOver = `, console_css1, e.target.id);
             // e.target.style.backgroundColor = "#f0f";
-            if (drop_counter === 0) {
-                let info_div = document.createElement(`div`);
-                info_div.innerHTML = "请将模块拖拽到灰色区域内!";
-                info_div.setAttribute(`id`, `drop_info_div`);
-                module_container.insertAdjacentElement(`afterbegin`, info_div);
-                drop_counter++
-            }
-            module_container.classList.add(`absolute-center-placeholder`);
+            // if (drop_counter === 0) {
+            //     let info_div = document.createElement(`div`);
+            //     info_div.innerHTML = "请将模块拖拽到灰色区域内!";
+            //     info_div.setAttribute(`id`, `drop_info_div`);
+            //     module_container.insertAdjacentElement(`afterbegin`, info_div);
+            //     drop_counter++
+            // }
+            // module_container.classList.add(`absolute-center-placeholder`);
             // background
             e.preventDefault();
             return true;
         },
-        drop: function(e) {
+        dragleave: (e) => {
+            // console.log(`%c dragLeave = `, console_css1, e.target.id);
             // e.target.style.backgroundColor = "#fff";
             // module_container.innerHTML = "";
-            if (drop_counter === 1) {
-                let drop_info_div = document.querySelector(`#drop_info_div`);
-                // module_container.removeChild(`drop_info_div`);
-                module_container.removeChild(module_container.childNodes[0]);  
-                drop_counter = 0;
-            }
-            module_container.classList.remove(`absolute-center-placeholder`);
+            // if (drop_counter === 1) {
+            //     let drop_info_div = document.querySelector(`#drop_info_div`);
+            //     // module_container.removeChild(`drop_info_div`);
+            //     module_container.removeChild(module_container.childNodes[0]);  
+            //     drop_counter = 0;
+            // }
+            // module_container.classList.remove(`absolute-center-placeholder`);
+            return true;
+        },
+        drop: function(e) {
+            // module_container.innerHTML = ""; ??? leave bug ??? no drop
+            // if (drop_counter === 1) {
+            //     let drop_info_div = document.querySelector(`#drop_info_div`);
+            //     // module_container.removeChild(`drop_info_div`);
+            //     module_container.removeChild(module_container.childNodes[0]);  
+            //     drop_counter = 0;
+            // }
+            // module_container.classList.remove(`absolute-center-placeholder`);
             // isExistCheck();
             // e.dropEffect = `copy`;
             // console.log(`drop & e.dataTransfer = \n`, e.dataTransfer);
@@ -1381,6 +1349,8 @@ STOCK_F9_FV.Modules.moduleTest = STOCK_F9_FV.Modules.moduleTest ||
             // console.log(`module_container`, module_container);
             module_container.addEventListener(`dragenter`, STOCK_F9_FV.Modules.moduleTest.dragenter);
             module_container.addEventListener(`dragover`, STOCK_F9_FV.Modules.moduleTest.dragover);
+            module_container.addEventListener(`dragleave`, STOCK_F9_FV.Modules.moduleTest.dragleave);
+            // dragleave
             module_container.addEventListener(`drop`, STOCK_F9_FV.Modules.moduleTest.drop);
             // module_container.addEventListener(`dragenter`, moduleTest.dragenter);
             // module_container.addEventListener(`dragover`, moduleTest.dragover);
@@ -1399,10 +1369,6 @@ setTimeout(function() {
 }, 0);
 // moduleTest.init();
 
-// ??? Uncaught ReferenceError: moduleTest is not defined
-// ??? obj.addEventListener(`dragstart`, moduleTest.dragstart);
-
-
 /// todo & enhancement
 
 /**
@@ -1420,197 +1386,6 @@ const readFromLocalStorage = () => {
     // read
 };
 
-/* 
-
-# sweetalert
-
-https://sweetalert.js.org/
-
-https://github.com/t4t5/sweetalert
-
-https://limonte.github.io/sweetalert2/
-
-https://github.com/limonte/sweetalert2
-
-*/
-
-
-/* 
-
-HTML 5.1 2nd Edition
-W3C Recommendation 3 October 2017
-
-https://www.w3.org/TR/html51/
-
-https://www.w3.org/TR/2017/REC-html51-20171003/
-
-https://www.w3.org/TR/html/
-
-https://w3c.github.io/html/
-
-https://www.w3.org/TR/html5/
-
-
-W3C Recommendation 28 October 2014
-
-
-// data-*
-
-https://developer.mozilla.org/zh-CN/docs/Web/HTML/Global_attributes/data-*
-
-
-<img class="spaceship cruiserX3" src="shipX3.png" onclick="spaceships[this.dataset.shipId].blasted()"
-    data-ship-id="324"
-    data-weapons="laserI laserII"
-    data-shields="72%"
-    data-x="414354"
-    data-y="85160"
-    data-z="31940"
-</img>
-
-
-
-img = document.querySelector(`.spaceship`);
-
-
-imgs = document.querySelector(`[data-*="3"]`);
-
-
-
-// text-align: center;
-
-css3 = document.querySelectorAll(`[text-align="center"]`);
-
-css3 = document.querySelectorAll(`[data-css3-*="css3-attr-selector"]`);
-
-css3 = document.querySelectorAll(`[data-css3-attr-selector="css3-attr-selector"]`);
-
-
-
-css3 = document.querySelectorAll(`p`);
-
-// h5-dnd-template-p
-// h5-dnd-module-p
-// h5-dnd-icon-p
-// css3-attr-selector-test
-
-h5 = document.querySelectorAll(`p[class*="h5"]`);
-
-h5 = document.querySelectorAll(`p[class*="h5-dnd"]`);
-
-h5 = document.querySelectorAll(`p[class*="h5-dnd-icon-p"]`);
-
-h5 = document.querySelectorAll(`p[class*="icon"]`);
-
-
-
-https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Selectors
-
-
-
-
-*/
-
-
-
-
-/* 
-
-
-arr = [11,22,33];
-// (3) [11, 22, 33]
-arr.pop(22);
-// 33
-arr
-// (2) [11, 22]
-// end
-
-arr = [11,22,33];
-// (3) [11, 22, 33]
-arr.shift(22);
-// 11
-arr
-// (2) [22, 33]
-// before
-
-
-
-delete arr[1];
-// true
-arr
-// (3) [11, empty × 1, 33]
-arr.length;
-// 3
-
-
-obj = {a: 1, b:2, c:3};
-// {a: 1, b: 2, c: 3}
-delete obj.b;
-// true
-obj
-// {a: 1, c: 3}
-
-
-
-
-*/
-
-
-/* 
-
-
-const arr = [3,4];
-// (2) [3, 4]
-arr.map((i) => console.log(`i = ${i}`));
-// i = 3
-// i = 4
-
-
-
-    if (divs[i].classList.contains(`show`)) {
-        divs[i].classList.remove("show");
-        divs[i].classList.add("hide");
-    }else{
-        divs[i].classList.add("show");
-        divs[i].classList.remove("hide");
-    }
-    
-
-divs[0].classList.contains(`show`);
-// true
-
-divs[0].classList.value;
-// "h5-dnd-nav-box h5-dnd-nav-box-active show"
-
-
-// 在为属性设置新值前检测该属性是否存在
-var d = document.getElementById("div1"); 
-
-if (d.hasAttribute("align")) { 
-    d.setAttribute("align", "center"); 
-}
-
-
-if (d.hasAttribute("class")) { 
-    d.setAttribute("class", "show"); 
-}
-
-
-
-*/
-
-
-/* 
-
-arr.forEach(function callback(currentValue, index, array) {
-    //your iterator
-}[, thisArg]);
-
-*/
-
-
-// data-nav-li="nav-li"
-// data-nav-box="nav-box"
 
 
 

@@ -10,8 +10,12 @@
  * @param {Boolean} debug 
  */
 
- // const bug
-var importantInfos = (url = ``, tds = [], ui_arr = [], debug = false) => {
+// namespaces
+var STOCK_F9_FV = STOCK_F9_FV || {};
+// sub namespaces
+STOCK_F9_FV.Modules = STOCK_F9_FV.Modules || {};
+// IIFE === Closure!
+STOCK_F9_FV.Modules.importantInfos = STOCK_F9_FV.Modules.importantInfos || ((url = ``, tds = [], ui_arr = [], debug = false) => {
     // important-infos
     let data = [];
     fetch(
@@ -63,16 +67,29 @@ var importantInfos = (url = ``, tds = [], ui_arr = [], debug = false) => {
     .catch(error => console.log(`error = \n`, error));
     // return null;
     // return data;
-};
+});
 
+
+STOCK_F9_FV.Modules.importantInfos.init = STOCK_F9_FV.Modules.importantInfos.init || (
+    (url= `http://localhost:3000/fast-preview/json/datas/1.json`) => {
+        let tds = document.querySelectorAll('[data-value="data-fv-infos"]');
+        const ui_arr = ["sjgn", "zyyw", "bdl", "cjl", "jzc", "zgb", "ltgb", "gxl", "cgzb", "mbjg", "zhpj"];
+        STOCK_F9_FV.Modules.importantInfos(url, tds, ui_arr);
+    }
+);
+
+STOCK_F9_FV.Modules.importantInfos.init();// url
 
 // call fetch json datas
 setTimeout(() => {
     // async & await
-    const url = `http://10.1.5.202/webservice/fastview/stock/stockfast01/600570.SH`;
-    let tds = document.querySelectorAll('[data-value="data-fv-infos"]');
-    const ui_arr = ["sjgn", "zyyw", "bdl", "cjl", "jzc", "zgb", "ltgb", "gxl", "cgzb", "mbjg", "zhpj"];
-    importantInfos(url, tds, ui_arr);
+    // const url = `http://10.1.5.202/webservice/fastview/stock/stockfast01/600570.SH`;
+    /* 
+        const url = `http://localhost:3000/fast-preview/json/datas/1.json`;
+        let tds = document.querySelectorAll('[data-value="data-fv-infos"]');
+        const ui_arr = ["sjgn", "zyyw", "bdl", "cjl", "jzc", "zgb", "ltgb", "gxl", "cgzb", "mbjg", "zhpj"];
+        STOCK_F9_FV.Modules.importantInfos(url, tds, ui_arr);
+    */
     // const debug = true;
     // importantInfos(url, tds, ui_arr, debug);
     // importantInfos(url, tds, ui_arr, true);
