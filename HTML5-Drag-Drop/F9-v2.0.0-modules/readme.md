@@ -80,10 +80,16 @@ var url = ((obj) => {
     };
     // const url = STOCK_F9_FV.Utils.getURL(gil_obj, true);
     // const url = STOCK_F9_FV.Utils.getURL((obj ? obj : gil_obj), true);
-    const url = (obj ? JSON.stringify(obj) : JSON.stringify(gil_obj));
-    console.log();
-    // const url = STOCK_F9_FV.Utils.getURL({protocol, ip, gil_path, gil_uid, gil_code});
-    return url;
+        if (typeof obj === "object") {
+        // const url = STOCK_F9_FV.Utils.getURL((obj ? obj : gil_obj), true);
+        const url = (obj ? JSON.stringify(obj) : JSON.stringify(gil_obj));
+        console.log(`url`, url);
+        return url;
+    } else {
+        const url = (obj ? JSON.stringify(obj) : JSON.stringify(gil_obj));
+        console.log(`param is not an Object`, url);
+        // return "";
+    }
 })({
     protocol: "http",
     ip: "10.1.5.202",
@@ -91,6 +97,23 @@ var url = ((obj) => {
     gil_uid: "stockfast01",
     gil_code: "600570.SH"
 });
+
+
+let obj = {k1: 1, k2: 2, k3: 3}; 
+
+let {k1: K1, ...restK} = {...obj}
+K1;
+// 1
+restK;
+// {k2: 2, k3: 3}
+
+let {k1: k, k2: kk, k3: kkk} = obj;
+k;
+// 1
+kk;
+// 2
+kkk;
+// 3
 
 ```
 

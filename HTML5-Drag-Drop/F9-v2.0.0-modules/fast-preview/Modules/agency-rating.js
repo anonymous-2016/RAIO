@@ -10,8 +10,13 @@
  * @param {Boolean} debug 
  */
 
-// const
-var agencyRating = (url = ``, debug = false, uid = `default_dom_uid`) => {
+// namespaces
+var STOCK_F9_FV = STOCK_F9_FV || {};
+// sub namespaces
+STOCK_F9_FV.Modules = STOCK_F9_FV.Modules || {};
+
+// Modules && IIFE === Closure!
+STOCK_F9_FV.Modules.agencyRating = STOCK_F9_FV.Modules.agencyRating || ((url = ``, debug = false, uid = `default_dom_uid`) => {
     // agencyRating
         // debug = true;
         let datas = {};
@@ -107,12 +112,12 @@ var agencyRating = (url = ``, debug = false, uid = `default_dom_uid`) => {
                 );
                 console.log(`arr_obj = `, JSON.stringify(arr_obj, null, 4));
                 datas = Object.assign(datas, arr_obj);
-                drawHS_agencyRating(datas, uid);
+                STOCK_F9_FV.Modules.agencyRating.drawHS(datas, uid);
             }
         )
         .catch(error => console.log(`error = \n`, error));
         return datas;
-};
+});
 
 
 
@@ -126,7 +131,7 @@ var agencyRating = (url = ``, debug = false, uid = `default_dom_uid`) => {
  */
 
 // const
-var drawHS_agencyRating = (datas = {}, container_uid = `container`, container_div = `dom_element`, debug = false) => {
+STOCK_F9_FV.Modules.agencyRating.drawHS = STOCK_F9_FV.Modules.agencyRating.drawHS || ((datas = {}, container_uid = `container`, container_div = `dom_element`, debug = false) => {
     // let container = document.querySelector(`#container`);
     // let container = document.querySelector(`#${container_uid}`);
     // ???
@@ -379,29 +384,27 @@ var drawHS_agencyRating = (datas = {}, container_uid = `container`, container_di
             }
         }
     );
-}
-
-
-/* 
-
-// jQuery onload/onready
-
-
-$(function() {
-    // fetch data
-    // chart {} insert `${vars}`
 });
 
 
-*/
+STOCK_F9_FV.Modules.agencyRating.init = STOCK_F9_FV.Modules.agencyRating.init || (
+    (url= `http://localhost:3000/fast-preview/json/datas/5.json`) => {
+        let uid = `agency_rating_hs_container`;
+        STOCK_F9_FV.Modules.agencyRating(url, true, uid);
+    }
+);
+
+STOCK_F9_FV.Modules.agencyRating.init();// url
 
 // call fetch json datas
 setTimeout(() => {
     // async & await
-    const sf_num= `stockfast05`;
-    const url = `http://10.1.5.202/webservice/fastview/stock/${sf_num}/600570.SH`;
-    let uid = `agency_rating_hs_container`;
-    agencyRating(url, true, uid);
+    /* 
+        const sf_num= `stockfast05`;
+        const url = `http://10.1.5.202/webservice/fastview/stock/${sf_num}/600570.SH`;
+        let uid = `agency_rating_hs_container`;
+        agencyRating(url, true, uid);
+    */
     // let hs_datas = agencyRating(url, true, uid);
     // console.log(`hs_datas = \n`, JSON.stringify(hs_datas, null, 4));
     // setTimeout(() => {

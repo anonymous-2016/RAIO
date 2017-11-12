@@ -11,9 +11,12 @@
 
 // todo
 
-
-// const
-var profitForecast = (url = ``, debug = false, uid = `default_dom_uid`) => {
+// namespaces
+var STOCK_F9_FV = STOCK_F9_FV || {};
+// sub namespaces
+STOCK_F9_FV.Modules = STOCK_F9_FV.Modules || {};
+// IIFE === Closure!
+STOCK_F9_FV.Modules.profitForecast = STOCK_F9_FV.Modules.profitForecast || ((url = ``, debug = false, uid = `default_dom_uid`) => {
     // profitForecast
     console.log(`uid = `, uid);
     // debug = true;
@@ -49,17 +52,6 @@ var profitForecast = (url = ``, debug = false, uid = `default_dom_uid`) => {
                     // return arr[i];
                 }
             );
-            /* 
-                [
-                    {
-                        "rq": "2017-10-25",
-                        "pj": 0.66,
-                        "st": 0,
-                        "wc": 1,
-                        "xt": 0
-                    }
-                ]
-            */
             // Array.isArray(arr);
             let keys = Object.keys(arr[0]);
             // (5) ["rq", "pj", "st", "wc", "xt"]
@@ -139,12 +131,12 @@ var profitForecast = (url = ``, debug = false, uid = `default_dom_uid`) => {
             datas = Object.assign(datas, arr_obj);
             // return Object.assign(datas, arr_obj);
             // return arr_obj;
-            drawHS(datas, uid);
+            STOCK_F9_FV.Modules.profitForecast.drawHS(datas, uid);
         }
     )
     .catch(error => console.log(`error = \n`, error));
-    return datas;
-};
+    // return datas;
+});
 
 
 
@@ -157,8 +149,7 @@ var profitForecast = (url = ``, debug = false, uid = `default_dom_uid`) => {
  * @param {* Boolean} debug
  */
 
-// const
-var drawHS = (datas = {}, container_uid = `container`, container_div = `dom_element`, debug = false) => {
+STOCK_F9_FV.Modules.profitForecast.drawHS = STOCK_F9_FV.Modules.profitForecast.drawHS || ((datas = {}, container_uid = `container`, container_div = `dom_element`, debug = false) => {
     // let container = document.querySelector(`#container`);
     // let container = document.querySelector(`#${container_uid}`);
     // ???
@@ -429,30 +420,28 @@ var drawHS = (datas = {}, container_uid = `container`, container_div = `dom_elem
             }
         }
     );
-}
-
-
-/* 
-
-// jQuery onload/onready
-
-
-$(function() {
-    // fetch data
-    // chart {} insert `${vars}`
 });
 
+STOCK_F9_FV.Modules.profitForecast.init = STOCK_F9_FV.Modules.profitForecast.init || (
+    (url= `http://localhost:3000/fast-preview/json/datas/3.json`) => {
+        let uid = `profit_forecast_hs_container`;
+        STOCK_F9_FV.Modules.profitForecast(url, true, uid);
+    }
+);
 
-*/
+STOCK_F9_FV.Modules.profitForecast.init();// url
+
 
 // call fetch json datas
 setTimeout(() => {
     // async & await
-    const sf_num= `stockfast03`;
-    const url = `http://10.1.5.202/webservice/fastview/stock/${sf_num}/600570.SH`;
-    let uid = `profit_forecast_hs_container`;
-    let hs_datas = profitForecast(url, true, uid);
-    console.log(`hs_datas = \n`, JSON.stringify(hs_datas, null, 4));
+    /* 
+        const sf_num= `stockfast03`;
+        const url = `http://10.1.5.202/webservice/fastview/stock/${sf_num}/600570.SH`;
+        let uid = `profit_forecast_hs_container`;
+        let hs_datas = profitForecast(url, true, uid);
+        console.log(`hs_datas = \n`, JSON.stringify(hs_datas, null, 4));
+    */
     // profitForecast(url, true, uid);
     // let hs_container_uid = document.querySelector(`[data-hs-container="data-profit-forecast-container-uid"]`);
     // setTimeout(() => {

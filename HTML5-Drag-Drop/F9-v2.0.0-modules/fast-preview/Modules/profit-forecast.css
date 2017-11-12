@@ -17,7 +17,16 @@
     /* overflow-x: scroll; */
     height: 100%;
     min-height: 275px;
+    max-width: 542px;
+    min-width: 542px;
 }
+
+.fv-profit-forecast-title-box,
+.fv-profit-forecast-container{
+    max-width: 542px;
+    min-width: 542px;
+}
+
 
 
 /* 设置chart容器的宽度，高度不同，绘制出来的折线效果就不同(会相应的变化) */
