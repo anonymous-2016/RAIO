@@ -9,12 +9,15 @@
  * @param {* Boolean} debug 
  */
 
-// todo
-
 // institutional-shareholding-change-statistics ISCS
 
-// const
-var ISCstatistics = (url = ``, debug = false, uid = `default_dom_uid`) => {
+// namespaces
+var STOCK_F9_FV = STOCK_F9_FV || {};
+// sub namespaces
+STOCK_F9_FV.Modules = STOCK_F9_FV.Modules || {};
+
+// Modules && IIFE === Closure!
+STOCK_F9_FV.Modules.ISCstatistics = STOCK_F9_FV.Modules.ISCstatistics || ((url = ``, debug = false, uid = `default_dom_uid`) => {
     // profitForecast
     // console.log(`uid = `, uid);
     // debug = true;
@@ -121,12 +124,12 @@ var ISCstatistics = (url = ``, debug = false, uid = `default_dom_uid`) => {
             datas = Object.assign(datas, arr_obj);
             // return Object.assign(datas, arr_obj);
             // return arr_obj;
-            ISCSdrawHS(datas, uid);
+            STOCK_F9_FV.Modules.ISCstatistics.ISCSdrawHS(datas, uid);
         }
     )
     .catch(error => console.log(`error = \n`, error));
     return datas;
-};
+});
 
 
 
@@ -138,8 +141,7 @@ var ISCstatistics = (url = ``, debug = false, uid = `default_dom_uid`) => {
  * @param {* Boolean} debug
  */
 
-// const
-var ISCSdrawHS = (datas = {}, container_uid = `container`, debug = false) => {
+STOCK_F9_FV.Modules.ISCstatistics.ISCSdrawHS = STOCK_F9_FV.Modules.ISCstatistics.ISCSdrawHS || ((datas = {}, container_uid = `container`, debug = false) => {
     let time = datas.time,
         shares = datas.shares,
         stock_price = datas.stock_price;
@@ -356,17 +358,29 @@ var ISCSdrawHS = (datas = {}, container_uid = `container`, debug = false) => {
     svg_legend.lastChild.setAttribute(`height`, 10);
     svg_legend.lastChild.setAttribute(`rx`, 0);
     svg_legend.lastChild.setAttribute(`ry`, 0);
-}
+});
 
+
+
+STOCK_F9_FV.Modules.ISCstatistics.init = STOCK_F9_FV.Modules.ISCstatistics.init || (
+    (url= `http://localhost:3000/fast-preview/json/datas/13.json`) => {
+        let uid = `institutional_shareholding_change_statistics_hs_container`;
+        STOCK_F9_FV.Modules.ISCstatistics(url, true, uid);
+    }
+);
+
+STOCK_F9_FV.Modules.ISCstatistics.init();// url
 
 
 // call fetch json datas
 setTimeout(() => {
     // async & await
-    const sf_num= `stockfast13`;
-    const url = `http://10.1.5.202/webservice/fastview/stock/${sf_num}/600570.SH`;
-    let uid = `institutional_shareholding_change_statistics_hs_container`;
-    let hs_datas = ISCstatistics(url, true, uid);
+    /* 
+        const sf_num= `stockfast13`;
+        const url = `http://10.1.5.202/webservice/fastview/stock/${sf_num}/600570.SH`;
+        let uid = `institutional_shareholding_change_statistics_hs_container`;
+        let hs_datas = ISCstatistics(url, true, uid);
+    */
     // console.log(`hs_datas = \n`, JSON.stringify(hs_datas, null, 4));
     // profitForecast(url, true, uid);
     // let hs_container_uid = document.querySelector(`[data-hs-container="data-profit-forecast-container-uid"]`);

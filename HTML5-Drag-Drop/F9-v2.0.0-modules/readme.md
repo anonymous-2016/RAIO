@@ -34,9 +34,21 @@ const url = `http://localhost:3000/fast-preview/json/datas/1.json`;
 var STOCK_F9_FV = STOCK_F9_FV || {};
 // sub namespaces
 STOCK_F9_FV.Modules = STOCK_F9_FV.Modules || {};
-
 // Modules && IIFE === Closure!
 STOCK_F9_FV.Modules.importantInfos = STOCK_F9_FV.Modules.importantInfos || (() => {});
+
+
+STOCK_F9_FV.Modules.agencyRating.init = STOCK_F9_FV.Modules.agencyRating.init || (
+    (url= `http://localhost:3000/fast-preview/json/datas/5.json`) => {
+        let uid = `agency_rating_hs_container`;
+        STOCK_F9_FV.Modules.agencyRating(url, true, uid);
+    }
+);
+
+STOCK_F9_FV.Modules.agencyRating.init();// url
+
+
+
 
 // Utils && IIFE === Closure!
 STOCK_F9_FV.Utils.getURL = STOCK_F9_FV.Utils.getURL || (() => {});

@@ -9,12 +9,12 @@
  * @param {* Boolean} debug 
  */
 
-// todo
-
-// stock-price-turnover SPTurnover
-
-// const
-var SPTurnover = (url = ``, debug = false, uid = `default_dom_uid`) => {
+// namespaces
+var STOCK_F9_FV = STOCK_F9_FV || {};
+// sub namespaces
+STOCK_F9_FV.Modules = STOCK_F9_FV.Modules || {};
+// Modules && IIFE === Closure!
+STOCK_F9_FV.Modules.SPTurnover = STOCK_F9_FV.Modules.SPTurnover || ((url = ``, debug = false, uid = `default_dom_uid`) => {
     // profitForecast
     // console.log(`uid = `, uid);
     // debug = true;
@@ -118,12 +118,12 @@ var SPTurnover = (url = ``, debug = false, uid = `default_dom_uid`) => {
             );
             // console.log(`arr_obj = `, JSON.stringify(arr_obj, null, 4));
             datas = Object.assign(datas, arr_obj);
-            SPTdrawHS(datas, uid);
+            STOCK_F9_FV.Modules.SPTurnover.SPTdrawHS(datas, uid);
         }
     )
     .catch(error => console.log(`error = \n`, error));
     return datas;
-};
+});
 
 
 
@@ -134,8 +134,8 @@ var SPTurnover = (url = ``, debug = false, uid = `default_dom_uid`) => {
  * @param {* String} container_uid 
  * @param {* Boolean} debug
  */
-// const
-var SPTdrawHS = (datas = {}, container_uid = `container`, debug = false) => {
+
+STOCK_F9_FV.Modules.SPTurnover.SPTdrawHS = STOCK_F9_FV.Modules.SPTurnover.SPTdrawHS || ((datas = {}, container_uid = `container`, debug = false) => {
     let time = datas.time,
         SH_Index = datas.SH_Index,
         turn_over = datas.turn_over,
@@ -532,17 +532,29 @@ var SPTdrawHS = (datas = {}, container_uid = `container`, debug = false) => {
     // 年初至今(Year to Date)；年初到今日(Year To Days)；本年迄今
     // Year To Date (YTD)//本年迄今 
     // Month To Date // 当月,本月[MTD]
-}
+});
+
+
+STOCK_F9_FV.Modules.SPTurnover.init = STOCK_F9_FV.Modules.SPTurnover.init || (
+    (url= `http://localhost:3000/fast-preview/json/datas/6.json`) => {
+        let uid = `stock_price_turnover_hs_container`;
+        STOCK_F9_FV.Modules.SPTurnover(url, true, uid);
+    }
+);
+
+STOCK_F9_FV.Modules.SPTurnover.init();// url
 
 
 
 // call fetch json datas
 setTimeout(() => {
     // async & await
-    const sf_num= `stockfast06`;
-    const url = `http://10.1.5.202/webservice/fastview/stock/${sf_num}/600570.SH`;
-    let uid = `stock_price_turnover_hs_container`;
-    let hs_datas = SPTurnover(url, true, uid);
+    /* 
+        const sf_num= `stockfast06`;
+        const url = `http://10.1.5.202/webservice/fastview/stock/${sf_num}/600570.SH`;
+        let uid = `stock_price_turnover_hs_container`;
+        let hs_datas = SPTurnover(url, true, uid);
+    */
     // console.log(`hs_datas = \n`, JSON.stringify(hs_datas, null, 4));
     // profitForecast(url, true, uid);
     // let hs_container_uid = document.querySelector(`[data-hs-container="data-profit-forecast-container-uid"]`);
