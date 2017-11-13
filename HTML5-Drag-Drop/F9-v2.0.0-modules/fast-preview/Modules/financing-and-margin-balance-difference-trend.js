@@ -9,12 +9,14 @@
  * @param {* Boolean} debug 
  */
 
-// todo
-
 // financing-and-margin-balance-difference-trend FMBDT
 
-// const
-var FMBDtrend = (url = ``, debug = false, uid = `default_dom_uid`) => {
+// namespaces
+var STOCK_F9_FV = STOCK_F9_FV || {};
+// sub namespaces
+STOCK_F9_FV.Modules = STOCK_F9_FV.Modules || {};
+// Modules && IIFE === Closure!
+STOCK_F9_FV.Modules.FMBDtrend = STOCK_F9_FV.Modules.FMBDtrend || ((url = ``, debug = false, uid = `default_dom_uid`) => {
     // profitForecast
     console.log(`uid = `, uid);
     // debug = true;
@@ -122,13 +124,13 @@ var FMBDtrend = (url = ``, debug = false, uid = `default_dom_uid`) => {
             // return Object.assign(datas, arr_obj);
             // return arr_obj;
             // uid ???
-            FMBDTdrawHS(datas, uid);
+            STOCK_F9_FV.Modules.FMBDtrend.FMBDTdrawHS(datas, uid);
         }
     )
     .catch(error => console.log(`error = \n`, error));
     return datas;
     // return new Promise();
-};
+});
 
 
 
@@ -139,8 +141,7 @@ var FMBDtrend = (url = ``, debug = false, uid = `default_dom_uid`) => {
  * @param {* String} container_uid 
  * @param {* Boolean} debug
  */
-// const
-var FMBDTdrawHS = (datas = {}, container_uid = `container`, debug = false) => {
+STOCK_F9_FV.Modules.FMBDtrend.FMBDTdrawHS = STOCK_F9_FV.Modules.FMBDtrend.FMBDTdrawHS || ((datas = {}, container_uid = `container`, debug = false) => {
     let time = datas.time,
         shares = datas.shares,
         stock_price = datas.stock_price;
@@ -201,7 +202,8 @@ var FMBDTdrawHS = (datas = {}, container_uid = `container`, debug = false) => {
             }
         },
         credits: {
-            enabled: true,// enabled: false,
+            // enabled: true,// 
+            enabled: false,
             href: `https://www.gildata.com`,
             text: `gildata`,
             // position: https://api.highcharts.com/highstock/credits.style,
@@ -361,17 +363,28 @@ var FMBDTdrawHS = (datas = {}, container_uid = `container`, debug = false) => {
         <rect x="2" y="4" width="17" height="12" fill="#1a75bc" rx="0" ry="0" class="highcharts-point"></rect>
         <rect x="0" y="5" width="17" height="10" fill="#1a75bc" rx="0" ry="0" class="highcharts-point"></rect>
     */
-}
+});
 
 
+
+
+STOCK_F9_FV.Modules.FMBDtrend.init = STOCK_F9_FV.Modules.FMBDtrend.init || (
+    (url= `http://localhost:3000/fast-preview/json/datas/8.json`) => {
+        let uid = `financing_and_margin_balance_difference_trend_hs_container`;
+        STOCK_F9_FV.Modules.FMBDtrend(url, false, uid);
+    }
+);
+
+STOCK_F9_FV.Modules.FMBDtrend.init(`http://10.1.5.202/webservice/fastview/stock/stockfast08/600570.SH`);// url
+// const url = `http://10.1.5.202/webservice/fastview/stock/${sf_num}/600570.SH`;
 
 // call fetch json datas
 setTimeout(() => {
     // async & await
-    const sf_num= `stockfast08`;
-    const url = `http://10.1.5.202/webservice/fastview/stock/${sf_num}/600570.SH`;
-    let uid = `financing_and_margin_balance_difference_trend_hs_container`;
-    FMBDtrend(url, false, uid);
+    // const sf_num= `stockfast08`;
+    // const url = `http://10.1.5.202/webservice/fastview/stock/${sf_num}/600570.SH`;
+    // let uid = `financing_and_margin_balance_difference_trend_hs_container`;
+    // FMBDtrend(url, false, uid);
     // let hs_datas = FMBDtrend(url, true, uid);
     // console.log(`hs_datas = \n`, JSON.stringify(hs_datas, null, 4));
     // setTimeout(() => {

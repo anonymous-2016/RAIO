@@ -53,6 +53,7 @@ STOCK_F9_FV.Modules.importantInfos = STOCK_F9_FV.Modules.importantInfos || ((url
             for(let key in data){
                 arr.push(key);
             }
+            
             // shit api, can I trust you?
             // arr === (11) ["sjgn", "zyyw", "bdl", "cjl", "jzc", "zgb", "ltgb", "gxl", "cgzb", "mbjg", "zhpj"]
             // dead & hard code
@@ -60,7 +61,15 @@ STOCK_F9_FV.Modules.importantInfos = STOCK_F9_FV.Modules.importantInfos || ((url
             for (let i = 0; i < tds.length; i++) {
                 let key = ui_arr[i];
                 let value = data[key];
-                tds[i].innerText = value;
+                if (i < 2) {
+                    tds[i].innerText = value;
+                    tds[i].setAttribute(`title`, value);
+                    // title
+                }else{
+                    tds[i].innerText = value;
+                }
+                // HTML in JS ???
+                // let tds = document.querySelectorAll('[data-fv-td-show-title="fv-td-show-title"]');
             }
         }
     )

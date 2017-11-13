@@ -9,8 +9,12 @@
  * @param {Boolean} debug 
  */
 
-// const
-var changesShareholdingExecutives = (url = ``, td_id = `id`, debug = false) => {
+// namespaces
+var STOCK_F9_FV = STOCK_F9_FV || {};
+// sub namespaces
+STOCK_F9_FV.Modules = STOCK_F9_FV.Modules || {};
+// Modules && IIFE === Closure!
+STOCK_F9_FV.Modules.changesShareholdingExecutives = STOCK_F9_FV.Modules.changesShareholdingExecutives || ((url = ``, td_id = `id`, debug = false) => {
     // debug = true;
     let data = [];
     fetch(url)
@@ -42,13 +46,19 @@ var changesShareholdingExecutives = (url = ``, td_id = `id`, debug = false) => {
                             <td class="fv-changes-shareholding-executives-table-td-value" data-value="data-fv-changes-shareholding-executives">
                                 ${date}
                             </td>
-                            <td class="fv-changes-shareholding-executives-table-td-value" data-value="data-fv-changes-shareholding-executives">
+                            <td
+                                title="${name}"
+                                class="fv-changes-shareholding-executives-table-td-value"
+                                data-value="data-fv-changes-shareholding-executives">
                                 ${name}
                             </td>
                             <td class="fv-changes-shareholding-executives-table-td-value" data-value="data-fv-changes-shareholding-executives">
                                 ${direction}
                             </td>
-                            <td class="fv-changes-shareholding-executives-table-td-value" data-value="data-fv-changes-shareholding-executives">
+                            <td
+                                title="${share_nums}"
+                                class="fv-changes-shareholding-executives-table-td-value"
+                                data-value="data-fv-changes-shareholding-executives">
                                 ${share_nums}
                             </td>
                             <td class="fv-changes-shareholding-executives-table-td-value" data-value="data-fv-changes-shareholding-executives">
@@ -70,15 +80,27 @@ var changesShareholdingExecutives = (url = ``, td_id = `id`, debug = false) => {
         }
     )
     .catch(error => console.log(`error = \n`, error));
-};
+});
+
+
+
+STOCK_F9_FV.Modules.changesShareholdingExecutives.init = STOCK_F9_FV.Modules.changesShareholdingExecutives.init || (
+    (url= `http://localhost:3000/fast-preview/json/datas/5.json`) => {
+        let td_id = document.querySelector('#fv-changes-shareholding-executives-tbody');
+        STOCK_F9_FV.Modules.changesShareholdingExecutives(url, td_id, true);
+    }
+);
+
+STOCK_F9_FV.Modules.changesShareholdingExecutives.init(`http://10.1.5.202/webservice/fastview/stock/stockfast12/600570.SH`);
+// url
 
 
 // call fetch json datas
 setTimeout(() => {
-    let num = `12`;
-    const url = `http://10.1.5.202/webservice/fastview/stock/stockfast${num}/600570.SH`;
-    let td_id = document.querySelector('#fv-changes-shareholding-executives-tbody');
-    changesShareholdingExecutives(url, td_id, true);
+    // let num = `12`;
+    // const url = `http://10.1.5.202/webservice/fastview/stock/stockfast${num}/600570.SH`;
+    // let td_id = document.querySelector('#fv-changes-shareholding-executives-tbody');
+    // changesShareholdingExecutives(url, td_id, true);
 }, 0);
 
 

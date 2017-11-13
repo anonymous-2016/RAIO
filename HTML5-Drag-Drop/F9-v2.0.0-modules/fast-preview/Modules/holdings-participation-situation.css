@@ -39,8 +39,19 @@
 
 /* table */
 
+#fv-holdings-participation-situation-tbody {
+    /* box-sizing: border-box !important;
+    width: 542px !important;
+    height: 300px !important;
+    background: #f0f;
+    overflow: hidden !important; */
+}
+
 .fv-holdings-participation-situation-table {
-    width: 100%;
+    /* width: 100%; */
+    /* width: 542px; */
+    /* height: 300px; */
+    /* overflow: hidden; */
     /* 去除table每行之间的空白间隙 */
     border-collapse: collapse;
     border-spacing: 0;
@@ -49,6 +60,8 @@
     /* border-color: #c5d2db; */
     font-size: 13px;
     font-weight: normal;
+    height: 300px;
+    overflow: hidden;
 }
 
 .fv-holdings-participation-situation-table tr td::selection {
@@ -75,6 +88,9 @@
 .fv-holdings-participation-situation-table-thead {
     /* display: none; */
     text-align: center;
+    width: 542px;
+    box-sizing: border-box;
+    overflow: hidden;
 }
 
 .fv-holdings-participation-situation-table-tfoot {
@@ -116,8 +132,9 @@
 .fv-holdings-participation-situation-table-td-value {
     box-sizing: border-box;
     /* min-width: 205px; */
-    min-width: 80px;
+    width: 80px;
     padding-left: 6px;
+    overflow: hidden;
 }
 
 
@@ -134,16 +151,30 @@
     background-color: #f5f5f5;
 }
 
+.fv-changes-shareholding-executives-table-td-value {
+    overflow: hidden;
+    white-space: normal;
+    width: 70px;
+    text-overflow: ellipsis;
+    /* line-height: 23px; */
+    /* height: 23px; */
+    /* box-sizing: border-box; */
+}
+
 .fv-holdings-participation-situation-table-tbody>tr:nth-of-type(n)>td {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
     line-height: 23px;
     height: 23px;
     box-sizing: border-box;
     text-align: center;
+    width: 70px;
 }
 
 .fv-holdings-participation-situation-table-tbody>tr:nth-of-type(n)>td:last-child {
     border-left: 1px solid #d7dbe0;
-    max-width: 70px;
+    width: 70px;
     box-sizing: border-box;
     text-align: left;
 }
@@ -163,31 +194,43 @@
 
 /* https://css-tricks.com/almanac/properties/t/text-overflow/ */
 
-.fv-holdings-participation-situation-table-tbody>tr:nth-of-type(n)>td:first-child {
-    min-width: 81px;
-    width: 81px;
-}
-
-.fv-holdings-participation-situation-table-tbody>tr:nth-of-type(n)>td:nth-of-type(2) {
-    min-width: 80px;
+.fv-holdings-participation-situation-table-tbody>tr:nth-of-type(n)>td:nth-of-type(n) {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    /* word-break: break-all; */
+    white-space: normal;
     width: 80px;
 }
 
+.fv-holdings-participation-situation-table-tbody>tr:nth-of-type(n)>td:first-child {
+    /* min-width: 81px; */
+    width: 81px;
+    overflow: hidden;
+}
+
+.fv-holdings-participation-situation-table-tbody>tr:nth-of-type(n)>td:nth-of-type(2) {
+    /* min-width: 80px; */
+    width: 80px;
+    overflow: hidden;
+}
+
 .fv-holdings-participation-situation-table-tbody>tr:nth-of-type(n)>td:nth-of-type(3) {
-    min-width: 90px;
-    width: 90px;
+    /* min-width: 90px; */
+    width: 80px;
 }
 
 .fv-holdings-participation-situation-table-tbody>tr:nth-of-type(n)>td:nth-of-type(4) {
-    min-width: 110px;
-    width: 110px;
+    /* min-width: 110px; */
+    width: 80px;
     text-align: right;
 }
 
 .fv-holdings-participation-situation-table-tbody>tr:nth-of-type(n)>td:nth-of-type(5) {
-    min-width: 178px;
-    width: 178px;
+    /* min-width: 178px; */
+    /* width: 178px; */
+    width: 80px;
     /* text-align: center; */
+    overflow: hidden;
 }
 
 [data-more="data-link-more"] {
@@ -199,7 +242,10 @@
 .fv-holdings-participation-situation-table-tbody {
     /* max-width: 70%; */
     /* max-height: 50px; */
-    max-width: 760px;
+    /* max-width: 760px; */
+    width: 542px;
+    height: 300px;
+    overflow: hidden;
 }
 
 .link-more {
@@ -239,6 +285,7 @@
 }
 
 .fv-holdings-participation-situation-table-thead>tr:nth-of-type(n)>td:nth-of-type(2) {
-    min-width: 80px;
+    /* min-width: 80px; */
     width: 80px;
+    overflow: hidden;
 }

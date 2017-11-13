@@ -8,8 +8,13 @@
  * @param {* Array} ui_arr 
  * @param {Boolean} debug 
  */
-// const
-var companyAnnouncements = (url = ``, td_id = `id`, debug = false) => {
+
+// namespaces
+var STOCK_F9_FV = STOCK_F9_FV || {};
+// sub namespaces
+STOCK_F9_FV.Modules = STOCK_F9_FV.Modules || {};
+// Modules && IIFE === Closure!
+STOCK_F9_FV.Modules.companyAnnouncements = STOCK_F9_FV.Modules.companyAnnouncements || ((url = ``, td_id = `id`, debug = false) => {
     // debug = true;
     let data = [];
     fetch(url)
@@ -37,7 +42,12 @@ var companyAnnouncements = (url = ``, td_id = `id`, debug = false) => {
                                 ${publishDate}
                             </td>
                             <td class="fv-company-announcements-table-td-value" data-value="data-fv-company-announcements">
-                                <a href="#" data-link="fv-company-announcements-link">${title}</a>
+                                <a
+                                    href="#"
+                                    title="${title}"
+                                    data-link="fv-company-announcements-link">
+                                    ${title}
+                                </a>
                             </td>
                         </tr>
                     `;
@@ -47,25 +57,44 @@ var companyAnnouncements = (url = ``, td_id = `id`, debug = false) => {
         }
     )
     .catch(error => console.log(`error = \n`, error));
-};
+});
 
+
+STOCK_F9_FV.Modules.companyAnnouncements.init = STOCK_F9_FV.Modules.companyAnnouncements.init || (
+    (url= `http://localhost:3000/fast-preview/json/datas/bulletion.json`) => {
+        // let link_more = document.querySelector(`[data-more="company-announcements-title"]`);
+        // let link_html = `
+        //     <span id="company_announcements_link_more">
+        //         <a href="#" title="company-announcements" data-uid="company_announcements_link_more">更多 >></a>
+        //     </span>
+        // `;
+        // link_more.insertAdjacentHTML('beforeend', link_html);
+        // let more = document.querySelector(`#company_announcements_link_more`);
+        // more.classList.add("link-more");
+        let td_id = document.querySelector('#fv-company-announcements-tbody');
+        STOCK_F9_FV.Modules.companyAnnouncements(url, td_id, true);
+    }
+);
+
+STOCK_F9_FV.Modules.companyAnnouncements.init(`http://10.1.5.202/webservice/fastview/stock/bulletion/600570.SH`);// url
+// const url = `http://10.1.5.202/webservice/fastview/stock/bulletion/600570.SH`;
 
 // call fetch json datas
 setTimeout(() => {
     // async & await
-    const url = `http://10.1.5.202/webservice/fastview/stock/bulletion/600570.SH`;
-    let link_more = document.querySelector(`[data-more="company-announcements-title"]`);
-    let link_html = `
-        <span id="company_announcements_link_more">
-            <a href="#" title="company-announcements" data-uid="company_announcements_link_more">更多 >></a>
-        </span>
-    `;
-    link_more.insertAdjacentHTML('beforeend', link_html);
-    let more = document.querySelector(`#company_announcements_link_more`);
-    more.classList.add("link-more");
-    // more
-    let td_id = document.querySelector('#fv-company-announcements-tbody');
-    companyAnnouncements(url, td_id, true);
+    // const url = `http://10.1.5.202/webservice/fastview/stock/bulletion/600570.SH`;
+    // let link_more = document.querySelector(`[data-more="company-announcements-title"]`);
+    // let link_html = `
+    //     <span id="company_announcements_link_more">
+    //         <a href="#" title="company-announcements" data-uid="company_announcements_link_more">更多 >></a>
+    //     </span>
+    // `;
+    // link_more.insertAdjacentHTML('beforeend', link_html);
+    // let more = document.querySelector(`#company_announcements_link_more`);
+    // more.classList.add("link-more");
+    // // more
+    // let td_id = document.querySelector('#fv-company-announcements-tbody');
+    // companyAnnouncements(url, td_id, true);
     // const debug = true;
     // companyAnnouncements(url, td_id, debug);
 }, 0);

@@ -2,7 +2,8 @@
 .fv-financing-and-margin-balance-difference-trend-hs {
     margin: 0 auto;
     box-sizing: border-box;
-    border: 1px solid red;
+    /* border: 1px solid red; */
+    border: 1px solid rgba(229, 229, 229, 1);
 }
 
 

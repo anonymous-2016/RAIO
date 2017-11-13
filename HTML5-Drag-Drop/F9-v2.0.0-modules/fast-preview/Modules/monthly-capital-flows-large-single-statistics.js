@@ -9,12 +9,14 @@
  * @param {* Boolean} debug 
  */
 
-// todo
-
 // monthly-capital-flows-large-single-statistics MCFLSStatistics
 
-// const
-var MCFLSStatistics = (url = ``, debug = false, uid = `default_dom_uid`) => {
+// namespaces
+var STOCK_F9_FV = STOCK_F9_FV || {};
+// sub namespaces
+STOCK_F9_FV.Modules = STOCK_F9_FV.Modules || {};
+// Modules && IIFE === Closure!
+STOCK_F9_FV.Modules.MCFLSStatistics = STOCK_F9_FV.Modules.MCFLSStatistics || ((url = ``, debug = false, uid = `default_dom_uid`) => {
     // profitForecast
     if (debug) {
         console.log(`uid = `, uid);
@@ -109,12 +111,12 @@ var MCFLSStatistics = (url = ``, debug = false, uid = `default_dom_uid`) => {
                 console.log(`arr_obj = `, JSON.stringify(arr_obj, null, 4));
             }
             datas = Object.assign(datas, arr_obj);
-            MCFLSSdrawHS(datas, uid);
+            STOCK_F9_FV.Modules.MCFLSStatistics.MCFLSSdrawHS(datas, uid);
         }
     )
     .catch(error => console.log(`error = \n`, error));
     return datas;
-};
+});
 
 
 
@@ -126,8 +128,7 @@ var MCFLSStatistics = (url = ``, debug = false, uid = `default_dom_uid`) => {
  * @param {* DOM Element} container_div 
  * @param {* Boolean} debug
  */
-// const
-var MCFLSSdrawHS = (datas = {}, container_uid = `container`, debug = false) => {
+STOCK_F9_FV.Modules.MCFLSStatistics.MCFLSSdrawHS = STOCK_F9_FV.Modules.MCFLSStatistics.MCFLSSdrawHS || ((datas = {}, container_uid = `container`, debug = false) => {
     let titles = {
         title1: `title 1`,
         title2: `title 2`
@@ -179,7 +180,8 @@ var MCFLSSdrawHS = (datas = {}, container_uid = `container`, debug = false) => {
             type: 'column',
             // backgroundColor: chart_css.color
             // backgroundColor: color
-            height: (9 / 16 * 100) + '%',
+            // height: (9 / 16 * 100) + '%',
+            height: 293,// 275px;
             // 16:9 ratio
         },
         title: {
@@ -194,7 +196,8 @@ var MCFLSSdrawHS = (datas = {}, container_uid = `container`, debug = false) => {
             // xAxis datas
         },
         credits: {
-            enabled: true,// enabled: false,
+            // enabled: true,// 
+            enabled: false,
             href: `https://www.gildata.com`,
             text: `gildata`,
             // position: https://api.highcharts.com/highstock/credits.style,
@@ -345,16 +348,30 @@ var MCFLSSdrawHS = (datas = {}, container_uid = `container`, debug = false) => {
     svg_legend.lastChild.setAttribute(`height`, 10);
     svg_legend.lastChild.setAttribute(`rx`, 0);
     svg_legend.lastChild.setAttribute(`ry`, 0);
-}
+});
+
+
+STOCK_F9_FV.Modules.MCFLSStatistics.init = STOCK_F9_FV.Modules.MCFLSStatistics.init || (
+    (url= `http://localhost:3000/fast-preview/json/datas/9.json`) => {
+        let uid = `monthly_capital_flows_large_single_statistics_hs_container`;
+        STOCK_F9_FV.Modules.MCFLSStatistics(url, false, uid);
+    }
+);
+
+STOCK_F9_FV.Modules.MCFLSStatistics.init(`http://10.1.5.202/webservice/fastview/stock/stockfast09/600570.SH`);
+// url
+// const url = `http://10.1.5.202/webservice/fastview/stock/${sf_num}/600570.SH`;
+
+
 
 
 // call fetch json datas
 setTimeout(() => {
     // async & await
-    const sf_num= `stockfast09`;
-    const url = `http://10.1.5.202/webservice/fastview/stock/${sf_num}/600570.SH`;
-    let uid = `monthly_capital_flows_large_single_statistics_hs_container`;
-    MCFLSStatistics(url, false, uid);
+    // const sf_num= `stockfast09`;
+    // const url = `http://10.1.5.202/webservice/fastview/stock/${sf_num}/600570.SH`;
+    // let uid = `monthly_capital_flows_large_single_statistics_hs_container`;
+    // MCFLSStatistics(url, false, uid);
     // let hs_datas = MCFLSStatistics(url, true, uid);
     // console.log(`hs_datas = \n`, JSON.stringify(hs_datas, null, 4));
 }, 0);

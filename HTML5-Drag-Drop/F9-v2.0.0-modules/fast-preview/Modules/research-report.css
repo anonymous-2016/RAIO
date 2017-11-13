@@ -88,7 +88,8 @@
 }
 
 .fv-research-report-table-thead>.fv-research-report-table-tr>td.fv-research-report-table-td-title:nth-child(2) {
-    min-width: 510px;
+    /* min-width: 510px; */
+    width: 400px;
 }
 
 .fv-research-report-table-tfoot {
@@ -130,7 +131,7 @@
 .fv-research-report-table-td-value {
     box-sizing: border-box;
     /* min-width: 205px; */
-    min-width: 80px;
+    /* min-width: 80px; */
     padding-left: 6px;
 }
 
@@ -157,14 +158,16 @@
 
 .fv-research-report-table-tbody>tr:nth-of-type(n)>td:last-child {
     border-left: 1px solid #d7dbe0;
-    max-width: 70px;
+    /* max-width: 80px; */
+    width: 80px;
     box-sizing: border-box;
     text-align: left;
 }
 
 .fv-research-report-table-tbody>tr:nth-of-type(n)>td:nth-child(2) {
-    min-width: 150px;
-    max-width: 510px;
+    /* min-width: 150px; */
+    /* max-width: 510px; */
+    width: 400px;
     overflow-x: hidden;
     /* overflow: hidden; */
     text-overflow: ellipsis;
@@ -178,7 +181,7 @@
 /* https://css-tricks.com/almanac/properties/t/text-overflow/ */
 
 .fv-research-report-table-tbody>tr:nth-of-type(n)>td:first-child {
-    max-width: 80px;
+    /* max-width: 80px; */
 }
 
 [data-more="data-link-more"] {
@@ -190,7 +193,8 @@
 .fv-research-report-table-tbody {
     /* max-width: 70%; */
     /* max-height: 50px; */
-    max-width: 760px;
+    /* max-width: 760px; */
+    width: 542px;
 }
 
 .link-more {

@@ -11,19 +11,6 @@ const url = `http://10.1.5.202/webservice/fastview/stock/stockfast01/600570.SH`;
 const url = `http://localhost:3000/fast-preview/json/datas/1.json`;
 
 
-// 重要信息
-涉及概念 sjgn
-3个月波动率(%) bdl
-主营业务 zyyw
-近90天日均成交量(万股) cjl
-净资产(万元) jzc
-总股本(万股) zgb
-流通股本(万股) ltgb
-股息率 gxl
-机构持股占比(%) cgzb
-目标价格 mbjg
-综合评级 zhpj
-
 ```
 
 # namespaces
@@ -47,6 +34,10 @@ STOCK_F9_FV.Modules.agencyRating.init = STOCK_F9_FV.Modules.agencyRating.init ||
 
 STOCK_F9_FV.Modules.agencyRating.init();// url
 
+
+
+border: 1px solid rgba(229, 229, 229, 1);
+height: 272,// 275px;
 
 
 

@@ -88,7 +88,8 @@
 }
 
 .fv-company-news-table-thead>.fv-company-news-table-tr>td.fv-company-news-table-td-title:nth-child(2) {
-    min-width: 510px;
+    /* min-width: 510px; */
+    width: 450px;
 }
 
 .fv-company-news-table-tfoot {
@@ -163,8 +164,9 @@
 }
 
 .fv-company-news-table-tbody>tr:nth-of-type(n)>td:nth-child(2) {
-    min-width: 150px;
-    max-width: 510px;
+    /* min-width: 150px; */
+    /* max-width: 510px; */
+    width: 400px;
     overflow-x: hidden;
     /* overflow: hidden; */
     text-overflow: ellipsis;
@@ -178,6 +180,9 @@
 /* https://css-tricks.com/almanac/properties/t/text-overflow/ */
 
 .fv-company-news-table-tbody>tr:nth-of-type(n)>td:first-child {
+    /* max-width: 80px; */
+    /* width: 120px; */
+    min-width: 80px;
     max-width: 80px;
 }
 
@@ -190,7 +195,8 @@
 .fv-company-news-table-tbody {
     /* max-width: 70%; */
     /* max-height: 50px; */
-    max-width: 760px;
+    /* max-width: 760px; */
+    width: 400px;
 }
 
 .link-more {
@@ -213,6 +219,7 @@
 
 [data-link="fv-company-news-link"] {
     text-decoration: none;
+    color: #000;
 }
 
 [data-link="fv-company-news-link"]:hover {

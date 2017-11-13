@@ -3,6 +3,7 @@
     margin: 0 auto;
     box-sizing: border-box;
     /* border: 1px solid red; */
+    border: 1px solid rgba(229, 229, 229, 1);
 }
 
 
@@ -22,11 +23,10 @@
 }
 
 .fv-profit-forecast-title-box,
-.fv-profit-forecast-container{
+.fv-profit-forecast-container {
     max-width: 542px;
     min-width: 542px;
 }
-
 
 
 /* 设置chart容器的宽度，高度不同，绘制出来的折线效果就不同(会相应的变化) */

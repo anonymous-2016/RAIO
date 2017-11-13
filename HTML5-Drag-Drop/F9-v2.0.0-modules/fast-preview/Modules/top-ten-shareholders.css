@@ -179,14 +179,14 @@
 }
 
 .fv-top-ten-shareholders-table-tbody>tr:nth-of-type(n)>td:nth-of-type(4) {
-    min-width: 110px;
-    width: 110px;
+    /* min-width: 110px; */
+    width: 80px;
     text-align: right;
 }
 
 .fv-top-ten-shareholders-table-tbody>tr:nth-of-type(n)>td:nth-of-type(5) {
-    min-width: 178px;
-    width: 178px;
+    /* min-width: 178px; */
+    width: 78px;
     /* text-align: center; */
 }
 
@@ -199,7 +199,8 @@
 .fv-top-ten-shareholders-table-tbody {
     /* max-width: 70%; */
     /* max-height: 50px; */
-    max-width: 760px;
+    /* max-width: 760px; */
+    max-width: 542px;
 }
 
 [data-value="data-fv-top-ten-shareholders"] {
@@ -219,18 +220,24 @@
 
 .fv-top-ten-shareholders-table-thead>tr:nth-of-type(n)>td:nth-of-type(n) {
     /* min-width: 140px; */
-    /* width: 80px; */
-    width: 140px;
+    width: 80px;
+    /* width: 140px; */
     text-align: center;
 }
 
 .fv-top-ten-shareholders-table-thead>tr:nth-of-type(n)>td:nth-of-type(2) {
-    min-width: 535px;
+    /* min-width: 535px; */
+    max-width: 200px;
 }
 
 .fv-top-ten-shareholders-table-tbody>tr[data-value="fv-top-ten-shareholders-table-tr"]>td:nth-of-type(2) {
     text-align: left;
-    min-width: 535px;
+    /* min-width: 535px; */
+    max-width: 200px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    /* word-break: break-all; */
+    white-space: nowrap;
 }
 
 .fv-top-ten-shareholders-table-tbody>tr[data-value="fv-top-ten-shareholders-table-tr"]>td:nth-of-type(3),

@@ -8,8 +8,12 @@
  * @param {* Array} ui_arr 
  * @param {Boolean} debug 
  */
-// const
-var companyNews = (url = ``, td_id = `id`, debug = false) => {
+// namespaces
+var STOCK_F9_FV = STOCK_F9_FV || {};
+// sub namespaces
+STOCK_F9_FV.Modules = STOCK_F9_FV.Modules || {};
+// Modules && IIFE === Closure!
+STOCK_F9_FV.Modules.companyNews = STOCK_F9_FV.Modules.companyNews || ((url = ``, td_id = `id`, debug = false) => {
     // debug = true;
     let data = [];
     fetch(url)
@@ -38,7 +42,15 @@ var companyNews = (url = ``, td_id = `id`, debug = false) => {
                                 ${publishDate}
                             </td>
                             <td class="fv-company-news-table-td-value" data-value="data-fv-company-news">
-                                <a href="#${id}" data-link="fv-company-news-link" disabled="${id ? false : true}" data-link-detail="company-news-link-detail-module" data-newsId="${id}">${title}</a>
+                                <a
+                                    href="#${id}"
+                                    title="${title}"
+                                    data-link="fv-company-news-link"
+                                    disabled="${id ? false : true}"
+                                    data-link-detail="company-news-link-detail-module"
+                                    data-newsId="${id}">
+                                    ${title}
+                                </a>
                             </td>
                         </tr>
                     `;
@@ -48,25 +60,45 @@ var companyNews = (url = ``, td_id = `id`, debug = false) => {
         }
     )
     .catch(error => console.log(`error = \n`, error));
-};
+});
 
+
+STOCK_F9_FV.Modules.companyNews.init = STOCK_F9_FV.Modules.companyNews.init || (
+    (url= `http://localhost:3000/fast-preview/json/datas/news.json`) => {
+        // let link_more = document.querySelector(`[data-more="company-news-title"]`);
+        // let link_html = `
+        //     <span id="company_news_link_more">
+        //         <a href="#" title="company-news" data-uid="company_news_link_more">更多 >></a>
+        //     </span>
+        // `;
+        // link_more.insertAdjacentHTML('beforeend', link_html);
+        // let more = document.querySelector(`#company_news_link_more`);
+        // more.classList.add("link-more");
+        // more
+        let td_id = document.querySelector('#fv-company-news-tbody');
+        STOCK_F9_FV.Modules.companyNews(url, td_id, true);
+    }
+);
+
+STOCK_F9_FV.Modules.companyNews.init(`http://10.1.5.202/webservice/fastview/stock/news/600570.SH`);// url
+// const url = `http://10.1.5.202/webservice/fastview/stock/news/600570.SH`;
 
 // call fetch json datas
 setTimeout(() => {
     // async & await
-    const url = `http://10.1.5.202/webservice/fastview/stock/news/600570.SH`;
-    let link_more = document.querySelector(`[data-more="company-news-title"]`);
-    let link_html = `
-        <span id="company_news_link_more">
-            <a href="#" title="company-news" data-uid="company_news_link_more">更多 >></a>
-        </span>
-    `;
-    link_more.insertAdjacentHTML('beforeend', link_html);
-    let more = document.querySelector(`#company_news_link_more`);
-    more.classList.add("link-more");
-    // more
-    let td_id = document.querySelector('#fv-company-news-tbody');
-    companyNews(url, td_id, true);
+    // const url = `http://10.1.5.202/webservice/fastview/stock/news/600570.SH`;
+    // let link_more = document.querySelector(`[data-more="company-news-title"]`);
+    // let link_html = `
+    //     <span id="company_news_link_more">
+    //         <a href="#" title="company-news" data-uid="company_news_link_more">更多 >></a>
+    //     </span>
+    // `;
+    // link_more.insertAdjacentHTML('beforeend', link_html);
+    // let more = document.querySelector(`#company_news_link_more`);
+    // more.classList.add("link-more");
+    // // more
+    // let td_id = document.querySelector('#fv-company-news-tbody');
+    // companyNews(url, td_id, true);
     // const debug = true;
     // companyNews(url, td_id, debug);
 }, 0);

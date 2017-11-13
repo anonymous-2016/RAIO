@@ -3,10 +3,11 @@
     margin: 0 auto;
     box-sizing: border-box;
     /* border: 1px solid red; */
+    border: 1px solid rgba(229, 229, 229, 1);
 }
 
 .fv-stock-price-turnover-title,
-.fv-stock-price-turnover-container{
+.fv-stock-price-turnover-container {
     max-width: 542px;
     box-sizing: border-box;
 }
@@ -15,8 +16,8 @@
     /* width: 850px; */
     /* height: 275px; */
     /* overflow-x: scroll; */
-    height: 100%;
-    /* min-height: 275px; */
+    /* height: 100%; */
+    min-height: 275px;
     /* height: 500px; */
     max-width: 542px;
     box-sizing: border-box;

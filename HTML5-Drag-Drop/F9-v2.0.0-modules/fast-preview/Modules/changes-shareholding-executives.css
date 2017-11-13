@@ -116,7 +116,7 @@
 .fv-changes-shareholding-executives-table-td-value {
     box-sizing: border-box;
     /* min-width: 205px; */
-    min-width: 80px;
+    /* min-width: 80px; */
     padding-left: 6px;
 }
 
@@ -139,33 +139,33 @@
     height: 23px;
     box-sizing: border-box;
     text-align: center;
+    /* width: 80px; */
 }
 
 .fv-changes-shareholding-executives-table-tbody>tr:nth-of-type(n)>td:last-child {
     border-left: 1px solid #d7dbe0;
-    max-width: 70px;
+    max-width: 60px;
     box-sizing: border-box;
     text-align: left;
 }
 
 .fv-changes-shareholding-executives-table-tbody>tr:nth-of-type(n)>td:nth-child(2) {
-    min-width: 150px;
-    max-width: 510px;
-    overflow-x: hidden;
-    /* overflow: hidden; */
+    /* min-width: 150px; */
+    /* max-width: 510px; */
+    width: 100px;
+    max-width: 100px;
+    /* overflow-x: hidden; */
+    overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
     /* color: red; */
     border-left: 1px solid #d7dbe0;
     box-sizing: border-box;
+    /* background: #f0f; */
 }
 
 
 /* https://css-tricks.com/almanac/properties/t/text-overflow/ */
-
-.fv-changes-shareholding-executives-table-tbody>tr:nth-of-type(n)>td:first-child {
-    max-width: 80px;
-}
 
 [data-more="data-link-more"] {
     text-decoration: none;
@@ -176,7 +176,8 @@
 .fv-changes-shareholding-executives-table-tbody {
     /* max-width: 70%; */
     /* max-height: 50px; */
-    max-width: 760px;
+    /* max-width: 760px; */
+    width: 542px;
 }
 
 .link-more {
@@ -228,4 +229,18 @@
     background-color: #e8eefa;
     border: 1px solid #c5d2db;
     /* text-align: left; */
+}
+
+.fv-changes-shareholding-executives-table-tbody>tr:nth-of-type(n)>td:nth-of-type(n) {
+    max-width: 80px;
+    box-sizing: border-box;
+}
+
+.fv-changes-shareholding-executives-table-tbody>tr:nth-of-type(n)>td:first-child {
+    /* max-width: 80px; */
+    max-width: 80px;
+}
+
+.fv-changes-shareholding-executives-table-tbody>tr:nth-of-type(n)>td:nth-of-type(4) {
+    max-width: 80px;
 }

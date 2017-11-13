@@ -233,6 +233,10 @@ STOCK_F9_FV.Modules.SPTurnover.SPTdrawHS = STOCK_F9_FV.Modules.SPTurnover.SPTdra
         },
     });
     Highcharts.stockChart(container_uid, {
+        chart: {
+            // type: 'column',
+            // height: 272,
+        },
         noData: {
             attr: undefined,
             position: {
@@ -250,17 +254,17 @@ STOCK_F9_FV.Modules.SPTurnover.SPTdrawHS = STOCK_F9_FV.Modules.SPTurnover.SPTdra
             // The index of the button to appear pre-selected. 默认是：undefined.
             inputDateFormat: '%Y-%m-%d',//'%Y年%m月%d日' 
             // inputDateFormat: '%Y年 %m月 %d日'
-            allButtonsEnabled: true,
+            // allButtonsEnabled: true,// highcharts-range-selector-buttons ???
             buttons: [
-                {
-                    type: 'day',
-                    count: 1,
-                    text: '一天',
-                    dataGrouping: {
-                        forced: true,
-                        units: [['day', [1]]]
-                    }
-                },
+                // {
+                //     type: 'day',
+                //     count: 1,
+                //     text: '一天',
+                //     dataGrouping: {
+                //         forced: true,
+                //         units: [['day', [1]]]
+                //     }
+                // },
                 // {
                 //     type: 'week',
                 //     count: 1,
@@ -270,57 +274,59 @@ STOCK_F9_FV.Modules.SPTurnover.SPTdrawHS = STOCK_F9_FV.Modules.SPTurnover.SPTdra
                 //         units: [['week', [1]]]
                 //     }
                 // },
-                {
-                    type: 'month',
-                    count: 1,
-                    text: '一月',
-                    dataGrouping: {
-                        forced: true,
-                        units: [['month', [1]]]
-                    }
-                },
-                {
-                    type: 'month',
-                    count: 3,
-                    text: '三月',
-                    dataGrouping: {
-                        forced: true,
-                        units: [['month', [1]]]
-                    }
-                },
-                {
-                    type: 'month',
-                    count: 6,
-                    text: '六月',
-                    dataGrouping: {
-                        forced: true,
-                        units: [['month', [1]]]
-                    }
-                },
-                {
-                    type: 'year',
-                    count: 1,
-                    text: '一年',
-                    dataGrouping: {
-                        forced: true,
-                        units: [['year', [1]]]
-                    }
-                },
-                {
-                    type: 'all',
-                    text: '全部',
-                    dataGrouping: {
-                        forced: true,
-                        units: [['year', [1]]]
-                    }
-                }
+                // {
+                //     type: 'month',
+                //     count: 1,
+                //     text: '一月',
+                //     dataGrouping: {
+                //         forced: true,
+                //         units: [['month', [1]]]
+                //     }
+                // },
+                // {
+                //     type: 'month',
+                //     count: 3,
+                //     text: '三月',
+                //     dataGrouping: {
+                //         forced: true,
+                //         units: [['month', [1]]]
+                //     }
+                // },
+                // {
+                //     type: 'month',
+                //     count: 6,
+                //     text: '六月',
+                //     dataGrouping: {
+                //         forced: true,
+                //         units: [['month', [1]]]
+                //     }
+                // },
+                // {
+                //     type: 'year',
+                //     count: 1,
+                //     text: '一年',
+                //     dataGrouping: {
+                //         forced: true,
+                //         units: [['year', [1]]]
+                //     }
+                // },
+                // {
+                //     type: 'all',
+                //     text: '全部',
+                //     dataGrouping: {
+                //         forced: true,
+                //         units: [['year', [1]]]
+                //     }
+                // }
             ],
             buttonTheme: {
-                width: 30
+                // width: 30,
+                width: 0
             }
         },
         credits: {
-            enabled: true,// enabled: false,
+            // enabled: true,// 
+            enabled: false,
             href: `https://www.gildata.com`,
             text: `gildata`,
             // position: https://api.highcharts.com/highstock/credits.style,
@@ -340,10 +346,10 @@ STOCK_F9_FV.Modules.SPTurnover.SPTdrawHS = STOCK_F9_FV.Modules.SPTurnover.SPTdra
                 // week: '%m-%d',
                 // month: '%y-%m',
                 // year: '%Y'
-                millisecond: '%H:%M:%S.%L',
-                second: '%H:%M:%S',
-                minute: '%H:%M',
-                hour: '%H:%M',
+                // millisecond: '%H:%M:%S.%L',
+                // second: '%H:%M:%S',
+                // minute: '%H:%M',
+                // hour: '%H:%M',
                 day: '%m月 %d日',
                 week: '%m月 %d日',
                 month: '%y年 %m月',
@@ -508,30 +514,8 @@ STOCK_F9_FV.Modules.SPTurnover.SPTdrawHS = STOCK_F9_FV.Modules.SPTurnover.SPTdra
             liveRedraw: true
         },
     });
-    // svg style
-// let svg_ranges = document.querySelectorAll(`.highcharts-range-label`);
-// svg_ranges[0].lastChild.innerHTML = `从`;// 从到
-// svg_ranges[1].lastChild.innerHTML = `到`;// 从
-    // highcharts-axis-labels highcharts-yaxis-labels  <text x="710"
-// let svg_buttons = document.querySelectorAll(`.highcharts-range-selector-buttons > .highcharts-button`);
-    // (6) [g, g, g, g, g, g]
-// svg_buttons[0].lastChild.innerHTML = `一月`;
-// svg_buttons[1].lastChild.innerHTML = `三月`;
-// svg_buttons[2].lastChild.innerHTML = `六月`;
-// svg_buttons[3].lastChild.innerHTML = `YTD`;
-    // svg_buttons[3].firstChild.style.width = `50px`;
-    // svg_buttons[3].lastChild.innerHTML = `YTD年初至今`;// YTD
-    // svg_buttons[3].style.transform = "translate(223, 0)";
-// svg_buttons[4].lastChild.innerHTML = `一年`;
-// svg_buttons[5].lastChild.innerHTML = `全部`;
-    // highcharts-range-selector-buttons
-    // highcharts-button highcharts-button-normal
-    // highcharts-button highcharts-button-pressed
-    // highcharts-button highcharts-button-disabled
-    // ▲ 
-    // 年初至今(Year to Date)；年初到今日(Year To Days)；本年迄今
-    // Year To Date (YTD)//本年迄今 
-    // Month To Date // 当月,本月[MTD]
+    let no_zoom = document.querySelector(`.highcharts-range-selector-buttons`);
+    no_zoom.style.display = "none";
 });
 
 
@@ -542,7 +526,8 @@ STOCK_F9_FV.Modules.SPTurnover.init = STOCK_F9_FV.Modules.SPTurnover.init || (
     }
 );
 
-STOCK_F9_FV.Modules.SPTurnover.init();// url
+STOCK_F9_FV.Modules.SPTurnover.init(`http://10.1.5.202/webservice/fastview/stock/stockfast06/600570.SH`);// url
+// const url = `http://10.1.5.202/webservice/fastview/stock/${sf_num}/600570.SH`;
 
 
 

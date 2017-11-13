@@ -188,7 +188,8 @@ STOCK_F9_FV.Modules.agencyRating.drawHS = STOCK_F9_FV.Modules.agencyRating.drawH
             type: 'column',
             // backgroundColor: chart_css.color
             // backgroundColor: color
-            height: (9 / 16 * 100) + '%',
+            // height: (9 / 16 * 100) + '%',
+            height: 272,// 275px;
             // 16:9 ratio
         },
         title: {
@@ -208,7 +209,8 @@ STOCK_F9_FV.Modules.agencyRating.drawHS = STOCK_F9_FV.Modules.agencyRating.drawH
             }
         },
         credits: {
-            enabled: true,// enabled: false,
+            // enabled: true,// 
+            enabled: false,
             href: `https://www.gildata.com`,
             text: `gildata`,
             // position: https://api.highcharts.com/highstock/credits.style,
@@ -394,7 +396,8 @@ STOCK_F9_FV.Modules.agencyRating.init = STOCK_F9_FV.Modules.agencyRating.init ||
     }
 );
 
-STOCK_F9_FV.Modules.agencyRating.init();// url
+STOCK_F9_FV.Modules.agencyRating.init(`http://10.1.5.202/webservice/fastview/stock/stockfast05/600570.SH`);// url
+// const url = `http://10.1.5.202/webservice/fastview/stock/stockfast05/600570.SH`;
 
 // call fetch json datas
 setTimeout(() => {

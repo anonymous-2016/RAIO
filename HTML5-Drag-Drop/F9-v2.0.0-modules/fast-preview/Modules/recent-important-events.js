@@ -65,7 +65,7 @@ STOCK_F9_FV.Modules.recentImportantEvents = STOCK_F9_FV.Modules.recentImportantE
                                 ${date}
                             </td>
                             <td class="fv-recent-important-events-table-td-value" data-value="data-fv-events">
-                                <a href="#${id}" data-disabled="${arr[i].newid !== undefined ? `false` : `true`}" data-link="fv-recent-important-events-link" data-link-detail="recent-important-events-link-detail-module" data-eventsId="${id}">${description}</a>
+                                <a href="#${id}" title="${description}" data-disabled="${arr[i].newid !== undefined ? `false` : `true`}" data-link="fv-recent-important-events-link" data-link-detail="recent-important-events-link-detail-module" data-eventsId="${id}">${description}</a>
                             </td>
                         </tr>
                     `;

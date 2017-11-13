@@ -9,8 +9,12 @@
  * @param {Boolean} debug 
  */
 
- //const
-var holdingsParticipationSituation = (url = ``, td_id = `id`, debug = false) => {
+// namespaces
+var STOCK_F9_FV = STOCK_F9_FV || {};
+// sub namespaces
+STOCK_F9_FV.Modules = STOCK_F9_FV.Modules || {};
+// Modules && IIFE === Closure!
+STOCK_F9_FV.Modules.holdingsParticipationSituation = STOCK_F9_FV.Modules.holdingsParticipationSituation || ((url = ``, td_id = `id`, debug = false) => {
     // debug = true;
     let data = [];
     fetch(url)
@@ -37,19 +41,32 @@ var holdingsParticipationSituation = (url = ``, td_id = `id`, debug = false) => 
                     let business = (arr[i].yw !== undefined) ? arr[i].yw : `😟暂无 数据`;
                     html_string += `
                         <tr class="fv-changes-shareholding-executives-table-tr">
-                            <td class="fv-changes-shareholding-executives-table-td-value" data-value="data-fv-changes-shareholding-executives">
+                            <td
+                                title="${company}"
+                                class="fv-changes-shareholding-executives-table-td-value"
+                                data-value="data-fv-changes-shareholding-executives">
                                 ${company}
                             </td>
-                            <td class="fv-changes-shareholding-executives-table-td-value" data-value="data-fv-changes-shareholding-executives">
+                            <td
+                                title="${relationship}"
+                                class="fv-changes-shareholding-executives-table-td-value"
+                                data-value="data-fv-changes-shareholding-executives">
                                 ${relationship}
                             </td>
-                            <td class="fv-changes-shareholding-executives-table-td-value" data-value="data-fv-changes-shareholding-executives">
+                            <td
+                                class="fv-changes-shareholding-executives-table-td-value"
+                                data-value="data-fv-changes-shareholding-executives">
                                 ${proportion}
                             </td>
-                            <td class="fv-changes-shareholding-executives-table-td-value" data-value="data-fv-changes-shareholding-executives">
+                            <td
+                                class="fv-changes-shareholding-executives-table-td-value"
+                                data-value="data-fv-changes-shareholding-executives">
                                 ${profile}
                             </td>
-                            <td class="fv-changes-shareholding-executives-table-td-value" data-value="data-fv-changes-shareholding-executives">
+                            <td
+                                title="${business}"
+                                class="fv-changes-shareholding-executives-table-td-value"
+                                data-value="data-fv-changes-shareholding-executives">
                                 ${business}
                             </td>
                         </tr>
@@ -60,16 +77,30 @@ var holdingsParticipationSituation = (url = ``, td_id = `id`, debug = false) => 
         }
     )
     .catch(error => console.log(`error = \n`, error));
-};
+});
+
+
+
+STOCK_F9_FV.Modules.holdingsParticipationSituation.init = STOCK_F9_FV.Modules.holdingsParticipationSituation.init || (
+    (url= `http://localhost:3000/fast-preview/json/datas/5.json`) => {
+        let td_id = document.querySelector('#fv-holdings-participation-situation-tbody');
+        STOCK_F9_FV.Modules.holdingsParticipationSituation(url, td_id, true);
+    }
+);
+
+STOCK_F9_FV.Modules.holdingsParticipationSituation.init(`http://10.1.5.202/webservice/fastview/stock/stockfast11/600570.SH`);
+// url
+// const url = `http://10.1.5.202/webservice/fastview/stock/stockfast${num}/600570.SH`;
+
 
 
 // call fetch json datas
 setTimeout(() => {
     // async & await
-    let num = `11`;
-    const url = `http://10.1.5.202/webservice/fastview/stock/stockfast${num}/600570.SH`;
-    let td_id = document.querySelector('#fv-holdings-participation-situation-tbody');
-    holdingsParticipationSituation(url, td_id, true);
+    // let num = `11`;
+    // const url = `http://10.1.5.202/webservice/fastview/stock/stockfast${num}/600570.SH`;
+    // let td_id = document.querySelector('#fv-holdings-participation-situation-tbody');
+    // holdingsParticipationSituation(url, td_id, true);
 }, 0);
 
 

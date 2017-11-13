@@ -184,6 +184,7 @@ STOCK_F9_FV.Modules.ISCstatistics.ISCSdrawHS = STOCK_F9_FV.Modules.ISCstatistics
             // backgroundColor: color
             // height: (9 / 16 * 100) + '%',
             // 16:9 ratio
+            height: 272,
         },
         title: {
             text: '',
@@ -202,7 +203,8 @@ STOCK_F9_FV.Modules.ISCstatistics.ISCSdrawHS = STOCK_F9_FV.Modules.ISCstatistics
             }
         },
         credits: {
-            enabled: true,// enabled: false,
+            // enabled: true,// 
+            enabled: false,
             href: `https://www.gildata.com`,
             text: `gildata`,
             // position: https://api.highcharts.com/highstock/credits.style,
@@ -369,7 +371,8 @@ STOCK_F9_FV.Modules.ISCstatistics.init = STOCK_F9_FV.Modules.ISCstatistics.init 
     }
 );
 
-STOCK_F9_FV.Modules.ISCstatistics.init();// url
+STOCK_F9_FV.Modules.ISCstatistics.init(`http://10.1.5.202/webservice/fastview/stock/stockfast13/600570.SH`);// url
+// const url = `http://10.1.5.202/webservice/fastview/stock/${sf_num}/600570.SH`;
 
 
 // call fetch json datas
