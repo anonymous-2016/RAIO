@@ -399,14 +399,14 @@ STOCK_F9_FV.Modules.moduleTest = STOCK_F9_FV.Modules.moduleTest ||
         dragover: (e) => {
             // console.log(`%c dragOver = `, console_css1, e.target.id);
             // e.target.style.backgroundColor = "#f0f";
-            // if (drop_counter === 0) {
-            //     let info_div = document.createElement(`div`);
-            //     info_div.innerHTML = "请将模块拖拽到灰色区域内!";
-            //     info_div.setAttribute(`id`, `drop_info_div`);
-            //     module_container.insertAdjacentElement(`afterbegin`, info_div);
-            //     drop_counter++
-            // }
-            // module_container.classList.add(`absolute-center-placeholder`);
+            if (drop_counter === 0) {
+                let info_div = document.createElement(`div`);
+                info_div.innerHTML = "请将模块拖拽到灰色区域内!";
+                info_div.setAttribute(`id`, `drop_info_div`);
+                module_container.insertAdjacentElement(`afterbegin`, info_div);
+                drop_counter++
+            }
+            module_container.classList.add(`absolute-center-placeholder`);
             // background
             e.preventDefault();
             return true;
@@ -426,13 +426,13 @@ STOCK_F9_FV.Modules.moduleTest = STOCK_F9_FV.Modules.moduleTest ||
         },
         drop: function(e) {
             // module_container.innerHTML = ""; ??? leave bug ??? no drop
-            // if (drop_counter === 1) {
-            //     let drop_info_div = document.querySelector(`#drop_info_div`);
-            //     // module_container.removeChild(`drop_info_div`);
-            //     module_container.removeChild(module_container.childNodes[0]);  
-            //     drop_counter = 0;
-            // }
-            // module_container.classList.remove(`absolute-center-placeholder`);
+            if (drop_counter === 1) {
+                let drop_info_div = document.querySelector(`#drop_info_div`);
+                // module_container.removeChild(`drop_info_div`);
+                module_container.removeChild(module_container.childNodes[0]);  
+                drop_counter = 0;
+            }
+            module_container.classList.remove(`absolute-center-placeholder`);
             // isExistCheck();
             // e.dropEffect = `copy`;
             // console.log(`drop & e.dataTransfer = \n`, e.dataTransfer);

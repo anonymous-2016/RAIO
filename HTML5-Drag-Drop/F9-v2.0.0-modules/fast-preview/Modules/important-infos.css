@@ -167,13 +167,37 @@
     text-overflow: ellipsis;
     /* white-space: nowrap; */
     /* width: 400px; */
-    /* height: calc(32px + 32px); */
-    /* line-height: 32px; */
+    /* height: calc(23px * 3); */
+    box-sizing: border-box;
+    height: 63px !important;
+    /* height: 77px !important; */
+    line-height: 21px !important;
+    /* 4px */
     display: -webkit-box;
-    -webkit-line-clamp: 2;
+    -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
     /* font-size: 13px; */
+    /* padding-top: 7px; */
+    /* padding-bottom: 7px; */
+    margin-top: 7px;
+    margin-bottom: 7px;
+    /* padding: 0; */
+    padding-top: 0;
+    padding-bottom: 0;
+    /* position: relative; */
 }
+
+
+/* .fv-important-infos-table-tbody>tr:nth-of-type(2)>td:last-child::after {
+    content: 'more >>';
+    width: 100px;
+    background: #0f0;
+    color: #00f;
+    display: inline-block;
+    position: absolute;
+    top: 42px;
+    right: -60px;
+} */
 
 
 /* 

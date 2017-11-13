@@ -78,7 +78,8 @@ STOCK_F9_FV.Modules.importantInfos.init = STOCK_F9_FV.Modules.importantInfos.ini
     }
 );
 
-STOCK_F9_FV.Modules.importantInfos.init();
+STOCK_F9_FV.Modules.importantInfos.init(`http://10.1.5.202/webservice/fastview/stock/stockfast01/600570.SH`);
+// const url = `http://10.1.5.202/webservice/fastview/stock/stockfast01/600570.SH`;
 
 var url = ((obj) => {
     // STOCK_F9_FV.Utils.getURL(obj = {})

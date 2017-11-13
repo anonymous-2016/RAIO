@@ -116,8 +116,8 @@ STOCK_F9_FV.Modules.recentImportantEvents.init = STOCK_F9_FV.Modules.recentImpor
     }
 );
 
-STOCK_F9_FV.Modules.recentImportantEvents.init();// url
-
+STOCK_F9_FV.Modules.recentImportantEvents.init(`http://10.1.5.202/webservice/fastview/stock/stockfast02/600570.SH`);// url
+// const url = `http://10.1.5.202/webservice/fastview/stock/stockfast02/600570.SH`;
 
 var url = ((obj) => {
     // STOCK_F9_FV.Utils.getURL(obj = {})
