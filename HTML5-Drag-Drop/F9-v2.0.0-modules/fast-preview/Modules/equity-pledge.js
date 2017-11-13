@@ -8,8 +8,12 @@
  * @param {* Array} ui_arr 
  * @param {Boolean} debug 
  */
-// const 
-var equityPledge = (url = ``, td_id = `id`, debug = false) => {
+// namespaces
+var STOCK_F9_FV = STOCK_F9_FV || {};
+// sub namespaces
+STOCK_F9_FV.Modules = STOCK_F9_FV.Modules || {};
+// Modules && IIFE === Closure!
+STOCK_F9_FV.Modules.equityPledge = STOCK_F9_FV.Modules.equityPledge || ((url = ``, td_id = `id`, debug = false) => {
     // debug = true;
     let data = [];
     fetch(url)
@@ -68,21 +72,34 @@ var equityPledge = (url = ``, td_id = `id`, debug = false) => {
         }
     )
     .catch(error => console.log(`error = \n`, error));
-};
+});
+
+
+
+STOCK_F9_FV.Modules.equityPledge.init = STOCK_F9_FV.Modules.equityPledge.init || (
+    (url= `http://localhost:3000/fast-preview/json/datas/10.json`) => {
+        let td_id = document.querySelector('#fv-equity-pledge-tbody');
+        STOCK_F9_FV.Modules.equityPledge(url, td_id, true);
+    }
+);
+
+STOCK_F9_FV.Modules.equityPledge.init(`http://10.1.5.202/webservice/fastview/stock/stockfast10/600570.SH`);
+// url
+// const url = `http://10.1.5.202/webservice/fastview/stock/stockfast10/600570.SH`;
 
 
 // call fetch json datas
 setTimeout(() => {
     // async & await
-    const num = `10`;
-    const url = `http://10.1.5.202/webservice/fastview/stock/stockfast${num}/600570.SH`;
-    let link_more = document.querySelector(`[data-more="equity-pledge-title"]`);
-    let link_html = `
-        <span id="holdings_participation_situation_link_more">
-            <a href="#" title="equity-pledge" data-uid="equity_pledge_link_more" class="link-more">更多 >></a>
-        </span>
-    `;
-    link_more.insertAdjacentHTML('beforeend', link_html);
+    // const num = `10`;
+    // const url = `http://10.1.5.202/webservice/fastview/stock/stockfast${num}/600570.SH`;
+    // let link_more = document.querySelector(`[data-more="equity-pledge-title"]`);
+    // let link_html = `
+    //     <span id="holdings_participation_situation_link_more">
+    //         <a href="#" title="equity-pledge" data-uid="equity_pledge_link_more" class="link-more">更多 >></a>
+    //     </span>
+    // `;
+    // link_more.insertAdjacentHTML('beforeend', link_html);
     let td_id = document.querySelector('#fv-equity-pledge-tbody');
     equityPledge(url, td_id, true);
 }, 0);

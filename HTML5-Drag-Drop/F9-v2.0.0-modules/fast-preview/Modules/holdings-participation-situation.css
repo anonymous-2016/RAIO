@@ -172,6 +172,10 @@
     width: 70px;
 }
 
+.fv-holdings-participation-situation-table-tr {
+    width: 542px;
+}
+
 .fv-holdings-participation-situation-table-tbody>tr:nth-of-type(n)>td:last-child {
     border-left: 1px solid #d7dbe0;
     width: 70px;

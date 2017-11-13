@@ -8,8 +8,12 @@
  * @param {* Array} ui_arr 
  * @param {Boolean} debug 
  */
-
-const investorRelations = (url = ``, td_id = `id`, debug = false) => {
+// namespaces
+var STOCK_F9_FV = STOCK_F9_FV || {};
+// sub namespaces
+STOCK_F9_FV.Modules = STOCK_F9_FV.Modules || {};
+// Modules && IIFE === Closure!
+STOCK_F9_FV.Modules.investorRelations = STOCK_F9_FV.Modules.investorRelations || ((url = ``, td_id = `id`, debug = false) => {
     // debug = true;
     let data = [];
     fetch(url)
@@ -47,26 +51,48 @@ const investorRelations = (url = ``, td_id = `id`, debug = false) => {
         }
     )
     .catch(error => console.log(`error = \n`, error));
-};
+});
+
+
+STOCK_F9_FV.Modules.investorRelations.init = STOCK_F9_FV.Modules.investorRelations.init || (
+    (url= `http://localhost:3000/fast-preview/json/datas/x.json`) => {
+        // let link_more = document.querySelector(`[data-more="investor-relations-title"]`);
+        // let link_html = `
+        //     <span id="investor_relations_link_more">
+        //         <a href="#" title="investor-relations" data-uid="investor_relations_link_more">更多 >></a>
+        //     </span>
+        // `;
+        // link_more.insertAdjacentHTML('beforeend', link_html);
+        // let more = document.querySelector(`#investor_relations_link_more`);
+        // more.classList.add("link-more");
+        // more
+        let td_id = document.querySelector('#fv-investor-relations-tbody');
+        STOCK_F9_FV.Modules.investorRelations(url, td_id, true);
+    }
+);
+
+STOCK_F9_FV.Modules.investorRelations.init(`http://10.1.5.202/webservice/fastview/stock/x/600570.SH`);
+// url
+
 
 
 // call fetch json datas
 setTimeout(() => {
     // async & await
-    const url = `http://10.1.5.202/webservice/fastview/stock/bulletion/600570.SH`;
-    // stockfast14 ??? bulletion
-    let link_more = document.querySelector(`[data-more="investor-relations-title"]`);
-    let link_html = `
-        <span id="investor_relations_link_more">
-            <a href="#" title="investor-relations" data-uid="investor_relations_link_more">更多 >></a>
-        </span>
-    `;
-    link_more.insertAdjacentHTML('beforeend', link_html);
-    let more = document.querySelector(`#investor_relations_link_more`);
-    more.classList.add("link-more");
-    // more
-    let td_id = document.querySelector('#fv-investor-relations-tbody');
-    investorRelations(url, td_id, true);
+    // const url = `http://10.1.5.202/webservice/fastview/stock/bulletion/600570.SH`;
+    // // stockfast14 ??? bulletion
+    // let link_more = document.querySelector(`[data-more="investor-relations-title"]`);
+    // let link_html = `
+    //     <span id="investor_relations_link_more">
+    //         <a href="#" title="investor-relations" data-uid="investor_relations_link_more">更多 >></a>
+    //     </span>
+    // `;
+    // link_more.insertAdjacentHTML('beforeend', link_html);
+    // let more = document.querySelector(`#investor_relations_link_more`);
+    // more.classList.add("link-more");
+    // // more
+    // let td_id = document.querySelector('#fv-investor-relations-tbody');
+    // investorRelations(url, td_id, true);
     // const debug = true;
     // investorRelations(url, td_id, debug);
 }, 0);

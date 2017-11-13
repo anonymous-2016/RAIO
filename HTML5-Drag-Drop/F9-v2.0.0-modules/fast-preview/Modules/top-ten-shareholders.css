@@ -214,9 +214,10 @@
     color: #4d4d4d;
 }
 
-.fv-changes-shareholding-executives-table-td-value {
+
+/* .fv-changes-shareholding-executives-table-td-value {
     border: 1px solid #108be0;
-}
+} */
 
 .fv-top-ten-shareholders-table-thead>tr:nth-of-type(n)>td:nth-of-type(n) {
     /* min-width: 140px; */
