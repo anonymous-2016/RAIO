@@ -28,7 +28,7 @@ STOCK_F9_FV.Modules.SPTurnover = STOCK_F9_FV.Modules.SPTurnover || ((url = ``, d
             let arr = json;// Array
             // async
             if (debug) {
-                // console.log(`json = \n`, json);
+                console.log(`json = \n`, json);
             }
             // 今年以来涨跌幅：+1.52% 三个月涨跌幅：+1.52%52 周涨跌幅：+1.52% 52周Beta：+1.52%
             // "zd": "涨跌", "zdf": "涨跌幅(%)", 
@@ -37,8 +37,11 @@ STOCK_F9_FV.Modules.SPTurnover = STOCK_F9_FV.Modules.SPTurnover || ((url = ``, d
             // ["sjz", "gj", "cjl", "szzs"]
             // sort 时间轴
             let strs = json.details.map(
-                (obj) => {
-                    // console.log(obj.sjz);
+                (obj, i) => {
+                    if (debug) {
+                        if(obj.sjz === "2017-05-16")
+                        console.log(`obj =`, obj, i);
+                    }
                     return obj.sjz;
                 }
             );

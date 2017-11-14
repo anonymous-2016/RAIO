@@ -86,17 +86,16 @@ STOCK_F9_FV.Modules.equityPledge = STOCK_F9_FV.Modules.equityPledge || ((url = `
                 }
             );
             td_id.innerHTML = html_string;
+            // test
             setTimeout(() => {
                 let turn_to_uid = document.querySelector(`[data-turn-to-uid="data-turn-to-uid"]`);
-                console.log(`turn_to_uid = \n`, turn_to_uid);
                 if (debug) {
                     console.log(`turn_to_uid = \n`, turn_to_uid);
                 }
                 turn_to_uid.addEventListener(`click`, (e) => {
-                    console.log(`e.target.dataset = \n`, e.target.dataset);
-                    console.log(`e.target.dataset.uid = \n`, e.target.dataset.uid);
                     if (debug) {
                         console.log(`e.target.dataset = \n`, e.target.dataset);
+                        console.log(`e.target.dataset.uid = \n`, e.target.dataset.uid);
                     }
                     // let uid = e.target.dataset.uid;
                     // data-uid="666666"
