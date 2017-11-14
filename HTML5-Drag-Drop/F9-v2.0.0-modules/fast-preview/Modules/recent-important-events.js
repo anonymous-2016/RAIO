@@ -71,9 +71,9 @@ STOCK_F9_FV.Modules.recentImportantEvents = STOCK_F9_FV.Modules.recentImportantE
                                         href="#${id}"
                                         data-uid="${id}"
                                         data-eventsId="${id}"
-                                        data-turn-to-uid="data-turn-to-uid"
+                                        data-turn-to-uid="recent-important-events"
                                         title="${description}"
-                                        data-disabled="${arr[i].newid !== undefined ? `false` : `true`}"
+                                        data-disabled="${ id !== "null" ? false : true}"
                                         data-link="fv-recent-important-events-link"
                                         data-link-detail="recent-important-events-link-detail-module">
                                         ${description}
@@ -82,6 +82,7 @@ STOCK_F9_FV.Modules.recentImportantEvents = STOCK_F9_FV.Modules.recentImportantE
                             </tr>
                         `;
                         // target="_blank"
+                        // ${id === "null" ? "disabled='true'" : ""}
                     } else {
                         if (debug) {
                             console.log(`Sorry, we only show 5 items, now!`);
@@ -93,7 +94,7 @@ STOCK_F9_FV.Modules.recentImportantEvents = STOCK_F9_FV.Modules.recentImportantE
             // Element.insertAdjacentHTML()
             // Element.insertAdjacentElement()
             setTimeout(() => {
-                let turn_to_uids = document.querySelectorAll(`a[data-turn-to-uid="data-turn-to-uid"]`);
+                let turn_to_uids = document.querySelectorAll(`a[data-turn-to-uid="recent-important-events"]`);
                 if (debug) {
                     console.log(`turn_to_uids = \n`, turn_to_uids);
                 }
@@ -103,18 +104,20 @@ STOCK_F9_FV.Modules.recentImportantEvents = STOCK_F9_FV.Modules.recentImportantE
                         if (debug) {
                             console.log(`e.target.dataset = \n`, e.target.dataset);
                             console.log(`e.target.dataset.uid = \n`, e.target.dataset.uid);
+                            console.log(`e.target.dataset.disabled = \n`, e.target.dataset.disabled);
                         }
-                        // let uid = e.target.dataset.uid;
-                        // data-uid="666666"
-                        // 跳转stock f9深度资料的命令：
-                        // ChromeExternal.Execute("ExecuteCommand", "命令ID\证券代码\节点ID");
+                        // 跳转stock f9 深度资料的命令：
+                        // ChromeExternal.Execute("ExecuteCommand", "命令ID\\证券代码\\节点ID");
+                        // \ 反斜线要转义！
                         try {
                             // ??? url get 600570.SH ???
-                            console.log(`ChromeExternal & ${uid}\n`, (typeof uid));
                             if (uid !== "null") {
-                                console.log(`12\\600570.SH\\${uid}`, (typeof uid));
                                 let new_uid = parseInt(uid);
-                                console.log(`12\\600570.SH\\${new_uid}`, (typeof new_uid));
+                                if (debug) {
+                                    console.log(`ChromeExternal & ${uid}\n`, (typeof uid));
+                                    console.log(`12\\600570.SH\\${uid}`, (typeof uid));
+                                    console.log(`12\\600570.SH\\${new_uid}`, (typeof new_uid));
+                                }
                                 ChromeExternal.Execute("ExecuteCommand", `12\\600570.SH\\${uid}`);
                             }else{
                                 console.log(`ChromeExternal & ${uid} === null\n`);

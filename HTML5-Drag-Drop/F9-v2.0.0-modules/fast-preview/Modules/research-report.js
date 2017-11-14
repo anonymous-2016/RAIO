@@ -37,6 +37,8 @@ STOCK_F9_FV.Modules.researchReport = STOCK_F9_FV.Modules.researchReport || ((url
                     let publishDate = (arr[i].publishDate !== undefined) ? arr[i].publishDate : `暂无数据`;
                     let title = `${(arr[i].title !== undefined) ? arr[i].title : `暂无数据`}`;
                     let id = `${(arr[i].researchId !== undefined) ? arr[i].researchId : `暂无数据`}`;
+                    // "fileType": "pdf",
+                    let type = `${(arr[i].fileType !== undefined) ? arr[i].fileType : `暂无数据`}`;
                     html_string += `
                         <tr class="fv-research-report-table-tr">
                             <td
@@ -44,12 +46,16 @@ STOCK_F9_FV.Modules.researchReport = STOCK_F9_FV.Modules.researchReport || ((url
                                 data-value="data-fv-research-report">
                                 ${publishDate}
                             </td>
-                            <td class="fv-research-report-table-td-value" data-value="data-fv-research-report">
+                            <td
+                                class="fv-research-report-table-td-value"
+                                data-value="data-fv-research-report">
                                 <a
                                     href="#${id}" 
+                                    data-fileType="${type}"
+                                    data-title="${title}"
                                     data-link="fv-research-report-link"
-                                    title="${title}
-                                    "data-link-detail="research-report-link-detail-module"
+                                    title="${title}"
+                                    data-link-detail="research-report-link-detail-module"
                                     data-researchId="${id}">
                                     ${title}
                                 </a>
@@ -59,6 +65,37 @@ STOCK_F9_FV.Modules.researchReport = STOCK_F9_FV.Modules.researchReport || ((url
                 }
             );
             td_id.innerHTML = html_string;
+            // download & open pdf
+            setTimeout(() => {
+                // const host = window.location.host ? window.location.host : `10.1.5.202`;
+                const host = `10.1.5.202`;
+                let links = document.querySelectorAll(`[data-link="fv-research-report-link"]`);
+                console.log(`links = \n`, links);
+                for (let i = 0; i < links.length; i++) {
+                    links[i].addEventListener(`click`, (e) => {
+                        // let uid = e.target.dataset.uid;
+                        console.log(`e.target.dataset = \n`, e.target.dataset);
+                        // researchid: "551173471225"
+                        if (debug) {
+                            console.log(`e.target.dataset = \n`, e.target.dataset);
+                            console.log(`e.target.dataset.uid = \n`, e.target.dataset.uid);
+                            console.log(`e.target.dataset.disabled = \n`, e.target.dataset.disabled);
+                        }
+                        let id = e.target.dataset.researchid,
+                            type = e.target.dataset.filetype,
+                            title = e.target.dataset.title;
+                        try {
+                            let download_pdf = `${host}/queryservice/research/attachment/${id}.${type}\\${title}.${type}`;
+                            // 10.1.5.202/queryservice/research/attachment/551173471225.pdf
+                            ChromeExternal.Execute("OpenFile", download_pdf);
+                        } catch (e) {
+                            window.open(`${host}/queryservice/research/attachment/${id}`);
+                            // http://localhost:3000/fast-preview/10.1.5.202/queryservice/research/attachment/551173471225
+                            // 10.1.5.202/queryservice/research/attachment/551173471225
+                        }
+                    });
+                }
+            }, 0);
         }
     )
     .catch(error => console.log(`error = \n`, error));

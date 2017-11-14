@@ -46,11 +46,36 @@ let color = chart_css.color,
     yAxisColor = chart_css.yAxisColor;
 
 
+/* data-disabled="${ id === "null" ? false : true}" */
+
+[data-disabled="true"] {
+    pointer-events: none;
+}
+
+data-disabled="${ id !== "null" ? false : true}"
+
+/*
+    <a 
+        href="#${id}"
+        data-uid="${id}"
+        data-eventsId="${id}"
+        data-turn-to-uid="recent-important-events"
+        title="${description}"
+        data-disabled="${ id !== "null" ? false : true}"
+        data-link="fv-recent-important-events-link"
+        data-link-detail="recent-important-events-link-detail-module">
+        ${description}
+    </a>
+*/
 
 // 跳转stock f9深度资料的命令：
 ChromeExternal.Execute("ExecuteCommand", "12\600570.SH\2741");
 // ChromeExternal.Execute("ExecuteCommand", "命令ID\证券代码\节点ID");
 
+// \ 反斜线要转义！
+
+// 跳转stock f9 深度资料的命令：
+// ChromeExternal.Execute("ExecuteCommand", "命令ID\\证券代码\\节点ID");
 // \ 反斜线要转义！
 
 try {

@@ -213,3 +213,11 @@ body {
     overflow: hidden;
     clear: both;
 }
+
+
+/* data-disabled="${ id === "null" ? false : true}" */
+
+[data-disabled="true"] {
+    pointer-events: none;
+    cursor: default;
+}
