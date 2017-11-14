@@ -24,7 +24,6 @@ STOCK_F9_FV.Modules = STOCK_F9_FV.Modules || {};
 // Modules && IIFE === Closure!
 STOCK_F9_FV.Modules.importantInfos = STOCK_F9_FV.Modules.importantInfos || (() => {});
 
-
 STOCK_F9_FV.Modules.agencyRating.init = STOCK_F9_FV.Modules.agencyRating.init || (
     (url= `http://localhost:3000/fast-preview/json/datas/5.json`) => {
         let uid = `agency_rating_hs_container`;
@@ -35,10 +34,69 @@ STOCK_F9_FV.Modules.agencyRating.init = STOCK_F9_FV.Modules.agencyRating.init ||
 STOCK_F9_FV.Modules.agencyRating.init();// url
 
 
-
 border: 1px solid rgba(229, 229, 229, 1);
 height: 272,// 275px;
 
+
+let color = chart_css.color,
+    colors = chart_css.colors, 
+    optioncolor = chart_css.optioncolor, 
+    gridColor = chart_css.gridColor, 
+    legendColor = chart_css.legendColor, 
+    yAxisColor = chart_css.yAxisColor;
+
+
+
+// 跳转stock f9深度资料的命令：
+ChromeExternal.Execute("ExecuteCommand", "12\600570.SH\2741");
+// ChromeExternal.Execute("ExecuteCommand", "命令ID\证券代码\节点ID");
+
+// \ 反斜线要转义！
+
+try {
+    ChromeExternal.Execute("ExecuteCommand", "12\\600000.SH\\2741");
+    // Uncaught SyntaxError: Octal escape sequences are not allowed in strict mode.
+} catch (error) {
+    console.log(`ChromeExternal error = \n`, error);
+}
+
+// 命令ID list ??? stock f9
+
+// 节点ID list ??? 股权质押  2741
+
+
+/* 
+
+    import {urls} from "../utils/urls-ip";
+    // Uncaught SyntaxError: Unexpected token import
+
+    import {debug} from "../utils/debug";
+    const debug = true;
+
+    var _urlsIp = require("../utils/urls-ip");
+    // Uncaught ReferenceError: require is not defined
+
+    if (debug) {
+        console.log(`urls = `, JSON.stringify(urls, null, 4));
+    }
+
+*/
+
+/* 
+
+    "use strict";
+
+    var _urlsIp = require("../utils/urls-ip");
+
+    // import {debug} from "../utils/debug";
+    var debug = true;
+
+    if (debug) {
+        console.log("urls = ", JSON.stringify(_urlsIp.urls, null, 4));
+    }
+
+
+*/
 
 
 // Utils && IIFE === Closure!

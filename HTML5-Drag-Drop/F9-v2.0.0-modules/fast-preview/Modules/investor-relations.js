@@ -33,8 +33,8 @@ STOCK_F9_FV.Modules.investorRelations = STOCK_F9_FV.Modules.investorRelations ||
             arr.map(
                 (obj, i) => {
                     // undefined
-                    let publishDate = (arr[i].gsggsj !== undefined) ? arr[i].gsggsj : `😟暂无 投资者关系日期`;
-                    let title = `${(arr[i].gsggtitle !== undefined) ? arr[i].gsggtitle : `🤓暂无 投资者关系标题`}`;
+                    let publishDate = (arr[i].gsggsj !== undefined) ? arr[i].gsggsj : `暂无 投资者关系日期`;
+                    let title = `${(arr[i].gsggtitle !== undefined) ? arr[i].gsggtitle : `暂无 投资者关系标题`}`;
                     html_string += `
                         <tr class="fv-investor-relations-table-tr">
                             <td class="fv-investor-relations-table-td-key" data-value="data-fv-investor-relations">
@@ -67,7 +67,8 @@ STOCK_F9_FV.Modules.investorRelations.init = STOCK_F9_FV.Modules.investorRelatio
         // more.classList.add("link-more");
         // more
         let td_id = document.querySelector('#fv-investor-relations-tbody');
-        STOCK_F9_FV.Modules.investorRelations(url, td_id, true);
+        // STOCK_F9_FV.Modules.investorRelations(url, td_id, true);
+        STOCK_F9_FV.Modules.investorRelations(url, td_id, false);
     }
 );
 
@@ -75,25 +76,4 @@ STOCK_F9_FV.Modules.investorRelations.init(`http://10.1.5.202/webservice/fastvie
 // url
 
 
-
-// call fetch json datas
-setTimeout(() => {
-    // async & await
-    // const url = `http://10.1.5.202/webservice/fastview/stock/bulletion/600570.SH`;
-    // // stockfast14 ??? bulletion
-    // let link_more = document.querySelector(`[data-more="investor-relations-title"]`);
-    // let link_html = `
-    //     <span id="investor_relations_link_more">
-    //         <a href="#" title="investor-relations" data-uid="investor_relations_link_more">更多 >></a>
-    //     </span>
-    // `;
-    // link_more.insertAdjacentHTML('beforeend', link_html);
-    // let more = document.querySelector(`#investor_relations_link_more`);
-    // more.classList.add("link-more");
-    // // more
-    // let td_id = document.querySelector('#fv-investor-relations-tbody');
-    // investorRelations(url, td_id, true);
-    // const debug = true;
-    // investorRelations(url, td_id, debug);
-}, 0);
 

@@ -153,7 +153,13 @@ STOCK_F9_FV.Modules.MCFLSStatistics.MCFLSSdrawHS = STOCK_F9_FV.Modules.MCFLSStat
         yAxisColor: `#FFB400`,
     };
     // css_obj ???
-    const {color, colors, optioncolor, gridColor, legendColor, yAxisColor} = {...chart_css};
+    // const {color, colors, optioncolor, gridColor, legendColor, yAxisColor} = {...chart_css};
+    let color = chart_css.color,
+        colors = chart_css.colors, 
+        optioncolor = chart_css.optioncolor, 
+        gridColor = chart_css.gridColor, 
+        legendColor = chart_css.legendColor, 
+        yAxisColor = chart_css.yAxisColor;
     // container_div
     // Highcharts.stockChart
     // Highcharts.chart
@@ -354,6 +360,7 @@ STOCK_F9_FV.Modules.MCFLSStatistics.MCFLSSdrawHS = STOCK_F9_FV.Modules.MCFLSStat
 STOCK_F9_FV.Modules.MCFLSStatistics.init = STOCK_F9_FV.Modules.MCFLSStatistics.init || (
     (url= `http://localhost:3000/fast-preview/json/datas/9.json`) => {
         let uid = `monthly_capital_flows_large_single_statistics_hs_container`;
+        // STOCK_F9_FV.Modules.MCFLSStatistics(url, true, uid);
         STOCK_F9_FV.Modules.MCFLSStatistics(url, false, uid);
     }
 );
@@ -362,17 +369,4 @@ STOCK_F9_FV.Modules.MCFLSStatistics.init(`http://10.1.5.202/webservice/fastview/
 // url
 // const url = `http://10.1.5.202/webservice/fastview/stock/${sf_num}/600570.SH`;
 
-
-
-
-// call fetch json datas
-setTimeout(() => {
-    // async & await
-    // const sf_num= `stockfast09`;
-    // const url = `http://10.1.5.202/webservice/fastview/stock/${sf_num}/600570.SH`;
-    // let uid = `monthly_capital_flows_large_single_statistics_hs_container`;
-    // MCFLSStatistics(url, false, uid);
-    // let hs_datas = MCFLSStatistics(url, true, uid);
-    // console.log(`hs_datas = \n`, JSON.stringify(hs_datas, null, 4));
-}, 0);
 

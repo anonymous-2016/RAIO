@@ -1,15 +1,15 @@
 "use strict";
 
 /**
- * financing-and-margin-balance-difference-trend 融资余额与融券余额差值走势 
- * xgqfrms
+ * @description financing-and-margin-balance-difference-trend 融资余额与融券余额差值走势 
+ * @author xgqfrms
+ * @name financing-and-margin-balance-difference-trend FMBDT
  * creadted 2017.10.27
  * @param {* String} url 
  * @param {* DOM Element} uid
  * @param {* Boolean} debug 
  */
 
-// financing-and-margin-balance-difference-trend FMBDT
 
 // namespaces
 var STOCK_F9_FV = STOCK_F9_FV || {};
@@ -18,8 +18,9 @@ STOCK_F9_FV.Modules = STOCK_F9_FV.Modules || {};
 // Modules && IIFE === Closure!
 STOCK_F9_FV.Modules.FMBDtrend = STOCK_F9_FV.Modules.FMBDtrend || ((url = ``, debug = false, uid = `default_dom_uid`) => {
     // profitForecast
-    console.log(`uid = `, uid);
-    // debug = true;
+    if (debug) {
+        console.log(`uid = `, uid);
+    }
     let datas = {};
     fetch(url)
     .then(res => res.json())
@@ -34,7 +35,9 @@ STOCK_F9_FV.Modules.FMBDtrend = STOCK_F9_FV.Modules.FMBDtrend || ((url = ``, deb
             }
             let strs = json.map(
                 (obj) => {
-                    console.log(obj.sj);
+                    if (debug) {
+                        console.log(obj.sj);
+                    }
                     return obj.sj;
                     //return num = parseInt(obj.sj.replace(/-/g, ``));
                 }
@@ -52,15 +55,6 @@ STOCK_F9_FV.Modules.FMBDtrend = STOCK_F9_FV.Modules.FMBDtrend || ((url = ``, deb
                     // return arr[i];
                 }
             );
-            /* 
-                [
-                    {
-                        "sj": "2014-12-31",
-                        "bl": 44.800000000000004,
-                        "gj": 54.76
-                    },
-                ]
-            */
             // Array.isArray(arr);
             let keys = Object.keys(arr[0]);
             // (5) ["rq", "pj", "st", "wc", "xt"]
@@ -82,29 +76,23 @@ STOCK_F9_FV.Modules.FMBDtrend = STOCK_F9_FV.Modules.FMBDtrend || ((url = ``, deb
                             new_key = `stock_price`;
                             break;
                         default:
-                            new_key = `😟 暂无数据`;
+                            new_key = `暂无数据`;
                             break;
                     }
                     arr_obj[new_key] = [];
                 }
             );
-            console.log(`arr_obj = `, JSON.stringify(arr_obj, null, 4));
-            // {"rq":[],"pj":[],"st":[],"wc":[],"xt":[]}
-            // 5 array
-            // keys.map(k => console.log(typeof k));// string
-            // ["rq", "pj", "st", "wc", "xt"].map(k => console.log(k));
-            // let time = shares = stock_price = average = keep = [];
             let counter = 1;
             arr.map(
                 (obj, i) => {
                     // console.log(`obj = `, JSON.stringify(obj, null, 4));
                     let time = ``, shares = ``, stock_price = ``;
-                    time = (obj.sj !== undefined) ? obj.sj : `😟 暂无数据`;
+                    time = (obj.sj !== undefined) ? obj.sj : `暂无数据`;
                     // no string, just keep number!
-                    shares = (obj.bl !== undefined) ? obj.bl : `😟 暂无数据`;
-                    stock_price = (obj.gj !== undefined) ? obj.gj : `😟 暂无数据`;
+                    shares = (obj.bl !== undefined) ? obj.bl : `暂无数据`;
+                    stock_price = (obj.gj !== undefined) ? obj.gj : `暂无数据`;
                     // average = -1.7976931348623157e+308;
-                    // average = (obj.pj !== undefined) ? (obj.pj >= 0 ? obj.pj : null) : `😟 暂无数据`;
+                    // average = (obj.pj !== undefined) ? (obj.pj >= 0 ? obj.pj : null) : `暂无数据`;
                     arr_obj.time.push(time);
                     arr_obj.shares.push(shares);
                     arr_obj.stock_price.push(stock_price);
@@ -145,9 +133,11 @@ STOCK_F9_FV.Modules.FMBDtrend.FMBDTdrawHS = STOCK_F9_FV.Modules.FMBDtrend.FMBDTd
     let time = datas.time,
         shares = datas.shares,
         stock_price = datas.stock_price;
-    // console.log(`time = \n`, time);
-    // console.log(`shares = \n`, shares);
-    // console.log(`stock_price = \n`, stock_price);
+    if (debug) {
+        console.log(`time = \n`, time);
+        console.log(`shares = \n`, shares);
+        console.log(`stock_price = \n`, stock_price);
+    }
     // datas
     const chart_css = {
         color: `#0B1016`,
@@ -158,7 +148,13 @@ STOCK_F9_FV.Modules.FMBDtrend.FMBDTdrawHS = STOCK_F9_FV.Modules.FMBDtrend.FMBDTd
         yAxisColor: `#FFB400`,
     };
     // css_obj ???
-    const {color, colors, optioncolor, gridColor, legendColor, yAxisColor} = {...chart_css};
+    // const {color, colors, optioncolor, gridColor, legendColor, yAxisColor} = {...chart_css};
+    let color = chart_css.color,
+        colors = chart_css.colors, 
+        optioncolor = chart_css.optioncolor, 
+        gridColor = chart_css.gridColor, 
+        legendColor = chart_css.legendColor, 
+        yAxisColor = chart_css.yAxisColor;
     Highcharts.chart(container_uid, {
         noData: {// all defualt value
             attr: undefined,
@@ -372,26 +368,13 @@ STOCK_F9_FV.Modules.FMBDtrend.init = STOCK_F9_FV.Modules.FMBDtrend.init || (
     (url= `http://localhost:3000/fast-preview/json/datas/8.json`) => {
         let uid = `financing_and_margin_balance_difference_trend_hs_container`;
         STOCK_F9_FV.Modules.FMBDtrend(url, false, uid);
+        // STOCK_F9_FV.Modules.FMBDtrend(url, true, uid);
     }
 );
 
 STOCK_F9_FV.Modules.FMBDtrend.init(`http://10.1.5.202/webservice/fastview/stock/stockfast08/600570.SH`);// url
 // const url = `http://10.1.5.202/webservice/fastview/stock/${sf_num}/600570.SH`;
 
-// call fetch json datas
-setTimeout(() => {
-    // async & await
-    // const sf_num= `stockfast08`;
-    // const url = `http://10.1.5.202/webservice/fastview/stock/${sf_num}/600570.SH`;
-    // let uid = `financing_and_margin_balance_difference_trend_hs_container`;
-    // FMBDtrend(url, false, uid);
-    // let hs_datas = FMBDtrend(url, true, uid);
-    // console.log(`hs_datas = \n`, JSON.stringify(hs_datas, null, 4));
-    // setTimeout(() => {
-    //     // FMBDTdrawHS(hs_datas, uid);
-    // }, 0);
-}, 0);
-// setTimeout === IIFE ???
 
 
 

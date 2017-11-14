@@ -18,7 +18,9 @@ STOCK_F9_FV.Modules = STOCK_F9_FV.Modules || {};
 // IIFE === Closure!
 STOCK_F9_FV.Modules.profitForecast = STOCK_F9_FV.Modules.profitForecast || ((url = ``, debug = false, uid = `default_dom_uid`) => {
     // profitForecast
-    console.log(`uid = `, uid);
+    if (debug) {
+        console.log(`uid = `, uid);
+    }
     // debug = true;
     let datas = {};
     fetch(url)
@@ -34,7 +36,9 @@ STOCK_F9_FV.Modules.profitForecast = STOCK_F9_FV.Modules.profitForecast || ((url
             }
             let strs = json.map(
                 (obj) => {
-                    console.log(obj.rq);
+                    if (debug) {
+                        console.log(obj.rq);
+                    }
                     return obj.rq;
                     //return num = parseInt(obj.rq.replace(/-/g, ``));
                 }
@@ -79,18 +83,15 @@ STOCK_F9_FV.Modules.profitForecast = STOCK_F9_FV.Modules.profitForecast || ((url
                             new_key = `keep`;
                             break;
                         default:
-                            new_key = `😟 暂无数据`;
+                            new_key = `暂无数据`;
                             break;
                     }
                     arr_obj[new_key] = [];
                 }
             );
-            console.log(`arr_obj = `, JSON.stringify(arr_obj, null, 4));
-            // {"rq":[],"pj":[],"st":[],"wc":[],"xt":[]}
-            // 5 array
-            // keys.map(k => console.log(typeof k));// string
-            // ["rq", "pj", "st", "wc", "xt"].map(k => console.log(k));
-            // let time = up = down = average = keep = [];
+            if (debug) {
+                console.log(`arr_obj = `, JSON.stringify(arr_obj, null, 4));
+            }
             let counter = 1;
             arr.map(
                 (obj, i) => {
@@ -99,16 +100,16 @@ STOCK_F9_FV.Modules.profitForecast = STOCK_F9_FV.Modules.profitForecast || ((url
                     // let time = up = down = average = keep = ``;
                     // ReferenceError: keep is not defined
                     // time.push();
-                    // time = `${(obj.rq !== undefined) ? obj.rq : `😟 暂无数据`}`;
-                    time = (obj.rq !== undefined) ? obj.rq : `😟 暂无数据`;
+                    // time = `${(obj.rq !== undefined) ? obj.rq : `暂无数据`}`;
+                    time = (obj.rq !== undefined) ? obj.rq : `暂无数据`;
                     // no string, just keep number!
-                    up = (obj.st !== undefined) ? obj.st : `😟 暂无数据`;
-                    down = (obj.xt !== undefined) ? obj.xt : `😟 暂无数据`;
+                    up = (obj.st !== undefined) ? obj.st : `暂无数据`;
+                    down = (obj.xt !== undefined) ? obj.xt : `暂无数据`;
                     // average = -1.7976931348623157e+308;
-                    average = (obj.pj !== undefined) ? (obj.pj >= 0 ? obj.pj : null) : `😟 暂无数据`;
-                    // average = (obj.pj !== undefined) ? (obj.pj >= 0 ? obj.pj : `--`) : `😟 暂无数据`;
+                    average = (obj.pj !== undefined) ? (obj.pj >= 0 ? obj.pj : null) : `暂无数据`;
+                    // average = (obj.pj !== undefined) ? (obj.pj >= 0 ? obj.pj : `--`) : `暂无数据`;
                     // invalid value === 展示“--”
-                    keep = (obj.wc !== undefined) ? obj.wc : `😟 暂无数据`;
+                    keep = (obj.wc !== undefined) ? obj.wc : `暂无数据`;
                     // arr[i] ??? bug
                     // console.log(`keep = `, keep);
                     arr_obj.time.push(time);
@@ -118,12 +119,16 @@ STOCK_F9_FV.Modules.profitForecast = STOCK_F9_FV.Modules.profitForecast || ((url
                     arr_obj.keep.push(keep);
                     // return arr_obj;
                     if (counter === 1) {
-                        console.log(`arr_obj = `, JSON.stringify(arr_obj, null, 4));
+                        if (debug) {
+                            console.log(`arr_obj = `, JSON.stringify(arr_obj, null, 4));
+                        }
                         counter ++;
                     }
                 }
             );
-            console.log(`arr_obj = `, JSON.stringify(arr_obj, null, 4));
+            if (debug) {
+                console.log(`arr_obj = `, JSON.stringify(arr_obj, null, 4));
+            }
             // let {...arr_obj} = {rq: [], st: [], xt: [], pj: [], wc: []};
             // Object.assign()
             // arr.forEach() just use for addEventListener() / do somthing, no return value / undefined!
@@ -164,11 +169,13 @@ STOCK_F9_FV.Modules.profitForecast.drawHS = STOCK_F9_FV.Modules.profitForecast.d
         down = datas.down, 
         average = datas.average,
         keep = datas.keep;
-    console.log(`time = \n`, time);
-    console.log(`up = \n`, up);
-    console.log(`down = \n`, down);
-    console.log(`average = \n`, average);
-    console.log(`keep = \n`, keep);
+    if (debug) {
+        console.log(`time = \n`, time);
+        console.log(`up = \n`, up);
+        console.log(`down = \n`, down);
+        console.log(`average = \n`, average);
+        console.log(`keep = \n`, keep);
+    }
     // datas
     const chart_css = {
         color: `#0B1016`,
@@ -179,7 +186,13 @@ STOCK_F9_FV.Modules.profitForecast.drawHS = STOCK_F9_FV.Modules.profitForecast.d
         yAxisColor: `#FFB400`,
     };
     // css_obj ???
-    const {color, colors, optioncolor, gridColor, legendColor, yAxisColor} = {...chart_css};
+    // const {color, colors, optioncolor, gridColor, legendColor, yAxisColor} = {...chart_css};
+    let color = chart_css.color,
+        colors = chart_css.colors, 
+        optioncolor = chart_css.optioncolor, 
+        gridColor = chart_css.gridColor, 
+        legendColor = chart_css.legendColor, 
+        yAxisColor = chart_css.yAxisColor;
     // container_div
     // Highcharts.stockChart
     // Highcharts.chart
@@ -407,10 +420,14 @@ STOCK_F9_FV.Modules.profitForecast.drawHS = STOCK_F9_FV.Modules.profitForecast.d
     // svg style
     let svg_legends = document.querySelectorAll(`.highcharts-legend-item`);
     // svg_legend;
-    console.log(`svg_legends = `, svg_legends);
+    if (debug) {
+        console.log(`svg_legends = `, svg_legends);
+    }
     svg_legends.forEach(
         (svg_legend, index) => {
-            console.log(`svg_legend, index`, svg_legend, index);
+            if (debug) {
+                console.log(`svg_legend, index`, svg_legend, index);
+            }
             if (index < svg_legends.length - 1) {
                 svg_legend.lastChild;
                 svg_legend.lastChild.setAttribute(`x`, 0);
@@ -427,7 +444,8 @@ STOCK_F9_FV.Modules.profitForecast.drawHS = STOCK_F9_FV.Modules.profitForecast.d
 STOCK_F9_FV.Modules.profitForecast.init = STOCK_F9_FV.Modules.profitForecast.init || (
     (url= `http://localhost:3000/fast-preview/json/datas/3.json`) => {
         let uid = `profit_forecast_hs_container`;
-        STOCK_F9_FV.Modules.profitForecast(url, true, uid);
+        // STOCK_F9_FV.Modules.profitForecast(url, true, uid);
+        STOCK_F9_FV.Modules.profitForecast(url, false, uid);
     }
 );
 
@@ -435,20 +453,4 @@ STOCK_F9_FV.Modules.profitForecast.init(`http://10.1.5.202/webservice/fastview/s
 // const url = `http://10.1.5.202/webservice/fastview/stock/${sf_num}/600570.SH`;
 
 
-// call fetch json datas
-setTimeout(() => {
-    // async & await
-    /* 
-        const sf_num= `stockfast03`;
-        const url = `http://10.1.5.202/webservice/fastview/stock/${sf_num}/600570.SH`;
-        let uid = `profit_forecast_hs_container`;
-        let hs_datas = profitForecast(url, true, uid);
-        console.log(`hs_datas = \n`, JSON.stringify(hs_datas, null, 4));
-    */
-    // profitForecast(url, true, uid);
-    // let hs_container_uid = document.querySelector(`[data-hs-container="data-profit-forecast-container-uid"]`);
-    // setTimeout(() => {
-    //     drawHS(hs_datas, uid);
-    // }, 0);
-}, 0);
 

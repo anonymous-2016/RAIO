@@ -145,9 +145,11 @@ STOCK_F9_FV.Modules.ISCstatistics.ISCSdrawHS = STOCK_F9_FV.Modules.ISCstatistics
     let time = datas.time,
         shares = datas.shares,
         stock_price = datas.stock_price;
-    // console.log(`time = \n`, time);
-    // console.log(`shares = \n`, shares);
-    // console.log(`stock_price = \n`, stock_price);
+    if (debug) {
+        console.log(`time = \n`, time);
+        console.log(`shares = \n`, shares);
+        console.log(`stock_price = \n`, stock_price);
+    }
     // datas
     const chart_css = {
         color: `#0B1016`,
@@ -158,7 +160,13 @@ STOCK_F9_FV.Modules.ISCstatistics.ISCSdrawHS = STOCK_F9_FV.Modules.ISCstatistics
         yAxisColor: `#FFB400`,
     };
     // css_obj ???
-    const {color, colors, optioncolor, gridColor, legendColor, yAxisColor} = {...chart_css};
+    // const {color, colors, optioncolor, gridColor, legendColor, yAxisColor} = {...chart_css};
+    let color = chart_css.color,
+        colors = chart_css.colors, 
+        optioncolor = chart_css.optioncolor, 
+        gridColor = chart_css.gridColor, 
+        legendColor = chart_css.legendColor, 
+        yAxisColor = chart_css.yAxisColor;
     Highcharts.chart(container_uid, {
         noData: {// all defualt value
             attr: undefined,
@@ -352,8 +360,8 @@ STOCK_F9_FV.Modules.ISCstatistics.ISCSdrawHS = STOCK_F9_FV.Modules.ISCstatistics
     });
     // svg style
     let svg_legend = document.querySelector(`.highcharts-legend-item`);
-    svg_legend;
-    svg_legend.lastChild;
+    // svg_legend;
+    // svg_legend.lastChild;
     svg_legend.lastChild.setAttribute(`x`, 0);
     svg_legend.lastChild.setAttribute(`y`, 5);
     svg_legend.lastChild.setAttribute(`width`, 17);
@@ -367,28 +375,12 @@ STOCK_F9_FV.Modules.ISCstatistics.ISCSdrawHS = STOCK_F9_FV.Modules.ISCstatistics
 STOCK_F9_FV.Modules.ISCstatistics.init = STOCK_F9_FV.Modules.ISCstatistics.init || (
     (url= `http://localhost:3000/fast-preview/json/datas/13.json`) => {
         let uid = `institutional_shareholding_change_statistics_hs_container`;
-        STOCK_F9_FV.Modules.ISCstatistics(url, true, uid);
+        // STOCK_F9_FV.Modules.ISCstatistics(url, true, uid);
+        STOCK_F9_FV.Modules.ISCstatistics(url, false, uid);
     }
 );
 
 STOCK_F9_FV.Modules.ISCstatistics.init(`http://10.1.5.202/webservice/fastview/stock/stockfast13/600570.SH`);// url
 // const url = `http://10.1.5.202/webservice/fastview/stock/${sf_num}/600570.SH`;
 
-
-// call fetch json datas
-setTimeout(() => {
-    // async & await
-    /* 
-        const sf_num= `stockfast13`;
-        const url = `http://10.1.5.202/webservice/fastview/stock/${sf_num}/600570.SH`;
-        let uid = `institutional_shareholding_change_statistics_hs_container`;
-        let hs_datas = ISCstatistics(url, true, uid);
-    */
-    // console.log(`hs_datas = \n`, JSON.stringify(hs_datas, null, 4));
-    // profitForecast(url, true, uid);
-    // let hs_container_uid = document.querySelector(`[data-hs-container="data-profit-forecast-container-uid"]`);
-    // setTimeout(() => {
-    //     ISCSdrawHS(hs_datas, uid);
-    // }, 0);
-}, 0);
 

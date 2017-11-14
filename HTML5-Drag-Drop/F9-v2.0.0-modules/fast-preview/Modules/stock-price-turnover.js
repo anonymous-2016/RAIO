@@ -85,7 +85,7 @@ STOCK_F9_FV.Modules.SPTurnover = STOCK_F9_FV.Modules.SPTurnover || ((url = ``, d
                             new_key = `SH_Index`;
                             break;
                         default:
-                            new_key = `😟 暂无数据`;
+                            new_key = `暂无数据`;
                             break;
                     }
                     arr_obj[new_key] = [];
@@ -98,13 +98,13 @@ STOCK_F9_FV.Modules.SPTurnover = STOCK_F9_FV.Modules.SPTurnover || ((url = ``, d
                     // console.log(`obj = `, JSON.stringify(obj, null, 4));
                     let time = ``, turn_over = ``, stock_price = ``, SH_Index = ``;
                     // time ms ???
-                    time = (obj.sjz !== undefined) ? obj.sjz : `😟 暂无数据`;
+                    time = (obj.sjz !== undefined) ? obj.sjz : `暂无数据`;
                     // no string, just keep number!
-                    turn_over = (obj.cjl !== undefined) ? obj.cjl : `😟 暂无数据`;
-                    stock_price = (obj.gj !== undefined) ? obj.gj : `😟 暂无数据`;
-                    SH_Index = (obj.szzs !== undefined) ? obj.szzs : `😟 暂无数据`;
+                    turn_over = (obj.cjl !== undefined) ? obj.cjl : `暂无数据`;
+                    stock_price = (obj.gj !== undefined) ? obj.gj : `暂无数据`;
+                    SH_Index = (obj.szzs !== undefined) ? obj.szzs : `暂无数据`;
                     // average = -1.7976931348623157e+308;
-                    // average = (obj.pj !== undefined) ? (obj.pj >= 0 ? obj.pj : null) : `😟 暂无数据`;
+                    // average = (obj.pj !== undefined) ? (obj.pj >= 0 ? obj.pj : null) : `暂无数据`;
                     arr_obj.time.push(time);
                     arr_obj.stock_price.push(stock_price);
                     arr_obj.turn_over.push(turn_over);
@@ -145,7 +145,9 @@ STOCK_F9_FV.Modules.SPTurnover.SPTdrawHS = STOCK_F9_FV.Modules.SPTurnover.SPTdra
     // 2012-12-31 => var oldTime = (new Date("2012/12/31 20:11:11").getTime(); 
     // 得到毫秒数  
     // datas
-    console.log(`datas = \n`, datas);
+    if (debug) {
+        console.log(`datas = \n`, datas);
+    }
     const chart_css = {
         color: `#0B1016`,
         colors: ['#ff1919', '#ffff66', '#92d050'],
@@ -155,7 +157,14 @@ STOCK_F9_FV.Modules.SPTurnover.SPTdrawHS = STOCK_F9_FV.Modules.SPTurnover.SPTdra
         yAxisColor: `#FFB400`,
     };
     // css_obj ???
-    const {color, colors, optioncolor, gridColor, legendColor, yAxisColor} = {...chart_css};
+    // const {color, colors, optioncolor, gridColor, legendColor, yAxisColor} = {...chart_css};
+    let color = chart_css.color,
+        colors = chart_css.colors, 
+        optioncolor = chart_css.optioncolor, 
+        gridColor = chart_css.gridColor, 
+        legendColor = chart_css.legendColor, 
+        yAxisColor = chart_css.yAxisColor;
+    // 
     // console.log(json);
     var ohlc = [],
         volume = [],
@@ -198,9 +207,11 @@ STOCK_F9_FV.Modules.SPTurnover.SPTdrawHS = STOCK_F9_FV.Modules.SPTurnover.SPTdra
             datas.SH_Index[i]
         ]);
     }
-    // console.log(ohlc);
-    // console.log(volume);
-    // console.log(sh_index);
+    if (debug) {
+        console.log(ohlc);
+        console.log(volume);
+        console.log(sh_index);
+    }
     /* 
         Highcharts lang 配置是全局配置
         针对所有图表有效，所有不能单独设置在某个图表中在，
@@ -522,83 +533,11 @@ STOCK_F9_FV.Modules.SPTurnover.SPTdrawHS = STOCK_F9_FV.Modules.SPTurnover.SPTdra
 STOCK_F9_FV.Modules.SPTurnover.init = STOCK_F9_FV.Modules.SPTurnover.init || (
     (url= `http://localhost:3000/fast-preview/json/datas/6.json`) => {
         let uid = `stock_price_turnover_hs_container`;
-        STOCK_F9_FV.Modules.SPTurnover(url, true, uid);
+        // STOCK_F9_FV.Modules.SPTurnover(url, true, uid);
+        STOCK_F9_FV.Modules.SPTurnover(url, false, uid);
     }
 );
 
 STOCK_F9_FV.Modules.SPTurnover.init(`http://10.1.5.202/webservice/fastview/stock/stockfast06/600570.SH`);// url
 // const url = `http://10.1.5.202/webservice/fastview/stock/${sf_num}/600570.SH`;
-
-
-
-// call fetch json datas
-setTimeout(() => {
-    // async & await
-    /* 
-        const sf_num= `stockfast06`;
-        const url = `http://10.1.5.202/webservice/fastview/stock/${sf_num}/600570.SH`;
-        let uid = `stock_price_turnover_hs_container`;
-        let hs_datas = SPTurnover(url, true, uid);
-    */
-    // console.log(`hs_datas = \n`, JSON.stringify(hs_datas, null, 4));
-    // profitForecast(url, true, uid);
-    // let hs_container_uid = document.querySelector(`[data-hs-container="data-profit-forecast-container-uid"]`);
-    // setTimeout(() => {
-    //     SPTdrawHS(hs_datas, uid);
-    // }, 0);
-}, 0);
-
-
-/* 
-
-
-
-
-https://www.highcharts.com/stock/demo/compare
-http://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/stock/demo/compare/
-
-https://www.highcharts.com/stock/demo/yaxis-plotlines
-
-
-¥7.06 +0.05 +0.71%
-
-
-
-
-今年以来涨跌幅 1.52%
-3个月涨跌幅 0.89%
-52周涨跌幅 -12.74%
-52周Beta 0.32
-
-#ff2323
-
-14px
-24px
-
-
-
-
-
-
-*/
-
-/* 
-
-    recurve 反
-    Reverse 逆序
-    let a = [1,2,3,4,5,6,7,8,9],
-        l = a.length;
-        aa = a.map(
-        (key, index) => {
-            console.log(`key, index = \n`, key, index);
-            let ni = l - 1 - index;
-            console.log(`new index = \n`, ni);
-            return a[ni];
-        }
-    );
-    aa;
-    // [9, 8, 7, 6, 5, 4, 3, 2, 1]
-
-    // aa = a.map((k, i) => a[a.length - 1 - i]);
-*/
 

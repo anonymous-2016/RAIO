@@ -9,38 +9,6 @@
  * @param {Boolean} debug 
  */
 
-/* 
-
-    import {urls} from "../utils/urls-ip";
-    // Uncaught SyntaxError: Unexpected token import
-
-    import {debug} from "../utils/debug";
-    const debug = true;
-
-    var _urlsIp = require("../utils/urls-ip");
-    // Uncaught ReferenceError: require is not defined
-
-    if (debug) {
-        console.log(`urls = `, JSON.stringify(urls, null, 4));
-    }
-
-*/
-
-/* 
-
-    "use strict";
-
-    var _urlsIp = require("../utils/urls-ip");
-
-    // import {debug} from "../utils/debug";
-    var debug = true;
-
-    if (debug) {
-        console.log("urls = ", JSON.stringify(_urlsIp.urls, null, 4));
-    }
-
-
-*/
 
 // namespaces
 var STOCK_F9_FV = STOCK_F9_FV || {};
@@ -66,9 +34,9 @@ STOCK_F9_FV.Modules.researchReport = STOCK_F9_FV.Modules.researchReport || ((url
             let arr = data;
             arr.map(
                 (obj, i) => {
-                    let publishDate = (arr[i].publishDate !== undefined) ? arr[i].publishDate : `😟 暂无数据`;
-                    let title = `${(arr[i].title !== undefined) ? arr[i].title : `😟 暂无数据`}`;
-                    let id = `${(arr[i].researchId !== undefined) ? arr[i].researchId : `😟 暂无数据`}`;
+                    let publishDate = (arr[i].publishDate !== undefined) ? arr[i].publishDate : `暂无数据`;
+                    let title = `${(arr[i].title !== undefined) ? arr[i].title : `暂无数据`}`;
+                    let id = `${(arr[i].researchId !== undefined) ? arr[i].researchId : `暂无数据`}`;
                     html_string += `
                         <tr class="fv-research-report-table-tr">
                             <td
@@ -99,27 +67,10 @@ STOCK_F9_FV.Modules.researchReport = STOCK_F9_FV.Modules.researchReport || ((url
 
 STOCK_F9_FV.Modules.researchReport.init = STOCK_F9_FV.Modules.researchReport.init || (
     (url= `http://localhost:3000/fast-preview/json/datas/research.json`) => {
-        // let link_more = document.querySelector(`[data-more="research-report-title"]`);
-        // // after table ???
-        // let link_html = `
-        //     <span id="research_report_link_more">
-        //         <a href="#" title="research-report" data-uid="research_report_link_more">更多 >></a>
-        //     </span>
-        // `;
-        // link_more.insertAdjacentHTML('beforeend', link_html);
-        // let more = document.querySelector(`#research_report_link_more`);
-        // more.classList.add("link-more");
         let td_id = document.querySelector('#fv-research-report-tbody');
-        STOCK_F9_FV.Modules.researchReport(url, td_id, true);
-        // let a_links = document.querySelectorAll(`a[data-link-detail="research-report-link-detail-module"]`);
-        for (var i = 0; i < a_links.length; i++) {
-            let id = a_links[i].innerText;
-            a_links[i].addEventListener(`click`,
-                (id) => {
-                    console.log(`id = ${id}`)
-                }
-            );
-        }
+        // STOCK_F9_FV.Modules.researchReport(url, td_id, true);
+        STOCK_F9_FV.Modules.researchReport(url, td_id, false);
+        // no need any more???
         const clickLinkOpenModuleHandler = (uid = `600570`, debug = false) => {
             // 600570.SH
             // alert(`uid = `, uid);
@@ -129,7 +80,7 @@ STOCK_F9_FV.Modules.researchReport.init = STOCK_F9_FV.Modules.researchReport.ini
             // cache ?
         };
         // async await ??? promise
-        setTimeout(() => {
+        setTimeout((debug = false) => {
             let a_links = document.querySelectorAll(`a[data-link-detail="research-report-link-detail-module"]`);
             for (var i = 0; i < a_links.length; i++) {
                 // let uid = a_links[i].innerText;
@@ -137,13 +88,19 @@ STOCK_F9_FV.Modules.researchReport.init = STOCK_F9_FV.Modules.researchReport.ini
                 let uid = parseInt(a_links[i].dataset.researchid);
                 // OR, just  get it from URL hash!
                 let hash_id = parseInt((this.window.location.hash).slice(1));
-                console.log(`id = ${uid}`);
+                if (debug) {
+                    console.log(`id = ${uid}`);
+                }
                 a_links[i].addEventListener(`click`,
                     (e) => {
                         e.preventDefault();// disable defalut a link event!
-                        console.log(`id = ${uid}`);
+                        if (debug) {
+                            console.log(`id = ${uid}`);
+                        }
                         let e_id = parseInt(e.target.dataset.researchid);// e.target
-                        console.log(`id = ${e_id}`);
+                        if (debug) {
+                            console.log(`id = ${e_id}`);
+                        }
                         clickLinkOpenModuleHandler(uid);
                     }
                 );
@@ -157,100 +114,4 @@ STOCK_F9_FV.Modules.researchReport.init(`http://10.1.5.202/webservice/fastview/s
 // const url = `http://10.1.5.202/webservice/fastview/stock/research/600570.SH`;
 
 
-// call fetch json datas
-setTimeout(() => {
-    // async & await
-    // const url = `http://10.1.5.202/webservice/fastview/stock/research/600570.SH`;
-    // let link_more = document.querySelector(`[data-more="research-report-title"]`);
-    // let link_html = `
-    //     <span id="research_report_link_more">
-    //         <a href="#" title="research-report" data-uid="research_report_link_more">更多 >></a>
-    //     </span>
-    // `;
-    // link_more.insertAdjacentHTML('beforeend', link_html);
-    // let more = document.querySelector(`#research_report_link_more`);
-    // // more.style.marginLeft = "370px";
-    // more.classList.add("link-more");
-    // // more
-    // let td_id = document.querySelector('#fv-research-report-tbody');
-    // researchReport(url, td_id, true);
-    // const debug = true;
-    // researchReport(url, td_id, debug);
-    // let a_links = document.querySelectorAll(`a[data-link-detail="research-report-link-detail-module"]`);
-    // for (var i = 0; i < a_links.length; i++) {
-    //     let id = a_links[i].innerText;
-    //     a_links[i].addEventListener(`click`,
-    //         (id) => {
-    //             console.log(`id = ${id}`)
-    //         }
-    //     );
-    // }
-    // only once ???
-}, 0);// 2000 ??? refresh bink
 
-
-
-/* 
-
-const clickLinkOpenModuleHandler = (uid = `600570`, debug = false) => {
-    // 600570.SH
-    // alert(`uid = `, uid);
-    alert(`uid = ${uid}`);// alert(`desc ${key}`) !== console.log(`desc `, key);
-    // fetch data
-    // show module
-    // cache ?
-};
-
-*/
-
-
-setTimeout(function() {
-    // const clickLinkOpenModuleHandler = (uid = `600570`, debug = false) => {
-    //     // 600570.SH
-    //     // alert(`uid = `, uid);
-    //     alert(`uid = ${uid}`);// alert(`desc ${key}`) !== console.log(`desc `, key);
-    //     // fetch data
-    //     // show module
-    //     // cache ?
-    // };
-    // let a_links = document.querySelectorAll(`a[data-link-detail="research-report-link-detail-module"]`);
-    // for (var i = 0; i < a_links.length; i++) {
-    //     // let uid = a_links[i].innerText;
-    //     // let uid = parseInt(a_links[i].dataset.researchId);// dataset ignore Capital!
-    //     let uid = parseInt(a_links[i].dataset.researchid);
-    //     // OR, just  get it from URL hash!
-    //     let hash_id = parseInt((this.window.location.hash).slice(1));
-    //     console.log(`id = ${uid}`);
-    //     a_links[i].addEventListener(`click`,
-    //         (e) => {
-    //             e.preventDefault();// disable defalut a link event!
-    //             console.log(`id = ${uid}`);
-    //             let e_id = parseInt(e.target.dataset.researchid);// e.target
-    //             console.log(`id = ${e_id}`);
-    //             clickLinkOpenModuleHandler(uid);
-    //         }
-    //     );
-    // }
-    // only once ???
-}, 1000);
-
-/* 
-// dataset & dataa-*
-
-a_links[0];
-// <a href=​"#561043398497" data-link=​"fv-research-report-link" data-link-detail=​"research-report-link-detail-module" data-researchid=​"561043398497">​恒生电子(600570)点评：抱拥金融科技大趋势​</a>​
-
-typeof a_links[0];
-// "object"
-
-a_links[0].innerText;
-// "恒生电子(600570)点评：抱拥金融科技大趋势"
-
-a_links[0].dataset.researchid;
-// "561043398497"
-
-parseInt(a_links[0].dataset.researchid);
-// 561043398497
-
-
-*/

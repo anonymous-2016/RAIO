@@ -9,7 +9,12 @@
  * @param {Boolean} debug 
  */
 
-const researchReport = (url = ``, td_id = `id`, debug = false) => {
+// namespaces
+var STOCK_F9_FV = STOCK_F9_FV || {};
+// sub namespaces
+STOCK_F9_FV.Modules = STOCK_F9_FV.Modules || {};
+// Modules && IIFE === Closure!
+STOCK_F9_FV.Modules.agencyResearchStatistics = STOCK_F9_FV.Modules.agencyResearchStatistics || ((url = ``, td_id = `id`, debug = false) => {
     // debug = true;
     let data = [];
     fetch(url)
@@ -48,16 +53,16 @@ const researchReport = (url = ``, td_id = `id`, debug = false) => {
         }
     )
     .catch(error => console.log(`error = \n`, error));
-};
+});
 
 
-// call fetch json datas
-setTimeout(() => {
-    // async & await
-    let uid = `???`;
-    const url = `http://10.1.5.202/webservice/fastview/stock/${uid}/600570.SH`;
-    let link_more = document.querySelector(`[data-more="research-report-title"]`);
-    let td_id = document.querySelector('#fv-research-report-tbody');
-    researchReport(url, td_id, true);
-}, 0);
+STOCK_F9_FV.Modules.agencyResearchStatistics.init = STOCK_F9_FV.Modules.agencyResearchStatistics.init || (
+    (url= `http://localhost:3000/fast-preview/json/datas/xxx.json`) => {
+        let uid = `agency_research_report_hs_container`;
+        // STOCK_F9_FV.Modules.agencyResearchStatistics(url, true, uid);
+        STOCK_F9_FV.Modules.agencyResearchStatistics(url, false, uid);
+    }
+);
 
+// STOCK_F9_FV.Modules.agencyResearchStatistics.init(`http://10.1.5.202/webservice/fastview/stock/xxx/600570.SH`);
+// url

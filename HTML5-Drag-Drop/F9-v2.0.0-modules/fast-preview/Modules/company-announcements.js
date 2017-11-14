@@ -34,8 +34,8 @@ STOCK_F9_FV.Modules.companyAnnouncements = STOCK_F9_FV.Modules.companyAnnounceme
             arr.map(
                 (obj, i) => {
                     // undefined
-                    let publishDate = (arr[i].gsggsj !== undefined) ? arr[i].gsggsj : `😟暂无 公告日期`;
-                    let title = `${(arr[i].gsggtitle !== undefined) ? arr[i].gsggtitle : `🤓暂无 公告标题`}`;
+                    let publishDate = (arr[i].gsggsj !== undefined) ? arr[i].gsggsj : `暂无 公告日期`;
+                    let title = `${(arr[i].gsggtitle !== undefined) ? arr[i].gsggtitle : `暂无 公告标题`}`;
                     html_string += `
                         <tr class="fv-company-announcements-table-tr">
                             <td class="fv-company-announcements-table-td-key" data-value="data-fv-company-announcements">
@@ -72,32 +72,15 @@ STOCK_F9_FV.Modules.companyAnnouncements.init = STOCK_F9_FV.Modules.companyAnnou
         // let more = document.querySelector(`#company_announcements_link_more`);
         // more.classList.add("link-more");
         let td_id = document.querySelector('#fv-company-announcements-tbody');
-        STOCK_F9_FV.Modules.companyAnnouncements(url, td_id, true);
+        // STOCK_F9_FV.Modules.companyAnnouncements(url, td_id, true);
+        STOCK_F9_FV.Modules.companyAnnouncements(url, td_id, false);
     }
 );
 
 STOCK_F9_FV.Modules.companyAnnouncements.init(`http://10.1.5.202/webservice/fastview/stock/bulletion/600570.SH`);// url
 // const url = `http://10.1.5.202/webservice/fastview/stock/bulletion/600570.SH`;
 
-// call fetch json datas
-setTimeout(() => {
-    // async & await
-    // const url = `http://10.1.5.202/webservice/fastview/stock/bulletion/600570.SH`;
-    // let link_more = document.querySelector(`[data-more="company-announcements-title"]`);
-    // let link_html = `
-    //     <span id="company_announcements_link_more">
-    //         <a href="#" title="company-announcements" data-uid="company_announcements_link_more">更多 >></a>
-    //     </span>
-    // `;
-    // link_more.insertAdjacentHTML('beforeend', link_html);
-    // let more = document.querySelector(`#company_announcements_link_more`);
-    // more.classList.add("link-more");
-    // // more
-    // let td_id = document.querySelector('#fv-company-announcements-tbody');
-    // companyAnnouncements(url, td_id, true);
-    // const debug = true;
-    // companyAnnouncements(url, td_id, debug);
-}, 0);
+
 
 
 

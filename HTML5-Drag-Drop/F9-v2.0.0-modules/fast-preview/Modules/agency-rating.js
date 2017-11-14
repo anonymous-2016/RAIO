@@ -33,7 +33,9 @@ STOCK_F9_FV.Modules.agencyRating = STOCK_F9_FV.Modules.agencyRating || ((url = `
                 }
                 let strs = json.map(
                     (obj) => {
-                        console.log(obj.sj);
+                        if (debug) {
+                            console.log(obj.sj);
+                        }
                         return obj.sj;
                         //return num = parseInt(obj.sj.replace(/-/g, ``));
                     }
@@ -78,26 +80,28 @@ STOCK_F9_FV.Modules.agencyRating = STOCK_F9_FV.Modules.agencyRating || ((url = `
                                 new_key = `keep`;
                                 break;
                             default:
-                                new_key = `😟 暂无数据`;
+                                new_key = `暂无数据`;
                                 break;
                         }
                         arr_obj[new_key] = [];
                     }
                 );
-                console.log(`arr_obj = `, JSON.stringify(arr_obj, null, 4));
+                if (debug) {
+                    console.log(`arr_obj = `, JSON.stringify(arr_obj, null, 4));
+                }
                 let counter = 1;
                 arr.map(
                     (obj, i) => {
                         // console.log(`obj = `, JSON.stringify(obj, null, 4));
                         let time = ``, up = ``, down = ``, stock_price = ``, keep = ``;
-                        time = (obj.sj !== undefined) ? obj.sj : `😟 暂无数据`;
+                        time = (obj.sj !== undefined) ? obj.sj : `暂无数据`;
                         // no string, just keep number!
-                        up = (obj.st !== undefined) ? obj.st : `😟 暂无数据`;
-                        down = (obj.xt !== undefined) ? obj.xt : `😟 暂无数据`;
+                        up = (obj.st !== undefined) ? obj.st : `暂无数据`;
+                        down = (obj.xt !== undefined) ? obj.xt : `暂无数据`;
                         // 股价 
-                        stock_price = (obj.gj !== undefined) ? (obj.gj >= 0 ? obj.gj : null) : `😟 暂无数据`;
+                        stock_price = (obj.gj !== undefined) ? (obj.gj >= 0 ? obj.gj : null) : `暂无数据`;
                         // invalid value === 展示“--”
-                        keep = (obj.wc !== undefined) ? obj.wc : `😟 暂无数据`;
+                        keep = (obj.wc !== undefined) ? obj.wc : `暂无数据`;
                         arr_obj.time.push(time);
                         arr_obj.up.push(up);
                         arr_obj.down.push(down);
@@ -105,18 +109,22 @@ STOCK_F9_FV.Modules.agencyRating = STOCK_F9_FV.Modules.agencyRating || ((url = `
                         arr_obj.keep.push(keep);
                         // return arr_obj;
                         if (counter === 1) {
-                            console.log(`arr_obj = `, JSON.stringify(arr_obj, null, 4));
+                            if (debug) {
+                                console.log(`arr_obj = `, JSON.stringify(arr_obj, null, 4));
+                            }
                             counter ++;
                         }
                     }
                 );
-                console.log(`arr_obj = `, JSON.stringify(arr_obj, null, 4));
+                if (debug) {
+                    console.log(`arr_obj = `, JSON.stringify(arr_obj, null, 4));
+                }
                 datas = Object.assign(datas, arr_obj);
                 STOCK_F9_FV.Modules.agencyRating.drawHS(datas, uid);
             }
         )
         .catch(error => console.log(`error = \n`, error));
-        return datas;
+        // return datas;
 });
 
 
@@ -146,11 +154,13 @@ STOCK_F9_FV.Modules.agencyRating.drawHS = STOCK_F9_FV.Modules.agencyRating.drawH
         down = datas.down, 
         stock_price = datas.stock_price,
         keep = datas.keep;
-    console.log(`time = \n`, time);
-    console.log(`up = \n`, up);
-    console.log(`down = \n`, down);
-    console.log(`stock_price = \n`, stock_price);
-    console.log(`keep = \n`, keep);
+    if (debug) {
+        console.log(`time = \n`, time);
+        console.log(`up = \n`, up);
+        console.log(`down = \n`, down);
+        console.log(`stock_price = \n`, stock_price);
+        console.log(`keep = \n`, keep);
+    }
     // datas
     const chart_css = {
         color: `#0B1016`,
@@ -161,7 +171,13 @@ STOCK_F9_FV.Modules.agencyRating.drawHS = STOCK_F9_FV.Modules.agencyRating.drawH
         yAxisColor: `#FFB400`,
     };
     // css_obj ???
-    const {color, colors, optioncolor, gridColor, legendColor, yAxisColor} = {...chart_css};
+    // const {color, colors, optioncolor, gridColor, legendColor, yAxisColor} = {...chart_css};
+    let color = chart_css.color,
+        colors = chart_css.colors, 
+        optioncolor = chart_css.optioncolor, 
+        gridColor = chart_css.gridColor, 
+        legendColor = chart_css.legendColor, 
+        yAxisColor = chart_css.yAxisColor;
     // container_div
     // Highcharts.stockChart
     // Highcharts.chart
@@ -371,10 +387,14 @@ STOCK_F9_FV.Modules.agencyRating.drawHS = STOCK_F9_FV.Modules.agencyRating.drawH
     // svg style
     let svg_legends = document.querySelectorAll(`.highcharts-legend-item`);
     // svg_legend;
-    console.log(`svg_legends = `, svg_legends);
+    if (debug) {
+        console.log(`svg_legends = `, svg_legends);
+    }
     svg_legends.forEach(
         (svg_legend, index) => {
-            console.log(`svg_legend, index`, svg_legend, index);
+            if (debug) {
+                console.log(`svg_legend, index`, svg_legend, index);
+            }
             if (index < svg_legends.length - 1) {
                 svg_legend.lastChild;
                 svg_legend.lastChild.setAttribute(`x`, 0);
@@ -392,26 +412,13 @@ STOCK_F9_FV.Modules.agencyRating.drawHS = STOCK_F9_FV.Modules.agencyRating.drawH
 STOCK_F9_FV.Modules.agencyRating.init = STOCK_F9_FV.Modules.agencyRating.init || (
     (url= `http://localhost:3000/fast-preview/json/datas/5.json`) => {
         let uid = `agency_rating_hs_container`;
-        STOCK_F9_FV.Modules.agencyRating(url, true, uid);
+        STOCK_F9_FV.Modules.agencyRating(url, false, uid);
+        // STOCK_F9_FV.Modules.agencyRating(url, true, uid);
     }
 );
 
 STOCK_F9_FV.Modules.agencyRating.init(`http://10.1.5.202/webservice/fastview/stock/stockfast05/600570.SH`);// url
 // const url = `http://10.1.5.202/webservice/fastview/stock/stockfast05/600570.SH`;
 
-// call fetch json datas
-setTimeout(() => {
-    // async & await
-    /* 
-        const sf_num= `stockfast05`;
-        const url = `http://10.1.5.202/webservice/fastview/stock/${sf_num}/600570.SH`;
-        let uid = `agency_rating_hs_container`;
-        agencyRating(url, true, uid);
-    */
-    // let hs_datas = agencyRating(url, true, uid);
-    // console.log(`hs_datas = \n`, JSON.stringify(hs_datas, null, 4));
-    // setTimeout(() => {
-    //     drawHS_agencyRating(hs_datas, uid);
-    // }, 0);
-}, 0);
+
 
