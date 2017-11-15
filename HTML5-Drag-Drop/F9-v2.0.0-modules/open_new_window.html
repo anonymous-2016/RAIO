@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Open New Window HTML Content</title>
+    <!-- https://codepen.io/gildata/pen/VrzXOb -->
+</head>
+
+<body>
+    <div data-uid="NewWindowHTMLContent">
+        <p>Your content here</p>
+    </div>
+
+    <a href="#" data-uid="open_new_window">Open</a>
+    <script>
+        // window.onload = (() => {
+        //     let uid = document.querySelector(`[data-uid="open_new_window"]`);
+        //     uid.addEventListener(`click`, (e) => {
+        //         e.preventDefault();
+        //         ONW();
+        //     });
+        // })();
+        // const ONW = () => {
+        //     const w = window.open();
+        //     let html = `<p>HTML Content</p>`;
+        //     w.document.head.innerHTML = `<title>公司新闻</title>`;
+        //     w.document.body.innerHTML = html;
+        //     setTimeout(() => {
+        //         alert(`Warning: closing new window!`);
+        //         w.close();
+        //     }, 3000);
+        // };
+        document.addEventListener("DOMContentLoaded", (e) => {
+            console.log("DOM fully loaded and parsed");
+            const ONW = () => {
+                const w = window.open();
+                let html = `<p>HTML Content</p>`;
+                w.document.head.innerHTML = `<title>公司新闻</title>`;
+                w.document.body.innerHTML = html;
+                setTimeout(() => {
+                    alert(`Warning: closing new window!`);
+                    w.close();
+                }, 3000);
+            };
+            (() => {
+                let uid = document.querySelector(`[data-uid="open_new_window"]`);
+                uid.addEventListener(`click`, (e) => {
+                    e.preventDefault();
+                    ONW();
+                });
+            })();
+        });
+    </script>
+</body>
+
+</html>

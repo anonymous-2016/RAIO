@@ -1,0 +1,89 @@
+
+
+.pageBar {
+    text-align: right;
+    padding-top: 5px;
+    float: right;
+    margin-right: 25px;
+}
+
+/*.pageBar tbody td{line-height: 0;border: none;float: none;text-align: right;}*/
+.pageBar img {
+    margin-right: 5px;
+    cursor: pointer;
+}
+
+.txtNum {
+    width: 35px;
+    height: 23px;
+    background: #202427;
+    border: 1px solid #4e4f50;
+    color: #fff;
+}
+
+/*.btnGO{ background-image:url("img/btn_go.gif");*/
+/*background-position: left top;*/
+/*background-repeat: no-repeat; */
+/*width:25px; height:20px;*/
+/*overflow: hidden;*/
+/*cursor: pointer;*/
+/*border:0;*/
+/*}*/
+.fontBold {
+    font-weight: bold;
+}
+
+#pageBarImg {
+    width: 276px;
+    float: left;
+}
+
+#pageBarImg li {
+    float: left;
+    height: 23px;
+    text-align: center;
+    width: 60px;
+    text-align: center;
+    border: 1px solid #4e4f50;
+    margin-right: 6px;
+    line-height: 22px;
+    cursor: pointer;
+}
+
+#pageBarImg .forbid-btn {
+    border: 1px solid #31373d;
+    pointer-events: none;
+}
+
+.forbid-btn a, .forbid-btn span {
+    color: #4e5861;
+}
+
+#pageBarInput {
+    width: 108px;
+    float: left;
+}
+
+#pageBarNum {
+    width: 129px;
+    float: left;
+    height: 23px;
+    line-height: 23px;
+    text-align: center;
+}
+
+input[name="pageenter"] {
+    width: 36px;
+    height: 23px;
+    background: #464141;
+    border: 1px solid #4e4f50;
+    color: #fff;
+}
+
+.page_pre {
+    margin-right: 5px;
+}
+
+.page_next {
+    margin-left: 7px;
+}

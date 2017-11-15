@@ -1,0 +1,65 @@
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:"Microsoft YaHei",sans-serif;font-size:12px;background:#202427;z-index:110;color:#bbc1c7}
+li{list-style:none}
+a{text-decoration:none;color:#bbc1c7;cursor:pointer}
+table{width:100%}
+button{cursor:pointer}
+thead{background-color:#31373d;color:#777374;font-weight:normal;height:36px}
+a:focus{outline:none}
+.ColorYellow{color:#121212}
+.pull-right{float:right;margin-left:6px;color:#86898b}
+.beizhu{padding:10px 15px;display:block;width:100%;display:inline-block;color:#888888}
+button,input,optgroup,select,textarea{margin:0;font:inherit;color:inherit}
+table th{line-height:25px;padding:0 5px;border:1px solid #4a4c4f;font-weight:normal;color:#bbc1c7;text-align:center}
+a{background-color:transparent;cursor:pointer}
+table{font-size:13px;color:#bbc1c7;fontwidth:100%;border-collapse:collapse;background:#050707}
+td{text-align:left;padding:0 5px;border:1px solid #4a4c4f;font-weight:normal}
+.clr{clear:both}
+.text-left{text-align:left}
+input{color:#000000}
+.gray{color:#a9a6a6 !important;text-decoration:none}
+.oddcolor{background:#212529}
+.evencolor{background:#25292e}
+.leftnavcolor{color:#4c94ff}
+.treecolor{color:#bbc1c7}
+.btn-default{color:#fff;background-color:#31373d;border-color:#4a4c4f}
+.form-control{border-radius:0;background-color:#25292e;border:1px solid #4a4c4f;color:#bbc1c7}
+.form-group{position:relative}
+.calimg{width:16px;height:15px;position:absolute;top:23%;right:4%;background:url(../img/cal.png) 16px 29px;pointer-events:none}
+.yxtj{width:100%;height:32px;background:#25292e;font-weight:bold;padding-bottom:10px}
+.yxtj div.yxtjTip,.yxtj div.yxtjDetail{float:left}
+div.yxtjTip{width:auto;height:32px;margin:1px 6px 0 10px;line-height:32px}
+div.yxtjDetail{width:auto;height:100%}
+.selectedInfor{border-bottom:#f60 1px solid;position:relative;border-left:#f60 1px solid;padding-bottom:1px;margin:4px 10px 6px 0px;padding-left:5px;padding-right:17px;display:block;white-space:nowrap;background:#fff;float:left;height:24px;border-top:#f60 1px solid;border-right:#f60 1px solid;padding-top:3px}
+.selectedInfor span{color:#336699}
+label{display:inline-block;max-width:100%;margin-bottom:5px;font-weight:700}
+.selectedInfor em{background:url(../img/close.gif) no-repeat;cursor:pointer;display:block;height:13px;overflow:hidden;position:absolute;right:2px;top:5px;width:13px}
+.all_tab{width:100%;height:auto;margin-top:25px;margin-top:15px\9;border:1px solid #1E2B38;background-color:#0B1016;overflow:hidden;margin:0 auto}
+.gsgy_title{width:100%;height:38px;line-height:36px;border:1px solid #1B2632;background:#191C20}
+.gsgy_title h4{float:left}
+.moredata{float:right}
+.modal-title{width:100%;height:auto;line-height:50px;text-align:center;margin-top: 15px;}
+
+
+#fixNavDetail_ul a{color:#FFB400;display:inline-block;*display:inline;*zoom:1;width:80%;height:100%}
+#fixNavDetail_ul .loadOther{color:#b28954}
+#fixNavDetail_ul .coloryell{color:#FFB400}
+#fixNavDetail_ul .coloryeh{color:#b28954}
+#fixNavDetail_ul .colorgiyw{color:#c07f06}
+.fixNav{width:21%;height:660px;float:left;overflow:auto;background:#1e1703}
+.fixNavDetail{width:98%;margin:30px auto;height:90%}
+.fixNavDetail ul{text-align:left;line-height:33px;margin-left:10px}
+.fixNavDetail ul li{height:auto;width:100%;cursor:pointer}
+.fixNavDetail ul li ul{text-align:center;margin-left:15%}
+.fixNavDetail ul li ul li{height:auto;width:98%;text-align:left}
+.newsDetail{float:right}
+.selectTime{height:48px;background:#25292e;line-height:21px}
+.selectDetail{padding-top:15px;padding-left:5px}
+.selectDetail select{height:24px;font-size:14px;color:#322c2c;background-color:#fff}
+.fixNavDetail>ul>li>a:hover{color:#c03308}
+.selectDetail input[type="button"]{width:70px;height:80%;text-align:center;line-height:16px;color:#fff}
+#rdxwTable table tr td,#rdxwTable table tr th{}
+#rdxwTable table th a{width:395px;overflow:hidden;display:block;white-space:nowrap;text-overflow:ellipsis}
+.width300{width:80px;overflow:hidden;display:block;white-space:nowrap;text-overflow:ellipsis}
+.footer{width:100%;padding:10px;float:left;background:#000}
+.footer p{text-align:left;color:#848587;padding:0 60px 0 60px;line-height:22px;font-size:12px}

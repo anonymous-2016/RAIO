@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>新闻资讯</title>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css"/>
+    <!--<link rel="stylesheet" type="text/css" href="css/font-awesome-ie7.min.css"/>-->
+    <link rel="stylesheet" type="text/css" href="css/date_input.css"/>
+
+    <script>
+        function getParam(name){
+            var str = decodeURIComponent(window.location.search);
+            var start = str.indexOf("?")+1;
+            if (start==0) {
+                return "";
+            }
+            var value = "";
+            var queryString = str.substring(start);
+            var paraNames = queryString.split("&");
+            for (var i=0; i<paraNames.length; i++) {
+                var eindex = paraNames[i].indexOf("=");
+                if(eindex>0){
+                    pname = paraNames[i].substring(0,eindex);
+                    pvalue = paraNames[i].substring(eindex+1);
+                    if(name==pname) {
+                        return pvalue;
+                    }
+                }
+            }
+            return value;
+        }
+        var STOCK_SKIN = getParam("skin");
+        var skin_url='upCss/';
+        STOCK_SKIN=='black'?skin_url='upCss/':skin_url='css/';
+        function addCssByLink(url,id){
+            document.write('<link rel="stylesheet" type="text/css"');
+            document.write(' href="' + url + '">');
+        }
+        addCssByLink(skin_url+'index.css','index_common');
+        addCssByLink(skin_url+'f9news.css','index_news');
+        addCssByLink(skin_url+'page.css','page');
+        addCssByLink(skin_url+'base.css','base');
+    </script>
+
+
+</head>
+<body>
+
+
+
+<div class="">
+
+    <div class="selectTime" id="checkTime">
+
+
+        <div class="form-inline">
+            <div class="form-group" style="margin-right: 10px;">
+                <label>起始时间:</label>
+                <input type="text" style="width: 100px;" class="form-control date_input ischange"  name="start_time" />
+                <span class="calimg"></span>
+            </div>
+            <div class="form-group" style="margin-right: 10px;">
+                <label>结束时间:</label>
+                <input type="text" style="width: 100px;" class="form-control date_input ischange" name="end_time"/>
+                <span class="calimg"></span>
+            </div>
+
+            <div class="form-group" style="display: none;">
+                <input type="text" name="InfoSource"/>
+                <input type="text" name="SourceCode"/>
+                <input type="text" name="Author"/>
+            </div>
+
+
+
+            <select class="form-control ischange" name="newsselect" style="margin-right: 10px;">
+                <option value="0">全文搜索</option>
+                <option value="1">标题搜索</option>
+            </select>
+            <div class="form-group">
+                <input type="text" class="form-control ischange" placeholder="请输入关键词" name="inputText"/>
+            </div>
+            <button type="submit" class="btn btn-default" name="Searchbtn">搜索</button>
+
+
+
+        </div>
+
+    </div>
+
+    <div id="rdxwTable" style="overflow-y: auto;">
+
+
+        <div class="yxtj" style="display: none;">
+            <div class="yxtjTip">已选条件:</div>
+            <div class="yxtjDetail" id="yxtjList">
+                <div id="newsStartTime" class="selectedInfor selectedShow" style="display: none;">
+                    <span>开始时间:</span>
+                    <label></label>
+                    <em class="em-startTime"></em>
+                </div>
+                <div id="newsEndTime" class="selectedInfor selectedShow" style="display: none;">
+                    <span>结束时间:</span>
+                    <label></label>
+                    <em class="em-endTime"></em>
+                </div>
+                <div id="newsRange" class="selectedInfor selectedShow" style="display: none;">
+                    <span>检索范围:</span>
+                    <label></label>
+                    <em class="em-range"></em>
+                </div>
+                <div id="newskeyWord" class="selectedInfor selectedShow" style="display: none;">
+                    <span>关键词:</span>
+                    <label></label>
+                    <em class="em-keyWord"></em>
+                </div>
+                <div id="newsinfoSource" class="selectedInfor selectedShow" style="display: none;">
+                    <span>新闻来源:</span>
+                    <label></label>
+                    <em class="em-source"></em>
+                </div>
+
+            </div>
+            <div class="clr"></div>
+        </div>
+
+
+        <table class="table_5">
+            <thead>
+            <th width="10%">日期</th>
+            <th>标题</th>
+            <th>来源</th>
+            <!--<th>作者</th>-->
+            </thead>
+
+            <tbody>
+
+
+            </tbody>
+
+        </table>
+        <div class="Nodata" id="rdxwTableNodata" style="display: none;">暂无相关新闻</div>
+    </div>
+
+
+    <div class="clr"></div>
+
+    <div class="Page" id="newsPage"></div>
+
+</div>
+
+
+<!--模态框-->
+
+<div class="fade in" id="zxdtModal">
+
+</div>
+
+
+
+</body>
+<script type="text/javascript" src="js/jquery1.4.0.min.js" ></script>
+<script type="text/javascript" src="js/jquery.date_input-src.js" ></script>
+<script type="text/javascript" src="js/public-method.js" ></script>
+<script type="text/javascript" src="js/Bounced.js" ></script>
+<script type="text/javascript" src="js/common.js" ></script>
+<script type="text/javascript" src="js/f9Hynews.js" ></script>
+
+
+</html>

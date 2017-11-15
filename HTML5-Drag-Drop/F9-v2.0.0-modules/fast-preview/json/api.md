@@ -88,7 +88,7 @@ changes-shareholding-executives
 
 
 news:新闻，
-bulletion:公告，
+bulletin:公告，// <del>bulletion:公告，</del>
 research:研报，
 
 "stockfast01": "重要信息",
@@ -164,7 +164,7 @@ let title = `${(arr[i].xwtitle !== undefined) ? arr[i].xwtitle : `🤓暂无 新
         "xwsj": "新闻日期",
         "newid": "新闻id"
     },
-    "bulletion": {
+    "bulletin": {
         name: "公告",
         "gsggtitle": "公告标题",
         "gsggsj": "公告日期",

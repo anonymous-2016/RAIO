@@ -53,12 +53,11 @@ STOCK_F9_FV.Modules.recentImportantEvents = STOCK_F9_FV.Modules.recentImportantE
             let arr = data;
             arr.map(
                 (obj, i) => {
-                    let date = `${(arr[i].rq !== undefined) ? arr[i].rq : `暂无数据`}`;
-                    // let description = `${arr[i].sj} ${arr[i].nr}`;
-                    let description = (arr[i].sj !== undefined && arr[i].nr !== undefined) ? `${arr[i].sj} ${arr[i].nr}` : `暂无数据`;
-                    let more = `更多 >>`;
-                    // `更多 &gt;&gt;`;
-                    let id = (arr[i].newid !== undefined) ? `${arr[i].newid}` : `暂无数据`;
+                    let date = `${(arr[i].rq !== undefined) ? arr[i].rq : `暂无数据`}`,
+                        description = (arr[i].sj !== undefined && arr[i].nr !== undefined) ? `${arr[i].sj} ${arr[i].nr}` : `暂无数据`,
+                        more = `更多 >>`,
+                        // `更多 &gt;&gt;`,
+                        id = (arr[i].newid !== undefined) ? `${arr[i].newid}` : `暂无数据`;
                     // only show 5 items
                     if (i < 5) {
                         html_string += `
@@ -125,7 +124,7 @@ STOCK_F9_FV.Modules.recentImportantEvents = STOCK_F9_FV.Modules.recentImportantE
                             // Uncaught SyntaxError: Octal escape sequences are not allowed in strict mode.
                             // \ 反斜线要转义！
                         } catch (error) {
-                            console.log(`ChromeExternal error = \n`, error);
+                            console.log(`%c ChromeExternal & caught error = \n`, `color: red; font-size: 23px;`, error);
                         }
                     });
                 }

@@ -20,7 +20,7 @@
 
 var NSSF9FV = NSSF9FV || {};
 
-NSSF9FV.important_infos = NSSF9FV.important_infos || function(url = `url`, uid = `id`, size = `default`, layout = `default`, debug = `false`) {
+NSSF9FV.important_infos = NSSF9FV.important_infos || ((url = `url`, uid = `id`, size = `default`, layout = `default`, debug = `false`) => {
     /**
      * @description important infos 重要信息
      * @author xgqfrms
@@ -70,11 +70,11 @@ NSSF9FV.important_infos = NSSF9FV.important_infos || function(url = `url`, uid =
         // return data;
     };
     return {
-        init: function(url, tds, ui_arr){
+        init: (url, tds, ui_arr) => {
             importantInfos(url, tds, ui_arr);
         }
-    }
-};
+    };
+});
 
 // NSSF9FV.important_infos().init();
 

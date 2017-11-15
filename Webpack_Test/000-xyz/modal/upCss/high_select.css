@@ -1,0 +1,24 @@
+.yydyDetailTop{
+   width: 100%;
+   height: 300px;
+}
+.yydyDetailBtn{
+   width: 100%;
+   height: 45px;
+   border: 1px solid red;
+   text-align: right;
+}
+
+.mydingyue{text-align: left;}
+input[name="updata"]{
+  width: 30px;
+  height: 30px;
+}
+input[name="delete"]{
+  width: 30px;
+  height: 30px;
+}
+
+.mykey{
+  color: #FFB400;
+}

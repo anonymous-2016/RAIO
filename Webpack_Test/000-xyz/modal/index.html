@@ -1,0 +1,618 @@
+﻿<html xmlns="http://www.w3.org/1999/xhtml" class="gr__10_1_5_202">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>新闻资讯</title>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
+    <!--<link rel="stylesheet"type="text/css"href="css/font-awesome-ie7.min.css"/>-->
+    <link rel="stylesheet" type="text/css" href="css/date_input.css">
+    <script>
+        function getParam(name) {
+            var str = decodeURIComponent(window.location.search);
+            var start = str.indexOf("?") + 1;
+            if (start == 0) {
+                return ""
+            }
+            var value = "";
+            var queryString = str.substring(start);
+            var paraNames = queryString.split("&");
+            for (var i = 0; i < paraNames.length; i++) {
+                var eindex = paraNames[i].indexOf("=");
+                if (eindex > 0) {
+                    pname = paraNames[i].substring(0, eindex);
+                    pvalue = paraNames[i].substring(eindex + 1);
+                    if (name == pname) {
+                        return pvalue
+                    }
+                }
+            }
+            return value
+        }
+        var STOCK_SKIN = getParam("skin");
+        var skin_url = 'upCss/';
+        STOCK_SKIN == 'black' ? skin_url = 'upCss/' : skin_url = 'css/';
+
+        function addCssByLink(url) {
+            document.write('<link rel="stylesheet" type="text/css"');
+            document.write(' href="' + url + '">')
+        }
+        addCssByLink(skin_url + 'index.css');
+        addCssByLink(skin_url + 'news.css');
+        addCssByLink(skin_url + 'page.css');
+        addCssByLink(skin_url + 'base.css');
+    </script>
+    <style>
+        @media print {
+            #ghostery-purple-box {
+                display: none !important
+            }
+        }
+    </style>
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+    <link rel="stylesheet" type="text/css" href="css/news.css">
+    <link rel="stylesheet" type="text/css" href="css/page.css">
+    <link rel="stylesheet" type="text/css" href="css/base.css">
+</head>
+
+<body data-gr-c-s-loaded="true">
+    <!--<div class="content">-->
+    <div class="">
+        <div class="left" id="LeftCon">
+            <div class="leftNav" id="leftNav_id">
+                <ul style="margin-bottom: 0">
+                    <!--<li class="leftactive"><a>目录</a></li>-->
+                    <!--<li><a>订阅管理</a></li>-->
+                </ul>
+                <div class="clr"></div>
+            </div>
+            <div class="leftCon" id="LeftUl">
+                <ul>
+                    <!--<li id="0"class="">-->
+                    <!--<span class="openClose changeHide"></span>-->
+                    <!--<a class="loadqita changeHide1 colorblue"id="indexdata">收藏夹</a>-->
+                    <!--</li>-->
+                    <!--<li id="1">-->
+                    <!--<span class="openClose changeHide"></span>-->
+                    <!--<a class="changeHide1">我的自选股</a>-->
+                    <!--<ul class="child_hide"style="display: none;">-->
+                    <!--<li><span class="linetwo"></span><a class="loadqita">自选股1</a></li>-->
+                    <!--<li><span class="linetwo"></span><a class="loadqita">自选股1</a></li>-->
+                    <!--</ul>-->
+                    <!--</li>-->
+                    <!--<li id="2">-->
+                    <!--<span class="openClose changeHide"></span>-->
+                    <!--<a class="changeHide1">我的订阅</a>-->
+                    <!--<ul class="child_hide"style="display: none;">-->
+                    <!--<li><span class="linetwo"></span><a class="loadqita"id="high_select">新增订阅</a></li>-->
+                    <!--<li><span class="linetwo"></span><a class="loadqita"name="1"id="myDy">我的订阅1</a></li>-->
+                    <!--<li><span class="linetwo"></span><a class="loadqita"name="2"id="myDy">我的订阅2</a></li>-->
+                    <!--</ul>-->
+                    <!--</li>-->
+                    <li id="3" class="active"><span class="changeHide" style="width: 19px;height: 14px;display: inline-block;"></span><a class="loadqita leftnavcolor" id="10000">全部财经新闻</a></li>
+                    <!--<li id="4">-->
+                    <!--<span class="openClose changeHide"></span>-->
+                    <!--<a class="changeHide1">负面新闻</a>-->
+                    <!--<ul class="child_hide"style="display: none;">-->
+                    <!--<li><span class="linetwo"></span><a class="loadqita"id="">热点关注</a></li>-->
+                    <!--<li><span class="linetwo"></span><a class="loadqita"id="">宏观负面</a></li>-->
+                    <!--<li><span class="linetwo"></span><a class="loadqita"id="">产经负面</a></li>-->
+                    <!--<li><span class="linetwo"></span><a class="loadqita"id="">个股负面</a></li>-->
+                    <!--<li><span class="linetwo"></span><a class="loadqita"id="">债券负面</a></li>-->
+                    <!--<li><span class="linetwo"></span><a class="loadqita"id="">债券发行公司负面</a></li>-->
+                    <!--<li><span class="linetwo"></span><a class="loadqita"id="">美股负面</a></li>-->
+                    <!--</ul>-->
+                    <!--</li>-->
+                    <li id="5"><span class="openClose changeHide"></span><a class="changeHide1">每日速递</a>
+                        <ul class="child_hide" style="display: none;">
+                            <li><span class="linetwo"></span><a class="loadqita treecolor" id="10002">直播</a></li>
+                            <li><span class="linetwo"></span><a class="loadqita treecolor" id="10001">今日头条</a></li>
+                            <!--<li><span class="linetwo"></span><a class="loadqita treecolor"id="10003">今日要闻</a></li>-->
+                            <li><span class="linetwo"></span><a class="loadqita treecolor" id="10004">重要数据追踪</a></li>
+                            <li><span class="linetwo"></span><a class="loadqita treecolor" id="10005">券商晨会</a></li>
+                            <li><span class="linetwo"></span><a class="loadqita treecolor" id="10006">机构早评</a></li>
+                            <li><span class="linetwo"></span><a class="loadqita treecolor" id="10007">事件驱动</a></li>
+                            <li><span class="linetwo"></span><a class="loadqita treecolor" id="10008">热点追踪</a></li>
+                            <li><span class="linetwo"></span><a class="loadqita treecolor" id="10009">公告解读</a></li>
+                            <li><span class="linetwo"></span><a class="loadqita treecolor" id="10010">政经大势</a></li>
+                            <li><span class="linetwo"></span><a class="loadqita treecolor" id="10011">财经事件</a></li>
+                            <li><span class="linetwo"></span><a class="loadqita treecolor" id="10012">操盘必读</a></li>
+                            <li><span class="linetwo"></span><a class="loadqita treecolor" id="10013">复盘必读</a></li>
+                            <li><span class="linetwo"></span><a class="loadqita treecolor" id="10014">涨停早知道</a></li>
+                            <li><span class="linetwo"></span><a class="loadqita treecolor" id="10015">利好利空公告</a></li>
+                        </ul>
+                    </li>
+                    <li id="6"><span class="openClose changeHide"></span><a class="changeHide1">视点</a>
+                        <ul class="child_hide" style="display: none;">
+                            <li><span class="linetwo"></span><a class="loadqita treecolor" id="10016">舆情</a></li>
+                            <li><span class="linetwo"></span><a class="loadqita treecolor" id="10017">异动股播报</a></li>
+                            <li><span class="linetwo"></span><a class="loadqita treecolor" id="10018">新闻联播</a></li>
+                            <li><span class="linetwo"></span><a class="loadqita treecolor" id="10019">名家</a></li>
+                        </ul>
+                    </li>
+                    <li id="7"><span class="openClose changeHide"></span><a class="changeHide1">财经新闻</a>
+                        <ul class="child_hide" style="display: none;">
+                            <li><span class="linetwo"></span><a class="loadqita treecolor" id="10020">宏观经济新闻</a></li>
+                            <li id="8"><span class="openClose changeHide"></span><a class="changeHide1 loadqita" id="10021">国际经济新闻</a>
+                                <ul class="child_hide" style="display: none;">
+                                    <li><span class="linetwo"></span><a class="loadqita treecolor" id="10023">美国</a></li>
+                                    <li><span class="linetwo"></span><a class="loadqita treecolor" id="10024">日韩</a></li>
+                                    <li><span class="linetwo"></span><a class="loadqita treecolor" id="10025">英国</a></li>
+                                    <li><span class="linetwo"></span><a class="loadqita treecolor" id="10026">欧盟</a></li>
+                                    <li><span class="linetwo"></span><a class="loadqita treecolor" id="10027">俄罗斯</a></li>
+                                    <li><span class="linetwo"></span><a class="loadqita treecolor" id="10028">东南亚</a></li>
+                                    <li><span class="linetwo"></span><a class="loadqita treecolor" id="10029">南美洲</a></li>
+                                </ul>
+                            </li>
+                            <li><span class="linetwo"></span><a class="loadqita treecolor" id="10022">外盘新闻</a></li>
+                        </ul>
+                    </li>
+                    <li id="9"><span class="openClose changeHide"></span><a class="changeHide1">财经媒体</a>
+                        <ul class="child_hide" style="display: none;">
+                            <li><span class="linetwo"></span><a class="loadqita treecolor" id="10030">证券时报</a></li>
+                            <li><span class="linetwo"></span><a class="loadqita treecolor" id="10031">上海证券报</a></li>
+                            <li><span class="linetwo"></span><a class="loadqita treecolor" id="10032">中国证券报</a></li>
+                            <!--<li><span class="linetwo"></span><a class="loadqita treecolor"id="10132">证券日报</a></li>-->
+                            <li><span class="linetwo"></span><a class="loadqita treecolor" id="10033">每日经济新闻</a></li>
+                            <li><span class="linetwo"></span><a class="loadqita treecolor" id="10034">第一财经日报</a></li>
+                            <li><span class="linetwo"></span><a class="loadqita treecolor" id="10035">21世纪经济报道</a></li>
+                        </ul>
+                    </li>
+                    <li id="10"><span class="openClose changeHide"></span><a class="changeHide1">政府机构</a>
+                        <ul class="child_hide" style="display: none;">
+                            <li><span class="linetwo"></span><a class="loadqita treecolor" id="10036">保监会</a></li>
+                            <li><span class="linetwo"></span><a class="loadqita treecolor" id="10037">财政部</a></li>
+                            <li><span class="linetwo"></span><a class="loadqita treecolor" id="10038">发改委</a></li>
+                            <!--<li><span class="linetwo"></span><a class="loadqita treecolor"id="10039">工信部</a></li>-->
+                            <!--<li><span class="linetwo"></span><a class="loadqita treecolor"id="10040">国土部</a></li>-->
+                            <!--<li><span class="linetwo"></span><a class="loadqita treecolor"id="10041">国务院</a></li>-->
+                            <!--<li><span class="linetwo"></span><a class="loadqita treecolor"id="10042">国资委</a></li>-->
+                            <!--<li><span class="linetwo"></span><a class="loadqita treecolor"id="10043">海关总署</a></li>-->
+                            <li><span class="linetwo"></span><a class="loadqita treecolor" id="10044">商务部</a></li>
+                            <li><span class="linetwo"></span><a class="loadqita treecolor" id="10045">统计局</a></li>
+                            <!--<li><span class="linetwo"></span><a class="loadqita treecolor"id="10046">外管局</a></li>-->
+                            <li><span class="linetwo"></span><a class="loadqita treecolor" id="10047">央行</a></li>
+                            <li><span class="linetwo"></span><a class="loadqita treecolor" id="10048">银监会</a></li>
+                            <li><span class="linetwo"></span><a class="loadqita treecolor" id="10049">证监会</a></li>
+                            <!--<li><span class="linetwo"></span><a class="loadqita treecolor"id="10050">住建部</a></li>-->
+                        </ul>
+                    </li>
+                    <li id="11"><span class="openClose changeHide"></span><a class="changeHide1">股票资讯</a>
+                        <ul class="child_hide" style="display: none;">
+                            <li><span class="linetwo"></span><a class="loadqita treecolor" id="10051">全球股市</a></li>
+                            <li><span class="linetwo"></span><a class="loadqita treecolor" id="10052">证券要闻</a></li>
+                            <li><span class="linetwo"></span><a class="loadqita treecolor" id="10053">港股新闻</a></li>
+                            <li><span class="linetwo"></span><a class="loadqita treecolor" id="10054">沪港通新闻</a></li>
+                            <li><span class="linetwo"></span><a class="loadqita treecolor" id="10055">深港通新闻</a></li>
+                            <li><span class="linetwo"></span><a class="loadqita treecolor" id="10056">融资融券</a></li>
+                            <li><span class="linetwo"></span><a class="loadqita treecolor" id="10057">大盘分析</a></li>
+                            <li><span class="linetwo"></span><a class="loadqita treecolor" id="10058">个股新闻</a></li>
+                            <li><span class="linetwo"></span><a class="loadqita treecolor" id="10059">投资者互动</a></li>
+                            <li><span class="linetwo"></span><a class="loadqita treecolor" id="10060">板块聚焦</a></li>
+                            <li><span class="linetwo"></span><a class="loadqita treecolor" id="10061">私募观点</a></li>
+                            <li><span class="linetwo"></span><a class="loadqita treecolor" id="10062">新股</a></li>
+                            <li><span class="linetwo"></span><a class="loadqita treecolor" id="10063">机构视点</a></li>
+                            <!--<li><span class="linetwo"></span><a class="loadqita treecolor"id="10064">券商金股</a></li>-->
+                            <li><span class="linetwo"></span><a class="loadqita treecolor" id="10065">龙虎榜资讯</a></li>
+                            <li><span class="linetwo"></span><a class="loadqita treecolor" id="10066">新三板</a></li>
+                            <li><span class="linetwo"></span><a class="loadqita treecolor" id="10067">美股资讯</a></li>
+                            <!--<li><span class="linetwo"></span><a class="loadqita treecolor"id="10068">行政审批许可</a></li>-->
+                            <!--<li><span class="linetwo"></span><a class="loadqita treecolor"id="10069">监管机构发布</a></li>-->
+                            <!--<li><span class="linetwo"></span><a class="loadqita treecolor"id="10070">重要监管信息</a></li>-->
+                        </ul>
+                    </li>
+                    <li id="12"><span class="openClose changeHide"></span><a class="changeHide1">基金专栏</a>
+                        <ul class="child_hide" style="display: none;">
+                            <li><span class="linetwo"></span><a class="loadqita treecolor" id="10071">基金动态</a></li>
+                        </ul>
+                    </li>
+                    <li id="13"><span class="changeHide" style="width: 19px;height: 14px;display: inline-block;"></span><a class="loadqita leftnavcolor" id="10072">债券专栏</a></li>
+                    <li id="14"><span class="changeHide" style="width: 19px;height: 14px;display: inline-block;"></span><a class="loadqita leftnavcolor" id="10073">期货专栏</a></li>
+                    <li id="15"><span class="changeHide" style="width: 19px;height: 14px;display: inline-block;"></span><a class="loadqita leftnavcolor" id="10074">期权专栏</a></li>
+                    <li id="16"><span class="openClose changeHide"></span><a class="changeHide1">外汇专栏</a>
+                        <ul class="child_hide" style="display: none;">
+                            <li><span class="linetwo"></span><a class="loadqita treecolor" id="10075">外汇新闻</a></li>
+                            <li><span class="linetwo"></span><a class="loadqita treecolor" id="10076">央行动态</a></li>
+                            <li><span class="linetwo"></span><a class="loadqita treecolor" id="10077">国际要闻</a></li>
+                        </ul>
+                    </li>
+                    <li id="17"><span class="changeHide" style="width: 19px;height: 14px;display: inline-block;"></span><a class="loadqita leftnavcolor" id="10078">保险新闻</a></li>
+                    <li id="18"><span class="changeHide" style="width: 19px;height: 14px;display: inline-block;"></span><a class="loadqita leftnavcolor" id="10079">银行资讯</a></li>
+                    <li id="19"><span class="openClose changeHide"></span><a class="changeHide1">行业新闻</a>
+                        <ul class="child_hide" style="display: none;">
+                            <li><span class="linetwo"></span> <a class="loadqita treecolor" industrycode="110000">农林牧渔</a></li>
+                            <li><span class="linetwo"></span> <a class="loadqita treecolor" industrycode="210000">采掘</a></li>
+                            <li><span class="linetwo"></span> <a class="loadqita treecolor" industrycode="220000">化工</a></li>
+                            <li><span class="linetwo"></span> <a class="loadqita treecolor" industrycode="230000">钢铁</a></li>
+                            <li><span class="linetwo"></span> <a class="loadqita treecolor" industrycode="240000">有色金属</a></li>
+                            <li><span class="linetwo"></span> <a class="loadqita treecolor" industrycode="270000">电子</a></li>
+                            <li><span class="linetwo"></span> <a class="loadqita treecolor" industrycode="280000">汽车</a></li>
+                            <li><span class="linetwo"></span> <a class="loadqita treecolor" industrycode="330000">家用电器</a></li>
+                            <li><span class="linetwo"></span> <a class="loadqita treecolor" industrycode="340000">食品饮料</a></li>
+                            <li><span class="linetwo"></span> <a class="loadqita treecolor" industrycode="350000">纺织服装</a></li>
+                            <li><span class="linetwo"></span> <a class="loadqita treecolor" industrycode="360000">轻工制造</a></li>
+                            <li><span class="linetwo"></span> <a class="loadqita treecolor" industrycode="370000">医药生物</a></li>
+                            <li><span class="linetwo"></span> <a class="loadqita treecolor" industrycode="410000">公用事业</a></li>
+                            <li><span class="linetwo"></span> <a class="loadqita treecolor" industrycode="420000">交通运输</a></li>
+                            <li><span class="linetwo"></span> <a class="loadqita treecolor" industrycode="430000">房地产</a></li>
+                            <li><span class="linetwo"></span> <a class="loadqita treecolor" industrycode="450000">商业贸易</a></li>
+                            <li><span class="linetwo"></span> <a class="loadqita treecolor" industrycode="460000">休闲服务</a></li>
+                            <li><span class="linetwo"></span> <a class="loadqita treecolor" industrycode="480000">银行</a></li>
+                            <li><span class="linetwo"></span> <a class="loadqita treecolor" industrycode="490000">非银金融</a></li>
+                            <li><span class="linetwo"></span> <a class="loadqita treecolor" industrycode="510000">综合</a></li>
+                            <li><span class="linetwo"></span> <a class="loadqita treecolor" industrycode="610000">建筑材料</a></li>
+                            <li><span class="linetwo"></span> <a class="loadqita treecolor" industrycode="620000">建筑装饰</a></li>
+                            <li><span class="linetwo"></span> <a class="loadqita treecolor" industrycode="630000">电气设备</a></li>
+                            <li><span class="linetwo"></span> <a class="loadqita treecolor" industrycode="640000">机械设备</a></li>
+                            <li><span class="linetwo"></span> <a class="loadqita treecolor" industrycode="650000">国防军工</a></li>
+                            <li><span class="linetwo"></span> <a class="loadqita treecolor" industrycode="710000">计算机</a></li>
+                            <li><span class="linetwo"></span> <a class="loadqita treecolor" industrycode="720000">传媒</a></li>
+                            <li><span class="linetwo"></span> <a class="loadqita treecolor" industrycode="730000">通信</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div class="leftCon" id="mydingyue" style="display: none;">
+                <div class="mdyCon">
+                    <div class="dyList">
+                        <div class="dyListLeft"><span>我的订阅1</span></div>
+                        <div class="dyListRightUp"></div>
+                        <div class="dyListRightDel"></div>
+                        <div class="clr"></div>
+                    </div>
+                    <div class="dyList">
+                        <div class="dyListLeft"><span>我的订阅1</span></div>
+                        <div class="dyListRightUp"></div>
+                        <div class="dyListRightDel"></div>
+                        <div class="clr"></div>
+                    </div>
+                    <div class="dyList">
+                        <div class="dyListLeft"><span>我的订阅1</span></div>
+                        <div class="dyListRightUp"></div>
+                        <div class="dyListRightDel"></div>
+                        <div class="clr"></div>
+                    </div>
+                    <div class="dyList">
+                        <div class="dyListLeft"><span>我的订阅1</span></div>
+                        <div class="dyListRightUp"></div>
+                        <div class="dyListRightDel"></div>
+                        <div class="clr"></div>
+                    </div>
+                    <div class="dyList">
+                        <div class="dyListLeft"><span>我的订阅1</span></div>
+                        <div class="dyListRightUp"></div>
+                        <div class="dyListRightDel"></div>
+                        <div class="clr"></div>
+                    </div>
+                </div>
+                <div class="addmydy"><a><span>+</span>新增订阅</a></div>
+            </div>
+        </div>
+        <div class="newsDetail" id="newsright" style="width: 143px;">
+            <div class="selectTime" id="checkTime">
+                <div class="form-inline">
+                    <div class="form-group" style="margin-right: 10px;"><label>起始时间:</label><input type="text" style="width: 121px;" class="form-control date_input ischange" name="start_time" changed="false">
+                        <div class="date_selector" style="display: none;">
+                            <div class="nav">
+                                <p class="month_nav"><span class="button prev" title="[Page-Up]">«</span><span class="month_name">十一月</span><span class="button next" title="[Page-Down]">»</span></p>
+                                <p class="year_nav"><span class="button prev" title="[Ctrl+Page-Up]">«</span><span class="year_name">2017</span><span class="button next" title="[Ctrl+Page-Down]">»</span></p>
+                            </div>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>一</th>
+                                        <th>二</th>
+                                        <th>三</th>
+                                        <th>四</th>
+                                        <th>五</th>
+                                        <th>六</th>
+                                        <th>日</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="unselected_month" date="2017-10-30">30</td>
+                                        <td class="unselected_month" date="2017-10-31">31</td>
+                                        <td class="selectable_day" date="2017-11-01">1</td>
+                                        <td class="selectable_day" date="2017-11-02">2</td>
+                                        <td class="selectable_day" date="2017-11-03">3</td>
+                                        <td class="selectable_day" date="2017-11-04">4</td>
+                                        <td class="selectable_day" date="2017-11-05">5</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="selectable_day" date="2017-11-06">6</td>
+                                        <td class="selectable_day" date="2017-11-07">7</td>
+                                        <td class="selectable_day" date="2017-11-08">8</td>
+                                        <td class="selectable_day" date="2017-11-09">9</td>
+                                        <td class="selectable_day" date="2017-11-10">10</td>
+                                        <td class="selectable_day" date="2017-11-11">11</td>
+                                        <td class="selectable_day" date="2017-11-12">12</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="selectable_day" date="2017-11-13">13</td>
+                                        <td class="selectable_day" date="2017-11-14">14</td>
+                                        <td class="selectable_day today selected" date="2017-11-15">15</td>
+                                        <td class="selectable_day" date="2017-11-16">16</td>
+                                        <td class="selectable_day" date="2017-11-17">17</td>
+                                        <td class="selectable_day" date="2017-11-18">18</td>
+                                        <td class="selectable_day" date="2017-11-19">19</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="selectable_day" date="2017-11-20">20</td>
+                                        <td class="selectable_day" date="2017-11-21">21</td>
+                                        <td class="selectable_day" date="2017-11-22">22</td>
+                                        <td class="selectable_day" date="2017-11-23">23</td>
+                                        <td class="selectable_day" date="2017-11-24">24</td>
+                                        <td class="selectable_day" date="2017-11-25">25</td>
+                                        <td class="selectable_day" date="2017-11-26">26</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="selectable_day" date="2017-11-27">27</td>
+                                        <td class="selectable_day" date="2017-11-28">28</td>
+                                        <td class="selectable_day" date="2017-11-29">29</td>
+                                        <td class="selectable_day" date="2017-11-30">30</td>
+                                        <td class="unselected_month" date="2017-12-01">1</td>
+                                        <td class="unselected_month" date="2017-12-02">2</td>
+                                        <td class="unselected_month" date="2017-12-03">3</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div style="text-align:center;margin-top:5px;"><a id="date_input_clear1510737809174" href="javascript:void(0);">清空</a></div>
+                        </div><span class="calimg"></span></div>
+                    <div class="form-group" style="margin-right: 10px;"><label>截止时间:</label><input type="text" style="width: 121px;" class="form-control date_input ischange" name="end_time" changed="false">
+                        <div class="date_selector" style="display: none;">
+                            <div class="nav">
+                                <p class="month_nav"><span class="button prev" title="[Page-Up]">«</span><span class="month_name">十一月</span><span class="button next" title="[Page-Down]">»</span></p>
+                                <p class="year_nav"><span class="button prev" title="[Ctrl+Page-Up]">«</span><span class="year_name">2017</span><span class="button next" title="[Ctrl+Page-Down]">»</span></p>
+                            </div>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>一</th>
+                                        <th>二</th>
+                                        <th>三</th>
+                                        <th>四</th>
+                                        <th>五</th>
+                                        <th>六</th>
+                                        <th>日</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="unselected_month" date="2017-10-30">30</td>
+                                        <td class="unselected_month" date="2017-10-31">31</td>
+                                        <td class="selectable_day" date="2017-11-01">1</td>
+                                        <td class="selectable_day" date="2017-11-02">2</td>
+                                        <td class="selectable_day" date="2017-11-03">3</td>
+                                        <td class="selectable_day" date="2017-11-04">4</td>
+                                        <td class="selectable_day" date="2017-11-05">5</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="selectable_day" date="2017-11-06">6</td>
+                                        <td class="selectable_day" date="2017-11-07">7</td>
+                                        <td class="selectable_day" date="2017-11-08">8</td>
+                                        <td class="selectable_day" date="2017-11-09">9</td>
+                                        <td class="selectable_day" date="2017-11-10">10</td>
+                                        <td class="selectable_day" date="2017-11-11">11</td>
+                                        <td class="selectable_day" date="2017-11-12">12</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="selectable_day" date="2017-11-13">13</td>
+                                        <td class="selectable_day" date="2017-11-14">14</td>
+                                        <td class="selectable_day today selected" date="2017-11-15">15</td>
+                                        <td class="selectable_day" date="2017-11-16">16</td>
+                                        <td class="selectable_day" date="2017-11-17">17</td>
+                                        <td class="selectable_day" date="2017-11-18">18</td>
+                                        <td class="selectable_day" date="2017-11-19">19</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="selectable_day" date="2017-11-20">20</td>
+                                        <td class="selectable_day" date="2017-11-21">21</td>
+                                        <td class="selectable_day" date="2017-11-22">22</td>
+                                        <td class="selectable_day" date="2017-11-23">23</td>
+                                        <td class="selectable_day" date="2017-11-24">24</td>
+                                        <td class="selectable_day" date="2017-11-25">25</td>
+                                        <td class="selectable_day" date="2017-11-26">26</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="selectable_day" date="2017-11-27">27</td>
+                                        <td class="selectable_day" date="2017-11-28">28</td>
+                                        <td class="selectable_day" date="2017-11-29">29</td>
+                                        <td class="selectable_day" date="2017-11-30">30</td>
+                                        <td class="unselected_month" date="2017-12-01">1</td>
+                                        <td class="unselected_month" date="2017-12-02">2</td>
+                                        <td class="unselected_month" date="2017-12-03">3</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div style="text-align:center;margin-top:5px;"><a id="date_input_clear1510737809184" href="javascript:void(0);">清空</a></div>
+                        </div><span class="calimg"></span></div>
+                    <div class="form-group" style="display: none;"><input type="text" name="InfoSource"><input type="text" name="SourceCode"><input type="text" name="Author"></div><select class="form-control ischange" name="newsselect" style="margin-right: 10px;"><option value="0">全文搜索</option><option value="1">标题搜索</option></select>
+                    <div
+                        class="form-group"><input type="text" class="form-control ischange" placeholder="请输入关键词" name="inputText"></div><button type="submit" class="btn btn-default" name="Searchbtn">搜索</button></div>
+        </div>
+        <div id="rdxwTable" style="height: 565px; display: block;">
+            <div class="yxtj" style="display: none;">
+                <div class="yxtjTip">已选条件:</div>
+                <div class="yxtjDetail" id="yxtjList">
+                    <div id="newsStartTime" class="selectedInfor selectedShow" style="display: none;"><span>开始时间:</span><label></label><em class="em-startTime"></em></div>
+                    <div id="newsEndTime" class="selectedInfor selectedShow" style="display: none;"><span>结束时间:</span><label></label><em class="em-endTime"></em></div>
+                    <div id="newsRange" class="selectedInfor selectedShow" style="display: none;"><span>检索范围:</span><label></label><em class="em-range"></em></div>
+                    <div id="newskeyWord" class="selectedInfor selectedShow" style="display: none;"><span>关键词:</span><label></label><em class="em-keyWord"></em></div>
+                    <div id="newsinfoSource" class="selectedInfor selectedShow" style="display: none;"><span>新闻来源:</span><label></label><em class="em-source"></em></div>
+                    <div id="newsAutor" class="selectedInfor selectedShow" style="display: none;"><span>新闻作者:</span><label></label><em class="em-autor"></em></div>
+                </div>
+                <div class="clr"></div>
+            </div>
+            <table class="table_5">
+                <thead>
+                    <tr>
+                        <th width="10%">日期</th>
+                        <th>标题</th>
+                        <th>来源</th>
+                        <!--<th>作者</th>-->
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="evencolor">
+                        <th class="ColorWhite text-center">17:40:33</th>
+                        <td class="ColorWhite text-left"><a class="newsTitle gray" id="564082789593" title="央行:货币市场10月份成交51.3万亿元 同比增长12.9%">央行:货币市场10月份成交51.3万亿元 同比增长12.9%</a></td>
+                        <td class="ColorWhite text-left"><a class="InfoSource treecolor" id="158" title="证券时报网">证券时报网</a></td>
+                    </tr>
+                    <tr class="oddcolor">
+                        <th class="ColorWhite text-center">17:40:24</th>
+                        <td class="ColorWhite text-left"><a class="newsTitle" id="564082789530" title="华大基因:涨幅较大 明起停牌核查">华大基因:涨幅较大 明起停牌核查</a></td>
+                        <td class="ColorWhite text-left"><a class="InfoSource treecolor" id="158" title="证券时报网">证券时报网</a></td>
+                    </tr>
+                    <tr class="evencolor">
+                        <th class="ColorWhite text-center">17:35:18</th>
+                        <td class="ColorWhite text-left"><a class="newsTitle" id="564082428008" title="东风汽车:前十月中重卡销量超去年全年">东风汽车:前十月中重卡销量超去年全年</a></td>
+                        <td class="ColorWhite text-left"><a class="InfoSource treecolor" id="158" title="证券时报网">证券时报网</a></td>
+                    </tr>
+                    <tr class="oddcolor">
+                        <th class="ColorWhite text-center">17:35:14</th>
+                        <td class="ColorWhite text-left"><a class="newsTitle" id="564082427954" title="中环装备:控股股东中国新时代国际工程公司完成公司制改制">中环装备:控股股东中国新时代国际工程公司完成公司制改制</a></td>
+                        <td class="ColorWhite text-left"><a class="InfoSource treecolor" id="158" title="证券时报网">证券时报网</a></td>
+                    </tr>
+                    <tr class="evencolor">
+                        <th class="ColorWhite text-center">17:34:52</th>
+                        <td class="ColorWhite text-left"><a class="newsTitle" id="564082427896" title="温州宏丰:实控人增持过程中误操作 出现短线交易">温州宏丰:实控人增持过程中误操作 出现短线交易</a></td>
+                        <td class="ColorWhite text-left"><a class="InfoSource treecolor" id="158" title="证券时报网">证券时报网</a></td>
+                    </tr>
+                    <tr class="oddcolor">
+                        <th class="ColorWhite text-center">17:34:44</th>
+                        <td class="ColorWhite text-left"><a class="newsTitle" id="564082427768" title="温州市、绍兴市、嘉善县、义乌市成省级住房租赁市场培育试点">温州市、绍兴市、嘉善县、义乌市成省级住房租赁市场培育试点</a></td>
+                        <td class="ColorWhite text-left"><a class="InfoSource treecolor" id="158" title="证券时报网">证券时报网</a></td>
+                    </tr>
+                    <tr class="evencolor">
+                        <th class="ColorWhite text-center">17:34:29</th>
+                        <td class="ColorWhite text-left"><a class="newsTitle" id="564082427709" title="全国银行间债券市场交易结算日报(2017年11月15日)—回购利率以上行为主">全国银行间债券市场交易结算日报(2017年11月15日)—回购利率以上行为主</a></td>
+                        <td class="ColorWhite text-left"><a class="InfoSource treecolor" id="72" title="中国债券信息网">中国债券信息网</a></td>
+                    </tr>
+                    <tr class="oddcolor">
+                        <th class="ColorWhite text-center">17:34:17</th>
+                        <td class="ColorWhite text-left"><a class="newsTitle" id="564082251987" title="天奇股份:实控人增持逾1%股份 完成增持计划">天奇股份:实控人增持逾1%股份 完成增持计划</a></td>
+                        <td class="ColorWhite text-left"><a class="InfoSource treecolor" id="158" title="证券时报网">证券时报网</a></td>
+                    </tr>
+                    <tr class="evencolor">
+                        <th class="ColorWhite text-center">17:34:07</th>
+                        <td class="ColorWhite text-left"><a class="newsTitle" id="564082251803" title="永清环保获批“战略性新兴产业科技攻关与重大科技成果转化专项”">永清环保获批“战略性新兴产业科技攻关与重大科技成果转化专项”</a></td>
+                        <td class="ColorWhite text-left"><a class="InfoSource treecolor" id="158" title="证券时报网">证券时报网</a></td>
+                    </tr>
+                    <tr class="oddcolor">
+                        <th class="ColorWhite text-center">17:34:01</th>
+                        <td class="ColorWhite text-left"><a class="newsTitle" id="564082251663" title="前10月已近去年全年快递量 2017快递量有望破360亿件">前10月已近去年全年快递量 2017快递量有望破360亿件</a></td>
+                        <td class="ColorWhite text-left"><a class="InfoSource treecolor" id="158" title="证券时报网">证券时报网</a></td>
+                    </tr>
+                    <tr class="evencolor">
+                        <th class="ColorWhite text-center">17:23:36</th>
+                        <td class="ColorWhite text-left"><a class="newsTitle" id="564081816010" title="腾讯第三季度总收入652.10亿元 同比增长61%">腾讯第三季度总收入652.10亿元 同比增长61%</a></td>
+                        <td class="ColorWhite text-left"><a class="InfoSource treecolor" id="219" title="凤凰财经">凤凰财经</a></td>
+                    </tr>
+                    <tr class="oddcolor">
+                        <th class="ColorWhite text-center">17:17:57</th>
+                        <td class="ColorWhite text-left"><a class="newsTitle" id="564081375405" title="中金公司:前三季度营收75.27亿 同比增长71%">中金公司:前三季度营收75.27亿 同比增长71%</a></td>
+                        <td class="ColorWhite text-left"><a class="InfoSource treecolor" id="158" title="证券时报网">证券时报网</a></td>
+                    </tr>
+                    <tr class="evencolor">
+                        <th class="ColorWhite text-center">17:13:00</th>
+                        <td class="ColorWhite text-left"><a class="newsTitle" id="564080995854" title="花园生物:实控人之女邵君芳接班董事长">花园生物:实控人之女邵君芳接班董事长</a></td>
+                        <td class="ColorWhite text-left"><a class="InfoSource treecolor" id="158" title="证券时报网">证券时报网</a></td>
+                    </tr>
+                    <tr class="oddcolor">
+                        <th class="ColorWhite text-center">17:12:55</th>
+                        <td class="ColorWhite text-left"><a class="newsTitle" id="564080995847" title="新华保险:前10月原保险保费收入981.85亿 同比降3.9%">新华保险:前10月原保险保费收入981.85亿 同比降3.9%</a></td>
+                        <td class="ColorWhite text-left"><a class="InfoSource treecolor" id="158" title="证券时报网">证券时报网</a></td>
+                    </tr>
+                    <tr class="evencolor">
+                        <th class="ColorWhite text-center">17:12:50</th>
+                        <td class="ColorWhite text-left"><a class="newsTitle" id="564080995784" title="深圳能源:深能库尔勒配套热网工程主管网全线贯通">深圳能源:深能库尔勒配套热网工程主管网全线贯通</a></td>
+                        <td class="ColorWhite text-left"><a class="InfoSource treecolor" id="158" title="证券时报网">证券时报网</a></td>
+                    </tr>
+                    <tr class="oddcolor">
+                        <th class="ColorWhite text-center">17:12:45</th>
+                        <td class="ColorWhite text-left"><a class="newsTitle" id="564080994686" title="甘肃电投平安大华减持期限届满">甘肃电投平安大华减持期限届满</a></td>
+                        <td class="ColorWhite text-left"><a class="InfoSource treecolor" id="19" title="中国证券网">中国证券网</a></td>
+                    </tr>
+                    <tr class="evencolor">
+                        <th class="ColorWhite text-center">17:08:53</th>
+                        <td class="ColorWhite text-left"><a class="newsTitle" id="564080822811" title="方大集团实控人方面增持B股">方大集团实控人方面增持B股</a></td>
+                        <td class="ColorWhite text-left"><a class="InfoSource treecolor" id="19" title="中国证券网">中国证券网</a></td>
+                    </tr>
+                    <tr class="oddcolor">
+                        <th class="ColorWhite text-center">17:06:00</th>
+                        <td class="ColorWhite text-left"><a class="newsTitle" id="564080454209" title="周三在岸人民币对美元官方收盘价报6.6298 涨133个基点">周三在岸人民币对美元官方收盘价报6.6298 涨133个基点</a></td>
+                        <td class="ColorWhite text-left"><a class="InfoSource treecolor" id="158" title="证券时报网">证券时报网</a></td>
+                    </tr>
+                    <tr class="evencolor">
+                        <th class="ColorWhite text-center">17:04:45</th>
+                        <td class="ColorWhite text-left"><a class="newsTitle" id="564080634895" title="北方稀土控股子公司合同纠纷案已仲裁终结 6973万元货款有望追回">北方稀土控股子公司合同纠纷案已仲裁终结 6973万元货款有望追回</a></td>
+                        <td class="ColorWhite text-left"><a class="InfoSource treecolor" id="158" title="证券时报网">证券时报网</a></td>
+                    </tr>
+                    <tr class="oddcolor">
+                        <th class="ColorWhite text-center">17:04:40</th>
+                        <td class="ColorWhite text-left"><a class="newsTitle" id="564080634747" title="董明珠:格力不仅做空调 已经是一家真正全球化的多元型工业集团">董明珠:格力不仅做空调 已经是一家真正全球化的多元型工业集团</a></td>
+                        <td class="ColorWhite text-left"><a class="InfoSource treecolor" id="158" title="证券时报网">证券时报网</a></td>
+                    </tr>
+                    <tr class="evencolor">
+                        <th class="ColorWhite text-center">17:02:22</th>
+                        <td class="ColorWhite text-left"><a class="newsTitle" id="564080454336" title="得润电子:子公司被指定为宝马旗下电动车“车载充电机”全球独家供应商">得润电子:子公司被指定为宝马旗下电动车“车载充电机”全球独家供应商</a></td>
+                        <td class="ColorWhite text-left"><a class="InfoSource treecolor" id="158" title="证券时报网">证券时报网</a></td>
+                    </tr>
+                    <tr class="oddcolor">
+                        <th class="ColorWhite text-center">17:01:23</th>
+                        <td class="ColorWhite text-left"><a class="newsTitle" id="564080094280" title="中国银行:子公司中银资产获批准开业 从事债转股及配套支持业务">中国银行:子公司中银资产获批准开业 从事债转股及配套支持业务</a></td>
+                        <td class="ColorWhite text-left"><a class="InfoSource treecolor" id="158" title="证券时报网">证券时报网</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="Nodata" id="rdxwTableNodata" style="display: none;">暂无相关新闻</div>
+        <div class="Page" id="newsPage" style="display: block;">
+            <div class="pageBar">
+
+                <div id="pageBarImg">
+                    <!--<img src="img/icon_first.gif" class="imgFirst" title="第一页"/>-->
+                    <!--<img src="img/icon_pre.gif" class="imgPre" title="上一页"/>-->
+                    <!--<img src="img/icon_next.gif" class="imgNext" title="下一页"/>-->
+                    <!--<img src="img/icon_end.gif" class="imgLast" title="最后一页"/>-->
+                    <ul>
+                        <li class="imgFirst forbid-btn"><a>首页</a></li>
+                        <li class="imgPre forbid-btn"><span class="page_pre icon-caret-left"></span><a>上一页</a></li>
+                        <li class="imgNext"><a>下一页</a><span class="page_next icon-caret-right"></span></li>
+                        <li class="imgLast"><a>尾页</a></li>
+                    </ul>
+                    <div class="clr"></div>
+                </div>
+                <div id="pageBarInput">
+                    <span style="font-size: 13px;">转到</span>
+                    <input name="" type="text" class="txtNum">
+                    <input name="pageenter" type="button" class="btnGO" value="确定">
+
+                </div>
+
+                <div id="pageBarNum">
+                    <span class="fontBold spnpages">1/224592</span>页
+                </div>
+
+                <div class="clr"></div>
+            </div>
+
+        </div>
+    </div>
+    <div class="clr"></div>
+    </div>
+    <!--模态框-->
+    <div class="fade in" id="zxdtModal"></div>
+    <div class="loding" id="loadingHide" style="display: none;"></div>
+    <script type="text/javascript" src="../libs/jquery1.4.0.min.js"></script>
+    <script type="text/javascript" src="../libs/jquery.date_input-src.js"></script>
+    <script type="text/javascript" src="js/public-method.js"></script>
+    <script type="text/javascript" src="js/Bounced.js"></script>
+    <script type="text/javascript" src="js/common.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
+</body>
+
+</html>

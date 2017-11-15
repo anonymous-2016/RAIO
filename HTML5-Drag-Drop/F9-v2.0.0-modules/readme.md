@@ -11,6 +11,51 @@ const url = `http://10.1.5.202/webservice/fastview/stock/stockfast01/600570.SH`;
 const url = `http://localhost:3000/fast-preview/json/datas/1.json`;
 
 
+let title = `${(arr[i].title !== undefined) ? arr[i].title : `暂无数据`}`;
+// title.replace(/: :/, "");
+title = title.replace(/(：：)/ig, "：");// shit Chinese encoding
+// ：： ？？？ shit data
+
+
+我想要的其实就是这些 URLs 呀.
+
+// research report
+http://10.1.5.202/queryservice/research/attachment/551173471225
+http://10.1.5.202/queryservice/research/attachment/551173471225.pdf
+
+// 研报 摘要
+http://10.1.5.202/webservice/researchreport/research/zy/551173471225
+
+
+
+
+// news 详细 
+http://10.1.5.202/queryservice/news/content/558091641955
+http://10.1.5.202/queryservice/news/content/558091641955
+
+
+
+// bulletin
+http://10.1.5.202/queryservice/bulletin/attachment/company/563999772286
+http://10.1.5.202/queryservice/bulletin/attachment/company/563999772286.pdf
+
+
+
+// sourcename = company & 主板的都是 company
+
+
+近期重要事项: turn to node
+
+
+
+
+// modal 
+
+http://10.1.5.202/information/newsinfo/
+
+
+
+
 ```
 
 # namespaces
@@ -57,10 +102,11 @@ data-disabled="${ id !== "null" ? false : true}"
 /*
     <a 
         href="#${id}"
+        title="${description}"
+        data-title="${description}"
         data-uid="${id}"
         data-eventsId="${id}"
         data-turn-to-uid="recent-important-events"
-        title="${description}"
         data-disabled="${ id !== "null" ? false : true}"
         data-link="fv-recent-important-events-link"
         data-link-detail="recent-important-events-link-detail-module">
@@ -470,7 +516,7 @@ const json = ((debug = false) => {
 
 > shit pingying
 
-news:新闻，bulletion:公告，research:研报，stockfast13：机构持股变动统计(机构投资者(主表明细数据))
+news:新闻，bulletin:公告，research:研报，stockfast13：机构持股变动统计(机构投资者(主表明细数据))
 
 
 重要信息 important information

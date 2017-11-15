@@ -1,0 +1,100 @@
+
+
+
+/*
+ * 公共
+ */
+/*.content{
+ width: 1124px;
+height: auto;
+margin: 50px auto;
+ border: 1px solid #1E2B38;
+ background: #0B1016;
+}*/
+
+
+
+
+/*
+ * 左侧导航栏
+ */
+
+
+.fixNavDetail{
+  width: 70%;
+  margin: 0 auto;
+  height: 100%;
+}
+
+.fixNavDetail ul{
+text-align: left;
+line-height: 30px;
+}
+
+.fixNavDetail ul li{
+  height: auto;
+  width: 100%;
+
+}
+
+.fixNavDetail ul li ul{
+text-align: center;
+
+}
+
+.fixNavDetail ul li ul li{
+  height: auto;
+  width: auto;
+  
+}
+
+
+
+
+
+
+/*
+ * 右侧新闻列表
+ */
+
+.newsDetail{
+    /*margin-left: 214px;*/
+    float: right;
+}
+
+
+
+.selectTime{
+  height: 48px;
+  background:#25292e;
+  /*color: #fff;*/
+  line-height: 21px;
+    margin-bottom: 5px;
+    margin-top: 5px;
+}
+.selectDetail{
+ padding-top: 5px;
+ padding-left: 5px;
+}
+
+.selectDetail select{
+ color: #000;
+}
+
+
+
+.selectDetail input[type="button"]{
+
+width: 70px;
+height: 80%;
+text-align: center;
+ line-height: 16px;
+ background: #EBEBEB;
+  color: #000;
+}
+
+
+
+#rdxwTable table tr td, #rdxwTable table tr th {
+    /*border: 0;*/
+}
