@@ -215,6 +215,156 @@ module: {
 
 ```
 
+https://babeljs.io/docs/plugins/preset-env
+
+https://babeljs.io/docs/plugins/preset-env#examples
+
+
+```json
+
+{
+    "presets": ["env"]
+}
+
+
+{
+    "presets": [
+        [
+            "env", {
+                "targets": {
+                    "browsers": ["last 2 versions", "safari >= 7"]
+                }
+            }
+        ]
+    ]
+}
+
+
+{
+    "presets": [
+        [
+            "env", {
+                "targets": {
+                    "node": "6.10"
+                }
+            }
+        ]
+    ]
+}
+
+
+{
+    "presets": [
+        [
+            "env", {
+                "targets": {
+                    "node": "current"
+                }
+            }
+        ]
+    ]
+}
+
+
+
+
+
+{
+    "presets": [
+        [
+            "env", {
+                "targets": {
+                    "browsers": ["last 2 versions", "safari >= 7"]
+                },
+                "include": ["transform-es2015-arrow-functions", "es6.map"],
+                "exclude": ["transform-regenerator", "es6.set"]
+            }
+        ]
+    ]
+}
+
+
+```
+
+https://babeljs.io/docs/plugins/preset-env#examples
+
+
+```json
+
+{
+    "presets": [
+        [
+            "env", {
+                "targets": {
+                    "chrome": 52,
+                    "browsers": ["last 2 versions", "safari >= 7"]
+                },
+                "include": ["transform-es2015-arrow-functions", "es6.map"],
+                "exclude": ["transform-regenerator", "es6.set"],
+                "modules": false,
+                "useBuiltIns": true,
+                "debug": true,
+                "loose": true
+            }
+        ]
+    ]
+}
+
+
+
+
+
+
+```
+
+# babel-plugin-transform-object-rest-spread
+
+https://babeljs.io/docs/plugins/transform-object-rest-spread/
+
+https://www.npmjs.com/package/babel-plugin-transform-object-rest-spread
+
+```sh
+
+$ npm i -D babel-plugin-transform-object-rest-spread
+
+
+```
+
+
+```json
+{
+    "plugins": [
+        ["transform-object-rest-spread", { "useBuiltIns": true }]
+    ]
+}
+
+{
+    "presets": ["env"],
+    "plugins": ["transform-object-rest-spread"]
+}
+
+
+```
+
+https://babeljs.io/docs/plugins/syntax-object-rest-spread/
+
+> This plugin only allows Babel to parse this syntax. 
+
+
+```sh
+
+$ npm i -D babel-plugin-syntax-object-rest-spread
+
+
+```
+
+
+
+
+
+
+
+
 
 ```sh
 

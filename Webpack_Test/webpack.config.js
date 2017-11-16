@@ -62,20 +62,22 @@ module.exports = {
                 test: /\.js$/,// test: /\.(js|jsx)$/,
                 exclude: /node_modules/,// exclude: /(node_modules|bower_components)/,
                 // use: 'babel-loader',
-                // loader: "babel-loader",
+                loader: "babel-loader",
                 // options: {
                 //     // presets: ['@babel/preset-env'],
                 //     // presets: ["es2015"],
                 //     presets: ['preset-env']
                 // }
-                use: {
-                    loader: 'babel-loader',
-                    options: {
-                        // presets: ['es2015'],
-                        // presets: ['preset-env'],
-                        presets: ['env']
-                    }
-                }
+                // .babelrc
+                // use: {
+                //     loader: 'babel-loader',
+                //     options: {
+                //         // presets: ['es2015'],
+                //         // presets: ['preset-env'],
+                //         presets: ['env'],
+                //         // plugins: [require('babel-plugin-transform-object-rest-spread')]
+                //     }
+                // }
             },
             {
                 test: /\.css$/,// test: /\.(css|scss|sass)$/,
