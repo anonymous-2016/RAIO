@@ -83,6 +83,12 @@ STOCK_F9_FV.Modules.agencyRating = STOCK_F9_FV.Modules.agencyRating || ((url = `
                                 new_key = `暂无数据`;
                                 break;
                         }
+                        /* 
+                            const json = {A: `1`, B: `22`, C: `333`};
+                            const {A: a, B: b, C: c} = {...json};
+                            // rename object's key!
+                            // import & export ??? old_name as new_name 
+                        */
                         arr_obj[new_key] = [];
                     }
                 );
@@ -124,7 +130,7 @@ STOCK_F9_FV.Modules.agencyRating = STOCK_F9_FV.Modules.agencyRating || ((url = `
             }
         )
         .catch(error => console.log(`error = \n`, error));
-        // return datas;
+        return datas;
 });
 
 
@@ -412,6 +418,9 @@ STOCK_F9_FV.Modules.agencyRating.drawHS = STOCK_F9_FV.Modules.agencyRating.drawH
 STOCK_F9_FV.Modules.agencyRating.init = STOCK_F9_FV.Modules.agencyRating.init || (
     (url= `http://localhost:3000/fast-preview/json/datas/5.json`) => {
         let uid = `agency_rating_hs_container`;
+        // let x = STOCK_F9_FV.Modules.agencyRating(url, false, uid);
+        // console.log(`x = `, x);
+        // Promise return OK ???
         STOCK_F9_FV.Modules.agencyRating(url, false, uid);
         // STOCK_F9_FV.Modules.agencyRating(url, true, uid);
     }
