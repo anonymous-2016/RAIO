@@ -1,114 +1,466 @@
-﻿eval(function (p, a, c, k, e, r) {
-    e = function (c) {
-        return (c < 62
-            ? ''
-            : e(parseInt(c / 62))) + ((c = c % 62) > 35
-            ? String.fromCharCode(c + 29)
-            : c.toString(36))
-    };
-    if ('0'.replace(0, e) == 0) {
-        while (c--) 
-            r[e(c)] = k[c];
-        k = [function (e) {
-                return r[e] || e
-            }
+var pager;
+
+
+$(function () {
+
+        document.getElementById("newsright").style.width = $(window).width() -219 + "px";
+        document.getElementById("rdxwTable").style.height = $(window).height() -80 + "px";
+    $(window).resize(function() {
+        document.getElementById("newsright").style.width = $(window).width() -219 + "px";
+        document.getElementById("rdxwTable").style.height = $(window).height() -80 + "px";
+    });
+
+    init();
+    function init() {
+        initNewPage();
+        var html = [];
+        var data = [{"k":"110000","v":"农林牧渔"},{"k":"210000","v":"采掘"},{"k":"220000","v":"化工"},{"k":"230000","v":"钢铁"},{"k":"240000","v":"有色金属"},{"k":"270000","v":"电子"},{"k":"280000","v":"汽车"},{"k":"330000","v":"家用电器"},{"k":"340000","v":"食品饮料"},{"k":"350000","v":"纺织服装"},{"k":"360000","v":"轻工制造"},{"k":"370000","v":"医药生物"},{"k":"410000","v":"公用事业"},{"k":"420000","v":"交通运输"},{"k":"430000","v":"房地产"},{"k":"450000","v":"商业贸易"},{"k":"460000","v":"休闲服务"},{"k":"480000","v":"银行"},{"k":"490000","v":"非银金融"},{"k":"510000","v":"综合"},{"k":"610000","v":"建筑材料"},{"k":"620000","v":"建筑装饰"},{"k":"630000","v":"电气设备"},{"k":"640000","v":"机械设备"},{"k":"650000","v":"国防军工"},{"k":"710000","v":"计算机"},{"k":"720000","v":"传媒"},{"k":"730000","v":"通信"}];
+        for(var i=0;i<data.length;i++){
+              html.push('<li><span class="linetwo"></span> <a class="loadqita treecolor" IndustryCode="'+data[i].k+'">'+data[i].v+'</a></li>');
+        }
+        $("#19 ul").html(html.join(""));
+    }
+
+
+    $($.date_input.initialize);
+    /*
+     * 展开树形菜单
+     */
+    $("#LeftUl .changeHide").live("click", function () {
+        var id = $(this).parent("li").attr("id");
+        if ($(this).hasClass("openClose")) {
+            $(this).removeClass("openClose").addClass("openCloseclose")
+        } else {
+            $(this).removeClass("openCloseclose").addClass("openClose")
+        }
+        $("#" + id + ">.child_hide").toggle();
+    });
+
+
+    /*
+     * 双击展开树形菜单
+     */
+    $("#LeftUl .changeHide1").live("dblclick", function () {
+        if ($(this).siblings("span").hasClass("openClose")) {
+            $(this).siblings("span").removeClass("openClose").addClass("openCloseclose")
+        } else {
+            $(this).siblings("span").removeClass("openCloseclose").addClass("openClose")
+        }
+        var id = $(this).parent("li").attr("id");
+        $("#" + id + ">.child_hide").toggle();
+    });
+
+    /*
+     * 加载其他模块
+     */
+
+    $("#LeftUl a").live("click", function () {
+        //$("#zxdtModal").hide();
+        $("select[name=newsselect]").attr('value',"0");
+
+        $('#LeftUl .active').removeAttr('class');
+        $(this).parent('li').attr('class', 'active');
+        $('#checkTime input').attr("value",'');
+        $("#yxtjList div").css("display","none");
+        $("#yxtjList label").text("");
+
+        if ($(this).hasClass('loadqita')) {
+            var CategoryId = $(this).attr("id");
+            $("#LeftUl").data('active', CategoryId);
+            $(".yxtj").fadeOut("fast");
+            //if(!isEmpty($("#yxtjList label").text())){
+            //    var SourceCode =$("#newsinfoSource").data('tempdata');
+            //    $("input[name=InfoSource]").attr('value',$("#newsinfoSource label").text());
+            //    $("input[name=Author]").attr('value',$("#newsAutor label").text());
+            //    $("input[name=SourceCode]").attr('value',SourceCode);
+            //    $("input[name=start_time]").attr('value',$("#newsStartTime label").text());
+            //    $("input[name=end_time]").attr('value',$("#newsEndTime label").text());
+            //    $("input[name=newskeyWord]").attr('value',$("#newskeyWord label").text());
+            //    $("select[name=newsselect]").attr('value',$("#newskeyWord label").attr("value"));
+            //
+            //    pager.fnPage(1);
+            //}else{
+            //    pager.fnPage(1);
+            //}
+
+            pager.fnPage(1);
+
+
+            //var parm = '{"CategoryId": "' + CategoryId + '"}';
+            //$.getJSON(uri.queryservice+"/news/list", parm, function (result) {
+            //    var Found = result.Found;
+            //    initNewPage('newsPage', Found, CategoryId);
+            //});
+        }
+    });
+
+    /*
+     * 新闻搜索btn
+     */
+
+    $('button[name=Searchbtn]').live('click', function () {
+        if(!isEmpty($("#yxtjList label").text())){
+            //var SourceCode =$("#newsinfoSource").data('tempdata');
+            $("input[name=InfoSource]").attr('value',$("#newsinfoSource label").text());
+            $("input[name=Author]").attr('value',$("#newsAutor label").text());
+            $("input[name=SourceCode]").attr('value',$("input[name=SourceCode]").attr('value'));
+            $("input[name=start_time]").attr('value',$("#newsStartTime label").text());
+            $("input[name=end_time]").attr('value',$("#newsEndTime label").text());
+            $("input[name=newskeyWord]").attr('value',$("#newskeyWord label").text());
+            $("select[name=newsselect]").attr('value',$("#newskeyWord label").attr("value"));
+        }else{
+            $("input[name=InfoSource]").attr('value','');
+            $("input[name=SourceCode]").attr('value','');
+            $("input[name=Author]").attr('value','');
+        }
+        pager.fnPage(1);
+    });
+
+
+
+/**
+ *  模态框 显示隐藏
+ * @param click
+ */
+$("#rdxwTable a").live('click', function () {
+    if($(this).hasClass('newsTitle')){
+        $(this).addClass("gray");
+        let zxdtModal = $("#zxdtModal"),
+            name = $(this).html();
+            id = $(this).attr('id');
+        // fetch data
+        // <i class="icon-external-link"></i> icons
+        // http://10.1.5.202/queryservice/news/content/564082789530
+        const BAD_URLs = [
+            "聚源数据",
+            "WWW",
+            "qq",
+            "ww",
+            "www.",
+            "www",
+            "wwww",
+            "http://data.east",
+            "http://www.",
+            "http://www.eweb",
+            "https://wx.qq.com/"
         ];
-        e = function () {
-            return '([3-9b-hjl-uwxzA-Z]|[12]\\w)'
-        };
-        c = 1
-    };
-    while (c--) 
-        if (k[c]) 
-            p = p.replace(new RegExp('\\b' + e(c) + '\\b', 'g'), k[c]);
-return p
-}('9 m;$(l(){1a.1b("1A").F.W=$(X).W()-1B+"px";1a.1b("M").F.Y=$(X).Y()-80+"px";$(X).' +
-        'resize(l(){1a.1b("1A").F.W=$(X).W()-1B+"px";1a.1b("M").F.Y=$(X).Y()-80+"px"});1C' +
-        '();l 1C(){1D();9 4=[];9 7=[{"k":"110000","v":"农林牧渔"},{"k":"210000","v":"采掘"},{"k' +
-        '":"220000","v":"化工"},{"k":"230000","v":"钢铁"},{"k":"240000","v":"有色金属"},{"k":"270' +
-        '000","v":"电子"},{"k":"280000","v":"汽车"},{"k":"330000","v":"家用电器"},{"k":"340000","' +
-        'v":"食品饮料"},{"k":"350000","v":"纺织服装"},{"k":"360000","v":"轻工制造"},{"k":"370000","v"' +
-        ':"医药生物"},{"k":"410000","v":"公用事业"},{"k":"420000","v":"交通运输"},{"k":"430000","v":"' +
-        '房地产"},{"k":"450000","v":"商业贸易"},{"k":"460000","v":"休闲服务"},{"k":"480000","v":"银行"' +
-        '},{"k":"490000","v":"非银金融"},{"k":"510000","v":"综合"},{"k":"610000","v":"建筑材料"},{"' +
-        'k":"620000","v":"建筑装饰"},{"k":"630000","v":"电气设备"},{"k":"640000","v":"机械设备"},{"k"' +
-        ':"650000","v":"国防军工"},{"k":"710000","v":"计算机"},{"k":"720000","v":"传媒"},{"k":"730' +
-        '000","v":"通信"}];1E(9 i=0;i<7.1F;i++){4.h(\'<G><n e="linetwo"></n> <a e="1G 1H" Z' +
-        '="\'+7[i].k+\'">\'+7[i].v+\'</a></G>\')}$("#19 ul").4(4.1m(""))}$($.date_input.i' +
-        'nitialize);$("#10 .changeHide").H("11",l(){9 j=$(8).1n("G").3("j");c($(8).A("N")' +
-        '){$(8).1d("N").12("1e")}p{$(8).1d("1e").12("N")}$("#"+j+">.1I").1J()});$("#10 .c' +
-        'hangeHide1").H("dblclick",l(){c($(8).1o("n").A("N")){$(8).1o("n").1d("N").12("1e' +
-        '")}p{$(8).1o("n").1d("1e").12("N")}9 j=$(8).1n("G").3("j");$("#"+j+">.1I").1J()}' +
-        ');$("#10 a").H("11",l(){$("O[6=I]").3(\'5\',"0");$(\'#10 .P\').removeAttr(\'e\')' +
-        ';$(8).1n(\'G\').3(\'e\',\'P\');$(\'#1K b\').3("5",\'\');$("#J q").f("g","r");$("' +
-        '#J d").o("");c($(8).A(\'1G\')){9 Q=$(8).3("j");$("#10").7(\'P\',Q);$(".R").1L("1' +
-        'M");m.s(1)}});$(\'button[6=Searchbtn]\').H(\'11\',l(){c(!B($("#J d").o())){$("b[' +
-        '6=t]").3(\'5\',$("#13 d").o());$("b[6=C]").3(\'5\',$("#14 d").o());$("b[6=z]").3' +
-        '(\'5\',$("b[6=z]").3(\'5\'));$("b[6=S]").3(\'5\',$("#K d").o());$("b[6=1f]").3(' +
-        '\'5\',$("#15 d").o());$("b[6=L]").3(\'5\',$("#L d").o());$("O[6=I]").3(\'5\',$("' +
-        '#L d").3("5"))}p{$("b[6=t]").3(\'5\',\'\');$("b[6=z]").3(\'5\',\'\');$("b[6=C]")' +
-        '.3(\'5\',\'\')}m.s(1)});$("#M a").H(\'11\',l(){c($(8).A(\'1N\')){9 1O=$("#1O");9' +
-        ' 6=$(8).4();$(8).12("gray");9 4=[];9 j=$(8).3(\'j\');9 newsContentUrl=1g.1p+\'1q' +
-        '/1P/\'+j;loaddate(1g.1p+\'1q/1P/\'+j,{},l(7){4.h(\'<q><q e="1Q-16"><h3 F="1S-17:' +
-        ' 15px;">\'+6+\'</h3></q>\');4.h(\'<q e="zxdtData"><q e="fontSize" j="fontsize"><' +
-        'n>字体：</n>\');4.h(\'<n e="1r"><a j="big">大</a></n><n e="1r">\');4.h(\'<a j="middl' +
-        'e">中</a></n><n e="1r P"><a j="small">小</a></n></q>\');4.h(\'<q e="model-Info"><n' +
-        '>来源：<n j="zxdtlaiyuan" e="">\'+7.Infosource+\'</n>&1T;</n>\');4.h(\'<n j="zxdtPu' +
-        'bDate" e="">\'+7.1U+\'</n>&1T;\');c(7.w=="聚源数据"||7.w=="WWW"||7.w=="qq"||7.w=="ww' +
-        '"||7.w=="1h."||7.w=="1h"||7.w=="wwww"||7.w=="1s://7.east"||7.w=="1s://1h."||7.w=' +
-        '="1s://1h.eweb"||7.w=="https://wx.qq.com/"){4.h(\'\')}p{4.h(\'<a F="1S-17:10px;c' +
-        'olor:#5389d2;" e="gotext" j="linkyuanwen" 5="\'+7.w+\'">查看原文<i e="icon-external-' +
-        'link"></i></a>\')}4.h(\'</q><q e="clr"></q></q><q e="1Q-1W" F="1X: auto;o-align:' +
-        ' 17;>\');4.h(\'<q j="zxdtContent">\'+7.1Y);4.h(\'</q>\');4.h(\'</q></q>\');9 1Z=' +
-        'new Bounced({bouncedclass:"layerContianer2",W:getClientWidth()-60,Y:getClientHei' +
-        'ght()-80,alerttit:"公司新闻",setOverflow:"1X-y:r",str:4.1m(\'\'),callback:l(){}});1Z' +
-        '.show();$("#20").f("g",\'r\')},l(){$("#20").f("g",\'x\')})}p c($(8).A(\'t\')){$(' +
-        '".R").1t("1u");$("b[6=t]").3(\'5\',$(8).3(\'16\'));$("b[6=z]").3(\'5\',$(8).3(\'' +
-        'j\'));$("#13").f("g","x");$("#13 d").4($(8).4());m.s(1)}p{$(".R").1t("1u");$("b[' +
-        '6=C]").3(\'5\',$(8).3(\'16\'));$("#14").f("g","x");$("#14 d").4($(8).4());m.s(1)' +
-        '}});$("#J T").H(\'11\',l(){c($(8).A(\'T-source\')){$("#13").f("g","r");$("b[6=t]' +
-        '").3(\'5\',"");$("b[6=z]").3(\'5\',"");$("#13 d").o("");m.s(1)}p c($(8).A(\'T-au' +
-        'tor\')){$("#14").f("g","r");$("b[6=C]").3(\'5\',"");$("#14 d").o("");m.s(1)}p c(' +
-        '$(8).A(\'T-startTime\')){$("#K").f("g","r");$("b[6=S]").3(\'5\',"");$("#K d").o(' +
-        '"");m.s(1)}p c($(8).A(\'T-endTime\')){$("#15").f("g","r");$("b[6=1f]").3(\'5\',"' +
-        '");$("#15 d").o("");m.s(1)}p c($(8).A(\'T-range\')){$("#D").f("g","r");$("O[6=I]' +
-        '").3(\'5\',"0");$("#D d").o("");m.s(1)}p{$("#L").f("g","r");$("b[6=18]").3(\'5\'' +
-        ',"");$("#L d").o("");m.s(1)}c(B($("#J d").o())){$(".R").1L("1M")}});$("#1K .isch' +
-        'ange").H(\'change\',l(){$(".R").1t("1u");c($(8).3("6")=="S"){$("#K").f("g","x");' +
-        '$("#K d").4($(8).3("5"));m.s(1)}p c($(8).3("6")=="1f"){$("#15").f("g","x");$("#1' +
-        '5 d").4($(8).3("5"));c($("b[6=\'S\']").3("5")==""){$("#K").f("g","x");$("b[6=\'S' +
-        '\']").3("5",21($(8).3("5")));$("#K d").4(21($(8).3("5")))}m.s(1)}p c($(8).3("6")' +
-        '=="I"){$("#D").f("g","x");9 E=$(8).3(\'5\');9 U={\'1\':\'标题\',\'0\':\'正文\'};$("#' +
-        'D d").3("5",E);$("#D d").4(U[E])}p{$("#D").f("g","x");9 E=$("O[6=I]").3(\'5\');9' +
-        ' U={\'1\':\'标题\',\'0\':\'正文\'};$("#D d").3("5",E);$("#D d").4(U[E]);$("#L").f("g' +
-        '","x");$("#L d").4($(8).3("5"));m.s(1)}})});l 23(){9 Q=$("G.P").24("a").3(\'j\')' +
-        ';9 Z=$("G.P").24("a").3(\'Z\');c(!B(Q)){9 u={\'Q\':Q}}p{9 u={\'Z\':Z}}9 1v=$("b[' +
-        '6=S]").3(\'5\');c(!B(1v)){u.BeginTime=1v}9 1w=$("b[6=1f]").3(\'5\');c(!B(1w)){u.' +
-        'EndTime=1w}9 t=$("b[6=t]").3(\'5\');c(!B(t)){u.SourceName=t}9 z=$("b[6=z]").3(\'' +
-        '5\');c(!B(z)){u.z=z}9 C=$("b[6=C]").3(\'5\');c(!B(C)){u.C=C}9 18=$("b[6=18]").3(' +
-        '\'5\');9 E=$("O[6=I]").3(\'5\');9 U={\'1\':\'1x\',\'0\':\'1Y\'};c(!B(18)){u[U[E]' +
-        ']=18}return u}l 1D(){$("#1i").load(1g.m,l(){m=FnPage();m.fnInit(l(V){25(23(),V)}' +
-        ',{\'26\':0,\'27\':22,\'context\':$(\'#1i\')});m.s(1)})}l 25(u,V){u[\'Page\']=V.p' +
-        'ageIndex;u[\'Size\']=V.27;$("1W,4").animate({"scrollTop":0});$.getJSON(1g.1p+"/1' +
-        'q/list",JSON.stringify(u),l(7){V.26=7.Found;m.fnPageInfo();28(7.DataList)})}l 28' +
-        '(7){c(!B(7)){9 4=[];1E(9 i=0;i<7.1F;i++){c(i%2==0){4.h(\'<tr e="evencolor"><th e' +
-        '="1j o-29">\')}p{4.h(\'<tr e="oddcolor"><th e="1j o-29">\')}4.h(7[i].1U);4.h(\'<' +
-        '/th><td e="1j o-17"><a e="1N" j="\'+7[i].Id+\'" 16="\'+7[i].1x+\'">\');4.h(7[i].' +
-        '1x+"</a>");4.h(\'</td><td e="1j o-17">\');c(7[i].t=="--"){4.h(7[i].t)}p{4.h(\'<a' +
-        ' e="t 1H" j="\'+7[i].z+\'" 16="\'+7[i].t+\'">\');4.h(7[i].t+"</a>")}4.h(\'</td><' +
-        '/tr>\')}$("#M table tbody").4(4.1m(\'\'));$("#M").f("g",\'x\');$("#1i").f("g",\'' +
-        'x\');$("#2a").f("g",\'r\')}p{$("#M").f("g",\'r\');$("#1i").f("g",\'r\');$("#2a")' +
-        '.f("g",\'x\');$(".R").f("g",\'r\');$("O[6=I]").3(\'5\',"0");$("#J d").4("");$("#' +
-        'J q").f("g","r")}}',
-[], 135, '|||attr|html|value|name|data|this|var||input|if|label|class|css|display|push||id' +
-        '||function|pager|span|text|else|div|none|fnPage|InfoSource|param||Url|block||Sou' +
-        'rceCode|hasClass|isEmpty|Author|newsRange|istitle|style|li|live|newsselect|yxtjL' +
-        'ist|newsStartTime|newskeyWord|rdxwTable|openClose|select|active|CategoryId|yxtj|' +
-        'start_time|em|field|oSet|width|window|height|IndustryCode|LeftUl|click|addClass|' +
-        'newsinfoSource|newsAutor|newsEndTime|title|left|inputText||document|getElementBy' +
-        'Id||removeClass|openCloseclose|end_time|uri|www|newsPage|ColorWhite|||join|paren' +
-        't|siblings|queryservice|news|fontBtn|http|fadeIn|slow|starttime|endtime|Title|||' +
-        'newsright|219|init|initNewPage|for|length|loadqita|treecolor|child_hide|toggle|c' +
-        'heckTime|fadeOut|fast|newsTitle|zxdtModal|content|modal||margin|nbsp|PublishDate' +
-        '||body|overflow|Content|bounced|loadingHide|get3MonthBefor||buildParam|children|' +
-        'getIndustryNews|records|pageSize|fillnews|center|rdxwTableNodata'.split('|'), 0, {}))
+        loaddate('http://10.1.5.202/queryservice/news/content/' + id, {}, function (data) {
+            console.log(`data = \n`, JSON.stringify(data, null, 4), typeof (data));
+            console.log(`data.Url = \n`, data.Url, typeof (data.Url));
+            let url_link = BAD_URLs.includes(data.Url) === true ? `` : `
+                <a style="margin-left:10px;color:#5389d2;" class="gotext" id="linkyuanwen" value="${data.Url}">
+                    查看原文
+                    <i class="icon-external-link"></i>
+                </a>
+            `;
+            const html_template = `
+                <div>
+                    <div class="modal-title">
+                        <h3 style="margin-left: 15px;">${name}</h3>
+                    </div>
+                    <div class="zxdtData">
+                        <div class="fontSize" id="fontsize">
+                            <span>字体：</span>
+                            <span class="fontBtn">
+                                <a id="big">大</a>
+                            </span>
+                            <span class="fontBtn">
+                                <a id="middle">中</a>
+                            </span>
+                            <span class="fontBtn active">
+                                <a id="small">小</a>
+                            </span>
+                        </div>
+                        <div class="model-Info">
+                            <span>
+                                来源：
+                                <span id="zxdtlaiyuan" class="">
+                                    ${data.Infosource}
+                                </span>
+                                &nbsp;
+                            </span>
+                            <span id="zxdtPubDate" class="">${data.PublishDate}</span>&nbsp;
+                            ${url_link}
+                        </div>
+                        <div class="clr"></div>
+                    </div>
+                    <div class="modal-body" style="overflow: auto;text-align: left;">
+                        <div id="zxdtContent">
+                            ${data.Content}
+                        </div>
+                    </div>
+                </div>
+            `;
+            // 
+            var bounced = new Bounced({
+                bouncedclass: "layerContianer2",//存放页面的容器类名
+                width: getClientWidth()-60,
+                height: getClientHeight()-80,
+                alerttit: "公司新闻",
+                setOverflow: "overflow-y:none",//设置滚动的属性 overflow-y：设置竖向  overflow-x:设置横向
+                // str: html.join(''),// array to string
+                str: html_template,
+                callback:function(){
+                    // no need ???
+                }
+            });
+            //$(".modal-body").css("height",getClientHeight()-200);
+            bounced.show();
+            $("#loadingHide").css("display", 'none');
+        }, function () {
+            $("#loadingHide").css("display", 'block');
+        });
+    }else if($(this).hasClass('InfoSource')){
+            //var newsInfoSource = $(this).attr('title');
+            //var newsSourceCode = $(this).attr('id');
+            $(".yxtj").fadeIn("slow");
+            $("input[name=InfoSource]").attr('value',$(this).attr('title'));
+            $("input[name=SourceCode]").attr('value',$(this).attr('id'));
+            //$("#newsinfoSource").data('tempdata',$(this).attr('id'));
+            $("#newsinfoSource").css("display","block");
+            $("#newsinfoSource label").html($(this).html());
+            pager.fnPage(1);
+        }else{
+            $(".yxtj").fadeIn("slow");
+            $("input[name=Author]").attr('value',$(this).attr('title'));
+            $("#newsAutor").css("display","block");
+            $("#newsAutor label").html($(this).html());
+            pager.fnPage(1);
+        }
+    }
+);
+
+
+    /**
+     *  新闻帅选条件，删除帅选条件点击事件
+     * @param click
+     */
+
+    $("#yxtjList em").live('click', function () {
+        //$("#zxdtModal").hide();
+       if($(this).hasClass('em-source')){
+           $("#newsinfoSource").css("display","none");
+           $("input[name=InfoSource]").attr('value',"");
+           $("input[name=SourceCode]").attr('value',"");
+           $("#newsinfoSource label").text("");
+           pager.fnPage(1);
+       }else if($(this).hasClass('em-autor')){
+           $("#newsAutor").css("display","none");
+           $("input[name=Author]").attr('value',"");
+           $("#newsAutor label").text("");
+           pager.fnPage(1);
+       }else if($(this).hasClass('em-startTime')){
+           $("#newsStartTime").css("display","none");
+           $("input[name=start_time]").attr('value',"");
+           $("#newsStartTime label").text("");
+           pager.fnPage(1);
+       }else if($(this).hasClass('em-endTime')){
+           $("#newsEndTime").css("display","none");
+           $("input[name=end_time]").attr('value',"");
+           $("#newsEndTime label").text("");
+           pager.fnPage(1);
+       }else if($(this).hasClass('em-range')){
+           $("#newsRange").css("display","none");
+           $("select[name=newsselect]").attr('value',"0");
+           $("#newsRange label").text("");
+           pager.fnPage(1);
+       }else{
+           $("#newskeyWord").css("display","none");
+           $("input[name=inputText]").attr('value',"");
+           $("#newskeyWord label").text("");
+           pager.fnPage(1);
+       }
+        if(isEmpty($("#yxtjList label").text())){
+            $(".yxtj").fadeOut("fast");
+        }
+    });
+
+    /**
+     *  选择时间，显示在已选条件。。
+     * @param change
+     */
+    $("#checkTime .ischange").live('change', function () {
+        //$("#zxdtModal").hide();
+           $(".yxtj").fadeIn("slow");
+          if($(this).attr("name")=="start_time"){
+              $("#newsStartTime").css("display","block");
+              $("#newsStartTime label").html($(this).attr("value"));
+              pager.fnPage(1);
+          }else if($(this).attr("name")=="end_time"){
+              $("#newsEndTime").css("display","block");
+              $("#newsEndTime label").html($(this).attr("value"));
+
+              if($("input[name='start_time']").attr("value")==""){
+                  $("#newsStartTime").css("display","block");
+                  $("input[name='start_time']").attr("value",get3MonthBefor($(this).attr("value")));
+                  $("#newsStartTime label").html(get3MonthBefor($(this).attr("value")));
+              }
+
+              pager.fnPage(1);
+          }else if($(this).attr("name")=="newsselect"){
+              $("#newsRange").css("display","block");
+              var istitle = $(this).attr('value');
+              var field={'1':'标题','0':'正文'};
+              $("#newsRange label").attr("value",istitle);
+              $("#newsRange label").html(field[istitle]);
+          }else{
+              $("#newsRange").css("display","block");
+              var istitle = $("select[name=newsselect]").attr('value');
+              var field={'1':'标题','0':'正文'};
+              $("#newsRange label").attr("value",istitle);
+              $("#newsRange label").html(field[istitle]);
+
+
+              $("#newskeyWord").css("display","block");
+              $("#newskeyWord label").html($(this).attr("value"));
+              pager.fnPage(1);
+          }
+
+    });
+
+
+
+});
+
+
+
+
+
+
+
+
+
+
+function buildParam(){
+    var CategoryId = $("li.active").children("a").attr('id');
+    var IndustryCode = $("li.active").children("a").attr('IndustryCode');
+
+
+    if(!isEmpty(CategoryId)){
+        var param = {'CategoryId':CategoryId};
+    }else{
+        var param = {'IndustryCode':IndustryCode};
+    }
+
+
+
+    var starttime = $("input[name=start_time]").attr('value');
+    if(!isEmpty(starttime)){
+        param.BeginTime=starttime;
+    }
+    var endtime = $("input[name=end_time]").attr('value');
+    if(!isEmpty(endtime)){
+        param.EndTime = endtime;
+    }
+    var InfoSource = $("input[name=InfoSource]").attr('value');
+    if(!isEmpty(InfoSource)){
+        param.SourceName = InfoSource;
+    }
+    var SourceCode = $("input[name=SourceCode]").attr('value');
+    if(!isEmpty(SourceCode)){
+        param.SourceCode = SourceCode;
+    }
+    var Author = $("input[name=Author]").attr('value');
+    if(!isEmpty(Author)){
+        param.Author = Author;
+    }
+
+
+    var inputText = $("input[name=inputText]").attr('value');
+    var istitle = $("select[name=newsselect]").attr('value');
+    var field={'1':'Title','0':'Content'};
+    if(!isEmpty(inputText)){
+        param[field[istitle]]=inputText;
+    }
+    return param;
+}
+
+
+
+function initNewPage() {
+    $("#newsPage").load(uri.pager, function () {
+        pager = FnPage();
+        pager.fnInit(function (oSet) {
+            getIndustryNews(buildParam(),oSet);
+        }, {'records': 0, 'pageSize': 22, 'context': $('#newsPage')});
+        pager.fnPage(1);
+    });
+}
+
+
+//根据页码，进行请求当前页要显示的新闻
+function getIndustryNews(param,oSet) {
+    param['Page'] = oSet.pageIndex;
+    param['Size'] = oSet.pageSize;
+    $("body,html").animate({"scrollTop": 0});
+    $.getJSON(uri.queryservice+"/news/list", JSON.stringify(param), function (data) {
+        oSet.records=data.Found;
+        pager.fnPageInfo();
+        fillnews(data.DataList);
+    });
+
+    //loaddate(uri.queryservice+"/news/list", JSON.stringify(param), function (data) {
+    //    oSet.records=data.Found;
+    //    pager.fnPageInfo();
+    //    fillnews(data.DataList);
+    //
+    //    $("#loadingHide").css("display", 'none');
+    //}, function () {
+    //    $("#loadingHide").css("display", 'block');
+    //});
+
+}
+
+
+
+function fillnews(data) {
+    if (!isEmpty(data)) {
+        var html = [];
+        for (var i = 0; i < data.length; i++) {
+            if (i % 2 == 0) {
+
+                html.push('<tr class="evencolor"><th class="ColorWhite text-center">');
+            } else {
+                html.push('<tr class="oddcolor"><th class="ColorWhite text-center">');
+            }
+
+            //html.push('<tr><th class="ColorWhite text-left">');
+            html.push(data[i].PublishDate);
+            html.push('</th><td class="ColorWhite text-left"><a class="newsTitle" id="' + data[i].Id + '" title="' + data[i].Title + '">');
+            //var title = data[i].ybtitle.length>18
+            html.push(data[i].Title + "</a>");
+            html.push('</td><td class="ColorWhite text-left">');
+
+            if(data[i].InfoSource=="--"){
+                html.push(data[i].InfoSource);
+            }else{
+                html.push('<a class="InfoSource treecolor" id="' + data[i].SourceCode + '" title="' + data[i].InfoSource + '">');
+                html.push(data[i].InfoSource + "</a>");
+            }
+            html.push('</td></tr>');
+
+
+            //html.push('</td><td class="ColorWhite text-left"><a class="Author treecolor" title="' + data[i].Author + '">');
+            //html.push(data[i].Author + "</a></td></tr>");
+
+        }
+        $("#rdxwTable table tbody").html(html.join(''));
+        $("#rdxwTable").css("display", 'block');
+        $("#newsPage").css("display", 'block');
+        $("#rdxwTableNodata").css("display", 'none');
+    } else {
+        $("#rdxwTable").css("display", 'none');
+        $("#newsPage").css("display", 'none');
+        $("#rdxwTableNodata").css("display", 'block');
+        $(".yxtj").css("display", 'none');
+        $("select[name=newsselect]").attr('value',"0");
+        $("#yxtjList label").html("");
+        $("#yxtjList div").css("display","none");
+    }
+
+}
+
+
+
+
+

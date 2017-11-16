@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>using ES6 today</title>
+</head>
+
+<body>
+    <!-- js: libs -->
+    <!-- 
+        <script src="../build/libs/require.min.js"></script>
+     -->
+    <!-- 
+        <script src="../build/libs/system.js"></script>
+        <script>
+            // F9-v2.0.0-modules\fast-preview\000-xyz\ES2015\000-xyz\commonjs-systemjs.html
+            System.import("./index.js");
+        </script>
+     -->
+    <!-- js & webpack no need module loader !-->
+    <script src="./index.js"></script>
+    <!-- Uncaught SyntaxError: Unexpected token import -->
+    <script src="./modules/no-import-module.js"></script>
+</body>
+
+</html>

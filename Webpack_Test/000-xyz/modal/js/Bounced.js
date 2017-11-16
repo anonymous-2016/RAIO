@@ -1,1 +1,147 @@
-﻿eval(function(p,a,c,k,e,r){e=function(c){return(c<62?'':e(parseInt(c/62)))+((c=c%62)>35?String.fromCharCode(c+29):c.toString(36))};if('0'.replace(0,e)==0){while(c--)r[e(c)]=k[c];k=[function(e){return r[e]||e}];e=function(){return'([3-9b-dfgi-rt-vA-Z]|1\\w)'};c=1};while(c--)if(k[c])p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c]);return p}('6 j(S){3.7={m:"B",T:"",8:300,4:C,D:1000,U:"信息",V:"overflow-y:scroll",k:"",E:6(){}};$.extend(3.7,S)}j.prototype={W:6(state){5 9=3;5 k="";9.7.D++;5 s=l.F.G();k=\'<i n="H" I="z-index:\'+9.7.D+\'"><i n="animated zoomIn \'+9.7.m+\'" I = "8:\'+3.7.8+\'c;4:\'+3.7.4+\'c"><X n="Y">\'+3.7.U+\'<a href="javascript:;" n="Z"></a></X><i n="layerContianer \'+3.7.T+\'" I="\'+3.7.V+\'">\'+9.7.k+\'</i></i>\';$("#zxdtModal").empty().html(k);$(".10-11").d("4",12()-C);$(q).resize(6(){$(".B").d("8",$(q).8()-60+"c");$(".B").d("4",$(q).4()-80+"c");$(".10-11").d("4",12()-C)});$(".Z").click(6(){9.13($(3))});$("."+9.7.m).eq($(".H").o()-1).d({J:(s.w-3.7.8)/2+"c",K:(s.h-3.7.4)/2+"c"});if(9.7.E){9.7.E.apply(3,[])}return k},13:6(L){$(L).M(".H").remove()},15:6(L){5 9=3;5 s=l.F.G();$(".Y").N(6(e){5 r=3;5 b=$(r).M("."+9.7.m);e.stopPropagation();e.preventDefault();5 x=e.t-b.16().J;5 y=e.u-b.16().K;$(p).v(6(e){5 f=e.t-x;5 g=e.u-y;f=f<0?0:f;f=f>(s.w-b.8())?(s.w-b.8()):f;g=g<0?0:g;g=g>(s.h-b.4())?(s.h-b.4()):g;b.d({J:f+"c",K:g+"c"})});$(p).17(6(){$(3).18("v")})})},19:6(){5 9=3;5 s=l.F.G();$(".layer-o").N(6(e){5 r=3;5 b=$(r).M("."+9.7.m);5 x=e.t-b.8();5 y=e.u-b.4();$(p).v(6(e){5 8=e.t-x+"c";5 4=e.u-y+"c";8=8<0?0:8;8=8>s.w?s.w:8;4=4<0?0:4;4=4>s.h?s.h:4;b.d({8:8,4:4})});$(p).17(6(){$(p).18("v")})})},1a:6(){$(\'i#1b a\').N(6(e){5 O=$(3).attr(\'O\');$(\'i#1b .P\').removeClass(\'P\');$(3).parent(\'span\').addClass(\'P\');switch(O){1c\'big\':$("#Q").d("R-o",\'16px\');1d;1c\'middle\':$("#Q").d("R-o",\'14px\');1d;default:$("#Q").d("R-o",\'12px\')}})},show:6(){3.W();3.15();3.19();3.1a()}};(6(A){if(A["l"]){A["l"].j=j}else{A.l={j:j}}})(q);',[],76,'|||this|height|var|function|config|width|that||moveEle|px|css||lf|tp||div|Bounced|str|UDP|layerBoxClass|class|size|document|window|theme||clientX|clientY|mousemove|||||win|layerBox|200|zIndex|callback|Public|view|overlay|style|left|top|ele|parents|mousedown|id|active|zxdtContent|font|options|layerclass|alerttit|setOverflow|_createDialog|h5|layerHeader|close_btn|modal|body|getClientHeight|delDialog||moveDialog|offset|mouseup|unbind|revampSize|changeSize|fontsize|case|break'.split('|'),0,{}))
+/**
+ * Created by xhgx on 2017/4/24.
+ * zhge yilai nnnn xian
+ */
+/*本页面依赖于public-method.js*/
+/*弹框的基本对象*/
+function  Bounced(options){
+    this.config = {
+        layerBoxClass :"layerBox",
+        layerclass:"",
+        width:300,
+        height:200,
+        zIndex:1000,
+        alerttit:"信息",
+        setOverflow:"overflow-y:scroll",
+        str:"",
+        callback: function () { }
+    };
+    $.extend(this.config,options);
+
+}
+
+
+
+
+
+Bounced.prototype = {
+    /*创建弹出框*/
+    _createDialog:function(state){
+        var that = this;
+        var str = "";
+        that.config.zIndex++;
+        var s = UDP.Public.view();
+        str = '<div class="overlay" style="z-index:'+that.config.zIndex+'">' +
+            '<div class="animated zoomIn '+that.config.layerBoxClass+'" style = "width:'+ this.config.width+'px;height:'+this.config.height+'px">' +
+            '<h5 class="layerHeader">'+this.config.alerttit+'<a href="javascript:;" class="close_btn"></a></h5><div class="layerContianer '+this.config.layerclass+'" style="'+this.config.setOverflow+'">' +
+            that.config.str+
+            '</div></div>';
+        //$("body").append(str);
+        $("#zxdtModal").empty().html(str);
+
+        $(".modal-body").css("height",getClientHeight()-200);
+
+
+        $(window).resize(function() {
+            $(".layerBox").css("width",$(window).width()-60+"px");
+            $(".layerBox").css("height",$(window).height()-80+"px");
+            $(".modal-body").css("height",getClientHeight()-200);
+        });
+
+        $(".close_btn").click(function (){
+            that.delDialog($(this));
+        });
+        $("."+that.config.layerBoxClass).eq($(".overlay").size()-1).css({left: (s.w- this.config.width)/2+"px",top: (s.h-this.config.height)/2+"px"});
+        if(that.config.callback){
+            that.config.callback.apply(this,[]);
+        }
+        return str;
+    },
+    /*移除弹框*/
+    delDialog:function(ele){
+        $(ele).parents(".overlay").remove();
+    },
+    /*移动弹框*/
+    moveDialog:function(ele){
+        var that = this;
+        var s = UDP.Public.view();
+        $(".layerHeader").mousedown(function(e){
+            var theme = this;
+            var moveEle = $(theme).parents("."+that.config.layerBoxClass);
+            e.stopPropagation();
+            e.preventDefault();
+            var x = e.clientX - moveEle.offset().left;
+            var y = e.clientY - moveEle.offset().top;
+            $(document).mousemove(function(e){
+                var lf = e.clientX-x;
+                var tp = e.clientY-y;
+                lf=lf<0 ? 0:lf;
+                lf=lf>(s.w - moveEle.width()) ? (s.w - moveEle.width()):lf;
+                tp=tp<0 ? 0:tp;
+                tp=tp>(s.h - moveEle.height()) ? (s.h - moveEle.height()):tp;
+                moveEle.css({left: lf+"px",top:tp+"px"});
+            });
+            $(document).mouseup(function(){
+                $(this).unbind("mousemove");
+            });
+        });
+    },
+    /*手动调整弹框大小*/
+    revampSize:function(){
+        var that = this;
+        var s = UDP.Public.view();
+        $(".layer-size").mousedown(function(e){
+            var theme = this;
+            var moveEle = $(theme).parents("."+that.config.layerBoxClass);
+            var x = e.clientX - moveEle.width();
+            var y = e.clientY - moveEle.height();
+           $(document).mousemove(function(e){
+               var width = e.clientX-x+"px";
+               var height = e.clientY-y+"px";
+               width=width<0 ? 0:width;
+               width=width>s.w ? s.w :width;
+               height=height<0 ? 0:height;
+               height=height>s.h ? s.h :height;
+               moveEle.css({width:width,height:height});
+           });
+            $(document).mouseup(function(){
+                $(document).unbind("mousemove");
+            });
+        });
+    },
+    changeSize: function () {
+        $('div#fontsize a').mousedown(function (e) {
+            var id = $(this).attr('id');
+            $('div#fontsize .active').removeClass('active');
+            $(this).parent('span').addClass('active');
+            switch(id)
+            {
+                case 'big':
+                    $("#zxdtContent").css("font-size",'16px');
+                    break;
+                case 'middle':
+                    $("#zxdtContent").css("font-size",'14px');
+                    break;
+                default:
+                    $("#zxdtContent").css("font-size",'12px');
+            }
+        });
+    }
+    ,show:function(){
+        this._createDialog();
+        this.moveDialog();
+        this.revampSize();
+        this.changeSize();
+    }
+
+}
+
+;(function(win){
+    if(win["UDP"]){
+        win["UDP"].Bounced = Bounced;
+    }else{
+        win.UDP = {Bounced:Bounced};
+    }
+})(window);
+
+

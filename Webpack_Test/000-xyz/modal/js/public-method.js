@@ -16,7 +16,7 @@ function Public(){
 
 
 
-;(function(win){
+(function (win) {
     if(win["UDP"]){
         win["UDP"].Public = Public();
     }else{

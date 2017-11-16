@@ -29,6 +29,7 @@ http://10.1.5.202/webservice/researchreport/research/zy/551173471225
 
 
 
+
 // news 详细 
 http://10.1.5.202/queryservice/news/content/558091641955
 http://10.1.5.202/queryservice/news/content/558091641955
@@ -61,6 +62,38 @@ http://10.1.5.202/information/newsinfo/
 # namespaces
 
 ```js
+
+
+"use strict";
+
+/**
+ * @author xgqfrms
+ * @created 2017.11.16
+ * @copyright Gildata 2017-present
+ * @private
+ * @license MIT
+ * 
+ * @namespace STOCK_F9_FV
+ * @sub_namespaces Utils
+ * 
+ * @description Customize FontSise
+ * @param {Object} args
+ * @param {Bollean} debug
+ * 
+ * @example // NameSpace Template Example , STOCK_F9_FV.Utils.CustomizeFontSise(obj);
+ * 
+ */
+
+
+// namespaces
+var STOCK_F9_FV = STOCK_F9_FV || {};
+// sub namespaces
+STOCK_F9_FV.Utils = STOCK_F9_FV.Utils || {};
+// IIFE === Closure!
+STOCK_F9_FV.Utils.CustomizeFontSise = STOCK_F9_FV.Utils.CustomizeFontSise || ((args = {}, debug = false) => {
+    // 
+});
+
 
 // namespaces
 var STOCK_F9_FV = STOCK_F9_FV || {};

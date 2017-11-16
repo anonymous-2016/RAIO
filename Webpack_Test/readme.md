@@ -8,8 +8,54 @@ https://developer.mozilla.org/zh-CN/
 ```sh
 
 $ browser-sync start --server --files "./*.*"
-
 $ browser-sync start --server --files "./000-xyz/*.*"
+
+# babel
+$ npm i -D babel babel-cli babel-preset-env babel-polyfill babel-preset-react
+
+# webpack
+$ npm i -D webpack babel-loader babel-core
+$ npm i -D uglifyjs-webpack-plugin html-webpack-plugin clean-webpack-plugin
+
+# css/sass
+$ npm i -D style-loader css-loader sass-loader
+
+# AMD/Commonjs
+$ npm i -S requirejs systemjs 
+$ npm i -D es-module-loader
+
+$ npm i -D browserify
+
+
+```
+
+https://www.sitepoint.com/modular-javascript-systemjs-jspm/
+https://github.com/systemjs/plugin-babel
+https://github.com/systemjs/systemjs
+
+https://github.com/ModuleLoader/es-module-loader
+https://github.com/ModuleLoader/browser-es-module-loader
+https://github.com/ModuleLoader/browser-es-module-loader/blob/master/package.json
+
+```json
+
+    "devDependencies": {
+        "rollup": "^0.34.7",
+        "babel-core": "^6.22.1",
+        "babel-plugin-syntax-dynamic-import": "^6.18.0",
+        "babel-plugin-transform-es2015-modules-systemjs": "^6.22.0",
+        "browserify": "^13.1.0",
+        "es-module-loader": "^2.0.0",
+        "rollup-plugin-node-resolve": "^2.0.0"
+    },
+    "scripts": {
+        "prepublish": "npm run build",
+        "build": "mkdir -p dist && browserify src/index.js > dist/bundle.min.js && rollup -c"
+    }
+
+```
+
+
 
 
 /usr/local/apache2/webapps/information
@@ -37,6 +83,13 @@ http://10.1.5.202/information/newsinfo/
 
 http://10.1.5.202/queryservice/news/content/564082427896
 
+// 研报 摘要
+http://10.1.5.202/webservice/researchreport/research/zy/551173471225
+
+
+
+
+```js
 
 {
     "Title": "温州宏丰:实控人增持过程中误操作 出现短线交易",
@@ -50,6 +103,41 @@ http://10.1.5.202/queryservice/news/content/564082427896
 
 ```
 
+
+字体：大 中 小 12px 14px 16px
+
+
+Blockchain Fundamentals
+
+solidity
+
+.sol
+
+Introduction to Bitcoin and Decentralized Technology
+
+
+
+https://medium.freecodecamp.org/lets-learn-javascript-closures-66feb44f6a44#.dr9v9ufob
+
+Currying
+
+
+```js
+
+function add(x) {
+    // x = 1
+    console.log(`first outer function argument x =`, x);
+    return function (y) {
+        // y = 41
+        console.log(`second inner function argument y =`, y);
+        return x + y;
+    };
+}
+
+const incremenent1 = add(1);
+increment1(41); // 42
+
+```
 
 
 
@@ -324,6 +412,8 @@ http://www.requirejs.org/docs/download.html#requirejs
 
 $ npm i -g requirejs
 
+$ npm i -S requirejs
+$ npm i -D requirejs
 
 ```
 
@@ -341,6 +431,9 @@ https://github.com/browserify/browserify
 ```sh
 
 $ npm i -g browserify
+
+$ npm i -S browserify
+$ npm i -D browserify
 
 ```
 

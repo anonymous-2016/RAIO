@@ -10,6 +10,6 @@ define([], function(){
 
 // dependency
 // no need `.js`
-define(['a', 'b', ...], function(a, b){
+define(['a', 'b', ...obj], function(a, b){
     // 
 });

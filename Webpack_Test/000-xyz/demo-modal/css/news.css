@@ -1,0 +1,200 @@
+
+ .form-control {
+    height: 27px;
+    padding: 0;
+    font-size: 14px;
+}
+
+.btn {
+    padding: 3px 12px;
+    border-radius: 0;
+    background: #3385ff;
+    color: #fff;
+}
+
+
+
+
+
+.left {
+    width: 218px;
+    /* width: 14%; */
+    height: 100%;
+    float: left;
+    border: 1px solid rgb(217,221,225);
+    position: fixed;
+    top: 0;
+    background: rgb(244,249,255);
+    z-index: 10;
+}
+
+.leftNav {
+    /*height: 28px;*/
+    text-align: center;
+    line-height: 28px;
+    /*background: rgb(237,237,241);*/
+}
+#leftNav_id .leftactive {
+    background: rgb(244,249,255);
+    border: none;
+}
+.leftNav li {
+    /*width: 108px;*/
+    width: 100%;
+    float: left;
+    text-align: center;
+    border: 1px solid rgb(201,205,209);
+}
+
+.col-md-2{
+ padding-right: 0;
+ padding-left: 0;
+}
+
+.leftCon {
+    overflow-x: hidden;
+    overflow-y: auto;
+    height: 98%;
+    margin: 5px auto;
+}
+
+.leftCon li {
+    line-height: 27px;
+    /* height: 57px; */
+    width: 100%;
+    margin-left: 10px;
+}
+
+.leftCon a, .leftCon span {
+    font-weight: bold;
+    cursor: pointer;
+}
+.openClose {
+    width: 14px;
+    height: 14px;
+    display: inline-block;
+    background: url(../img/jjh.png) 0 14px;
+    margin-right: 5px;
+}
+#LeftUl a {
+    display: inline-block;
+    width: 80%;
+    height: 100%;
+}
+.leftCon a, .leftCon span {
+    font-weight: bold;
+    cursor: pointer;
+}
+.active>a {
+    background: #3385ff;
+    color: #FFF;
+}
+
+#LeftUl a {
+    display: inline-block;
+    width: 80%;
+    height: 100%;
+}
+.leftCon a, .leftCon span {
+    font-weight: bold;
+    cursor: pointer;
+}
+.changeHide1 {
+    color: rgb(15,113,180);
+}
+
+.openCloseclose {
+    width: 14px;
+    height: 14px;
+    display: inline-block;
+    background: url(../img/jjh.png) -14px 28px;
+    margin-right: 6px;
+}
+
+.child_hide {
+    background: url(../img/line_conn.gif) 0 0 repeat-y;
+}
+
+.linetwo {
+    line-height: 0;
+    margin: 0;
+    width: 23px;
+    height: 18px;
+    display: inline-block;
+    vertical-align: middle;
+    border: 0 none;
+    cursor: pointer;
+    outline: none;
+    background-color: transparent;
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    background: url(../img/zTreeStandard.png) -55px -18px;
+}
+
+
+
+.mdyCon {
+    margin: 0 0 12px 0;
+}
+.dyList {
+    width: 95%;
+    margin: 3px auto;
+    height: 25px;
+}
+.dyList div {
+    float: left;
+}
+.dyListLeft {
+    height: 25px;
+    line-height: 25px;
+    text-align: left;
+    width: 70%;
+}
+.dyListRightUp, .dyListRightDel {
+    width: 23px;
+    height: 23px;
+    text-align: center;
+    background: url(../img/edit.png) no-repeat center;
+    border: 1px solid #a5bacf;
+    margin-top: 2px;
+    margin-right: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.dyListRightDel {
+    background: url(../img/del.png) no-repeat center;
+}
+.addmydy {
+    width: 96%;
+    margin: 0 auto;
+    height: 27px;
+    line-height: 24px;
+    text-align: center;
+    border: 1px solid #a5bacf;
+}
+/*
+
+*/
+
+.form-inline{
+    text-align: left;
+    color: #2e2f33;
+    margin-left: 10px;
+    padding-top: 11px;
+    width: 836px;
+}
+
+
+/*
+∑÷“≥∞¥≈•
+*/
+ 
+.Page{
+    width: 100%;
+    height: 31px;
+}
+
+
+#rdxwTable{
+    overflow-y: scroll;
+}

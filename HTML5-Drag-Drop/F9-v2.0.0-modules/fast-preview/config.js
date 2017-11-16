@@ -39,6 +39,7 @@ STOCK_F9_FV.Utils.getURL = STOCK_F9_FV.Utils.getURL || ((gil_obj = {
         gil_uid,
         gil_code
     } = gil_obj;
+    // {...gil_obj}
     let keys = Object.keys(gil_obj);
     // let values = Object.values(gil_obj);
     init_keys.forEach(

@@ -1,0 +1,99 @@
+/*
+ * 公共
+ */
+
+#ggtopnews .form-control {
+    height: 27px;
+    padding: 0;
+    font-size: 14px;
+}
+
+.btn {
+    padding: 3px 12px;
+}
+
+/*
+ * 左侧导航栏
+ */
+
+.fixNav {
+    width: 20%;
+    height: 660px;
+    /*border: 1px solid yellow;*/
+    float: left;
+    overflow: auto;
+    background: #E9E9E9;
+}
+
+.fixNavDetail {
+    width: 70%;
+    margin: 0 auto;
+    height: 100%;
+}
+
+.fixNavDetail ul {
+    text-align: left;
+    line-height: 33px;
+}
+
+.fixNavDetail ul li {
+    height: auto;
+    width: 100%;
+
+}
+
+.fixNavDetail ul li ul {
+    text-align: center;
+
+}
+
+.fixNavDetail ul li ul li {
+    height: auto;
+    width: auto;
+
+}
+
+/*
+ * 右侧新闻列表
+ */
+
+
+.selectTime {
+    /*width: 910px;*/
+    height: 50px;
+    color: #fff;
+    border: 1px solid #e0e0e0;
+    margin-bottom: 5px;
+}
+
+.selectDetail {
+    padding-top: 5px;
+    padding-left: 5px;
+    color: #000;
+}
+
+.selectDetail select {
+    color: #000;
+}
+
+.selectDetail input[type="button"] {
+
+    width: 70px;
+    height: 80%;
+    text-align: center;
+    line-height: 16px;
+    background: #EBEBEB;
+    color: #000;
+}
+
+
+
+#rdxwTable table tr td, #rdxwTable table tr th {
+    /*border: 0;*/
+}
+
+.selectBtn {
+    width: 60px;
+    background: #3385ff;
+    color: #fff;
+}
