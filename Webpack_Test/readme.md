@@ -4,6 +4,87 @@
 https://developer.mozilla.org/zh-CN/
 
 
+
+
+
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise
+
+https://stackoverflow.com/questions/32612877/how-to-assign-the-returned-value-of-a-promise-to-a-variable
+
+
+https://developers.google.com/web/fundamentals/primers/promises
+
+https://stackoverflow.com/questions/42691436/typescript-how-to-structure-a-fetch-api-call-inside-a-method-that-returns-a-pro
+
+```js
+
+var STOCK_F9_FV = STOCK_F9_FV || {};
+// sub namespaces
+STOCK_F9_FV.Utils = STOCK_F9_FV.Utils || {};
+// IIFE === Closure!
+STOCK_F9_FV.Utils.FetchNewsSummary = STOCK_F9_FV.Utils.FetchNewsSummary || (
+    (url = `http://10.1.5.202/queryservice/news/content/564082789530`, debug = false) => {
+        if (debug) {
+            console.log(`News Summary url = \n`, url);
+        }
+        const datas = {};
+        fetch(url)
+        .then(res => res.json())
+        .then(
+            (json) => {
+                if (debug) {
+                    console.log(`News Summary json = \n`, JSON.stringify(json, null, 4));
+                    Object.assign(datas, json);
+                    console.log(`News Summary datas = \n`, JSON.stringify(datas, null, 4));
+                    return datas;
+                }
+            }
+        )
+        .catch(err => console.log(`News Summary Error Infos: \n`, err));
+        setTimeout(() => {
+            console.log(`News Summary datas = \n`, JSON.stringify(datas, null, 4));
+            // return datas;
+        }, 0);
+    }
+);
+
+
+
+
+FetchNewsSummary = (url = `http://10.1.5.202/queryservice/news/content/564082789530`, debug = true) => {
+    if (debug) {
+        console.log(`News Summary url = \n`, url);
+    }
+    const datas = {};
+    fetch(url)
+    .then(res => res.json())
+    .then(
+        (json) => {
+            if (debug) {
+                console.log(`News Summary json = \n`, JSON.stringify(json, null, 4));
+                Object.assign(datas, json);
+                console.log(`News Summary datas = \n`, JSON.stringify(datas, null, 4));
+                return datas;
+            }
+        }
+    )
+    .catch(err => console.log(`News Summary Error Infos: \n`, err));
+    setTimeout(() => {
+        console.log(`setTimeout & datas = \n`, JSON.stringify(datas, null, 4));
+        // setTimeout & datas = {} ???
+        // return datas;
+    }, 3000);
+};
+
+FetchNewsSummary();
+
+x = FetchNewsSummary();
+
+```
+
+
+
+
 ```md
 
 .babelrc
