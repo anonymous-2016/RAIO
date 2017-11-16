@@ -4,6 +4,217 @@
 https://developer.mozilla.org/zh-CN/
 
 
+```md
+
+.babelrc
+
+{
+    "presets": ["es2015"],
+    "plugins":["transform-object-rest-spread"]
+}
+
+
+"presets": ["es2015"]
+
+query: {
+    presets: ['es2015'],
+}
+
+options: {
+    modules: true
+}
+
+```
+
+
+https://weblogs.asp.net/dwahlin/getting-started-with-es6-%E2%80%93-transpiling-es6-to-es5
+https://github.com/danwahlin/es6samples
+
+
+https://webpack.js.org/concepts/loaders/
+
+https://webpack.js.org/loaders/babel-loader/#src/components/Sidebar/Sidebar.jsx
+
+
+https://webpack.js.org/loaders/
+
+https://babeljs.io/docs/usage/api/#options
+https://babeljs.io/docs/plugins/#presets
+
+
+> Each yearly preset only compiles what was ratified in that year. 
+
+`babel-preset-env` replaces `es2015, es2016, es2017, latest`
+
+
+https://babeljs.io/docs/plugins/preset-es2015/
+
+https://babeljs.io/docs/plugins/transform-es2015-arrow-functions/
+
+.babelrc
+
+```json
+
+{
+    "plugins": ["transform-es2015-arrow-functions"]
+}
+
+
+{
+    "plugins": [
+        ["transform-es2015-arrow-functions", { "spec": true }]
+    ]
+}
+
+// https://babeljs.io/docs/plugins/preset-es2015/
+{
+    "presets": ["es2015"]
+}
+// "amd" | "umd" | "systemjs" | "commonjs" | false, defaults to "commonjs".
+// boolean, defaults to false.
+// boolean, defaults to false.
+
+{
+    "plugins": [
+        ["transform-es2015-arrow-functions", { "spec": true }]
+    ]
+}
+
+```
+
+$ npm i -D babel-cli babel-preset-es2015
+
+https://babeljs.io/docs/usage/cli/
+
+https://babeljs.io/docs/usage/api/#options
+
+
+https://webpack.js.org/configuration/module/#rule-options-rule-query
+
+```js
+
+parser: {
+    amd: false, // disable AMD
+    commonjs: false, // disable CommonJS
+    system: false, // disable SystemJS
+    harmony: false, // disable ES2015 Harmony import/export
+    requireInclude: false, // disable require.include
+    requireEnsure: false, // disable require.ensure
+    requireContext: false, // disable require.context
+    browserify: false, // disable special handling of Browserify bundles
+    requireJs: false, // disable requirejs.*
+    node: false, // disable __dirname, __filename, module, require.extensions, require.main, etc.
+    node: {...} // reconfigure node layer on module level
+}
+```
+
+https://moduscreate.com/blog/optimizing-react-es6-webpack-production-build/
+
+{
+    "presets": ["es2015", "react"]
+}
+
+
+```js
+// query: {
+//     presets: ['es2015'],
+// }
+// "presets": ["es2015"]
+// .babelrc
+
+
+# webpack 3.x | babel-loader 8.x | babel 7.x
+$ npm i -D babel-loader@8.0.0-beta.0 @babel/core @babel/preset-env webpack
+
+# webpack 3.x babel-loader 7.x | babel 6.x
+$ npm i -D babel-loader babel-core babel-preset-env webpack
+
+
+
+$ npm i -D babel-plugin-transform-runtime
+$ npm i -S babel-runtime
+
+module: {
+    rules: [
+        {
+            test: /\.js$/,
+            exclude: /(node_modules|bower_components)/,
+            use: {
+                loader: 'babel-loader',
+                options: {
+                    presets: ['preset-env'],
+                    // presets: ['@babel/preset-env'],
+                    // plugins: [require('@babel/plugin-transform-object-rest-spread')]
+                    // plugins: ['@babel/transform-runtime']
+                }
+            }
+        }
+    ]
+}
+
+```
+
+https://moduscreate.com/blog/optimizing-react-es6-webpack-production-build/
+
+https://github.com/babel/babel-preset-env/issues/186
+
+https://github.com/webpack/webpack/issues/2785
+
+https://stackoverflow.com/questions/36986133/couldnt-find-preset-es2015-relative-to-directory
+
+
+{
+    "presets": ["preset-env"]
+}
+
+
+https://doc.webpack-china.org/configuration/
+
+https://webpack.js.org/configuration/
+
+https://webpack.js.org/configuration/module/#rule-use
+https://webpack.js.org/configuration/module/#rule-loader
+
+https://webpack.js.org/configuration/module/#module-rules
+
+https://webpack.js.org/configuration/module/#useentry
+
+https://webpack.js.org/configuration/module/#rule-test
+
+
+{
+    loader: "css-loader",
+    options: {
+        modules: true
+    }
+}
+
+# presets: ['env']
+
+
+https://github.com/webpack/webpack/issues/2785
+
+http://www.css88.com/doc/webpack/loaders/babel-loader/
+
+```js
+
+module: {
+    rules: [
+        {
+            test: /\.js$/,
+            exclude: /(node_modules|bower_components)/,
+            use: {
+                loader: 'babel-loader',
+                options: {
+                    presets: ['env']
+                }
+            }
+        }
+    ]
+}
+
+```
+
 
 ```sh
 

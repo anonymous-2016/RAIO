@@ -10,6 +10,10 @@
 
 const path = require('path');
 const webpack = require('webpack'); //to access built-in plugins
+const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+// const CleanWebpackPlugin = require('clean-webpack-plugin');
+
 const BASE_URI = {
     WEB: './src/modules/'
 };
@@ -55,11 +59,91 @@ module.exports = {
         // 引用的 loader
         rules: [
             {
-                test: /\.js$/,
-                exclude: /node_modules/,
-                use: 'babel-loader'
+                test: /\.js$/,// test: /\.(js|jsx)$/,
+                exclude: /node_modules/,// exclude: /(node_modules|bower_components)/,
+                // use: 'babel-loader',
+                // loader: "babel-loader",
+                // options: {
+                //     // presets: ['@babel/preset-env'],
+                //     // presets: ["es2015"],
+                //     presets: ['preset-env']
+                // }
+                use: {
+                    loader: 'babel-loader',
+                    options: {
+                        // presets: ['es2015'],
+                        // presets: ['preset-env'],
+                        presets: ['env']
+                    }
+                }
+            },
+            {
+                test: /\.css$/,// test: /\.(css|scss|sass)$/,
+                use: [
+                    {
+                        loader: 'style-loader'
+                    },
+                    {
+                        loader: 'css-loader',
+                        options: {
+                            modules: true
+                        }
+                    }
+                ]
             }
         ]
     },
-    devtool: 'source-map',// 避免在生产中使用 inline-*** 和 eval-***，因为它们可以增加 bundle 大小，并降低整体性能。
+    // devtool: 'source-map',
+    // 避免在生产中使用 inline-*** 和 eval-***，因为它们可以增加 bundle 大小，并降低整体性能。
+    plugins: [
+        new UglifyJSPlugin({
+            sourceMap: true,
+            extractComments: true,// {Boolean|RegExp|Function<(node, comment) -> {Boolean|Object}>}
+            // test: /\.js$/i,// test: /\.js($&#124;\?)/i
+            // include: /\/includes/,
+            // exclude: /\/excludes/,
+            // parallel: true,
+            // parallel: {
+            //     cache: true,
+            //     workers: 2, // for e.g
+            // },
+            // uglifyOptions: {
+            //     ie8: true,// ie8: false,
+            //     ecma: 5,//ecma: 8,
+            //     parse: {...options},
+            //     mangle: {
+            //         ...options,
+            //         properties: {
+            //             // mangle property options
+            //         }
+            //     },
+            //     output: {
+            //         comments: false,
+            //         beautify: false,
+            //         ...options
+            //     },
+            //     compress: {...options},
+            //     warnings: false
+            // },
+            // warningsFilter: (src) => true
+        }),
+        // new HtmlWebpackPlugin({
+        //     title: 'using ES6 today with webpack3',
+        //     template: './src/index.html'
+        // }),
+        // new CleanWebpackPlugin(['dist']),
+        // new webpack.SourceMapDevToolPlugin({
+        //     filename: '[name].js.map',
+        //     exclude: ['vendor.js']
+        // }),
+        // new webpack.DefinePlugin({
+        //     'process.env': {
+        //         'NODE_ENV': JSON.stringify('production')
+        //         // ??? config('production')/config('development')
+        //     }
+        // }),
+        // new webpack.NamedModulesPlugin(),
+        // new webpack.HotModuleReplacementPlugin(),
+        // new WebpackDevServer(compiler, options)
+    ]
 };
