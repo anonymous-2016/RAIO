@@ -13,6 +13,10 @@ http://10.1.5.202/stock/f9/demo-modal/company-news.html
 
 http://10.1.5.202/information/newsinfo/
 
+file:///E:/github/RAIO/Webpack_Test/000-xyz/demo-modal/company-news.html
+
+
+
 
 
 ```sh
@@ -36,6 +40,8 @@ https://stackoverflow.com/questions/32612877/how-to-assign-the-returned-value-of
 https://developers.google.com/web/fundamentals/primers/promises
 
 https://stackoverflow.com/questions/42691436/typescript-how-to-structure-a-fetch-api-call-inside-a-method-that-returns-a-pro
+
+
 
 ```js
 

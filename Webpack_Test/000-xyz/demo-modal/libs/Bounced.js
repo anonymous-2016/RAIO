@@ -81,6 +81,7 @@ function ModalX(){
 
 /* 弹框的基本对象 */
 function BouncedModal(options){
+    console.log(`BouncedModal's options = \n`, JSON.stringify(options, null, 4));
     this.config = {
         layerBoxClass :"layerBox",
         layerclass:"",
@@ -108,6 +109,73 @@ BouncedModal.prototype = {
         that.config.zIndex++;
         var s = UDP.Public.view();
         // UDP ???
+        const BAD_URLs = [
+            "聚源数据",
+            "WWW",
+            "qq",
+            "ww",
+            "www.",
+            "www",
+            "wwww",
+            "http://data.east",
+            "http://www.",
+            "http://www.eweb",
+            "https://wx.qq.com/"
+        ];
+        // shape data ???
+        const data = that.config.datas;
+        console.log(`BouncedModal's data = \n`, JSON.stringify(data, null, 4));
+        let url_link = BAD_URLs.includes(data.Url) === true ? `` : `
+            <a
+                style="margin-left:10px;color:#5389d2;"
+                class="gotext"
+                id="linkyuanwen"
+                target="_blank"
+                data-value="${data.Url}"
+                href="${data.Url}">
+                查看原文
+                <i class="icon-external-link"></i>
+            </a>
+        `;
+        // value="${data.Url}" !== href="${data.Url}"
+        const html_template = `
+            <div>
+                <div class="modal-title">
+                    <h3 style="margin-left: 15px;">${data.Title}</h3>
+                </div>
+                <div class="zxdtData">
+                    <div class="fontSize" id="fontsize">
+                        <span>字体：</span>
+                        <span class="fontBtn">
+                            <a id="big">大</a>
+                        </span>
+                        <span class="fontBtn">
+                            <a id="middle">中</a>
+                        </span>
+                        <span class="fontBtn active">
+                            <a id="small">小</a>
+                        </span>
+                    </div>
+                    <div class="model-Info">
+                        <span>
+                            来源：
+                            <span id="zxdtlaiyuan" class="">
+                                ${data.Infosource}
+                            </span>
+                            &nbsp;
+                        </span>
+                        <span id="zxdtPubDate" class="">${data.PublishDate}</span>&nbsp;
+                        ${url_link}
+                    </div>
+                    <div class="clr"></div>
+                </div>
+                <div class="modal-body" style="overflow: auto;text-align: left;">
+                    <div id="zxdtContent">
+                        ${data.Content}
+                    </div>
+                </div>
+            </div>
+        `;
         str = `
             <div class="overlay" style="z-index: ${that.config.zIndex}">
                 <div
@@ -117,23 +185,18 @@ BouncedModal.prototype = {
                         ${this.config.title}
                         <a href="javascript:;" class="close_btn"></a>
                     </h5>
-                    <div class="layerContianer '+this.config.layerclass+'" style="'+this.config.setOverflow+'">
-                        ${that.config.str}
+                    <div class="layerContianer ${this.config.layerclass}" style="${this.config.setOverflow}">
+                        ${html_template}
                     </div>
                 </div>
+            </div>
         `;
-        /* str = '<div class="overlay" style="z-index:'+that.config.zIndex+'">' +
-            '<div class="animated zoomIn '+that.config.layerBoxClass+'" style = "width:'+ this.config.width+'px;height:'+this.config.height+'px">' +
-            '<h5 class="layerHeader">'+this.config.title+'<a href="javascript:;" class="close_btn"></a></h5><div class="layerContianer '+this.config.layerclass+'" style="'+this.config.setOverflow+'">' +
-            that.config.str+
-            '</div></div>'; */
-        //$("body").append(str);
         $("#zxdtModal").empty().html(str);
-        $(".modal-body").css("height",getClientHeight()-200);
+        $(".modal-body").css("height", getClientHeight()-200);
         $(window).resize(function() {
-            $(".layerBox").css("width",$(window).width()-60+"px");
-            $(".layerBox").css("height",$(window).height()-80+"px");
-            $(".modal-body").css("height",getClientHeight()-200);
+            $(".layerBox").css("width", $(window).width()-60+"px");
+            $(".layerBox").css("height", $(window).height()-80+"px");
+            $(".modal-body").css("height", getClientHeight()-200);
         });
 
         $(".close_btn").click(function (){

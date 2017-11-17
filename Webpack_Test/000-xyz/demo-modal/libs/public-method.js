@@ -1,20 +1,3 @@
-function getClientWidth() {
-    if(navigator.userAgent.indexOf("MSIE 6.0")!=-1)
-    {
-        return document.body.clientWidth;
-    }
-    return document.documentElement.clientWidth;
-}
-
-function getClientHeight() {
-    if(navigator.userAgent.indexOf("MSIE 6.0")!=-1)
-    {
-        return document.body.clientHeight;
-    }
-    return document.documentElement.clientHeight;
-}
-
-
 // namespaces
 var STOCK_F9_FV = STOCK_F9_FV || {};
 // sub namespaces
@@ -23,32 +6,84 @@ STOCK_F9_FV.Modal = STOCK_F9_FV.Modal || {};
 STOCK_F9_FV.Modal.Public = STOCK_F9_FV.Modal.Public  || ((debug = false) => {
     return {
         view: () => {
+            const w = document.documentElement.clientWidth;
+            const h = document.documentElement.clientHeight;
+            if (!debug) {
+                console.log(`clientHeight = `, h);
+                console.log(`clientWidth = `, w);
+            }
             //w:可视区域的宽度
             // h:可视区域的高度
-            return{
-                w: document.documentElement.clientWidth,
-                h: document.documentElement.clientHeight
+            return {
+                w,
+                h
             };
         },
     }
 });
 
-/* 
 
-function Public(){
-    return {
-        view:function(){
-            return{
-                //w:可视区域的宽度    h:可视区域的高度
-                w:document.documentElement.clientWidth,
-                h:document.documentElement.clientHeight
-            }
-        }
+
+STOCK_F9_FV.Modal.getClientWidthHeight = STOCK_F9_FV.Modal.getClientWidthHeight  || ((debug = false) => {
+    let width = 0,
+        height = 0,
+        isIE = navigator.userAgent.indexOf("MSIE 6.0") !== -1 ? true : false;
+    if(!isIE){
+        width = document.body.clientWidth;
+        height = document.body.clientHeight;
+    }else{
+        width = document.documentElement.clientWidth;
+        height = document.documentElement.clientHeight;
     }
+    return {
+        w: width,
+        h: height
+    };
+});
+
+
+STOCK_F9_FV.Modal.getClientWidth = STOCK_F9_FV.Modal.getClientWidth  || ((debug = false) => {
+    let width = 0;
+    let isIE = navigator.userAgent.indexOf("MSIE 6.0") !== -1 ? true : false;
+    if(!isIE){
+        width = document.body.clientWidth;
+    }else{
+        width = document.documentElement.clientWidth;
+    }
+    return {
+        // width: width,
+        width 
+    };
+});
+
+STOCK_F9_FV.Modal.getClientHeight = STOCK_F9_FV.Modal.getClientHeight  || ((debug = false) => {
+    let height = 0;
+    let isIE = navigator.userAgent.indexOf("MSIE 6.0") !== -1 ? true : false;
+    if(!isIE){
+        height = document.body.clientHeight;
+    }else{
+        height = document.documentElement.clientHeight;
+    }
+    return {
+        // width: width,
+        height 
+    };
+});
+
+
+function getClientWidth() {
+    if(navigator.userAgent.indexOf("MSIE 6.0")!=-1){
+        return document.body.clientWidth;
+    }
+    return document.documentElement.clientWidth;
 }
 
-
-*/
+function getClientHeight() {
+    if(navigator.userAgent.indexOf("MSIE 6.0")!=-1){
+        return document.body.clientHeight;
+    }
+    return document.documentElement.clientHeight;
+}
 
 
 (function (win) {
@@ -56,7 +91,10 @@ function Public(){
         win["UDP"].Public = STOCK_F9_FV.Modal.Public();
     }else{
         win.UDP = {
-            Public: STOCK_F9_FV.Modal.Public()
+            Public: STOCK_F9_FV.Modal.Public(),
+            getClientWidth: STOCK_F9_FV.Modal.getClientWidth(),
+            getClientHeight: STOCK_F9_FV.Modal.getClientHeight(),
+            getClientWidthHeight: STOCK_F9_FV.Modal.getClientWidthHeight()
         };
     }
 })(window);
