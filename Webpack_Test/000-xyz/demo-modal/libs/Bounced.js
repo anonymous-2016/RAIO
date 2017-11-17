@@ -1,10 +1,9 @@
-/**
- * Created by xhgx on 2017/4/24.
- * zhge yilai nnnn xian
- */
+
 /*本页面依赖于public-method.js*/
-/*弹框的基本对象*/
-function  Bounced(options){
+
+
+/* 弹框的基本对象 */
+function BouncedModal(options){
     this.config = {
         layerBoxClass :"layerBox",
         layerclass:"",
@@ -16,17 +15,14 @@ function  Bounced(options){
         str:"",
         callback: function () { }
     };
-    $.extend(this.config,options);
+    $.extend(this.config, options);
     // jquery plugin ???
 }
 
 
-
-
-
-Bounced.prototype = {
+BouncedModal.prototype = {
     /*创建弹出框*/
-    _createDialog:function(state){
+    _createDialog: function(state){
         var that = this;
         var str = "";
         that.config.zIndex++;
@@ -59,13 +55,14 @@ Bounced.prototype = {
         return str;
     },
     /*移除弹框*/
-    delDialog:function(ele){
+    delDialog: function(ele){
         $(ele).parents(".overlay").remove();
     },
     /*移动弹框*/
-    moveDialog:function(ele){
+    moveDialog: function(ele){
         var that = this;
         var s = UDP.Public.view();
+        // mousedown & mouseup
         $(".layerHeader").mousedown(function(e){
             var theme = this;
             var moveEle = $(theme).parents("."+that.config.layerBoxClass);
@@ -88,9 +85,10 @@ Bounced.prototype = {
         });
     },
     /*手动调整弹框大小*/
-    revampSize:function(){
+    revampSize: function(){
         var that = this;
         var s = UDP.Public.view();
+        // 
         $(".layer-size").mousedown(function(e){
             var theme = this;
             var moveEle = $(theme).parents("."+that.config.layerBoxClass);
@@ -127,21 +125,23 @@ Bounced.prototype = {
                     $("#zxdtContent").css("font-size",'12px');
             }
         });
-    }
-    ,show:function(){
+    },
+    init: function(){
         this._createDialog();
         this.moveDialog();
         this.revampSize();
         this.changeSize();
     }
+};
 
-}
 
-;(function(win){
+(function(win){
     if(win["UDP"]){
-        win["UDP"].Bounced = Bounced;
+        win["UDP"].BouncedModal = BouncedModal;
     }else{
-        win.UDP = {Bounced:Bounced};
+        win.UDP = {
+            BouncedModal:BouncedModal
+        };
     }
 })(window);
 

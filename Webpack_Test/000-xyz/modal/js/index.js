@@ -125,9 +125,9 @@ $(function () {
 $("#rdxwTable a").live('click', function () {
     if($(this).hasClass('newsTitle')){
         $(this).addClass("gray");
-        let zxdtModal = $("#zxdtModal"),
-            name = $(this).html();
-            id = $(this).attr('id');
+        let zxdtModal = $("#zxdtModal"),// modal container!
+            name = $(this).html();// get title
+            id = $(this).attr('id');// get uid
         // fetch data
         // <i class="icon-external-link"></i> icons
         // http://10.1.5.202/queryservice/news/content/564082789530

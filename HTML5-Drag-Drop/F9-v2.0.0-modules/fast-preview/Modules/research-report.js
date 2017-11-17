@@ -34,7 +34,7 @@ STOCK_F9_FV.Modules.researchReport = STOCK_F9_FV.Modules.researchReport || ((url
             let arr = data;
             arr.map(
                 (obj, i) => {
-                    let publishDate = (arr[i].publishDate !== undefined) ? arr[i].publishDate : `暂无数据`,
+                    let date = (arr[i].publishDate !== undefined) ? arr[i].publishDate : `暂无数据`,
                         title = `${(arr[i].title !== undefined) ? arr[i].title : `暂无数据`}`,
                         id = `${(arr[i].researchId !== undefined) ? arr[i].researchId : `暂无数据`}`,
                         type = `${(arr[i].fileType !== undefined) ? arr[i].fileType : `暂无数据`}`;
@@ -44,21 +44,22 @@ STOCK_F9_FV.Modules.researchReport = STOCK_F9_FV.Modules.researchReport || ((url
                     // only show 5 items
                     if (i < 5) {
                         html_string += `
-                            <tr class="fv-recent-important-events-table-tr">
-                                <td class="fv-recent-important-events-table-td-key" data-value="data-fv-events">
+                            <tr class="fv-research-report-table-tr">
+                                <td class="fv-research-report-table-td-key" data-value="data-fv-events">
                                     ${date}
                                 </td>
-                                <td class="fv-recent-important-events-table-td-value" data-value="data-fv-events">
+                                <td class="fv-research-report-table-td-value" data-value="data-fv-events">
                                     <a 
                                         href="#${id}"
                                         data-uid="${id}"
-                                        data-eventsId="${id}"
-                                        data-turn-to-uid="recent-important-events"
-                                        title="${description}"
+                                        data-type="${type}"
+                                        data-turn-to-uid="research-report"
+                                        title="${title}"
+                                        data-title="${title}"
                                         data-disabled="${ id !== "null" ? false : true}"
-                                        data-link="fv-recent-important-events-link"
-                                        data-link-detail="recent-important-events-link-detail-module">
-                                        ${description}
+                                        data-link="fv-research-report-link"
+                                        data-link-detail="research-report-link-detail-module">
+                                        ${title}
                                     </a>
                                 </td>
                             </tr>
@@ -96,7 +97,7 @@ STOCK_F9_FV.Modules.researchReport = STOCK_F9_FV.Modules.researchReport || ((url
                             console.log(`e.target.dataset.uid = \n`, e.target.dataset.uid);
                             console.log(`e.target.dataset.disabled = \n`, e.target.dataset.disabled);
                         }
-                        let id = e.target.dataset.researchid,
+                        let id = e.target.dataset.uid,
                             type = e.target.dataset.type,
                             title = e.target.dataset.title;
                         try {

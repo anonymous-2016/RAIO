@@ -92,43 +92,92 @@ STOCK_F9_FV.Modules.companyNews = STOCK_F9_FV.Modules.companyNews || ((url = ``,
                         let id = e.target.dataset.newsid,
                             title = e.target.dataset.title;
                         try {
+                            let open_link = `${host}/queryservice/news/content/${id}`;
                             if (!debug) {
-                                console.log(`id = ${id} \n title = ${title}`);
-                                alert(`id = ${id} \n title = ${title}`);
+                                console.log(`id = ${id} \ntitle = ${title}`);
+                                // alert(`id = ${id} \n title = ${title}`);
                             }
-                            // 
-                            // let open_link = `${host}/queryservice/news/content/${id}`;
-                            // ChromeExternal.Execute("OpenFile", open_link);
-                            // no need ChromeExternal any more!
-                            // open features ???
-                            // console.log(`e.target.dataset.title = \n`, e.target.dataset.title);
-                            /* 
-                                const windows = {
-                                    // url: `${host}/queryservice/news/content/${id}`,
-                                    url: `https://cdn.xgqfrms.xyz/`,
-                                    title: `${title}`,
-                                    // options: "menubar=yes,location=yes,resizable=yes,scrollbars=yes,status=yes";
-                                    options: {
-                                        menubar: `yes`,
-                                        location: `yes`,
-                                        resizable: `yes`,
-                                        scrollbars: `yes`,
-                                        status: `yes`//,
-                                    }
-                                };
-                                // window.open({...windows});
-                                // window.open(`${host}/queryservice/news/content/${id}`);
-                                // window.open(windows.url, windows.title, windows.options);
-                                let wo = window.open();
-                                    wo.document.head.innerHTML = `<title>公司新闻</title>`;
-                                    wo.document.body.innerHTML = `<p>Your content here</p>`;
-                                let w =window.open();
-                                    w.document.open().write('content');
-                                setTimeout(() => {
-                                    wo.close();
-                                    w.close();
-                                }, 30000);
-                            */
+                            // fetch news summary data
+                            const data = {
+                                "Title": "永清环保获批“战略性新兴产业科技攻关与重大科技成果转化专项”",
+                                "Id": 564082251803,
+                                "Content": "　　证券时报网11月15日讯 记者获悉,近日,湖南省科技厅公告了《关于2017年度省战略性新兴产业科技攻关与重大科技成果转化专项立项项目的公示》。永清环保(300187)承担的“钢铁冶金行业烧结与球团烟气新型超低排放耦合技术研发与应用”成功获得专项立项。据悉,项目将为我国钢铁行业烟气污染物深度净化提供技术及应用支撑,对推动湖南省环保事业在雾霾治理、资源节约利用、钢铁企业去产能等方面实现可持续发展具有重大意义。\n",
+                                "PublishDate": "2017-11-15  17:34:07",
+                                "Infosource": "证券时报网",
+                                "Url": "http://kuaixun.stcn.com/2017/1115/13771940.shtml"
+                            };
+                            // show modal
+                            const BAD_URLs = [
+                                "聚源数据",
+                                "WWW",
+                                "qq",
+                                "ww",
+                                "www.",
+                                "www",
+                                "wwww",
+                                "http://data.east",
+                                "http://www.",
+                                "http://www.eweb",
+                                "https://wx.qq.com/"
+                            ];
+                            // shape data ???
+                            let url_link = BAD_URLs.includes(data.Url) === true ? `` : `
+                                <a style="margin-left:10px;color:#5389d2;" class="gotext" id="linkyuanwen" value="${data.Url}">
+                                    查看原文
+                                    <i class="icon-external-link"></i>
+                                </a>
+                            `;
+                            const html_template = `
+                                <div>
+                                    <div class="modal-title">
+                                        <h3 style="margin-left: 15px;">${data.Title}</h3>
+                                    </div>
+                                    <div class="zxdtData">
+                                        <div class="fontSize" id="fontsize">
+                                            <span>字体：</span>
+                                            <span class="fontBtn">
+                                                <a id="big">大</a>
+                                            </span>
+                                            <span class="fontBtn">
+                                                <a id="middle">中</a>
+                                            </span>
+                                            <span class="fontBtn active">
+                                                <a id="small">小</a>
+                                            </span>
+                                        </div>
+                                        <div class="model-Info">
+                                            <span>
+                                                来源：
+                                                <span id="zxdtlaiyuan" class="">
+                                                    ${data.Infosource}
+                                                </span>
+                                                &nbsp;
+                                            </span>
+                                            <span id="zxdtPubDate" class="">${data.PublishDate}</span>&nbsp;
+                                            ${url_link}
+                                        </div>
+                                        <div class="clr"></div>
+                                    </div>
+                                    <div class="modal-body" style="overflow: auto;text-align: left;">
+                                        <div id="zxdtContent">
+                                            ${data.Content}
+                                        </div>
+                                    </div>
+                                </div>
+                            `;
+                            const modal = new BouncedModal({
+                                // bouncedclass: "layerContianer2",//存放页面的容器类名
+                                width: getClientWidth()-60,
+                                height: getClientHeight()-80,
+                                alerttit: "公司新闻",
+                                setOverflow: "overflow-y:none",//设置滚动的属性 overflow-y：设置竖向  overflow-x:设置横向
+                                // str: html.join(''),// array to string
+                                str: html_template,
+                                callback:function(){
+                                    // no need ???
+                                }
+                            });
+                            modal.init();
                         } catch (err) {
                             console.log(`${host}/queryservice/news/content/${id}: Error infos = \n`, err);
                             // window.open(`${host}/queryservice/news/content/${id}`);
@@ -144,16 +193,6 @@ STOCK_F9_FV.Modules.companyNews = STOCK_F9_FV.Modules.companyNews || ((url = ``,
 
 STOCK_F9_FV.Modules.companyNews.init = STOCK_F9_FV.Modules.companyNews.init || (
     (url= `http://localhost:3000/fast-preview/json/datas/news.json`) => {
-        // let link_more = document.querySelector(`[data-more="company-news-title"]`);
-        // let link_html = `
-        //     <span id="company_news_link_more">
-        //         <a href="#" title="company-news" data-uid="company_news_link_more">更多 >></a>
-        //     </span>
-        // `;
-        // link_more.insertAdjacentHTML('beforeend', link_html);
-        // let more = document.querySelector(`#company_news_link_more`);
-        // more.classList.add("link-more");
-        // more
         let td_id = document.querySelector('#fv-company-news-tbody');
         // STOCK_F9_FV.Modules.companyNews(url, td_id, true);
         STOCK_F9_FV.Modules.companyNews(url, td_id, false);

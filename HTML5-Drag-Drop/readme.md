@@ -641,6 +641,30 @@ C:\Users\xiagq\Downloads\html5-fundamentals
 整体完成进度 30%
 
 
+股票 F9
+
+完成： 95%;
+
+1. 模块的 自适居中布局
+2. 实现重新设计的两栏模块UI效果
+3. 研究报告/公司公告 等模块 添加下载打开pdf功能
+4. 公司新闻-模块， 添加summary 和 modal
+5. 通用模板-模块
+6. 模块drop 区域提示信息
+7. webpack 压缩打包 js
+
+新三板专题速览
+
+完成： 50%;
+
+1. 三板公告
+2. 三板新闻
+3. 新增挂牌
+
+
+
+
+
 
 # How to Install Bash on Windows 10
 
