@@ -4,9 +4,20 @@
 https://developer.mozilla.org/zh-CN/
 
 
-```sh
-$ npm i -D url-loader file-loader
+http://localhost:3000/modal/index.html
+http://localhost:3004/fast-preview/sidebar.html#563619275318
 
+
+http://10.1.5.202/stock/f9/fastview/sidebar.html
+http://10.1.5.202/stock/f9/demo-modal/company-news.html
+
+http://10.1.5.202/information/newsinfo/
+
+
+
+```sh
+
+$ npm i -D url-loader file-loader
 
 $ npm i -D style-loader css-loader sass-loader
 

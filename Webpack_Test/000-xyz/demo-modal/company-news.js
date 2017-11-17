@@ -122,11 +122,19 @@ STOCK_F9_FV.Modules.companyNews = STOCK_F9_FV.Modules.companyNews || ((url = ``,
                             ];
                             // shape data ???
                             let url_link = BAD_URLs.includes(data.Url) === true ? `` : `
-                                <a style="margin-left:10px;color:#5389d2;" class="gotext" id="linkyuanwen" value="${data.Url}">
+                                <a
+                                    style="margin-left:10px;color:#5389d2;"
+                                    class="gotext"
+                                    id="linkyuanwen"
+                                    target="_blank"
+                                    data-value="${data.Url}"
+                                    href="${data.Url}">
                                     查看原文
                                     <i class="icon-external-link"></i>
                                 </a>
                             `;
+                            // #linkyuanwen
+                            // value="${data.Url}" !== href="${data.Url}"
                             const html_template = `
                                 <div>
                                     <div class="modal-title">
@@ -169,10 +177,11 @@ STOCK_F9_FV.Modules.companyNews = STOCK_F9_FV.Modules.companyNews || ((url = ``,
                                 // bouncedclass: "layerContianer2",//存放页面的容器类名
                                 width: getClientWidth()-60,
                                 height: getClientHeight()-80,
-                                alerttit: "公司新闻",
+                                title: "公司新闻",
                                 setOverflow: "overflow-y:none",//设置滚动的属性 overflow-y：设置竖向  overflow-x:设置横向
                                 // str: html.join(''),// array to string
                                 str: html_template,
+                                datas: data,
                                 callback:function(){
                                     // no need ???
                                 }
