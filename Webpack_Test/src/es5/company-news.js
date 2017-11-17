@@ -106,11 +106,14 @@ STOCK_F9_FV.Modules.companyNews = STOCK_F9_FV.Modules.companyNews || ((url = ``,
                             // console.log(`FetchNewsSummary = ${FetchNewsSummary}`, typeof(FetchNewsSummary));
                             // FetchNewsSummary();
                             let datas = FetchNewsSummary(`http://10.1.5.202/queryservice/news/content/`, `564082789530`, false);
+                            console.log(`FetchNewsSummary datas = \n`, JSON.stringify(datas, null, 4));
                             // let datas = FetchNewsSummary(`http://10.1.5.202/queryservice/news/content/`, `564082789530`, true);
                             setTimeout(() => {
-                                console.log(`FetchNewsSummary datas = \n`, JSON.stringify(datas, null, 4));
+                                console.log(`setTimeout && FetchNewsSummary datas = \n`, JSON.stringify(datas, null, 4));
                                 ShowNewsSummaryModal(datas);
-                            }, 0);
+                            }, 100);
+                            // ??? XHR 200ms
+                            // ??? Fetch 100ms
                             // console.log(`ShowNewsSummaryModal = ${ShowNewsSummaryModal}`, typeof(ShowNewsSummaryModal));
                             // let open_link = `${host}/queryservice/news/content/${id}`;
                             // ChromeExternal.Execute("OpenFile", open_link);
