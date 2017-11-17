@@ -131,6 +131,7 @@ STOCK_F9_FV.Modules.agencyRating = STOCK_F9_FV.Modules.agencyRating || ((url = `
         )
         .catch(error => console.log(`error = \n`, error));
         return datas;
+        // return only work out Promise!
 });
 
 
@@ -420,7 +421,7 @@ STOCK_F9_FV.Modules.agencyRating.init = STOCK_F9_FV.Modules.agencyRating.init ||
         let uid = `agency_rating_hs_container`;
         // let x = STOCK_F9_FV.Modules.agencyRating(url, false, uid);
         // console.log(`x = `, x);
-        // Promise return OK ???
+        // Promise return OK ??? // return only work out Promise!
         STOCK_F9_FV.Modules.agencyRating(url, false, uid);
         // STOCK_F9_FV.Modules.agencyRating(url, true, uid);
     }

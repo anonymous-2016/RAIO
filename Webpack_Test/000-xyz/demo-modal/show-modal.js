@@ -90,7 +90,7 @@ STOCK_F9_FV.Utils.FetchNewsSummary = STOCK_F9_FV.Utils.FetchNewsSummary || (
                     console.log(`News Summary shaped datas = \n`, JSON.stringify(datas, null, 4));
                 }
                 // return shaped_json;
-                return datas; // outer promise variable!
+                // return datas; // outer promise variable!
                 // return json;
                 // undefined & Promise bug!
                 // setTimeout(() => {
@@ -102,6 +102,8 @@ STOCK_F9_FV.Utils.FetchNewsSummary = STOCK_F9_FV.Utils.FetchNewsSummary || (
             }
         )
         .catch(err => console.log(`News Summary Error Infos: \n`, err));
+        return datas;
+        // return only work out Promise!
         /* 
             setTimeout(() => {
                 if (debug) {
