@@ -90,3 +90,50 @@ var request = $.get("http://jsperf.com").done(function() {
 
 
 
+# xhr response json
+
+https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/responseType
+
+> markdown table
+
+```md
+
+# The values supported by `responseType` are the following:
+
+Value   type
+
+""  DOMString (this is the default value)
+"arraybuffer"  ArrayBuffer
+"document"    Document
+"text"    DOMString
+"blob"    Blob
+"json"    JSON
+
+```
+
+
+https://stackoverflow.com/questions/1973140/parsing-json-from-xmlhttprequest-responsejson
+
+
+```js
+
+let json = JSON.parse(xhr.responseText);
+
+```
+
+
+
+https://stackoverflow.com/users/8629798/xgqfrms-gildata
+
+https://stackoverflow.com/users/5934465/xgqfrms
+
+
+
+
+
+
+
+
+
+
+
