@@ -17,7 +17,7 @@ function  Bounced(options){
         callback: function () { }
     };
     $.extend(this.config,options);
-
+    // jquery plugin ???
 }
 
 
@@ -31,6 +31,7 @@ Bounced.prototype = {
         var str = "";
         that.config.zIndex++;
         var s = UDP.Public.view();
+        // UDP ???
         str = '<div class="overlay" style="z-index:'+that.config.zIndex+'">' +
             '<div class="animated zoomIn '+that.config.layerBoxClass+'" style = "width:'+ this.config.width+'px;height:'+this.config.height+'px">' +
             '<h5 class="layerHeader">'+this.config.alerttit+'<a href="javascript:;" class="close_btn"></a></h5><div class="layerContianer '+this.config.layerclass+'" style="'+this.config.setOverflow+'">' +

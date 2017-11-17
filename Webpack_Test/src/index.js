@@ -11,6 +11,13 @@ const AppModule = () => {
 
 document.addEventListener(`DOMContentLoaded`, () => {
     AppModule();
+    setTimeout(() => {
+        STOCK_F9_FV.Modules.companyNews.init(`http://10.1.5.202/webservice/fastview/stock/news/600570.SH`);
+        // call global function!
+        /* 
+            Failed to load http://10.1.5.202/webservice/fastview/stock/news/600570.SH: No 'Access-Control-Allow-Origin' header is present on the requested resource. Origin 'http://localhost:3002' is therefore not allowed access. If an opaque response serves your needs, set the request's mode to 'no-cors' to fetch the resource with CORS disabled.
+        */
+    }, 0);
 });
 
 

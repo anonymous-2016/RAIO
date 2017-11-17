@@ -148,10 +148,11 @@ STOCK_F9_FV.Utils.FetchNewsSummary = STOCK_F9_FV.Utils.FetchNewsSummary || (
     }
 );
 
-// STOCK_F9_FV.Utils.FetchNewsSummary(`http://10.1.5.202/queryservice/news/content/564082789530`, true);
+
+// STOCK_F9_FV.Utils.FetchNewsSummary(`http://10.1.5.202/queryservice/news/content/`, `564082789530`, true);
 
 
-STOCK_F9_FV.Utils.ShowNewsSummaryModal = STOCK_F9_FV.Utils.ShowNewsSummaryModal || (
+STOCK_F9_FV.Utils.xyz_ShowNewsSummaryModal = STOCK_F9_FV.Utils.xyz_ShowNewsSummaryModal || (
     (args = {
         url: ``,
         module_id: ``,
@@ -223,18 +224,26 @@ STOCK_F9_FV.Utils.ShowNewsSummaryModal = STOCK_F9_FV.Utils.ShowNewsSummaryModal 
                 </div>
             </div>
         `;
-        var bounced = new Bounced({
-            bouncedclass: "layerContianer2",//存放页面的容器类名
-            width: getClientWidth()-60,
-            height: getClientHeight()-80,
-            alerttit: "公司新闻",
-            setOverflow: "overflow-y:none",//设置滚动的属性 overflow-y：设置竖向  overflow-x:设置横向
-            // str: html.join(''),// array to string
-            str: html_template,
-            callback:function(){
-                // no need ???
-            }
-        });
+        // var bounced = new Bounced({
+        //     bouncedclass: "layerContianer2",//存放页面的容器类名
+        //     width: getClientWidth()-60,
+        //     height: getClientHeight()-80,
+        //     alerttit: "公司新闻",
+        //     setOverflow: "overflow-y:none",//设置滚动的属性 overflow-y：设置竖向  overflow-x:设置横向
+        //     // str: html.join(''),// array to string
+        //     str: html_template,
+        //     callback:function(){
+        //         // no need ???
+        //     }
+        // });
+    }
+);
+
+
+STOCK_F9_FV.Utils.ShowNewsSummaryModal = STOCK_F9_FV.Utils.ShowNewsSummaryModal || (
+    (json = {}) => {
+        // alert(`this is a modal!`);
+        console.log(`ShowNewsSummaryModal json = \n`, JSON.stringify(json, null, 4));
     }
 );
 

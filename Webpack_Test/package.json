@@ -5,6 +5,7 @@
     "main": "webpack.config.js",
     "scripts": {
         "app": "webpack",
+        "dev & prod": "??? webpack --config webpack.prod.js ???",
         "hot_modules_loader": "??? webpack hot HMR ???",
         "dev": "webpack -w",
         "test": "echo \"Error: no test specified\" && exit 1"

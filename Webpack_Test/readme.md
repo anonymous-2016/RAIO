@@ -4,6 +4,16 @@
 https://developer.mozilla.org/zh-CN/
 
 
+```sh
+$ npm i -D url-loader file-loader
+
+
+$ npm i -D style-loader css-loader sass-loader
+
+```
+
+https://doc.webpack-china.org/loaders/url-loader/
+https://github.com/webpack-contrib/file-loader
 
 
 
@@ -36,15 +46,17 @@ STOCK_F9_FV.Utils.FetchNewsSummary = STOCK_F9_FV.Utils.FetchNewsSummary || (
                     console.log(`News Summary json = \n`, JSON.stringify(json, null, 4));
                     Object.assign(datas, json);
                     console.log(`News Summary datas = \n`, JSON.stringify(datas, null, 4));
-                    return datas;
+                    // return datas;
                 }
             }
         )
         .catch(err => console.log(`News Summary Error Infos: \n`, err));
-        setTimeout(() => {
-            console.log(`News Summary datas = \n`, JSON.stringify(datas, null, 4));
-            // return datas;
-        }, 0);
+        // setTimeout(() => {
+        //     console.log(`News Summary datas = \n`, JSON.stringify(datas, null, 4));
+        //     // return datas;
+        // }, 0);
+        return datas;
+        // return only work out Promise!
     }
 );
 
@@ -64,21 +76,24 @@ FetchNewsSummary = (url = `http://10.1.5.202/queryservice/news/content/564082789
                 console.log(`News Summary json = \n`, JSON.stringify(json, null, 4));
                 Object.assign(datas, json);
                 console.log(`News Summary datas = \n`, JSON.stringify(datas, null, 4));
-                return datas;
+                // return datas;
             }
         }
     )
     .catch(err => console.log(`News Summary Error Infos: \n`, err));
-    setTimeout(() => {
-        console.log(`setTimeout & datas = \n`, JSON.stringify(datas, null, 4));
-        // setTimeout & datas = {} ???
-        // return datas;
-    }, 3000);
+    // setTimeout(() => {
+    //     console.log(`setTimeout & datas = \n`, JSON.stringify(datas, null, 4));
+    //     // setTimeout & datas = {} ???
+    //     // return datas;
+    // }, 3000);
+    return datas;
+    // return only work out Promise!
 };
 
 FetchNewsSummary();
 
 x = FetchNewsSummary();
+// return only work out Promise!
 
 ```
 
@@ -443,8 +458,13 @@ $ npm i -D babel-plugin-syntax-object-rest-spread
 
 
 
+# browser-sync
 
+$ browser-sync start --server --files "./000-xyz/*.*"
 
+http://localhost:3000/demo-modal/company-news.html
+
+http://localhost:3000/modal/index.html
 
 
 ```sh
