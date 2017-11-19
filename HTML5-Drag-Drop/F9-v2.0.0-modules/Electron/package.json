@@ -1,21 +1,20 @@
 {
-    "name": "electron-quick-start",
+    "name": "electron-app-demo",
     "version": "1.1.1",
     "description": "A minimal Electron application",
     "main": "main.js",
     "scripts": {
         "start": "electron ."
     },
-    "repository": "https://github.com/electron/electron-quick-start",
+    "repository": "https://github.com/electron/electron-app-demo",
     "keywords": [
         "Electron",
-        "quick",
-        "start",
+        "app",
         "tutorial",
         "demo"
     ],
-    "author": "GitHub",
-    "license": "CC0-1.0",
+    "author": "xgqfrms",
+    "license": "MIT",
     "devDependencies": {
         "electron": "1.7.9"
     }
