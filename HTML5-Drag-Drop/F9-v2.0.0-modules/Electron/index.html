@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Electron App Demo</title>
+    <style>
+        .app-infos-container{
+            box-sizing: border-box;
+        }
+        [data-code="code"]{
+            color: #0f0;
+            background-color: #000;
+        }
+    </style>
+</head>
+<body>
+    <section>
+        <h1>Hello, Electron App!</h1>
+        <div class="app-infos-container">
+            You are using node
+            <code data-code="codes"><script>document.write(process.versions.node)</script></code>,
+            Chrome
+            <code data-code="codes"><script>document.write(process.versions.chrome)</script></code>,
+            and Electron
+            <code data-code="codes"><script>document.write(process.versions.electron)</script></code>.
+        </div>
+    </section>
+    <!-- js -->
+    <script src="./renderer.js"></script>
+</body>
+</html>
