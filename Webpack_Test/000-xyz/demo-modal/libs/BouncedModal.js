@@ -1,83 +1,96 @@
+/**
+ * 
+ * @namespace STOCK_F9_FV
+ * @subnamespace STOCK_F9_FV.Modal
+ * 
+ * @description BouncedModal
+ * @author xgqfrms & ???
+ * 
+ * @method getClientWidthHeight
+ * @method BouncedModal(options,debug)
+ * 
+ */
 
-/*本页面依赖于public-method.js*/
+// namespaces
+var STOCK_F9_FV = STOCK_F9_FV || {};
+// sub namespaces
+STOCK_F9_FV.Modal = STOCK_F9_FV.Modal || {};
 
-/* 
+// Modal && IIFE === Closure!
+STOCK_F9_FV.Modal.Public = STOCK_F9_FV.Modal.Public  || ((debug = false) => {
+    return {
+        view: () => {
+            const w = document.documentElement.clientWidth;
+            const h = document.documentElement.clientHeight;
+            if (!debug) {
+                console.log(`clientHeight = `, h);
+                console.log(`clientWidth = `, w);
+            }
+            //w:可视区域的宽度
+            // h:可视区域的高度
+            return {
+                w,
+                h
+            };
+        },
+    }
+});
 
-https://github.com/wicketstuff/core/wiki/ModalX
 
-https://modal-x.com/modalx/#loginPage
+STOCK_F9_FV.Modal.getClientWidthHeight = STOCK_F9_FV.Modal.getClientWidthHeight  || ((debug = false) => {
+    let width = 0,
+        innerwidth = 0,
+        bodywidth = 0,
+        height = 0,
+        innerheight = 0,
+        bodyheight = 0,
+        isIE = navigator.userAgent.indexOf("MSIE 6.0") !== -1 ? true : false;
+    if(!isIE){
+        bodywidth = document.body.clientWidth;
+        width = document.documentElement.clientWidth;
+        innerwidth = window.innerWidth;
+        // 50px ??? bug
+        bodyheight = document.body.clientHeight;
+        height = document.documentElement.clientHeight;
+        innerheight = window.innerHeight;
+        if (!debug) {
+            console.log(`document.body.clientHeight = `, bodyheight);
+            // 50px ??? bug
+            console.log(`document.documentElement.clientHeight = `, height);
+            console.log(`window.innerHeight = `, innerheight);
+            console.log(`***********************************`);
+            console.log(`document.body.clientWidth = `, bodywidth);
+            console.log(`document.documentElement.clientWidth = `, width);
+            console.log(`window.innerWidth = `, innerwidth);
+        }
+    }else{
+        width = document.documentElement.clientWidth;
+        height = document.documentElement.clientHeight;
+        if (!debug) {
+            console.log(`document.documentElement.clientHeight = `, height);
+            console.log(`document.documentElement.clientWidth = `, width);
+        }
+    }
+    if (!debug) {
+        console.log(`isIE = `, isIE);
+        console.log(`clientHeight = `, height);
+        console.log(`clientWidth = `, width);
+    }
+    return {
+        w: width,
+        h: height
+    };
+});
 
-https://www.tesla.com/modelx
 
-*/
-function ModalX(){
-    const BAD_URLs = [
-        "聚源数据",
-        "WWW",
-        "qq",
-        "ww",
-        "www.",
-        "www",
-        "wwww",
-        "http://data.east",
-        "http://www.",
-        "http://www.eweb",
-        "https://wx.qq.com/"
-    ];
-    // shape data ???
-    let url_link = BAD_URLs.includes(data.Url) === true ? `` : `
-        <a
-            style="margin-left:10px;color:#5389d2;"
-            class="gotext"
-            id="linkyuanwen"
-            target="_blank"
-            data-value="${data.Url}"
-            href="${data.Url}">
-            查看原文
-            <i class="icon-external-link"></i>
-        </a>
-    `;
-    // value="${data.Url}" !== href="${data.Url}"
-    const html_template = `
-        <div>
-            <div class="modal-title">
-                <h3 style="margin-left: 15px;">${data.Title}</h3>
-            </div>
-            <div class="zxdtData">
-                <div class="fontSize" id="fontsize">
-                    <span>字体：</span>
-                    <span class="fontBtn">
-                        <a id="big">大</a>
-                    </span>
-                    <span class="fontBtn">
-                        <a id="middle">中</a>
-                    </span>
-                    <span class="fontBtn active">
-                        <a id="small">小</a>
-                    </span>
-                </div>
-                <div class="model-Info">
-                    <span>
-                        来源：
-                        <span id="zxdtlaiyuan" class="">
-                            ${data.Infosource}
-                        </span>
-                        &nbsp;
-                    </span>
-                    <span id="zxdtPubDate" class="">${data.PublishDate}</span>&nbsp;
-                    ${url_link}
-                </div>
-                <div class="clr"></div>
-            </div>
-            <div class="modal-body" style="overflow: auto;text-align: left;">
-                <div id="zxdtContent">
-                    ${data.Content}
-                </div>
-            </div>
-        </div>
-    `;
-}
-
+/**
+ * @description BouncedModal & $.extend
+ * 
+ * @param {* Object} options 
+ * @param {* Boolean} debug 
+ * 
+ * @example BouncedModal({width: 300, height: 200, title:"信息", datas: {}}, true)
+ */
 
 /* 弹框的基本对象 Constructor */
 function BouncedModal(options, debug = false){
@@ -304,14 +317,36 @@ BouncedModal.prototype = {
 };
 
 
-(function(win){
+(function (win, func) {
+    // factory function
+    let test = func();
+    try {
+        if (test !== undefined) {
+            console.log(`test = \n`, test);
+        }
+    } catch (error) {
+        console.log(`error = \n`, error);
+        // ReferenceError: test is not defined
+    }
     if(win["UDP"]){
+        // win["UDP"], will never be executed!
+        win["UDP"].Public = STOCK_F9_FV.Modal.Public();
+        win["UDP"].getClientWidthHeight = STOCK_F9_FV.Modal.getClientWidthHeight();
         win["UDP"].BouncedModal = BouncedModal;
     }else{
         win.UDP = {
-            BouncedModal:BouncedModal
+            Public: STOCK_F9_FV.Modal.Public(),
+            // getClientWidth: STOCK_F9_FV.Modal.getClientWidth(),
+            // getClientHeight: STOCK_F9_FV.Modal.getClientHeight(),
+            getClientWidthHeight: STOCK_F9_FV.Modal.getClientWidthHeight(),
+            BouncedModal: BouncedModal
         };
+        // window.UDP & window["UDP"]
     }
-})(window);
-
-
+})(window, function(debug = false){
+    let test = `NameSpace testing!`;
+    if (debug) {
+        console.log(`this is a callback function!`);
+    }
+    return test;
+});
