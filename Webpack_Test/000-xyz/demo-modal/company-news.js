@@ -89,104 +89,49 @@ STOCK_F9_FV.Modules.companyNews = STOCK_F9_FV.Modules.companyNews || ((url = ``,
                         // console.log(`e.target.dataset = \n`, e.target.dataset);
                         // newsid !== newsId
                         // let id = e.target.dataset.newsId
+                        // let id = e.target.dataset.newsid;
                         let id = e.target.dataset.newsid,
                             title = e.target.dataset.title;
                         try {
                             let open_link = `${host}/queryservice/news/content/${id}`;
                             if (!debug) {
                                 console.log(`id = ${id} \ntitle = ${title}`);
-                                // alert(`id = ${id} \n title = ${title}`);
+                                // no need title
                             }
                             // fetch news summary data
-                            const data = {
-                                "Title": "永清环保获批“战略性新兴产业科技攻关与重大科技成果转化专项”",
-                                "Id": 564082251803,
-                                "Content": "　　证券时报网11月15日讯 记者获悉,近日,湖南省科技厅公告了《关于2017年度省战略性新兴产业科技攻关与重大科技成果转化专项立项项目的公示》。永清环保(300187)承担的“钢铁冶金行业烧结与球团烟气新型超低排放耦合技术研发与应用”成功获得专项立项。据悉,项目将为我国钢铁行业烟气污染物深度净化提供技术及应用支撑,对推动湖南省环保事业在雾霾治理、资源节约利用、钢铁企业去产能等方面实现可持续发展具有重大意义。\n",
-                                "PublishDate": "2017-11-15  17:34:07",
-                                "Infosource": "证券时报网",
-                                "Url": "http://kuaixun.stcn.com/2017/1115/13771940.shtml"
-                            };
-                            /* 
-                                // show modal
-                                const BAD_URLs = [
-                                    "聚源数据",
-                                    "WWW",
-                                    "qq",
-                                    "ww",
-                                    "www.",
-                                    "www",
-                                    "wwww",
-                                    "http://data.east",
-                                    "http://www.",
-                                    "http://www.eweb",
-                                    "https://wx.qq.com/"
-                                ];
-                                // shape data ???
-                                let url_link = BAD_URLs.includes(data.Url) === true ? `` : `
-                                    <a
-                                        style="margin-left:10px;color:#5389d2;"
-                                        class="gotext"
-                                        id="linkyuanwen"
-                                        target="_blank"
-                                        data-value="${data.Url}"
-                                        href="${data.Url}">
-                                        查看原文
-                                        <i class="icon-external-link"></i>
-                                    </a>
-                                `;
-                                // #linkyuanwen
-                                // value="${data.Url}" !== href="${data.Url}"
-                                const html_template = `
-                                    <div>
-                                        <div class="modal-title">
-                                            <h3 style="margin-left: 15px;">${data.Title}</h3>
-                                        </div>
-                                        <div class="zxdtData">
-                                            <div class="fontSize" id="fontsize">
-                                                <span>字体：</span>
-                                                <span class="fontBtn">
-                                                    <a id="big">大</a>
-                                                </span>
-                                                <span class="fontBtn">
-                                                    <a id="middle">中</a>
-                                                </span>
-                                                <span class="fontBtn active">
-                                                    <a id="small">小</a>
-                                                </span>
-                                            </div>
-                                            <div class="model-Info">
-                                                <span>
-                                                    来源：
-                                                    <span id="zxdtlaiyuan" class="">
-                                                        ${data.Infosource}
-                                                    </span>
-                                                    &nbsp;
-                                                </span>
-                                                <span id="zxdtPubDate" class="">${data.PublishDate}</span>&nbsp;
-                                                ${url_link}
-                                            </div>
-                                            <div class="clr"></div>
-                                        </div>
-                                        <div class="modal-body" style="overflow: auto;text-align: left;">
-                                            <div id="zxdtContent">
-                                                ${data.Content}
-                                            </div>
-                                        </div>
-                                    </div>
-                                `;
-                            */
-                            const modal = new BouncedModal({
-                                // bouncedclass: "layerContianer2",//存放页面的容器类名
-                                width: getClientWidth()-60,
-                                height: getClientHeight()-80,
-                                title: "公司新闻",
-                                setOverflow: "overflow-y:none",
-                                //设置滚动的属性(overflow-y: 竖向  overflow-x: 横向)
-                                // str: html.join(''),// array to string
-                                // str: html_template,
-                                datas: Object.assign({}, data)
-                            });
-                            modal.init();
+                            let data = {};
+                            fetch(open_link)
+                            .then(res => res.json())
+                            .then(
+                                (json) => {
+                                    if (debug) {
+                                        console.log(`json = \n`, JSON.stringify(json, null, 4));
+                                    }
+                                    // shape data ???
+                                    data = json;
+                                    // BouncedModal
+                                    const UDP_wh = UDP.getClientWidthHeight;
+                                    if (debug) {
+                                        console.log(`UDP_wh = \n`, JSON.stringify(UDP_wh, null, 4));
+                                    }
+                                    let UDP_width = UDP_wh.w - 60,
+                                        UDP_height = UDP_wh.h - 60;
+                                    const modal = new BouncedModal({
+                                        // bouncedclass: "layerContianer2",//存放页面的容器类名
+                                        width: UDP_width,
+                                        height: UDP_height,
+                                        title: "公司新闻",
+                                        setOverflow: "overflow-y:none",
+                                        //设置滚动的属性(overflow-y: 竖向  overflow-x: 横向)
+                                        // str: html.join(''),// array to string
+                                        // str: html_template,
+                                        datas: Object.assign({}, data)
+                                    });
+                                    modal.init();
+                                    // return json;
+                                }
+                            )
+                            .catch(err => console.log(`error infos = \n`, err));
                         } catch (err) {
                             console.log(`${host}/queryservice/news/content/${id}: Error infos = \n`, err);
                             // window.open(`${host}/queryservice/news/content/${id}`);

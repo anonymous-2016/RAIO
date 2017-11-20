@@ -79,15 +79,17 @@ function ModalX(){
 }
 
 
-/* 弹框的基本对象 */
-function BouncedModal(options){
-    console.log(`BouncedModal's options = \n`, JSON.stringify(options, null, 4));
+/* 弹框的基本对象 Constructor */
+function BouncedModal(options, debug = false){
+    if (debug) {
+        console.log(`BouncedModal's options = \n`, JSON.stringify(options, null, 4));
+    }
     this.config = {
         layerBoxClass :"layerBox",
         layerclass:"",
-        width:300,
-        height:200,
-        zIndex:1000,
+        width: 300,// UDP.getClientWidth()-60
+        height: 200,// UDP.getClientWidth()-60
+        zIndex: 1000,
         title:"信息",
         setOverflow:"overflow-y:scroll",
         str:"",
@@ -103,12 +105,12 @@ function BouncedModal(options){
 
 BouncedModal.prototype = {
     /*创建弹出框*/
-    _createDialog: function(state){
+    _createDialog: function(state, debug = false){
         var that = this;
         var str = "";
         that.config.zIndex++;
         var s = UDP.Public.view();
-        // UDP ???
+        // UDP ??? NameSpace
         const BAD_URLs = [
             "聚源数据",
             "WWW",
@@ -124,7 +126,9 @@ BouncedModal.prototype = {
         ];
         // shape data ???
         const data = that.config.datas;
-        console.log(`BouncedModal's data = \n`, JSON.stringify(data, null, 4));
+        if (debug) {
+            console.log(`BouncedModal's data = \n`, JSON.stringify(data, null, 4));
+        }
         let url_link = BAD_URLs.includes(data.Url) === true ? `` : `
             <a
                 style="margin-left:10px;color:#5389d2;"
@@ -137,7 +141,10 @@ BouncedModal.prototype = {
                 <i class="icon-external-link"></i>
             </a>
         `;
-        // value="${data.Url}" !== href="${data.Url}"
+        if (debug) {
+            // value="${data.Url}" !== href="${data.Url}"
+            console.log(`BouncedModal's url_link = \n`, url_link);
+        }
         const html_template = `
             <div>
                 <div class="modal-title">
@@ -191,12 +198,17 @@ BouncedModal.prototype = {
                 </div>
             </div>
         `;
+        const UDP_wh = UDP.getClientWidthHeight;
+        if (!debug) {
+            console.log(`BouncedModal's UDP_wh = \n`, JSON.stringify(UDP_wh, null, 4));
+        }
+        // UDP_wh.h
         $("#zxdtModal").empty().html(str);
-        $(".modal-body").css("height", getClientHeight()-200);
+        $(".modal-body").css("height", UDP.Public.view().h - 200);
         $(window).resize(function() {
             $(".layerBox").css("width", $(window).width()-60+"px");
             $(".layerBox").css("height", $(window).height()-80+"px");
-            $(".modal-body").css("height", getClientHeight()-200);
+            $(".modal-body").css("height", UDP.Public.view().h - 200);
         });
 
         $(".close_btn").click(function (){

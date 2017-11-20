@@ -2,6 +2,7 @@
 var STOCK_F9_FV = STOCK_F9_FV || {};
 // sub namespaces
 STOCK_F9_FV.Modal = STOCK_F9_FV.Modal || {};
+
 // Modal && IIFE === Closure!
 STOCK_F9_FV.Modal.Public = STOCK_F9_FV.Modal.Public  || ((debug = false) => {
     return {
@@ -22,6 +23,16 @@ STOCK_F9_FV.Modal.Public = STOCK_F9_FV.Modal.Public  || ((debug = false) => {
     }
 });
 
+/* 
+
+window.innerHeight & window.innerWidth
+
+The browser window (the browser viewport) is NOT including toolbars and scrollbars.
+
+https://www.w3schools.com/js/js_window.asp?output=print
+
+
+*/
 
 
 STOCK_F9_FV.Modal.getClientWidthHeight = STOCK_F9_FV.Modal.getClientWidthHeight  || ((debug = false) => {
@@ -30,10 +41,25 @@ STOCK_F9_FV.Modal.getClientWidthHeight = STOCK_F9_FV.Modal.getClientWidthHeight 
         isIE = navigator.userAgent.indexOf("MSIE 6.0") !== -1 ? true : false;
     if(!isIE){
         width = document.body.clientWidth;
-        height = document.body.clientHeight;
+        // height = document.body.clientHeight;
+        height = document.documentElement.clientHeight;
+        if (!debug) {
+            console.log(`document.body.clientHeight = `, height);
+            // 50px ??? bug
+            console.log(`document.body.clientWidth = `, width);
+        }
     }else{
         width = document.documentElement.clientWidth;
         height = document.documentElement.clientHeight;
+        if (!debug) {
+            console.log(`document.documentElement.clientHeight = `, height);
+            console.log(`document.documentElement.clientWidth = `, width);
+        }
+    }
+    if (!debug) {
+        console.log(`isIE = `, isIE);
+        console.log(`clientHeight = `, height);
+        console.log(`clientWidth = `, width);
     }
     return {
         w: width,
@@ -41,6 +67,22 @@ STOCK_F9_FV.Modal.getClientWidthHeight = STOCK_F9_FV.Modal.getClientWidthHeight 
     };
 });
 
+
+(function (win) {
+    if(win["UDP"]){
+        win["UDP"].Public = STOCK_F9_FV.Modal.Public();
+    }else{
+        win.UDP = {
+            Public: STOCK_F9_FV.Modal.Public(),
+            // getClientWidth: STOCK_F9_FV.Modal.getClientWidth(),
+            // getClientHeight: STOCK_F9_FV.Modal.getClientHeight(),
+            getClientWidthHeight: STOCK_F9_FV.Modal.getClientWidthHeight()
+        };
+    }
+})(window);
+
+
+/* 
 
 STOCK_F9_FV.Modal.getClientWidth = STOCK_F9_FV.Modal.getClientWidth  || ((debug = false) => {
     let width = 0;
@@ -86,19 +128,7 @@ function getClientHeight() {
 }
 
 
-(function (win) {
-    if(win["UDP"]){
-        win["UDP"].Public = STOCK_F9_FV.Modal.Public();
-    }else{
-        win.UDP = {
-            Public: STOCK_F9_FV.Modal.Public(),
-            getClientWidth: STOCK_F9_FV.Modal.getClientWidth(),
-            getClientHeight: STOCK_F9_FV.Modal.getClientHeight(),
-            getClientWidthHeight: STOCK_F9_FV.Modal.getClientWidthHeight()
-        };
-    }
-})(window);
-
+*/
 
 
 

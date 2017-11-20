@@ -1,6 +1,28 @@
 # Fetch / XHR2 / XHR3 is better for now! ???
 
-Fetch / XHR2
+
+```js
+
+    fetch(open_link)
+    .then(res => res.json())
+    .then(
+        (json) => {
+            if (!debug) {
+                console.log(`json = \n`, JSON.stringify(json, null, 4));
+            }
+            return json;
+        }
+    )
+    .catch(err => console.log(`error infos = \n`, err));
+
+```
+
+
+
+
+
+
+> Fetch / XHR2
 
 
 ## Fetch
