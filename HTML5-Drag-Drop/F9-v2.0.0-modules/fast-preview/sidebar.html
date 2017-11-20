@@ -10,6 +10,8 @@
     <link rel="stylesheet" data-css="data-css-uid" href="./sidebar.css">
     <!-- css order -->
     <link rel="stylesheet" data-css="data-css-uid" href="./common/module.css">
+    <!-- modal css -->
+    <!-- <link rel="stylesheet" data-css="data-css-uid" href="./common/modal.css"> -->
     <!-- css & loading [data-css="data-css-uid"] dynamicly ??? -->
     <!-- <link rel="stylesheet" data-css="data-css-uid" href="./Modules/   .css"> -->
 </head>
@@ -79,7 +81,7 @@
                     <div class="h5-dnd-icon-box" draggable="true" data-icon-uid="module-data-news">
                         <p class="h5-dnd-icon-p">公司新闻</p>
                     </div>
-                    <!-- 
+                    <!--
                         <div class="h5-dnd-icon-box" draggable="true">
                             <p class="h5-dnd-icon-p">投资者关系</p>
                         </div>
@@ -123,9 +125,14 @@
         <!-- data-* & modules.dom placeholder -->
         <div id="section-sortable-container" class="div-inner-box" data-div-inner-box="data-div-inner-box"></div>
     </section>
+    <!-- modal -->
+    <div class="fade in" id="zxdtModal"></div>
     <!-- libs -->
     <script src="./libs/highstock.js"></script>
     <script src="./libs/Sortable.min.js"></script>
+    <!-- modal libs -->
+    <script src="./libs/jquery1.4.0.min.js"></script>
+    <script src="./libs/BouncedModal.js"></script>
     <!-- js -->
     <script src="./sidebar.js"></script>
     <script src="./config.js"></script>

@@ -3,10 +3,10 @@
  * company-announcements 公司公告
  * xgqfrms
  * creadted 2017.10.16
- * @param {* String} url 
- * @param {* Array} tds 
- * @param {* Array} ui_arr 
- * @param {Boolean} debug 
+ * @param {* String} url
+ * @param {* Array} tds
+ * @param {* Array} ui_arr
+ * @param {Boolean} debug
  */
 
 // namespaces
@@ -20,7 +20,7 @@ STOCK_F9_FV.Modules.companyAnnouncements = STOCK_F9_FV.Modules.companyAnnounceme
     fetch(url)
     .then(res => res.json())
     .then(
-        //shaped data 
+        //shaped data
         (json) => {
             // json
             data = json;// Array
@@ -90,6 +90,7 @@ STOCK_F9_FV.Modules.companyAnnouncements = STOCK_F9_FV.Modules.companyAnnounceme
                             title = e.target.dataset.title;
                         try {
                             let download_pdf = `${host}/queryservice/bulletin/attachment/company/${id}.${type}\\${title}.${type}`;
+                            console.log(`%c download_pdf = \n`, `color: #f0f; font-size: 23px;`, download_pdf);
                             // http://10.1.5.202/queryservice/bulletin/attachment563999772286.pdf
                             ChromeExternal.Execute("OpenFile", download_pdf);
                         } catch (err) {

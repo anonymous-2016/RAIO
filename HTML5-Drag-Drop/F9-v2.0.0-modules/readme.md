@@ -1,6 +1,91 @@
 # 速览
 
 
+上次和你说的，我这边需要一个保存用户自定义的 modules 的 API 接口, 有时间帮我写一下！
+
+
+```js
+// get
+const status = {
+    // modules_name
+    "stockfast01": {
+        "index": 1,
+        "show": true,
+    },
+    "news": {
+        "index": 2,
+        "show": false,
+    }
+};
+
+
+// post
+
+// localstorage
+
+??? online/offline
+
+
+https://www.sitepoint.com/offline-web-application-tutorial/
+https://github.com/craigbuckler
+http://blogs.sitepointstatic.com/examples/tech/offline/offline-example.zip
+
+
+https://stackoverflow.com/questions/3181080/how-to-detect-online-offline-event-cross-browser
+
+https://developer.mozilla.org/en-US/docs/Online_and_offline_events
+
+
+navigator.onLine;
+// true
+
+https://developer.mozilla.org/en-US/docs/Web/Events/offline
+https://developer.mozilla.org/en-US/docs/Web/Events/online
+
+https://html.spec.whatwg.org/#event-offline
+
+
+// standard event listeners
+window.addEventListener("online", function() { ... });
+window.addEventListener("offline", function() { ... });
+
+
+window.localStorage & window.sessionStorage
+
+// set a session value
+window.sessionStorage.setItem("key", "my data");
+
+// get a session value - returns "my data"
+window.sessionStorage.getItem("key");
+
+
+https://html.spec.whatwg.org/#mime-types-2
+
+
+http://github.hubspot.com/offline/docs/welcome/
+https://github.com/HubSpot/offline
+
+
+https://www.html5rocks.com/en/mobile/workingoffthegrid/
+https://www.html5rocks.com/en/tutorials/appcache/beginner/
+
+https://www.html5rocks.com/zh/tutorials/webcomponents/imports/
+https://www.html5rocks.com/en/tutorials/webcomponents/imports/
+
+'import' in document.createElement('link');
+// true
+
+https://www.html5rocks.com/en/tutorials/webcomponents/template/
+'content' in document.createElement('template');
+// true
+
+
+
+```
+
+
+
+
 ## fast-preview & path
 
 http://localhost:3000/fast-preview/sidebar.html#模块选择
@@ -30,7 +115,7 @@ http://10.1.5.202/webservice/researchreport/research/zy/551173471225
 
 
 
-// news 详细 
+// news 详细
 http://10.1.5.202/queryservice/news/content/558091641955
 http://10.1.5.202/queryservice/news/content/558091641955
 
@@ -50,7 +135,7 @@ http://10.1.5.202/queryservice/bulletin/attachment/company/563999772286.pdf
 
 
 
-// modal 
+// modal
 
 http://10.1.5.202/information/newsinfo/
 
@@ -72,16 +157,16 @@ http://10.1.5.202/information/newsinfo/
  * @copyright Gildata 2017-present
  * @private
  * @license MIT
- * 
+ *
  * @namespace STOCK_F9_FV
  * @sub_namespaces Utils
- * 
+ *
  * @description Customize FontSise
  * @param {Object} args
  * @param {Bollean} debug
- * 
+ *
  * @example // NameSpace Template Example , STOCK_F9_FV.Utils.CustomizeFontSise(obj);
- * 
+ *
  */
 
 
@@ -91,7 +176,7 @@ var STOCK_F9_FV = STOCK_F9_FV || {};
 STOCK_F9_FV.Utils = STOCK_F9_FV.Utils || {};
 // IIFE === Closure!
 STOCK_F9_FV.Utils.CustomizeFontSise = STOCK_F9_FV.Utils.CustomizeFontSise || ((args = {}, debug = false) => {
-    // 
+    //
 });
 
 
@@ -117,10 +202,10 @@ height: 272,// 275px;
 
 
 let color = chart_css.color,
-    colors = chart_css.colors, 
-    optioncolor = chart_css.optioncolor, 
-    gridColor = chart_css.gridColor, 
-    legendColor = chart_css.legendColor, 
+    colors = chart_css.colors,
+    optioncolor = chart_css.optioncolor,
+    gridColor = chart_css.gridColor,
+    legendColor = chart_css.legendColor,
     yAxisColor = chart_css.yAxisColor;
 
 
@@ -133,7 +218,7 @@ let color = chart_css.color,
 data-disabled="${ id !== "null" ? false : true}"
 
 /*
-    <a 
+    <a
         href="#${id}"
         title="${description}"
         data-title="${description}"
@@ -169,7 +254,7 @@ try {
 // 节点ID list ??? 股权质押  2741
 
 
-/* 
+/*
 
     import {urls} from "../utils/urls-ip";
     // Uncaught SyntaxError: Unexpected token import
@@ -186,7 +271,7 @@ try {
 
 */
 
-/* 
+/*
 
     "use strict";
 
@@ -264,7 +349,7 @@ var url = ((obj) => {
 });
 
 
-let obj = {k1: 1, k2: 2, k3: 3}; 
+let obj = {k1: 1, k2: 2, k3: 3};
 
 let {k1: K1, ...restK} = {...obj}
 K1;
@@ -403,14 +488,14 @@ body.innerHTML = JSON.stringify(objs, null, 4);
  * String To JSON & AutoCopy
  * xgqfrms
  * created 2017.10.12
- * @param {Boolean} debug 
+ * @param {Boolean} debug
  */
 
 const StringToJSONAndAutoCopy = (debug = false) => {
     let body, str = text = "", beforeend = "beforeend", objs = {};
     body = document.querySelector(`body`);
     str = body.innerText;
-    // ??? 466 && space , 0 
+    // ??? 466 && space , 0
     str = str.substr(0, str.lastIndexOf("}")+1);
     html = body.innerHTML;
     objs = JSON.parse(str);
@@ -622,7 +707,7 @@ table {
 
 
 
-```js 
+```js
 
 // jsgn : 涉及概念
 
@@ -632,7 +717,7 @@ table {
 }
 let arr = [
     {
-        key: "涉及概念", 
+        key: "涉及概念",
         value:"互联网金融: 蚂蚁金服概念: 阿里概念: 转融券标的: 证金持股: 区块链: 电商概念: MSCI概念: 互联网+: 电子信息: 融资融券: 人工智能: 沪港通"
 
     },
@@ -646,7 +731,7 @@ let arr = [
 
 {
     "sjgn":{
-        key: "涉及概念", 
+        key: "涉及概念",
         value:"互联网金融: 蚂蚁金服概念: 阿里概念: 转融券标的: 证金持股: 区块链: 电商概念: MSCI概念: 互联网+: 电子信息: 融资融券: 人工智能: 沪港通"
     },
     "gn":{
@@ -733,7 +818,7 @@ https://stackoverflow.com/users/5934465/xgqfrms?tab=answers
 
 // typedArray ???
 
-var blob = new Blob(tb, {type: 'application/vnd.ms-excel'}); 
+var blob = new Blob(tb, {type: 'application/vnd.ms-excel'});
 
 var aBlob = new Blob( array, options );
 
@@ -758,7 +843,7 @@ objectURL = URL.createObjectURL(object);
 
 application/octet-stream
 
-application/vnd.mspowerpoint, 
+application/vnd.mspowerpoint,
 
 application/xml,
 
@@ -974,24 +1059,24 @@ Object.keys("foo");
 
 ```js
 
-let obj = { foo: "bar", baz: 42 }, 
+let obj = { foo: "bar", baz: 42 },
     keys = Object.keys(obj);
 // CCAC: Chrome Console Auto Copy
-copy(keys); 
+copy(keys);
 // ["foo","baz"]
 
 
-let obj = { foo: "bar", baz: 42 }, 
+let obj = { foo: "bar", baz: 42 },
     values = Object.values(obj);
 // CCAC: Chrome Console Auto Copy
-copy(values); 
+copy(values);
 // ["bar",42]
 
 
-let obj = { foo: "bar", baz: 42 }, 
+let obj = { foo: "bar", baz: 42 },
     entries = Object.entries(obj);
 // CCAC: Chrome Console Auto Copy
-copy(entries); 
+copy(entries);
 // [["foo", "bar"],["baz", 42]]
 
 ```
@@ -1017,7 +1102,7 @@ copy(arr);
 
 // ["sjgn", "zyyw", "bdl", "cjl", "jzc", "zgb", "ltgb", "gxl", "cgzb", "mbjg", "zhpj"]
 
-// Object ??? 
+// Object ???
 // typeof json === "string"
 let obj = json,
     keys = Object.keys(obj);
@@ -1073,7 +1158,7 @@ https://github.com/rollup/rollup
 https://medium.com/@Rich_Harris/tree-shaking-versus-dead-code-elimination-d3765df85c80#.jnypozs9n
 
 
-CommonJS modules, AMD modules, and IIFE-style scripts. 
+CommonJS modules, AMD modules, and IIFE-style scripts.
 
 https://github.com/rollup/rollup/wiki/Command-Line-Interface
 https://github.com/rollup/rollup/wiki/JavaScript-API
@@ -1112,14 +1197,14 @@ $ rollup main.js --o bundle.js -f umd --name "myBundle"
 
 
 
-实例化 prototype 添加方法 
+实例化 prototype 添加方法
 测试
 实例的 新方法是否可用
 
 
 Dom 封装在module 的内部
 
-3.CSS classname 使用 JS处理成 hash 
+3.CSS classname 使用 JS处理成 hash
 
 处理前保存到origin对象中
 

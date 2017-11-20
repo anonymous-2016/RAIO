@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>jQuery.fn.extend demo</title>
+    <style>
+        label {
+            display: block;
+            margin: .5em;
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+</head>
+
+<body>
+    <label><input type="checkbox" name="foo"> Foo</label>
+    <label><input type="checkbox" name="bar"> Bar</label>
+    <script>
+        jQuery.fn.extend({
+            check: function(debug = false) {
+                return this.each(function() {
+                    this.checked = true;
+                    if (!debug) {
+                        console.log(`this =\n`, this);
+                        console.log(`setAttribute checked\n`);
+                    }
+                    this.setAttribute(`checked`, true);
+                });
+            },
+            uncheck: function(debug = false) {
+                return this.each(function() {
+                    this.checked = false;
+                    if (!debug) {
+                        console.log(`this =\n`, this);
+                        console.log(`setAttribute checked\n`);
+                    }
+                    this.setAttribute(`checked`, false);
+                    // this.classList.remove(`checked`);
+                    if (!debug) {
+                        console.log(`this =\n`, this);
+                    }
+                    /*
+                        https://api.jquery.com/removeClass/
+                        https://appendto.com/2016/02/addremove-css-classes-using-javascript/
+                        https://stackoverflow.com/questions/2155737/remove-css-class-from-element-with-javascript-no-jquery
+                        https://stackoverflow.com/questions/195951/change-an-elements-class-with-javascript
+                    */
+                });
+            }
+        });
+        // Use the newly created .check() method
+        $("input[type='checkbox']").check();
+        setTimeout(() => {
+            $("input[type='checkbox']").uncheck();
+        }, 0);
+        // https://github.com/ROMB/jquery-dialogextend
+    </script>
+</body>
+
+</html>

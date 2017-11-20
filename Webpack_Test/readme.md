@@ -155,7 +155,7 @@ https://babeljs.io/docs/usage/api/#options
 https://babeljs.io/docs/plugins/#presets
 
 
-> Each yearly preset only compiles what was ratified in that year. 
+> Each yearly preset only compiles what was ratified in that year.
 
 `babel-preset-env` replaces `es2015, es2016, es2017, latest`
 
@@ -461,7 +461,7 @@ $ npm i -D babel-plugin-transform-object-rest-spread
 
 https://babeljs.io/docs/plugins/syntax-object-rest-spread/
 
-> This plugin only allows Babel to parse this syntax. 
+> This plugin only allows Babel to parse this syntax.
 
 
 ```sh
@@ -500,7 +500,7 @@ $ npm i -D uglifyjs-webpack-plugin html-webpack-plugin clean-webpack-plugin
 $ npm i -D style-loader css-loader sass-loader
 
 # AMD/Commonjs
-$ npm i -S requirejs systemjs 
+$ npm i -S requirejs systemjs
 $ npm i -D es-module-loader
 
 $ npm i -D browserify
@@ -760,7 +760,7 @@ https://babeljs.io/docs/setup#installation
     }
 }
 
-// 
+//
 ```
 
 
@@ -850,7 +850,7 @@ webpack/browserify
 > 加载器 loader，负责将各种不同格式形式的 module，加载成浏览器能识别的 module 形式。
 system.js/require.js
 
-> module 格式形式， AMD, CMD (commonjs), UMD，ES6 module(ES2015/ES2016/ES2017 ...), 
+> module 格式形式， AMD, CMD (commonjs), UMD，ES6 module(ES2015/ES2016/ES2017 ...),
 
 
 
@@ -919,9 +919,9 @@ $ npm i -D browserify
 
 
 
-## AMD 
+## AMD
 
-> Asynchronous Module Definition API 
+> Asynchronous Module Definition API
 
 https://github.com/amdjs/amdjs-api/wiki/AMD
 https://github.com/amdjs/amdjs-api/wiki/AMD-(中文版)
@@ -1014,7 +1014,7 @@ plugins: [require('@babel/plugin-transform-class-properties'), require('@babel/p
 
 ## server side js (node.js & Sync)
 
-> CommonJS (systemjs) 
+> CommonJS (systemjs)
 
 
 ## browser side js (Async)
@@ -1025,7 +1025,7 @@ plugins: [require('@babel/plugin-transform-class-properties'), require('@babel/p
 // no dependency
 define([], function(){
     function funcA() {
-        // 
+        //
     };
     return {
         funcA: funcA
@@ -1035,7 +1035,7 @@ define([], function(){
 // dependency
 // no need `.js`
 define(['a', 'b', ...], function(a, b){
-    // 
+    //
 });
 
 ```
@@ -1090,7 +1090,7 @@ System.config({
 System.import('js/app.js');
 
 
-/* 
+/*
 
 # CJS !== CMD
 
@@ -1119,6 +1119,86 @@ System.import('js/app.js');
 
 > module.exports === exports
 
+
+
+
+```js
+
+setTimeout(() => {
+    // const host = window.location.host ? window.location.host : `10.1.5.202`;
+    const host = `http://10.1.5.202`;
+    // absolute url ip
+    let links = document.querySelectorAll(`[data-link="fv-company-news-link"]`);
+    if (debug) {
+        console.log(`links = \n`, links);
+    }
+    for (let i = 0; i < links.length; i++) {
+        links[i].addEventListener(`click`, (e) => {
+            // e.preventDefault();
+            // #hash ???
+            if (debug) {
+                console.log(`e.target.dataset = \n`, e.target.dataset);
+            }
+            if (debug) {
+                console.log(`e.target.dataset = \n`, e.target.dataset);
+                console.log(`e.target.dataset.newsid = \n`, e.target.dataset.newsid);
+                console.log(`e.target.dataset.disabled = \n`, e.target.dataset.disabled);
+            }
+            // console.log(`e.target.dataset = \n`, e.target.dataset);
+            // newsid !== newsId
+            // let id = e.target.dataset.newsId
+            // let id = e.target.dataset.newsid;
+            let id = e.target.dataset.newsid,
+                title = e.target.dataset.title;
+            try {
+                let open_link = `${host}/queryservice/news/content/${id}`;
+                if (!debug) {
+                    console.log(`id = ${id} \ntitle = ${title}`);
+                    // no need title
+                }
+                // fetch news summary data
+                let data = {};
+                fetch(open_link)
+                .then(res => res.json())
+                .then(
+                    (json) => {
+                        if (debug) {
+                            console.log(`json = \n`, JSON.stringify(json, null, 4));
+                        }
+                        // shape data ???
+                        data = json;
+                        // BouncedModal
+                        const UDP_wh = UDP.getClientWidthHeight;
+                        if (debug) {
+                            console.log(`UDP_wh = \n`, JSON.stringify(UDP_wh, null, 4));
+                        }
+                        let UDP_width = UDP_wh.w - 60,
+                            UDP_height = UDP_wh.h - 60;
+                        const modal = new BouncedModal({
+                            // bouncedclass: "layerContianer2",//存放页面的容器类名
+                            width: UDP_width,
+                            height: UDP_height,
+                            title: "公司新闻",
+                            setOverflow: "overflow-y:none",
+                            //设置滚动的属性(overflow-y: 竖向  overflow-x: 横向)
+                            // str: html.join(''),// array to string
+                            // str: html_template,
+                            datas: Object.assign({}, data)
+                        });
+                        modal.init();
+                        // return json;
+                    }
+                )
+                .catch(err => console.log(`error infos = \n`, err));
+            } catch (err) {
+                console.log(`${host}/queryservice/news/content/${id}: Error infos = \n`, err);
+                // window.open(`${host}/queryservice/news/content/${id}`);
+            }
+        });
+    }
+}, 0);
+
+```
 
 
 

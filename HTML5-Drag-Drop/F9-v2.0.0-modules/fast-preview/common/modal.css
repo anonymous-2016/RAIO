@@ -165,14 +165,14 @@ body {
 * {
     margin: 0;
     padding: 0;
-    box-sizing: border-box
+    box-sizing: border-box;
 }
 
 body {
     font-family: "Microsoft YaHei", sans-serif;
     font-size: 12px;
     background: #fff;
-    z-index: 110
+    /* z-index: 110; */
 }
 
 li {
@@ -182,7 +182,7 @@ li {
 a {
     text-decoration: none;
     color: rgb(62, 66, 69);
-    cursor: pointer
+    cursor: pointer;
 }
 
 table {
@@ -249,14 +249,14 @@ a {
 table {
     font-size: 13px;
     color: #121212;
-    fontwidth: 100%;
+    /* fontwidth: 100%; */
     border-collapse: collapse;
     background: #fff
 }
 
 td {
     text-align: left;
-    padding: 0 5px;
+    /* padding: 0 5px; */
     border: 1px solid #efefef;
     font-weight: 400
 }
