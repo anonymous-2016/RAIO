@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>控股参股情况</title>
+    <link rel="stylesheet" href="./holdings-participation-situation.css">
+</head>
+
+<body>
+    <section class="fv-module-box-5">
+        <div class="fv-holdings-participation-situation-title-box">
+            <p class="fv-holdings-participation-situation-title" data-more="holdings-participation-situation-title">控股参股情况</p>
+            <!-- <fieldset disabled="disabled"></fieldset> -->
+        </div>
+        <table class="fv-holdings-participation-situation-table">
+            <thead class="fv-holdings-participation-situation-table-thead">
+                <tr class="fv-holdings-participation-situation-table-tr">
+                    <td class="fv-holdings-participation-situation-table-td-title holdings-participation-situation-table-td-value" data-value="data-holdings-participation-situation">被参控公司</td>
+                    <td class="fv-holdings-participation-situation-table-td-title">参控关系</td>
+                    <td class="fv-holdings-participation-situation-table-td-title">参控比例 (%)</td>
+                    <td class="fv-holdings-participation-situation-table-td-title">被参控公司净利润</td>
+                    <td class="fv-holdings-participation-situation-table-td-title">被参控公司主营业务</td>
+                </tr>
+            </thead>
+            <tbody class="fv-holdings-participation-situation-table-tbody" id="fv-holdings-participation-situation-tbody"></tbody>
+            <tfoot class="fv-holdings-participation-situation-table-tfoot">
+                <tr class="fv-holdings-participation-situation-table-tr">
+                    <td class="fv-holdings-participation-situation-table-td-value" data-value="data-fv-holdings-participation-situation"></td>
+                </tr>
+            </tfoot>
+        </table>
+    </section>
+    <script src="./holdings-participation-situation.js"></script>
+</body>
+
+</html>

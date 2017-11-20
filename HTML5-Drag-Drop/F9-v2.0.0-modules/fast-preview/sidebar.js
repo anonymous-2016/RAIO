@@ -186,9 +186,9 @@ window.onload = () => {
 
 
 /**
- * loadAllModules 
+ * loadAllModules
  * @description initial all modules
- * @argument dom_container_uid 
+ * @argument dom_container_uid
  * @param {* Array} uids
  * @param {* Boolean} debug
  */
@@ -218,7 +218,7 @@ STOCK_F9_FV.Modules.loadAllModules = STOCK_F9_FV.Modules.loadAllModules || ((uid
                 sub_div.dataset.deleteModuleUid = `delete-module-${uid}`;
                 sub_div.insertAdjacentHTML(
                     `beforeend`,
-                    `<span 
+                    `<span
                         data-delete-span="delete-span"
                         title="Waring: 你确定要删除此模块？">
                         删除
@@ -286,7 +286,7 @@ STOCK_F9_FV.Modules.loadAllModules = STOCK_F9_FV.Modules.loadAllModules || ((uid
                     default:
                         break;
                 }
-                // no need check ??? 
+                // no need check ???
                 // ??? empty container
                 const loadModule = (module_uid_name=``, isTable=`false`) => {
                     if (debug) {
@@ -298,7 +298,7 @@ STOCK_F9_FV.Modules.loadAllModules = STOCK_F9_FV.Modules.loadAllModules || ((uid
                             console.log(`document.querySelector('.fv-${module_uid_name}-container')`);
                         }
                     }
-                    // setTimeout & IIFE & Closure 
+                    // setTimeout & IIFE & Closure
                     setTimeout(function() {
                         ((module_uid_name, isTable) => {
                             let box = (isTable === true)
@@ -356,7 +356,7 @@ STOCK_F9_FV.Modules.loadAllModules = STOCK_F9_FV.Modules.loadAllModules || ((uid
                                             <td class="fv-important-infos-table-td-key" data-alias="日均成交量(3个月)">近90天日均成交量(万股)</td>
                                             <td class="fv-important-infos-table-td-value" data-value="data-fv-infos"></td>
                                         </tr>
-                                        <!-- 
+                                        <!--
                                             <tr class="fv-important-infos-table-tr">
                                                 <td class="fv-important-infos-table-td-key">总市值</td>
                                                 <td class="fv-important-infos-table-td-value" data-value="data-fv-infos"></td>
@@ -563,7 +563,7 @@ STOCK_F9_FV.Modules.loadAllModules = STOCK_F9_FV.Modules.loadAllModules || ((uid
                                             <td class="fv-indicators-per-share-table-td-key">每股股东自由现金流量(元)</td>
                                             <td class="fv-indicators-per-share-table-td-value" data-value="data-fv-indicators-per-share"></td>
                                         </tr>
-                                        <!-- 
+                                        <!--
                                             <tr class="fv-indicators-per-share-table-tr">
                                                 <td class="fv-indicators-per-share-table-td-key">
                                                     ["每股指标", "报表格式", "报表类型", "报告期", "发布日期", "上市前后" ]
@@ -676,24 +676,36 @@ STOCK_F9_FV.Modules.loadAllModules = STOCK_F9_FV.Modules.loadAllModules || ((uid
                         delete_uid = `equity-pledge`;
                         loadModule(`equity-pledge`, true);
                         htmlstr += `
-                            <section class="fv-module-box-10">
+                            <section class="fv-module-box-10" data-class="test">
                                 <div class="fv-equity-pledge-title-box">
                                     <p class="fv-equity-pledge-title" data-more="equity-pledge-title">股权质押</p>
-                                    <!-- <fieldset disabled="disabled"></fieldset> -->
                                 </div>
                                 <table class="fv-equity-pledge-table">
                                     <thead class="fv-equity-pledge-table-thead">
-                                        <tr class="fv-equity-pledge-table-tr">
+                                        <tr class="fv-equity-pledge-table-tr" data-tr="matrix-tr">
                                             <td class="fv-equity-pledge-table-td-title fv-changes-shareholding-executives-table-td-value" data-value="data-fv-changes-shareholding-executives">质押公告日期</td>
+                                            <!-- date -->
+                                        </tr>
+                                        <tr class="fv-equity-pledge-table-tr" data-tr="matrix-tr">
                                             <td class="fv-equity-pledge-table-td-title">出质人</td>
+                                        </tr>
+                                        <tr class="fv-equity-pledge-table-tr" data-tr="matrix-tr">
                                             <td class="fv-equity-pledge-table-td-title">质权人</td>
+                                        </tr>
+                                        <tr class="fv-equity-pledge-table-tr" data-tr="matrix-tr">
                                             <td class="fv-equity-pledge-table-td-title">质押股数(万股)</td>
+                                        </tr>
+                                        <tr class="fv-equity-pledge-table-tr" data-tr="matrix-tr">
                                             <td class="fv-equity-pledge-table-td-title">占流通A股比例</td>
+                                        </tr>
+                                        <tr class="fv-equity-pledge-table-tr" data-tr="matrix-tr">
                                             <td class="fv-equity-pledge-table-td-title">质押起始日期</td>
+                                        </tr>
+                                        <tr class="fv-equity-pledge-table-tr" data-tr="matrix-tr">
                                             <td class="fv-equity-pledge-table-td-title">质押结束日期</td>
                                         </tr>
                                     </thead>
-                                    <tbody class="fv-equity-pledge-table-tbody" id="fv-equity-pledge-tbody"></tbody>
+                                    <!-- <tbody class="fv-equity-pledge-table-tbody" id="fv-equity-pledge-tbody"></tbody> -->
                                     <tfoot class="fv-equity-pledge-table-tfoot">
                                         <tr class="fv-equity-pledge-table-tr">
                                             <td class="fv-equity-pledge-table-td-value" data-value="data-fv-equity-pledge"></td>
@@ -890,12 +902,12 @@ STOCK_F9_FV.Modules.loadAllModules = STOCK_F9_FV.Modules.loadAllModules || ((uid
  * @description load each module once & check is exist before drop it
  * @author xgqfrms
  * @argument module_uid's
- * 
+ *
  */
 
 
 // IIFE === Closure!
-STOCK_F9_FV.Modules.modulesLoader = STOCK_F9_FV.Modules.modulesLoader || 
+STOCK_F9_FV.Modules.modulesLoader = STOCK_F9_FV.Modules.modulesLoader ||
 (() => {
     const debug = false;
     // const this_name = STOCK_F9_FV.Modules.modulesLoader;
@@ -948,7 +960,7 @@ STOCK_F9_FV.Modules.modulesLoader = STOCK_F9_FV.Modules.modulesLoader ||
             // module_container.removeChild(tdu);
             // alert(`Are sure delete this module?`);
             // conform !== confirm
-            let result = window.confirm(`Are sure delete this module?`);
+            let result = window.confirm(`你确定要删除此模块?`);
             // true
             if(result){
                 // window.open("exit.html", "Thanks for Visiting!");
@@ -956,22 +968,8 @@ STOCK_F9_FV.Modules.modulesLoader = STOCK_F9_FV.Modules.modulesLoader ||
                 // remove DOM node ???
                 // [data-delete-script-dom="delete-script-dom-stockfast01"]
                 module_container.removeChild(tdu);
-                // delete recentImportantEvents; ??? JavaScript 注册全局函数
-                // switch(div_uid) {
-                //     case "stockfast01":
-                //         delete recentImportantEvents;
-                //         // delete window.recentImportantEvents;
-                //         // Uncaught SyntaxError: Delete of an unqualified identifier in strict mode.
-                //         // fasle;
-                //         break;
-                //     case "stockfast02":
-                //         delete recentImportantEvents;
-                //         break;
-                //     default:
-                //         break;
-                // }
             }else{
-                alert(`not too bad!`);
+                alert(`已取消删除此模块!`);
             }
         },
         // api: `https://developer.mozilla.org/API`,
@@ -982,7 +980,7 @@ STOCK_F9_FV.Modules.modulesLoader = STOCK_F9_FV.Modules.modulesLoader ||
             // console.log(`e.target.dataset = \n`, e.target.dataset);
             // console.log(`e.target.dataset.iconUid = %c ${e.target.dataset.iconUid}\n`, console_css);
             // console.log(`e.target.dataset.droppedUid = %c ${e.target.dataset.iconUid}\n`, console_css);
-            // iconUid 
+            // iconUid
             let iconUid = e.target.dataset.iconUid.substr(12),
                 droppedUid = e.target.dataset.droppedUid ? e.target.dataset.droppedUid.substr(12) : ``;
             let uid = iconUid ? iconUid : droppedUid;
@@ -1025,7 +1023,7 @@ STOCK_F9_FV.Modules.modulesLoader = STOCK_F9_FV.Modules.modulesLoader ||
             // if (drop_counter === 1) {
             //     let drop_info_div = document.querySelector(`#drop_info_div`);
             //     // module_container.removeChild(`drop_info_div`);
-            //     module_container.removeChild(module_container.childNodes[0]);  
+            //     module_container.removeChild(module_container.childNodes[0]);
             //     drop_counter = 0;
             // }
             // module_container.classList.remove(`absolute-center-placeholder`);
@@ -1037,7 +1035,7 @@ STOCK_F9_FV.Modules.modulesLoader = STOCK_F9_FV.Modules.modulesLoader ||
             if (drop_counter === 1) {
                 let drop_info_div = document.querySelector(`#drop_info_div`);
                 // module_container.removeChild(`drop_info_div`);
-                module_container.removeChild(module_container.childNodes[0]);  
+                module_container.removeChild(module_container.childNodes[0]);
                 drop_counter = 0;
             }
             module_container.classList.remove(`absolute-center-placeholder`);
@@ -1051,7 +1049,7 @@ STOCK_F9_FV.Modules.modulesLoader = STOCK_F9_FV.Modules.modulesLoader ||
             sub_div.dataset.deleteModuleUid = `delete-module-${uid}`;
             sub_div.insertAdjacentHTML(
                 `beforeend`,
-                `<span 
+                `<span
                     data-delete-span="delete-span"
                     title="Waring: 你确定要删除此模块？">
                     删除
@@ -1123,10 +1121,10 @@ STOCK_F9_FV.Modules.modulesLoader = STOCK_F9_FV.Modules.modulesLoader ||
             }
             let module_exist_checker = document.querySelector(`[data-div-module-uid="div-module-${uid}"]`);
             /**
-             * @author xgqfrms 
+             * @author xgqfrms
              * @description load Module (2017.11.01)
-             * @param {* String} module_uid_name 
-             * @param {* Boolean} isTable 
+             * @param {* String} module_uid_name
+             * @param {* Boolean} isTable
              */
             const loadModule = (module_uid_name=``, isTable=`false`) => {
                 if (debug) {
@@ -1199,7 +1197,7 @@ STOCK_F9_FV.Modules.modulesLoader = STOCK_F9_FV.Modules.modulesLoader ||
                                             <td class="fv-important-infos-table-td-key" data-alias="日均成交量(3个月)">近90天日均成交量(万股)</td>
                                             <td class="fv-important-infos-table-td-value" data-value="data-fv-infos"></td>
                                         </tr>
-                                        <!-- 
+                                        <!--
                                             <tr class="fv-important-infos-table-tr">
                                                 <td class="fv-important-infos-table-td-key">总市值</td>
                                                 <td class="fv-important-infos-table-td-value" data-value="data-fv-infos"></td>
@@ -1406,7 +1404,7 @@ STOCK_F9_FV.Modules.modulesLoader = STOCK_F9_FV.Modules.modulesLoader ||
                                             <td class="fv-indicators-per-share-table-td-key">每股股东自由现金流量(元)</td>
                                             <td class="fv-indicators-per-share-table-td-value" data-value="data-fv-indicators-per-share"></td>
                                         </tr>
-                                        <!-- 
+                                        <!--
                                             <tr class="fv-indicators-per-share-table-tr">
                                                 <td class="fv-indicators-per-share-table-td-key">
                                                     ["每股指标", "报表格式", "报表类型", "报告期", "发布日期", "上市前后" ]
@@ -1519,24 +1517,36 @@ STOCK_F9_FV.Modules.modulesLoader = STOCK_F9_FV.Modules.modulesLoader ||
                         delete_uid = `equity-pledge`;
                         loadModule(`equity-pledge`, true);
                         htmlstr += `
-                            <section class="fv-module-box-10">
+                            <section class="fv-module-box-10" data-class="test">
                                 <div class="fv-equity-pledge-title-box">
                                     <p class="fv-equity-pledge-title" data-more="equity-pledge-title">股权质押</p>
-                                    <!-- <fieldset disabled="disabled"></fieldset> -->
                                 </div>
                                 <table class="fv-equity-pledge-table">
                                     <thead class="fv-equity-pledge-table-thead">
-                                        <tr class="fv-equity-pledge-table-tr">
+                                        <tr class="fv-equity-pledge-table-tr" data-tr="matrix-tr">
                                             <td class="fv-equity-pledge-table-td-title fv-changes-shareholding-executives-table-td-value" data-value="data-fv-changes-shareholding-executives">质押公告日期</td>
+                                            <!-- date -->
+                                        </tr>
+                                        <tr class="fv-equity-pledge-table-tr" data-tr="matrix-tr">
                                             <td class="fv-equity-pledge-table-td-title">出质人</td>
+                                        </tr>
+                                        <tr class="fv-equity-pledge-table-tr" data-tr="matrix-tr">
                                             <td class="fv-equity-pledge-table-td-title">质权人</td>
+                                        </tr>
+                                        <tr class="fv-equity-pledge-table-tr" data-tr="matrix-tr">
                                             <td class="fv-equity-pledge-table-td-title">质押股数(万股)</td>
+                                        </tr>
+                                        <tr class="fv-equity-pledge-table-tr" data-tr="matrix-tr">
                                             <td class="fv-equity-pledge-table-td-title">占流通A股比例</td>
+                                        </tr>
+                                        <tr class="fv-equity-pledge-table-tr" data-tr="matrix-tr">
                                             <td class="fv-equity-pledge-table-td-title">质押起始日期</td>
+                                        </tr>
+                                        <tr class="fv-equity-pledge-table-tr" data-tr="matrix-tr">
                                             <td class="fv-equity-pledge-table-td-title">质押结束日期</td>
                                         </tr>
                                     </thead>
-                                    <tbody class="fv-equity-pledge-table-tbody" id="fv-equity-pledge-tbody"></tbody>
+                                    <!-- <tbody class="fv-equity-pledge-table-tbody" id="fv-equity-pledge-tbody"></tbody> -->
                                     <tfoot class="fv-equity-pledge-table-tfoot">
                                         <tr class="fv-equity-pledge-table-tr">
                                             <td class="fv-equity-pledge-table-td-value" data-value="data-fv-equity-pledge"></td>
@@ -1707,7 +1717,7 @@ STOCK_F9_FV.Modules.modulesLoader = STOCK_F9_FV.Modules.modulesLoader ||
                 div.insertAdjacentHTML(`beforeend`, `${htmlstr}`);// no needs container any more!
                 module_container.insertAdjacentElement(`beforeend`, div);
                 // insert script.js ??? execute timeline!
-                // insert DOM 
+                // insert DOM
                 // insert CSS
                 setTimeout(function() {
                     // let delete_box = document.querySelector(`.fv-${delete_uid}-title-box`);
@@ -1763,7 +1773,7 @@ setTimeout(function() {
  * MongoDB
  */
 
-/* 
+/*
 
     const saveToLocalStorage = () => {
         // write

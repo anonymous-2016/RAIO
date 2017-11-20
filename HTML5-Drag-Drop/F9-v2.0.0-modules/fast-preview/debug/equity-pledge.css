@@ -117,3 +117,15 @@ table.fv-equity-pledge-table tr[data-tr="matrix-tr"]>td:nth-of-type(n+2) {
     box-sizing: border-box;
     /* text-align: left; */
 }
+
+
+/* .test {
+    box-sizing: border-box;
+    width: 200px;
+    height: 300px;
+    float: left;
+}
+
+[data-class="test"] {
+    float: left;
+} */
