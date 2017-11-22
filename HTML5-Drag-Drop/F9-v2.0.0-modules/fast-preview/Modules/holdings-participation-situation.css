@@ -13,6 +13,14 @@
     /* width: 100%; */
 }
 
+table,
+tr,
+td {
+    padding: 0;
+    /* margin: 0; */
+    /* border: 0; */
+}
+
 .fv-holdings-participation-situation-title {
     position: relative;
     color: #000;
@@ -49,7 +57,8 @@
 
 .fv-holdings-participation-situation-table {
     /* width: 100%; */
-    /* width: 542px; */
+    width: 542px;
+    box-sizing: border-box;
     /* height: 300px; */
     /* overflow: hidden; */
     /* 去除table每行之间的空白间隙 */
@@ -59,7 +68,7 @@
     /* border-spacing: 1px */
     /* border-color: #c5d2db; */
     font-size: 13px;
-    font-weight: normal;
+    font-weight: nowrap;
     height: 300px;
     overflow: hidden;
 }
@@ -90,7 +99,7 @@
     text-align: center;
     width: 542px;
     box-sizing: border-box;
-    overflow: hidden;
+    /* overflow: hidden; */
 }
 
 .fv-holdings-participation-situation-table-tfoot {
@@ -113,7 +122,7 @@
 /* date no need `:` */
 
 
-/* 
+/*
 
 .fv-holdings-participation-situation-table-td-key::after {
     content: ":"
@@ -152,8 +161,9 @@
 }
 
 .fv-changes-shareholding-executives-table-td-value {
+    box-sizing: border-box;
     overflow: hidden;
-    white-space: normal;
+    white-space: nowrap;
     width: 70px;
     text-overflow: ellipsis;
     /* line-height: 23px; */
@@ -164,7 +174,7 @@
 .fv-holdings-participation-situation-table-tbody>tr:nth-of-type(n)>td {
     overflow: hidden;
     text-overflow: ellipsis;
-    white-space: normal;
+    white-space: nowrap;
     line-height: 23px;
     height: 23px;
     box-sizing: border-box;
@@ -199,23 +209,33 @@
 /* https://css-tricks.com/almanac/properties/t/text-overflow/ */
 
 .fv-holdings-participation-situation-table-tbody>tr:nth-of-type(n)>td:nth-of-type(n) {
-    text-overflow: ellipsis;
     overflow: hidden;
-    /* word-break: break-all; */
-    white-space: normal;
+    text-overflow: ellipsis;
+    white-space: nowrap;
     width: 80px;
+    box-sizing: border-box;
+    /* word-break: break-all; */
+    /* white-space: nowrap;*/
 }
 
 .fv-holdings-participation-situation-table-tbody>tr:nth-of-type(n)>td:first-child {
     /* min-width: 81px; */
     width: 81px;
+    max-width: 81px;
     overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    box-sizing: border-box;
 }
 
 .fv-holdings-participation-situation-table-tbody>tr:nth-of-type(n)>td:nth-of-type(2) {
     /* min-width: 80px; */
     width: 80px;
+    max-width: 80px;
     overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    box-sizing: border-box;
 }
 
 .fv-holdings-participation-situation-table-tbody>tr:nth-of-type(n)>td:nth-of-type(3) {
@@ -250,6 +270,7 @@
     width: 542px;
     height: 300px;
     overflow: hidden;
+    box-sizing: border-box;
 }
 
 .link-more {
@@ -292,4 +313,22 @@
     /* min-width: 80px; */
     width: 80px;
     overflow: hidden;
+}
+
+[data-value="data-fv-changes-shareholding-executives"] {
+    width: 80px;
+    max-width: 80px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+td.fv-holdings-participation-situation-table-td-title {
+    width: 80px;
+    max-width: 120px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    box-sizing: border-box;
+    /* border-right: 1px solid red; */
 }
