@@ -4,10 +4,10 @@
  * important infos 重要信息
  * xgqfrms
  * creadted 2017.10.12
- * @param {* String} url 
- * @param {* Array} tds 
- * @param {* Array} ui_arr 
- * @param {Boolean} debug 
+ * @param {* String} url
+ * @param {* Array} tds
+ * @param {* Array} ui_arr
+ * @param {Boolean} debug
  */
 
 // namespaces
@@ -21,7 +21,7 @@ STOCK_F9_FV.Modules.importantInfos = STOCK_F9_FV.Modules.importantInfos || ((url
     .then(res => res.json())
     // SyntaxError: Unexpected end of input ??? CORS
     .then(
-        //shaped data 
+        //shaped data
         (json) => {
             // json
             if (debug) {
@@ -45,7 +45,7 @@ STOCK_F9_FV.Modules.importantInfos = STOCK_F9_FV.Modules.importantInfos || ((url
             // const ui_arr = ["sjgn", "zyyw", "bdl", "cjl", "jzc", "zgb", "ltgb", "gxl", "cgzb", "mbjg", "zhpj"];
             for (let i = 0; i < tds.length; i++) {
                 let key = ui_arr[i];
-                let value = data[key];
+                let value = data[key] !== `--` ? data[key] : 0;
                 if (i < 2) {
                     tds[i].innerText = value;
                     tds[i].setAttribute(`title`, value);
