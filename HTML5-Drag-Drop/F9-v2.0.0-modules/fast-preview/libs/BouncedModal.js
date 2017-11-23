@@ -1,14 +1,14 @@
 /**
- * 
+ *
  * @namespace STOCK_F9_FV
  * @subnamespace STOCK_F9_FV.Modal
- * 
+ *
  * @description BouncedModal
  * @author xgqfrms & ???
- * 
+ *
  * @method getClientWidthHeight
  * @method BouncedModal(options,debug)
- * 
+ *
  */
 
 // namespaces
@@ -22,7 +22,7 @@ STOCK_F9_FV.Modal.Public = STOCK_F9_FV.Modal.Public  || ((debug = false) => {
         view: () => {
             const w = document.documentElement.clientWidth;
             const h = document.documentElement.clientHeight;
-            if (!debug) {
+            if (debug) {
                 console.log(`clientHeight = `, h);
                 console.log(`clientWidth = `, w);
             }
@@ -53,7 +53,7 @@ STOCK_F9_FV.Modal.getClientWidthHeight = STOCK_F9_FV.Modal.getClientWidthHeight 
         bodyheight = document.body.clientHeight;
         height = document.documentElement.clientHeight;
         innerheight = window.innerHeight;
-        if (!debug) {
+        if (debug) {
             console.log(`document.body.clientHeight = `, bodyheight);
             // 50px ??? bug
             console.log(`document.documentElement.clientHeight = `, height);
@@ -66,12 +66,12 @@ STOCK_F9_FV.Modal.getClientWidthHeight = STOCK_F9_FV.Modal.getClientWidthHeight 
     }else{
         width = document.documentElement.clientWidth;
         height = document.documentElement.clientHeight;
-        if (!debug) {
+        if (debug) {
             console.log(`document.documentElement.clientHeight = `, height);
             console.log(`document.documentElement.clientWidth = `, width);
         }
     }
-    if (!debug) {
+    if (debug) {
         console.log(`isIE = `, isIE);
         console.log(`clientHeight = `, height);
         console.log(`clientWidth = `, width);
@@ -85,12 +85,12 @@ STOCK_F9_FV.Modal.getClientWidthHeight = STOCK_F9_FV.Modal.getClientWidthHeight 
 
 /**
  * @description BouncedModal & $.extend
- * 
- * @param {* Object} options 
- * @param {* Boolean} debug 
- * 
+ *
+ * @param {* Object} options
+ * @param {* Boolean} debug
+ *
  * @example BouncedModal({width: 300, height: 200, title:"信息", datas: {}}, true)
- * 
+ *
  * @augments $.extend === Object.assign
  */
 
@@ -100,17 +100,17 @@ function BouncedModal(options, debug = false){
         console.log(`BouncedModal's options = \n`, JSON.stringify(options, null, 4));
     }
     this.config = {
-        layerBoxClass :"layerBox",
+        layerBoxClass : "layerBox",
         layerclass:"",
         width: 300,// UDP.getClientWidth()-60
         height: 200,// UDP.getClientWidth()-60
         zIndex: 1000,
-        title:"信息",
-        setOverflow:"overflow-y:scroll",
-        str:"",
+        title: "信息",
+        setOverflow: "overflow-y:scroll",
+        str: "",
         datas: {},
         callback: function () {
-            // 
+            //
         }
     };
     $.extend(this.config, options);
@@ -203,19 +203,26 @@ BouncedModal.prototype = {
             <div class="overlay" style="z-index: ${that.config.zIndex}">
                 <div
                     class="animated zoomIn ${that.config.layerBoxClass}"
+                    data-animated="animated"
+                    data-layerBox="layerBox"
                     style="width: ${this.config.width}px; height: ${this.config.height}px">
-                    <h5 class="layerHeader">
+                    <h5
+                        class="layerHeader"
+                        data-layerHeader="layerHeader">
                         ${this.config.title}
                         <a href="javascript:;" class="close_btn"></a>
                     </h5>
-                    <div class="layerContianer ${this.config.layerclass}" style="${this.config.setOverflow}">
+                    <div
+                        class="layerContianer ${this.config.layerclass}"
+                        data-layerContianer="layerContianer"
+                        style="${this.config.setOverflow}">
                         ${html_template}
                     </div>
                 </div>
             </div>
         `;
         const UDP_wh = UDP.getClientWidthHeight;
-        if (!debug) {
+        if (debug) {
             console.log(`BouncedModal's UDP_wh = \n`, JSON.stringify(UDP_wh, null, 4));
         }
         // UDP_wh.h
@@ -231,8 +238,8 @@ BouncedModal.prototype = {
             that.delDialog($(this));
         });
         $("."+that.config.layerBoxClass).eq($(".overlay").size()-1).css({
-            left: (s.w- this.config.width)/2+"px",
-            top: (s.h-this.config.height)/2+"px"
+            left: `${(s.w - this.config.width)/2}px`,
+            top: `${(s.h - this.config.height)/2}px`
         });
         if(that.config.callback){
             that.config.callback.apply(this,[]);
@@ -258,11 +265,14 @@ BouncedModal.prototype = {
             $(document).mousemove(function(e){
                 var lf = e.clientX-x;
                 var tp = e.clientY-y;
-                lf=lf<0 ? 0:lf;
-                lf=lf>(s.w - moveEle.width()) ? (s.w - moveEle.width()):lf;
-                tp=tp<0 ? 0:tp;
-                tp=tp>(s.h - moveEle.height()) ? (s.h - moveEle.height()):tp;
-                moveEle.css({left: lf+"px",top:tp+"px"});
+                lf = lf < 0 ? 0 : lf;
+                lf = lf > (s.w - moveEle.width()) ? (s.w - moveEle.width()) : lf;
+                tp = tp < 0 ? 0:tp;
+                tp = tp > (s.h - moveEle.height()) ? (s.h - moveEle.height()) : tp;
+                moveEle.css({
+                    left: `${lf}px`,
+                    top: `${tp}px`
+                });
             });
             $(document).mouseup(function(){
                 $(this).unbind("mousemove");
@@ -273,22 +283,26 @@ BouncedModal.prototype = {
     revampSize: function(){
         var that = this;
         var s = UDP.Public.view();
-        // 
+        //
         $(".layer-size").mousedown(function(e){
             var theme = this;
             var moveEle = $(theme).parents("."+that.config.layerBoxClass);
             var x = e.clientX - moveEle.width();
             var y = e.clientY - moveEle.height();
            $(document).mousemove(function(e){
-               var width = e.clientX-x+"px";
-               var height = e.clientY-y+"px";
-               width=width<0 ? 0:width;
-               width=width>s.w ? s.w :width;
-               height=height<0 ? 0:height;
-               height=height>s.h ? s.h :height;
-               moveEle.css({width:width,height:height});
+               var width = `${e.clientX - x}px`;
+               var height = `${e.clientY - y}px`;
+               width = width < 0 ? 0 : width;
+               width = width > s.w ? s.w :width;
+               height = height < 0 ? 0 : height;
+               height = height > s.h ? s.h : height;
+               moveEle.css({
+                    width:width,
+                    height:height
+               });
            });
             $(document).mouseup(function(){
+                // unbind
                 $(document).unbind("mousemove");
             });
         });

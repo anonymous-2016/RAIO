@@ -61,6 +61,13 @@ body {
     animation-fill-mode: both
 }
 
+[data-animated="animated"] {
+    -webkit-animation-duration: 0.5s;
+    animation-duration: 0.5s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+}
+
 .animated.infinite {
     -webkit-animation-iteration-count: infinite;
     animation-iteration-count: infinite
@@ -111,6 +118,19 @@ body {
     box-shadow: 0 0 3px rgba(0, 0, 0, 0.2)
 }
 
+[data-layerBox="layerBox"] {
+    border-radius: 2px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 1001;
+    height: auto;
+    /* background: #fff; */
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.2)
+}
+
 .layerHeader {
     height: 35px;
     line-height: 35px;
@@ -121,7 +141,23 @@ body {
     color: #fff
 }
 
+[data-layerHeader="layerHeader"] {
+    height: 35px;
+    line-height: 35px;
+    padding-left: 15px;
+    border-bottom: 1px solid #edeeee;
+    background: #616a87;
+    cursor: move;
+    color: #fff
+}
+
 .layerContianer {
+    height: calc(100% - 35px);
+    background: #fffdfa;
+    text-align: center
+}
+
+[data-layerContianer="layerContianer"] {
     height: calc(100% - 35px);
     background: #fffdfa;
     text-align: center

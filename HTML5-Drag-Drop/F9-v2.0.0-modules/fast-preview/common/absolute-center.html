@@ -13,7 +13,8 @@
     <div class="sider" id="sider">
         smg <br> smg <br> smg <br> smg <br> smg <br> smg <br> smg <br> smg <br> smg <br> smg <br>
     </div>
-    <div class="content-body" id="content-body">
+    <div class="content-body" id="content-body" data-container="modules-sortable-container-main">
+        <!--
         <div class="modules" id="modules-sortable-container">
             <section class="module module1">
                 重要信息
@@ -52,45 +53,122 @@
                 蚂蚁金服
             </section>
         </div>
+    -->
+        <div class="modules1" id="modules-sortable-container1">
+            <section class="module module1">
+                重要信息
+            </section>
+            <section class="module module2">
+                涉及概念
+            </section>
+            <section class="module module3">
+                主营业务
+            </section>
+            <section class="module module4">
+                52周波动率
+            </section>
+        </div>
+        <div class="modules2" id="modules-sortable-container2">
+            <section class="module module1">
+                xxx重要信息
+            </section>
+            <section class="module module2">
+                xxx涉及概念
+            </section>
+            <section class="module module3">
+                xxx主营业务
+            </section>
+            <section class="module module4">
+                xxx52周波动率
+            </section>
+        </div>
     </div>
     <!-- js -->
     <script src="../libs/Sortable.min.js"></script>
     <script>
         window.onload = function() {
-            let sortable_container = document.querySelector(`#modules-sortable-container`);
-            Sortable.create(sortable_container);
-            let cbd = document.querySelector(`#content-body`);
-            let side = document.querySelector(`#sider`);
-            side.addEventListener(`click`, function() {
-                console.log(`sider toggle!`);
-                // this
-                console.log(`this =`, this);
-                // <div class="sider" id="sider"></div>
-                console.log(`this =`, this.toString());
-                // [object HTMLDivElement]
-            });
-            side.addEventListener(`click`, function(e) {
-                // this
-                console.log(`\n this =`, this);
-                // <div class="sider" id="sider"></div>
-                // e
-                console.log(`\n e.target =`, e.target);
-                // <div class="sider" id="sider"></div>
-            });
-            side.addEventListener(`click`, function(e) {
-                // this.classList.add();
-                e.target.classList.add("sider-small");
-                e.target.classList.remove("sider");
-                cbd.classList.add("content-body-big");
-                cbd.classList.remove("content-body");
-            });
-            cbd.addEventListener(`click`, function(e) {
-                // this.classList.add();
-                e.target.classList.add("content-body");
-                e.target.classList.remove("content-body-big");
-                side.classList.add("sider");
-                side.classList.remove("sider-small");
-            });
+            // let sortable_container = document.querySelector(`#modules-sortable-container`);
+            // Sortable.create(sortable_container);
+            // no good at all!
+            let sortable_container1 = document.querySelector(`#modules-sortable-container1`);
+            let sortable_container2 = document.querySelector(`#modules-sortable-container2`);
+            Sortable.create(sortable_container1);
+            Sortable.create(sortable_container2);
+            // only enable on directly children ??? CSS layout ??? bind customise drop & drag event
+            let sortable_container_main = document.querySelector(`[data-container="modules-sortable-container-main"]`);
+            Sortable.create(sortable_container_main);
+            // IIFE & Closure& sidebar
+            (() => {
+                let cbd = document.querySelector(`#content-body`);
+                let side = document.querySelector(`#sider`);
+                side.addEventListener(`click`, function() {
+                    console.log(`sider toggle!`);
+                    // this
+                    console.log(`this =`, this);
+                    // <div class="sider" id="sider"></div>
+                    console.log(`this =`, this.toString());
+                    // [object HTMLDivElement]
+                });
+                side.addEventListener(`click`, function(e) {
+                    // this
+                    console.log(`\n this =`, this);
+                    // <div class="sider" id="sider"></div>
+                    // e
+                    console.log(`\n e.target =`, e.target);
+                    // <div class="sider" id="sider"></div>
+                });
+                side.addEventListener(`click`, function(e) {
+                    // this.classList.add();
+                    e.target.classList.add("sider-small");
+                    e.target.classList.remove("sider");
+                    cbd.classList.add("content-body-big");
+                    cbd.classList.remove("content-body");
+                });
+                cbd.addEventListener(`click`, function(e) {
+                    // this.classList.add();
+                    e.target.classList.add("content-body");
+                    e.target.classList.remove("content-body-big");
+                    side.classList.add("sider");
+                    side.classList.remove("sider-small");
+                });
+            })();
+            // setTimeout() & Closure
+            /*
+                setTimeout(() => {
+                    let cbd = document.querySelector(`#content-body`);
+                    let side = document.querySelector(`#sider`);
+                    side.addEventListener(`click`, function() {
+                        console.log(`sider toggle!`);
+                        // this
+                        console.log(`this =`, this);
+                        // <div class="sider" id="sider"></div>
+                        console.log(`this =`, this.toString());
+                        // [object HTMLDivElement]
+                    });
+                    side.addEventListener(`click`, function(e) {
+                        // this
+                        console.log(`\n this =`, this);
+                        // <div class="sider" id="sider"></div>
+                        // e
+                        console.log(`\n e.target =`, e.target);
+                        // <div class="sider" id="sider"></div>
+                    });
+                    side.addEventListener(`click`, function(e) {
+                        // this.classList.add();
+                        e.target.classList.add("sider-small");
+                        e.target.classList.remove("sider");
+                        cbd.classList.add("content-body-big");
+                        cbd.classList.remove("content-body");
+                    });
+                    cbd.addEventListener(`click`, function(e) {
+                        // this.classList.add();
+                        e.target.classList.add("content-body");
+                        e.target.classList.remove("content-body-big");
+                        side.classList.add("sider");
+                        side.classList.remove("sider-small");
+                    });
+                }, 0);
+            */
         };
     </script>
 </body>

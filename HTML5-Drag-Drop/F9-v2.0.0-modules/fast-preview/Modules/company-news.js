@@ -72,7 +72,7 @@ STOCK_F9_FV.Modules.companyNews = STOCK_F9_FV.Modules.companyNews || ((url = ``,
                 }
                 for (let i = 0; i < links.length; i++) {
                     links[i].addEventListener(`click`, (e) => {
-                        // e.preventDefault();
+                        e.preventDefault();
                         // #hash ???
                         if (debug) {
                             console.log(`e.target.dataset = \n`, e.target.dataset);
@@ -90,7 +90,7 @@ STOCK_F9_FV.Modules.companyNews = STOCK_F9_FV.Modules.companyNews || ((url = ``,
                             title = e.target.dataset.title;
                         try {
                             let open_link = `${host}/queryservice/news/content/${id}`;
-                            if (!debug) {
+                            if (debug) {
                                 console.log(`id = ${id} \ntitle = ${title}`);
                                 // no need title
                             }

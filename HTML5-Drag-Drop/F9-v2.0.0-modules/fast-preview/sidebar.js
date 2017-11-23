@@ -796,6 +796,7 @@ STOCK_F9_FV.Modules.loadAllModules = STOCK_F9_FV.Modules.loadAllModules || ((uid
                             <section class="fv-module-box-5">
                                 <div class="fv-company-news-title-box">
                                     <p class="fv-company-news-title" data-more="company-news-title">公司新闻</p>
+                                    <!-- <fieldset disabled="disabled"></fieldset> -->
                                 </div>
                                 <table class="fv-company-news-table">
                                     <thead class="fv-company-news-table-thead">
@@ -804,7 +805,18 @@ STOCK_F9_FV.Modules.loadAllModules = STOCK_F9_FV.Modules.loadAllModules || ((uid
                                             <td class="fv-company-news-table-td-title">标题</td>
                                         </tr>
                                     </thead>
-                                    <tbody class="fv-company-news-table-tbody" id="fv-company-news-tbody"></tbody>
+                                    <tbody class="fv-company-news-table-tbody" id="fv-company-news-tbody">
+                                        <!--
+                                            <tr class="fv-company-news-table-tr">
+                                                <td class="fv-company-news-table-td-key">涉及概念</td>
+                                                <td class="fv-company-news-table-td-value" data-value="data-fv-events">
+                                                    <div class="css-data-loading" data-loading="pure-css-data-loading">
+                                                        CSS Loading...
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        -->
+                                    </tbody>
                                     <tfoot class="fv-company-news-table-tfoot">
                                         <tr class="fv-company-news-table-tr">
                                             <td class="fv-company-news-table-td-value" data-value="data-fv-company-news"></td>

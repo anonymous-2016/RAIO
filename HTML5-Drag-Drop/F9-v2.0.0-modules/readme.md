@@ -1,5 +1,22 @@
 # 速览
 
+```sh
+
+# ..\F9-v2.0.0-modules\
+# in case of path error, cause icons 404!
+
+$ browser-sync start --server --files "./fast-preview/*.*"
+
+# http://localhost:3000/fast-preview/sidebar.html#模块选择
+
+# HTML5-Drag-Drop/F9-v2.0.0-modules/fast-preview/common/absolute-center.html
+
+```
+
+
+
+
+
 
 
 股权质押 matrix & data regex
@@ -389,6 +406,8 @@ kkk;
 $ browser-sync start --server --files "./fast-preview/*.*"
 
 # http://localhost:3000/fast-preview/sidebar.html#模块选择
+
+# HTML5-Drag-Drop/F9-v2.0.0-modules/fast-preview/common/absolute-center.html
 
 ```
 
