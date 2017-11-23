@@ -1,0 +1,15 @@
+.avatar.avatar-more::before,
+.avatar.avatar-more::after {
+    position: absolute;
+    display: block;
+    height: 20px;
+    content: "";
+    border-radius: 2px;
+    outline: 1px solid #fff
+}
+
+
+/* http://primercss.io/ */
+
+
+/* https://github.com/primer/primer-css */

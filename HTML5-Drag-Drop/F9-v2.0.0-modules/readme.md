@@ -13,6 +13,7 @@ $ browser-sync start --server --files "./fast-preview/*.*"
 
 ```
 
+http://10.1.5.202/stock/f9/fastview/sidebar.html
 
 
 

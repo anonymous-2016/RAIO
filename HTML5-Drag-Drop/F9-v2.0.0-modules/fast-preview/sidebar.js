@@ -683,7 +683,7 @@ STOCK_F9_FV.Modules.loadAllModules = STOCK_F9_FV.Modules.loadAllModules || ((uid
                                 <table class="fv-equity-pledge-table">
                                     <thead class="fv-equity-pledge-table-thead">
                                         <tr class="fv-equity-pledge-table-tr" data-tr="matrix-tr">
-                                            <td class="fv-equity-pledge-table-td-title fv-changes-shareholding-executives-table-td-value" data-value="data-fv-changes-shareholding-executives">质押公告日期</td>
+                                            <td class="fv-equity-pledge-table-td-title fv-equity-pledge-table-td-value" data-value="data-fv-equity-pledge">质押公告日期</td>
                                             <!-- date -->
                                         </tr>
                                         <tr class="fv-equity-pledge-table-tr" data-tr="matrix-tr">
@@ -1019,10 +1019,10 @@ STOCK_F9_FV.Modules.modulesLoader = STOCK_F9_FV.Modules.modulesLoader ||
                 let info_div = document.createElement(`div`);
                 info_div.innerHTML = "请将模块拖拽到灰色区域内!";
                 info_div.setAttribute(`id`, `drop_info_div`);
-                module_container.insertAdjacentElement(`afterbegin`, info_div);
+                // module_container.insertAdjacentElement(`afterbegin`, info_div);
                 drop_counter++
             }
-            module_container.classList.add(`absolute-center-placeholder`);
+            // module_container.classList.add(`absolute-center-placeholder`);
             // background
             e.preventDefault();
             return true;
@@ -1047,10 +1047,10 @@ STOCK_F9_FV.Modules.modulesLoader = STOCK_F9_FV.Modules.modulesLoader ||
             if (drop_counter === 1) {
                 let drop_info_div = document.querySelector(`#drop_info_div`);
                 // module_container.removeChild(`drop_info_div`);
-                module_container.removeChild(module_container.childNodes[0]);
+                // module_container.removeChild(module_container.childNodes[0]);
                 drop_counter = 0;
             }
-            module_container.classList.remove(`absolute-center-placeholder`);
+            // module_container.classList.remove(`absolute-center-placeholder`);
             let uid = e.dataTransfer.getData("text/plain");
             // let data = e.dataTransfer.getData("xyz");
             if (debug) {
@@ -1529,21 +1529,24 @@ STOCK_F9_FV.Modules.modulesLoader = STOCK_F9_FV.Modules.modulesLoader ||
                         delete_uid = `equity-pledge`;
                         loadModule(`equity-pledge`, true);
                         htmlstr += `
-                            <section class="fv-module-box-10" data-class="test">
+                            <section class="fv-module-box-10">
                                 <div class="fv-equity-pledge-title-box">
                                     <p class="fv-equity-pledge-title" data-more="equity-pledge-title">股权质押</p>
+                                    <!-- <fieldset disabled="disabled"></fieldset> -->
                                 </div>
                                 <table class="fv-equity-pledge-table">
                                     <thead class="fv-equity-pledge-table-thead">
                                         <tr class="fv-equity-pledge-table-tr" data-tr="matrix-tr">
-                                            <td class="fv-equity-pledge-table-td-title fv-changes-shareholding-executives-table-td-value" data-value="data-fv-changes-shareholding-executives">质押公告日期</td>
+                                            <td class="fv-equity-pledge-table-td-title fv-equity-pledge-table-td-value" data-value="data-fv-equity-pledge">质押公告日期</td>
                                             <!-- date -->
                                         </tr>
                                         <tr class="fv-equity-pledge-table-tr" data-tr="matrix-tr">
                                             <td class="fv-equity-pledge-table-td-title">出质人</td>
+                                            <!-- people -->
                                         </tr>
                                         <tr class="fv-equity-pledge-table-tr" data-tr="matrix-tr">
                                             <td class="fv-equity-pledge-table-td-title">质权人</td>
+                                            <!--  -->
                                         </tr>
                                         <tr class="fv-equity-pledge-table-tr" data-tr="matrix-tr">
                                             <td class="fv-equity-pledge-table-td-title">质押股数(万股)</td>

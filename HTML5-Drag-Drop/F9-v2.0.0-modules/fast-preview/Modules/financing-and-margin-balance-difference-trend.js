@@ -1,13 +1,13 @@
 "use strict";
 
 /**
- * @description financing-and-margin-balance-difference-trend 融资余额与融券余额差值走势 
+ * @description financing-and-margin-balance-difference-trend 融资余额与融券余额差值走势
  * @author xgqfrms
  * @name financing-and-margin-balance-difference-trend FMBDT
  * creadted 2017.10.27
- * @param {* String} url 
+ * @param {* String} url
  * @param {* DOM Element} uid
- * @param {* Boolean} debug 
+ * @param {* Boolean} debug
  */
 
 
@@ -25,7 +25,7 @@ STOCK_F9_FV.Modules.FMBDtrend = STOCK_F9_FV.Modules.FMBDtrend || ((url = ``, deb
     fetch(url)
     .then(res => res.json())
     .then(
-        //shaped data 
+        //shaped data
         (json) => {
             // json
             let arr = json;// Array
@@ -124,9 +124,9 @@ STOCK_F9_FV.Modules.FMBDtrend = STOCK_F9_FV.Modules.FMBDtrend || ((url = ``, deb
 
 /**
  * @author xgqfrms
- * 
- * @param {* Object} datas 
- * @param {* String} container_uid 
+ *
+ * @param {* Object} datas
+ * @param {* String} container_uid
  * @param {* Boolean} debug
  */
 STOCK_F9_FV.Modules.FMBDtrend.FMBDTdrawHS = STOCK_F9_FV.Modules.FMBDtrend.FMBDTdrawHS || ((datas = {}, container_uid = `container`, debug = false) => {
@@ -150,10 +150,10 @@ STOCK_F9_FV.Modules.FMBDtrend.FMBDTdrawHS = STOCK_F9_FV.Modules.FMBDtrend.FMBDTd
     // css_obj ???
     // const {color, colors, optioncolor, gridColor, legendColor, yAxisColor} = {...chart_css};
     let color = chart_css.color,
-        colors = chart_css.colors, 
-        optioncolor = chart_css.optioncolor, 
-        gridColor = chart_css.gridColor, 
-        legendColor = chart_css.legendColor, 
+        colors = chart_css.colors,
+        optioncolor = chart_css.optioncolor,
+        gridColor = chart_css.gridColor,
+        legendColor = chart_css.legendColor,
         yAxisColor = chart_css.yAxisColor;
     Highcharts.chart(container_uid, {
         noData: {// all defualt value
@@ -198,7 +198,7 @@ STOCK_F9_FV.Modules.FMBDtrend.FMBDTdrawHS = STOCK_F9_FV.Modules.FMBDtrend.FMBDTd
             }
         },
         credits: {
-            // enabled: true,// 
+            // enabled: true,//
             enabled: false,
             href: `https://www.gildata.com`,
             text: `gildata`,
@@ -224,13 +224,13 @@ STOCK_F9_FV.Modules.FMBDtrend.FMBDTdrawHS = STOCK_F9_FV.Modules.FMBDtrend.FMBDTd
                 //         color: Highcharts.getOptions().colors[1]
                 //     }
                 // }
-               /*  stackLabels: {
+                stackLabels: {
                     // enabled: true,// counter all cols values
                     style: {
                         fontWeight: 'bold',
                         color: (Highcharts.theme && Highcharts.theme.textColor) || 'gray'
                     }
-                } */
+                }
             },
             // yAxis 2
             {
@@ -248,8 +248,8 @@ STOCK_F9_FV.Modules.FMBDtrend.FMBDTdrawHS = STOCK_F9_FV.Modules.FMBDtrend.FMBDTd
                         color: (Highcharts.theme && Highcharts.theme.textColor) || 'gray'
                     }
                 },
-                opposite: true,
-                gridLineColor: '#2D3039'
+                opposite: true,// yAxis label right ???
+                gridLineColor: '#2D3039'// gridLineColor: '#f0f',// highcharts-grid-line
             }
         ],
         legend: {
@@ -355,7 +355,7 @@ STOCK_F9_FV.Modules.FMBDtrend.FMBDTdrawHS = STOCK_F9_FV.Modules.FMBDtrend.FMBDTd
     svg_legend.lastChild.setAttribute(`height`, 10);
     svg_legend.lastChild.setAttribute(`rx`, 0);
     svg_legend.lastChild.setAttribute(`ry`, 0);
-    /* 
+    /*
         <rect x="2" y="4" width="17" height="12" fill="#1a75bc" rx="0" ry="0" class="highcharts-point"></rect>
         <rect x="0" y="5" width="17" height="10" fill="#1a75bc" rx="0" ry="0" class="highcharts-point"></rect>
     */
