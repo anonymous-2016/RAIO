@@ -63,7 +63,9 @@ div {
 .modules {
     /* width: 80%; */
     width: 700px;
-    height: 2000px;
+    height: 1000px;
+    /* height: 2000px; */
+    /* height: 600px; */
     background: #fff;
     /* position: absolute; */
     margin: 50px auto;
@@ -77,13 +79,12 @@ div {
 .modules1,
 .modules2 {
     width: 300px;
-    height: 600px;
-    background: #fff;
-    /* position: absolute; */
+    height: 500px;
+    /* background: #fff;
     margin: 50px auto;
-    /* padding: 10px auto; */
-    padding-top: 50px;
+    padding-top: 50px; */
     float: left;
+    border: 1px solid red;
 }
 
 .module {
@@ -136,3 +137,9 @@ div {
     margin: 10px 5%;
     float: left;
 }
+
+[data-event="event-target"]:hover {
+    cursor: move;
+}
+
+0
