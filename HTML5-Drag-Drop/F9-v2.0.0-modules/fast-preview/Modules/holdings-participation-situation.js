@@ -3,10 +3,10 @@
  * @description holdings-participation-situation 控股参股情况
  * @author xgqfrms
  * creadted 2017.10.16
- * @param {* String} url 
- * @param {* Array} tds 
- * @param {* Array} ui_arr 
- * @param {Boolean} debug 
+ * @param {* String} url
+ * @param {* Array} tds
+ * @param {* Array} ui_arr
+ * @param {Boolean} debug
  */
 
 // namespaces
@@ -20,7 +20,7 @@ STOCK_F9_FV.Modules.holdingsParticipationSituation = STOCK_F9_FV.Modules.holding
     fetch(url)
     .then(res => res.json())
     .then(
-        //shaped data 
+        //shaped data
         (json) => {
             // json
             data = json;// Array
@@ -42,33 +42,33 @@ STOCK_F9_FV.Modules.holdingsParticipationSituation = STOCK_F9_FV.Modules.holding
                     // only show 5 items
                     if (i < 5) {
                         html_string += `
-                            <tr class="fv-changes-shareholding-executives-table-tr">
+                            <tr class="fv-holdings-participation-situation-table-tr">
                                 <td
                                     title="${company}"
-                                    class="fv-changes-shareholding-executives-table-td-value"
-                                    data-value="data-fv-changes-shareholding-executives">
+                                    class="fv-holdings-participation-situation-table-td-value"
+                                    data-value="data-fv-holdings-participation-situation">
                                     ${company}
                                 </td>
                                 <td
                                     title="${relationship}"
-                                    class="fv-changes-shareholding-executives-table-td-value"
-                                    data-value="data-fv-changes-shareholding-executives">
+                                    class="fv-holdings-participation-situation-table-td-value"
+                                    data-value="data-fv-holdings-participation-situation">
                                     ${relationship}
                                 </td>
                                 <td
-                                    class="fv-changes-shareholding-executives-table-td-value"
-                                    data-value="data-fv-changes-shareholding-executives">
+                                    class="fv-holdings-participation-situation-table-td-value"
+                                    data-value="data-fv-holdings-participation-situation">
                                     ${proportion}
                                 </td>
                                 <td
-                                    class="fv-changes-shareholding-executives-table-td-value"
-                                    data-value="data-fv-changes-shareholding-executives">
+                                    class="fv-holdings-participation-situation-table-td-value"
+                                    data-value="data-fv-holdings-participation-situation">
                                     ${profile}
                                 </td>
                                 <td
                                     title="${business}"
-                                    class="fv-changes-shareholding-executives-table-td-value"
-                                    data-value="data-fv-changes-shareholding-executives">
+                                    class="fv-holdings-participation-situation-table-td-value"
+                                    data-value="data-fv-holdings-participation-situation">
                                     ${business}
                                 </td>
                             </tr>
