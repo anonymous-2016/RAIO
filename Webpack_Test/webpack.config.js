@@ -10,11 +10,18 @@
  *
  */
 
+// import { export } from "module-name";
+// import path from "path";
+// import webpack from "webpack";
+// import UglifyJSPlugin from "uglifyjs-webpack-plugin";
+// import HtmlWebpackPlugin from "html-webpack-plugin";
+
+
 const path = require('path');
 const webpack = require('webpack'); //to access built-in plugins
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-// const CleanWebpackPlugin = require('clean-webpack-plugin');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 const BASE_URI = {
     WEB: './src/modules/',

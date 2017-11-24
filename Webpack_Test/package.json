@@ -2,6 +2,7 @@
     "name": "webpack_test",
     "version": "1.1.1",
     "description": "ES6/7/8 to ES5",
+    "module": "webpack.config.js",
     "main": "webpack.config.js",
     "scripts": {
         "app": "webpack",
