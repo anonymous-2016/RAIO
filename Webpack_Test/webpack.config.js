@@ -1,10 +1,12 @@
 'use strict';
 
-
 /**
  * @Created by xgqfrms on 2016/1/26.
  * @version 1.0.0 created
  * @description F9-v2.0.0-modules\webpack-es6-to-es5.js
+ *
+ * @license MIT
+ * @copyright xgqfrms 2016-forever || 2017-present
  *
  */
 
@@ -17,7 +19,8 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const BASE_URI = {
     WEB: './src/modules/',
     ES5: './src/es5/',
-    F9FV: `./src/F9_FV`
+    F9FV: `./src/F9_FV`,
+    // NTB: `./F9-three-board/NewThreeBoardThematicStatistics`
 };
 
 
@@ -27,26 +30,35 @@ if (process.env.NODE_ENV !== 'production') {
     console.log('Tada, 🎉, we are in production mode!');
 }
 
-/*
+const NTB_ZT = [
+    "newly-added-listing",
+    "newly-added-protocol",
+    "transactions-leaderboard",
+    "additional-issues-preplan",
+    "additional-issues-implementation",
+    "dividend-matters-preplan",
+    "dividend-matters-implementation",
+    "listing-situation",
+    "transaction-overview",
+    "turnover-trend-make-market-diagram",
+    // "turnover-trend-protocol-diagram",
+    // "new-sb-thematic-statistics-news",
+    // "new-sb-thematic-statistics-bulletin",
+];
 
-var path = require("path"),
-    BASE_URI = {
-        WEB: './public/javascript'
-    };
-    entry: {    //输入文件
-        "login": BASE_URI.WEB + '/login',
-        "list.good": BASE_URI.WEB + '/good/list',
-        "history.good": BASE_URI.WEB + '/good/history',
-        "list.order": BASE_URI.WEB + '/order/list',
-        "print.order": BASE_URI.WEB + '/order/print',
-        "delivery.user": BASE_URI.WEB + '/user/delivery',
-        "history.user": BASE_URI.WEB + '/user/history',
-        "home.user": BASE_URI.WEB + '/user/home'
-    },
+let entry_obj = {};
+NTB_ZT.forEach(
+    (item, i) => {
+        entry_obj[item] = `${BASE_URI.NTB}/${item}`;
+    }
+);
+// no return
 
-*/
 
 module.exports = {
+    // entry: Object.assign({},entry_obj),
+    // js map name & push to entry ???
+    // node read files name & /**/*.js
     entry: {
         // 输入文件 public/src && no import in app, need to add as an entry
         app: './src/index.js',

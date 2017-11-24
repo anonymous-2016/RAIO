@@ -193,7 +193,7 @@ https://bestvpn.org/whats-my-ip/litmus#html5-web-applications
 http://www.zhangxinxu.com/wordpress/2011/02/html5-drag-drop-拖拽与拖放简介/
 
 
-dragleave 
+dragleave
 
 view-source:http://www.zhangxinxu.com/study/201102/html5-drag-and-drop.html
 
@@ -270,7 +270,7 @@ http://fontawesome.io/icons/
 https://github.com/css-modules/css-modules/blob/master/docs/get-started.md#webpack
 
 
-# Modular JavaScript 
+# Modular JavaScript
 
 > `import & export`
 
@@ -501,7 +501,7 @@ reg.test(`http://track.xgqfrms.xyz/abc`);
 
 
 /*
-     原因在于正则表达式中的 g, 使得搜索过程后, 如果匹配成功, 则记录上一次的位置, 如果匹配不成功, 则会归零. 
+     原因在于正则表达式中的 g, 使得搜索过程后, 如果匹配成功, 则记录上一次的位置, 如果匹配不成功, 则会归零.
 */
 reg.lastIndex = 0; //归零搜索的位置
 
@@ -531,9 +531,9 @@ http://www.zhangxinxu.com/wordpress/2016/11/html5-drag-drop-module-insert-sort-d
 
 http://10.1.64.125/stock/f9/sulan/sulan.html
 
-file:///E:/github/projects/D2Designs/%E8%82%A1%E7%A5%A8/F9/%E5%8E%9F%E5%9E%8B%E6%BC%94%E7%A4%BA%E6%96%87%E4%BB%B6/F9%202.0(%E5%AE%8C%E6%95%B4%E7%89%88)/index.html
 
 
+projects/D2Designs/股票/F9/原型演示文件/F9%202.0(完整版)/resources/chrome/chrome.html
 
 
 
@@ -601,7 +601,7 @@ https://developer.microsoft.com/en-us/microsoft-edge/tools/staticscan/
 https://developer.microsoft.com/en-us/microsoft-edge/tools/vms/
 https://az792536.vo.msecnd.net/vms/release_notes_license_terms_8_1_15.pdf
 
-> These virtual machines expire after 90 days. 
+> These virtual machines expire after 90 days.
 
 > The password to your VM is "Passw0rd!"
 
@@ -626,7 +626,7 @@ C:\Users\xiagq\Downloads\html5-fundamentals
 
 基金 F9 速览模块化:
 
-完成： 
+完成：
 1. 组件模块化的设计
 2. 近期重要事项-模块
 3. 重要信息-模块
@@ -636,7 +636,7 @@ C:\Users\xiagq\Downloads\html5-fundamentals
 部分完成：
 1. HTML5 模块拖拽 & 模块排序
 2. Grid  响应式模块布局
-3. CSS 模块化 & 分离出公用样式 
+3. CSS 模块化 & 分离出公用样式
 
 整体完成进度 30%
 
