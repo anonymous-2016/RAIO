@@ -17,6 +17,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const BASE_URI = {
     WEB: './src/modules/',
     ES5: './src/es5/',
+    F9FV: `./src/F9_FV`
 };
 
 
@@ -26,7 +27,7 @@ if (process.env.NODE_ENV !== 'production') {
     console.log('Tada, 🎉, we are in production mode!');
 }
 
-/* 
+/*
 
 var path = require("path"),
     BASE_URI = {
@@ -54,6 +55,8 @@ module.exports = {
         nim: BASE_URI.WEB + '/no-import-module',
         // stock_f9: BASE_URI.WEB + '/es5-global-function',
         news: `${BASE_URI.ES5}/company-news`,
+        // f9fv: `${BASE_URI.F9FV}/turnover-trend-make-market-diagram`,
+        "turnover-trend-make-market-diagram": `${BASE_URI.F9FV}/turnover-trend-make-market-diagram`,
     },
     output: {
         // 输出文件 public/build
