@@ -8,7 +8,27 @@ https://babeljs.io/repl/
 
 
 
+## npm i & npm link
 
+```sh
+
+# link `nct` to cli commands
+
+$ npm i
+$ npm link
+
+
+```
+
+## run
+
+```sh
+# parameters can be ignore
+
+$ nct [user_name, [repo_name]]
+$ nct user_name repo_name
+
+```
 
 
 
