@@ -196,7 +196,10 @@ window.onload = () => {
 
 STOCK_F9_FV.Modules.loadAllModules = STOCK_F9_FV.Modules.loadAllModules || ((uids = ["stockfast01","stockfast02","stockfast03","stockfast04","stockfast05","stockfast06","stockfast07","stockfast08","stockfast09","stockfast10","stockfast11","stockfast12","stockfast13","news","bulletion","research"], debug = false) => {
     // const module_container = document.querySelector(`[data-body-container="data-body-container"]`);
-    const sortable_module_container = document.querySelector(`[data-div-inner-box="data-div-inner-box"]`);
+    // const sortable_module_container = document.querySelector(`[data-div-inner-box="data-div-inner-box"]`);
+    const sortable_module_containers = document.querySelectorAll(`[data-sortable-box*="sortable-box"]`);
+    // data-sortable-box="left-sortable-box" & data-sortable-box="right-sortable-box"\
+    // ??? sortable_module_containers => sortable_module_container
     // init & empty
     // sortable_module_container.innerHTML = "";
     let datas = uids;
@@ -886,7 +889,10 @@ STOCK_F9_FV.Modules.loadAllModules = STOCK_F9_FV.Modules.loadAllModules || ((uid
                         break;
                 }
                 div.insertAdjacentHTML(`beforeend`, `${htmlstr}`);// no needs container any more!
-                sortable_module_container.insertAdjacentElement(`beforeend`, div);
+                // sortable_module_container.insertAdjacentElement(`beforeend`, div);
+                sortable_module_containers[0].insertAdjacentElement(`beforeend`, div);
+                // sortable_module_containers[1].insertAdjacentElement(`beforeend`, div);
+                // sortable_module_containers
                 setTimeout(function() {
                     let delete_box = document.querySelector(`.fv-${delete_uid}-title`);
                     delete_box.appendChild(sub_div);
