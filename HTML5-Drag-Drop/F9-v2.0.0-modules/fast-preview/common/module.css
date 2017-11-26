@@ -24,14 +24,16 @@ body {
 
 /* modules box padding */
 
-[data-div-inner-box="data-div-inner-box"] {
+[data-div-inner-box-backup="data-div-inner-box-backup"] {
     box-sizing: border-box;
     width: calc(542px * 2 + 6px * 4);
+    /* width: calc(542px + 6px * 2); */
+    /* float: left; */
+    /* background-color: rgb(240, 180, 240); */
+    /* border: 1px solid #eee; */
     min-height: 100vh;
     height: auto;
     background-color: #fff;
-    /* border: 1px solid #eee; */
-    /* background-color: rgb(240, 180, 240); */
     margin: 0px auto;
     /* margin-right: 0; */
     padding-top: 9px;
@@ -73,7 +75,7 @@ body {
 }
 
 
-/* 
+/*
 
     let module_divs = document.querySelectorAll(`.fv-parent-box>[data-icon-uid*="module-data"]`);
     module_divs.forEach(
