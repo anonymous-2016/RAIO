@@ -1034,9 +1034,65 @@ STOCK_F9_FV.Modules.modulesLoader = STOCK_F9_FV.Modules.modulesLoader ||
             // module_container.removeChild(tdu);
             // alert(`Are sure delete this module?`);
             // conform !== confirm
+            swal("你确定要删除此模块?", {
+                buttons: {
+                    cancel: {
+                        text: "确定",
+                        value: "cancel",
+                    },
+                    ok: {
+                        text: "取消",
+                        value: "ok",
+                    }
+                },
+            })
+            .then((value) => {
+                console.log(`value = `, value)
+                // value =  ok
+                switch (value) {
+                    case "cancel":
+                        swal("已取消删除此模块!", "success");
+                        break;
+                    case "ok":
+                        swal("你确定要删除此模块?", "warning");
+                        break;
+                    default:
+                        swal("Got away safely!");
+                }
+            });
             let result = window.confirm(`你确定要删除此模块?`);
+            /* let result = swal({
+                title: "删除模块!",
+                text: "你确定要删除此模块?",
+                icon: "warning",
+                // icon: "success",
+                button: {
+                    text: "OK",
+                    value: false,
+                    visible: true,
+                    className: "",
+                    closeModal: true,
+                },
+            });
+            if (!debug) {
+                console.log(`result = `, result);
+                // Promise
+            } */;
             // true
             if(result){
+                swal({
+                    title: "删除模块!",
+                    text: "你确定要删除此模块?",
+                    icon: "warning",
+                    // icon: "success",
+                    button: {
+                        text: "OK",
+                        value: false,
+                        visible: true,
+                        className: "",
+                        closeModal: true,
+                    },
+                });
                 // window.open("exit.html", "Thanks for Visiting!");
                 // alert(`just remove this module!`);
                 // remove DOM node ???
@@ -1058,7 +1114,19 @@ STOCK_F9_FV.Modules.modulesLoader = STOCK_F9_FV.Modules.modulesLoader ||
                     console.log(`Coming soon... `, tdu.parentNode);
                 }
             }else{
-                alert(`已取消删除此模块!`);
+                // alert(`已取消删除此模块!`);
+                swal({
+                    title: "取消删除模块!",
+                    text: "已取消删除此模块!",
+                    icon: "success",
+                    button: {
+                        text: "取消",
+                        value: false,
+                        visible: true,
+                        className: "",
+                        closeModal: true,
+                    },
+                });
             }
         },
         // api: `https://developer.mozilla.org/API`,
