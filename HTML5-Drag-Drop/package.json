@@ -13,6 +13,7 @@
         "deploy": "npm run build && gh-pages -d dist -m \"Updates --skip-ci\"",
         "linux_rmrf": "rm -rf build/public",
         "windows_clear": "rimraf build/public",
+        "windows_powershell_rmrf": "rm /S/Q build/public",
         "rmrf": "node rm-rf.js"
     },
     "bin": {

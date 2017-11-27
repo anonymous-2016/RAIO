@@ -339,7 +339,7 @@ BouncedModal.prototype = {
     let test = func();
     try {
         if (test !== undefined) {
-            console.log(`test = \n`, test);
+            // console.log(`test = \n`, test);
         }
     } catch (error) {
         console.log(`error = \n`, error);

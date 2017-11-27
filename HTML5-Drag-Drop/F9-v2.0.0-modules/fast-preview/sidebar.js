@@ -147,10 +147,17 @@ window.onload = () => {
     btn_universal.onclick = (e) => {
         // data-title="通用"
         // alert(`e.target.dataset.title = ${e.target.dataset.title} \n this click will call loadAllModules()!`);
-        const sortable_module_container = document.querySelector(`[data-div-inner-box="data-div-inner-box"]`);
+        // const sortable_module_container = document.querySelector(`[data-div-inner-box="data-div-inner-box"]`);
+        const sortable_module_containers = document.querySelectorAll(`[data-sortable-box*="sortable-box"]`);
         // init & empty
-        sortable_module_container.innerHTML = "";
-        STOCK_F9_FV.Modules.loadAllModules.init();
+        // sortable_module_container.innerHTML = "";
+        sortable_module_containers[0].innerHTML = "";
+        sortable_module_containers[1].innerHTML = "";
+        // uids = ["stockfast01","stockfast02","stockfast03","stockfast04","stockfast05","stockfast06","stockfast07","stockfast08","stockfast09","stockfast10","stockfast11","stockfast12","stockfast13","news","bulletion","research"]
+        let left_uids = ["stockfast01","stockfast04","stockfast07","bulletion","research","stockfast08","stockfast09","stockfast11"];
+        let right_uids = ["stockfast02","stockfast03","stockfast05","stockfast06", "stockfast10","stockfast12","stockfast13", "news"];
+        STOCK_F9_FV.Modules.loadAllModules.init(sortable_module_containers[0], left_uids);
+        STOCK_F9_FV.Modules.loadAllModules.init(sortable_module_containers[1], right_uids);
         // ??? reset modules
         // a_modules.click();
         // load all modules & default layout ???
@@ -188,25 +195,56 @@ window.onload = () => {
 /**
  * loadAllModules
  * @description initial all modules
- * @argument dom_container_uid
+ * @argument {* String | Object}dom_container_uid
  * @param {* Array} uids
  * @param {* Boolean} debug
  */
+// document.querySelectorAll(`[data-sortable-box*="sortable-box"]`);
+
+/*
+
+const sortable_containers = document.querySelectorAll(`[data-sortable-box*="sortable-box"]`);
+if (!debug) {
+    console.log(`sortable_containers =\n`, sortable_containers);
+    // left
+    console.log(`sortable_containers =\n`, sortable_containers[0]);
+    // right
+    console.log(`sortable_containers =\n`, sortable_containers[1]);
+}
+
+*/
 
 
-STOCK_F9_FV.Modules.loadAllModules = STOCK_F9_FV.Modules.loadAllModules || ((uids = ["stockfast01","stockfast02","stockfast03","stockfast04","stockfast05","stockfast06","stockfast07","stockfast08","stockfast09","stockfast10","stockfast11","stockfast12","stockfast13","news","bulletion","research"], debug = false) => {
+STOCK_F9_FV.Modules.loadAllModules = STOCK_F9_FV.Modules.loadAllModules || ((sortable_container = `sortable_container`,debug = false) => {
     // const module_container = document.querySelector(`[data-body-container="data-body-container"]`);
     // const sortable_module_container = document.querySelector(`[data-div-inner-box="data-div-inner-box"]`);
-    const sortable_module_containers = document.querySelectorAll(`[data-sortable-box*="sortable-box"]`);
+    // const sortable_module_containers = document.querySelectorAll(`[data-sortable-box*="sortable-box"]`);
+    // if (debug) {
+    //     console.log(`sortable_module_containers =\n`, sortable_module_containers);
+    //     // left
+    //     console.log(`sortable_module_containers =\n`, sortable_module_containers[0]);
+    //     // right
+    //     console.log(`sortable_module_containers =\n`, sortable_module_containers[1]);
+    // }
+    // const sortable_module_container= document.querySelector(dom_container_uid);
+    if (typeof sortable_container === "string") {
+        // const sortable_module_container = document.querySelector(dom_container_uid);
+    }
+    // const sortable_module_container = dom_container_uid;
+    if (typeof sortable_container === "object") {
+        // const sortable_module_container = sortable_container;
+    }
+    // document.querySelectorAll(`[data-sortable-box*="sortable-box"]`);
     // data-sortable-box="left-sortable-box" & data-sortable-box="right-sortable-box"\
     // ??? sortable_module_containers => sortable_module_container
     // init & empty
     // sortable_module_container.innerHTML = "";
-    let datas = uids;
-    if (debug) {
-        console.log(`uids = `, uids);
-    }
-    const dropAll = (uids) => {
+    /**
+     *
+     * @param {* DOM} container
+     * @param {* Array} uids
+     */
+    const dropAll = (container, uids) => {
         if (debug) {
             console.log(`dropAll uids = `, uids);
         }
@@ -231,9 +269,13 @@ STOCK_F9_FV.Modules.loadAllModules = STOCK_F9_FV.Modules.loadAllModules || ((uid
                 sub_div.firstChild.addEventListener(`click`, (e) => {
                     let uid = e.target.dataset.deleteModuleUid;
                     if (debug) {
+                        console.log(`e.target.dataset `, e.target.dataset);
+                        console.log(`e.target.dataset.deleteModuleUid `, e.target.dataset.deleteModuleUid);
                         console.log(`uid`, uid);
                     }
+                    // OK
                     STOCK_F9_FV.Modules.modulesLoader.deleteModule(uid);
+                    // call delete
                 });
                 div.dataset.divModuleUid = `div-module-${uid}`;
                 div.dataset.droppedUid=`module-data-${uid}`;
@@ -310,14 +352,14 @@ STOCK_F9_FV.Modules.loadAllModules = STOCK_F9_FV.Modules.loadAllModules || ((uid
                                 // box = document.querySelector(`.fv-top-ten-shareholders-table`),
                                 link_css = document.createElement(`link`),
                                 script_dom = document.createElement(`script`);
-                            if (debug) {
-                                console.log(`box = \n`, box);
-                            }
                             link_css.setAttribute(`rel`, `stylesheet`);
                             link_css.setAttribute(`href`, `./Modules/${module_uid_name}.css`);
                             link_css.dataset.deleteLinkCss = `delete-link-css-${uid}`;
                             script_dom.dataset.deleteScriptDom = `delete-script-dom-${uid}`;
                             script_dom.setAttribute(`src`, `./Modules/${module_uid_name}.js`);
+                            if (debug) {
+                                console.log(`box = \n`, box);
+                            }
                             box.insertAdjacentElement(`afterend`, link_css);
                             link_css.insertAdjacentElement(`afterend`, script_dom);
                         })(module_uid_name, isTable);
@@ -890,7 +932,7 @@ STOCK_F9_FV.Modules.loadAllModules = STOCK_F9_FV.Modules.loadAllModules || ((uid
                 }
                 div.insertAdjacentHTML(`beforeend`, `${htmlstr}`);// no needs container any more!
                 // sortable_module_container.insertAdjacentElement(`beforeend`, div);
-                sortable_module_containers[0].insertAdjacentElement(`beforeend`, div);
+                container.insertAdjacentElement(`beforeend`, div);
                 // sortable_module_containers[1].insertAdjacentElement(`beforeend`, div);
                 // sortable_module_containers
                 setTimeout(function() {
@@ -900,12 +942,16 @@ STOCK_F9_FV.Modules.loadAllModules = STOCK_F9_FV.Modules.loadAllModules || ((uid
             }
         );
     };
+    // setTimeout(() => {
+    //     dropAll(uids);
+    // }, 0);
     return {
-        init: (uids = datas) => {
+        init: (container_uid = ``, uids = [], debug = false) => {
             if (debug) {
                 console.log(`init uids = `, uids);
+                console.log(`init container_uid = `, container_uid);
             }
-            dropAll(uids);
+            dropAll(container_uid, uids);
         },
         // dropAll: dropAll(uids)
     };
@@ -913,6 +959,8 @@ STOCK_F9_FV.Modules.loadAllModules = STOCK_F9_FV.Modules.loadAllModules || ((uid
 
 // const uids = ["stockfast01","stockfast02","stockfast03","stockfast04","stockfast05","stockfast06","stockfast07","stockfast08","stockfast09","stockfast10","stockfast11","stockfast12","stockfast13","news","bulletion","research"];
 // STOCK_F9_FV.Modules.loadAllModules.init(uids);
+
+// console.log(`typeof STOCK_F9_FV.Modules.loadAllModules =\n`, typeof(STOCK_F9_FV.Modules.loadAllModules));
 
 
 /**
@@ -948,11 +996,12 @@ STOCK_F9_FV.Modules.modulesLoader = STOCK_F9_FV.Modules.modulesLoader ||
     let module_datas = document.querySelectorAll(`[data-icon-uid*="module-data"]`);
     // let module_container = document.querySelector(`[data-body-container="data-body-container"]`);
     let module_container = document.querySelector(`[data-div-inner-box="data-div-inner-box"]`);
+    let module_containers = document.querySelectorAll(`[data-sortable-box*="sortable-box"]`);
+    // [data-div-inner-box="data-div-inner-box"]
     // let droppedUid_datas = document.querySelectorAll(`[data-droppe-uid*="module-data"]`);
     // ??? sortable.js
-    let sortable_container = document.querySelector(`#section-sortable-container`);
-    // let sortable = Sortable.create(sortable_container);
-    Sortable.create(sortable_container);
+    // let sortable_container = document.querySelector(`#section-sortable-container`);
+    // Sortable.create(sortable_container);
     // return obj
     let drop_counter = 0;
     return {
@@ -985,7 +1034,22 @@ STOCK_F9_FV.Modules.modulesLoader = STOCK_F9_FV.Modules.modulesLoader ||
                 // alert(`just remove this module!`);
                 // remove DOM node ???
                 // [data-delete-script-dom="delete-script-dom-stockfast01"]
-                module_container.removeChild(tdu);
+                // module_container.removeChild(tdu);
+                if (debug) {
+                    console.log(`this = `, this);
+                    // Window
+                    console.log(`tdu = `, tdu);
+                    console.log(`tdu.parentElement = `, tdu.parentElement);
+                    console.log(`tdu.parentNode = `, tdu.parentNode);
+                    console.log(`tdu.parentNode.id  = `, tdu.parentNode.id );
+                }
+                if (tdu.parentNode.id === "left-sortable-container") {
+                    module_containers[0].removeChild(tdu);
+                }else if (tdu.parentNode.id === "right-sortable-container") {
+                    module_containers[1].removeChild(tdu);
+                }else{
+                    console.log(`Coming soon... `, tdu.parentNode);
+                }
             }else{
                 alert(`已取消删除此模块!`);
             }
@@ -1002,6 +1066,11 @@ STOCK_F9_FV.Modules.modulesLoader = STOCK_F9_FV.Modules.modulesLoader ||
             let iconUid = e.target.dataset.iconUid.substr(12),
                 droppedUid = e.target.dataset.droppedUid ? e.target.dataset.droppedUid.substr(12) : ``;
             let uid = iconUid ? iconUid : droppedUid;
+            if (!debug) {
+                console.log(`uid `, uid);
+                console.log(`iconUid  `, iconUid);
+                console.log(`droppedUid `, droppedUid);
+            }
             // or droppedUid="module-data-stockfast01";
             // or new dragstart function ???
             e.effectAllowed = `move`;
@@ -1059,8 +1128,9 @@ STOCK_F9_FV.Modules.modulesLoader = STOCK_F9_FV.Modules.modulesLoader ||
             // module_container.classList.remove(`absolute-center-placeholder`);
             let uid = e.dataTransfer.getData("text/plain");
             // let data = e.dataTransfer.getData("xyz");
-            if (debug) {
-                console.log(`drop & uid = %c ${uid}\n`, console_css1);
+            if (!debug) {
+                console.log(`drop & uid = %c${uid}\n`, console_css1);
+                // ??? bug
             }
             let div = document.createElement(`div`),
                 sub_div = document.createElement(`div`);
@@ -1078,6 +1148,8 @@ STOCK_F9_FV.Modules.modulesLoader = STOCK_F9_FV.Modules.modulesLoader ||
             sub_div.firstChild.addEventListener(`click`, (e) => {
                 let uid = e.target.dataset.deleteModuleUid;
                 if (debug) {
+                    console.log(`e.target.dataset `, e.target.dataset);
+                    console.log(`e.target.dataset.deleteModuleUid `, e.target.dataset.deleteModuleUid);
                     console.log(`uid`, uid);
                 }
                 STOCK_F9_FV.Modules.modulesLoader.deleteModule(uid);
@@ -1137,7 +1209,18 @@ STOCK_F9_FV.Modules.modulesLoader = STOCK_F9_FV.Modules.modulesLoader ||
                 default:
                     break;
             }
-            let module_exist_checker = document.querySelector(`[data-div-module-uid="div-module-${uid}"]`);
+            let module_exist_checker = ``;
+            if (debug) {
+                console.log(`uid`, uid, typeof uid);
+            }
+            if (typeof(uid) === "string" && uid.length < 11) {
+                // "stockfast13".length;
+                // 11
+                module_exist_checker = document.querySelector(`[data-div-module-uid="div-module-${uid}"]`)
+            }else{
+                // disable checker
+            }
+            //
             /**
              * @author xgqfrms
              * @description load Module (2017.11.01)
