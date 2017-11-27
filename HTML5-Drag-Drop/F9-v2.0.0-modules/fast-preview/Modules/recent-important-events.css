@@ -97,7 +97,7 @@
 /* date no need `:` */
 
 
-/* 
+/*
 
 .fv-recent-important-events-table-td-key::after {
     content: ":"
@@ -189,11 +189,19 @@
 }
 
 [data-link="fv-recent-important-events-link"]:hover {
-    color: #f0f;
+    color: #00f;
 }
 
-[data-disabled="true"],
-[data-disabled="true"]:hover {
+
+/* no skip node, disable null link */
+
+[data-disabled="true"] {
+    /* pointer-events: none; */
+    cursor: default;
+}
+
+td>a[data-disabled="true"],
+td>a[data-disabled="true"]:hover {
     cursor: not-allowed;
     color: grey;
 }
@@ -202,7 +210,15 @@
 /* data-disabled="${ id === "null" ? false : true}" */
 
 
-/* [data-disabled="true"] {
+/*
+[data-disabled="true"],
+[data-disabled="true"]:hover {
+    cursor: not-allowed;
+    color: grey;
+}
+
+[data-disabled="true"] {
     pointer-events: none;
     cursor: default;
-} */
+}
+*/

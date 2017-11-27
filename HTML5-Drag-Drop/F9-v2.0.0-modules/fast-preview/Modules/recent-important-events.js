@@ -3,10 +3,10 @@
  * recent important events 近期重要事项
  * xgqfrms
  * creadted 2017.10.12
- * @param {* String} url 
- * @param {* Array} tds 
- * @param {* Array} ui_arr 
- * @param {Boolean} debug 
+ * @param {* String} url
+ * @param {* Array} tds
+ * @param {* Array} ui_arr
+ * @param {Boolean} debug
  */
 
 // namespaces
@@ -20,7 +20,7 @@ STOCK_F9_FV.Modules.recentImportantEvents = STOCK_F9_FV.Modules.recentImportantE
     fetch(url)
     .then(res => res.json())
     .then(
-        //shaped data 
+        //shaped data
         (json) => {
             // json
             data = json;// Array
@@ -57,7 +57,8 @@ STOCK_F9_FV.Modules.recentImportantEvents = STOCK_F9_FV.Modules.recentImportantE
                         description = (arr[i].sj !== undefined && arr[i].nr !== undefined) ? `${arr[i].sj} ${arr[i].nr}` : `暂无数据`,
                         more = `更多 >>`,
                         // `更多 &gt;&gt;`,
-                        id = (arr[i].newid !== undefined) ? `${arr[i].newid}` : `暂无数据`;
+                        // id = (arr[i].newid !== undefined) ? `${arr[i].newid}` : `暂无数据`;
+                        id = (arr[i].newid !== undefined) ? `${arr[i].newid}` : `null`;
                     // only show 5 items
                     if (i < 5) {
                         html_string += `
@@ -66,8 +67,8 @@ STOCK_F9_FV.Modules.recentImportantEvents = STOCK_F9_FV.Modules.recentImportantE
                                     ${date}
                                 </td>
                                 <td class="fv-recent-important-events-table-td-value" data-value="data-fv-events">
-                                    <a 
-                                        href="#${id}"
+                                    <a
+                                        href="${id === "null" ? `#` : `#${id}`}"
                                         data-uid="${id}"
                                         data-eventsId="${id}"
                                         data-turn-to-uid="recent-important-events"

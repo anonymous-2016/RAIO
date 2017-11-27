@@ -24,6 +24,25 @@ document.querySelectorAll(`[data-sortable-box*="sortable-box"]`);
 
 ```
 
+title(active highlight)
+#2e2f33
+title()
+#56575b
+
+text
+#4d4d4d
+
+
+
+
+
+http://10.1.5.202/stock/f9/fastview/sidebar.html
+
+
+
+
+
+
 
 
 

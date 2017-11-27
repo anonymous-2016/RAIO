@@ -144,13 +144,14 @@ window.onload = () => {
         btn_customize = document.querySelector(`[data-uid="customize"]`),
         btn_module_setting = document.querySelector(`[data-uid="module-setting"]`);
     let a_modules = document.querySelector(`[data-uid="modules-a-link"]`);
+    const sortable_module_containers = document.querySelectorAll(`[data-sortable-box*="sortable-box"]`);
     btn_universal.onclick = (e) => {
         // data-title="通用"
         // alert(`e.target.dataset.title = ${e.target.dataset.title} \n this click will call loadAllModules()!`);
         // const sortable_module_container = document.querySelector(`[data-div-inner-box="data-div-inner-box"]`);
-        const sortable_module_containers = document.querySelectorAll(`[data-sortable-box*="sortable-box"]`);
-        // init & empty
-        // sortable_module_container.innerHTML = "";
+        // const sortable_module_containers = document.querySelectorAll(`[data-sortable-box*="sortable-box"]`);
+        // // init & empty
+        // // sortable_module_container.innerHTML = "";
         sortable_module_containers[0].innerHTML = "";
         sortable_module_containers[1].innerHTML = "";
         // uids = ["stockfast01","stockfast02","stockfast03","stockfast04","stockfast05","stockfast06","stockfast07","stockfast08","stockfast09","stockfast10","stockfast11","stockfast12","stockfast13","news","bulletion","research"]
@@ -168,10 +169,13 @@ window.onload = () => {
         // data-title="自定义"
         // alert(`e.target.dataset.title = ${e.target.dataset.title}`);
         // data-uid="modules-a-link"
-        const sortable_module_container = document.querySelector(`[data-div-inner-box="data-div-inner-box"]`);
+        // const sortable_module_container = document.querySelector(`[data-div-inner-box="data-div-inner-box"]`);
         // init & empty
-        sortable_module_container.innerHTML = "";
+        // sortable_module_container.innerHTML = "";
+        sortable_module_containers[0].innerHTML = "";
+        sortable_module_containers[1].innerHTML = "";
         a_modules.click();
+        // <a href="#模块选择" data-uid="modules-a-link">模块选择</a>
         // H5 DnD modules
     }
     /* event pop ???  */
@@ -368,6 +372,7 @@ STOCK_F9_FV.Modules.loadAllModules = STOCK_F9_FV.Modules.loadAllModules || ((sor
                 // show modules
                 let htmlstr = ``;
                 let delete_uid = ``;
+                // class="fv-h5dnd-modules-title" data-title=
                 switch (uid) {
                     case "stockfast01":
                         delete_uid = `important-infos`;
@@ -375,8 +380,8 @@ STOCK_F9_FV.Modules.loadAllModules = STOCK_F9_FV.Modules.loadAllModules || ((sor
                         htmlstr += `
                             <section class="fv-module-box-3">
                                 <!-- 重要信息 -->
-                                <div class="fv-important-infos-title-box">
-                                    <p class="fv-important-infos-title">重要信息</p>
+                                <div class="fv-h5dnd-modules-title-box">
+                                    <p class="fv-h5dnd-modules-title" data-title="fv-important-infos-title">重要信息</p>
                                 </div>
                                 <table class="fv-important-infos-table">
                                     <thead class="fv-important-infos-table-thead">
@@ -462,9 +467,8 @@ STOCK_F9_FV.Modules.loadAllModules = STOCK_F9_FV.Modules.loadAllModules || ((sor
                         loadModule(`recent-important-events`, true);
                         htmlstr += `
                             <section class="fv-module-box-7">
-                                <div class="fv-recent-important-events-title-box">
-                                    <p class="fv-recent-important-events-title">近期重要事项</p>
-                                    <!-- <fieldset disabled="disabled"></fieldset> -->
+                                <div class="fv-h5dnd-modules-title-box">
+                                    <p class="fv-h5dnd-modules-title" data-title="fv-recent-important-events-title">近期重要事项</p>
                                 </div>
                                 <table class="fv-recent-important-events-table">
                                     <thead class="fv-recent-important-events-table-thead">
@@ -498,8 +502,8 @@ STOCK_F9_FV.Modules.loadAllModules = STOCK_F9_FV.Modules.loadAllModules || ((sor
                         loadModule(`profit-forecast`);
                         htmlstr += `
                             <section class="fv-module-box-7">
-                                <div class="fv-profit-forecast-title-box">
-                                    <p class="fv-profit-forecast-title">盈利预告</p>
+                                <div class="fv-h5dnd-modules-title-box">
+                                    <p class="fv-h5dnd-modules-title" data-title="fv-profit-forecast-title">盈利预告</p>
                                 </div>
                                 <div class="fv-profit-forecast-container">
                                     <!-- 盈利预告 placeholder -->
@@ -516,8 +520,7 @@ STOCK_F9_FV.Modules.loadAllModules = STOCK_F9_FV.Modules.loadAllModules || ((sor
                         htmlstr += `
                             <section class="fv-module-box-3">
                                 <div class="fv-indicators-per-share-title-box">
-                                    <p class="fv-indicators-per-share-title">每股指标</p>
-                                    <!-- <fieldset disabled="disabled"></fieldset> -->
+                                    <p class="fv-h5dnd-modules-title" data-title="fv-indicators-per-share-title">每股指标</p>
                                 </div>
                                 <table class="fv-indicators-per-share-table">
                                     <thead class="fv-indicators-per-share-table-thead">
@@ -631,8 +634,8 @@ STOCK_F9_FV.Modules.loadAllModules = STOCK_F9_FV.Modules.loadAllModules || ((sor
                         loadModule(`agency-rating`);
                         htmlstr += `
                             <section class="fv-module-box-7">
-                                <div class="fv-agency-rating-title-box">
-                                    <p class="fv-agency-rating-title">机构评级</p>
+                                <div class="fv-h5dnd-modules-title-box">
+                                    <p class="fv-h5dnd-modules-title" data-title="fv-agency-rating-title">机构评级</p>
                                 </div>
                                 <div class="fv-agency-rating-container">
                                     <!-- 机构评级 placeholder -->
@@ -646,9 +649,8 @@ STOCK_F9_FV.Modules.loadAllModules = STOCK_F9_FV.Modules.loadAllModules || ((sor
                         loadModule(`stock-price-turnover`);
                         htmlstr += `
                             <section class="fv-module-box-7">
-                                <!-- <section data-uid="stock-price-turnover"></section> -->
-                                <div class="fv-stock-price-turnover-title-box">
-                                    <p class="fv-stock-price-turnover-title">股价/成交量</p>
+                                <div class="fv-h5dnd-modules-title-box">
+                                    <p class="fv-h5dnd-modules-title" data-title="fv-stock-price-turnover-title">股价/成交量</p>
                                 </div>
                                 <div class="fv-stock-price-turnover-container">
                                     <!-- 盈利预告 placeholder -->
@@ -662,9 +664,8 @@ STOCK_F9_FV.Modules.loadAllModules = STOCK_F9_FV.Modules.loadAllModules || ((sor
                         loadModule(`top-ten-shareholders`, true);// table
                         htmlstr += `
                             <section class="fv-module-box-10">
-                                <div class="fv-top-ten-shareholders-title-box">
-                                    <p class="fv-top-ten-shareholders-title" data-more="top-ten-shareholders-title">前十大股东</p>
-                                    <!-- <fieldset disabled="disabled"></fieldset> -->
+                                <div class="fv-h5dnd-modules-title-box">
+                                    <p class="fv-h5dnd-modules-title" data-title="fv-top-ten-shareholders-title" data-more="top-ten-shareholders-title">前十大股东</p>
                                 </div>
                                 <table class="fv-top-ten-shareholders-table">
                                     <thead class="fv-top-ten-shareholders-table-thead">
@@ -691,9 +692,8 @@ STOCK_F9_FV.Modules.loadAllModules = STOCK_F9_FV.Modules.loadAllModules || ((sor
                         loadModule(`financing-and-margin-balance-difference-trend`, false);// container
                         htmlstr += `
                             <section class="fv-module-box-7">
-                                <!-- <section data-uid="financing-and-margin-balance-difference-trend"></section> -->
-                                <div class="fv-financing-and-margin-balance-difference-trend-title-box">
-                                    <p class="fv-financing-and-margin-balance-difference-trend-title">融资余额与融券余额差值走势</p>
+                                <div class="fv-h5dnd-modules-title-box">
+                                    <p class="fv-h5dnd-modules-title" data-title="fv-financing-and-margin-balance-difference-trend-title">融资余额与融券余额差值走势</p>
                                 </div>
                                 <div class="fv-financing-and-margin-balance-difference-trend-container">
                                     <!-- 融资余额与融券余额差值走势 placeholder -->
@@ -707,8 +707,8 @@ STOCK_F9_FV.Modules.loadAllModules = STOCK_F9_FV.Modules.loadAllModules || ((sor
                         loadModule(`monthly-capital-flows-large-single-statistics`);// false
                         htmlstr += `
                             <section class="fv-module-box-7">
-                                <div class="fv-monthly-capital-flows-large-single-statistics-title-box">
-                                    <p class="fv-monthly-capital-flows-large-single-statistics-title">近一月资金流向大单统计</p>
+                                <div class="fv-h5dnd-modules-title-box">
+                                    <p class="fv-h5dnd-modules-title" data-title="fv-monthly-capital-flows-large-single-statistics-title">近一月资金流向大单统计</p>
                                 </div>
                                 <div class="fv-monthly-capital-flows-large-single-statistics-container">
                                     <!-- 近一月资金流向大单统计 placeholder -->
@@ -721,9 +721,9 @@ STOCK_F9_FV.Modules.loadAllModules = STOCK_F9_FV.Modules.loadAllModules || ((sor
                         delete_uid = `equity-pledge`;
                         loadModule(`equity-pledge`, true);
                         htmlstr += `
-                            <section class="fv-module-box-10" data-class="test">
-                                <div class="fv-equity-pledge-title-box">
-                                    <p class="fv-equity-pledge-title" data-more="equity-pledge-title">股权质押</p>
+                            <section class="fv-module-box-10">
+                                <div class="fv-h5dnd-modules-title-box">
+                                    <p class="fv-h5dnd-modules-title" data-title="fv-equity-pledge-title" data-more="equity-pledge-title">股权质押</p>
                                 </div>
                                 <table class="fv-equity-pledge-table">
                                     <thead class="fv-equity-pledge-table-thead">
@@ -733,9 +733,11 @@ STOCK_F9_FV.Modules.loadAllModules = STOCK_F9_FV.Modules.loadAllModules || ((sor
                                         </tr>
                                         <tr class="fv-equity-pledge-table-tr" data-tr="matrix-tr">
                                             <td class="fv-equity-pledge-table-td-title">出质人</td>
+                                            <!-- people -->
                                         </tr>
                                         <tr class="fv-equity-pledge-table-tr" data-tr="matrix-tr">
                                             <td class="fv-equity-pledge-table-td-title">质权人</td>
+                                            <!--  -->
                                         </tr>
                                         <tr class="fv-equity-pledge-table-tr" data-tr="matrix-tr">
                                             <td class="fv-equity-pledge-table-td-title">质押股数(万股)</td>
@@ -765,9 +767,8 @@ STOCK_F9_FV.Modules.loadAllModules = STOCK_F9_FV.Modules.loadAllModules || ((sor
                         loadModule(`holdings-participation-situation`, true);
                         htmlstr += `
                             <section class="fv-module-box-5">
-                                <div class="fv-holdings-participation-situation-title-box">
-                                    <p class="fv-holdings-participation-situation-title" data-more="holdings-participation-situation-title">控股参股情况</p>
-                                    <!-- <fieldset disabled="disabled"></fieldset> -->
+                                <div class="fv-h5dnd-modules-title-box">
+                                    <p class="fv-h5dnd-modules-title" data-title="fv-holdings-participation-situation-title" data-more="holdings-participation-situation-title">控股参股情况</p>
                                 </div>
                                 <table class="fv-holdings-participation-situation-table">
                                     <thead class="fv-holdings-participation-situation-table-thead">
@@ -794,8 +795,8 @@ STOCK_F9_FV.Modules.loadAllModules = STOCK_F9_FV.Modules.loadAllModules || ((sor
                         loadModule(`changes-shareholding-executives`, true);
                         htmlstr += `
                             <section class="fv-module-box-5">
-                                <div class="fv-changes-shareholding-executives-title-box">
-                                    <p class="fv-changes-shareholding-executives-title" data-more="changes-shareholding-executives-title">高管持股变动情况</p>
+                                <div class="fv-h5dnd-modules-title-box">
+                                    <p class="fv-h5dnd-modules-title" data-title="fv-changes-shareholding-executives-title" data-more="changes-shareholding-executives-title">高管持股变动情况</p>
                                 </div>
                                 <table class="fv-changes-shareholding-executives-table">
                                     <thead class="fv-changes-shareholding-executives-table-thead">
@@ -824,8 +825,8 @@ STOCK_F9_FV.Modules.loadAllModules = STOCK_F9_FV.Modules.loadAllModules || ((sor
                         loadModule(`institutional-shareholding-change-statistics`);
                         htmlstr += `
                             <section class="fv-module-box-7">
-                                <div class="fv-institutional-shareholding-change-statistics-title-box">
-                                    <p class="fv-institutional-shareholding-change-statistics-title">机构持股变动统计</p>
+                                <div class="fv-h5dnd-modules-title-box">
+                                    <p class="fv-h5dnd-modules-title" data-title="fv-institutional-shareholding-change-statistics-title">机构持股变动统计</p>
                                 </div>
                                 <div class="fv-institutional-shareholding-change-statistics-container">
                                     <!-- 盈利预告 placeholder -->
@@ -839,9 +840,8 @@ STOCK_F9_FV.Modules.loadAllModules = STOCK_F9_FV.Modules.loadAllModules || ((sor
                         loadModule(`company-news`, true);
                         htmlstr += `
                             <section class="fv-module-box-5">
-                                <div class="fv-company-news-title-box">
-                                    <p class="fv-company-news-title" data-more="company-news-title">公司新闻</p>
-                                    <!-- <fieldset disabled="disabled"></fieldset> -->
+                                <div class="fv-h5dnd-modules-title-box">
+                                    <p class="fv-h5dnd-modules-title" data-title="fv-company-news-title" data-more="company-news-title">公司新闻</p>
                                 </div>
                                 <table class="fv-company-news-table">
                                     <thead class="fv-company-news-table-thead">
@@ -850,18 +850,7 @@ STOCK_F9_FV.Modules.loadAllModules = STOCK_F9_FV.Modules.loadAllModules || ((sor
                                             <td class="fv-company-news-table-td-title">标题</td>
                                         </tr>
                                     </thead>
-                                    <tbody class="fv-company-news-table-tbody" id="fv-company-news-tbody">
-                                        <!--
-                                            <tr class="fv-company-news-table-tr">
-                                                <td class="fv-company-news-table-td-key">涉及概念</td>
-                                                <td class="fv-company-news-table-td-value" data-value="data-fv-events">
-                                                    <div class="css-data-loading" data-loading="pure-css-data-loading">
-                                                        CSS Loading...
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                        -->
-                                    </tbody>
+                                    <tbody class="fv-company-news-table-tbody" id="fv-company-news-tbody"></tbody>
                                     <tfoot class="fv-company-news-table-tfoot">
                                         <tr class="fv-company-news-table-tr">
                                             <td class="fv-company-news-table-td-value" data-value="data-fv-company-news"></td>
@@ -876,8 +865,8 @@ STOCK_F9_FV.Modules.loadAllModules = STOCK_F9_FV.Modules.loadAllModules || ((sor
                         loadModule(`company-announcements`, true);
                         htmlstr += `
                             <section class="fv-module-box-5">
-                                <div class="fv-company-announcements-title-box">
-                                    <p class="fv-company-announcements-title" data-more="company-announcements-title">公司公告</p>
+                                <div class="fv-h5dnd-modules-title-box">
+                                    <p class="fv-h5dnd-modules-title" data-title="fv-company-announcements-title" data-more="company-announcements-title">公司公告</p>
                                 </div>
                                 <table class="fv-company-announcements-table">
                                     <tbody class="fv-company-announcements-table-tbody" id="fv-company-announcements-tbody"></tbody>
@@ -895,9 +884,8 @@ STOCK_F9_FV.Modules.loadAllModules = STOCK_F9_FV.Modules.loadAllModules || ((sor
                         loadModule(`research-report`, true);
                         htmlstr += `
                             <section class="fv-module-box-5">
-                                <div class="fv-research-report-title-box">
-                                    <p class="fv-research-report-title" data-more="research-report-title">研究报告</p>
-                                    <!-- <fieldset disabled="disabled"></fieldset> -->
+                                <div class="fv-h5dnd-modules-title-box">
+                                    <p class="fv-h5dnd-modules-title" data-title="fv-research-report-title" data-more="research-report-title">研究报告</p>
                                 </div>
                                 <table class="fv-research-report-table">
                                     <thead class="fv-research-report-table-thead">
@@ -936,7 +924,8 @@ STOCK_F9_FV.Modules.loadAllModules = STOCK_F9_FV.Modules.loadAllModules || ((sor
                 // sortable_module_containers[1].insertAdjacentElement(`beforeend`, div);
                 // sortable_module_containers
                 setTimeout(function() {
-                    let delete_box = document.querySelector(`.fv-${delete_uid}-title`);
+                    // let delete_box = document.querySelector(`.fv-${delete_uid}-title`);
+                    let delete_box = document.querySelector(`[data-title="fv-${delete_uid}-title"]`);
                     delete_box.appendChild(sub_div);
                 }, 0);
             }
@@ -977,6 +966,24 @@ STOCK_F9_FV.Modules.modulesLoader = STOCK_F9_FV.Modules.modulesLoader ||
 (() => {
     const debug = false;
     // const this_name = STOCK_F9_FV.Modules.modulesLoader;
+    const consoles = {
+        css: `
+            color: #f0f;
+            font-size: 23px;
+        `,
+        css1: `
+            color: #f00;
+            font-size: 23px;
+        `,
+        css2: `
+            color: #ff0;
+            font-size: 23px;
+        `,
+        css3: `
+            color: #0ff;
+            font-size: 23px;
+        `,
+    };
     const console_css = `
         color: #f0f;
         font-size: 23px;
@@ -1057,16 +1064,18 @@ STOCK_F9_FV.Modules.modulesLoader = STOCK_F9_FV.Modules.modulesLoader ||
         // api: `https://developer.mozilla.org/API`,
         dragstart: function(e) {
             // e.preventDefault();
-            // console.log(`e = \n`, e);
-            // console.log(`e.target = \n`, e.target);
-            // console.log(`e.target.dataset = \n`, e.target.dataset);
-            // console.log(`e.target.dataset.iconUid = %c ${e.target.dataset.iconUid}\n`, console_css);
-            // console.log(`e.target.dataset.droppedUid = %c ${e.target.dataset.iconUid}\n`, console_css);
+            if (debug) {
+                console.log(`e = \n`, e);
+                console.log(`e.target = \n`, e.target);
+                console.log(`e.target.dataset = \n`, e.target.dataset);
+                console.log(`e.target.dataset.iconUid = %c ${e.target.dataset.iconUid}\n`, console_css);
+                console.log(`e.target.dataset.droppedUid = %c ${e.target.dataset.iconUid}\n`, console_css);
+            }
             // iconUid
             let iconUid = e.target.dataset.iconUid.substr(12),
                 droppedUid = e.target.dataset.droppedUid ? e.target.dataset.droppedUid.substr(12) : ``;
             let uid = iconUid ? iconUid : droppedUid;
-            if (!debug) {
+            if (debug) {
                 console.log(`uid `, uid);
                 console.log(`iconUid  `, iconUid);
                 console.log(`droppedUid `, droppedUid);
@@ -1088,7 +1097,10 @@ STOCK_F9_FV.Modules.modulesLoader = STOCK_F9_FV.Modules.modulesLoader ||
             return true;
         },
         dragover: (e) => {
-            // console.log(`%c dragOver = `, console_css1, e.target.id);
+            if (debug) {
+                console.log(`%c dragOver = `, console_css1, e.target.id);
+                console.log(`e.target = `, e.target, e);
+            }
             // e.target.style.backgroundColor = "#f0f";
             if (drop_counter === 0) {
                 let info_div = document.createElement(`div`);
@@ -1118,6 +1130,14 @@ STOCK_F9_FV.Modules.modulesLoader = STOCK_F9_FV.Modules.modulesLoader ||
         },
         drop: function(e) {
             e.preventDefault();
+            if (debug) {
+                // console.log(`drop e = %c ${e}\n`, console_css1, e);
+                console.log(`drop e.target = %c ${e.target}\n`, console_css1, e.target);
+                console.log(`drop e.target.dataset = %c ${e.target.dataset}\n`, console_css1, e.target.dataset);
+            }
+            // let drop_container = e.target;
+            let drop_container_uid = e.target.dataset.sortableBox;
+            // "right-sortable-box" / "left-sortable-box"
             // module_container.innerHTML = ""; ??? leave bug ??? no drop
             if (drop_counter === 1) {
                 let drop_info_div = document.querySelector(`#drop_info_div`);
@@ -1128,7 +1148,7 @@ STOCK_F9_FV.Modules.modulesLoader = STOCK_F9_FV.Modules.modulesLoader ||
             // module_container.classList.remove(`absolute-center-placeholder`);
             let uid = e.dataTransfer.getData("text/plain");
             // let data = e.dataTransfer.getData("xyz");
-            if (!debug) {
+            if (debug) {
                 console.log(`drop & uid = %c${uid}\n`, console_css1);
                 // ??? bug
             }
@@ -1151,6 +1171,7 @@ STOCK_F9_FV.Modules.modulesLoader = STOCK_F9_FV.Modules.modulesLoader ||
                     console.log(`e.target.dataset `, e.target.dataset);
                     console.log(`e.target.dataset.deleteModuleUid `, e.target.dataset.deleteModuleUid);
                     console.log(`uid`, uid);
+                    console.log(`e.target`, e.target);
                 }
                 STOCK_F9_FV.Modules.modulesLoader.deleteModule(uid);
             });
@@ -1212,13 +1233,15 @@ STOCK_F9_FV.Modules.modulesLoader = STOCK_F9_FV.Modules.modulesLoader ||
             let module_exist_checker = ``;
             if (debug) {
                 console.log(`uid`, uid, typeof uid);
+                // uid stockfast01 string
             }
-            if (typeof(uid) === "string" && uid.length < 11) {
+            if (typeof(uid) === "string" && uid.length < 12) {
                 // "stockfast13".length;
-                // 11
+                // 11 => 12
                 module_exist_checker = document.querySelector(`[data-div-module-uid="div-module-${uid}"]`)
             }else{
                 // disable checker
+                module_exist_checker = null;
             }
             //
             /**
@@ -1254,7 +1277,9 @@ STOCK_F9_FV.Modules.modulesLoader = STOCK_F9_FV.Modules.modulesLoader ||
                         link_css.dataset.deleteLinkCss = `delete-link-css-${uid}`;
                         script_dom.dataset.deleteScriptDom = `delete-script-dom-${uid}`;
                         script_dom.setAttribute(`src`, `./Modules/${module_uid_name}.js`);
-                        box.insertAdjacentElement(`afterend`, link_css);
+                        if (box !== null) {
+                            box.insertAdjacentElement(`afterend`, link_css);
+                        }
                         link_css.insertAdjacentElement(`afterend`, script_dom);
                     })(module_uid_name, isTable);
                 }, 0);
@@ -1271,9 +1296,8 @@ STOCK_F9_FV.Modules.modulesLoader = STOCK_F9_FV.Modules.modulesLoader ||
                         htmlstr += `
                             <section class="fv-module-box-3">
                                 <!-- 重要信息 -->
-                                <div class="fv-important-infos-title-box">
-                                    <p class="fv-important-infos-title">重要信息</p>
-                                    <!-- <fieldset disabled="disabled"></fieldset> -->
+                                <div class="fv-h5dnd-modules-title-box">
+                                    <p class="fv-h5dnd-modules-title" data-title="fv-important-infos-title">重要信息</p>
                                 </div>
                                 <table class="fv-important-infos-table">
                                     <thead class="fv-important-infos-table-thead">
@@ -1359,9 +1383,8 @@ STOCK_F9_FV.Modules.modulesLoader = STOCK_F9_FV.Modules.modulesLoader ||
                         loadModule(`recent-important-events`, true);
                         htmlstr += `
                             <section class="fv-module-box-7">
-                                <div class="fv-recent-important-events-title-box">
-                                    <p class="fv-recent-important-events-title">近期重要事项</p>
-                                    <!-- <fieldset disabled="disabled"></fieldset> -->
+                                <div class="fv-h5dnd-modules-title-box">
+                                    <p class="fv-h5dnd-modules-title" data-title="fv-recent-important-events-title">近期重要事项</p>
                                 </div>
                                 <table class="fv-recent-important-events-table">
                                     <thead class="fv-recent-important-events-table-thead">
@@ -1395,8 +1418,8 @@ STOCK_F9_FV.Modules.modulesLoader = STOCK_F9_FV.Modules.modulesLoader ||
                         loadModule(`profit-forecast`);
                         htmlstr += `
                             <section class="fv-module-box-7">
-                                <div class="fv-profit-forecast-title-box">
-                                    <p class="fv-profit-forecast-title">盈利预告</p>
+                                <div class="fv-h5dnd-modules-title-box">
+                                    <p class="fv-h5dnd-modules-title" data-title="fv-profit-forecast-title">盈利预告</p>
                                 </div>
                                 <div class="fv-profit-forecast-container">
                                     <!-- 盈利预告 placeholder -->
@@ -1413,8 +1436,7 @@ STOCK_F9_FV.Modules.modulesLoader = STOCK_F9_FV.Modules.modulesLoader ||
                         htmlstr += `
                             <section class="fv-module-box-3">
                                 <div class="fv-indicators-per-share-title-box">
-                                    <p class="fv-indicators-per-share-title">每股指标</p>
-                                    <!-- <fieldset disabled="disabled"></fieldset> -->
+                                    <p class="fv-h5dnd-modules-title" data-title="fv-indicators-per-share-title">每股指标</p>
                                 </div>
                                 <table class="fv-indicators-per-share-table">
                                     <thead class="fv-indicators-per-share-table-thead">
@@ -1528,8 +1550,8 @@ STOCK_F9_FV.Modules.modulesLoader = STOCK_F9_FV.Modules.modulesLoader ||
                         loadModule(`agency-rating`);
                         htmlstr += `
                             <section class="fv-module-box-7">
-                                <div class="fv-agency-rating-title-box">
-                                    <p class="fv-agency-rating-title">机构评级</p>
+                                <div class="fv-h5dnd-modules-title-box">
+                                    <p class="fv-h5dnd-modules-title" data-title="fv-agency-rating-title">机构评级</p>
                                 </div>
                                 <div class="fv-agency-rating-container">
                                     <!-- 机构评级 placeholder -->
@@ -1543,9 +1565,8 @@ STOCK_F9_FV.Modules.modulesLoader = STOCK_F9_FV.Modules.modulesLoader ||
                         loadModule(`stock-price-turnover`);
                         htmlstr += `
                             <section class="fv-module-box-7">
-                                <!-- <section data-uid="stock-price-turnover"></section> -->
-                                <div class="fv-stock-price-turnover-title-box">
-                                    <p class="fv-stock-price-turnover-title">股价/成交量</p>
+                                <div class="fv-h5dnd-modules-title-box">
+                                    <p class="fv-h5dnd-modules-title" data-title="fv-stock-price-turnover-title">股价/成交量</p>
                                 </div>
                                 <div class="fv-stock-price-turnover-container">
                                     <!-- 盈利预告 placeholder -->
@@ -1559,9 +1580,8 @@ STOCK_F9_FV.Modules.modulesLoader = STOCK_F9_FV.Modules.modulesLoader ||
                         loadModule(`top-ten-shareholders`, true);// table
                         htmlstr += `
                             <section class="fv-module-box-10">
-                                <div class="fv-top-ten-shareholders-title-box">
-                                    <p class="fv-top-ten-shareholders-title" data-more="top-ten-shareholders-title">前十大股东</p>
-                                    <!-- <fieldset disabled="disabled"></fieldset> -->
+                                <div class="fv-h5dnd-modules-title-box">
+                                    <p class="fv-h5dnd-modules-title" data-title="fv-top-ten-shareholders-title" data-more="top-ten-shareholders-title">前十大股东</p>
                                 </div>
                                 <table class="fv-top-ten-shareholders-table">
                                     <thead class="fv-top-ten-shareholders-table-thead">
@@ -1588,9 +1608,8 @@ STOCK_F9_FV.Modules.modulesLoader = STOCK_F9_FV.Modules.modulesLoader ||
                         loadModule(`financing-and-margin-balance-difference-trend`, false);// container
                         htmlstr += `
                             <section class="fv-module-box-7">
-                                <!-- <section data-uid="financing-and-margin-balance-difference-trend"></section> -->
-                                <div class="fv-financing-and-margin-balance-difference-trend-title-box">
-                                    <p class="fv-financing-and-margin-balance-difference-trend-title">融资余额与融券余额差值走势</p>
+                                <div class="fv-h5dnd-modules-title-box">
+                                    <p class="fv-h5dnd-modules-title" data-title="fv-financing-and-margin-balance-difference-trend-title">融资余额与融券余额差值走势</p>
                                 </div>
                                 <div class="fv-financing-and-margin-balance-difference-trend-container">
                                     <!-- 融资余额与融券余额差值走势 placeholder -->
@@ -1604,8 +1623,8 @@ STOCK_F9_FV.Modules.modulesLoader = STOCK_F9_FV.Modules.modulesLoader ||
                         loadModule(`monthly-capital-flows-large-single-statistics`);// false
                         htmlstr += `
                             <section class="fv-module-box-7">
-                                <div class="fv-monthly-capital-flows-large-single-statistics-title-box">
-                                    <p class="fv-monthly-capital-flows-large-single-statistics-title">近一月资金流向大单统计</p>
+                                <div class="fv-h5dnd-modules-title-box">
+                                    <p class="fv-h5dnd-modules-title" data-title="fv-monthly-capital-flows-large-single-statistics-title">近一月资金流向大单统计</p>
                                 </div>
                                 <div class="fv-monthly-capital-flows-large-single-statistics-container">
                                     <!-- 近一月资金流向大单统计 placeholder -->
@@ -1619,9 +1638,8 @@ STOCK_F9_FV.Modules.modulesLoader = STOCK_F9_FV.Modules.modulesLoader ||
                         loadModule(`equity-pledge`, true);
                         htmlstr += `
                             <section class="fv-module-box-10">
-                                <div class="fv-equity-pledge-title-box">
-                                    <p class="fv-equity-pledge-title" data-more="equity-pledge-title">股权质押</p>
-                                    <!-- <fieldset disabled="disabled"></fieldset> -->
+                                <div class="fv-h5dnd-modules-title-box">
+                                    <p class="fv-h5dnd-modules-title" data-title="fv-equity-pledge-title" data-more="equity-pledge-title">股权质押</p>
                                 </div>
                                 <table class="fv-equity-pledge-table">
                                     <thead class="fv-equity-pledge-table-thead">
@@ -1665,9 +1683,8 @@ STOCK_F9_FV.Modules.modulesLoader = STOCK_F9_FV.Modules.modulesLoader ||
                         loadModule(`holdings-participation-situation`, true);
                         htmlstr += `
                             <section class="fv-module-box-5">
-                                <div class="fv-holdings-participation-situation-title-box">
-                                    <p class="fv-holdings-participation-situation-title" data-more="holdings-participation-situation-title">控股参股情况</p>
-                                    <!-- <fieldset disabled="disabled"></fieldset> -->
+                                <div class="fv-h5dnd-modules-title-box">
+                                    <p class="fv-h5dnd-modules-title" data-title="fv-holdings-participation-situation-title" data-more="holdings-participation-situation-title">控股参股情况</p>
                                 </div>
                                 <table class="fv-holdings-participation-situation-table">
                                     <thead class="fv-holdings-participation-situation-table-thead">
@@ -1694,8 +1711,8 @@ STOCK_F9_FV.Modules.modulesLoader = STOCK_F9_FV.Modules.modulesLoader ||
                         loadModule(`changes-shareholding-executives`, true);
                         htmlstr += `
                             <section class="fv-module-box-5">
-                                <div class="fv-changes-shareholding-executives-title-box">
-                                    <p class="fv-changes-shareholding-executives-title" data-more="changes-shareholding-executives-title">高管持股变动情况</p>
+                                <div class="fv-h5dnd-modules-title-box">
+                                    <p class="fv-h5dnd-modules-title" data-title="fv-changes-shareholding-executives-title" data-more="changes-shareholding-executives-title">高管持股变动情况</p>
                                 </div>
                                 <table class="fv-changes-shareholding-executives-table">
                                     <thead class="fv-changes-shareholding-executives-table-thead">
@@ -1724,8 +1741,8 @@ STOCK_F9_FV.Modules.modulesLoader = STOCK_F9_FV.Modules.modulesLoader ||
                         loadModule(`institutional-shareholding-change-statistics`);
                         htmlstr += `
                             <section class="fv-module-box-7">
-                                <div class="fv-institutional-shareholding-change-statistics-title-box">
-                                    <p class="fv-institutional-shareholding-change-statistics-title">机构持股变动统计</p>
+                                <div class="fv-h5dnd-modules-title-box">
+                                    <p class="fv-h5dnd-modules-title" data-title="fv-institutional-shareholding-change-statistics-title">机构持股变动统计</p>
                                 </div>
                                 <div class="fv-institutional-shareholding-change-statistics-container">
                                     <!-- 盈利预告 placeholder -->
@@ -1739,8 +1756,8 @@ STOCK_F9_FV.Modules.modulesLoader = STOCK_F9_FV.Modules.modulesLoader ||
                         loadModule(`company-news`, true);
                         htmlstr += `
                             <section class="fv-module-box-5">
-                                <div class="fv-company-news-title-box">
-                                    <p class="fv-company-news-title" data-more="company-news-title">公司新闻</p>
+                                <div class="fv-h5dnd-modules-title-box">
+                                    <p class="fv-h5dnd-modules-title" data-title="fv-company-news-title" data-more="company-news-title">公司新闻</p>
                                 </div>
                                 <table class="fv-company-news-table">
                                     <thead class="fv-company-news-table-thead">
@@ -1764,8 +1781,8 @@ STOCK_F9_FV.Modules.modulesLoader = STOCK_F9_FV.Modules.modulesLoader ||
                         loadModule(`company-announcements`, true);
                         htmlstr += `
                             <section class="fv-module-box-5">
-                                <div class="fv-company-announcements-title-box">
-                                    <p class="fv-company-announcements-title" data-more="company-announcements-title">公司公告</p>
+                                <div class="fv-h5dnd-modules-title-box">
+                                    <p class="fv-h5dnd-modules-title" data-title="fv-company-announcements-title" data-more="company-announcements-title">公司公告</p>
                                 </div>
                                 <table class="fv-company-announcements-table">
                                     <tbody class="fv-company-announcements-table-tbody" id="fv-company-announcements-tbody"></tbody>
@@ -1783,9 +1800,8 @@ STOCK_F9_FV.Modules.modulesLoader = STOCK_F9_FV.Modules.modulesLoader ||
                         loadModule(`research-report`, true);
                         htmlstr += `
                             <section class="fv-module-box-5">
-                                <div class="fv-research-report-title-box">
-                                    <p class="fv-research-report-title" data-more="research-report-title">研究报告</p>
-                                    <!-- <fieldset disabled="disabled"></fieldset> -->
+                                <div class="fv-h5dnd-modules-title-box">
+                                    <p class="fv-h5dnd-modules-title" data-title="fv-research-report-title" data-more="research-report-title">研究报告</p>
                                 </div>
                                 <table class="fv-research-report-table">
                                     <thead class="fv-research-report-table-thead">
@@ -1819,15 +1835,30 @@ STOCK_F9_FV.Modules.modulesLoader = STOCK_F9_FV.Modules.modulesLoader ||
                         break;
                 }
                 div.insertAdjacentHTML(`beforeend`, `${htmlstr}`);// no needs container any more!
-                module_container.insertAdjacentElement(`beforeend`, div);
+                if (drop_container_uid === "left-sortable-box") {
+                    // module_container.insertAdjacentElement(`beforeend`, div);
+                    module_containers[0].insertAdjacentElement(`beforeend`, div);
+                }else if (drop_container_uid === "right-sortable-box") {
+                    module_containers[1].insertAdjacentElement(`beforeend`, div);
+                }else{
+                    if (debug) {
+                        console.log(`Hold on, it's coming soon...`);
+                    }
+                }
+                // module_containers
+                // module_containers[0]/module_containers[1]
                 // insert script.js ??? execute timeline!
                 // insert DOM
                 // insert CSS
                 setTimeout(function() {
                     // let delete_box = document.querySelector(`.fv-${delete_uid}-title-box`);
                     // :: after ??? fv-important-infos-title
-                    let delete_box = document.querySelector(`.fv-${delete_uid}-title`);
-                    delete_box.appendChild(sub_div);
+                    let delete_box = document.querySelector(`[data-title="fv-${delete_uid}-title"]`);
+                    // let delete_box = document.querySelector(`.fv-h5dnd-modules-title`);
+                    if (delete_box !== null) {
+                        delete_box.appendChild(sub_div);
+                        // Uncaught TypeError: Cannot read property 'appendChild' of null
+                    }
                 }, 0);
             }else{
                 if (debug) {
@@ -1849,15 +1880,19 @@ STOCK_F9_FV.Modules.modulesLoader = STOCK_F9_FV.Modules.modulesLoader ||
                 module_datas[index].addEventListener(`dragstart`, STOCK_F9_FV.Modules.modulesLoader.dragstart);
                 // ???
             }
-            // console.log(`module_container`, module_container);
-            module_container.addEventListener(`dragenter`, STOCK_F9_FV.Modules.modulesLoader.dragenter);
-            module_container.addEventListener(`dragover`, STOCK_F9_FV.Modules.modulesLoader.dragover);
-            module_container.addEventListener(`dragleave`, STOCK_F9_FV.Modules.modulesLoader.dragleave);
-            // dragleave
-            module_container.addEventListener(`drop`, STOCK_F9_FV.Modules.modulesLoader.drop);
-            // module_container.addEventListener(`dragenter`, modulesLoader.dragenter);
-            // module_container.addEventListener(`dragover`, modulesLoader.dragover);
-            // module_container.addEventListener(`drop`, modulesLoader.drop);
+            if (debug) {
+                console.log(`module_containers`, module_containers);
+            }
+            for (let i = 0; i < module_containers.length; i++) {
+                module_containers[i].addEventListener(`dragenter`, STOCK_F9_FV.Modules.modulesLoader.dragenter);
+                module_containers[i].addEventListener(`dragover`, STOCK_F9_FV.Modules.modulesLoader.dragover);
+                module_containers[i].addEventListener(`dragleave`, STOCK_F9_FV.Modules.modulesLoader.dragleave);
+                // dragleave
+                module_containers[i].addEventListener(`drop`, STOCK_F9_FV.Modules.modulesLoader.drop);
+                // module_container.addEventListener(`dragenter`, modulesLoader.dragenter);
+                // module_container.addEventListener(`dragover`, modulesLoader.dragover);
+                // module_container.addEventListener(`drop`, modulesLoader.drop);
+            }
         }
     };
 })();

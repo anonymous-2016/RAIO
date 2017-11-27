@@ -1,0 +1,17 @@
+@charset "UFT-8";
+
+/* @import url("../common/modules-link.css"); */
+
+td>a[data-link*="link"] {
+    /* color: #00f; */
+}
+
+td>a[data-link*="link"]:hover {
+    color: #00f;
+}
+
+td>a[data-disabled="true"],
+td>a[data-disabled="true"]:hover {
+    cursor: not-allowed;
+    color: grey;
+}
