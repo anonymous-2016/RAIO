@@ -1034,100 +1034,75 @@ STOCK_F9_FV.Modules.modulesLoader = STOCK_F9_FV.Modules.modulesLoader ||
             // module_container.removeChild(tdu);
             // alert(`Are sure delete this module?`);
             // conform !== confirm
-            swal("你确定要删除此模块?", {
-                buttons: {
-                    cancel: {
-                        text: "确定",
-                        value: "cancel",
-                    },
-                    ok: {
-                        text: "取消",
-                        value: "ok",
-                    }
-                },
-            })
-            .then((value) => {
-                console.log(`value = `, value)
-                // value =  ok
-                switch (value) {
-                    case "cancel":
-                        swal("已取消删除此模块!", "success");
-                        break;
-                    case "ok":
-                        swal("你确定要删除此模块?", "warning");
-                        break;
-                    default:
-                        swal("Got away safely!");
-                }
-            });
-            let result = window.confirm(`你确定要删除此模块?`);
-            /* let result = swal({
+            // swal & Promise
+            swal({
                 title: "删除模块!",
                 text: "你确定要删除此模块?",
                 icon: "warning",
                 // icon: "success",
-                button: {
-                    text: "OK",
-                    value: false,
-                    visible: true,
-                    className: "",
-                    closeModal: true,
-                },
-            });
-            if (!debug) {
-                console.log(`result = `, result);
-                // Promise
-            } */;
-            // true
-            if(result){
-                swal({
-                    title: "删除模块!",
-                    text: "你确定要删除此模块?",
-                    icon: "warning",
-                    // icon: "success",
-                    button: {
-                        text: "OK",
-                        value: false,
-                        visible: true,
-                        className: "",
-                        closeModal: true,
-                    },
-                });
-                // window.open("exit.html", "Thanks for Visiting!");
-                // alert(`just remove this module!`);
-                // remove DOM node ???
-                // [data-delete-script-dom="delete-script-dom-stockfast01"]
-                // module_container.removeChild(tdu);
-                if (debug) {
-                    console.log(`this = `, this);
-                    // Window
-                    console.log(`tdu = `, tdu);
-                    console.log(`tdu.parentElement = `, tdu.parentElement);
-                    console.log(`tdu.parentNode = `, tdu.parentNode);
-                    console.log(`tdu.parentNode.id  = `, tdu.parentNode.id );
-                }
-                if (tdu.parentNode.id === "left-sortable-container") {
-                    module_containers[0].removeChild(tdu);
-                }else if (tdu.parentNode.id === "right-sortable-container") {
-                    module_containers[1].removeChild(tdu);
-                }else{
-                    console.log(`Coming soon... `, tdu.parentNode);
-                }
-            }else{
-                // alert(`已取消删除此模块!`);
-                swal({
-                    title: "取消删除模块!",
-                    text: "已取消删除此模块!",
-                    icon: "success",
-                    button: {
+                buttons: {
+                    cancel: {
                         text: "取消",
-                        value: false,
+                        value: "cancel",
+                        // value: false,
                         visible: true,
                         className: "",
-                        closeModal: true,
+                        closeModal: true
                     },
-                });
-            }
+                    ok: {
+                        text: "确定",
+                        value: "ok",
+                        // value: true,
+                        visible: true,
+                        className: "",
+                        closeModal: true
+                    }
+                }
+            })
+            .then((value) => {
+                console.log(`value = `, value)
+                let result = value || ``;
+                // let result = window.confirm(`你确定要删除此模块?`);
+                // true
+                if(result === "ok"){
+                    // window.open("exit.html", "Thanks for Visiting!");
+                    // alert(`just remove this module!`);
+                    // remove DOM node ???
+                    // [data-delete-script-dom="delete-script-dom-stockfast01"]
+                    // module_container.removeChild(tdu);
+                    if (debug) {
+                        console.log(`this = `, this);
+                        // Window
+                        console.log(`tdu = `, tdu);
+                        console.log(`tdu.parentElement = `, tdu.parentElement);
+                        console.log(`tdu.parentNode = `, tdu.parentNode);
+                        console.log(`tdu.parentNode.id  = `, tdu.parentNode.id );
+                    }
+                    if (tdu.parentNode.id === "left-sortable-container") {
+                        module_containers[0].removeChild(tdu);
+                        swal("已删除此模块?", "success");
+                    }else if (tdu.parentNode.id === "right-sortable-container") {
+                        module_containers[1].removeChild(tdu);
+                        swal("已删除此模块?", "success");
+                    }else{
+                        console.log(`Coming soon... `, tdu.parentNode);
+                    }
+                }else{
+                    // alert(`已取消删除此模块!`);
+                    swal("已取消删除此模块!", "success");
+                }
+                // value =  ok
+                // switch (value) {
+                //     case "cancel":
+                //         swal("已取消删除此模块!", "success");
+                //         break;
+                //     case "ok":
+                //         swal("已删除此模块?", "success");
+                //         break;
+                //     default:
+                //         swal("Got away safely!");
+                // }
+            });
         },
         // api: `https://developer.mozilla.org/API`,
         dragstart: function(e) {
