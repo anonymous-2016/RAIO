@@ -176,6 +176,11 @@ $ curl --silent --location https://rpm.nodesource.com/setup_6.x | bash -
 ## Node.js v7
 $ curl --silent --location https://rpm.nodesource.com/setup_7.x | bash -
 
+# On RHEL, CentOS or Fedora, for Node.js v6 LTS:
+# ??? 8.x
+$ curl --silent --location https://rpm.nodesource.com/setup_8.x | sudo bash -
+
+
 ## yum install nodejs npm
 $ sudo yum install nodejs npm
 
