@@ -1937,7 +1937,7 @@ STOCK_F9_FV.Modules.modulesLoader = STOCK_F9_FV.Modules.modulesLoader ||
                         console.log(`%c Sorry, some errors occurred!`, `color: #f0f`);
                     }
                 }
-                alert(`duplication & 重复!`);
+                // alert(`duplication & 重复!`);
             }
         },
         init: function() {
