@@ -25,6 +25,19 @@ http://jira.gildata.com:8888/secure/RapidBoard.jspa?rapidView=29&projectKey=GFT&
 ES6 => ES5
 
 
+??? path
+
+./
+../
+
+relative path ???
+
+absolute path ???
+
+
+
+
+
 
 # data-*
 

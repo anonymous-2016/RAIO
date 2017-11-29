@@ -357,12 +357,13 @@ STOCK_F9_FV.Modules.loadAllModules = STOCK_F9_FV.Modules.loadAllModules || ((sor
                                 link_css = document.createElement(`link`),
                                 script_dom = document.createElement(`script`);
                             link_css.setAttribute(`rel`, `stylesheet`);
-                            // link_css.setAttribute(`href`, `./dist/css/${module_uid_name}.min.css`);
+                            // link_css.setAttribute(`href`, `./build/css/${module_uid_name}.min.css`);
                             link_css.setAttribute(`href`, `./Modules/${module_uid_name}.css`);
                             link_css.dataset.deleteLinkCss = `delete-link-css-${uid}`;
                             script_dom.dataset.deleteScriptDom = `delete-script-dom-${uid}`;
                             // script_dom.setAttribute(`src`, `./Modules/${module_uid_name}.js`);
-                            script_dom.setAttribute(`src`, `./dist/js/${module_uid_name}.min.js`);
+                            // script_dom.setAttribute(`src`, `./build/js/${module_uid_name}.min.js`);
+                            script_dom.setAttribute(`src`, `./${module_uid_name}.min.js`);
                             if (debug) {
                                 console.log(`box = \n`, box);
                             }
@@ -1375,12 +1376,13 @@ STOCK_F9_FV.Modules.modulesLoader = STOCK_F9_FV.Modules.modulesLoader ||
                             console.log(`box = \n`, box);
                         }
                         link_css.setAttribute(`rel`, `stylesheet`);
-                        // link_css.setAttribute(`href`, `./dist/css/${module_uid_name}.min.css`);
+                        // link_css.setAttribute(`href`, `./build/css/${module_uid_name}.min.css`);
                         link_css.setAttribute(`href`, `./Modules/${module_uid_name}.css`);
                         link_css.dataset.deleteLinkCss = `delete-link-css-${uid}`;
                         script_dom.dataset.deleteScriptDom = `delete-script-dom-${uid}`;
-                        script_dom.setAttribute(`src`, `./dist/js/${module_uid_name}.min.js`);
                         // script_dom.setAttribute(`src`, `./Modules/${module_uid_name}.js`);
+                        // script_dom.setAttribute(`src`, `./build/js/${module_uid_name}.min.js`);
+                        script_dom.setAttribute(`src`, `./${module_uid_name}.min.js`);
                         if (box !== null) {
                             box.insertAdjacentElement(`afterend`, link_css);
                         }
