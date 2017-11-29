@@ -27,7 +27,19 @@ footer {
 /* sweetalert btn color */
 
 .warning-alert-style {
-    color: red;
+    /* color: #0f0 !important; */
+    /* background: #fd1f1fd0; */
+    background: #ffffff;
+    box-sizing: border-box;
+    /* border: 1px solid red; */
+}
+
+.swal-title {
+    color: #000;
+}
+
+.swal-text {
+    color: #fd1f1fd0;
 }
 
 table tr>td {
