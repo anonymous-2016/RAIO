@@ -1,0 +1,20 @@
+{
+	"folders": [
+		{
+			"path": "Webpack_Test"
+		}
+	],
+    "settings": {
+        "terminal.integrated.shell.windows": "C:\\Windows\\System32\\cmd.exe",
+        "[markdown]": {
+            "editor.formatOnSave": true,
+            "editor.renderWhitespace": "all",
+            "editor.acceptSuggestionOnEnter": "off"
+        },
+        "files.associations": {
+            "*.jsx": "javascriptreact",
+            "*.js": "javascriptreact"
+        },
+        "html.format.enable": false
+    }
+}

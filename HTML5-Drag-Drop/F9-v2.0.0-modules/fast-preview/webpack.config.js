@@ -25,7 +25,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 const BASE_URI = {
-    WEB: './src/modules/',
+    APP: './src/modules/',
     ES5: './src/es5/',
     F9FV: `./src/F9_FV`,
     // NTB: `./F9-three-board/NewThreeBoardThematicStatistics`
