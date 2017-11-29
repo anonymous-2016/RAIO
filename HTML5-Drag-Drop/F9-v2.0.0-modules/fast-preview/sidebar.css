@@ -5,8 +5,8 @@
 
 /* @import url("../common/module.css"); */
 
-@import url("./modules-title.css");
-@import url("./modules-link.css");
+@import url("./common/modules-title.css");
+@import url("./common/modules-link.css");
 
 /* size ??? */
 
@@ -21,6 +21,13 @@ section,
 div,
 footer {
     box-sizing: border-box;
+}
+
+
+/* sweetalert btn color */
+
+.warning-alert-style {
+    color: red;
 }
 
 table tr>td {

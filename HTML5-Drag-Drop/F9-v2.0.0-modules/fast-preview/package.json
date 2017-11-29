@@ -5,13 +5,13 @@
     "module": "webpack.config.mjs",
     "main": "webpack.config.js",
     "scripts": {
-        "app": "webpack",
+        "app": "npm run rmrf & webpack -p",
         "dev & prod": "??? webpack --config webpack.prod.js ???",
         "hot_modules_loader": "??? webpack hot HMR ???",
         "dev": "webpack -w",
-        "linux_rmrf": "rm -rf build/public",
-        "windows_clear": "rimraf build/public",
-        "linux-bash-shell": "rm -rf ",
+        "rmrf": "rimraf build/js",
+        "linux_rmrf": "rm -rf build/js",
+        "windows_clear": "rimraf build/js",
         "test": "echo \"Error: no test specified\" && exit 1"
     },
     "bin": {

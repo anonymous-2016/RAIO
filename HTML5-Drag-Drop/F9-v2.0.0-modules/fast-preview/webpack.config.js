@@ -42,7 +42,7 @@ if (process.env.NODE_ENV !== 'production') {
 
 const STOCK_F9 = [
     "agency-research-statistics",
-    "agency-rating.js",
+    "agency-rating",
     "changes-shareholding-executives",
     "company-announcements",
     "company-news",
@@ -54,7 +54,7 @@ const STOCK_F9 = [
     "institutional-shareholding-change-statistics",
     "investor-relations",
     "monthly-capital-flows-large-single-statistics",
-    "profit-forecast.js",
+    "profit-forecast",
     "recent-important-events-backup",
     "recent-important-events",
     "research-report",

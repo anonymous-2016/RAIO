@@ -357,10 +357,12 @@ STOCK_F9_FV.Modules.loadAllModules = STOCK_F9_FV.Modules.loadAllModules || ((sor
                                 link_css = document.createElement(`link`),
                                 script_dom = document.createElement(`script`);
                             link_css.setAttribute(`rel`, `stylesheet`);
+                            // link_css.setAttribute(`href`, `./dist/css/${module_uid_name}.min.css`);
                             link_css.setAttribute(`href`, `./Modules/${module_uid_name}.css`);
                             link_css.dataset.deleteLinkCss = `delete-link-css-${uid}`;
                             script_dom.dataset.deleteScriptDom = `delete-script-dom-${uid}`;
-                            script_dom.setAttribute(`src`, `./Modules/${module_uid_name}.js`);
+                            // script_dom.setAttribute(`src`, `./Modules/${module_uid_name}.js`);
+                            script_dom.setAttribute(`src`, `./dist/js/${module_uid_name}.min.js`);
                             if (debug) {
                                 console.log(`box = \n`, box);
                             }
@@ -1066,9 +1068,11 @@ STOCK_F9_FV.Modules.modulesLoader = STOCK_F9_FV.Modules.modulesLoader ||
                 }
             })
             .then((value) => {
-                console.log(`value = `, value)
                 let result = value || ``;
                 // let result = window.confirm(`你确定要删除此模块?`);
+                if (debug) {
+                    console.log(`value = `, value)
+                }
                 // true
                 if(result === "ok"){
                     // window.open("exit.html", "Thanks for Visiting!");
@@ -1325,7 +1329,7 @@ STOCK_F9_FV.Modules.modulesLoader = STOCK_F9_FV.Modules.modulesLoader ||
             }
             let module_exist_checker = ``;
             if (debug) {
-                console.log(`uid`, uid, typeof uid);
+                console.log(`uid =\n`, uid, typeof uid);
                 // uid stockfast01 string
             }
             if (typeof(uid) === "string" && uid.length < 12) {
@@ -1335,6 +1339,11 @@ STOCK_F9_FV.Modules.modulesLoader = STOCK_F9_FV.Modules.modulesLoader ||
             }else{
                 // disable checker
                 module_exist_checker = null;
+            }
+            if (debug) {
+                console.log(`module_exist_checker =\n`, module_exist_checker, typeof module_exist_checker);
+                // null object
+                // <div data-div-module-uid="div-module-stockfast01" data-dropped-uid="module-data-stockfast01" class="fv-left-box">...</div>  object
             }
             //
             /**
@@ -1366,10 +1375,12 @@ STOCK_F9_FV.Modules.modulesLoader = STOCK_F9_FV.Modules.modulesLoader ||
                             console.log(`box = \n`, box);
                         }
                         link_css.setAttribute(`rel`, `stylesheet`);
+                        // link_css.setAttribute(`href`, `./dist/css/${module_uid_name}.min.css`);
                         link_css.setAttribute(`href`, `./Modules/${module_uid_name}.css`);
                         link_css.dataset.deleteLinkCss = `delete-link-css-${uid}`;
                         script_dom.dataset.deleteScriptDom = `delete-script-dom-${uid}`;
-                        script_dom.setAttribute(`src`, `./Modules/${module_uid_name}.js`);
+                        script_dom.setAttribute(`src`, `./dist/js/${module_uid_name}.min.js`);
+                        // script_dom.setAttribute(`src`, `./Modules/${module_uid_name}.js`);
                         if (box !== null) {
                             box.insertAdjacentElement(`afterend`, link_css);
                         }
@@ -1959,6 +1970,30 @@ STOCK_F9_FV.Modules.modulesLoader = STOCK_F9_FV.Modules.modulesLoader ||
                     }
                 }, 0);
             }else{
+                try {
+                    swal({
+                        title: "此模块已存在!",
+                        // text: "1秒后自动关闭",
+                        text: `
+                            此模块已存在, 不能再次拖放!\n
+                            1 秒后自动关闭.
+                        `,
+                        icon: "warning",
+                        className: "warning-alert-style",
+                        timer: 2000,
+                        // buttons: false,
+                        button: {
+                            text: "关闭",
+                            // value: "ok",
+                            value: true,
+                            visible: true,
+                            // className: "warning-alert-btn-style",
+                            closeModal: true
+                        }
+                    });
+                } catch (error) {
+                    console.log(`%c Sorry, some errors occurred!`, `color: #f0f`);
+                }
                 if (debug) {
                     try {
                         console.log(`module_exist_checker = `, module_exist_checker);
