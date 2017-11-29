@@ -1,13 +1,13 @@
 "use strict";
 
 /**
- * agency-rating 机构评级 
+ * agency-rating 机构评级
  * xgqfrms
  * creadted 2017.10.16
- * @param {* String} url 
- * @param {* Array} tds 
- * @param {* Array} ui_arr 
- * @param {Boolean} debug 
+ * @param {* String} url
+ * @param {* Array} tds
+ * @param {* Array} ui_arr
+ * @param {Boolean} debug
  */
 
 // namespaces
@@ -23,7 +23,7 @@ STOCK_F9_FV.Modules.agencyRating = STOCK_F9_FV.Modules.agencyRating || ((url = `
         fetch(url)
         .then(res => res.json())
         .then(
-            //shaped data 
+            //shaped data
             (json) => {
                 // json
                 let arr = json;// Array
@@ -83,11 +83,11 @@ STOCK_F9_FV.Modules.agencyRating = STOCK_F9_FV.Modules.agencyRating || ((url = `
                                 new_key = `暂无数据`;
                                 break;
                         }
-                        /* 
+                        /*
                             const json = {A: `1`, B: `22`, C: `333`};
                             const {A: a, B: b, C: c} = {...json};
                             // rename object's key!
-                            // import & export ??? old_name as new_name 
+                            // import & export ??? old_name as new_name
                         */
                         arr_obj[new_key] = [];
                     }
@@ -104,7 +104,7 @@ STOCK_F9_FV.Modules.agencyRating = STOCK_F9_FV.Modules.agencyRating || ((url = `
                         // no string, just keep number!
                         up = (obj.st !== undefined) ? obj.st : `暂无数据`;
                         down = (obj.xt !== undefined) ? obj.xt : `暂无数据`;
-                        // 股价 
+                        // 股价
                         stock_price = (obj.gj !== undefined) ? (obj.gj >= 0 ? obj.gj : null) : `暂无数据`;
                         // invalid value === 展示“--”
                         keep = (obj.wc !== undefined) ? obj.wc : `暂无数据`;
@@ -138,10 +138,10 @@ STOCK_F9_FV.Modules.agencyRating = STOCK_F9_FV.Modules.agencyRating || ((url = `
 
 /**
  * @author xgqfrms
- * 
- * @param {* Object} datas 
- * @param {* String} container_uid 
- * @param {* DOM Element} container_div 
+ *
+ * @param {* Object} datas
+ * @param {* String} container_uid
+ * @param {* DOM Element} container_div
  * @param {* Boolean} debug
  */
 
@@ -155,10 +155,10 @@ STOCK_F9_FV.Modules.agencyRating.drawHS = STOCK_F9_FV.Modules.agencyRating.drawH
         title2: `title 2`
     }
     // let {time, up, down, stock_price, keep} = {...datas};
-    // babel ??? ES5 
+    // babel ??? ES5
     let time = datas.time,
         up = datas.up,
-        down = datas.down, 
+        down = datas.down,
         stock_price = datas.stock_price,
         keep = datas.keep;
     if (debug) {
@@ -180,10 +180,10 @@ STOCK_F9_FV.Modules.agencyRating.drawHS = STOCK_F9_FV.Modules.agencyRating.drawH
     // css_obj ???
     // const {color, colors, optioncolor, gridColor, legendColor, yAxisColor} = {...chart_css};
     let color = chart_css.color,
-        colors = chart_css.colors, 
-        optioncolor = chart_css.optioncolor, 
-        gridColor = chart_css.gridColor, 
-        legendColor = chart_css.legendColor, 
+        colors = chart_css.colors,
+        optioncolor = chart_css.optioncolor,
+        gridColor = chart_css.gridColor,
+        legendColor = chart_css.legendColor,
         yAxisColor = chart_css.yAxisColor;
     // container_div
     // Highcharts.stockChart
@@ -214,6 +214,8 @@ STOCK_F9_FV.Modules.agencyRating.drawHS = STOCK_F9_FV.Modules.agencyRating.drawH
             // height: (9 / 16 * 100) + '%',
             height: 272,// 275px;
             // 16:9 ratio
+            marginTop: 30,
+            // marginBottom: 65,
         },
         title: {
             text: '',
@@ -232,7 +234,7 @@ STOCK_F9_FV.Modules.agencyRating.drawHS = STOCK_F9_FV.Modules.agencyRating.drawH
             }
         },
         credits: {
-            // enabled: true,// 
+            // enabled: true,//
             enabled: false,
             href: `https://www.gildata.com`,
             text: `gildata`,
@@ -300,6 +302,8 @@ STOCK_F9_FV.Modules.agencyRating.drawHS = STOCK_F9_FV.Modules.agencyRating.drawH
             }
         ],
         legend: {
+            symbolRadius: 0,
+            // rectangle
             align: 'center',// left, center and right. (Defaults to center.)
             backgroundColor: `#ff00ff`, //Color,
             /*
@@ -392,27 +396,27 @@ STOCK_F9_FV.Modules.agencyRating.drawHS = STOCK_F9_FV.Modules.agencyRating.drawH
         }
     });
     // svg style
-    let svg_legends = document.querySelectorAll(`.highcharts-legend-item`);
-    // svg_legend;
-    if (debug) {
-        console.log(`svg_legends = `, svg_legends);
-    }
-    svg_legends.forEach(
-        (svg_legend, index) => {
-            if (debug) {
-                console.log(`svg_legend, index`, svg_legend, index);
-            }
-            if (index < svg_legends.length - 1) {
-                svg_legend.lastChild;
-                svg_legend.lastChild.setAttribute(`x`, 0);
-                svg_legend.lastChild.setAttribute(`y`, 5);
-                svg_legend.lastChild.setAttribute(`width`, 17);
-                svg_legend.lastChild.setAttribute(`height`, 10);
-                svg_legend.lastChild.setAttribute(`rx`, 0);
-                svg_legend.lastChild.setAttribute(`ry`, 0);
-            }
-        }
-    );
+    // let svg_legends = document.querySelectorAll(`.highcharts-legend-item`);
+    // // svg_legend;
+    // if (debug) {
+    //     console.log(`svg_legends = `, svg_legends);
+    // }
+    // svg_legends.forEach(
+    //     (svg_legend, index) => {
+    //         if (debug) {
+    //             console.log(`svg_legend, index`, svg_legend, index);
+    //         }
+    //         if (index < svg_legends.length - 1) {
+    //             svg_legend.lastChild;
+    //             svg_legend.lastChild.setAttribute(`x`, 0);
+    //             svg_legend.lastChild.setAttribute(`y`, 5);
+    //             svg_legend.lastChild.setAttribute(`width`, 17);
+    //             svg_legend.lastChild.setAttribute(`height`, 10);
+    //             svg_legend.lastChild.setAttribute(`rx`, 0);
+    //             svg_legend.lastChild.setAttribute(`ry`, 0);
+    //         }
+    //     }
+    // );
 });
 
 

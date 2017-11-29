@@ -223,19 +223,24 @@ STOCK_F9_FV.Modules.profitForecast.drawHS = STOCK_F9_FV.Modules.profitForecast.d
         }, */
         chart: {
             type: 'column',
-            // backgroundColor: chart_css.color
-            // backgroundColor: color
+            // backgroundColor: chart_css.color,
+            // backgroundColor: `#13579e`,
             // height: (9 / 16 * 100) + '%',
             height: 272,
             // 16:9 ratio
-            padding: 50,
+            // padding: 50,
+            // 数组中的数字分别表示顶部，右侧，底部和左侧。
+            // Use the options marginTop, marginRight, marginBottom and marginLeft for shorthand setting of one option.
+            // margin: [20, 50, 30, 50]
+            marginTop: 30,
+            // marginBottom: 65,
         },
         title: {
-            text: 'xxx',
+            text: '',
             // text: 'Stacked column chart'
         },
         subtitle: {
-            text: 'xxx',
+            // text: 'xxx',
         },
         xAxis: {
             // categories: ['2017-02', '2017-02', '2017-02', '2017-02', '2017-02'],
@@ -432,6 +437,7 @@ STOCK_F9_FV.Modules.profitForecast.drawHS = STOCK_F9_FV.Modules.profitForecast.d
         // },
     });
     // svg style
+    // bug ??? selector needs an uid parent node
     // let svg_legends = document.querySelectorAll(`.highcharts-legend-item`);
     // // svg_legend;
     // if (debug) {

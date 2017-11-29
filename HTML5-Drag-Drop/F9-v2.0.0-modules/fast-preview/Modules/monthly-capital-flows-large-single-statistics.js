@@ -4,9 +4,9 @@
  * monthly-capital-flows-large-single-statistics 盈利预告近一月资金流向大单统计
  * xgqfrms
  * creadted 2017.10.17
- * @param {* String} url 
+ * @param {* String} url
  * @param {* DOM Element} uid
- * @param {* Boolean} debug 
+ * @param {* Boolean} debug
  */
 
 // monthly-capital-flows-large-single-statistics MCFLSStatistics
@@ -26,7 +26,7 @@ STOCK_F9_FV.Modules.MCFLSStatistics = STOCK_F9_FV.Modules.MCFLSStatistics || ((u
     fetch(url)
     .then(res => res.json())
     .then(
-        //shaped data 
+        //shaped data
         (json) => {
             // json
             let arr = json;// Array
@@ -122,10 +122,10 @@ STOCK_F9_FV.Modules.MCFLSStatistics = STOCK_F9_FV.Modules.MCFLSStatistics || ((u
 
 /**
  * @author xgqfrms
- * 
- * @param {* Object} datas 
- * @param {* String} container_uid 
- * @param {* DOM Element} container_div 
+ *
+ * @param {* Object} datas
+ * @param {* String} container_uid
+ * @param {* DOM Element} container_div
  * @param {* Boolean} debug
  */
 STOCK_F9_FV.Modules.MCFLSStatistics.MCFLSSdrawHS = STOCK_F9_FV.Modules.MCFLSStatistics.MCFLSSdrawHS || ((datas = {}, container_uid = `container`, debug = false) => {
@@ -134,7 +134,7 @@ STOCK_F9_FV.Modules.MCFLSStatistics.MCFLSSdrawHS = STOCK_F9_FV.Modules.MCFLSStat
         title2: `title 2`
     };
     // let {time, purchase_amount, closing_price, average, keep} = {...datas};
-    // babel ??? ES5 
+    // babel ??? ES5
     let time = datas.time,
         purchase_amount = datas.purchase_amount,
         closing_price = datas.closing_price;
@@ -155,10 +155,10 @@ STOCK_F9_FV.Modules.MCFLSStatistics.MCFLSSdrawHS = STOCK_F9_FV.Modules.MCFLSStat
     // css_obj ???
     // const {color, colors, optioncolor, gridColor, legendColor, yAxisColor} = {...chart_css};
     let color = chart_css.color,
-        colors = chart_css.colors, 
-        optioncolor = chart_css.optioncolor, 
-        gridColor = chart_css.gridColor, 
-        legendColor = chart_css.legendColor, 
+        colors = chart_css.colors,
+        optioncolor = chart_css.optioncolor,
+        gridColor = chart_css.gridColor,
+        legendColor = chart_css.legendColor,
         yAxisColor = chart_css.yAxisColor;
     // container_div
     // Highcharts.stockChart
@@ -189,6 +189,8 @@ STOCK_F9_FV.Modules.MCFLSStatistics.MCFLSSdrawHS = STOCK_F9_FV.Modules.MCFLSStat
             // height: (9 / 16 * 100) + '%',
             height: 293,// 275px;
             // 16:9 ratio
+            marginTop: 30,
+            // marginBottom: 65,
         },
         title: {
             text: '',
@@ -198,11 +200,17 @@ STOCK_F9_FV.Modules.MCFLSStatistics.MCFLSSdrawHS = STOCK_F9_FV.Modules.MCFLSStat
             // categories: ['2017-02', '2017-02', '2017-02', '2017-02', '2017-02'],
             categories: time,
             min: 0,
-            max: 8
+            max: 8,
             // xAxis datas
+            // xAxis datas
+            labels: {
+                // autoRotation:'false',
+                autoRotation: [0],
+                step: 2
+            }
         },
         credits: {
-            // enabled: true,// 
+            // enabled: true,//
             enabled: false,
             href: `https://www.gildata.com`,
             text: `gildata`,
@@ -258,6 +266,8 @@ STOCK_F9_FV.Modules.MCFLSStatistics.MCFLSSdrawHS = STOCK_F9_FV.Modules.MCFLSStat
             }
         ],
         legend: {
+            symbolRadius: 0,
+            // rectangle
             align: 'center',// left, center and right. (Defaults to center.)
             backgroundColor: `#ff00ff`, //Color,
             /*
@@ -314,7 +324,7 @@ STOCK_F9_FV.Modules.MCFLSStatistics.MCFLSSdrawHS = STOCK_F9_FV.Modules.MCFLSStat
             {
                 name: '大单净买入额',// type = column (chart)
                 data: purchase_amount,
-                // color: "#00ce9b",// "" 
+                // color: "#00ce9b",// ""
                 color: "#7cb5ec",
                 negativeColor: '#00ce9b'
             },
@@ -345,15 +355,15 @@ STOCK_F9_FV.Modules.MCFLSStatistics.MCFLSSdrawHS = STOCK_F9_FV.Modules.MCFLSStat
         }
     });
     // svg style
-    let svg_legend = document.querySelector(`.highcharts-legend-item`);
-    svg_legend;
-    svg_legend.lastChild;
-    svg_legend.lastChild.setAttribute(`x`, 0);
-    svg_legend.lastChild.setAttribute(`y`, 5);
-    svg_legend.lastChild.setAttribute(`width`, 17);
-    svg_legend.lastChild.setAttribute(`height`, 10);
-    svg_legend.lastChild.setAttribute(`rx`, 0);
-    svg_legend.lastChild.setAttribute(`ry`, 0);
+    // let svg_legend = document.querySelector(`.highcharts-legend-item`);
+    // svg_legend;
+    // svg_legend.lastChild;
+    // svg_legend.lastChild.setAttribute(`x`, 0);
+    // svg_legend.lastChild.setAttribute(`y`, 5);
+    // svg_legend.lastChild.setAttribute(`width`, 17);
+    // svg_legend.lastChild.setAttribute(`height`, 10);
+    // svg_legend.lastChild.setAttribute(`rx`, 0);
+    // svg_legend.lastChild.setAttribute(`ry`, 0);
 });
 
 

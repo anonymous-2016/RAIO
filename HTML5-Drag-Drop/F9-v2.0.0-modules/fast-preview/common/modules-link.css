@@ -3,11 +3,11 @@
 /* @import url("../common/modules-link.css"); */
 
 td>a[data-link*="link"] {
-    /* color: #00f; */
+    color: #3385ff;
 }
 
 td>a[data-link*="link"]:hover {
-    color: #00f;
+    color: #ff5500;
 }
 
 td>a[data-disabled="true"],
@@ -15,3 +15,6 @@ td>a[data-disabled="true"]:hover {
     cursor: not-allowed;
     color: grey;
 }
+
+
+/* box #d7dbe0 */

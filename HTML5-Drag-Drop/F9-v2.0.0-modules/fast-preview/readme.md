@@ -20,6 +20,12 @@ http://jira.gildata.com:8888/secure/RapidBoard.jspa?rapidView=29&projectKey=GFT&
 
 
 
+# webpack
+
+ES6 => ES5
+
+
+
 # data-*
 
 > bug ???
@@ -39,6 +45,15 @@ title()
 text
 #4d4d4d
 
+    navigator: {
+        height: 20,
+        margin: 10
+    },
+    scrollbar: {
+        enabled: false,
+        // no scrollbar, only using rangeSelector
+    },
+
 
 /* svg style */
 
@@ -57,7 +72,7 @@ rect {
 
 
 
-
+border: 1px solid #d7dbe0;
 
 
 

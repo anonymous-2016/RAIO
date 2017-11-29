@@ -179,7 +179,10 @@ STOCK_F9_FV.Modules.FMBDtrend.FMBDTdrawHS = STOCK_F9_FV.Modules.FMBDtrend.FMBDTd
             // backgroundColor: chart_css.color
             // backgroundColor: color
             // height: (9 / 16 * 100) + '%',
+            // height: 272,
             // 16:9 ratio
+            marginTop: 30,
+            // marginBottom: 65,
         },
         title: {
             text: '',
@@ -253,6 +256,8 @@ STOCK_F9_FV.Modules.FMBDtrend.FMBDTdrawHS = STOCK_F9_FV.Modules.FMBDtrend.FMBDTd
             }
         ],
         legend: {
+            symbolRadius: 0,
+            // rectangle
             align: 'center',// left, center and right. (Defaults to center.)
             backgroundColor: `#ff00ff`, //Color,
             /*
@@ -346,15 +351,15 @@ STOCK_F9_FV.Modules.FMBDtrend.FMBDTdrawHS = STOCK_F9_FV.Modules.FMBDtrend.FMBDTd
         }
     });
     // svg style
-    let svg_legend = document.querySelector(`.highcharts-legend-item`);
-    svg_legend;
-    svg_legend.lastChild;
-    svg_legend.lastChild.setAttribute(`x`, 0);
-    svg_legend.lastChild.setAttribute(`y`, 5);
-    svg_legend.lastChild.setAttribute(`width`, 17);
-    svg_legend.lastChild.setAttribute(`height`, 10);
-    svg_legend.lastChild.setAttribute(`rx`, 0);
-    svg_legend.lastChild.setAttribute(`ry`, 0);
+    // let svg_legend = document.querySelector(`.highcharts-legend-item`);
+    // svg_legend;
+    // svg_legend.lastChild;
+    // svg_legend.lastChild.setAttribute(`x`, 0);
+    // svg_legend.lastChild.setAttribute(`y`, 5);
+    // svg_legend.lastChild.setAttribute(`width`, 17);
+    // svg_legend.lastChild.setAttribute(`height`, 10);
+    // svg_legend.lastChild.setAttribute(`rx`, 0);
+    // svg_legend.lastChild.setAttribute(`ry`, 0);
     /*
         <rect x="2" y="4" width="17" height="12" fill="#1a75bc" rx="0" ry="0" class="highcharts-point"></rect>
         <rect x="0" y="5" width="17" height="10" fill="#1a75bc" rx="0" ry="0" class="highcharts-point"></rect>

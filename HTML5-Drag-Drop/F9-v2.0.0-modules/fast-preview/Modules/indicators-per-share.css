@@ -96,7 +96,7 @@
 /* date no need `:` */
 
 
-/* 
+/*
 
 .fv-indicators-per-share-table-td-key::after {
     content: ":"
@@ -129,23 +129,34 @@
 }
 */
 
+[data-tr="tr-spaces"] {
+    /* background: #f0f; */
+    height: 10px;
+    width: 100%;
+}
+
+tr[data-tr="tr-background"] {
+    /* background-color: #e8eefa; */
+    /* background: #f0f; */
+}
+
 .fv-indicators-per-share-table-tbody>tr:nth-of-type(2n+1) {
     background-color: #f5f5f5;
 }
 
 .fv-indicators-per-share-table-tbody>tr:nth-of-type(1) {
-    background-color: #ccc;
+    background-color: #e8eefa;
 }
 
-.fv-indicators-per-share-table-tbody>tr:nth-of-type(8) {
-    background-color: #ccc;
-}
-
-.fv-indicators-per-share-table-tbody>tr:nth-of-type(2n+9) {
-    background-color: #fff;
+.fv-indicators-per-share-table-tbody>tr:nth-of-type(9) {
+    background-color: #e8eefa;
 }
 
 .fv-indicators-per-share-table-tbody>tr:nth-of-type(2n+10) {
+    background-color: #fff;
+}
+
+.fv-indicators-per-share-table-tbody>tr:nth-of-type(2n+11) {
     background-color: #f5f5f5;
 }
 

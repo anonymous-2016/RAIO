@@ -4,9 +4,9 @@
  * institutional-shareholding-change-statistics 机构持股变动统计
  * xgqfrms
  * creadted 2017.10.27
- * @param {* String} url 
+ * @param {* String} url
  * @param {* DOM Element} uid
- * @param {* Boolean} debug 
+ * @param {* Boolean} debug
  */
 
 // institutional-shareholding-change-statistics ISCS
@@ -25,7 +25,7 @@ STOCK_F9_FV.Modules.ISCstatistics = STOCK_F9_FV.Modules.ISCstatistics || ((url =
     fetch(url)
     .then(res => res.json())
     .then(
-        //shaped data 
+        //shaped data
         (json) => {
             // json
             let arr = json;// Array
@@ -53,7 +53,7 @@ STOCK_F9_FV.Modules.ISCstatistics = STOCK_F9_FV.Modules.ISCstatistics || ((url =
                     // return arr[i];
                 }
             );
-            /* 
+            /*
                 [
                     {
                         "sj": "2014-12-31",
@@ -135,9 +135,9 @@ STOCK_F9_FV.Modules.ISCstatistics = STOCK_F9_FV.Modules.ISCstatistics || ((url =
 
 /**
  * @author xgqfrms
- * 
- * @param {* Object} datas 
- * @param {* String} container_uid 
+ *
+ * @param {* Object} datas
+ * @param {* String} container_uid
  * @param {* Boolean} debug
  */
 
@@ -162,10 +162,10 @@ STOCK_F9_FV.Modules.ISCstatistics.ISCSdrawHS = STOCK_F9_FV.Modules.ISCstatistics
     // css_obj ???
     // const {color, colors, optioncolor, gridColor, legendColor, yAxisColor} = {...chart_css};
     let color = chart_css.color,
-        colors = chart_css.colors, 
-        optioncolor = chart_css.optioncolor, 
-        gridColor = chart_css.gridColor, 
-        legendColor = chart_css.legendColor, 
+        colors = chart_css.colors,
+        optioncolor = chart_css.optioncolor,
+        gridColor = chart_css.gridColor,
+        legendColor = chart_css.legendColor,
         yAxisColor = chart_css.yAxisColor;
     Highcharts.chart(container_uid, {
         noData: {// all defualt value
@@ -193,6 +193,8 @@ STOCK_F9_FV.Modules.ISCstatistics.ISCSdrawHS = STOCK_F9_FV.Modules.ISCstatistics
             // height: (9 / 16 * 100) + '%',
             // 16:9 ratio
             height: 272,
+            marginTop: 30,
+            // marginBottom: 65,
         },
         title: {
             text: '',
@@ -211,7 +213,7 @@ STOCK_F9_FV.Modules.ISCstatistics.ISCSdrawHS = STOCK_F9_FV.Modules.ISCstatistics
             }
         },
         credits: {
-            // enabled: true,// 
+            // enabled: true,//
             enabled: false,
             href: `https://www.gildata.com`,
             text: `gildata`,
@@ -235,7 +237,7 @@ STOCK_F9_FV.Modules.ISCstatistics.ISCSdrawHS = STOCK_F9_FV.Modules.ISCstatistics
                 labels: {
                     format: '{value}%',// 百分比
                     style: {
-                        // color: `#0f0`,// 
+                        // color: `#0f0`,//
                         color: Highcharts.getOptions().colors[1]
                     }
                 }
@@ -268,6 +270,8 @@ STOCK_F9_FV.Modules.ISCstatistics.ISCSdrawHS = STOCK_F9_FV.Modules.ISCstatistics
             }
         ],
         legend: {
+            symbolRadius: 0,
+            // rectangle
             align: 'center',// left, center and right. (Defaults to center.)
             backgroundColor: `#ff00ff`, //Color,
             /*
@@ -359,15 +363,15 @@ STOCK_F9_FV.Modules.ISCstatistics.ISCSdrawHS = STOCK_F9_FV.Modules.ISCstatistics
         }
     });
     // svg style
-    let svg_legend = document.querySelector(`.highcharts-legend-item`);
-    // svg_legend;
-    // svg_legend.lastChild;
-    svg_legend.lastChild.setAttribute(`x`, 0);
-    svg_legend.lastChild.setAttribute(`y`, 5);
-    svg_legend.lastChild.setAttribute(`width`, 17);
-    svg_legend.lastChild.setAttribute(`height`, 10);
-    svg_legend.lastChild.setAttribute(`rx`, 0);
-    svg_legend.lastChild.setAttribute(`ry`, 0);
+    // let svg_legend = document.querySelector(`.highcharts-legend-item`);
+    // // svg_legend;
+    // // svg_legend.lastChild;
+    // svg_legend.lastChild.setAttribute(`x`, 0);
+    // svg_legend.lastChild.setAttribute(`y`, 5);
+    // svg_legend.lastChild.setAttribute(`width`, 17);
+    // svg_legend.lastChild.setAttribute(`height`, 10);
+    // svg_legend.lastChild.setAttribute(`rx`, 0);
+    // svg_legend.lastChild.setAttribute(`ry`, 0);
 });
 
 

@@ -530,7 +530,7 @@ STOCK_F9_FV.Modules.loadAllModules = STOCK_F9_FV.Modules.loadAllModules || ((sor
                                     </thead>
                                     <tbody class="fv-indicators-per-share-table-tbody">
                                         <!-- 上市公司公告 -->
-                                        <tr class="fv-indicators-per-share-table-tr">
+                                        <tr class="fv-indicators-per-share-table-tr" data-tr="tr-background">
                                             <td class="fv-indicators-per-share-table-td-key" title="fbrq 发布日期">上市公司公告</td>
                                             <td class="fv-indicators-per-share-table-td-value" data-value="data-fv-indicators-per-share"></td>
                                         </tr>
@@ -558,8 +558,13 @@ STOCK_F9_FV.Modules.loadAllModules = STOCK_F9_FV.Modules.loadAllModules || ((sor
                                             <td class="fv-indicators-per-share-table-td-key">每股经营活动产生的现金流量净额(元)</td>
                                             <td class="fv-indicators-per-share-table-td-value" data-value="data-fv-indicators-per-share"></td>
                                         </tr>
+                                        <!-- class="fv-indicators-per-share-table-tr-spaces"  -->
+                                        <tr data-tr="tr-spaces">
+                                            <!-- <td></td>
+                                            <td></td> -->
+                                        </tr>
                                         <!-- 聚源计算 -->
-                                        <tr class="fv-indicators-per-share-table-tr">
+                                        <tr class="fv-indicators-per-share-table-tr" data-tr="tr-background">
                                             <td class="fv-indicators-per-share-table-td-key">聚源计算</td>
                                             <td class="fv-indicators-per-share-table-td-value" data-value="data-fv-indicators-per-share"></td>
                                         </tr>
@@ -1534,7 +1539,7 @@ STOCK_F9_FV.Modules.modulesLoader = STOCK_F9_FV.Modules.modulesLoader ||
                                     </thead>
                                     <tbody class="fv-indicators-per-share-table-tbody">
                                         <!-- 上市公司公告 -->
-                                        <tr class="fv-indicators-per-share-table-tr">
+                                        <tr class="fv-indicators-per-share-table-tr" data-tr="tr-background">
                                             <td class="fv-indicators-per-share-table-td-key" title="fbrq 发布日期">上市公司公告</td>
                                             <td class="fv-indicators-per-share-table-td-value" data-value="data-fv-indicators-per-share"></td>
                                         </tr>
@@ -1562,8 +1567,13 @@ STOCK_F9_FV.Modules.modulesLoader = STOCK_F9_FV.Modules.modulesLoader ||
                                             <td class="fv-indicators-per-share-table-td-key">每股经营活动产生的现金流量净额(元)</td>
                                             <td class="fv-indicators-per-share-table-td-value" data-value="data-fv-indicators-per-share"></td>
                                         </tr>
+                                        <!-- class="fv-indicators-per-share-table-tr-spaces"  -->
+                                        <tr data-tr="tr-spaces">
+                                            <!-- <td></td>
+                                            <td></td> -->
+                                        </tr>
                                         <!-- 聚源计算 -->
-                                        <tr class="fv-indicators-per-share-table-tr">
+                                        <tr class="fv-indicators-per-share-table-tr" data-tr="tr-background">
                                             <td class="fv-indicators-per-share-table-td-key">聚源计算</td>
                                             <td class="fv-indicators-per-share-table-td-value" data-value="data-fv-indicators-per-share"></td>
                                         </tr>

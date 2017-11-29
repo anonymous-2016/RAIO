@@ -4,9 +4,9 @@
  * stock-price-turnover 股价/成交量
  * xgqfrms
  * creadted 2017.10.29
- * @param {* String} url 
+ * @param {* String} url
  * @param {* DOM Element} uid
- * @param {* Boolean} debug 
+ * @param {* Boolean} debug
  */
 
 // namespaces
@@ -22,7 +22,7 @@ STOCK_F9_FV.Modules.SPTurnover = STOCK_F9_FV.Modules.SPTurnover || ((url = ``, d
     fetch(url)
     .then(res => res.json())
     .then(
-        //shaped data 
+        //shaped data
         (json) => {
             // json
             let arr = json;// Array
@@ -31,7 +31,7 @@ STOCK_F9_FV.Modules.SPTurnover = STOCK_F9_FV.Modules.SPTurnover || ((url = ``, d
                 console.log(`json = \n`, json);
             }
             // 今年以来涨跌幅：+1.52% 三个月涨跌幅：+1.52%52 周涨跌幅：+1.52% 52周Beta：+1.52%
-            // "zd": "涨跌", "zdf": "涨跌幅(%)", 
+            // "zd": "涨跌", "zdf": "涨跌幅(%)",
             // [json.zd, json.zdf, json.jnzdf, json.zdf3, json.zdf12, json.beta]
             // "sjz": "时间轴", "gj": "股价", "cjl": "成交量", "szzs": "上证指数"
             // ["sjz", "gj", "cjl", "szzs"]
@@ -132,9 +132,9 @@ STOCK_F9_FV.Modules.SPTurnover = STOCK_F9_FV.Modules.SPTurnover || ((url = ``, d
 
 /**
  * @author xgqfrms
- * 
- * @param {* Object} datas 
- * @param {* String} container_uid 
+ *
+ * @param {* Object} datas
+ * @param {* String} container_uid
  * @param {* Boolean} debug
  */
 
@@ -145,8 +145,8 @@ STOCK_F9_FV.Modules.SPTurnover.SPTdrawHS = STOCK_F9_FV.Modules.SPTurnover.SPTdra
         stock_price = datas.stock_price;
     // console.log(`time = \n`, time[0]);
     // console.log(`time = \n`, new Date(time[0]).getTime());
-    // 2012-12-31 => var oldTime = (new Date("2012/12/31 20:11:11").getTime(); 
-    // 得到毫秒数  
+    // 2012-12-31 => var oldTime = (new Date("2012/12/31 20:11:11").getTime();
+    // 得到毫秒数
     // datas
     if (debug) {
         console.log(`datas = \n`, datas);
@@ -162,12 +162,12 @@ STOCK_F9_FV.Modules.SPTurnover.SPTdrawHS = STOCK_F9_FV.Modules.SPTurnover.SPTdra
     // css_obj ???
     // const {color, colors, optioncolor, gridColor, legendColor, yAxisColor} = {...chart_css};
     let color = chart_css.color,
-        colors = chart_css.colors, 
-        optioncolor = chart_css.optioncolor, 
-        gridColor = chart_css.gridColor, 
-        legendColor = chart_css.legendColor, 
+        colors = chart_css.colors,
+        optioncolor = chart_css.optioncolor,
+        gridColor = chart_css.gridColor,
+        legendColor = chart_css.legendColor,
         yAxisColor = chart_css.yAxisColor;
-    // 
+    //
     // console.log(json);
     var ohlc = [],
         volume = [],
@@ -215,7 +215,7 @@ STOCK_F9_FV.Modules.SPTurnover.SPTdrawHS = STOCK_F9_FV.Modules.SPTurnover.SPTdra
         console.log(volume);
         console.log(sh_index);
     }
-    /* 
+    /*
         Highcharts lang 配置是全局配置
         针对所有图表有效，所有不能单独设置在某个图表中在，
         只能在图表初始化之前通过 Highcharts.setOptions 来设置生效。
@@ -250,6 +250,7 @@ STOCK_F9_FV.Modules.SPTurnover.SPTdrawHS = STOCK_F9_FV.Modules.SPTurnover.SPTdra
         chart: {
             // type: 'column',
             // height: 272,
+            marginTop: 20,
         },
         noData: {
             attr: undefined,
@@ -264,9 +265,11 @@ STOCK_F9_FV.Modules.SPTurnover.SPTdrawHS = STOCK_F9_FV.Modules.SPTurnover.SPTdra
         },
         rangeSelector: {
             // enabled: false,
-            selected: 0,// button index 
+            // height: 10,
+            // enabled: false,
+            selected: 0,// button index
             // The index of the button to appear pre-selected. 默认是：undefined.
-            inputDateFormat: '%Y-%m-%d',//'%Y年%m月%d日' 
+            inputDateFormat: '%Y-%m-%d',//'%Y年%m月%d日'
             // inputDateFormat: '%Y年 %m月 %d日'
             // allButtonsEnabled: true,// highcharts-range-selector-buttons ???
             buttons: [
@@ -339,7 +342,7 @@ STOCK_F9_FV.Modules.SPTurnover.SPTdrawHS = STOCK_F9_FV.Modules.SPTurnover.SPTdra
             }
         },
         credits: {
-            // enabled: true,// 
+            // enabled: true,//
             enabled: false,
             href: `https://www.gildata.com`,
             text: `gildata`,
@@ -396,7 +399,8 @@ STOCK_F9_FV.Modules.SPTurnover.SPTdrawHS = STOCK_F9_FV.Modules.SPTurnover.SPTdra
                     // text: '股价/上证指数',
                     text: '股价'
                 },
-                height: '60%',
+                // height: '60%',
+                height: '70%',
                 lineWidth: 2,
                 plotLines: [{
                     value: 0,
@@ -415,7 +419,8 @@ STOCK_F9_FV.Modules.SPTurnover.SPTdrawHS = STOCK_F9_FV.Modules.SPTurnover.SPTdra
                 title: {
                     text: '上证指数'
                 },
-                height: '60%',
+                // height: '60%',
+                height: '70%',
                 offset: 0,
                 lineWidth: 2,
                 // min: 0,
@@ -428,11 +433,29 @@ STOCK_F9_FV.Modules.SPTurnover.SPTdrawHS = STOCK_F9_FV.Modules.SPTurnover.SPTdra
                 title: {
                     text: '成交量'
                 },
-                top: '62.5%',
-                height: '37.5%',
+                // top: '62.5%',
+                // height: '37.5%',
+                top: '72.5%',
+                height: '27.5%',
                 offset: 0,
-                lineWidth: 2
-            }
+                lineWidth: 2,
+                // opposite: false,// default true
+            },
+            // {
+            //     labels: {
+            //         align: 'right',
+            //         x: 3
+            //     },
+            //     title: {
+            //         text: '成交量'
+            //     },
+            //     // top: '62.5%',
+            //     // height: '37.5%',
+            //     top: '82.5%',
+            //     height: '17.5%',
+            //     offset: 0,
+            //     lineWidth: 2
+            // }
         ],
         series: [
             {
@@ -518,14 +541,22 @@ STOCK_F9_FV.Modules.SPTurnover.SPTdrawHS = STOCK_F9_FV.Modules.SPTurnover.SPTdra
             //     pointInterval: 24 * 3600 * 1000
             // }
         },
+        // navigator: {
+        //     adaptToUpdatedData: true,
+        //     series: {
+        //         data: data
+        //     }
+        // },
+        // scrollbar: {
+        //     liveRedraw: true
+        // },
         navigator: {
-            adaptToUpdatedData: true,
-            series: {
-                data: data
-            }
+            height: 20,
+            margin: 10
         },
         scrollbar: {
-            liveRedraw: true
+            enabled: false,
+            // no scrollbar, only using rangeSelector
         },
     });
     let no_zoom = document.querySelector(`.highcharts-range-selector-buttons`);

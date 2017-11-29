@@ -23,6 +23,10 @@ footer {
     box-sizing: border-box;
 }
 
+table tr>td {
+    color: #4d4d4d;
+}
+
 [data-delete-module-uid*="delete-module"] {
     max-width: 100px;
     width: 100px;

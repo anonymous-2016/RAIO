@@ -3,7 +3,8 @@
     margin: 0 auto;
     box-sizing: border-box;
     /* border: 1px solid red; */
-    border: 1px solid rgba(229, 229, 229, 1);
+    /* border: 1px solid rgba(229, 229, 229, 1); */
+    border: 1px solid #d7dbe0;
 }
 
 .fv-stock-price-turnover-title,
