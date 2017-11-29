@@ -380,6 +380,11 @@ https://github.com/Microsoft/vscode/issues?q=is%3Aissue+is%3Aopen+label%3A%22goo
 
 
 
+## tips
+
+> delete multi lines
+
+Ctrl + X
 
 
 

@@ -141,6 +141,66 @@ swal("你确定要删除此模块?", {
 
 
 
+## tips
+
+> delete multi lines
+
+Ctrl + X
+
+{
+    config.js,
+    agency-research-statistics.js,
+    agency-rating.js,
+    changes-shareholding-executives.js,
+    company-announcements.js,
+    company-news.js,
+    equity-pledge.js,
+    financing-and-margin-balance-difference-trend.js,
+    holdings-participation-situation.js,
+    important-infos.js,
+    indicators-per-share.js,
+    institutional-shareholding-change-statistics.js,
+    investor-relations.js,
+    monthly-capital-flows-large-single-statistics.js,
+    profit-forecast.js,
+    recent-important-events-backup.js,
+    recent-important-events.js,
+    research-report.js,
+    stock-price-turnover.js,
+    top-ten-shareholders.js
+}
+
+
+
+有没有人知道，如何用比较简单方式来获得一组无重复的文件名？
+
+像这样的结果：
+
+{
+    agency-research-statistics.js,
+    agency-rating.js,
+    changes-shareholding-executives.js,
+    company-announcements.js,
+    company-news.js,
+    config.js,
+    equity-pledge.js,
+    financing-and-margin-balance-difference-trend.js
+}
+
+
+## how to get all the files's names in a easy way???
+
+0. get all files's name `dir | clip`
+
+1. multi edit `Alt+Click`
+2. delete duplication `Ctrl + X`
+3. format `Ctrl+K` `Ctrl+F`
+
+
+
+
+
+
 
 
 
