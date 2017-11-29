@@ -1,4 +1,4 @@
-# 速览
+# Stock F9 速览
 
 ```sh
 
@@ -14,6 +14,14 @@ $ browser-sync start --server --files "./fast-preview/*.*"
 ```
 
 http://10.1.5.202/stock/f9/fastview/sidebar.html
+
+http://jira.gildata.com:8888/secure/RapidBoard.jspa?rapidView=29&projectKey=GFT&view=planning&selectedIssue=GFT-1494&quickFilter=57
+
+
+
+
+
+
 
 
 

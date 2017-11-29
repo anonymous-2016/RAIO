@@ -4,6 +4,7 @@
 
 # ..\F9-v2.0.0-modules\
 # in case of path error, cause icons 404!
+$ cd ../
 
 $ browser-sync start --server --files "./fast-preview/*.*"
 
@@ -14,6 +15,8 @@ $ browser-sync start --server --files "./fast-preview/*.*"
 ```
 
 http://10.1.5.202/stock/f9/fastview/sidebar.html
+
+http://jira.gildata.com:8888/secure/RapidBoard.jspa?rapidView=29&projectKey=GFT&view=planning&selectedIssue=GFT-1494&quickFilter=57
 
 
 
@@ -35,6 +38,27 @@ title()
 
 text
 #4d4d4d
+
+
+/* svg style */
+
+
+/*
+rect {
+    x: 0;
+    y: 5;
+    width: 17;
+    height: 10;
+    fill: rgb(255, 25, 25);
+    rx: 0;
+    ry: 0;
+}
+*/
+
+
+
+
+
 
 
 ## web server

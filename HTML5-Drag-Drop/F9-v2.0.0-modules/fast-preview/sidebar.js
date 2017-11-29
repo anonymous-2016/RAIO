@@ -1036,9 +1036,10 @@ STOCK_F9_FV.Modules.modulesLoader = STOCK_F9_FV.Modules.modulesLoader ||
             // conform !== confirm
             // swal & Promise
             swal({
-                title: "删除模块!",
-                text: "你确定要删除此模块?",
-                icon: "warning",
+                title: "你确定要删除此模块?",
+                // text: "你确定要删除此模块?",
+                icon: "error",
+                // icon: "warning",
                 // icon: "success",
                 buttons: {
                     cancel: {
@@ -1047,7 +1048,7 @@ STOCK_F9_FV.Modules.modulesLoader = STOCK_F9_FV.Modules.modulesLoader ||
                         // value: false,
                         visible: true,
                         className: "",
-                        closeModal: true
+                        // closeModal: true
                     },
                     ok: {
                         text: "确定",
@@ -1080,16 +1081,60 @@ STOCK_F9_FV.Modules.modulesLoader = STOCK_F9_FV.Modules.modulesLoader ||
                     }
                     if (tdu.parentNode.id === "left-sortable-container") {
                         module_containers[0].removeChild(tdu);
-                        swal("已删除此模块?", "success");
+                        swal({
+                            title: "已删除此模块",
+                            text: "1秒后自动关闭",// 1秒后自动关闭 / 自动关闭中...
+                            icon: "success",
+                            buttons: false,
+                            timer: 1000
+                            // button: {
+                            //     text: "确定",
+                            //     value: "ok",
+                            //     // value: true,
+                            //     visible: true,
+                            //     className: "",
+                            //     closeModal: true
+                            // }
+                        });
                     }else if (tdu.parentNode.id === "right-sortable-container") {
                         module_containers[1].removeChild(tdu);
-                        swal("已删除此模块?", "success");
+                        swal({
+                            title: "已删除此模块",
+                            text: "1秒后自动关闭",
+                            // text: "你确定要删除此模块?",
+                            icon: "success",
+                            buttons: false,
+                            timer: 1000
+                            // button: {
+                            //     text: "确定",
+                            //     value: "ok",
+                            //     // value: true,
+                            //     visible: true,
+                            //     className: "",
+                            //     closeModal: true
+                            // }
+                        });
                     }else{
                         console.log(`Coming soon... `, tdu.parentNode);
                     }
                 }else{
                     // alert(`已取消删除此模块!`);
-                    swal("已取消删除此模块!", "success");
+                    swal({
+                        title: "已取消删除此模块!",
+                        text: "1秒后自动关闭",
+                        // text: "你确定要删除此模块?",
+                        icon: "success",
+                        buttons: false,
+                        timer: 1000
+                        // button: {
+                        //     // text: "确定",
+                        //     // value: "ok",
+                        //     // value: true,
+                        //     // visible: true,
+                        //     // className: "",
+                        //     // closeModal: true
+                        // }
+                    });
                 }
                 // value =  ok
                 // switch (value) {

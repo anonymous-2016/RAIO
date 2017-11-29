@@ -7,7 +7,7 @@
 }
 
 
-/* 
+/*
     width: 100%;
     height: 275px;
 */
@@ -56,3 +56,19 @@
     height: 16px;
     /* line-height: 22px; */
 }
+
+
+/* svg style */
+
+
+/*
+rect {
+    x: 0;
+    y: 5;
+    width: 17;
+    height: 10;
+    fill: rgb(255, 25, 25);
+    rx: 0;
+    ry: 0;
+}
+*/

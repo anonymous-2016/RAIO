@@ -4,9 +4,9 @@
  * profit-forecast 盈利预告
  * xgqfrms
  * creadted 2017.10.17
- * @param {* String} url 
+ * @param {* String} url
  * @param {* DOM Element} uid
- * @param {* Boolean} debug 
+ * @param {* Boolean} debug
  */
 
 // todo
@@ -26,7 +26,7 @@ STOCK_F9_FV.Modules.profitForecast = STOCK_F9_FV.Modules.profitForecast || ((url
     fetch(url)
     .then(res => res.json())
     .then(
-        //shaped data 
+        //shaped data
         (json) => {
             // json
             let arr = json;// Array
@@ -147,10 +147,10 @@ STOCK_F9_FV.Modules.profitForecast = STOCK_F9_FV.Modules.profitForecast || ((url
 
 /**
  * @author xgqfrms
- * 
- * @param {* Object} datas 
- * @param {* String} container_uid 
- * @param {* DOM Element} container_div 
+ *
+ * @param {* Object} datas
+ * @param {* String} container_uid
+ * @param {* DOM Element} container_div
  * @param {* Boolean} debug
  */
 
@@ -163,10 +163,10 @@ STOCK_F9_FV.Modules.profitForecast.drawHS = STOCK_F9_FV.Modules.profitForecast.d
         title2: `title 2`
     };
     // let {time, up, down, average, keep} = {...datas};
-    // babel ??? ES5 
+    // babel ??? ES5
     let time = datas.time,
         up = datas.up,
-        down = datas.down, 
+        down = datas.down,
         average = datas.average,
         keep = datas.keep;
     if (debug) {
@@ -188,14 +188,20 @@ STOCK_F9_FV.Modules.profitForecast.drawHS = STOCK_F9_FV.Modules.profitForecast.d
     // css_obj ???
     // const {color, colors, optioncolor, gridColor, legendColor, yAxisColor} = {...chart_css};
     let color = chart_css.color,
-        colors = chart_css.colors, 
-        optioncolor = chart_css.optioncolor, 
-        gridColor = chart_css.gridColor, 
-        legendColor = chart_css.legendColor, 
+        colors = chart_css.colors,
+        optioncolor = chart_css.optioncolor,
+        gridColor = chart_css.gridColor,
+        legendColor = chart_css.legendColor,
         yAxisColor = chart_css.yAxisColor;
     // container_div
     // Highcharts.stockChart
     // Highcharts.chart
+    // Highcharts.setOptions({
+    //     lang: {
+    //         numericSymbols: ['万', '億'],
+    //         numericSymbolMagnitude: 10000
+    //     }
+    // });
     Highcharts.chart(container_uid, {
         noData: {// all defualt value
             attr: undefined,
@@ -222,10 +228,14 @@ STOCK_F9_FV.Modules.profitForecast.drawHS = STOCK_F9_FV.Modules.profitForecast.d
             // height: (9 / 16 * 100) + '%',
             height: 272,
             // 16:9 ratio
+            padding: 50,
         },
         title: {
-            text: '',
+            text: 'xxx',
             // text: 'Stacked column chart'
+        },
+        subtitle: {
+            text: 'xxx',
         },
         xAxis: {
             // categories: ['2017-02', '2017-02', '2017-02', '2017-02', '2017-02'],
@@ -254,7 +264,7 @@ STOCK_F9_FV.Modules.profitForecast.drawHS = STOCK_F9_FV.Modules.profitForecast.d
             },
         },
         credits: {
-            // enabled: true,// 
+            // enabled: true,//
             enabled: false,
             href: `https://www.gildata.com`,
             text: `gildata`,
@@ -312,15 +322,19 @@ STOCK_F9_FV.Modules.profitForecast.drawHS = STOCK_F9_FV.Modules.profitForecast.d
             }
         ],
         legend: {
+            // symbolHeight: 10,
+            // symbolWidth: 17,// "17 !important" ???
+            symbolRadius: 0,
+            // legend symbol
             align: 'center',// left, center and right. (Defaults to center.)
-            backgroundColor: `#ff00ff`, //Color,
+            // backgroundColor: `#ff00ff`, //Color,
             /*
                 x: 0,
                 y: 340,
                 verticalAlign: 'top',
             */
             x: 0,
-            y: 0,
+            y: 5,
             verticalAlign: "bottom",
             // floating: true,
             floating: false,
@@ -414,31 +428,31 @@ STOCK_F9_FV.Modules.profitForecast.drawHS = STOCK_F9_FV.Modules.profitForecast.d
         // },
         // navigator: {
         //     enabled: false,
-        //     // adaptToUpdatedData: 
+        //     // adaptToUpdatedData:
         // },
     });
     // svg style
-    let svg_legends = document.querySelectorAll(`.highcharts-legend-item`);
-    // svg_legend;
-    if (debug) {
-        console.log(`svg_legends = `, svg_legends);
-    }
-    svg_legends.forEach(
-        (svg_legend, index) => {
-            if (debug) {
-                console.log(`svg_legend, index`, svg_legend, index);
-            }
-            if (index < svg_legends.length - 1) {
-                svg_legend.lastChild;
-                svg_legend.lastChild.setAttribute(`x`, 0);
-                svg_legend.lastChild.setAttribute(`y`, 5);
-                svg_legend.lastChild.setAttribute(`width`, 17);
-                svg_legend.lastChild.setAttribute(`height`, 10);
-                svg_legend.lastChild.setAttribute(`rx`, 0);
-                svg_legend.lastChild.setAttribute(`ry`, 0);
-            }
-        }
-    );
+    // let svg_legends = document.querySelectorAll(`.highcharts-legend-item`);
+    // // svg_legend;
+    // if (debug) {
+    //     console.log(`svg_legends = `, svg_legends);
+    // }
+    // svg_legends.forEach(
+    //     (svg_legend, index) => {
+    //         if (debug) {
+    //             console.log(`svg_legend, index`, svg_legend, index);
+    //         }
+    //         if (index < svg_legends.length - 1) {
+    //             svg_legend.lastChild;
+    //             svg_legend.lastChild.setAttribute(`x`, 0);
+    //             svg_legend.lastChild.setAttribute(`y`, 5);
+    //             svg_legend.lastChild.setAttribute(`width`, 17);
+    //             svg_legend.lastChild.setAttribute(`height`, 10);
+    //             svg_legend.lastChild.setAttribute(`rx`, 0);
+    //             svg_legend.lastChild.setAttribute(`ry`, 0);
+    //         }
+    //     }
+    // );
 });
 
 STOCK_F9_FV.Modules.profitForecast.init = STOCK_F9_FV.Modules.profitForecast.init || (
@@ -454,3 +468,85 @@ STOCK_F9_FV.Modules.profitForecast.init(`http://10.1.5.202/webservice/fastview/s
 
 
 
+
+/*
+
+```html
+
+<!-- class="highcharts-legend-item highcharts-column-series highcharts-color-2 highcharts-series-2" -->
+
+<g class="highcharts-legend-item highcharts-column-series highcharts-color-2 highcharts-series-2" transform="translate(140,3)">
+    <text x="21" y="15" style="color:#333333;font-size:12px;font-weight:bold;cursor:pointer;fill:#333333;" text-anchor="start">
+        <tspan>下调</tspan>
+    </text>
+    <rect x="2" y="4" width="12" height="12" fill="#92d050" rx="6" ry="6" class="highcharts-point"></rect>
+</g>
+
+```
+
+
+# highcharts-legend-item style
+
+## legend container
+
+https://api.highcharts.com/highcharts/legend
+
+
+```js
+
+    legend: {
+        backgroundColor: '#FCFFC5',
+        borderColor: '#C98657',
+        borderWidth: 5
+    },
+
+```
+http://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/legend/bordercolor/
+
+# OK
+
+> legend symbol
+
+```js
+
+    legend: {
+        symbolHeight: 12,
+        symbolWidth: 12,
+        symbolRadius: 0
+    },
+
+```
+
+
+http://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/legend/symbolradius/
+
+
+
+
+## legend item
+
+https://api.highcharts.com/highcharts/legend.itemStyle
+https://api.highcharts.com/highcharts/legend.itemCheckboxStyle
+https://api.highcharts.com/highcharts/legend.itemHoverStyle
+
+
+```js
+
+    legend: {
+        itemHoverStyle: {
+            color: '#FF0000'
+        }
+    },
+
+```
+
+
+http://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/studies/legend-custom-symbol/
+
+
+http://jsfiddle.net/ArmRM/13520/
+
+
+
+
+*/
