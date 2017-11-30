@@ -97,7 +97,7 @@
 /* date no need `:` */
 
 
-/* 
+/*
 
 .fv-changes-shareholding-executives-table-td-key::after {
     content: ":"
@@ -112,6 +112,11 @@
 }
 
 */
+
+.fv-changes-shareholding-executives-table-td-key {
+    padding-left: 6px;
+    box-sizing: border-box;
+}
 
 .fv-changes-shareholding-executives-table-td-value {
     box-sizing: border-box;
@@ -229,6 +234,9 @@
     background-color: #e8eefa;
     border: 1px solid #c5d2db;
     /* text-align: left; */
+    text-align: center;
+    padding-left: 6px;
+    box-sizing: border-box;
 }
 
 .fv-changes-shareholding-executives-table-tbody>tr:nth-of-type(n)>td:nth-of-type(n) {

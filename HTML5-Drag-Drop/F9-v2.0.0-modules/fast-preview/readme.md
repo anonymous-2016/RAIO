@@ -35,6 +35,22 @@ relative path ???
 absolute path ???
 
 
+otc
+
+
+## OCT
+
+> OTC（Over-The-Counter）场外交易市场
+
+https://www.douban.com/note/617482827/
+
+http://www.xinsanban8.com/shehui/20171120/17905.html
+
+https://otc.gf.com.cn/notice_detail/new/56039510343ca3d3060b40c1
+
+https://www.zhihu.com/question/34737321?sort=created
+
+
 
 
 

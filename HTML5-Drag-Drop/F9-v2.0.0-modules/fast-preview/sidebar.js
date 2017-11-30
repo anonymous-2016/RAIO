@@ -872,10 +872,16 @@ STOCK_F9_FV.Modules.loadAllModules = STOCK_F9_FV.Modules.loadAllModules || ((sor
                         loadModule(`company-announcements`, true);
                         htmlstr += `
                             <section class="fv-module-box-5">
-                                <div class="fv-h5dnd-modules-title-box">
-                                    <p class="fv-h5dnd-modules-title" data-title="fv-company-announcements-title" data-more="company-announcements-title">公司公告</p>
+                                <div class="fv-company-announcements-title-box">
+                                    <p class="fv-company-announcements-title" data-title="fv-company-announcements-title" data-more="company-announcements-title">公司公告</p>
                                 </div>
                                 <table class="fv-company-announcements-table">
+                                    <thead class="fv-company-announcements-table-thead">
+                                        <tr class="fv-company-announcements-table-tr">
+                                            <td class="fv-company-announcements-table-td-title">日期</td>
+                                            <td class="fv-company-announcements-table-td-title">标题</td>
+                                        </tr>
+                                    </thead>
                                     <tbody class="fv-company-announcements-table-tbody" id="fv-company-announcements-tbody"></tbody>
                                     <tfoot class="fv-company-announcements-table-tfoot">
                                         <tr class="fv-company-announcements-table-tr">
@@ -933,6 +939,10 @@ STOCK_F9_FV.Modules.loadAllModules = STOCK_F9_FV.Modules.loadAllModules || ((sor
                 setTimeout(function() {
                     // let delete_box = document.querySelector(`.fv-${delete_uid}-title`);
                     let delete_box = document.querySelector(`[data-title="fv-${delete_uid}-title"]`);
+                    if (debug) {
+                        console.log(`delete_uid = `, delete_uid);
+                        console.log(`delete_box = `, delete_box);
+                    }
                     delete_box.appendChild(sub_div);
                 }, 0);
             }
@@ -1890,10 +1900,16 @@ STOCK_F9_FV.Modules.modulesLoader = STOCK_F9_FV.Modules.modulesLoader ||
                         loadModule(`company-announcements`, true);
                         htmlstr += `
                             <section class="fv-module-box-5">
-                                <div class="fv-h5dnd-modules-title-box">
-                                    <p class="fv-h5dnd-modules-title" data-title="fv-company-announcements-title" data-more="company-announcements-title">公司公告</p>
+                                <div class="fv-company-announcements-title-box">
+                                    <p class="fv-company-announcements-title" data-title="fv-company-announcements-title" data-more="company-announcements-title">公司公告</p>
                                 </div>
                                 <table class="fv-company-announcements-table">
+                                    <thead class="fv-company-announcements-table-thead">
+                                        <tr class="fv-company-announcements-table-tr">
+                                            <td class="fv-company-announcements-table-td-title">日期</td>
+                                            <td class="fv-company-announcements-table-td-title">标题</td>
+                                        </tr>
+                                    </thead>
                                     <tbody class="fv-company-announcements-table-tbody" id="fv-company-announcements-tbody"></tbody>
                                     <tfoot class="fv-company-announcements-table-tfoot">
                                         <tr class="fv-company-announcements-table-tr">
@@ -1964,6 +1980,10 @@ STOCK_F9_FV.Modules.modulesLoader = STOCK_F9_FV.Modules.modulesLoader ||
                     // :: after ??? fv-important-infos-title
                     let delete_box = document.querySelector(`[data-title="fv-${delete_uid}-title"]`);
                     // let delete_box = document.querySelector(`.fv-h5dnd-modules-title`);
+                    if (debug) {
+                        console.log(`delete_uid = `, delete_uid);
+                        console.log(`delete_box = `, delete_box);
+                    }
                     if (delete_box !== null) {
                         delete_box.appendChild(sub_div);
                         // Uncaught TypeError: Cannot read property 'appendChild' of null
