@@ -1,0 +1,102 @@
+<Page name="JYPlateConcept" caption="所属板块及指数">
+    <Request responsetype="rtDataTable"><![CDATA[{'Sorts':[{'Field':'A2_1','Sort':'asc'},{'Field':'A2','Sort':'desc'},{'Field':'A1','Sort':'desc'}],'SecuCode':'@SecuCode','ApiName':'JYPlateIndustry'}]]></Request>
+    <Request responsetype="rtDataTable"><![CDATA[{'SecuCode':'@SecuCode','ApiName':'JYPlateConcept'}]]></Request>
+    <Request responsetype="rtDataTable"><![CDATA[{'Sorts':[{'Field':'A2_1','Sort':'asc'},{'Field':'A2','Sort':'desc'},{'Field':'A1','Sort':'desc'}],'SecuCode':'@SecuCode','ApiName':'JYPlateIndex'}]]></Request>
+    <Request responsetype="rtDataTable"><![CDATA[{'SecuCode':'@SecuCode','IndexCode':'@IndexCode','ImageType':'@ImageType','FastDateFilterType':'Customer','BeginDate':'@BeginDate','EndDate':'@EndDate','ApiName': 'JYPlateIndexIndustryImage' }]]></Request>
+    <Request responsetype="rtDataTable" needinit="false"><![CDATA[{'Code':'@Code','ApiName':'JYPlateIndexIndustryDetail' }]]></Request>
+    <Request responsetype="rtDataTable" needinit="false"><![CDATA[{'Code':'@Code','ApiName':'JYPlateConceptDetail' }]]></Request>
+    <ToolBar name="lcToolbar">
+        <!--数据请求按钮-->
+        <Button name="btnRequest"/>
+        <Button name="btnOutput" caption="数据导出" bindvalue="OUTPUT" ImageIndex="9"/>
+    </ToolBar>
+    <sizecontainer name="sct1" percent="40" btnvisible="true">
+        <Container name="ct1chart" caption="图形容器边框" BorderSides="14" Padding="0">
+            <Chart name="chartImageData" tablename="JYPlateIndexIndustryImage" apiindex="3" ltitle="指数(点)" rtitle="股价(元)">
+                <Item fieldname="A0" fieldfunc="cffdate"/>
+                <Item fieldname="A1" caption="股价" charttype="ctLine" LeftAxis="false" Decidig="2"/>
+                <Item fieldname="A2" caption="指数" charttype="ctLine" Decidig="2"/>
+            </Chart>
+        </Container>
+        <Container name="ct2table" caption="报表容器" BorderSides="0">
+            <Container name="ctReport2" caption="报表容器" Padding="0" BorderSides="0">
+                <SheetControl name="scTable" SheetCount="3" TabWidth="150">
+                    <SheetItem name="shtitem2" caption="相关指数">
+                        <Report name="rpt2" tablename="JYPlateIndex" APIIndex="2" caption="所属板块及指数(指数)" DefSelect="true">
+                            <Column fieldname="A2_1" caption="" funcType="ftCollect"/>
+                            <Column fieldname="A0" caption="指数代码"/>
+                            <Column fieldname="A3" caption="指数名称" width="300"/>
+                            <Column fieldname="A1" caption="入选时间"/>
+                            <Column fieldname="A2" caption="剔除日期"/>
+                            <Column fieldname="A4" caption="最新" algmt="taRightJustify"/>
+                            <Column fieldname="A5" caption="三天涨跌幅" algmt="taRightJustify"/>
+                            <Column fieldname="A6" caption="一周涨跌幅" algmt="taRightJustify"/>
+                            <Column fieldname="A7" caption="一个月涨跌幅" algmt="taRightJustify"/>
+                            <Column fieldname="A8" caption="三个月涨跌幅" algmt="taRightJustify"/>
+                            <column fieldname="hiddenNonamed" hide="true" functype="ftDynTable" ParamEx="{'API':{'R':'3','P':['@IndexCode','@ImageType','@BeginDate','@EndDate'],'T':['1','3','1','1'],'V':['A9','1','B0','B1']}}"/>
+                            <Column fieldname="A8_2" caption="成分股查询" functype="ftDynTable" ParamEx="{'API':{'R':'4','F':'popfrm1','P':['@Code'],'T':['1'],'V':['A9']}}" FuncByParam="false" algmt="taCenter"/>
+                        </Report>
+                    </SheetItem>
+                    <SheetItem name="shtitem1" caption="行业指数">
+                        <Report name="rpt1" tablename="JYPlateIndustry" caption="所属板块及指数(行业)" DefSelect="true">
+                            <Column fieldname="A2_1" caption="" funcType="ftCollect"/>
+                            <Column fieldname="A3" caption="行业代码"/>
+                            <Column fieldname="A0" caption="行业类别" width="300"/>
+                            <Column fieldname="A4" caption="行业指数名称" width="300"/>
+                            <Column fieldname="A1" caption="入选时间"/>
+                            <Column fieldname="A2" caption="剔除日期"/>
+                            <Column fieldname="A5" caption="最新" algmt="taRightJustify"/>
+                            <Column fieldname="A6" caption="三天涨跌幅" algmt="taRightJustify"/>
+                            <Column fieldname="A7" caption="一周涨跌幅" algmt="taRightJustify"/>
+                            <Column fieldname="A8" caption="一个月涨跌幅" algmt="taRightJustify"/>
+                            <Column fieldname="A9" caption="三个月涨跌幅" algmt="taRightJustify"/>
+                            <column fieldname="hiddenNonamed" hide="true" functype="ftDynTable" ParamEx="{'API':{'R':'3','P':['@IndexCode','@ImageType','@BeginDate','@EndDate'],'T':['1','3','1','1'],'V':['C0','1','c1','c2']}}"/>
+                            <Column fieldname="A9_2" caption="成分股查询" functype="ftDynTable" ParamEx="{'API':{'R':'4','F':'popfrm1','P':['@Code'],'T':['1'],'V':['C0']}}" FuncByParam="false" algmt="taCenter"/>
+                        </Report>
+                    </SheetItem>
+                    <SheetItem name="shtitem3" caption="概念板块">
+                        <Report name="rpt3" APIIndex="1" tablename="JYPlateConcept" caption="所属板块及指数(概念)" DefSelect="true">
+                            <Column fieldname="A0" caption="板块名称"/>
+                            <Column fieldname="A1" caption="纳入日期"/>
+                            <Column fieldname="A2" caption="最新" algmt="taRightJustify"/>
+                            <Column fieldname="A3" caption="3天涨跌幅" algmt="taRightJustify"/>
+                            <Column fieldname="A4" caption="1周涨跌幅" algmt="taRightJustify"/>
+                            <Column fieldname="A5" caption="一个月涨跌幅" algmt="taRightJustify"/>
+                            <Column fieldname="A6" caption="三个月涨跌幅" algmt="taRightJustify"/>
+                            <column fieldname="hiddenNonamed" hide="true" functype="ftDynTable" ParamEx="{'API':{'R':'3','P':['@IndexCode','@ImageType','@BeginDate','@EndDate'],'T':['1','3','1','1'],'V':['A7','2','A8','A9']}}"/>
+                            <Column fieldname="A6_2" caption="成分股查询" functype="ftDynTable" ParamEx="{'API':{'R':'5','F':'popfrm2','P':['@Code'],'T':['1'],'V':['A7']}}" FuncByParam="false" algmt="taCenter"/>
+                        </Report>
+                    </SheetItem>
+                </SheetControl>
+            </Container>
+        </Container>
+    </sizecontainer>
+    <PopPage name="popfrm1" sizePercent="80" height="600" width="800" caption="成分股明细">
+        <Container name="ctReport1" caption="报表容器" Padding="0">
+            <Report name="rpt1" tablename="JYPlateIndexIndustryDetail" apiindex="4" fixedcount="1" caption="成分股明细">
+                <Row rname="caption" heigh="100" algmt="taCenter"/>
+                <Column filedname="NonamedIndex" ColContain="tccIndex" caption="NO."/>
+                <Column fieldname="A0" caption="证券代码"/>
+                <Column fieldname="A1" caption="证券简称"/>
+                <Column fieldname="A2" caption="入选时间"/>
+                <Column fieldname="A3" caption="最新交易日"/>
+                <Column fieldname="A4" caption="收盘价(元)" algmt="taRightJustify"/>
+                <Column fieldname="A5" caption="涨跌幅(%)" algmt="taRightJustify"/>
+            </Report>
+        </Container>
+    </PopPage>
+    <PopPage name="popfrm2" sizePercent="80" height="600" width="800" caption="成分股明细">
+        <Container name="ctReport1" caption="报表容器" Padding="0">
+            <Report name="rpt1" tablename="JYPlateConceptDetail" apiindex="5" fixedcount="1" caption="成分股明细">
+                <Row rname="caption" heigh="100" algmt="taCenter"/>
+                <Column filedname="NonamedIndex" ColContain="tccIndex" caption="NO."/>
+                <Column fieldname="A0" caption="证券代码"/>
+                <Column fieldname="A1" caption="证券简称"/>
+                <Column fieldname="A2" caption="入选时间"/>
+                <Column fieldname="A3" caption="最新交易日"/>
+                <Column fieldname="A4" caption="收盘价(元)" algmt="taRightJustify"/>
+                <Column fieldname="A5" caption="涨跌幅(%)" algmt="taRightJustify"/>
+            </Report>
+        </Container>
+    </PopPage>
+</Page>

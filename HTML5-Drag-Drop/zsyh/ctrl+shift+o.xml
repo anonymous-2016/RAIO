@@ -1,0 +1,98 @@
+<!--最后更新 leizq 2017/03/2  （添加图形）-->
+<Page name="JYCompanyIntroduction" caption="公司简介">
+    <Request responsetype="rtDataSet"><![CDATA[{'SecuCode':'@SecuCode','ApiName':'JYCompanyIntroduction'}]]></Request>
+    <Request responsetype="rtDataTable"><![CDATA[{'Sorts':[{'Field':'A0','Sort':'desc'}],'FastDateFilterType':'Latest5Year','BeginDate':'2017-01-01','EndDate':'2017-01-01','SecuCode':'@SecuCode','ApiName':'JYManagerAnalyse'}]]></Request>
+    <Request responsetype="rtDataSet"><![CDATA[{'SecuCode':'@SecuCode','ApiName':'JYCompanyIntroduction',"Filters":[{"FilterType":"equal","Field":"PointRow.a0","Value":"@Value"}]}]]></Request>
+    <ToolBar name="lcToolbar">
+        <Button name="btnRequest"/>
+        <!--FilterForm name="btnDate" Caption="区间筛选" formheight="290" formwidth="280">
+            <LineContainer name="lcDate" caption="筛选" showcaption="false" column="1">
+                <DatePicker name="dtpBegin" caption="开始时间" param="@BeginDate" date="$GetDate(0,-2,0)" Enabled="false"/>
+                <DatePicker name="dtpEnd" caption="至" param="@EndDate" date="$GetDate(0,0,0)" Enabled="false"/>
+            </LineContainer>
+            <RadioGroup name="grpDateRange" caption="时间范围" param="@fastDateFilterType" width="300" column="3" ShowCaption="true">
+                <radiobutton name="rdb1" caption="最新日期" mapvalue="LatestTime" bindname="[dtpEnd,dtpBegin]" bindprop="Enabled" bindvalue="false"/>
+                <radiobutton name="rdb2" caption="今年以来" mapvalue="CurrentYear" bindname="[dtpEnd,dtpBegin]" bindprop="Enabled" bindvalue="false"/>
+                <radiobutton name="rdb3" caption="近一年" mapvalue="Latest1Year" bindname="[dtpEnd,dtpBegin]" bindprop="Enabled" bindvalue="false"/>
+                <radiobutton name="rdb4" caption="近二年" mapvalue="Latest2Year" Checked="true" bindname="[dtpEnd,dtpBegin]" bindprop="Enabled" bindvalue="false"/>
+                <radiobutton name="rdb5" caption="近三年" mapvalue="Latest3Year" bindname="[dtpEnd,dtpBegin]" bindprop="Enabled" bindvalue="false"/>
+                <radiobutton name="rdb6" caption="近五年" mapvalue="Latest5Year" bindname="[dtpEnd,dtpBegin]" bindprop="Enabled" bindvalue="false"/>
+                <radiobutton name="rdb7" caption="全部" mapvalue="AllYear" bindname="[dtpEnd,dtpBegin]" bindprop="Enabled" bindvalue="false"/>
+                <radiobutton name="rdb8" caption="自定义" mapvalue="Customer" bindname="[dtpEnd,dtpBegin]" bindprop="Enabled" bindvalue="true"/>
+            </RadioGroup>
+        </FilterForm-->
+        <Button name="btnOutput" caption="数据导出" bindvalue="OUTPUT" ImageIndex="9"/>
+    </ToolBar>
+    <Container name="ctReport0" caption="报表容器" BorderSides="0">
+        <SheetControl name="scTable" SheetCount="1" TabWidth="120">
+            <SheetItem name="shtitem1" caption="公司现状">
+                <Container name="ctReport2" caption="报表容器" BorderSides="0">
+                    <Report name="JYCompanyIntroductionRow" caption="公司概况" reverse="true" autonodeheight="true" showhead="false">
+                        <Row rname="caption" heigh="220"/>
+                        <Row rname="data" heigh="500"/>
+                        <Column fieldname="ChiName" caption="中文名称"/>
+                        <Column fieldname="EngName" caption="英文名称"/>
+                        <Column fieldname="State" caption="省份"/>
+                        <Column fieldname="CityCode" caption="城市"/>
+                        <Column fieldname="RegAddr" caption="注册地址"/>
+                        <Column fieldname="OfficeAddr" caption="办公地址"/>
+                        <Column fieldname="EstablishmentDate" caption="成立日期"/>
+                        <Column fieldname="A0" caption="组织机构代码"/>
+                        <Column fieldname="A1" caption="统一社会信用代码"/>
+                        <Column fieldname="BusinessRegNumber" caption="工商登记号"/>
+                        <Column fieldname="RegCapital" caption="注册资本(元)"/>
+                        <Column fieldname="LegalRepr" caption="法人代表"/>
+                        <Column fieldname="SecuAffairsRepr" caption="证劵事务代表"/>
+                        <!--Column fieldname="SecuAffairsRepr1" caption="信息披露人"/-->
+                        <Column fieldname="GeneralManager" caption="总经理"/>
+                        <Column fieldname="SecretaryBD" caption="董事会秘书"/>
+                        <Column fieldname="IndustryZJH" caption="所属证监会行业"/>
+                        <Column fieldname="IndustryJY" caption="所属聚源行业"/>
+                        <Column fieldname="IndustryZX" caption="所属中信行业"/>
+                        <Column fieldname="IndustrySW" caption="所属申万行业"/>
+                        <Column fieldname="BelongConceptPlate" caption="所属概念板块"/>
+                        <Column fieldname="EmployeeSum" caption="员工人数"/>
+                        <Column fieldname="Website" caption="公司网站" functype="ftweb"/>
+                        <Column fieldname="Fax" caption="传真"/>
+                        <Column fieldname="ZipCode" caption="邮编"/>
+                        <Column fieldname="SecretaryBDTel" caption="电话"/>
+                        <Column fieldname="Email" caption="电子邮件" functype="ftEmail"/>
+                        <Column fieldname="AccountingFirm" caption="审计机构"/>
+                        <Column fieldname="Cpa" caption="经办会计师"/>
+                        <Column fieldname="LegalConsultant" caption="法律顾问"/>
+                        <Column fieldname="BusinessMajor" caption="主营产品"/>
+                        <Column fieldname="BriefIntroText" caption="公司简介"/>
+                    </Report>
+                </Container>
+            </SheetItem>
+            <SheetItem name="shtitem2" caption="变更项目">
+                <Container name="ctReport3" caption="报表容器" BorderSides="1" Padding="0">
+                    <Report name="rpt3" tablename="JYCompanyChangeNameRow" caption="变更项目">
+                        <Column fieldname="A0" caption="变更时间"/>
+                        <Column fieldname="A4" caption="图形" functype="ftDynTable" ParamEx="{'API':{'R':'2','F':'popfrm1','P':['@FlagDate','@Value'],'T':['1','1'],'V':['FlagDate','A8']}}" FuncByParam="false"/>
+                        <Column fieldname="A1" caption="变更内容"/>
+                        <Column fieldname="A2" caption="变更前"/>
+                        <Column fieldname="A3" caption="变更后"/>
+                        <Column fieldname="A5" caption="变更前详情" functype="ftMemo"/>
+                        <Column fieldname="A6" caption="变更后详情" functype="ftMemo"/>
+                        <!--Column fieldname="A7" caption="变更类型"/-->
+                    </Report>
+                </Container>
+            </SheetItem>
+            <SheetItem name="shtitem3" caption="管理层经营与分析">
+                <Container name="ctReport1" caption="报表容器" Padding="0" BorderSides="0">
+                    <tabmemo name="JYManagerAnalyse" TabField="A0" MemoField="A1" TabWidth="90" APIIndex="1"/>
+                </Container>
+            </SheetItem>
+        </SheetControl>
+    </Container>
+    <PopPage name="popfrm1" sizePercent="80" height="400" width="1000" caption="图形">
+        <Container name="ctReport1" caption="报表容器" Padding="0">
+            <Chart name="ImageData1" tablename="LineRow" APIIndex="2">
+                <item fieldname="A0" fieldfunc="cffDate"/>
+                <item fieldname="A1" caption="股价" charttype="ctline" decidig="2"/>
+                <attacheditem tablename="pointrow" indexfn="A0" hostlinefn="A1" PtHintfn="A2" IconTypefn="A3"/>
+            </Chart>
+        </Container>
+    </PopPage>
+</Page>
