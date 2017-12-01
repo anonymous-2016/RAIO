@@ -77,6 +77,9 @@ H:\GFT\users\xiagq@gildata.com
 
 
 
+# shit IE!
+
+![image](https://user-images.githubusercontent.com/18028768/33377546-cc0f4272-d54c-11e7-90bf-f1fbbe1521a9.png)
 
 
 
