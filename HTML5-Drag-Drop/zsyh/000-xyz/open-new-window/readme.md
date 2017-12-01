@@ -236,3 +236,121 @@ https://bugzilla.mozilla.org/show_bug.cgi?id=176320
     // new_window = window.open(e.target.href, e.target.name,'width=800,height=600');
 ```
 
+
+## data-* & sessionStorage
+
+
+https://developer.mozilla.org/en-US/docs/Web/API/Window/opener
+
+
+
+```js
+
+const closeWindow = () => {
+    // onclose
+    new_window.close();
+    // clear session uid
+    sessionStorage.removeItem('key');
+    // sessionStorage.clear();
+
+};
+
+```
+
+https://developer.mozilla.org/en-US/docs/Web/API/Window/open
+
+var window = window.open(url, windowName, [windowFeatures]);
+
+
+https://developer.mozilla.org/en-US/docs/Web/API/Document/write
+
+document.write(markup);
+
+```js
+    function newContent() {
+        // alert("load new content");
+        document.open();
+        document.write("<h1>Out with the old - in with the new!</h1>");
+        document.close();
+    }
+```
+
+
+
+https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe
+
+
+
+
+https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers/onclose
+
+
+window.onclose = funcRef;
+
+https://developer.mozilla.org/en-US/docs/Web/API/Document/open
+
+document.open();
+
+
+
+
+https://developer.mozilla.org/en-US/Add-ons/WebExtensions/API/downloads/open
+
+var opening = browser.downloads.open(
+    downloadId// integer
+)
+
+
+
+new_window.document.body.innerText = `<h1>${uid_key}</h1>`;
+
+
+https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers/onfocus
+
+https://developer.mozilla.org/en-US/docs/Web/Events/close
+
+
+
+
+https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/clearInterval
+https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/clearInterval
+
+
+
+
+https://developer.mozilla.org/en-US/docs/Web/API/Window
+https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/setInterval
+
+https://developer.mozilla.org/en-US/docs/Web/API/Window/setImmediate
+https://developer.mozilla.org/en-US/docs/Web/API/Window/setCursor
+
+https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/setTimeout
+
+
+
+
+https://developer.mozilla.org/en-US/docs/Web/API/Window/setTimeout
+https://developer.mozilla.org/en-US/docs/Web/API/Window/setInterval
+
+
+```js
+
+var intervalID = scope.setInterval(func, delay[, param1, param2, ...]);
+var intervalID = scope.setInterval(code, delay);
+
+```
+
+
+
+https://developer.chrome.com/extensions/webNavigation
+
+https://bugs.chromium.org/p/chromium/issues/detail?id=754976
+
+https://developer.chrome.com/extensions/tabs
+
+
+
+
+
+
+

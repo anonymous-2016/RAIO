@@ -1,6 +1,10 @@
 // window.onload !== document.onload
 
 window.onload = function(){
+    // initial
+    sessionStorage.setItem("key", ``);
+    // close
+    sessionStorage.setItem("isClosed", false);
     TestModal(true);
     openNewWindow(true);
 };
@@ -79,6 +83,7 @@ const windowExistChecker = (debug = false) => {
 };
 
 let new_window = ``;
+// ??? global var ???
 
 // , debug = false
 const TestWindow = (e) => {
@@ -91,28 +96,50 @@ const TestWindow = (e) => {
         console.log(`e.target.name`, e.target.name);
         // windowName
         // console.log(` %c e.target.dataset.name =`, `color: #f0f;`, e.target.dataset.name);
+        let uid_key = e.target.name || ``;
+        if (uid_key !== undefined && uid_key !== ``) {
+            sessionStorage.setItem("key", uid_key);
+        }
     }
     if (debug) {
         console.log(`before & new_window =\n`, new_window, typeof new_window);
         // string
     }
     // window.open(e.target.href, e.target.name,'width=800,height=600');
-    new_window = window.open("", e.target.name,'width=800,height=600');
-    // new_window = window.open(e.target.href, e.target.name,'width=800,height=600');
-    // return value ???
-    if (debug) {
-        console.log(`after & new_window =\n`, new_window, typeof new_window);
-        // object
-        console.log(`new_window.document.body =\n`, new_window.document.body);
-    }
-    // return false;
-    // new_window.document.body.innerText = `holy shit!`;
-    new_window.document.write("<h1>This is `document.write` solution!</h1>");
-    if (debug) {
-        console.log(`modified & new_window.document.body =\n`, new_window.document.body);
-        // <body>holy shit!</body>
+    // new_window = window.open("", e.target.name,'width=800,height=600');
+    if (new_window === ``) {
+        // new_window = window.open(e.target.href, e.target.name,'width=800,height=600');
+        new_window = window.open("", e.target.name,'width=800,height=600');
+        // return value ???
+        if (debug) {
+            console.log(`after & new_window =\n`, new_window, typeof new_window);
+            // object
+            console.log(`new_window.document.body =\n`, new_window.document.body);
+        }
+        new_window.document.body.innerText = `<h1>${uid_key}</h1>`;
+        // new_window.document.write("<h1>This is `document.write` solution!</h1>");
+        if (debug) {
+            console.log(`modified & new_window.document.body =\n`, new_window.document.body);
+            // <body>holy shit!</body>
+        }
+    }else{
+        new_window.document.body.innerText = `<h1>${uid_key}</h1>`;
     }
 };
+
+
+const closeWindow = () => {
+    let isClosed = sessionStorage.getItem("isClosed");
+    if (isClosed) {
+        // onclose
+        new_window.close();
+        // clear session uid
+        sessionStorage.removeItem('key');
+        // sessionStorage.clear();
+    }
+};
+
+
 
 
 /*

@@ -18,13 +18,32 @@
         .modal-box {
             display: none;
         }
+        
+        [data-links="html"] {
+            display: none;
+        }
+        
+        [data-links="modal"] {
+            display: none;
+        }
+        
+        [data-links="href"] {
+            display: none;
+        }
+        
+        [data-links="open"] {
+            box-sizing: border-box;
+            border: 1px solid red;
+            line-height: 50px;
+            margin: 7px;
+        }
     </style>
 </head>
 
 <body>
     <section>
         <div class="link-box">
-            <ul>
+            <ul data-links="html">
                 <li>
                     <a href="./new-window.html" target="_blank">_blank</a>
                 </li>
@@ -43,23 +62,32 @@
             </ul>
             <hr />
             <!-- hash & anchor -->
-            <ul>
+            <ul data-links="modal">
                 <li>
                     <a href="#" data-hash="modal">hash</a>
                 </li>
                 <li>
                     <a href="#" data-open="window">open</a>
                 </li>
-                <li>
-                    <a href="./new-window.html" target="windowName" onclick="window.open(this.href,this.target,'width=800,height=600');return false;">LINKS THAT OPEN WINDOWS</a>
-                </li>
-                <li>
-                    <a href="./new-window.html" name="windowName" onclick="TestWindow(event);return false;">Test Window</a>
-                    <a href="" name="windowName" onclick="TestWindow(event);return false;">Test Window</a>
-                </li>
+            </ul>
+            <ul data-links="href">
                 <li>
                     <a href="./new-window.html" name="windowName" onclick="window.open(this.href, 'Popup', 'location,status,scrollbars,resizable,width=800, height=800');return false;">Popup</a>
                 </li>
+                <li>
+                    <a href="./new-window.html" target="windowName" onclick="window.open(this.href,this.target,'width=800,height=600');return false;">LINKS THAT OPEN WINDOWS</a>
+                </li>
+            </ul>
+            <ul data-links="open">
+                <li>
+                    <a href="./new-window.html" name="windowName xxx" onclick="TestWindow(event);return false;">Test Window xxx</a>
+                </li>
+                <li>
+                    <a href="./new-window.html" name="windowName yyy" onclick="TestWindow(event);return false;">Test Window yyy</a>
+                </li>
+                <!-- <li>
+                    <a href="" name="windowName" data-uid="uid"  onclick="TestWindow(event);return false;">Test Window</a>
+                </li> -->
             </ul>
         </div>
     </section>

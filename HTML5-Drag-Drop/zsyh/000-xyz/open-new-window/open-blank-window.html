@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <button onclick="openWin(event)" data-uid="001">Open Window 1</button>
+    <button onclick="openWin(event)" data-uid="002">Open Window 2</button>
+
+    <!-- <button onclick="closeWin()">Close "myWindow"</button> -->
+
+    <script>
+        // global
+        var myWindow = ``;
+        // var myWindow = window.open("./new-window.html", "Window Title", "width=200,height=100");
+        //init
+        sessionStorage.setItem("key", ``);
+
+        function openWin(e) {
+            console.log(`e = ${e}`);
+            let key = ``;
+            if (e !== undefined) {
+                key = e.target.dataset.uid || ``;
+                console.log(`key = ${key}`);
+                sessionStorage.setItem("key", key);
+                if (myWindow === `` || myWindow === null) {
+                    myWindow = window.open("./new-window.html", "Window Title", "width=200,height=100");
+                    // myWindow = window.open("", "myWindow", "width=200,height=100");
+                    // myWindow.document.head.title.innerHTML = "new title";
+                    setTimeout(() => {
+                        myWindow.document.body.innerHTML = `<h1>key : ${key}</h1>`;
+                    }, 1000);
+                } else {
+                    // myWindow.document.head.title.innerHTML = "new title";
+                    // myWindow = window.open("./new-window.html", "Window Title", "width=200,height=100");
+                    console.log(`myWindow = ${myWindow}`);
+                    console.log(`myWindow.document = ${myWindow.document}`);
+                    myWindow.document.body.innerHTML = `<h1>key : ${key}</h1>`;
+                }
+            } else {
+                console.log(`key = ${key}`);
+                // myWindow = window.open("./new-window.html", "Window Title", "width=200,height=100");
+            }
+        }
+        // openWin();
+        // polyfill & manual click
+        // let auto_click = () => {
+        //     let click_id = document.querySelector(`[data-uid="001"]`);
+        //     // click_id
+        //     click_id.click();
+        // };
+        // // auto_click();
+        // function closeWin() {
+        //     myWindow.close();
+        // }
+    </script>
+</body>
+
+</html>
+
+<!--
+
+    Previous API instantiation failed.
+
+ -->
