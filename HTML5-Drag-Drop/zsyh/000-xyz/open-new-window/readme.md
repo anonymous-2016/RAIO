@@ -190,7 +190,8 @@ https://stackoverflow.com/questions/1834559/target-blank-to-show-in-new-window-n
 # `window.open("")`  && `document.write()`
 
 1.  must be `""` for open href url!
-2.  must be `write` for html content!
+
+<del>2.  must be `write` for html content!</del>
 
 https://www.w3schools.com/jsref/met_win_open.asp
 
