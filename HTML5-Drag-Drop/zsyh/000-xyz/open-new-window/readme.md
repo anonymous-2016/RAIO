@@ -349,7 +349,17 @@ https://bugs.chromium.org/p/chromium/issues/detail?id=754976
 https://developer.chrome.com/extensions/tabs
 
 
+```js
 
+window.document.head.children[3].innerHTML = `xxxx`;
+
+```
+
+
+
+# modal & no mask
+
+> ??? only in the window , can't move out the window ???
 
 
 

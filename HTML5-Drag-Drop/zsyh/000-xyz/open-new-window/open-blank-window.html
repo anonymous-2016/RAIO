@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>parent window</title>
 </head>
 
 <body>
@@ -30,10 +30,12 @@
                 sessionStorage.setItem("key", key);
                 if (myWindow === `` || myWindow === null) {
                     myWindow = window.open("./new-window.html", "Window Title", "width=200,height=100");
-                    // myWindow = window.open("", "myWindow", "width=200,height=100");
+                    myWindow = window.open("", "Window Title", "width=200,height=100");
                     // myWindow.document.head.title.innerHTML = "new title";
                     setTimeout(() => {
                         myWindow.document.body.innerHTML = `<h1>key : ${key}</h1>`;
+                        myWindow.document.head.children[3].innerHTML = "new title";
+                        // window.document.head.children[3].innerHTML
                     }, 1000);
                 } else {
                     // myWindow.document.head.title.innerHTML = "new title";
@@ -58,6 +60,7 @@
         // function closeWin() {
         //     myWindow.close();
         // }
+        // Not allowed to load local resource:
     </script>
 </body>
 
