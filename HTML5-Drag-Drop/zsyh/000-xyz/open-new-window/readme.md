@@ -159,3 +159,79 @@ shared data
 
 
 
+https://developer.mozilla.org/en-US/docs/Web/API/Window/open#Position_and_size_features
+
+https://developer.mozilla.org/en-US/docs/Web/API/Window/open#Window_features
+
+
+
+## Popup === title
+
+
+```html
+
+
+<a
+    href="./new-window.html"
+    name="windowName"
+    onclick="window.open(this.href, 'Popup', 'location,status,scrollbars,resizable,width=800, height=800');return false;">
+    Popup
+</a>
+
+
+```
+
+
+https://stackoverflow.com/questions/1834559/target-blank-to-show-in-new-window-not-new-tab-possible
+
+
+
+
+# `window.open("")`  && `document.write()`
+
+1.  must be `""` for open href url!
+2.  must be `write` for html content!
+
+https://www.w3schools.com/jsref/met_win_open.asp
+
+https://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_win_open3
+
+https://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_win_close
+
+
+```js
+
+function myFunction() {
+    var myWindow = window.open("", "MsgWindow", "width=200,height=100");
+    myWindow.document.write("<p>This is 'MsgWindow'. I am 200px wide and 100px tall!</p>");
+}
+
+
+var myWindow;
+
+function openWin() {
+    myWindow = window.open("", "myWindow", "width=200,height=100");
+    myWindow.document.write("<p>This is 'myWindow'</p>");
+}
+
+function closeWin() {
+    myWindow.close();
+}
+
+```
+
+
+
+
+https://developer.mozilla.org/en-US/docs/Web/API/Window/open
+https://bugzilla.mozilla.org/show_bug.cgi?id=176320
+
+## window.open("")
+
+```js
+
+    // window.open(e.target.href, e.target.name,'width=800,height=600');
+    new_window = window.open("", e.target.name,'width=800,height=600');
+    // new_window = window.open(e.target.href, e.target.name,'width=800,height=600');
+```
+

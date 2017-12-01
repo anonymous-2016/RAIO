@@ -97,7 +97,8 @@ const TestWindow = (e) => {
         // string
     }
     // window.open(e.target.href, e.target.name,'width=800,height=600');
-    new_window = window.open(e.target.href, e.target.name,'width=800,height=600');
+    new_window = window.open("", e.target.name,'width=800,height=600');
+    // new_window = window.open(e.target.href, e.target.name,'width=800,height=600');
     // return value ???
     if (debug) {
         console.log(`after & new_window =\n`, new_window, typeof new_window);
@@ -105,7 +106,8 @@ const TestWindow = (e) => {
         console.log(`new_window.document.body =\n`, new_window.document.body);
     }
     // return false;
-    new_window.document.body.innerText = `holy shit!`;
+    // new_window.document.body.innerText = `holy shit!`;
+    new_window.document.write("<h1>This is `document.write` solution!</h1>");
     if (debug) {
         console.log(`modified & new_window.document.body =\n`, new_window.document.body);
         // <body>holy shit!</body>
@@ -114,7 +116,7 @@ const TestWindow = (e) => {
 
 
 /*
-
+// chrome & auto event
 (
     function (event){
         TestWindow();
