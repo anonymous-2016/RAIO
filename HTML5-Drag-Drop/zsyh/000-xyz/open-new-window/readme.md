@@ -389,3 +389,17 @@ window.document.head.children[3].innerHTML = `xxxx`;
 3. 打开 新 window & pass 数据，修改 title
 4. sessionStorage 保存数据
 
+
+
+
+## stock f9
+
+> bug
+
+1. customize modules & auto scroll top
+
+2. stock-price-turnover & title
+
+3. hc & data precision 精度
+
+
