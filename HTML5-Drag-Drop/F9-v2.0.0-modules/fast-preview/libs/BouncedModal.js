@@ -95,10 +95,31 @@ STOCK_F9_FV.Modal.getClientWidthHeight = STOCK_F9_FV.Modal.getClientWidthHeight 
  */
 
 /* 弹框的基本对象 Constructor */
+// STOCK_F9_FV.Modal.BouncedModal = STOCK_F9_FV.Modal.BouncedModal || ((options, debug = false) => {
 function BouncedModal(options, debug = false){
     if (debug) {
         console.log(`BouncedModal's options = \n`, JSON.stringify(options, null, 4));
     }
+    // ??? this ??? not Constructorle ???
+    // this.config = {
+    //     layerBoxClass : "layerBox",
+    //     layerclass:"",
+    //     width: 300,// UDP.getClientWidth()-60
+    //     height: 200,// UDP.getClientWidth()-60
+    //     zIndex: 1000,
+    //     title: "信息",
+    //     setOverflow: "overflow-y:scroll",
+    //     str: "",
+    //     datas: {},
+    //     callback: function () {
+    //         //
+    //     }
+    // };
+    // Object.assign(this.config, options);
+    if (debug) {
+        console.log(`BouncedModal's this.config = \n`, JSON.stringify(this.config, null, 4));
+    }
+    // return this.config;
     this.config = {
         layerBoxClass : "layerBox",
         layerclass:"",
@@ -116,9 +137,9 @@ function BouncedModal(options, debug = false){
     $.extend(this.config, options);
     // jquery plugin ???
     // Object.assign({}, obj1, obj2);
-}
+};
 
-
+// STOCK_F9_FV.Modal.BouncedModal.prototype = {
 BouncedModal.prototype = {
     /*创建弹出框*/
     _createDialog: function(state, debug = false){
@@ -349,14 +370,17 @@ BouncedModal.prototype = {
         // win["UDP"], will never be executed!
         win["UDP"].Public = STOCK_F9_FV.Modal.Public();
         win["UDP"].getClientWidthHeight = STOCK_F9_FV.Modal.getClientWidthHeight();
-        win["UDP"].BouncedModal = BouncedModal;
+        // win["UDP"].BouncedModal = STOCK_F9_FV.Modal.BouncedModal();
+        win["UDP"].BouncedModal = BouncedModal();
+        // BouncedModal && Constructorle ???
     }else{
         win.UDP = {
             Public: STOCK_F9_FV.Modal.Public(),
             // getClientWidth: STOCK_F9_FV.Modal.getClientWidth(),
             // getClientHeight: STOCK_F9_FV.Modal.getClientHeight(),
             getClientWidthHeight: STOCK_F9_FV.Modal.getClientWidthHeight(),
-            BouncedModal: BouncedModal
+            // BouncedModal: STOCK_F9_FV.Modal.BouncedModal()
+            BouncedModal: BouncedModal()
         };
         // window.UDP & window["UDP"]
     }
@@ -367,3 +391,5 @@ BouncedModal.prototype = {
     }
     return test;
 });
+
+

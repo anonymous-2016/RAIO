@@ -112,7 +112,9 @@ STOCK_F9_FV.Modules.companyNews = STOCK_F9_FV.Modules.companyNews || ((url = ``,
                                     }
                                     let UDP_width = UDP_wh.w - 60,
                                         UDP_height = UDP_wh.h - 60;
+                                    // STOCK_F9_FV.Modal.BouncedModal
                                     const modal = new BouncedModal({
+                                    // const modal = new UDP.BouncedModal({
                                         // bouncedclass: "layerContianer2",//存放页面的容器类名
                                         width: UDP_width,
                                         height: UDP_height,

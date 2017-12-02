@@ -1,0 +1,61 @@
+{
+    "name": "stock-f9-fv",
+    "version": "1.1.1",
+    "description": "ES6/7/8 to ES5",
+    "module": "webpack.config.mjs",
+    "main": "webpack.config.js",
+    "scripts": {
+        "app": "npm run rmrf & webpack -p",
+        "dev & prod": "??? webpack --config webpack.prod.js ???",
+        "hot_modules_loader": "??? webpack hot HMR ???",
+        "dev": "webpack -w",
+        "rmrf": "rimraf build/js",
+        "linux_rmrf": "rm -rf build/js",
+        "windows_clear": "rimraf build/js",
+        "xapp": "npm run build && cd build && browser-sync start --server --files 'index.html'",
+        "open": "cd ../ && browser-sync start --server --files './fast-preview/*.*' && start http://localhost:3000/fast-preview/sidebar.html",
+        "bat": "start start-browser.bat",
+        "starts": "start http://localhost:7777/datas/ && start http://localhost:7777/Info/",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "bin": {
+        "f9-fv": "f9-fv",
+        "bin": "./bin.js"
+    },
+    "keywords": [
+        "webapck",
+        "auto_transpile",
+        "es6/7/8",
+        "es5"
+    ],
+    "author": "xgqfrms, gildata",
+    "license": "MIT",
+    "dependencies": {
+        "browserify": "^14.5.0",
+        "requirejs": "^2.3.5",
+        "systemjs": "^0.20.19",
+        "webpack": "^3.8.1"
+    },
+    "devDependencies": {
+        "babel": "^6.23.0",
+        "babel-cli": "^6.26.0",
+        "babel-core": "^6.26.0",
+        "babel-loader": "^7.1.2",
+        "babel-plugin-transform-object-rest-spread": "^6.26.0",
+        "babel-polyfill": "^6.26.0",
+        "babel-preset-env": "^1.6.1",
+        "babel-preset-react": "^6.24.1",
+        "clean-webpack-plugin": "^0.1.17",
+        "colors": "^1.1.2",
+        "css-loader": "^0.28.7",
+        "es-module-loader": "^2.2.8",
+        "file-loader": "^1.1.5",
+        "html-webpack-plugin": "^2.30.1",
+        "node-sass": "^4.7.2",
+        "rimraf": "^2.6.2",
+        "sass-loader": "^6.0.6",
+        "style-loader": "^0.19.0",
+        "uglifyjs-webpack-plugin": "^1.0.1",
+        "url-loader": "^0.6.2"
+    }
+}

@@ -1,0 +1,178 @@
+{
+    "name": "JYCompanyIntroductionRow",
+    "attributes": {
+        "schema": "JYCompanyIntroductionRow",
+        "numfound": "1",
+        "master": "1"
+    },
+    "columnmeta": {
+        "ChiName": {
+            "type": "string",
+            "description": "中文名称"
+        },
+        "EngName": {
+            "type": "string",
+            "description": "英文名称"
+        },
+        "State": {
+            "type": "string",
+            "description": "省份"
+        },
+        "CityCode": {
+            "type": "string",
+            "description": "城市"
+        },
+        "RegAddr": {
+            "type": "string",
+            "description": "注册地址"
+        },
+        "OfficeAddr": {
+            "type": "string",
+            "description": "办公地址"
+        },
+        "EstablishmentDate": {
+            "type": "string",
+            "description": "成立日期",
+            "Format": "date-time"
+        },
+        "BusinessRegNumber": {
+            "type": "string",
+            "description": "工商登记号"
+        },
+        "RegCapital": {
+            "type": "number",
+            "description": "注册资本"
+        },
+        "IndustryZJH": {
+            "type": "string",
+            "description": "所属证监会行业"
+        },
+        "IndustryJY": {
+            "type": "string",
+            "description": "所属聚源行业"
+        },
+        "IndustryZX": {
+            "type": "string",
+            "description": "所属中信行业"
+        },
+        "IndustrySW": {
+            "type": "string",
+            "description": "所属申万行业"
+        },
+        "LegalRepr": {
+            "type": "string",
+            "description": "法人代表"
+        },
+        "GeneralManager": {
+            "type": "string",
+            "description": "总经理"
+        },
+        "SecretaryBD": {
+            "type": "string",
+            "description": "董事会秘书"
+        },
+        "SecuAffairsRepr": {
+            "type": "string",
+            "description": "证劵事务代表"
+        },
+        "SecuAffairsRepr1": {
+            "type": "string",
+            "description": "信息披露人"
+        },
+        "EmployeeSum": {
+            "type": "integer",
+            "description": "员工人数"
+        },
+        "Website": {
+            "type": "string",
+            "description": "公司网站"
+        },
+        "Fax": {
+            "type": "string",
+            "description": "传真"
+        },
+        "ZipCode": {
+            "type": "string",
+            "description": "邮编"
+        },
+        "SecretaryBDTel": {
+            "type": "string",
+            "description": "电话"
+        },
+        "Email": {
+            "type": "string",
+            "description": "电子邮件"
+        },
+        "AccountingFirm": {
+            "type": "string",
+            "description": "审计机构"
+        },
+        "Cpa": {
+            "type": "string",
+            "description": "经办会计师"
+        },
+        "LegalConsultant": {
+            "type": "string",
+            "description": "法律顾问"
+        },
+        "LegalConsultant1": {
+            "type": "string",
+            "description": "经办律师"
+        },
+        "BusinessMajor": {
+            "type": "string",
+            "description": "主营产品"
+        },
+        "BriefIntroText": {
+            "type": "string",
+            "description": "公司简介"
+        },
+        "BelongConceptPlate": {
+            "type": "string",
+            "description": "所属概念板块"
+        },
+        "A0": {
+            "type": "string",
+            "description": "组织机构代码"
+        },
+        "A1": {
+            "type": "string",
+            "description": "统一社会信用代码"
+        }
+    },
+    "rows": [
+        "万科企业股份有限公司",
+        "China Vanke Co.,Ltd.",
+        "广东",
+        "深圳市",
+        "深圳市盐田区大梅沙环梅路33号万科中心",
+        "深圳市盐田区大梅沙环梅路33号万科中心",
+        "1984-05-01",
+        "深司字N24935",
+        11039152001,
+        "房地产业-房地产开发与经营业",
+        "房地产业-房地产开发与经营业",
+        "房地产-房地产开发管理-住宅地产",
+        "房地产-房地产开发-房地产开发",
+        "郁亮",
+        "郁亮",
+        "朱旭",
+        "梁洁",
+        "梁洁",
+        67021,
+        "http://www.vanke.com",
+        "0755-25531696",
+        "518083",
+        "0755-25606666",
+        "IR@vanke.com",
+        "毕马威华振会计师事务所(特殊普通合伙)",
+        "房炅、陈泳意",
+        "信达律师事务所",
+        "-",
+        "房地产开发；兴办实业（具体项目另行申报）；国内商业、物资供销业（不含专营、专控、专卖商品）；进出口业务（按深经发审证字第113号外贸企业审定证书规定办理）。",
+        "公司成立于1984年,1988年进入房地产行业,1991年成为深圳证券交易所第二家上市公司。经过二十多年的发展,成为国内最大的住宅开发企业,目前业务覆盖珠三角、长三角、环渤海三大城市经济圈以及中西部地区,共计53个大中城市。近三年来,年均住宅销售规模在6万套以上,2011年公司实现销售面积1075万平米,销售金额1215亿元,2012年销售额超过1400亿。销售规模持续居全球同行业首位。万科企业股份有限公司是目前中国最大的专业住宅开发企业。2007年公司完成新开工面积776.7万平方米,竣工面积445.3万平方米,实现销售金额523.6亿元,结算收入351.8亿元,净利润48.4亿元,纳税53.2亿元。以理念奠基、视道德伦理重于商业利益,是万科的最大特色。2014年6月25日,本公司B股以介绍方式转换上市地在香港联交所(H股)上市。",
+        "转融券标的,深港通,融资融券,机器人概念,举牌概念,AH股,超级品牌,装配式建筑,房地产开发,股权转让,房屋租赁",
+        "19218149-0",
+        "91440300192181490G"
+    ]
+}

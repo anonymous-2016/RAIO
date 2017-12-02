@@ -5,7 +5,7 @@
     "module": "webpack.config.mjs",
     "main": "webpack.config.js",
     "scripts": {
-        "app": "npm run rmrf & webpack -p",
+        "app": "webpack -p",
         "dev & prod": "??? webpack --config webpack.prod.js ???",
         "hot_modules_loader": "??? webpack hot HMR ???",
         "dev": "webpack -w",

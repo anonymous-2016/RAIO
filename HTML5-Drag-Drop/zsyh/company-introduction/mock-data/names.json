@@ -1,0 +1,142 @@
+{
+    "JYCompanyIntroductionRow": {
+        "type": "object",
+        "Properties": {
+            "ChiName": {
+                "type": "string",
+                "Description": "中文名称"
+            },
+            "EngName": {
+                "type": "string",
+                "Description": "英文名称"
+            },
+            "State": {
+                "type": "string",
+                "Description": "省份"
+            },
+            "CityCode": {
+                "type": "string",
+                "Description": "城市"
+            },
+            "RegAddr": {
+                "type": "string",
+                "Description": "注册地址"
+            },
+            "OfficeAddr": {
+                "type": "string",
+                "Description": "办公地址"
+            },
+            "EstablishmentDate": {
+                "type": "string",
+                "Description": "成立日期",
+                "Format": "date-time"
+            },
+            "BusinessRegNumber": {
+                "type": "string",
+                "Description": "工商登记号"
+            },
+            "RegCapital": {
+                "type": "number",
+                "Description": "注册资本"
+            },
+            "IndustryZJH": {
+                "type": "string",
+                "Description": "所属证监会行业"
+            },
+            "IndustryJY": {
+                "type": "string",
+                "Description": "所属聚源行业"
+            },
+            "IndustryZX": {
+                "type": "string",
+                "Description": "所属中信行业"
+            },
+            "IndustrySW": {
+                "type": "string",
+                "Description": "所属申万行业"
+            },
+            "LegalRepr": {
+                "type": "string",
+                "Description": "法人代表"
+            },
+            "GeneralManager": {
+                "type": "string",
+                "Description": "总经理"
+            },
+            "SecretaryBD": {
+                "type": "string",
+                "Description": "董事会秘书"
+            },
+            "SecuAffairsRepr": {
+                "type": "string",
+                "Description": "证劵事务代表"
+            },
+            "SecuAffairsRepr1": {
+                "type": "string",
+                "Description": "信息披露人"
+            },
+            "EmployeeSum": {
+                "type": "integer",
+                "Description": "员工人数"
+            },
+            "Website": {
+                "type": "string",
+                "Description": "公司网站"
+            },
+            "Fax": {
+                "type": "string",
+                "Description": "传真"
+            },
+            "ZipCode": {
+                "type": "string",
+                "Description": "邮编"
+            },
+            "SecretaryBDTel": {
+                "type": "string",
+                "Description": "电话"
+            },
+            "Email": {
+                "type": "string",
+                "Description": "电子邮件"
+            },
+            "AccountingFirm": {
+                "type": "string",
+                "Description": "审计机构"
+            },
+            "Cpa": {
+                "type": "string",
+                "Description": "经办会计师"
+            },
+            "LegalConsultant": {
+                "type": "string",
+                "Description": "法律顾问"
+            },
+            "LegalConsultant1": {
+                "type": "string",
+                "Description": "经办律师"
+            },
+            "BusinessMajor": {
+                "type": "string",
+                "Description": "主营产品"
+            },
+            "BriefIntroText": {
+                "type": "string",
+                "Description": "公司简介"
+            },
+            "BelongConceptPlate": {
+                "type": "string",
+                "Description": "所属概念板块"
+            },
+            "A0": {
+                "type": "string",
+                "Description": "组织机构代码"
+            },
+            "A1": {
+                "type": "string",
+                "Description": "统一社会信用代码"
+            }
+        },
+        "desc": "公司现状",
+        "master": true
+    }
+}

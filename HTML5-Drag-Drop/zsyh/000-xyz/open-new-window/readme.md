@@ -403,3 +403,14 @@ window.document.head.children[3].innerHTML = `xxxx`;
 3. hc & data precision 精度
 
 
+```sh
+
+$ browser-sync start --server --files 'index.html'
+
+
+```
+
+
+
+
+

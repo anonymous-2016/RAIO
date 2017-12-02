@@ -76,6 +76,8 @@ entry_obj[BASE_URI.index] = `${BASE_URI.index}`;
 // BouncedModal
 entry_obj[BASE_URI.modal] = `${BASE_URI.libs}/BouncedModal`;
 
+// "app": "npm run rmrf & webpack -p",
+
 // no return
 
 
@@ -96,6 +98,7 @@ module.exports = {
     // },
     output: {
         // 输出文件 dist/build
+        // path: path.resolve(__dirname, "build/"),
         path: path.resolve(__dirname, "build/js/"),
         filename: '[name].min.js',// ??? hash version
         // filename: '[name].[hash:16].min.js',// hash version
