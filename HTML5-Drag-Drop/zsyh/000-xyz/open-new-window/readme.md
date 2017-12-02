@@ -364,3 +364,28 @@ window.document.head.children[3].innerHTML = `xxxx`;
 
 
 
+股票 F9
+
+完成： 97%;
+
+1. 模块的 自适居中布局
+2. 模块的 实现重新设计的两栏模块UI效果
+3. webpack 压缩， uglify
+4. 优化性能
+
+新三板专题速览
+
+完成： 80%;
+
+1. 所有模块已完成
+2. 模块样式部分完成
+
+浙商银行
+
+完成： 50%;
+
+1. 数据的格式化处理，重构
+2. 绘图的 modal
+3. 打开 新 window & pass 数据，修改 title
+4. sessionStorage 保存数据
+

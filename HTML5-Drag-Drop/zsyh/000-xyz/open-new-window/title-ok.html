@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>open a new window with title & not open a new tab!</title>
+</head>
+
+<body>
+    <div>
+        <h1>open a new window with title & not open a new tab!</h1>
+    </div>
+    <section>
+        <button onclick="openWin(event)" data-uid="001">Open Window & data 001</button>
+        <button onclick="openWin(event)" data-uid="002">Open Window & data 002</button>
+        <!-- <button onclick="closeWin()">Close opened new Window</button> -->
+    </section>
+    <script>
+        let newWindow = ``,
+            key = ``;
+
+        function openWin(e) {
+            key = e.target.dataset.uid;
+            console.log(`key = ${key}`);
+            if (newWindow.closed === true) {
+                // reset
+                newWindow = ``;
+            }
+            if (newWindow === ``) {
+                newWindow = window.open("", "window Name", "width=500,height=300");
+                console.log(`newWindow.closed = ${newWindow.closed}`);
+                // false
+                newWindow.document.body.innerHTML = `<h1>key : ${key}</h1>`;
+                newWindow.document.head.innerHTML = "<title>new title</title>";
+                newWindow.document.head.style.display = "block";
+            } else {
+                console.log(`newWindow.closed = ${newWindow.closed}`);
+                // false
+                newWindow.document.body.innerHTML = `<h1>key : ${key}</h1>`;
+                newWindow.document.head.innerHTML = "<title>new title</title>";
+                newWindow.document.head.style.display = "block";
+            }
+        }
+        // function closeWin() {
+        //     newWindow.close();
+        //     // reset
+        //     newWindow = ``;
+        // }
+        newWindow.onclose = () => {
+            // alert(`new window is closing...`);
+            newWindow.closed;
+            console.log(`newWindow.closed = ${newWindow.closed}`);
+            // true
+            newWindow = ``;
+            console.log(`newWindow = ${newWindow}`);
+        };
+    </script>
+</body>
+
+</html>
+
+</html>
