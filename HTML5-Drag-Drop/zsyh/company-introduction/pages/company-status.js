@@ -131,7 +131,7 @@ STOCK_F9.Summary.companyStatus = STOCK_F9.Summary.companyStatus || (
                 // STOCK_F9_FV.Modules.agencyRating.drawHS(datas, uid);
             }
         )
-        .catch(error => console.log(`error = \n`, error));
+        .catch(error => console.log(`fetch data error = \n`, error));
         // return only work out Promise!
         return datas;
         // let obj = {

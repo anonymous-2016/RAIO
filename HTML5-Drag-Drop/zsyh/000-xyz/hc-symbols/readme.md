@@ -66,7 +66,7 @@ http://code.highcharts.com/stock/1.2.5/adapters/mootools-adapter.js
 
 
 
-
+http://10.1.5.202/stock/f9/mock-datas/hc-point.json
 
 
 

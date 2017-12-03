@@ -1,5 +1,15 @@
 // const icon_url = `../../img/arrow.png`;
 
+/*
+
+# scrollbar bug!
+
+lib: highstock.js
+
+method: Highcharts.chart()
+
+
+*/
 Highcharts.chart('container', {
     chart: {
         type: 'spline'
@@ -11,8 +21,12 @@ Highcharts.chart('container', {
         text: 'Source: WorldClimate.com'
     },
     xAxis: {
-        categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
-            'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+        categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+        // min: 0,
+        // max: 8,
+    },
+    scrollbar: {
+        enabled: true
     },
     yAxis: {
         title: {

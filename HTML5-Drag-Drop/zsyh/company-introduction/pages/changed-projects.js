@@ -66,7 +66,8 @@ STOCK_F9.Summary.changedItems = STOCK_F9.Summary.changedItems || (
                 if (debug) {
                     console.log(`json = \n`, json);
                 }
-                let rows = JSONDS(json, true) || [];
+                let rows = JSONDS(json, false) || [];
+                // let rows = JSONDS(json, true) || [];
                 if (debug) {
                     console.log(`rows = \n`, rows);
                 }
@@ -75,7 +76,7 @@ STOCK_F9.Summary.changedItems = STOCK_F9.Summary.changedItems || (
                 STOCK_F9.Summary.changedItems.pageInit(datas, uid, true);
             }
         )
-        .catch(error => console.log(`error = \n`, error));
+        .catch(error => console.log(`fetch data error = \n`, error));
         // return only work out Promise!
         return datas;
     }
@@ -238,7 +239,18 @@ STOCK_F9.Summary.changedItems.pageInit = STOCK_F9.Summary.changedItems.pageInit 
             // true
             // getRowData(rowid);
             let rowData = jQuery("#list_demo").getRowData(rowid);
+            // let rowData = jQuery("#list_demo").jqGrid('getRowData', rowid);
             console.log(`rowData = \n`, JSON.stringify(rowData, null, 4));
+            // let col_data = jQuery("#list_demo").jqGrid("getColProp", "a0");
+            // console.log(`getColProp = \n`, JSON.stringify(col_data, null, 4));
+        },
+        onCellSelect: function (rowid, iCol, cellcontent, e) {
+            // rowid：当前行id；iCol：当前单元格索引；cellContent：当前单元格内容；e：event对象
+            console.log(`rowid = \n`, rowid);
+            console.log(`iCol = \n`, iCol);// index
+            console.log(`cellcontent = \n`, cellcontent);
+            console.log(`e = \n`, e);
+            //
         },
         jsonReader: {
             repeatitems: false,
@@ -264,8 +276,8 @@ STOCK_F9.Summary.changedItems.init = STOCK_F9.Summary.changedItems.init || (
     }
 );
 
-// STOCK_F9.Summary.changedItems.init(false);
-STOCK_F9.Summary.changedItems.init(true);
+STOCK_F9.Summary.changedItems.init(false);
+// STOCK_F9.Summary.changedItems.init(true);
 
 
 

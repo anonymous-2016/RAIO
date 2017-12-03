@@ -115,6 +115,31 @@ http://10.1.5.202/stock/f9/imgs/text.png
 
 
 
+http://10.1.5.202/stock/f9/mock-datas/hc-point.json
+
+
+# full datas
+
+> no PageSize
+
+http://10.1.5.203/http-report/query??{"ApiName":"JYCompanyIntroduction","SecuCode":"000002","WriteType":"json","Compress":"true"}
+
+
+```js
+
+
+copy(json.data[0].rows);
+
+json.points[0]
+// ["2002-04-30", "a1", "2002/04/23行业经营范围变更", 1]
+
+
+```
+
+
+http://10.1.5.202/f10/view/libs/highcharts.js
+
+
 
 
 
