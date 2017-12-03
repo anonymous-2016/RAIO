@@ -48,7 +48,7 @@ STOCK_F9.Summary.companyStatus = STOCK_F9.Summary.companyStatus || (
             uid,
             debug
         } = {
-            url: `https://cdn.xgqfrms.xyz/`,
+            url: `http://10.1.5.202/stock/f9/mock-datas/intro-status.json`,
             gcode: `600570`,
             // td_keys: [],
             // td_values: [],

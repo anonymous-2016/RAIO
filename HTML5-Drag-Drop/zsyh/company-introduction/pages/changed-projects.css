@@ -2,3 +2,25 @@
     /* color: #f00; */
     color: #f00 !important;
 }
+
+
+/* max-width: 100px; */
+
+[data-link="cell-span"] {
+    box-sizing: border-box;
+    display: inline-block;
+    color: #00f;
+    border-bottom: 1px solid #17f;
+    cursor: pointer;
+    text-align: center;
+}
+
+[data-link="cell-span"]:hover {
+    color: #f0f;
+    cursor: pointer;
+}
+
+[data-img="cel-img"],
+[data-img="cel-img"]:hover {
+    cursor: pointer;
+}

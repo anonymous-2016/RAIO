@@ -1,6 +1,23 @@
 // const icon_url = `../../img/arrow.png`;
 
 
+/*
+
+
+
+# scrollbar bug!
+
+lib: highstock.js
+
+method: Highcharts.chart()
+
+
+
+
+
+
+
+*/
 
 // namespaces
 var STOCK_F9 = STOCK_F9 || {};

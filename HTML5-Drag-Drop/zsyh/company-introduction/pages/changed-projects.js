@@ -37,7 +37,7 @@ STOCK_F9.Summary.changedItems = STOCK_F9.Summary.changedItems || (
             uid,
             debug
         } = {
-            url: `https://cdn.xgqfrms.xyz/`,
+            url: `http://10.1.5.202/stock/f9/mock-datas/change-items.json`,
             gcode: `600570`,
             // td_keys: [],
             // td_values: [],
@@ -72,8 +72,9 @@ STOCK_F9.Summary.changedItems = STOCK_F9.Summary.changedItems || (
                     console.log(`rows = \n`, rows);
                 }
                 Object.assign(datas, {rows});
+                // STOCK_F9.Summary.changedItems.pageInit(datas, uid, true);
+                STOCK_F9.Summary.changedItems.pageInit(datas, uid, false);
                 // STOCK_F9.Summary.changedItems.drawHS(datas, uid);
-                STOCK_F9.Summary.changedItems.pageInit(datas, uid, true);
             }
         )
         .catch(error => console.log(`fetch data error = \n`, error));
@@ -108,21 +109,26 @@ STOCK_F9.Summary.changedItems.pageInit = STOCK_F9.Summary.changedItems.pageInit 
             name : 'a0',
             index : 'a0',
             width : 100,
-            // align : "right",
+            align : "center",
             // sortable : false,
         },
         {
             name : 'a4',
             index : 'a4',
             width : 200,
-            // align : "right",
+            align : "center",
             // sortable : false,
             // saveicon: true
             formatter: function (cellvalue, options, rowObject) {
+                // var temp = `
+                //     <a href="http://10.1.5.202/stock/f9/" data-link="cell-a" target="_blank" >
+                //         ${cellvalue}
+                //     </a>
+                // `;
                 var temp = `
-                    <a href="http://10.1.5.202/stock/f9/" data-link="cell-a" target="_blank">
+                    <span data-link="cell-span">
                         ${cellvalue}
-                    </a>
+                    </span>
                 `;
                 return temp;
             }
@@ -131,58 +137,81 @@ STOCK_F9.Summary.changedItems.pageInit = STOCK_F9.Summary.changedItems.pageInit 
             name : 'a1',
             index : 'a1',
             width : 100,
-            // align : "right",
+            align : "center",
             // sortable : false,
         },
         {
             name : 'a2',
             index : 'a2',
             width : 100,
-            // align : "right",
+            align : "center",
             // sortable : false,
         },
         {
             name : 'a3',
             index : 'a3',
             width : 100,
-            // align : "right",
+            align : "center",
             // sortable : false,
         },
         {
             name : 'a5',
             index : 'a5',
-            width : 50,
-            // align : "right",
-            // sortable : false,
-            // saveicon: true
-        },
-        {
-            name : 'a6',
-            index : 'a6',
-            width : 100,
-            // align : "right",
+            width : 200,
+            align : "center",
             // sortable : false,
             // saveicon: true,
             formatter: function (cellvalue, options, rowObject) {
                 // console.log(`cellvalue \n`, cellvalue);
                 // console.log(`options \n`, options);
                 // console.log(`rowObject \n`, rowObject);
-                var temp = `
-                    <img
-                        src="http://10.1.5.202/stock/f9/imgs/text.png"
-                        title="${cellvalue}"
-                        data-img="cel-img"
-                    />
-                `;
-                return temp;
+                // var temp = `
+                //     <img
+                //         src="http://10.1.5.202/stock/f9/imgs/text.png"
+                //         title="${cellvalue}"
+                //         data-img="cel-img"
+                //     />
+                // `;
+                var temp = '<img src="http://10.1.5.202/stock/f9/imgs/text.png" data-img="cel-img" title="'+ cellvalue +'"/>';
                 setTimeout(() => {
                     let img = document.querySelector(`[data-img="cel-img"]`);
                     console.log(`img = `, img);
                     img.addEventListener(`click`, (e) => {
                         console.log(`e = `, e);
-                        alert(`e = ${e}`);
+                        // alert(`e = ${e}`);
                     });
                 }, 0);
+                return temp;
+            }
+        },
+        {
+            name : 'a6',
+            index : 'a6',
+            width : 100,
+            align : "center",
+            // sortable : false,
+            // saveicon: true,
+            formatter: function (cellvalue, options, rowObject) {
+                // console.log(`cellvalue \n`, cellvalue);
+                // console.log(`options \n`, options);
+                // console.log(`rowObject \n`, rowObject);
+                // var temp = `
+                //     <img
+                //         src="http://10.1.5.202/stock/f9/imgs/text.png"
+                //         title="${cellvalue}"
+                //         data-img="cel-img"
+                //     />
+                // `;
+                var temp = '<img src="http://10.1.5.202/stock/f9/imgs/text.png" data-img="cel-img" title="'+ cellvalue +'"/>';
+                setTimeout(() => {
+                    let img = document.querySelector(`[data-img="cel-img"]`);
+                    console.log(`img = `, img);
+                    img.addEventListener(`click`, (e) => {
+                        console.log(`e = `, e);
+                        // alert(`e = ${e}`);
+                    });
+                }, 0);
+                return temp;
                 // show modal
                 // showModal(data);
                 // ??? parent event!
@@ -207,7 +236,7 @@ STOCK_F9.Summary.changedItems.pageInit = STOCK_F9.Summary.changedItems.pageInit 
         console.log(`data =\n`, data);
         console.log(`data.rows =\n`, data.rows, data.rows.length);
         // console.log(`data.rows =\n`, JSON.stringify(data.rows, null, 4));
-        console.log(`uid =\n`, uid);
+        console.log(`uid =`, uid);
     }
     let rows = data.rows;
     // let userData = data;
@@ -232,25 +261,28 @@ STOCK_F9.Summary.changedItems.pageInit = STOCK_F9.Summary.changedItems.pageInit 
         // multiselect : true,
         // height: 300,
         // autowidth: true,
-        onSelectRow: function(rowid,status){
-            console.log(`rowid = \n`, rowid);
-            //
-            console.log(`status = \n`, status);
+        onSelectRow: function(rowid, status){
+            console.log(`\n\n\n rowid =`, rowid);
+            // 000
+            console.log(`status =`, status);
             // true
-            // getRowData(rowid);
             let rowData = jQuery("#list_demo").getRowData(rowid);
             // let rowData = jQuery("#list_demo").jqGrid('getRowData', rowid);
+            var record = jQuery("#list_demo").jqGrid('getRowData', rowid, true);
+            console.log(`*****************************************`);
             console.log(`rowData = \n`, JSON.stringify(rowData, null, 4));
+            console.log(`record = \n`, JSON.stringify(record, null, 4));
+            console.log(`*****************************************`);
             // let col_data = jQuery("#list_demo").jqGrid("getColProp", "a0");
             // console.log(`getColProp = \n`, JSON.stringify(col_data, null, 4));
         },
         onCellSelect: function (rowid, iCol, cellcontent, e) {
             // rowid：当前行id；iCol：当前单元格索引；cellContent：当前单元格内容；e：event对象
-            console.log(`rowid = \n`, rowid);
-            console.log(`iCol = \n`, iCol);// index
-            console.log(`cellcontent = \n`, cellcontent);
-            console.log(`e = \n`, e);
-            //
+            console.log(`onCellSelect & rowid = `, rowid);
+            console.log(`onCellSelect & iCol (index) = `, iCol);// index
+            console.log(`onCellSelect & cellcontent (html) = `, cellcontent);
+            // console.log(`onCellSelect & e = `, e);
+            // ???
         },
         jsonReader: {
             repeatitems: false,

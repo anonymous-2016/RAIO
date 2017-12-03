@@ -141,6 +141,39 @@ http://10.1.5.202/f10/view/libs/highcharts.js
 
 
 
+# scrollbar bug!
+
+lib: highstock.js
+
+method: Highcharts.chart()
+
+
+
+http://www.guriddo.net/documentation/guriddo/javascript/user-guide/treegrid/#methods
+
+var record = jQuery("#grid_id").jqGrid('getRowData', rowid, true);
+
+
+
+
+
+
+
+# layui
+
+
+http://10.1.5.202/stock/f9/mock-datas/tabs.json
+
+
+
+
+
+
+
+
+
+
+
 
 
 https://css-tricks.com/snippets/html/mailto-links/

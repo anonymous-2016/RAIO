@@ -1,5 +1,17 @@
 # Stock F9 速览
 
+
+# scrollbar bug!
+
+lib: highstock.js
+
+method: Highcharts.chart()
+
+
+
+
+
+
 ```sh
 
 # ..\F9-v2.0.0-modules\
