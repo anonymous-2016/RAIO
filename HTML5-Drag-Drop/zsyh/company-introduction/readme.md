@@ -39,6 +39,82 @@ http://10.1.5.203/http-manage/admin?{"Admin":"report","Action":"GetRowSchema","W
 
 
 http://10.1.5.202/stock/f9/mock-datas/intro-status.json
+http://10.1.5.202/stock/f9/mock-datas/change-items.json
+
+
+
+
+
+
+
+
+
+file:///E:/github/RAIO/HTML5-Drag-Drop/zsyh/company-introduction/pages/company-status.html
+
+
+file:///E:/github/RAIO/HTML5-Drag-Drop/zsyh/company-introduction/pages/changed-projects.html
+
+
+
+
+# bug!!!
+
+### 返回的 data 数据字段不可多于定义的 colModel字段!!!
+
+### 返回的 data 数据字段不可多于定义的 colNames字段!!!
+
+###  data  === colNames  === colModel
+
+
+
+# markdown
+
+
+https://guides.github.com/features/mastering-markdown/
+
+# jqGrid colModel 参数
+
+http://blog.mn886.net/jqGrid/
+
+hidedlg boolean 是否显示或者隐藏此列false
+hidden boolean 在初始化表格时是否要隐藏此列 false
+index string 索引。其和后台交互的参数为sidx
+
+
+
+# jqGrid  4.6.0
+
+
+
+
+
+
+```js
+// 对列进行格式化时设置的函数名或者类型
+{name:’sex’,index:’sex’, align:’center’,width:60,editable:true,edittype:’select’,editoptions:
+
+{value:’0:待定;1:男;2:女’},
+formatter:function(cellvalue, options, rowObject){
+    var temp = “<img src=’/jqGrid/jquery-ui-1.7.2.custom/css/img/”
+    if(cellvalue==1){
+        temp = temp +”user-white.png”;
+    } else if(cellvalue==2){
+    temp = temp +”user-white-female.png”;
+    } else {
+            temp = temp + “user-silhouette.png”;
+    }
+    temp = temp + “‘ border=’0 ′ />”
+    return temp;
+}},// 返回性别的图标。
+
+```
+
+
+
+http://10.1.5.202/stock/f9/imgs/text.png
+
+
+
 
 
 

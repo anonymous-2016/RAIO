@@ -147,7 +147,7 @@ STOCK_F9.Summary.companyStatus = STOCK_F9.Summary.companyStatus || (
 
 
 
-STOCK_F9.Summary.init = STOCK_F9.Summary.init || (
+STOCK_F9.Summary.companyStatus.init = STOCK_F9.Summary.companyStatus.init || (
     (debug = false) => {
         // let tbody_uid = document.querySelector(`[data-tbody="tbody-company-status"]`);
         // data-tbody="tbody-company-status"
@@ -171,7 +171,7 @@ STOCK_F9.Summary.init = STOCK_F9.Summary.init || (
     }
 );
 
-STOCK_F9.Summary.init(false);
+STOCK_F9.Summary.companyStatus.init(false);
 // STOCK_F9.Summary.init(true);
 // STOCK_F9.Summary.init(`http://10.1.5.202/webservice/fastview/stock/stockfast01/600570.SH`);
 

@@ -14,7 +14,6 @@ function pageInit(){
         'Total title',
         'Notes title'
     ];
-    // 返回的 data 数据字段不可多于定义的 colModel字段!!!
     const colModel = [
         {
             name : 'id',
