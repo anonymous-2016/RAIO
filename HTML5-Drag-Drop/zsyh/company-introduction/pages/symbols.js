@@ -137,8 +137,11 @@ STOCK_F9.Summary.changedItems.drawHC = STOCK_F9.Summary.changedItems.drawHC || (
             chart: {
                 type: 'spline',
                 // type: 'line',
-                width: 800,
-                height: 600
+                width: 600,
+                height: 400
+            },
+            credits: {
+                enabled: false,
             },
             scrollbar: {
                 enabled: true
@@ -156,7 +159,8 @@ STOCK_F9.Summary.changedItems.drawHC = STOCK_F9.Summary.changedItems.drawHC || (
                 labels: {
                     // autoRotation:'false',
                     autoRotation: [0],
-                    step: 2
+                    step: 8,
+                    // step: 100
                 }
             },
             yAxis: {
@@ -188,7 +192,12 @@ STOCK_F9.Summary.changedItems.drawHC = STOCK_F9.Summary.changedItems.drawHC || (
                     marker: {
                         symbol: 'square'
                     },
-                    data: xAxis_data
+                    data: xAxis_data,
+                    // labels: {
+                    //     formatter: function () {
+                    //         return this.value + '元';
+                    //     }
+                    // }
                 }
             ]
         });

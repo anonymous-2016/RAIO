@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>modal</title>
+    <!-- css bug ??? -->
+    <!-- <link rel="stylesheet" href="https://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css"> -->
+    <!-- <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"> -->
+    <style>
+        body {
+            width: 100vw;
+            height: 100vh;
+            position: relative;
+            box-sizing: border-box;
+        }
+        
+        .modal-box-hidden {
+            display: none;
+        }
+        
+        .modal-box-show {
+            display: block;
+            z-index: 999;
+            position: absolute;
+            /* position: fixed; */
+            border: 1px solid #f00;
+            border-radius: 10px;
+            box-sizing: border-box;
+            top: 50%;
+            left: 50%;
+            transform: translateX(-50%) translateY(-50%);
+            width: 500px;
+            height: 300px;
+            cursor: move;
+            opacity: 0.9;
+            background: #000;
+        }
+        
+        .code-style {
+            color: #0f0;
+            background: #000;
+        }
+        
+        .modal-close {
+            color: red;
+            position: fixed;
+            top: 0;
+            right: 0;
+        }
+        
+        .modal-close:hover {
+            color: rgb(197, 14, 253);
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <button data-datas="this is modal content datas." data-title="this is modal title!" data-uid="modal">
+            show modal & data
+        </button>
+    </div>
+    <div>
+        <div>
+            xxxxxxxxxxxxxxxxxxxxx <br> xxxxxxxxxxxxxxxxxxxxx <br> xxxxxxxxxxxxxxxxxxxxx <br> xxxxxxxxxxxxxxxxxxxxx <br> xxxxxxxxxxxxxxxxxxxxx <br> xxxxxxxxxxxxxxxxxxxxx <br> xxxxxxxxxxxxxxxxxxxxx <br>
+        </div>
+        <hr>
+        <div>
+
+            xxxxxxxxxxxxxxxxxxxxx <br> xxxxxxxxxxxxxxxxxxxxx <br> xxxxxxxxxxxxxxxxxxxxx <br> xxxxxxxxxxxxxxxxxxxxx <br> xxxxxxxxxxxxxxxxxxxxx <br> xxxxxxxxxxxxxxxxxxxxx <br> xxxxxxxxxxxxxxxxxxxxx <br> xxxxxxxxxxxxxxxxxxxxx <br> xxxxxxxxxxxxxxxxxxxxx <br>            xxxxxxxxxxxxxxxxxxxxx <br> xxxxxxxxxxxxxxxxxxxxx <br> xxxxxxxxxxxxxxxxxxxxx <br> xxxxxxxxxxxxxxxxxxxxx <br> xxxxxxxxxxxxxxxxxxxxx <br>
+        </div>
+        <hr>
+        <div>
+            xxxxxxxxxxxxxxxxxxxxx <br> xxxxxxxxxxxxxxxxxxxxx <br> xxxxxxxxxxxxxxxxxxxxx <br> xxxxxxxxxxxxxxxxxxxxx <br> xxxxxxxxxxxxxxxxxxxxx <br> xxxxxxxxxxxxxxxxxxxxx <br> xxxxxxxxxxxxxxxxxxxxx <br>
+        </div>
+    </div>
+    <!-- html & `` & string modal -->
+    <div id="modal_uid" class="modal-box modal-box-hidden" data-modal="modal">
+        <!-- draggable="true" -->
+        <div class="modal-title">
+            <!-- <span></span> -->
+        </div>
+        <div class="modal-content">
+            <!-- <div></div> -->
+        </div>
+        <div class="modal-close" data-modal="close">
+            close modal
+        </div>
+    </div>
+    <!-- libs -->
+    <!-- <script scr="https://cdn.xgqfrms.xyz/jquery/jquery-1.10.2.min.js"></script>
+    <script scr="https://cdn.xgqfrms.xyz/jquery-ui/1.12.0/jquery-ui.min.js"></script> -->
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <!-- js -->
+    <script>
+        const ModalTest = (debug = false) => {
+            let modal = document.querySelector(`[data-modal="modal"]`),
+                close = document.querySelector(`[data-modal="close"]`),
+                btn = document.querySelector(`[data-uid="modal"]`);
+            if (debug) {
+                console.log(`modal = \n`, modal);
+                console.log(`btn = \n`, btn);
+            }
+            close.addEventListener(`click`, (e) => {
+                if (debug) {
+                    console.log(`e = \n`, e);
+                    console.log(`e.target = \n`, e.target);
+                    console.log(`e.target.dataset = \n`, e.target.dataset);
+                }
+                modal.classList.add(`modal-box-hidden`);
+                modal.classList.remove(`modal-box-show`);
+            });
+            btn.addEventListener(`click`, (e) => {
+                if (debug) {
+                    console.log(`e = \n`, e);
+                    console.log(`e.target = \n`, e.target);
+                    console.log(`e.target.dataset = \n`, e.target.dataset);
+                }
+                modal.classList.add(`modal-box-show`);
+                modal.classList.remove(`modal-box-hidden`);
+                let data = btn.dataset.datas,
+                    title = btn.dataset.title;
+                if (debug) {
+                    console.log(`data = \n`, data);
+                    console.log(`title = \n`, title);
+                }
+                modal.children[0].innerHTML = `<h1 class="code-style">${title}</h1>`;
+                modal.children[1].innerHTML = `<div class="code-style">${data}</div>`;
+                // modal.insertAdjacentElement
+                // modal.insertAdjacentHTML
+                // modal.insertAdjacentText
+            });
+        };
+        window.onload = () => {
+            // ModalTest(true);
+            ModalTest();
+        };
+    </script>
+    <script>
+        $(function() {
+            console.log(`$ = `, $)
+            $("#modal_uid").draggable();
+            // 如希望， 点住时鼠标变手形!
+            // $("#modal_uid").mousedown(function() {
+            //     $(this).css("cursor", "pointer");
+            // });
+            // $("#modal_uid").mouseup(function() {
+            //     $(this).css("cursor", "default");
+            // });
+        });
+    </script>
+</body>
+
+</html>

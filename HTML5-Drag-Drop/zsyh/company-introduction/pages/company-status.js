@@ -145,6 +145,78 @@ STOCK_F9.Summary.companyStatus = STOCK_F9.Summary.companyStatus || (
     }
 );
 
+const getURLGcode = () => {
+    // getURLGcode()
+    let params = window.location.search;
+    // "?{key:%20%22value%22,%20aaa:%20%22aaa%22}"
+    let str = decodeURI(params);
+    // "?{key: "value", aaa: "aaa"}"
+    let sub_str = str.substr(1);
+    // "{key: "value", aaa: "aaa"}"
+    // JSON.parse(sub_str);
+    // Uncaught SyntaxError: Unexpected token k in JSON at position 1 at JSON.parse
+    JSON.parse(`{"key": "value", "aaa": "aaa"}`);
+    // {key: "value", aaa: "aaa"}
+    // let obj = JSON.parse(JSON.stringify(eval("(" + str + ")")));
+    let obj = JSON.parse(JSON.stringify(eval(`(${sub_str})`)));
+    // JSON.parse(JSON.stringify(`${sub_str}`));
+    // JSON.parse(JSON.stringify(``+`${sub_str}`+``));
+    // JSON.parse(JSON.stringify(`${"(" + sub_str + ")"}`));
+};
+
+/*
+
+// ??? new URLSearchParams();
+
+encodeURIComponent();
+
+encodeURI();
+decodeURI();
+
+decodeURIComponent();
+
+
+
+
+decodeURI(`http://222.73.146.143/f10/view/stock/index.html?gilcode%3D000001.SZ%26name%3D%E5%B9%B3%E5%AE%89%E9%93%B6%E8%A1%8C%26type%3D0%26sid%3Dhs
+`);
+// "http://222.73.146.143/f10/view/stock/index.html?gilcode%3D000001.SZ%26name%3D平安银行%26type%3D0%26sid%3Dhs"
+
+
+
+decodeURIComponent(`http://222.73.146.143/f10/view/stock/index.html?gilcode%3D000001.SZ%26name%3D%E5%B9%B3%E5%AE%89%E9%93%B6%E8%A1%8C%26type%3D0%26sid%3Dhs`);
+// "http://222.73.146.143/f10/view/stock/index.html?gilcode=000001.SZ&name=平安银行&type=0&sid=hs"
+
+
+
+
+
+
+
+
+
+encodeURI(`https://cdn.xgqfrms.xyz?{key:"value"}`);
+// "https://cdn.xgqfrms.xyz?%7Bkey:%22value%22%7D"
+
+encodeURI(`https://cdn.xgqfrms.xyz?{key: "value"}`);
+// "https://cdn.xgqfrms.xyz?%7Bkey:%20%22value%22%7D"
+
+// "https://cdn.xgqfrms.xyz/"
+
+
+decodeURI("https://cdn.xgqfrms.xyz?%7Bkey:%22value%22%7D");
+// "https://cdn.xgqfrms.xyz?{key:"value"}"
+
+decodeURI(`https://cdn.xgqfrms.xyz?%7Bkey:%20%22value%22%7D`);
+// "https://cdn.xgqfrms.xyz?{key: "value"}"
+
+
+
+*/
+
+
+
+
 
 
 STOCK_F9.Summary.companyStatus.init = STOCK_F9.Summary.companyStatus.init || (
@@ -160,6 +232,9 @@ STOCK_F9.Summary.companyStatus.init = STOCK_F9.Summary.companyStatus.init || (
             debug: debug
             // debug: true
         };
+        // get URL gcode
+        // let gcode = getURLGcode();
+        // Object.assign(obj,  {gcode});
         STOCK_F9.Summary.companyStatus(obj);
         // let html = STOCK_F9.Summary.companyStatus(obj);
         if (debug) {

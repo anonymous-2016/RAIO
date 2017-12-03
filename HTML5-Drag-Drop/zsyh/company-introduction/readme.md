@@ -170,6 +170,130 @@ http://10.1.5.202/stock/f9/mock-datas/tabs.json
 
 
 
+# json specification
+
+> must be double quotes & ""
+
+```js
+
+    {
+        "key": "value",
+        "key2": "value2"
+    }
+
+
+```
+
+https://json.org/
+
+https://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf
+
+
+http://json-schema.org/documentation.html
+
+
+
+
+
+
+# gcode ??? secucode
+
+
+http://222.73.146.143/f10/view/stock/index.html?gilcode%3D000001.SZ%26name%3D%E5%B9%B3%E5%AE%89%E9%93%B6%E8%A1%8C%26type%3D0%26sid%3Dhs
+
+
+http://222.73.146.143/f10/view/index.html?secucode=000001&market=4609&sid=hs
+
+./
+
+
+```js
+
+decodeURI(`http://222.73.146.143/f10/view/stock/index.html?gilcode%3D000001.SZ%26name%3D%E5%B9%B3%E5%AE%89%E9%93%B6%E8%A1%8C%26type%3D0%26sid%3Dhs
+`);
+
+// "http://222.73.146.143/f10/view/stock/index.html?gilcode%3D000001.SZ%26name%3D平安银行%26type%3D0%26sid%3Dhs"
+
+
+
+decodeURIComponent(`http://222.73.146.143/f10/view/stock/index.html?gilcode%3D000001.SZ%26name%3D%E5%B9%B3%E5%AE%89%E9%93%B6%E8%A1%8C%26type%3D0%26sid%3Dhs`);
+
+// "http://222.73.146.143/f10/view/stock/index.html?gilcode=000001.SZ&name=平安银行&type=0&sid=hs"
+
+
+
+params = window.location.search;
+// "?gilcode%3D000001.SZ%26name%3D%E5%B9%B3%E5%AE%89%E9%93%B6%E8%A1%8C%26type%3D0%26sid%3Dhs"
+
+str = decodeURIComponent(params);
+// "?gilcode=000001.SZ&name=平安银行&type=0&sid=hs"
+
+"?gilcode=000001.SZ&name=平安银行&type=0&sid=hs".substr(9, 6)
+// "000001"
+parseInt("000001");
+// 1
+
+```
+
+
+http://222.73.146.143/f10/view/index.html?secucode=000001&market=4609&sid=hs
+
+
+# ??? redirect ???
+
+secucode => gilcode
+
+
+
+https://cdn.xgqfrms.xyz/?secucode=000001&market=4609&sid=hs
+
+
+
+# sorttable.js
+
+https://kryogenix.org/code/browser/sorttable/sorttable.js
+
+https://kryogenix.org/code/browser/sorttable/
+
+https://kryogenix.org/code/browser/
+
+1. Download the Javascript library
+
+2. Include the Javascript library, by putting a link to it in the HEAD of your page, like so:
+    <script src="sorttable.js"></script>
+
+3. Mark your table as a sortable one by giving it a class of "sortable":
+    <table class="sortable">
+
+Note that the library's JavaScript file is called sorttable (two Ts),
+but the class you add to the table is sortable (one T).
+
+```scss
+
+/* Sortable tables */
+table.sortable thead {
+    background-color:#eee;
+    color:#666666;
+    font-weight: bold;
+    cursor: default;
+}
+
+table.sortable th:not(.sorttable_sorted):not(.sorttable_sorted_reverse):not(.sorttable_nosort):after {
+    content: " \25B4\25BE"
+}
+
+```
+
+
+https://kryogenix.org/code/browser/smoothscroll/smoothscroll.js
+
+
+# native js & sortable table
+
+https://www.w3schools.com/howto/howto_js_sort_table.asp
+
+https://www.w3schools.com/w3js/w3js_sort.asp
+
 
 
 

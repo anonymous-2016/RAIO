@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>absolute-center</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        .modal-box {
+            position: relative;
+            box-sizing: border-box;
+            width: 100vw;
+            height: 100vh;
+            background: #ccc;
+        }
+        
+        .modal {
+            display: block;
+            z-index: 999;
+            position: absolute;
+            /* position: fixed; */
+            border: 1px solid #f00;
+            border-radius: 10px;
+            box-sizing: border-box;
+            top: 50%;
+            left: 50%;
+            transform: translateX(-50%) translateY(-50%);
+            width: 500px;
+            height: 300px;
+            cursor: move;
+            opacity: 0.9;
+            background: #000;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="modal-box">
+        <div class="modal">
+            <!--  -->
+        </div>
+    </div>
+</body>
+
+</html>
