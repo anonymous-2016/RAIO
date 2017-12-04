@@ -79,6 +79,42 @@ const {a0, a1, a2, a3, a4, a5: img1, a6: img2, id} = {...row};
 ```
 
 
+```html
+
+
+<thead>
+    <tr data-tr="tr-changed-projects">
+        <th data-th-key="th-key-changed-projects" data-title="ID" title="ID">
+            ID
+        </th>
+        <th data-th-key="th-key-changed-projects" data-title="变更时间" title="变更时间">
+            变更时间
+        </th>
+        <th data-th-key="th-key-changed-projects" data-title="图形" title="图形">
+            图形
+        </th>
+        <th data-th-key="th-key-changed-projects" data-title="变更内容" title="变更内容">
+            变更内容
+        </th>
+        <th data-th-key="th-key-changed-projects" data-title="变更前" title="变更前">
+            变更前
+        </th>
+        <th data-th-key="th-key-changed-projects" data-title="变更后" title="变更后">
+            变更后
+        </th>
+        <th data-th-key="th-key-changed-projects" data-title="变更前详情" title="变更前详情">
+            变更前详情
+        </th>
+        <th data-th-key="th-key-changed-projects" data-title="变更后详情" title="变更后详情">
+            变更后详情
+        </th>
+    </tr>
+</thead>
+
+```
+
+
+
 
 
 

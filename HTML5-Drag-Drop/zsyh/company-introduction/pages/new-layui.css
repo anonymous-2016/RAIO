@@ -39,6 +39,7 @@ div.layui-tab-card>ul.layui-tab-title>li.layui-this {
 ul.layui-tab-title {
     position: relative;
     left: 0;
+    top: 0;
     height: 30px;
     white-space: nowrap;
     font-size: 0;
