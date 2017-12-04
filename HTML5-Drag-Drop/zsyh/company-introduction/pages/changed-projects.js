@@ -163,22 +163,39 @@ STOCK_F9.Summary.changedItems.pageInit = STOCK_F9.Summary.changedItems.pageInit 
             // sortable : false,
             // saveicon: true,
             formatter: function (cellvalue, options, rowObject) {
-                // console.log(`cellvalue \n`, cellvalue);
-                // console.log(`options \n`, options);
-                // console.log(`rowObject \n`, rowObject);
-                // var temp = `
-                //     <img
-                //         src="http://10.1.5.202/stock/f9/imgs/text.png"
-                //         title="${cellvalue}"
-                //         data-img="cel-img"
-                //     />
-                // `;
-                var temp = '<img src="http://10.1.5.202/stock/f9/imgs/text.png" data-img="cel-img" title="'+ cellvalue +'"/>';
+                if (debug) {
+                    console.log(`cellvalue \n`, cellvalue);
+                    console.log(`options \n`, options);
+                    console.log(`rowObject \n`, rowObject);
+                }
+                console.log(`rowObject \n`, rowObject);
+                let objs = JSON.stringify(rowObject);
+                console.log(`JSON.stringify(rowObject) \n`, objs);
+                let a0 = rowObject.a0;
+                console.log(`rowObject & a0 \n`, a0);
+                var temp = `
+                    <img
+                        src="http://10.1.5.202/stock/f9/imgs/text.png"
+                        title="${cellvalue}"
+                        data-title="${cellvalue}"
+                        data-datas="${rowObject}"
+                        data-objs="${objs}"
+                        data-a0="${a0}"
+                        data-img="cel-img"
+                        data-xxx="xxx"
+                    />
+                `;
+                // var temp = '<img src="http://10.1.5.202/stock/f9/imgs/text.png" data-img="cel-img" title="'+ cellvalue +'"/>';
                 setTimeout(() => {
                     let img = document.querySelector(`[data-img="cel-img"]`);
-                    console.log(`img = `, img);
+                    if (debug) {
+                        console.log(`img = `, img);
+                    }
                     img.addEventListener(`click`, (e) => {
-                        console.log(`e = `, e);
+                        if (debug) {
+                            console.log(`e = `, e);
+                            console.log(`e.target.dataset = `, e.target.dataset);
+                        }
                         // alert(`e = ${e}`);
                     });
                 }, 0);
@@ -193,22 +210,41 @@ STOCK_F9.Summary.changedItems.pageInit = STOCK_F9.Summary.changedItems.pageInit 
             // sortable : false,
             // saveicon: true,
             formatter: function (cellvalue, options, rowObject) {
-                // console.log(`cellvalue \n`, cellvalue);
-                // console.log(`options \n`, options);
-                // console.log(`rowObject \n`, rowObject);
-                // var temp = `
-                //     <img
-                //         src="http://10.1.5.202/stock/f9/imgs/text.png"
-                //         title="${cellvalue}"
-                //         data-img="cel-img"
-                //     />
-                // `;
-                var temp = '<img src="http://10.1.5.202/stock/f9/imgs/text.png" data-img="cel-img" title="'+ cellvalue +'"/>';
+                if (debug) {
+                    console.log(`cellvalue \n`, cellvalue);
+                    console.log(`options \n`, options);
+                    console.log(`rowObject \n`, rowObject);
+                    //{a0: "2017-03-27", a1: "行业与经营范围", a2: "房地产开发与经营业", a3: "房地产业", a4: "详情点击", …}
+                }
+                // console.log(`\n rowObject \n`, rowObject);
+                let objs = JSON.stringify(rowObject);
+                // console.log(`JSON.stringify(rowObject) \n`, objs);
+                // "{"
+                let a0 = rowObject.a0;
+                console.log(`rowObject & a0 \n`, a0);
+                var temp = `
+                    <img
+                        src="http://10.1.5.202/stock/f9/imgs/text.png"
+                        title="${cellvalue}"
+                        data-title="${cellvalue}"
+                        data-datas="${rowObject}"
+                        data-objs="${objs}"
+                        data-a0="${a0}"
+                        data-img="cel-img"
+                        data-xxx="xxx"
+                    />
+                `;
+                // var temp = '<img src="http://10.1.5.202/stock/f9/imgs/text.png" data-img="cel-img" title="'+ cellvalue +'"/>';
                 setTimeout(() => {
                     let img = document.querySelector(`[data-img="cel-img"]`);
-                    console.log(`img = `, img);
+                    if (debug) {
+                        console.log(`img = `, img);
+                    }
                     img.addEventListener(`click`, (e) => {
-                        console.log(`e = `, e);
+                        if (debug) {
+                            console.log(`e = `, e);
+                            console.log(`e.target.dataset = `, e.target.dataset)
+                        };
                         // alert(`e = ${e}`);
                     });
                 }, 0);
@@ -263,27 +299,43 @@ STOCK_F9.Summary.changedItems.pageInit = STOCK_F9.Summary.changedItems.pageInit 
         // height: 300,
         // autowidth: true,
         onSelectRow: function(rowid, status){
-            console.log(`\n\n\n rowid =`, rowid);
-            // 000
-            console.log(`status =`, status);
-            // true
+           if (debug) {
+                console.log(`\n\n\n rowid =`, rowid);
+                // 000
+                console.log(`status =`, status);
+                // true
+           }
             let rowData = jQuery("#list_demo").getRowData(rowid);
             // let rowData = jQuery("#list_demo").jqGrid('getRowData', rowid);
             var record = jQuery("#list_demo").jqGrid('getRowData', rowid, true);
-            console.log(`*****************************************`);
-            console.log(`rowData = \n`, JSON.stringify(rowData, null, 4));
-            console.log(`record = \n`, JSON.stringify(record, null, 4));
-            console.log(`*****************************************`);
+            if (debug) {
+                console.log(`*****************************************`);
+                console.log(`rowData = \n`, JSON.stringify(rowData, null, 4));
+                console.log(`record = \n`, JSON.stringify(record, null, 4));
+                console.log(`*****************************************`);
+            }
             // let col_data = jQuery("#list_demo").jqGrid("getColProp", "a0");
             // console.log(`getColProp = \n`, JSON.stringify(col_data, null, 4));
         },
         onCellSelect: function (rowid, iCol, cellcontent, e) {
             // rowid：当前行id；iCol：当前单元格索引；cellContent：当前单元格内容；e：event对象
-            console.log(`onCellSelect & rowid = `, rowid);
-            console.log(`onCellSelect & iCol (index) = `, iCol);// index
-            console.log(`onCellSelect & cellcontent (html) = `, cellcontent);
-            // console.log(`onCellSelect & e = `, e);
+            if (debug) {
+                console.log(`onCellSelect & rowid = `, rowid);
+                console.log(`onCellSelect & iCol (index) = `, iCol);// index
+                console.log(`onCellSelect & cellcontent (html) = `, cellcontent, typeof cellcontent);
+                // console.log(`onCellSelect & e = `, e);
+                console.log(`e.target.dataset = `, e.target.dataset);
+            }
+            console.log(`e.target.dataset = `, e.target.dataset);
+            console.log(`e.target.dataset.datas = `, e.target.dataset.datas);
+            console.log(`e.target.dataset.objs = `, e.target.dataset.objs);
+            // let objs = JSON.parse(e.target.dataset.datas);
+            // console.log(`objs = `, objs);
+            // [object Object] ???
             // ???
+            // dataset.datas & dataset.title
+            // STOCK_F9.Summary.ModalTest(cell_uid);
+            // STOCK_F9.Summary.ModalTest.dragableModal(modal_uid);
         },
         jsonReader: {
             repeatitems: false,

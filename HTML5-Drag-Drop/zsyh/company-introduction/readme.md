@@ -1,4 +1,30 @@
 
+10.1.5.31:8080/http/report/query?{'Sorts':[{'Field':'A2_1','Sort':'asc'},{'Field':'A2','Sort':'desc'},{'Field':'A1','Sort':'desc'}],'SecuCode':'600570','ApiName':'JYPlateIndustry'}
+
+10.1.5.31:8080/http/report/query?{'SecuCode':'600570','ApiName':'JYPlateConcept'}
+
+10.1.5.31:8080/http/report/query?{'Sorts':[{'Field':'A2_1','Sort':'asc'},{'Field':'A2','Sort':'desc'},{'Field':'A1','Sort':'desc'}],'SecuCode':'600570','ApiName':'JYPlateIndex'}
+
+10.1.5.31:8080/http/report/query?{'SecuCode':'600570','IndexCode':'5598','ImageType':'1','FastDateFilterType':'Customer','BeginDate':'2014-12-15','EndDate':'2017-12-03','ApiName': 'JYPlateIndexIndustryImage' }
+
+10.1.5.31:8080/http/report/query?{'SecuCode':'600570','IndexCode':'11040003','ImageType':'2','FastDateFilterType':'Customer','BeginDate':'2016-08-09','EndDate':'2017-12-03','ApiName': 'JYPlateIndexIndustryImage' }
+
+10.1.5.31:8080/http/report/query?{'SecuCode':'600570','IndexCode':'147487','ImageType':'1','FastDateFilterType':'Customer','BeginDate':'2017-10-17','EndDate':'2017-12-03','ApiName': 'JYPlateIndexIndustryImage' }
+
+
+
+
+http://localhost:3002/webtool/apitool/JYPlateIndexIndustryImage
+
+所属板块及指数(指数行业概念从表图形)
+
+
+http://10.1.5.203/http-report/query?{"ApiName":"JYPlateIndexIndustryImage","SecuCode":"600570","BeginDate":"2014-12-15","EndDate":"2017-12-03","IndexCode":"5598","ImageType":1,"WriteType":"json","Compress":"true"}
+
+
+
+
+
 http://10.1.5.203/http-report/query?{"ApiName":"JYCompanyIntroduction","SecuCode":"000002","WriteType":"json","Page":{"PageNo":1,"PageSize":100},"Compress":"true"}
 
 
@@ -295,8 +321,9 @@ https://www.w3schools.com/howto/howto_js_sort_table.asp
 https://www.w3schools.com/w3js/w3js_sort.asp
 
 
+https://www.w3schools.com/w3js/tryit.asp?filename=tryw3js_sort_table
 
-
+https://www.w3schools.com/lib/w3.js
 
 
 
@@ -305,6 +332,30 @@ https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a
 https://developer.mozilla.org/en-US/docs/Learn/HTML/Introduction_to_HTML/Creating_hyperlinks
 https://stackoverflow.com/questions/10172499/mailto-using-javascript
 
+
+
+
+```js
+
+
+$(function() {
+    // IIFE & ready
+    // ModalTest(cell_uid, true);
+    // ModalTest(cell_uid);
+    // dragableModal();
+});
+
+window.onload = () => {
+    // ModalTest(true);
+    // ModalTest();
+    console.log("window.onload & DOM fully loaded and parsed");
+};
+
+document.addEventListener("DOMContentLoaded", function(event) {
+    console.log("DOMContentLoaded & DOM fully loaded and parsed");
+});
+
+```
 
 
 {

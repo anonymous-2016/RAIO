@@ -136,6 +136,7 @@ STOCK_F9.Summary.changedItems.drawHC = STOCK_F9.Summary.changedItems.drawHC || (
         // Highcharts.stockChart('container', {
             chart: {
                 type: 'spline',
+                // type: 'datetime',
                 // type: 'line',
                 width: 600,
                 height: 400

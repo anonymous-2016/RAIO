@@ -134,14 +134,6 @@ STOCK_F9.Summary.companyStatus = STOCK_F9.Summary.companyStatus || (
         .catch(error => console.log(`fetch data error = \n`, error));
         // return only work out Promise!
         return datas;
-        // let obj = {
-        //     url,
-        //     gcode,
-        //     td_keys,
-        //     td_values,
-        //     debug
-        // };
-        // return obj;
     }
 );
 

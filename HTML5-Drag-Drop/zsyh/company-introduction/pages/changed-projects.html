@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="../../libs/jqgrid/css/jquery-ui-1.8.16.custom.css" />
     <!-- Cross origin requests are only supported for protocol schemes: http, data, chrome, chrome-extension, https. -->
     <link rel="stylesheet" href="./changed-projects.css">
+    <link rel="stylesheet" href="./modal.css">
 </head>
 
 <body>
@@ -19,12 +20,25 @@
         <table id="changed_projects_table"></table>
         <!-- <div id="changed_projects_pager"></div> -->
     </section>
-    <!-- <div id="container" data-class="hc-symbols"></div> -->
+    <!-- modal -->
+    <div id="modal_uid" class="modal-box modal-box-hidden" data-modal="modal">
+        <!-- draggable="true" -->
+        <div class="modal-title">
+            <!-- <span></span> -->
+        </div>
+        <div class="modal-content">
+            <!-- <div></div> -->
+        </div>
+        <div class="modal-close" data-modal="close">
+            close modal
+        </div>
+    </div>
     <!-- libs -->
     <script src="../../libs/jquery-1.7.1.js"></script>
     <script src="../../libs/jqgrid/js/jquery.jqGrid.src.js"></script>
     <!-- jqGrid插件的多语言包-非必要 -->
     <!-- <script src="./libs/jqgrid/i18n/grid.locale-cn.js"></script> -->
+    <script src="./modal.js"></script>
     <!-- js-->
     <script src="./changed-projects.js"></script>
 </body>

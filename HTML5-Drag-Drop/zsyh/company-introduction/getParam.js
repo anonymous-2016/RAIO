@@ -9,11 +9,9 @@ function getParam(name) {
     var paraNames = queryString.split("&");
     for (var i = 0; i < paraNames.length; i++) {
         var eindex = paraNames[i].indexOf("=");
-
         if (eindex > 0) {
             pname = paraNames[i].substring(0, eindex);
             pvalue = paraNames[i].substring(eindex + 1);
-
             if (name == pname) {
                 return pvalue;
             }
@@ -21,3 +19,6 @@ function getParam(name) {
     }
     return value;
 }
+
+// getParam("secucode");
+// "000001"
