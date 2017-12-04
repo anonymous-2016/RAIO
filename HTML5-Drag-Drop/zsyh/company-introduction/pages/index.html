@@ -8,12 +8,17 @@
     <title>Company Introduction</title>
     <!-- css libs -->
     <link rel="stylesheet" href="../../libs/layui/css/layui.css">
-    <link rel="stylesheet" href="../../libs/jqgrid/css/ui.jqgrid.css" />
-    <link rel="stylesheet" href="../../libs/jqgrid/css/jquery-ui-1.8.16.custom.css" />
+    <!-- <link rel="stylesheet" href="../../libs/jqgrid/css/ui.jqgrid.css" /> -->
+    <!-- <link rel="stylesheet" href="../../libs/jqgrid/css/jquery-ui-1.8.16.custom.css" /> -->
     <!-- css -->
     <link rel="stylesheet" href="./company-status.css">
-    <link rel="stylesheet" href="./management-analysis.css">
     <link rel="stylesheet" href="./changed-projects.css">
+    <!-- <link rel="stylesheet" href="./management-analysis.css"> -->
+    <!-- 提取数据 & 数据导出 -->
+    <!-- <link rel="stylesheet" href="http://10.1.64.125/stock/f9/stock/css/GFT.css"> -->
+    <!-- overwrite layui css -->
+    <link rel="stylesheet" href="./new-layui.css">
+    <link rel="stylesheet" href="./modal.css">
     <style>
         * {
             margin: 0;
@@ -22,9 +27,29 @@
     </style>
     <!-- url -->
     <script src="../getParam.js"></script>
+    <!-- modal:libs -->
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 </head>
 
 <body>
+    <div class="manageData">
+        <div class="layui-form layui-form-pane">
+            <div class="hyxbRadio layui-form-item">
+                <div class="layui-inline" id="saveData">
+                    <span class="btnicon saveData"></span>
+                    <label class="layui-form-label">提取数据</label>
+                </div>
+                <div class="layui-inline" id="export">
+                    <span class="btnicon outData"></span>
+                    <label class="layui-form-label">数据导出</label>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="company-status-title-box">
+        <p class="company-status-title">公司现状</p>
+    </div>
     <div class="layui-tab" lay-filter="demo">
         <ul class="layui-tab-title">
             <li class="layui-this">公司现状</li>
@@ -34,9 +59,6 @@
         <div class="layui-tab-content">
             <div class="layui-tab-item layui-show">
                 <section class="tab-container">
-                    <div class="company-status-title-box">
-                        <p class="company-status-title">公司现状</p>
-                    </div>
                     <div class="tab-table-box">
                         <table class="table-company-status">
                             <thead class="thead-company-status"></thead>
@@ -52,11 +74,36 @@
                 <section>
                     <table id="changed_projects_table"></table>
                 </section>
-                <!-- libs -->
-                <script src="../../libs/jquery-1.7.1.js"></script>
-                <script src="../../libs/jqgrid/js/jquery.jqGrid.src.js"></script>
-                <!-- js-->
+                <div style="position:relative; width:100vw; height:100vh; z-index: 999999" data-modal-box="modal-box">
+                    <!-- modal -->
+                    <button id="btn-uid" data-uid="btn" data-datas="cell-datas" & data-title="cell-title">
+                        show modal
+                    </button>
+                    <div id="modal_uid" class="modal-box modal-box-hidden" data-modal="modal" draggable="true">
+                        <!-- draggable="true" -->
+                        <div class="modal-title">
+                            <!-- <span></span> -->
+                        </div>
+                        <div class="modal-content">
+                            <!-- <div></div> -->
+                        </div>
+                        <div class="modal-close" data-modal="close">
+                            close modal
+                        </div>
+                    </div>
+                </div>
+                <!-- js -->
                 <script src="./changed-projects.js"></script>
+                <script src="./modal.js"></script>
+                <script>
+                    //btn = document.querySelector(cell_uid);
+                    let cell_uid = `[data-uid="btn"]`,
+                        jqui_id = "btn-uid";
+                    window.onload = () => {
+                        STOCK_F9.Summary.ModalTest(cell_uid, jqui_id, true);
+                        // STOCK_F9.Summary.ModalTest.dragableModal(jqui_id, true);
+                    };
+                </script>
             </div>
             <div class="layui-tab-item">
                 <section class="management-analysis" data-section="section-management-analysis">
@@ -78,23 +125,9 @@
     <script src="../../libs/layui/layui.all.js"></script>
     <script>
         const indexTabs = (debug = false) => {
-            layui.config({
-                // version: '1512277623800' //为了更新 js 缓存，可忽略
-            });
-            layui.use(['layer', 'element'], function() {
-                let element = layui.element, //元素操作
-                    layer = layui.layer; //弹层
-                // 监听Tab切换
-                element.on('tab(demo)', function(data) {
-                    // layer.msg('切换了：' + this.innerHTML);
-                    if (debug) {
-                        console.log(`data = `, data);
-                        console.log(`this = `, this);
-                    }
-                });
-            });
+            layui.use(['element'], function() {});
         }
     </script>
 </body>
 
-</html>
+<!-- </html> -->

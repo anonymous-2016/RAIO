@@ -58,10 +58,10 @@
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <!-- js -->
     <script>
-        const ModalTest = (debug = false) => {
+        const ModalTest = (uid = `[data-uid="modal"]`, debug = false) => {
             let modal = document.querySelector(`[data-modal="modal"]`),
                 close = document.querySelector(`[data-modal="close"]`),
-                btn = document.querySelector(`[data-uid="modal"]`);
+                btn = document.querySelector(uid);
             if (debug) {
                 console.log(`modal = \n`, modal);
                 console.log(`btn = \n`, btn);
@@ -96,19 +96,29 @@
                 // modal.insertAdjacentText
             });
         };
+        ModalTest.drag = ModalTest.drag || ((id = `modal-id`, debug = false) => {
+            // $("#modal_uid").draggable();
+            let str_id = `#${id}`;
+            $(str_id).draggable();
+        });
         window.onload = () => {
             // ModalTest(true);
-            ModalTest();
+            let uid = `[data-uid="modal"]`;
+            let id = `modal_uid`;
+            ModalTest(uid);
+            ModalTest.drag(id);
+            // $("#modal_uid").draggable();
         };
     </script>
     <script>
         $(function() {
-            console.log(`$ = `, $)
+            // console.log(`$ = `, $)
             $("#modal_uid").draggable();
             // 如希望， 点住时鼠标变手形!
-            // $("#modal_uid").mousedown(function() {
-            //     $(this).css("cursor", "pointer");
-            // });
+            $("#modal_uid").mousedown(function(e) {
+                console.log(`e = `, e);
+                // $(this).css("cursor", "pointer");
+            });
             // $("#modal_uid").mouseup(function() {
             //     $(this).css("cursor", "default");
             // });

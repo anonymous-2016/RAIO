@@ -24,3 +24,13 @@
 [data-img="cel-img"]:hover {
     cursor: pointer;
 }
+
+[data-mock-link="mock-link"] {
+    color: #00f;
+    cursor: pointer;
+}
+
+[data-mock-link="mock-link"]:hover {
+    color: #0f0;
+    text-decoration: underline;
+}

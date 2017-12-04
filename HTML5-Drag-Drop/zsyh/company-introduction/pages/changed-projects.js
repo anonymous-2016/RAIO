@@ -98,177 +98,6 @@ STOCK_F9.Summary.changedItems.pageInit = STOCK_F9.Summary.changedItems.pageInit 
         // "a8",
     ];
     // coldata = ["a0", "a1", "a2", "a3"];
-    const colModel = [
-        {
-            name : 'id',
-            index : 'id',
-            // width : 50,
-            width : 0,
-            hidden: true,
-        },
-        {
-            name : 'a0',
-            index : 'a0',
-            width : 100,
-            align : "center",
-            // sortable : false,
-        },
-        {
-            name : 'a4',
-            index : 'a4',
-            width : 200,
-            align : "center",
-            // sortable : false,
-            // saveicon: true
-            formatter: function (cellvalue, options, rowObject) {
-                // var temp = `
-                //     <a href="http://10.1.5.202/stock/f9/" data-link="cell-a" target="_blank" >
-                //         ${cellvalue}
-                //     </a>
-                // `;
-                var temp = `
-                    <span data-link="cell-span">
-                        ${cellvalue}
-                    </span>
-                `;
-                return temp;
-            }
-        },
-        {
-            name : 'a1',
-            index : 'a1',
-            width : 100,
-            align : "center",
-            // sortable : false,
-        },
-        {
-            name : 'a2',
-            index : 'a2',
-            width : 100,
-            align : "center",
-            // sortable : false,
-        },
-        {
-            name : 'a3',
-            index : 'a3',
-            width : 100,
-            align : "center",
-            // sortable : false,
-        },
-        {
-            name : 'a5',
-            index : 'a5',
-            width : 200,
-            align : "center",
-            // sortable : false,
-            // saveicon: true,
-            formatter: function (cellvalue, options, rowObject) {
-                if (debug) {
-                    console.log(`cellvalue \n`, cellvalue);
-                    console.log(`options \n`, options);
-                    console.log(`rowObject \n`, rowObject);
-                }
-                console.log(`rowObject \n`, rowObject);
-                let objs = JSON.stringify(rowObject);
-                console.log(`JSON.stringify(rowObject) \n`, objs);
-                let a0 = rowObject.a0;
-                console.log(`rowObject & a0 \n`, a0);
-                var temp = `
-                    <img
-                        src="http://10.1.5.202/stock/f9/imgs/text.png"
-                        title="${cellvalue}"
-                        data-title="${cellvalue}"
-                        data-datas="${rowObject}"
-                        data-objs="${objs}"
-                        data-a0="${a0}"
-                        data-img="cel-img"
-                        data-xxx="xxx"
-                    />
-                `;
-                // var temp = '<img src="http://10.1.5.202/stock/f9/imgs/text.png" data-img="cel-img" title="'+ cellvalue +'"/>';
-                setTimeout(() => {
-                    let img = document.querySelector(`[data-img="cel-img"]`);
-                    if (debug) {
-                        console.log(`img = `, img);
-                    }
-                    img.addEventListener(`click`, (e) => {
-                        if (debug) {
-                            console.log(`e = `, e);
-                            console.log(`e.target.dataset = `, e.target.dataset);
-                        }
-                        // alert(`e = ${e}`);
-                    });
-                }, 0);
-                return temp;
-            }
-        },
-        {
-            name : 'a6',
-            index : 'a6',
-            width : 100,
-            align : "center",
-            // sortable : false,
-            // saveicon: true,
-            formatter: function (cellvalue, options, rowObject) {
-                if (debug) {
-                    console.log(`cellvalue \n`, cellvalue);
-                    console.log(`options \n`, options);
-                    console.log(`rowObject \n`, rowObject);
-                    //{a0: "2017-03-27", a1: "行业与经营范围", a2: "房地产开发与经营业", a3: "房地产业", a4: "详情点击", …}
-                }
-                // console.log(`\n rowObject \n`, rowObject);
-                let objs = JSON.stringify(rowObject);
-                // console.log(`JSON.stringify(rowObject) \n`, objs);
-                // "{"
-                let a0 = rowObject.a0;
-                console.log(`rowObject & a0 \n`, a0);
-                var temp = `
-                    <img
-                        src="http://10.1.5.202/stock/f9/imgs/text.png"
-                        title="${cellvalue}"
-                        data-title="${cellvalue}"
-                        data-datas="${rowObject}"
-                        data-objs="${objs}"
-                        data-a0="${a0}"
-                        data-img="cel-img"
-                        data-xxx="xxx"
-                    />
-                `;
-                // var temp = '<img src="http://10.1.5.202/stock/f9/imgs/text.png" data-img="cel-img" title="'+ cellvalue +'"/>';
-                setTimeout(() => {
-                    let img = document.querySelector(`[data-img="cel-img"]`);
-                    if (debug) {
-                        console.log(`img = `, img);
-                    }
-                    img.addEventListener(`click`, (e) => {
-                        if (debug) {
-                            console.log(`e = `, e);
-                            console.log(`e.target.dataset = `, e.target.dataset)
-                        };
-                        // alert(`e = ${e}`);
-                    });
-                }, 0);
-                return temp;
-                // show modal
-                // showModal(data);
-                // ??? parent event!
-            }
-        },
-        // {
-        //     name : 'a7',
-        //     index : 'a7',
-        //     width : 100,
-        //     // align : "right",
-        //     // sortable : false,
-        // },
-        // {
-        //     name : 'a8',
-        //     index : 'a8',
-        //     width : 100,
-        //     // align : "right",
-        //     // sortable : false,
-        // }
-    ];
     if (debug) {
         console.log(`data =\n`, data);
         console.log(`data.rows =\n`, data.rows, data.rows.length);
@@ -276,75 +105,119 @@ STOCK_F9.Summary.changedItems.pageInit = STOCK_F9.Summary.changedItems.pageInit 
         console.log(`uid =`, uid);
     }
     let rows = data.rows;
+    let table = ``,
+        thead = ``,
+        tbody = ``;
+    let img_text = `http://10.1.5.202/stock/f9/imgs/text.png`;// cdn url
+    colNames.map(
+        (col, i) => {
+            thead += `
+                <td
+                    data-td-key="td-key-changed-projects"
+                    data-title="${col}"
+                    title="${col}">
+                    ${col}
+                </td>
+            `;
+        }
+    );
+    thead = `
+        <tr data-tr="tr-changed-projects">
+            ${thead}
+        </tr>
+    `;
+    // console.log(`thead`, thead);
+    rows.map(
+        (row, i) => {
+            const {a0, a1, a2, a3, a4, a5, a6, id} = row;
+            // ???
+            // const {a0, a1, a2, a3, a4, a5: img1, a6: img2, id} = {...row};
+            // const {a0, a1, a2, a3, a4, a5: img1, a6: img2, id} = {...row};
+            if (!debug && i === 0) {
+                console.log(`row & i`, row, i);
+                console.log(`a0`, a0);
+                console.log(`id`, id);
+                // console.log(`img1`, img1);
+                // console.log(`img2`, img2);
+            }
+            tbody += `
+                <tr data-tr="tr-changed-projects">
+                    <td
+                        data-td-value="td-vaule-changed-projects"
+                        data-uid=""
+                        data-title="">
+                        ${a0}
+                    </td>
+                    <td
+                        data-td-value="td-vaule-changed-projects"
+                        data-uid=""
+                        data-title="">
+                        <span data-mock-link="mock-link">${a4}</span>
+                    </td>
+                    <td
+                        data-td-value="td-vaule-changed-projects"
+                        data-uid=""
+                        data-title="">
+                        ${a1}
+                    </td>
+                    <td
+                        data-td-value="td-vaule-changed-projects"
+                        data-uid=""
+                        data-title="">
+                        ${a2}
+                    </td>
+                    <td
+                        data-td-value="td-vaule-changed-projects"
+                        data-uid=""
+                        data-title="">
+                        ${a3}
+                    </td>
+                    <td
+                        data-td-value="td-vaule-changed-projects"
+                        data-uid=""
+                        data-td-img="td-img-changed-projects"
+                        title="${a5}">
+                        <img
+                            src="http://10.1.5.202/stock/f9/imgs/text.png"
+                            title="${a5}"
+                            data-title="${a5}"
+                            data-datas="${row}"
+                            data-index="${i}"
+                            data-img="cel-img"
+                        />
+                    </td>
+                    <td
+                        data-td-value="td-vaule-changed-projects"
+                        data-uid=""
+                        data-td-img="td-img-changed-projects"
+                        title="${a6}">
+                        <img
+                            src="http://10.1.5.202/stock/f9/imgs/text.png"
+                            title="${a5}"
+                            data-title="${a5}"
+                            data-datas="${row}"
+                            data-index="${i}"
+                            data-img="cel-img"
+                        />
+                    </td>
+                </tr>
+            `;
+        }
+    );
+    // console.log(`tbody`, tbody);
+    table = `
+        ${thead}
+        ${tbody}
+    `;
+    let table_dom = document.querySelector(uid);
+    // console.log(`table`, table);
+    // console.log(`table_dom`, table_dom);
+    table_dom.insertAdjacentHTML(`afterbegin`, table);
+    // console.log(`table_dom`, table_dom);
     // let userData = data;
     //创建 jqGrid 组件
-    jQuery("#changed_projects_table").jqGrid({
-        // url : './data/data.json',//组件创建完成之后请求数据的url
-        // datatype : "json",//请求数据返回的类型。可选json,xml,txt
-        // userData,
-        datatype : "local",
-        data: rows,
-        // data,
-        colNames,
-        colModel,
-        loadonce : true,// 如果为ture则数据只从服务器端抓取一次，之后所有操作都是在客户端执行，翻页功能会被禁用
-        loadui: "disable", // disable禁用ajax执行提示；enable默认，当执行ajax请求时的提示； block启用Loading提示，但是阻止其他操作
-        // sortname : 'id',//初始化的时候排序的字段
-        // sortorder : "desc",//排序方式,可选desc,asc
-        sortorder : "asc",
-        mtype : "get",//向后台请求数据的ajax的类型。可选post,get
-        viewrecords : true,
-        caption : "",//表格的标题名字
-        // multiselect : true,
-        // height: 300,
-        // autowidth: true,
-        onSelectRow: function(rowid, status){
-           if (debug) {
-                console.log(`\n\n\n rowid =`, rowid);
-                // 000
-                console.log(`status =`, status);
-                // true
-           }
-            let rowData = jQuery("#list_demo").getRowData(rowid);
-            // let rowData = jQuery("#list_demo").jqGrid('getRowData', rowid);
-            var record = jQuery("#list_demo").jqGrid('getRowData', rowid, true);
-            if (debug) {
-                console.log(`*****************************************`);
-                console.log(`rowData = \n`, JSON.stringify(rowData, null, 4));
-                console.log(`record = \n`, JSON.stringify(record, null, 4));
-                console.log(`*****************************************`);
-            }
-            // let col_data = jQuery("#list_demo").jqGrid("getColProp", "a0");
-            // console.log(`getColProp = \n`, JSON.stringify(col_data, null, 4));
-        },
-        onCellSelect: function (rowid, iCol, cellcontent, e) {
-            // rowid：当前行id；iCol：当前单元格索引；cellContent：当前单元格内容；e：event对象
-            if (debug) {
-                console.log(`onCellSelect & rowid = `, rowid);
-                console.log(`onCellSelect & iCol (index) = `, iCol);// index
-                console.log(`onCellSelect & cellcontent (html) = `, cellcontent, typeof cellcontent);
-                // console.log(`onCellSelect & e = `, e);
-                console.log(`e.target.dataset = `, e.target.dataset);
-            }
-            console.log(`e.target.dataset = `, e.target.dataset);
-            console.log(`e.target.dataset.datas = `, e.target.dataset.datas);
-            console.log(`e.target.dataset.objs = `, e.target.dataset.objs);
-            // let objs = JSON.parse(e.target.dataset.datas);
-            // console.log(`objs = `, objs);
-            // [object Object] ???
-            // ???
-            // dataset.datas & dataset.title
-            // STOCK_F9.Summary.ModalTest(cell_uid);
-            // STOCK_F9.Summary.ModalTest.dragableModal(modal_uid);
-        },
-        jsonReader: {
-            repeatitems: false,
-            // id: "0"
-        }
-    });
-    // for (var i = 0; i <= rows.length; i++){
-    //     jQuery("#changed_projects_table").jqGrid('addRowData', i + 1, rows[i]);
-    // }
+    // let dom_uid = `#changed_projects_table"`;
+    // [data-table="changed-projects"]
 });
 
 

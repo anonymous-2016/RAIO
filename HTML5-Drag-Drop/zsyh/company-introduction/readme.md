@@ -14,6 +14,74 @@
 
 
 
+
+ul:bg: "#f2f2f2"
+
+color: "#2e2f33"
+bg: "#ffffff"
+
+
+color: "#56575b"
+bg: #e6e6e6
+
+border: "#c9cdd1"
+
+
+
+
+
+http://10.1.64.125/stock/f9/stock/img/button-icon12.png
+
+
+
+```js
+
+$("#export").on("click", function () {
+    formatFlag = false;
+    $("#zwzytree").jqGrid("exportToExcel", {
+        includeLabels: true,
+        includeGroupHeader: true,
+        includeFooter: true,
+        fileName: "财务摘要(报告期).xlsx",
+        replaceStr: _replStrFunc,
+        maxlength: 40 // maxlength for visible string data
+    });
+    formatFlag = true;
+    function _replStrFunc(v) {
+        return v.replace(/</g, '&lt;').replace(/>/g, '&gt;');
+        //.replace(/[\x00-\x09\x0B\x0C\x0E-\x1F\x7F-\x9F]/g, '');
+    }
+});
+
+
+```
+
+
+# remame !== alias
+
+
+```js
+
+const row = {
+  "a0": "2017-03-27",
+  "a1": "行业与经营范围",
+  "a2": "房地产开发与经营业",
+  "a3": "房地产业",
+  "a4": "详情点击",
+  "a5": "房地产开发；兴办实业（具体项目另行申报）；国内商业、物资供销业（不含专营、专控、专卖商品）；进出口业务（按深经发审证字第113号外贸企业审定证书规定办理）。",
+  "a6": "房地产开发；兴办实业（具体项目另行申报）；国内商业、物资供销业（不含专营、专控、专卖商品）；进出口业务（按深经发审证字第113号外贸企业审定证书规定办理）。",
+  "id": "000"
+};
+
+const {a0, a1, a2, a3, a4, a5: img1, a6: img2, id} = {...row};
+
+
+```
+
+
+
+
+
 http://localhost:3002/webtool/apitool/JYPlateIndexIndustryImage
 
 所属板块及指数(指数行业概念从表图形)

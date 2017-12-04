@@ -101,9 +101,9 @@ STOCK_F9.Summary.companyStatus = STOCK_F9.Summary.companyStatus || (
                                         ${
                                             key === "Email"
                                             ?
-                                            `<a href="mailto:${value}">${value}</a>`
+                                            `<a href="mailto:${value}" data-link="color-mail">${value}</a>`
                                             :
-                                            `<a href="${value}">${value}</a>`
+                                            `<a href="${value}" data-link="color-website">${value}</a>`
                                         }
                                     </td>
                                 </tr>

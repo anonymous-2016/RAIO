@@ -12,7 +12,7 @@
 .modal-box-show {
     position: absolute;
     display: block;
-    z-index: 9999;
+    z-index: 9999999;
     border: 1px solid #f00;
     border-radius: 10px;
     box-sizing: border-box;

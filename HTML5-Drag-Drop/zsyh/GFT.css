@@ -1,0 +1,114 @@
+
+html{font-family:"Microsoft YaHei",sans-serif;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;overflow-x: hidden}
+button::-moz-focus-inner,input::-moz-focus-inner{padding:0;border:0}
+a:hover,a:focus{text-decoration:underline;color:#ff5500}
+a{cursor:pointer;}
+
+li,ol{list-style:none;cursor:pointer}
+*{margin:0;padding:0}
+.text-left{text-align:left}
+.text-right{text-align:right}
+.text-center{text-align:center}
+.oddcolor{background:#f5f5f5}
+.evencolor{background:#ffffff}
+.active{background:#4c94ff}
+.active1 a{color:#fff}
+#content{display:flex;flex-wrap:wrap}
+.clr{clear: both}
+
+
+.left{float:left;position:fixed;height:100%;width:200px;background-color:#f4f9ff}
+
+.right{background-color:#ffffff;margin-left:211px;flex:1}
+.autoright{margin-left: 10px}
+.autoclose{height:170px;width:10px;background:#dbdbdb;left:200px;bottom: 30%;position: fixed;cursor: pointer}
+.arrow{position: absolute;width:7px;height: 10px;background: url("../img/arrow.png") no-repeat;top:50%;left: 14%}
+.arrowclose{background-position: -5px 0}
+
+.autoclose10{left:10px}
+
+/*颜色*/
+.fixtrcolor{background:#e8eefa}
+.oddcolor {background: #f5f5f5;}
+.evencolor {background: #ffffff;}
+
+
+/*树菜单*/
+ul.ztree {margin-top:10px;height:98%;overflow-y: auto;overflow-x: auto;}
+
+.ztree * {padding: 0;margin: 0;font-size: 13px; font-family: "Microsoft YaHei", sans-serif;}
+.ztree li a.curSelectedNode {height: 20px;}
+.ztree li span {line-height: 17px;}
+
+
+
+
+/*layui*/
+.layui-tab { margin: 1px 0;  text-align: left !important;}
+.layui-tab-content {padding: 10px;overflow: auto;}
+
+
+
+
+
+
+.nav{width:100%;height:29px;line-height:29px;background:url(../img/orange.png) no-repeat 12px 7px #616a87}
+.nav h4{width:98%;height:29px;font-size:12px;line-height:28px;margin-left:28px;font-weight:bold;color:#fff}
+.chart_style{width:100%;height:300px}
+.tab{width:100%;height:27px;background:#f2f2f2;margin-left:5px;border:1px solid #c9cdd1}
+.tab li{float:left;width:200px;height:26px;line-height:26px;text-align:center;border:1px solid #c9cdd1;border-right:none;background:#e6e6e6;font-size:12px}
+.tab li:last-child{border-right:1px solid #c9cdd1}
+#tab .tab-click{border-bottom:none;background:#fff}
+table{font-size:12px;color:#4d4d4d;border-collapse:collapse;background:#fff}
+/*table th{border: 1px solid #d7dbe0;}*/
+/*table thead th{padding:0 5px;border:1px solid #d7dbe0;font-weight:normal;background-color:#e8eefa;color:#4d4d4d;text-align:center}*/
+/*table td{border:1px solid #d7dbe0;padding-left:3px}*/
+.oddcolor {  background: #f5f5f5;  }
+
+
+.layui-btn {
+    height: 27px;
+    line-height: 27px;
+}
+.layui-input, .layui-textarea, .layui-select {
+    height: 27px;
+    line-height: 31px\9;
+}
+.layui-form-pane .layui-form-label {
+    height: 27px;
+    line-height: 10px;
+    cursor: pointer;
+}
+
+
+
+
+
+
+.layui-form-item {
+     margin-bottom: 0;
+}
+
+
+.manageData{
+    margin-top: 10px;
+}
+
+.btnicon{
+    background: url("../img/button-icon12.png") no-repeat;
+    width: 14px;
+    height: 14px;
+    position: absolute;
+    left: 5px;
+    top: 7px;
+    z-index: 1;
+}
+.saveData{
+     background-position: -448px 0px;
+ }
+.RangeScreen{
+     background-position: 0 0;
+ }
+.outData{
+    background-position: -504px 0px;
+}

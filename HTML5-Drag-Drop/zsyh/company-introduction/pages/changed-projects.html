@@ -17,10 +17,15 @@
 
 <body>
     <section>
-        <table id="changed_projects_table"></table>
+        <table id="changed_projects_table" data-table="changed-projects">
+            <!--  -->
+        </table>
         <!-- <div id="changed_projects_pager"></div> -->
     </section>
     <!-- modal -->
+    <button data-datas="cell-datas" & data-title="cell-title">
+        show modal
+    </button>
     <div id="modal_uid" class="modal-box modal-box-hidden" data-modal="modal">
         <!-- draggable="true" -->
         <div class="modal-title">
@@ -41,6 +46,10 @@
     <script src="./modal.js"></script>
     <!-- js-->
     <script src="./changed-projects.js"></script>
+    <script>
+        // STOCK_F9.Summary.ModalTest(cell_uid, true);
+        // STOCK_F9.Summary.ModalTest.dragableModal(cell_uid, true);
+    </script>
 </body>
 
 </html>
