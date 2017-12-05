@@ -53,11 +53,32 @@ https://cdn.xgqfrms.xyz/?gilcode=600570.SH&market=4609&sid=hs
 https://cdn.xgqfrms.xyz/?gilcode=000001.SZ&market=4609&sid=hs
 
 
-600570.SH  ??? .SH & .SZ
+https://cdn.xgqfrms.xyz/?secucode=000001&market=4609&sid=hs
 
-000001.SZ
+
+## .SH & .SZ
+
+> 600570.SH
+
+> 000001.SZ
 
 gilcode
+secucode
+market
+sid
+
+
+
+
+
+console.log(`STOCK_SecCode `, STOCK_SecCode, typeof STOCK_SecCode);
+console.log(`gilcode `, gilcode, typeof gilcode);
+
+// const url = `http://10.1.5.202/webservice/fastview/stock/stockfast${num}/600570.SH`;
+
+
+
+
 
 
 ```sh

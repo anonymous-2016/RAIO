@@ -17,32 +17,17 @@ STOCK_F9_FV.Utils.getParam = STOCK_F9_FV.Utils.getParam || ((key, debug = false)
         return;
     }else{
         let queryString = search.substr(start),
-            // "secucode=000001&market=4609&sid=hs"
             paraNames = queryString.split("&");// Array
-            // ["secucode=000001", "market=4609", "sid=hs"]
         for (let i = 0; i < paraNames.length; i++) {
             let begin = paraNames[i].indexOf("=");
             if (begin > 0) {
                 let pname = paraNames[i].substring(0, begin),
                     pvalue = paraNames[i].substring(begin + 1);
-                    if (!debug) {
-                        console.log(`start`, start);
-                        console.log(`queryString`, queryString);
-                        console.log(`paraNames`, paraNames);
-                        console.log(`pname`, pname);
-                        // pname secucode
-                        console.log(`pvalue`, pvalue);
-                        // value 000001
-                    }
                 if (key === pname) {
                     value = pvalue;
                     break;
                 }
             }
-        }
-        if (debug) {
-            console.log(`return value`, value);
-            // "000001"
         }
         return value;
     }
@@ -1473,8 +1458,8 @@ STOCK_F9_FV.Modules.modulesLoader = STOCK_F9_FV.Modules.modulesLoader ||(
                             link_css.setAttribute(`href`, `./Modules/${module_uid_name}.css`);
                             link_css.dataset.deleteLinkCss = `delete-link-css-${uid}`;
                             script_dom.dataset.deleteScriptDom = `delete-script-dom-${uid}`;
-                            // script_dom.setAttribute(`src`, `./Modules/${module_uid_name}.js`);
-                            script_dom.setAttribute(`src`, `./build/js/${module_uid_name}.min.js`);
+                            script_dom.setAttribute(`src`, `./Modules/${module_uid_name}.js`);
+                            // script_dom.setAttribute(`src`, `./build/js/${module_uid_name}.min.js`);
                             if (box !== null) {
                                 box.insertAdjacentElement(`afterend`, link_css);
                             }
@@ -2102,11 +2087,9 @@ STOCK_F9_FV.Modules.modulesLoader = STOCK_F9_FV.Modules.modulesLoader ||(
                         try {
                             console.log(`module_exist_checker = `, module_exist_checker);
                         } catch (error) {
-                            // console.log(`error = \n`, error);
                             console.log(`%c Sorry, some errors occurred!`, `color: #f0f`);
                         }
                     }
-                    // alert(`duplication & 重复!`);
                 }
             },
             init: function() {
@@ -2115,7 +2098,6 @@ STOCK_F9_FV.Modules.modulesLoader = STOCK_F9_FV.Modules.modulesLoader ||(
                 }
                 for (let index = 0; index < module_datas.length; index++) {
                     module_datas[index].addEventListener(`dragstart`, STOCK_F9_FV.Modules.modulesLoader.dragstart);
-                    // ???
                 }
                 if (debug) {
                     console.log(`module_containers`, module_containers);
@@ -2135,10 +2117,9 @@ STOCK_F9_FV.Modules.modulesLoader = STOCK_F9_FV.Modules.modulesLoader ||(
     }
 )();
 
-// setTimeout === Closure!
+// init
 setTimeout(function() {
     STOCK_F9_FV.Modules.modulesLoader.init();
-    // auto call
 }, 0);
 
 

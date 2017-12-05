@@ -16,7 +16,7 @@ var STOCK_F9_FV = STOCK_F9_FV || {};
 STOCK_F9_FV.Modules = STOCK_F9_FV.Modules || {};
 
 // Modules && IIFE === Closure!
-STOCK_F9_FV.Modules.agencyRating = STOCK_F9_FV.Modules.agencyRating || ((url = ``, debug = false, uid = `default_dom_uid`) => {
+STOCK_F9_FV.Modules.agencyRating = STOCK_F9_FV.Modules.agencyRating || ((url = ``, uid = `default_dom_uid`, debug = false) => {
     // agencyRating
         // debug = true;
         let datas = {};
@@ -146,278 +146,214 @@ STOCK_F9_FV.Modules.agencyRating = STOCK_F9_FV.Modules.agencyRating || ((url = `
  */
 
 // const
-STOCK_F9_FV.Modules.agencyRating.drawHS = STOCK_F9_FV.Modules.agencyRating.drawHS || ((datas = {}, container_uid = `container`, container_div = `dom_element`, debug = false) => {
-    // let container = document.querySelector(`#container`);
-    // let container = document.querySelector(`#${container_uid}`);
-    // ???
-    let titles = {
-        title1: `title 1`,
-        title2: `title 2`
-    }
-    // let {time, up, down, stock_price, keep} = {...datas};
-    // babel ??? ES5
-    let time = datas.time,
-        up = datas.up,
-        down = datas.down,
-        stock_price = datas.stock_price,
-        keep = datas.keep;
-    if (debug) {
-        console.log(`time = \n`, time);
-        console.log(`up = \n`, up);
-        console.log(`down = \n`, down);
-        console.log(`stock_price = \n`, stock_price);
-        console.log(`keep = \n`, keep);
-    }
-    // datas
-    const chart_css = {
-        color: `#0B1016`,
-        colors: ['#ff1919', '#ffff66', '#92d050'],
-        optioncolor: `red`,
-        gridColor: `#2D3039`,
-        legendColor: `#fff`,
-        yAxisColor: `#FFB400`,
-    };
-    // css_obj ???
-    // const {color, colors, optioncolor, gridColor, legendColor, yAxisColor} = {...chart_css};
-    let color = chart_css.color,
-        colors = chart_css.colors,
-        optioncolor = chart_css.optioncolor,
-        gridColor = chart_css.gridColor,
-        legendColor = chart_css.legendColor,
-        yAxisColor = chart_css.yAxisColor;
-    // container_div
-    // Highcharts.stockChart
-    // Highcharts.chart
-    Highcharts.chart(container_uid, {
-        noData: {// all defualt value
-            attr: undefined,
-            position: {
-                align: `center`,
-                verticalAlign: `middle`,
+STOCK_F9_FV.Modules.agencyRating.drawHS = STOCK_F9_FV.Modules.agencyRating.drawHS || (
+    (
+        datas = {},
+        container_uid = `container`,
+        container_div = `dom_element`,
+        debug = false
+    ) => {
+        let titles = {
+            title1: `title 1`,
+            title2: `title 2`
+        }
+        let {time, up, down, stock_price, keep} = {...datas};
+        // let time = datas.time,
+        //     up = datas.up,
+        //     down = datas.down,
+        //     stock_price = datas.stock_price,
+        //     keep = datas.keep;
+        const chart_css = {
+            color: `#0B1016`,
+            colors: ['#ff1919', '#ffff66', '#92d050'],
+            optioncolor: `red`,
+            gridColor: `#2D3039`,
+            legendColor: `#fff`,
+            yAxisColor: `#FFB400`,
+        };
+        const {color, colors, optioncolor, gridColor, legendColor, yAxisColor} = {...chart_css};
+        // let color = chart_css.color,
+        //     colors = chart_css.colors,
+        //     optioncolor = chart_css.optioncolor,
+        //     gridColor = chart_css.gridColor,
+        //     legendColor = chart_css.legendColor,
+        //     yAxisColor = chart_css.yAxisColor;
+        // Highcharts.chart
+        Highcharts.chart(container_uid, {
+            noData: {// all defualt value
+                attr: undefined,
+                position: {
+                    align: `center`,
+                    verticalAlign: `middle`,
+                    x: 0,
+                    y: 0,
+                },
+                style: {
+                    color: `#666666`,
+                    fontSize: `12px`,
+                    fontWeight: `bold`
+                },
+                useHTML: false,
+            },
+            chart: {
+                type: 'column',
+                // backgroundColor: chart_css.color
+                // backgroundColor: color
+                // height: (9 / 16 * 100) + '%',
+                height: 272,// 275px;
+                // 16:9 ratio
+                marginTop: 30,
+                // marginBottom: 65,
+            },
+            title: {
+                text: '',
+            },
+            xAxis: {
+                categories: time,
+                min: 0,
+                max: 8,
+                // xAxis datas
+                labels: {
+                    autoRotation: [0],// autoRotation:'false',
+                    step: 2
+                }
+            },
+            credits: {
+                enabled: false,// enabled: true,
+                href: `https://www.gildata.com`,
+                text: `gildata`,
+            },
+            colors: ['#ff1919', '#ffff66', '#92d050'],
+            yAxis: [
+                // yAxis 1
+                {
+                    // x: -50,
+                    // y: -50,
+                    // type: 'logarithmic',
+                    min: 0,
+                    floor: 0,
+                    ceiling: 100,
+                    max: 100,
+                    title: {
+                        text: '',
+                    },
+                    labels: {
+                        format: '{value}%',// 百分比
+                        style: {
+                            color: Highcharts.getOptions().colors[1]
+                        }
+                    }
+                }, // yAxis 2
+                {
+                    // x: -50,
+                    // y: -50,
+                    // min: 0,
+                    // max: 100, // 0-100 ???
+                    // ceiling: 100,
+                    // step: 10,
+                    title: {
+                        text: '',
+                    },
+                    opposite: true,
+                    gridLineColor: '#2D3039'
+                }
+            ],
+            legend: {
+                symbolRadius: 0,
+                // rectangle
+                align: 'center',// left, center and right. (Defaults to center.)
+                backgroundColor: `#ff00ff`, //Color,
+                /*
+                    x: 0,
+                    y: 340,
+                    verticalAlign: 'top',
+                */
                 x: 0,
                 y: 0,
+                verticalAlign: "bottom",
+                // floating: true,
+                floating: false,
+                backgroundColor: (Highcharts.theme && Highcharts.theme.background2) || 'white',
+                borderColor: '#CCC',
+                borderWidth: 1,
+                shadow: false
             },
-            style: {
-                color: `#666666`,
-                fontSize: `12px`,
-                fontWeight: `bold`
+            // tooltip ??? array
+            tooltip: {
+                headerFormat: `
+                    <strong>
+                        {point.x}
+                    </strong>
+                    <br/>
+                `,
+                pointFormat: `
+                    <span style="color:{point.color}">\u25CF</span>
+                    {series.name}: {point.y} <br/>
+                    <span style="color:{point.color}">\u25CF</span> 百分比 :{point.percentage:.0f}%
+                `,
+                // shared: true
             },
-            useHTML: false,
-        },
-        /* rangeSelector: {
-            selected: 4
-        }, */
-        chart: {
-            type: 'column',
-            // backgroundColor: chart_css.color
-            // backgroundColor: color
-            // height: (9 / 16 * 100) + '%',
-            height: 272,// 275px;
-            // 16:9 ratio
-            marginTop: 30,
-            // marginBottom: 65,
-        },
-        title: {
-            text: '',
-            // text: 'Stacked column chart'
-        },
-        xAxis: {
-            // categories: ['2017-02', '2017-02', '2017-02', '2017-02', '2017-02'],
-            categories: time,
-            min: 0,
-            max: 8,
-            // xAxis datas
-            labels: {
-                // autoRotation:'false',
-                autoRotation: [0],
-                step: 2
-            }
-        },
-        credits: {
-            // enabled: true,//
-            enabled: false,
-            href: `https://www.gildata.com`,
-            text: `gildata`,
-            // position: https://api.highcharts.com/highstock/credits.style,
-            // style: https://api.highcharts.com/highstock/credits.style
-        },
-        colors: ['#ff1919', '#ffff66', '#92d050'],
-        // colors: ['#ff1919', '#ffff66', '#92d050'],
-        // colors: [...colors],
-        yAxis: [
-            // yAxis 1
-            {
-                // x: -50,
-                // y: -50,
-                // type: 'logarithmic',
-                min: 0,
-                floor: 0,
-                ceiling: 100,
-                max: 100, // 0-100 ???
-                title: {
-                    text: '',
-                    // text: 'Total fruit consumption'
-                },
-                labels: {
-                    format: '{value}%',// 百分比
-                    style: {
-                        color: Highcharts.getOptions().colors[1]
+            // 情节/绘图选项
+            plotOptions: {
+                // (series) type = column (chart)
+                column: {
+                    // stacking: 'normal',// 是否将每个系列的值叠加在一起, 默认是：null
+                    // stacking: 'null',
+                    stacking: 'percent',// 百分比堆叠柱形图
+                    dataLabels: {
+                        // enabled: true,
+                        color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white'
                     }
-                }
-               /*  stackLabels: {
-                    // enabled: true,// counter all cols values
-                    style: {
-                        fontWeight: 'bold',
-                        color: (Highcharts.theme && Highcharts.theme.textColor) || 'gray'
-                    }
-                } */
-            },
-            // yAxis 2
-            {
-                // x: -50,
-                // y: -50,
-                // min: 0,
-                // max: 100, // 0-100 ???
-                // ceiling: 100,
-                // step: 10,
-                title: {
-                    text: '',
-                    // text: 'Total fruit consumption'
                 },
-                // labels: {
-                //     format: '{value}',
-                //     style: {
-                //         color: Highcharts.getOptions().colors[1]
-                //     }
-                // },
-                // stackLabels: {
-                //     // enabled: true,
-                //     style: {
-                //         fontWeight: 'bold',
-                //         color: (Highcharts.theme && Highcharts.theme.textColor) || 'gray'
-                //     }
-                // },
-                opposite: true,
-                gridLineColor: '#2D3039'
-            }
-        ],
-        legend: {
-            symbolRadius: 0,
-            // rectangle
-            align: 'center',// left, center and right. (Defaults to center.)
-            backgroundColor: `#ff00ff`, //Color,
-            /*
-                x: 0,
-                y: 340,
-                verticalAlign: 'top',
-            */
-            x: 0,
-            y: 0,
-            verticalAlign: "bottom",
-            // floating: true,
-            floating: false,
-            backgroundColor: (Highcharts.theme && Highcharts.theme.background2) || 'white',
-            borderColor: '#CCC',
-            borderWidth: 1,
-            shadow: false
-        },
-        // tooltip ??? array
-        tooltip: {
-            headerFormat: `
-                <strong>
-                    {point.x}
-                </strong>
-                <br/>
-            `,
-            pointFormat: `
-                <span style="color:{point.color}">\u25CF</span>
-                {series.name}: {point.y} <br/>
-                <span style="color:{point.color}">\u25CF</span> 百分比 :{point.percentage:.0f}%
-            `,
-            // shared: true
-        },
-        // 情节/绘图选项
-        plotOptions: {
-            // (series) type = column (chart)
-            column: {
-                // stacking: 'normal',// 是否将每个系列的值叠加在一起, 默认是：null
-                // stacking: 'null',
-                stacking: 'percent',// 百分比堆叠柱形图
-                dataLabels: {
-                    // enabled: true,
-                    color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white'
+                spline: {
+                    stacking: 'normal',
                 }
             },
-            spline: {
-                stacking: 'normal',
-            }
-        },
-        series: [
-            {
-                name: '上调',// type = column (chart)
-                // data: [5, 3, 4, 7, 2],
-                data: up,
-            },
-            {
-                name: '维持',
-                // data: [2, 2, 3, 2, 1],
-                data: keep,
-            },
-            {
-                name: '下调',
-                // data: [3, 4, 4, 2, 5],
-                data: down,
-            },
-            {
-                type:'spline',
-                yAxis: 1,
-                color:"skyblue",
-                name: '股价',
-                // data: [3, 4, 4, 2, 5],
-                data: stock_price,
-                connectNulls: true,// OK
-                tooltip: {
-                    headerFormat: `
-                        <strong>
-                            {point.x}
-                        </strong>
-                        <br/>
-                    `,
-                    pointFormat: `
-                        <span style="color:{point.color}">\u25CF</span>
-                        {series.name}: <b>{point.y}</b><br/>
-                    `,
-                    // <span style="color:{point.color}">\u25CF</span> 百分比 :{point.percentage:.0f}%
+            series: [
+                {
+                    name: '上调',// type = column (chart)
+                    // data: [5, 3, 4, 7, 2],
+                    data: up,
                 },
+                {
+                    name: '维持',
+                    // data: [2, 2, 3, 2, 1],
+                    data: keep,
+                },
+                {
+                    name: '下调',
+                    // data: [3, 4, 4, 2, 5],
+                    data: down,
+                },
+                {
+                    type:'spline',
+                    yAxis: 1,
+                    color:"skyblue",
+                    name: '股价',
+                    // data: [3, 4, 4, 2, 5],
+                    data: stock_price,
+                    connectNulls: true,// OK
+                    tooltip: {
+                        headerFormat: `
+                            <strong>
+                                {point.x}
+                            </strong>
+                            <br/>
+                        `,
+                        pointFormat: `
+                            <span style="color:{point.color}">\u25CF</span>
+                            {series.name}: <b>{point.y}</b><br/>
+                        `,
+                        // <span style="color:{point.color}">\u25CF</span> 百分比 :{point.percentage:.0f}%
+                    },
+                }
+            ],
+            scrollbar: {
+                enabled: true
             }
-        ],
-        scrollbar: {
-            enabled: true
-        }
-    });
-    // svg style
-    // let svg_legends = document.querySelectorAll(`.highcharts-legend-item`);
-    // // svg_legend;
-    // if (debug) {
-    //     console.log(`svg_legends = `, svg_legends);
-    // }
-    // svg_legends.forEach(
-    //     (svg_legend, index) => {
-    //         if (debug) {
-    //             console.log(`svg_legend, index`, svg_legend, index);
-    //         }
-    //         if (index < svg_legends.length - 1) {
-    //             svg_legend.lastChild;
-    //             svg_legend.lastChild.setAttribute(`x`, 0);
-    //             svg_legend.lastChild.setAttribute(`y`, 5);
-    //             svg_legend.lastChild.setAttribute(`width`, 17);
-    //             svg_legend.lastChild.setAttribute(`height`, 10);
-    //             svg_legend.lastChild.setAttribute(`rx`, 0);
-    //             svg_legend.lastChild.setAttribute(`ry`, 0);
-    //         }
-    //     }
-    // );
-});
+        });
+    }
+);
 
 
 STOCK_F9_FV.Modules.agencyRating.init = STOCK_F9_FV.Modules.agencyRating.init || (
@@ -425,19 +361,19 @@ STOCK_F9_FV.Modules.agencyRating.init = STOCK_F9_FV.Modules.agencyRating.init ||
         {
             ip,
             path,
-            gcode
+            gilcode
         } = {
             ip: `http://10.1.5.202`,
             path: `/webservice/fastview/stock/stockfast05/`,
-            gcode: `600570.SH`
+            gilcode: `600570.SH`
         }
     ) => {
-        console.log(`STOCK_SecCode `, STOCK_SecCode, typeof STOCK_SecCode);
-        console.log(`gcode `, gcode, typeof gcode);
+        // console.log(`STOCK_SecCode `, STOCK_SecCode, typeof STOCK_SecCode);
+        // console.log(`gilcode `, gilcode, typeof gilcode);
         let uid = `agency_rating_hs_container`,
-            url = `${ip}${path}${gcode}`;
-        STOCK_F9_FV.Modules.agencyRating(url, false, uid);
-        // STOCK_F9_FV.Modules.agencyRating(url, true, uid);
+            url = `${ip}${path}${gilcode}`;
+        STOCK_F9_FV.Modules.agencyRating(url, uid, false);
+        // STOCK_F9_FV.Modules.agencyRating(url, uid, true);
     }
 );
 
@@ -445,17 +381,10 @@ STOCK_F9_FV.Modules.agencyRating.init = STOCK_F9_FV.Modules.agencyRating.init ||
 STOCK_F9_FV.Modules.agencyRating.init({
     ip: `http://10.1.5.202`,
     path: `/webservice/fastview/stock/stockfast05/`,
-    gcode: STOCK_SecCode
+    gilcode: STOCK_SecCode
 });
 
 // 600570.SH  ??? .SH & .SZ
-
-
-// STOCK_F9_FV.Modules.agencyRating.init({
-//     ip: `http://10.1.5.202`,
-//     path: `http://10.1.5.202/webservice/fastview/stock/stockfast05/600570.SH`,
-//     gcode: STOCK_SecCode
-// });
 // const url = `http://10.1.5.202/webservice/fastview/stock/stockfast05/600570.SH`;
 
 

@@ -4,7 +4,7 @@
  * @subnamespace STOCK_F9_FV.Modal
  *
  * @description BouncedModal
- * @author xgqfrms & ???
+ * @author xgqfrms
  *
  * @method getClientWidthHeight
  * @method BouncedModal(options,debug)
@@ -16,7 +16,6 @@ var STOCK_F9_FV = STOCK_F9_FV || {};
 // sub namespaces
 STOCK_F9_FV.Modal = STOCK_F9_FV.Modal || {};
 
-// Modal && IIFE === Closure!
 STOCK_F9_FV.Modal.Public = STOCK_F9_FV.Modal.Public  || ((debug = false) => {
     return {
         view: () => {
