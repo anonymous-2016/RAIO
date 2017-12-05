@@ -3,23 +3,22 @@
  * top-ten-shareholders 前十大股东
  * xgqfrms
  * creadted 2017.10.31
- * @param {* String} url 
- * @param {* Array} tds 
- * @param {* Array} ui_arr 
- * @param {Boolean} debug 
+ * @param {* String} url
+ * @param {* Array} tds
+ * @param {* Array} ui_arr
+ * @param {Boolean} debug
  */
 // namespaces
 var STOCK_F9_FV = STOCK_F9_FV || {};
 // sub namespaces
 STOCK_F9_FV.Modules = STOCK_F9_FV.Modules || {};
-// Modules && IIFE === Closure!
-STOCK_F9_FV.Modules.topTenShareholders = STOCK_F9_FV.Modules.topTenShareholders || ((url = ``, td_id = `id`, debug = false) => {
-    // debug = true;
+
+STOCK_F9_FV.Modules.topTenShareholders = STOCK_F9_FV.Modules.topTenShareholders || (
+    (url = ``, uid = `id`, debug = false) => {
     let data = [];
     fetch(url)
     .then(res => res.json())
     .then(
-        //shaped data 
         (json) => {
             data = json;
             if (debug) {
@@ -56,6 +55,7 @@ STOCK_F9_FV.Modules.topTenShareholders = STOCK_F9_FV.Modules.topTenShareholders 
                     `;
                 }
             );
+            let td_id = document.querySelector(uid);
             td_id.innerHTML = html_string;
         }
     )
@@ -64,14 +64,28 @@ STOCK_F9_FV.Modules.topTenShareholders = STOCK_F9_FV.Modules.topTenShareholders 
 
 
 STOCK_F9_FV.Modules.topTenShareholders.init = STOCK_F9_FV.Modules.topTenShareholders.init || (
-    (url= `http://localhost:3000/fast-preview/json/datas/7.json`) => {
-        let td_id = document.querySelector('#fv-top-ten-shareholders-tbody');
-        // STOCK_F9_FV.Modules.topTenShareholders(url, td_id, true);
-        STOCK_F9_FV.Modules.topTenShareholders(url, td_id, false);
+    (
+        {
+            ip,
+            path,
+            gilcode
+        } = {
+            ip: `http://10.1.5.202`,
+            path: `/webservice/fastview/stock/stockfast07/`,
+            gilcode: `600570.SH`
+        }
+    ) => {
+        let uid = `#fv-top-ten-shareholders-tbody`,
+            url = `${ip}${path}${gilcode}`;
+        STOCK_F9_FV.Modules.topTenShareholders(url, uid, false);
+        // STOCK_F9_FV.Modules.topTenShareholders(url, uid, true);
     }
 );
 
-STOCK_F9_FV.Modules.topTenShareholders.init(`http://10.1.5.202/webservice/fastview/stock/stockfast07/600570.SH`);
-// url
-// const url = `http://10.1.5.202/webservice/fastview/stock/stockfast${uid}/600570.SH`;
+
+STOCK_F9_FV.Modules.topTenShareholders.init({
+    ip: `http://10.1.5.202`,
+    path: `/webservice/fastview/stock/stockfast07/`,
+    gilcode: STOCK_SecCode
+});
 

@@ -160,7 +160,8 @@ STOCK_F9_FV.Modules.FMBDtrend.FMBDTdrawHS = STOCK_F9_FV.Modules.FMBDtrend.FMBDTd
                     fontSize: `12px`,
                     fontWeight: `bold`
                 },
-                useHTML: false,
+                useHTML: true,
+                // <h1>No Data to Show, now!</h1>
             },
             chart: {
                 type: 'column',
