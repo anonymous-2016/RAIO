@@ -29,6 +29,7 @@ STOCK_F9_FV.Utils.getParam = STOCK_F9_FV.Utils.getParam || ((key, debug = false)
                 }
             }
         }
+        console.log(`value = `, value);
         return value;
     }
 });
@@ -36,6 +37,9 @@ STOCK_F9_FV.Utils.getParam = STOCK_F9_FV.Utils.getParam || ((key, debug = false)
 // STOCK_F9_FV.Utils.getParam(`secucode`);
 
 var STOCK_SecCode = STOCK_SecCode || ``;
+// var STOCK_SecCode = ``;
+
+// console.log(`STOCK_SecCode `, STOCK_SecCode);
 
 
 // STOCK_SecCode = STOCK_F9_FV.Utils.getParam(`secucode`);
@@ -151,7 +155,6 @@ let btn = document.querySelector(`[data-nav-btn="nav-btn"]`),
     body_container = document.querySelector(`[data-body-container="data-body-container"]`);
 
 btn.onclick = () => {
-    // console.log(`btn = ${container.classList.contains("h5-dnd-nav-container-normal")}`);
     if (container.classList.contains("h5-dnd-nav-container-normal")) {
         container.classList.add("h5-dnd-nav-container-small");
         container.classList.remove("h5-dnd-nav-container-normal");
@@ -202,6 +205,7 @@ window.onload = () => {
     STOCK_SecCode = STOCK_F9_FV.Utils.getParam(`gilcode`);
     // STOCK_SecCode = STOCK_F9_FV.Utils.getParam(`secucode`);
     console.log(`STOCK_SecCode `, STOCK_SecCode, typeof STOCK_SecCode);
+    // console.log(`btn = ${container.classList.contains("h5-dnd-nav-container-normal")}`);
     // init
     let btn_universal = document.querySelector(`[data-uid="universal"]`),
         btn_customize = document.querySelector(`[data-uid="customize"]`),
@@ -1458,7 +1462,7 @@ STOCK_F9_FV.Modules.modulesLoader = STOCK_F9_FV.Modules.modulesLoader ||(
                             link_css.setAttribute(`href`, `./Modules/${module_uid_name}.css`);
                             link_css.dataset.deleteLinkCss = `delete-link-css-${uid}`;
                             script_dom.dataset.deleteScriptDom = `delete-script-dom-${uid}`;
-                            script_dom.setAttribute(`src`, `./Modules/${module_uid_name}.js`);
+                            // script_dom.setAttribute(`src`, `./Modules/${module_uid_name}.js`);
                             // script_dom.setAttribute(`src`, `./build/js/${module_uid_name}.min.js`);
                             if (box !== null) {
                                 box.insertAdjacentElement(`afterend`, link_css);
