@@ -10,6 +10,37 @@ method: Highcharts.chart()
 
 
 
+# 股票代码 (seccode)
+
+SH 即表示在上海证券交易所所上市的股票,(SH即ShangHai的拼音首位),如 SH600616 即代表在上海证券交易所上市的民生银行;
+
+SZ 即表示在深圳证券交易所所上市的股票,(SZ即ShenZhen的拼音首位)如 SZ000001 即表示在深圳证券交易所上市的深发展!
+
+
+http://10.1.5.202/webservice/fastview/stock/news/000060.SZ
+
+http://10.1.5.202/webservice/fastview/stock/news/600570.SH
+
+
+http://10.1.5.203/http/manage/admin?{%22Admin%22:%22report%22,%22Action%22:%22GetSchema%22,%22WriteType%22:%22json%22,%20%22ReportName%22:%22IndexF10IndexFund%22}
+
+
+# 股票代码 查询一览表
+
+http://quote.eastmoney.com/stocklist.html
+
+
+decodeURI(`https://cdn.xgqfrms.xyz/?{%27SecuCode%27:%27600570%27,%27IndexCode%27:%27147487%27,%27ImageType%27:%271%27,%27FastDateFilterType%27:%27Customer%27,%27BeginDate%27:%272017-10-17%27,%27EndDate%27:%272017-12-03%27,%27ApiName%27:%20%27JYPlateIndexIndustryImage%27%20}`);
+
+
+
+"https://cdn.xgqfrms.xyz/?{'SecuCode':'600570','IndexCode':'147487','ImageType':'1','FastDateFilterType':'Customer','BeginDate':'2017-10-17','EndDate':'2017-12-03','ApiName': 'JYPlateIndexIndustryImage' }"
+
+
+http://222.73.146.143/f10/view/index.html?secucode=000001&market=4609&sid=hs
+
+
+
 
 
 ```sh

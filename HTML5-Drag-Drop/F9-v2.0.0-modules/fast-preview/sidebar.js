@@ -974,6 +974,10 @@ STOCK_F9_FV.Modules.loadAllModules = STOCK_F9_FV.Modules.loadAllModules || ((sor
                         console.log(`delete_box = `, delete_box);
                     }
                     delete_box.appendChild(sub_div);
+                    // sidebar.js:942 Uncaught TypeError: Cannot read property 'appendChild' of null
+                    if (delete_box !== null) {
+                        delete_box.appendChild(sub_div);
+                    }
                 }, 0);
             }
         );
