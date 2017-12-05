@@ -421,17 +421,41 @@ STOCK_F9_FV.Modules.agencyRating.drawHS = STOCK_F9_FV.Modules.agencyRating.drawH
 
 
 STOCK_F9_FV.Modules.agencyRating.init = STOCK_F9_FV.Modules.agencyRating.init || (
-    (url= `http://localhost:3000/fast-preview/json/datas/5.json`) => {
-        let uid = `agency_rating_hs_container`;
-        // let x = STOCK_F9_FV.Modules.agencyRating(url, false, uid);
-        // console.log(`x = `, x);
-        // Promise return OK ??? // return only work out Promise!
+    (
+        {
+            ip,
+            path,
+            gcode
+        } = {
+            ip: `http://10.1.5.202`,
+            path: `/webservice/fastview/stock/stockfast05/`,
+            gcode: `600570.SH`
+        }
+    ) => {
+        console.log(`STOCK_SecCode `, STOCK_SecCode, typeof STOCK_SecCode);
+        console.log(`gcode `, gcode, typeof gcode);
+        let uid = `agency_rating_hs_container`,
+            url = `${ip}${path}${gcode}`;
         STOCK_F9_FV.Modules.agencyRating(url, false, uid);
         // STOCK_F9_FV.Modules.agencyRating(url, true, uid);
     }
 );
 
-STOCK_F9_FV.Modules.agencyRating.init(`http://10.1.5.202/webservice/fastview/stock/stockfast05/600570.SH`);// url
+
+STOCK_F9_FV.Modules.agencyRating.init({
+    ip: `http://10.1.5.202`,
+    path: `/webservice/fastview/stock/stockfast05/`,
+    gcode: STOCK_SecCode
+});
+
+// 600570.SH  ??? .SH & .SZ
+
+
+// STOCK_F9_FV.Modules.agencyRating.init({
+//     ip: `http://10.1.5.202`,
+//     path: `http://10.1.5.202/webservice/fastview/stock/stockfast05/600570.SH`,
+//     gcode: STOCK_SecCode
+// });
 // const url = `http://10.1.5.202/webservice/fastview/stock/stockfast05/600570.SH`;
 
 

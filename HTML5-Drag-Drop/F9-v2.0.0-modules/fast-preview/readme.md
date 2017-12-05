@@ -33,14 +33,31 @@ http://quote.eastmoney.com/stocklist.html
 decodeURI(`https://cdn.xgqfrms.xyz/?{%27SecuCode%27:%27600570%27,%27IndexCode%27:%27147487%27,%27ImageType%27:%271%27,%27FastDateFilterType%27:%27Customer%27,%27BeginDate%27:%272017-10-17%27,%27EndDate%27:%272017-12-03%27,%27ApiName%27:%20%27JYPlateIndexIndustryImage%27%20}`);
 
 
+# getParam
 
-"https://cdn.xgqfrms.xyz/?{'SecuCode':'600570','IndexCode':'147487','ImageType':'1','FastDateFilterType':'Customer','BeginDate':'2017-10-17','EndDate':'2017-12-03','ApiName': 'JYPlateIndexIndustryImage' }"
+## Ok
+
+https://cdn.xgqfrms.xyz/?secucode=000001&market=4609&sid=hs
+
+## BAD
+
+https://cdn.xgqfrms.xyz/?{'SecuCode':'600570','IndexCode':'147487','ImageType':'1','FastDateFilterType':'Customer','BeginDate':'2017-10-17','EndDate':'2017-12-03','ApiName': 'JYPlateIndexIndustryImage' }
 
 
 http://222.73.146.143/f10/view/index.html?secucode=000001&market=4609&sid=hs
 
 
+# gilcode
 
+https://cdn.xgqfrms.xyz/?gilcode=600570.SH&market=4609&sid=hs
+https://cdn.xgqfrms.xyz/?gilcode=000001.SZ&market=4609&sid=hs
+
+
+600570.SH  ??? .SH & .SZ
+
+000001.SZ
+
+gilcode
 
 
 ```sh
