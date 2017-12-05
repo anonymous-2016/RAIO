@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>股票 F9 - 速览</title>
+    <!-- css -->
+    <link rel="stylesheet" data-css="data-css-uid" href="../js/f9-fastview/sidebar.css">
+    <!-- css order -->
+    <link rel="stylesheet" data-css="data-css-uid" href="../js/f9-fastview/common/module.css">
+    <!-- <link rel="stylesheet" data-css="data-css-uid" href="./modules-title.css"> -->
+    <!-- modal css -->
+    <link rel="stylesheet" data-css="data-css-uid" href="../js/f9-fastview/common/modal.css">
+    <!-- css & loading [data-css="data-css-uid"] dynamicly ??? -->
+    <!-- <link rel="stylesheet" data-css="data-css-uid" href="./Modules/   .css"> -->
+    <!-- <link rel="stylesheet" data-css="data-css-uid" href="./common/modules-title.css"> -->
+    <!-- <link rel="stylesheet" data-css="data-css-uid" href="./common/modules-link.css"> -->
+</head>
+
+<body>
+    <!-- data-bt-class="container container-fluid" -->
+    <header class="h5-dnd-header-container" data-header="data-header">
+        <nav class="h5-dnd-nav-container h5-dnd-nav-container-normal" data-nav-container="nav-container">
+            <ul class="h5-dnd-nav-ul">
+                <li class="h5-dnd-nav-li-active no-bottom-margin" data-nav-li="nav-li">
+                    <a href="#模板选择" data-uid="tempaltes-a-link">模板选择</a>
+                </li>
+                <li class="h5-dnd-nav-li-hidden add-bottom-margin" data-nav-li="nav-li">
+                    <a href="#模块选择" data-uid="modules-a-link">模块选择</a>
+                </li>
+                <li class="h5-dnd-nav-li-hidden add-bottom-margin" data-nav-li="nav-li">
+                    <a href="#模块设置" data-uid="settings-a-link">模块设置</a>
+                </li>
+            </ul>
+            <div class="h5-dnd-nav-box h5-dnd-nav-box-active" data-nav-box="nav-box">
+                <section class="h5-dnd-template-container ection-display" data-display="false">
+                    <!-- draggable="true" -->
+                    <div class="h5-dnd-template-box" data-uid="universal" data-title="通用模板">
+                        <p class="h5-dnd-template-p" data-title="通用模板">通用模板</p>
+                    </div>
+                    <div class="h5-dnd-template-box" data-uid="customize" data-title="自定义模板">
+                        <p class="h5-dnd-template-p" data-title="自定义模板">自定义模板</p>
+                    </div>
+                </section>
+            </div>
+            <div class="h5-dnd-nav-box h5-dnd-nav-box-hidden" data-nav-box="nav-box">
+                <section class="h5-dnd-icon-container">
+                    <!-- NO need `<img src="../icons/company-news.png" alt="">` any more, just using `CSS3` before! -->
+                    <div class="h5-dnd-icon-box" draggable="true" data-icon-uid="module-data-stockfast01" data-name="important-infos">
+                        <p class="h5-dnd-icon-p" data-uid="stockfast01" data-title="重要信息">重要信息</p>
+                    </div>
+                    <div class="h5-dnd-icon-box" draggable="true" data-icon-uid="module-data-stockfast02" data-name="recent-important-events">
+                        <p class="h5-dnd-icon-p" data-uid="stockfast02" data-title="近期重要事项">近期重要事项</p>
+                    </div>
+                    <div class="h5-dnd-icon-box" draggable="true" data-icon-uid="module-data-stockfast03">
+                        <p class="h5-dnd-icon-p">盈利预告</p>
+                    </div>
+                    <div class="h5-dnd-icon-box" draggable="true" data-icon-uid="module-data-stockfast04">
+                        <p class="h5-dnd-icon-p">每股指标</p>
+                    </div>
+                    <div class="h5-dnd-icon-box" draggable="true" data-icon-uid="module-data-stockfast05">
+                        <p class="h5-dnd-icon-p">机构评级</p>
+                    </div>
+                    <div class="h5-dnd-icon-box" draggable="true" data-icon-uid="module-data-stockfast13">
+                        <p class="h5-dnd-icon-p">机构持股变动统计</p>
+                    </div>
+                    <div class="h5-dnd-icon-box" draggable="true" data-icon-uid="module-data-stockfast06">
+                        <p class="h5-dnd-icon-p">股价/成交量</p>
+                    </div>
+                    <!-- <div class="h5-dnd-icon-box" draggable="true" data-icon-uid="module-data-stockfast???">
+                        <p class="h5-dnd-icon-p">机构调研统计</p>
+                    </div> -->
+                    <div class="h5-dnd-icon-box" draggable="true" data-icon-uid="module-data-stockfast07">
+                        <p class="h5-dnd-icon-p">前十大股东</p>
+                    </div>
+                    <div class="h5-dnd-icon-box" draggable="true" data-icon-uid="module-data-research">
+                        <p class="h5-dnd-icon-p">研究报告</p>
+                    </div>
+                    <div class="h5-dnd-icon-box" draggable="true" data-icon-uid="module-data-bulletion">
+                        <p class="h5-dnd-icon-p">公司公告</p>
+                    </div>
+                    <div class="h5-dnd-icon-box" draggable="true" data-icon-uid="module-data-news">
+                        <p class="h5-dnd-icon-p">公司新闻</p>
+                    </div>
+                    <!--
+                        <div class="h5-dnd-icon-box" draggable="true">
+                            <p class="h5-dnd-icon-p">投资者关系</p>
+                        </div>
+                    -->
+                    <div class="h5-dnd-icon-box" draggable="true" data-icon-uid="module-data-stockfast08">
+                        <p class="h5-dnd-icon-p">融资余额与融券余额差值走势</p>
+                    </div>
+                    <div class="h5-dnd-icon-box" draggable="true" data-icon-uid="module-data-stockfast09">
+                        <p class="h5-dnd-icon-p">近一个月资金流向大单统计</p>
+                    </div>
+                    <div class="h5-dnd-icon-box" draggable="true" data-icon-uid="module-data-stockfast10">
+                        <p class="h5-dnd-icon-p">股权质押</p>
+                    </div>
+                    <div class="h5-dnd-icon-box" draggable="true" data-icon-uid="module-data-stockfast11">
+                        <p class="h5-dnd-icon-p">控股参股情况</p>
+                    </div>
+                    <div class="h5-dnd-icon-box" draggable="true" data-icon-uid="module-data-stockfast12">
+                        <p class="h5-dnd-icon-p">高管持股变动情况</p>
+                    </div>
+                </section>
+            </div>
+            <div class="h5-dnd-nav-box h5-dnd-nav-box-hidden" data-nav-box="nav-box">
+                <section class="h5-dnd-module-container section-hidden" data-display="true">
+                    <div class="h5-dnd-module-box" data-uid="module-setting" data-title="模块设置">
+                        <p class="h5-dnd-module-p" data-title="addEventListener 模块设置">模块设置</p>
+                    </div>
+                </section>
+            </div>
+            <div class="h5-dnd-nav-btn" data-nav-btn="nav-btn" title="折叠侧边栏">
+                <!-- btn -->
+            </div>
+        </nav>
+        <div class="h5-dnd-nav-small-btn h5-dnd-nav-small-btn-hidden" data-nav-small-container="nav-small-container">
+            <div data-nav-small-btn="nav-small-btn" title="展开侧边栏">
+                <!-- <span>展开侧边栏</span> -->
+            </div>
+        </div>
+        <!-- show/hidden === display: block/none; -->
+    </header>
+    <section class="h5-dnd-body-container h5-dnd-body-container-small" data-body-container="data-body-container">
+        <!-- data-* & modules.dom placeholder -->
+        <div id="section-sortable-container" class="div-inner-box" data-div-inner-box="data-div-inner-box">
+            <div id="left-sortable-container" class="div-sortable-box" data-sortable-box="left-sortable-box">
+                <!-- left -->
+                <!-- data-div-module-uid*="div-module" -->
+            </div>
+            <div id="right-sortable-container" class="div-sortable-box" data-sortable-box="right-sortable-box">
+                <!-- right -->
+            </div>
+        </div>
+    </section>
+    <!-- modal -->
+    <div class="fade in" id="zxdtModal">
+        <!-- bad css modal -->
+    </div>
+    <!-- libs -->
+    <script src="./libs/highstock.js"></script>
+    <script src="./libs/Sortable.min.js"></script>
+    <script src="./libs/sweetalert.min.js"></script>
+    <!-- modal libs -->
+    <script src="./libs/jquery1.4.0.min.js"></script>
+    <!-- <script src="./libs/BouncedModal.js"></script> -->
+    <script src="./build/js/modal.min.js"></script>
+    <!-- js -->
+    <!-- <script src="./sidebar.js"></script> -->
+    <script src="./build/js/sidebar.min.js"></script>
+    <!-- <script src="./config.js"></script> -->
+    <div class="module-script-box">
+        <!-- modules.js placeholder -->
+    </div>
+    <script>
+        // Multi groups
+        var byId = function(id) {
+            return document.getElementById(id);
+        };
+        Sortable.create(byId('section-sortable-container'), {
+            // container
+            animation: 150,
+            draggable: '.div-sortable-box', // sub-container
+            //handle: '.tile__name' // sub-sub-container-title
+        });
+        // document.querySelector(('[data-div-module-uid*="div-module"]'));
+        // [].forEach.call(byId('multi').getElementsByClassName('div-sortable-box'), function(el) {
+        [].forEach.call(byId('section-sortable-container').getElementsByClassName('div-sortable-box'), function(el) {
+            // sub-sub-container-list
+            Sortable.create(el, {
+                group: 'photo',
+                animation: 150
+            });
+        });
+    </script>
+</body>
+
+</html>

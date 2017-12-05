@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-Hans">
 
 <head>
     <meta charset="UTF-8">
@@ -11,28 +11,16 @@
 
 <body>
     <section>
-        <div id="container" style="display: none;"></div>
         <div>
             <!-- .xlsx -->
-            <button onclick="doit('xlsx');" title="XLSX Excel 2007+ XML">Export to XLSX!</button>
-            <!-- .biff8 -->
-            <!-- <button onclick="doit('biff8');" title="XLS Excel 97-2004 Binary">Export to XLS!</button> -->
+            <button onclick="NameSpace.ExportTableExcel.export('xlsx', 'customize-excel-filename.xlsx');" title="XLSX Excel 2007+ XML">Export to XLSX!</button>
             <!-- .xls -->
-            <button onclick="doit('biff8', 'test.xls');" title="XLS Excel 97-2004 Binary">Export to XLS!</button>
+            <button onclick="NameSpace.ExportTableExcel.export('xls', 'test-excel-filename.xls');" title="XLS Excel 97-2004 Binary">Export to XLS!</button>
         </div>
     </section>
-    <!-- SheetJS js-xlsx library -->
-    <!-- <script src="libs/shim.js"></script> -->
-    <script src="libs/xlsx.full.min.js"></script>
-    <!-- FileSaver.js is the library of choice for Chrome -->
-    <!-- <script src="libs/Blob.js"></script> -->
-    <script src="libs/FileSaver.js"></script>
-    <!-- FileSaver doesn't work in older IE and newer Safari; Downloadify is the flash fallback -->
-    <!-- <script src="libs/swfobject.js"></script> -->
-    <!-- <script src="libs/downloadify.min.js"></script> -->
-    <!-- <script src="libs/base64.min.js"></script> -->
-    <!-- js -->
-    <!--[if lte IE 9]><script type="text/javascript">fallback = true;</script><![endif]-->
+    <!-- libs -->
+    <script src="./libs/xlsx.full.min.js"></script>
+    <script src="./libs/FileSaver.js"></script>
     <script src="./js-xlsx.js"></script>
 </body>
 

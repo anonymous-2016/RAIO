@@ -8,6 +8,34 @@ STOCK_F9_FV.Modules = STOCK_F9_FV.Modules || {};
 
 
 
+STOCK_F9_FV.Utils.getParam = STOCK_F9_FV.Utils.getParam || ((key) => {
+    let search = decodeURIComponent(window.location.search),
+        start = search.indexOf("?");
+    if (start < 0) {
+        return;
+    }else{
+        var value = "";
+        var queryString = search.substring(start);
+        var paraNames = queryString.split("&");
+        for (var i = 0; i < paraNames.length; i++) {
+            var eindex = paraNames[i].indexOf("=");
+            if (eindex > 0) {
+                pname = paraNames[i].substring(0, eindex);
+                pvalue = paraNames[i].substring(eindex + 1);
+                if (key === pname) {
+                    return pvalue;
+                }
+            }
+        }
+        return value;
+    }
+});
+
+
+
+
+
+
 const debug = false;
 // const debug = false;
 
@@ -140,6 +168,8 @@ small_btn.onclick = () => {
 
 // init ???
 window.onload = () => {
+    //
+    // init
     let btn_universal = document.querySelector(`[data-uid="universal"]`),
         btn_customize = document.querySelector(`[data-uid="customize"]`),
         btn_module_setting = document.querySelector(`[data-uid="module-setting"]`);
