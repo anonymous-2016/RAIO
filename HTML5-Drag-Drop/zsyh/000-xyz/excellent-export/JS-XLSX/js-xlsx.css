@@ -1,0 +1,13 @@
+@charset "UTF-8";
+
+/* xlsx */
+
+.xport,
+.btn {
+    display: inline;
+    text-align: center;
+}
+
+a {
+    text-decoration: none
+}

@@ -206,11 +206,11 @@ STOCK_F9.Summary.changedItems.pageInit = STOCK_F9.Summary.changedItems.pageInit 
             `;
         }
     );
-    tbody = `
-        <tbody>
-            ${tbody}
-        </tbody>
-    `;
+    // tbody = `
+    //     <tbody>
+    //         ${tbody}
+    //     </tbody>
+    // `;
     // console.log(`tbody`, tbody);
     table = `
         ${thead}
@@ -219,24 +219,13 @@ STOCK_F9.Summary.changedItems.pageInit = STOCK_F9.Summary.changedItems.pageInit 
     // table = `
     //     ${tbody}
     // `;
-    let table_dom = document.querySelector(uid);
+    // let table_dom = document.querySelector(uid);
+    let table_tbody = document.querySelector(`[data-tbody="tbody"]`);
     // console.log(`table`, table);
     // console.log(`table_dom`, table_dom);
-    table_dom.insertAdjacentHTML(`beforeend`, table);
+    // table_dom.insertAdjacentHTML(`beforeend`, table);
+    table_tbody.insertAdjacentHTML(`beforeend`, tbody);
     // console.log(`table_dom`, table_dom);
-    // let userData = data;
-    //创建 jqGrid 组件
-    // let dom_uid = `#changed_projects_table"`;
-    // [data-table="changed-projects"]
-    let js = `<script src="https://kryogenix.org/code/browser/sorttable/sorttable.js"></script>`
-    document.body.insertAdjacentHTML(`beforeend`, js);
-    // document.addEventListener("DOMContentLoaded", function(event) {
-    //     console.log("DOM fully loaded and parsed");
-    //     setTimeout(() => {
-    //         let js = `<script src="https://kryogenix.org/code/browser/sorttable/sorttable.js"></script>`
-    //         document.body.insertAdjacentHTML(`beforeend`, js);
-    //     }, 0);
-    // });
 });
 
 

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Export Table To Excel</title>
+</head>
+
+<body>
+    <div>
+        <button type="button" onclick="ExportTableToExcel(); ">Export Data</button>
+        <section>
+            <div id="exportedTable"></div>
+            <textarea id="exportedHtml" rows="10" cols="50"></textarea>
+            <iframe id="textArea" style="display:none"></iframe>
+        </section>
+    </div>
+    <table>
+        <tbody>
+            <tr>
+                <td>Product</td>
+                <td>Customer</td>
+            </tr>
+            <tr></tr>
+            <tr>
+                <td>Product1</td>
+                <td>Customer1</td>
+            </tr>
+            <tr>
+                <td>Product2</td>
+                <td>Customer2</td>
+            </tr>
+            <tr>
+                <td>Product3</td>
+                <td>Customer3</td>
+            </tr>
+            <tr>
+                <td>Product4</td>
+                <td>Customer4</td>
+            </tr>
+        </tbody>
+    </table>
+    <section>
+        <div class="layui-inline" id="export">
+            <span class="btnicon outData"></span>
+            <label class="layui-form-label" data-btn="export-excel">数据导出</label>
+        </div>
+    </section>
+    <section>
+        <button onclick="window.open('data:application/vnd.ms-excel,'+document.body.children[1].innerText);">
+            Excel 2007
+        </button>
+        <button onclick="window.open('data:application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,'+document.body.children[1].innerText);">
+           Excel 2010 application/vnd.openxmlformats-officedocument.spreadsheetml.sheet
+        </button>
+        <button onclick="window.open('data:application/vnd.openxmlformats-officedocument.spreadsheetml.template,'+document.body.children[1].innerText);">
+           Excel 2010 application/vnd.openxmlformats-officedocument.spreadsheetml.template
+        </button>
+    </section>
+    <section>
+        <table id="mytable">
+            <thead>
+                <tr>
+                    <th>name</th>
+                    <th>place</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>adfas</td>
+                    <td>asdfasf</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+    <!-- js -->
+    <script src="./export-excel.js"></script>
+    <script>
+        function write_headers_to_excel() {
+            str = "";
+            var myTableHead = document.getElementById('mytable');
+            var rowCount = myTableHead.rows.length;
+            var colCount = myTableHead.getElementsByTagName("tr")[0].getElementsByTagName("th").length;
+            var ExcelApp = new ActiveXObject("Excel.Application");
+            var ExcelSheet = new ActiveXObject("Excel.Sheet");
+            // Uncaught ReferenceError: ActiveXObject is not defined
+            ExcelSheet.Application.Visible = true;
+            for (var i = 0; i < rowCount; i++) {
+                for (var j = 0; j < colCount; j++) {
+                    str = myTableHead.getElementsByTagName("tr")[i].getElementsByTagName("th")[j].innerHTML;
+                    ExcelSheet.ActiveSheet.Cells(i + 1, j + 1).Value = str;
+                }
+            }
+        }
+        write_headers_to_excel();
+    </script>
+    <script>
+        //export data in Chrome or FireFox
+        //this works in Chrome but not in FireFox
+        //also no errors in firefox
+        // const EE = (uid = `id`, debug = false) => {
+        //     let table = document.querySelector(`[data-table="changed-projects"]`);
+        //     let sa = true;
+        //     let myBlob = new Blob([table], {
+        //         type: 'text/html'
+        //     });
+        //     var url = window.URL.createObjectURL(myBlob);
+        //     var a = document.createElement("a");
+        //     document.body.appendChild(a);
+        //     a.href = url;
+        //     a.download = "newfile.xls";
+        //     a.click();
+        //     window.URL.revokeObjectURL(url);
+        //     return (sa);
+        // };
+        // EE();
+        // $(document).ready(function() {
+        //     $('#example').dataTable({
+        //         "sDom": 'T<"clear">lfrtip',
+        //         "oTableTools": {
+        //             "sSwfPath": "/swf/copy_cvs_xls_pdf.swf"
+        //         }
+        //     });
+        // });
+        // window.open('data:application/vnd.ms-excel,'+document.documentElement.innerHTML);"
+        // Made it work adding a replace in the end:
+        // window.open('data:application/vnd.ms-excel,' + document.getElementById('table').outerHTML.replace(/ /g, '%20'));
+    </script>
+</body>
+
+</html>

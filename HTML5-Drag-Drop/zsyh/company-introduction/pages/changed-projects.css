@@ -45,6 +45,72 @@ table.sortable thead {
     cursor: default;
 }
 
+* {
+    box-sizing: border-box;
+}
+
 table.sortable th:not(.sorttable_sorted):not(.sorttable_sorted_reverse):not(.sorttable_nosort):after {
     content: " \25B4\25BE"
 }
+
+#changed_projects_table {
+    display: none;
+}
+
+
+/* table */
+
+table[data-table="changed-projects"] {
+    width: 100%;
+    /* 去除table每行之间的空白间隙 */
+    border-collapse: collapse;
+    border-spacing: 0;
+    /* border-collapse: separate; */
+    /* border-spacing: 1px */
+    /* border-color: #c5d2db; */
+    font-size: 13px;
+    font-weight: normal;
+}
+
+thead[data-thead="thead-changed-projects"]>tr[data-tr="tr-changed-projects"]>th:nth-of-type(n) {
+    text-align: center;
+    border-right: 1px solid #666;
+}
+
+[data-table="changed-projects"] {
+    border: 1px solid #ccc;
+    text-align: center;
+}
+
+[data-tr="tr-changed-projects"] {
+    border: 1px solid #ccc;
+    text-align: center;
+}
+
+[data-td-value="td-vaule-changed-projects"] {
+    border-right: 1px solid #ccc;
+}
+
+tr[data-tr="tr-changed-projects"]>td:nth-of-type(n) {
+    text-align: center;
+}
+
+tr[data-tr="tr-changed-projects"]>td:nth-of-type(6),
+tr[data-tr="tr-changed-projects"]>td:nth-of-type(7) {
+    text-align: center;
+}
+
+div[data-modal-box="modal-box"] {
+    display: none;
+}
+
+[data-modal="modal"] {
+    display: none;
+}
+
+[data-datas="cell-datas"] {
+    display: none;
+}
+
+
+/* #c5d1db */

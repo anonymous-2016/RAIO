@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>SheetJS JS-XLSX In-Browser HTML Table Export Demo</title>
+    <link rel="stylesheet" href="./js-xlsx.css">
+</head>
+
+<body>
+    <section>
+        <div id="container"></div>
+        <table id="xport">
+            <tr>
+                <td><pre>XLSX Excel 2007+ XML</pre></td>
+                <td>
+                    <!--[if gt IE 9]>-->
+                    <p id="xportxlsx" class="xport">
+                        <input type="submit" value="Export to XLSX!" onclick="doit('xlsx');">
+                    </p>
+                    <!--<![endif]-->
+                    <p id="xlsxbtn" class="btn">Flash required for actually downloading the generated file.</p>
+                </td>
+            </tr>
+            <tr>
+                <td><pre>XLSB Excel 2007+ Binary</pre></td>
+                <td>
+                    <!--[if gt IE 9]>-->
+                    <p id="xportxlsb" class="xport">
+                        <input type="submit" value="Export to XLSB!" onclick="doit('xlsb');">
+                    </p>
+                    <!--<![endif]-->
+                    <p id="xlsbbtn" class="btn">Flash required for actually downloading the generated file.</p>
+                </td>
+            </tr>
+            <tr>
+                <td><pre>XLS Excel 97-2004 Binary</pre></td>
+                <td>
+                    <!--[if gt IE 9]>-->
+                    <p id="xportbiff8" class="xport">
+                        <input type="submit" value="Export to XLS!" onclick="doit('biff8', 'test.xls');">
+                    </p>
+                    <!--<![endif]-->
+                    <p id="biff8btn" class="btn">Flash required for actually downloading the generated file.</p>
+                </td>
+            </tr>
+            <tr>
+                <td><pre>ODS</pre></td>
+                <td>
+                    <!--[if gt IE 9]>-->
+                    <p id="xportods" class="xport">
+                        <input type="submit" value="Export to ODS!" onclick="doit('ods');">
+                    </p>
+                    <!--<![endif]-->
+                    <p id="odsbtn" class="btn">Flash required for actually downloading the generated file.</p>
+                </td>
+            </tr>
+            <tr>
+                <td><pre>Flat ODS</pre></td>
+                <td>
+                    <!--[if gt IE 9]>-->
+                    <p id="xportfods" class="xport">
+                        <input type="submit" value="Export to FODS!" onclick="doit('fods', 'test.fods');">
+                    </p>
+                    <!--<![endif]-->
+                    <p id="fodsbtn" class="btn">Flash required for actually downloading the generated file.</p>
+                </td>
+            </tr>
+        </table>
+    </section>
+    <!-- SheetJS js-xlsx library -->
+    <script src="libs/shim.js"></script>
+    <script src="libs/xlsx.full.min.js"></script>
+    <!-- FileSaver.js is the library of choice for Chrome -->
+    <script src="libs/Blob.js"></script>
+    <script src="libs/FileSaver.js"></script>
+    <!-- FileSaver doesn't work in older IE and newer Safari; Downloadify is the flash fallback -->
+    <script src="libs/swfobject.js"></script>
+    <script src="libs/downloadify.min.js"></script>
+    <script src="libs/base64.min.js"></script>
+    <!-- js -->
+    <!--[if lte IE 9]><script type="text/javascript">fallback = true;</script><![endif]-->
+    <script src="./js-xlsx.js"></script>
+</body>
+
+</html>

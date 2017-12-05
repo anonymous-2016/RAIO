@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>encodeURIComponent()</title>
+</head>
+
+<body>
+    <button>click me</button>
+    <div id="tableWrap">
+        <table>
+            <thead>
+                <tr>
+                    <th>A</th>
+                    <th>B</th>
+                    <th>C</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>3</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>3</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>3</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>3</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <!-- js -->
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.9.0.js">
+    </script>
+    <script type="text/javascript">
+        $(function() {
+            $('button').click(function() {
+                var url = 'data:application/vnd.ms-excel,' + encodeURIComponent($('#tableWrap').html())
+                location.href = url
+                return false
+            })
+        })
+    </script>
+</body>
+
+</html>

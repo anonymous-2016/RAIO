@@ -2,6 +2,10 @@
 
 /* modal css */
 
+div[data-modal-box="modal-box"] {
+    display: none;
+}
+
 .modal-box-hidden {
     display: none;
     z-index: 9999;

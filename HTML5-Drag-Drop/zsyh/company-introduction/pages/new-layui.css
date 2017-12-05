@@ -67,6 +67,19 @@ ul.layui-tab-title li {
     cursor: pointer;
 }
 
+ul.layui-tab-title>li.layui-this:after {
+    position: absolute;
+    left: 0;
+    top: 0;
+    content: '';
+    width: 100%;
+    height: 26px;
+    /* border-width: 1px; */
+    border-width: 0;
+    box-sizing: border-box;
+    pointer-events: none;
+}
+
 ul.layui-tab-title>li[data-li="li-management-analysis"] {
     max-width: 90px;
     min-width: 90px;
@@ -89,10 +102,7 @@ ul.layui-tab-title li.layui-this:after {
     content: '';
     width: 100%;
     height: 30px;
-    border-width: 1px;
-    border-style: solid;
-    border-bottom-color: #fff;
-    border-radius: 2px 2px 0 0;
+    border-width: 0;
     box-sizing: border-box;
     pointer-events: none;
 }
