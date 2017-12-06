@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>iframe Example</title>
+</head>
+
+<body>
+    <div>
+        <button id="goButton" onclick="doSomething()">Do something!</button>
+    </div>
+    <script type="text/javascript">
+        function doSomething() {
+            // alert("You clicked the button! This frame's title is " + document.title);
+            console.log(`You clicked the button! This frame's title is,`, document.title);
+            console.log(`This frame's window.location is,`, JSON.stringify(window.location, null, 4));
+            console.log(`This frame's window.parent.location is,`, JSON.stringify(window.parent.location, null, 4));
+        }
+        var getParam = getParam || ((key, debug = false) => {
+            let search = decodeURIComponent(window.location.search),
+                start = search.indexOf("?") + 1,
+                value = ``;
+            if (start < 1) {
+                return;
+            } else {
+                let queryString = search.substr(start),
+                    paraNames = queryString.split("&"); // Array
+                for (let i = 0; i < paraNames.length; i++) {
+                    let begin = paraNames[i].indexOf("=");
+                    if (begin > 0) {
+                        let pname = paraNames[i].substring(0, begin),
+                            pvalue = paraNames[i].substring(begin + 1);
+                        if (key === pname) {
+                            value = pvalue;
+                            break;
+                        }
+                    }
+                }
+                console.log(`value = `, value);
+                return value;
+            }
+        });
+        window.onload = () => {
+            let gilcode = getParam("gilcode");
+            console.log(`gilcode = `, gilcode);
+        };
+    </script>
+</body>
+
+</html>
