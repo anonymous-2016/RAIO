@@ -22,15 +22,30 @@ STOCK_F9_FV.Config = STOCK_F9_FV.Config || {};
 
 STOCK_F9_FV.Config.IPs = STOCK_F9_FV.Config.IPs || {
     stock: `http://10.1.5.202`,
-    f9: `http://10.1.64.125`,
-    local: `http://localhost:3000/`,
+    // f9: `http://10.1.64.125`,
+    // local: `http://localhost:3000/`,
 };
 // STOCK_F9_FV.Config.IPs.stock;
 // "http://10.1.5.202"
 
 STOCK_F9_FV.Config.Paths = STOCK_F9_FV.Config.Paths || {
-    //
+    path: `/webservice/fastview/stock/`,
+    // PATH: `/webservice/fastview/stock/stockfast05/`,
 };
+
+STOCK_F9_FV.Config.Codes = STOCK_F9_FV.Config.Codes || {
+    //gilcode: STOCK_SecCode
+    // stockfast05
+};
+
+STOCK_F9_FV.Config.Params = STOCK_F9_FV.Config.Params || {
+    params: `stockfast05`,
+    params: `news`,
+    params: `bulletin`,
+};
+// .SH
+// .SZ
+
 
 
 STOCK_F9_FV.Config.URLs = STOCK_F9_FV.Config.URLs || {
@@ -38,6 +53,21 @@ STOCK_F9_FV.Config.URLs = STOCK_F9_FV.Config.URLs || {
 };
 
 
+/*
+
+
+STOCK_F9_FV.Modules.topTenShareholders.init({
+    ip: STOCK_IP,
+    path: `${STOCK_Paths}/stockfast07/`,
+    gilcode: STOCK_SecCode
+    // ip: `http://10.1.5.202`,
+    // path: `/webservice/fastview/stock/stockfast07/`,
+    // gilcode: `600570.SH`
+});
+
+
+
+*/
 
 
 

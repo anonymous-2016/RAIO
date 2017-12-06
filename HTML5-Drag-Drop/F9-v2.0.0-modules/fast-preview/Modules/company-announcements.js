@@ -127,9 +127,12 @@ STOCK_F9_FV.Modules.companyAnnouncements.init = STOCK_F9_FV.Modules.companyAnnou
 );
 
 STOCK_F9_FV.Modules.companyAnnouncements.init({
-    ip: `http://10.1.5.202`,
-    path: `/webservice/fastview/stock/bulletion/`,
+    ip: STOCK_IP,
+    path: `${STOCK_Paths}/bulletion/`,
     gilcode: STOCK_SecCode
+    // ip: `http://10.1.5.202`,
+    // path: `/webservice/fastview/stock/bulletion/`,
+    // gilcode: `600570.SH`
 });
 
 // const url = `http://10.1.5.202/webservice/fastview/stock/bulletion/600570.SH`;

@@ -107,9 +107,12 @@ STOCK_F9_FV.Modules.changesShareholdingExecutives.init = STOCK_F9_FV.Modules.cha
 );
 
 STOCK_F9_FV.Modules.changesShareholdingExecutives.init({
-    ip: `http://10.1.5.202`,
-    path: `/webservice/fastview/stock/stockfast12/`,
+    ip: STOCK_IP,
+    path: `${STOCK_Paths}/stockfast12/`,
     gilcode: STOCK_SecCode
+    // ip: `http://10.1.5.202`,
+    // path: `/webservice/fastview/stock/stockfast12/`,
+    // gilcode: `600570.SH`
 });
 
 

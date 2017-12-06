@@ -379,9 +379,12 @@ STOCK_F9_FV.Modules.agencyRating.init = STOCK_F9_FV.Modules.agencyRating.init ||
 
 
 STOCK_F9_FV.Modules.agencyRating.init({
-    ip: `http://10.1.5.202`,
-    path: `/webservice/fastview/stock/stockfast05/`,
+    ip: STOCK_IP,
+    path: `${STOCK_Paths}/stockfast05/`,
     gilcode: STOCK_SecCode
+    // ip: `http://10.1.5.202`,
+    // path: `/webservice/fastview/stock/stockfast05/`,
+    // gilcode: `600570.SH`
 });
 
 // 600570.SH  ??? .SH & .SZ

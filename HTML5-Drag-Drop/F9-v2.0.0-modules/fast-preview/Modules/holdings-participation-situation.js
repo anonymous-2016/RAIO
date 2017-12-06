@@ -105,9 +105,12 @@ STOCK_F9_FV.Modules.holdingsParticipationSituation.init = STOCK_F9_FV.Modules.ho
 
 
 STOCK_F9_FV.Modules.holdingsParticipationSituation.init({
-    ip: `http://10.1.5.202`,
-    path: `/webservice/fastview/stock/stockfast11/`,
+    ip: STOCK_IP,
+    path: `${STOCK_Paths}/stockfast11/`,
     gilcode: STOCK_SecCode
+    // ip: `http://10.1.5.202`,
+    // path: `/webservice/fastview/stock/stockfast11/`,
+    // gilcode: `600570.SH`
 });
 
 

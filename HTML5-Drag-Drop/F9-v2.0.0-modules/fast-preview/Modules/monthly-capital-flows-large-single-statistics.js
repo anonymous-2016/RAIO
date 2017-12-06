@@ -373,8 +373,11 @@ STOCK_F9_FV.Modules.MCFLSStatistics.init = STOCK_F9_FV.Modules.MCFLSStatistics.i
 
 
 STOCK_F9_FV.Modules.MCFLSStatistics.init({
-    ip: `http://10.1.5.202`,
-    path: `/webservice/fastview/stock/stockfast09/`,
+    ip: STOCK_IP,
+    path: `${STOCK_Paths}/stockfast09/`,
     gilcode: STOCK_SecCode
+    // ip: `http://10.1.5.202`,
+    // path: `/webservice/fastview/stock/stockfast09/`,
+    // gilcode: `600570.SH`
 });
 

@@ -150,9 +150,12 @@ STOCK_F9_FV.Modules.companyNews.init = STOCK_F9_FV.Modules.companyNews.init || (
 
 
 STOCK_F9_FV.Modules.companyNews.init({
-    ip: `http://10.1.5.202`,
-    path: `/webservice/fastview/stock/news/`,
+    ip: STOCK_IP,
+    path: `${STOCK_Paths}/news/`,
     gilcode: STOCK_SecCode
+    // ip: `http://10.1.5.202`,
+    // path: `/webservice/fastview/stock/news/`,
+    // gilcode: `600570.SH`
 });
 
 // const url = `http://10.1.5.202/webservice/fastview/stock/news/600570.SH`;

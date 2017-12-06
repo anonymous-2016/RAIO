@@ -170,9 +170,12 @@ STOCK_F9_FV.Modules.equityPledge.init = STOCK_F9_FV.Modules.equityPledge.init ||
 
 
 STOCK_F9_FV.Modules.equityPledge.init({
-    ip: `http://10.1.5.202`,
-    path: `/webservice/fastview/stock/stockfast10/`,
+    ip: STOCK_IP,
+    path: `${STOCK_Paths}/stockfast10/`,
     gilcode: STOCK_SecCode
+    // ip: `http://10.1.5.202`,
+    // path: `/webservice/fastview/stock/stockfast10/`,
+    // gilcode: `600570.SH`
 });
 
 // const url = `http://10.1.5.202/webservice/fastview/stock/stockfast10/600570.SH`;

@@ -74,8 +74,11 @@ STOCK_F9_FV.Modules.investorRelations.init = STOCK_F9_FV.Modules.investorRelatio
 
 
 STOCK_F9_FV.Modules.investorRelations.init({
-    ip: `http://10.1.5.202`,
-    path: `/webservice/fastview/stock/stockfast???/`,
+    ip: STOCK_IP,
+    path: `${STOCK_Paths}/stockfast???/`,
     gilcode: STOCK_SecCode
+    // ip: `http://10.1.5.202`,
+    // path: `/webservice/fastview/stock/stockfast???/`,
+    // gilcode: `600570.SH`
 });
 

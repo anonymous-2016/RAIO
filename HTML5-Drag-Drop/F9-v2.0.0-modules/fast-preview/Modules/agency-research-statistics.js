@@ -79,9 +79,12 @@ STOCK_F9_FV.Modules.agencyResearchStatistics.init = STOCK_F9_FV.Modules.agencyRe
 
 
 STOCK_F9_FV.Modules.agencyResearchStatistics.init({
-    ip: `http://10.1.5.202`,
-    path: `/webservice/fastview/stock/stockfast???/`,
+    ip: STOCK_IP,
+    path: `${STOCK_Paths}/stockfast???/`,
     gilcode: STOCK_SecCode
+    // ip: `http://10.1.5.202`,
+    // path: `/webservice/fastview/stock/stockfast???/`,
+    // gilcode: `600570.SH`
 });
 
 // STOCK_F9_FV.Modules.agencyResearchStatistics.init(`http://10.1.5.202/webservice/fastview/stock/xxx/600570.SH`);

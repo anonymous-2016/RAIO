@@ -84,8 +84,13 @@ STOCK_F9_FV.Modules.topTenShareholders.init = STOCK_F9_FV.Modules.topTenSharehol
 
 
 STOCK_F9_FV.Modules.topTenShareholders.init({
-    ip: `http://10.1.5.202`,
-    path: `/webservice/fastview/stock/stockfast07/`,
+    ip: STOCK_IP,
+    path: `${STOCK_Paths}/stockfast07/`,
     gilcode: STOCK_SecCode
+    // ip: `http://10.1.5.202`,
+    // path: `/webservice/fastview/stock/stockfast07/`,
+    // gilcode: `600570.SH`
 });
+
+
 

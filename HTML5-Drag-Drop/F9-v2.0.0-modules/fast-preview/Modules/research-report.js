@@ -141,9 +141,12 @@ STOCK_F9_FV.Modules.researchReport.init = STOCK_F9_FV.Modules.researchReport.ini
 
 
 STOCK_F9_FV.Modules.researchReport.init({
-    ip: `http://10.1.5.202`,
-    path: `/webservice/fastview/stock/research/`,
+    ip: STOCK_IP,
+    path: `${STOCK_Paths}/research/`,
     gilcode: STOCK_SecCode
+    // ip: `http://10.1.5.202`,
+    // path: `/webservice/fastview/stock/research/`,
+    // gilcode: `600570.SH`
 });
 
 // const url = `http://10.1.5.202/webservice/fastview/stock/research/600570.SH`;

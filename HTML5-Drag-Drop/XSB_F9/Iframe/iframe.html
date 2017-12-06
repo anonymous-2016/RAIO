@@ -46,6 +46,11 @@
         window.onload = () => {
             let gilcode = getParam("gilcode");
             console.log(`gilcode = `, gilcode);
+            // console.log(`STOCK_SecCode = `, STOCK_SecCode);
+            // Uncaught ReferenceError: STOCK_SecCode is not defined
+            let p = window.parent;
+            console.log(`STOCK_SecCode = `, window.parent.STOCK_SecCode);
+            console.log(`STOCK_SecCode = `, p.STOCK_SecCode);
         };
     </script>
 </body>

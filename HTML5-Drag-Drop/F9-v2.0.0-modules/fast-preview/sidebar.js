@@ -36,8 +36,23 @@ STOCK_F9_FV.Utils.getParam = STOCK_F9_FV.Utils.getParam || ((key, debug = false)
 
 // STOCK_F9_FV.Utils.getParam(`secucode`);
 
+var STOCK_IP = STOCK_IP || ``;
+var STOCK_Paths = STOCK_Paths || ``;
 var STOCK_SecCode = STOCK_SecCode || ``;
-// var STOCK_SecCode = ``;
+
+// ip: `http://10.1.5.202`,
+// path: `/webservice/fastview/stock/stockfast07/`, // `/webservice/fastview/stock`
+// gilcode: `600570.SH`
+
+
+// STOCK_IP = STOCK_F9_FV.Utils.getParam(`ip`);
+// STOCK_IP = window.parent.location.host;
+
+// STOCK_Paths = STOCK_F9_FV.Utils.getParam(`path`);
+// STOCK_Paths = window.parent.location.pathname;
+
+// STOCK_SecCode = STOCK_F9_FV.Utils.getParam(`secucode`);
+
 
 // console.log(`STOCK_SecCode `, STOCK_SecCode);
 
@@ -205,6 +220,8 @@ window.onload = () => {
     STOCK_SecCode = STOCK_F9_FV.Utils.getParam(`gilcode`);
     // STOCK_SecCode = STOCK_F9_FV.Utils.getParam(`secucode`);
     console.log(`STOCK_SecCode `, STOCK_SecCode, typeof STOCK_SecCode);
+    // IP = window.parent.location.host;
+    // PATH = window.parent.location.pathname;
     // console.log(`btn = ${container.classList.contains("h5-dnd-nav-container-normal")}`);
     // init
     let btn_universal = document.querySelector(`[data-uid="universal"]`),

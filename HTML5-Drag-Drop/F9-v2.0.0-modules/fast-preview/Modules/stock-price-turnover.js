@@ -563,9 +563,12 @@ STOCK_F9_FV.Modules.SPTurnover.init = STOCK_F9_FV.Modules.SPTurnover.init || (
 
 
 STOCK_F9_FV.Modules.SPTurnover.init({
-    ip: `http://10.1.5.202`,
-    path: `/webservice/fastview/stock/stockfast06/`,
+    ip: STOCK_IP,
+    path: `${STOCK_Paths}/stockfast06/`,
     gilcode: STOCK_SecCode
+    // ip: `http://10.1.5.202`,
+    // path: `/webservice/fastview/stock/stockfast06/`,
+    // gilcode: `600570.SH`
 });
 
 // const url = `http://10.1.5.202/webservice/fastview/stock/${sf_num}/600570.SH`;

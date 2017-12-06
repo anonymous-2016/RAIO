@@ -67,8 +67,121 @@ secucode
 market
 sid
 
+```js
 
 
+    var COOKIE_DOMAIN = COOKIESDIAMON = '.gearbest.com';
+    var DOMAIN = 'https://www.gearbest.com',
+        MAIN_DOMAIN = 'https://www.gearbest.com',
+        MOBILE_URL = 'https://m.gearbest.com/',
+        DOMAIN_IMG = 'https://review.gbtcdn.com';
+    var JS_IMG_URL = 'https://css.gbtcdn.com/imagecache/GB3/';
+
+    var JS_LANG = '';
+
+    var UPLOAD_URL = 'https://uploads.reuew.com/',
+        DOMAIN_CART = 'https://cart.gearbest.com',
+        DOMAIN_USER = 'https://user.gearbest.com',
+        HTTPS_LOGIN_DOMAIN = 'https://login.gearbest.com',
+        HTTPS_ORDER_DOMAIN = 'https://order.gearbest.com';
+    var WEB_CLICK_DOMAIN = 'https://webclick.appinthestore.com/click/index';
+
+    var GOODSPRICE = 'https://s.gearbest.com/api/gearbest/v2/goods/price';
+
+
+    const getUrlParamete = function (name) {
+        var reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)');
+        console.log(`reg = `, reg);
+        // reg =  /(^|&)debug=([^&]*)(&|$)/
+        var r = window.location.search.substr(1).match(reg);
+        console.log(`window.location.search = `, window.location.search);
+        // "?secucode=000001&market=4609&sid=hs&debug=false"
+        // match() ???
+        console.log(`result = `, r);
+        // ["&debug=false", "&", "false", "", index: 34, input: "secucode=000001&market=4609&sid=hs&debug=false"]
+        if (r !== null){
+            return decodeURI(r[2]);
+        }else{
+            return null;
+        }
+    };
+    var $debugCode = getUrlParamete('debug');
+    // https://cdn.xgqfrms.xyz/?secucode=000001&market=4609&sid=hs&debug=false
+
+```
+
+
+
+# keyghost
+
+> 键盘精灵???
+
+https://www.mukedaba.com/thread-561-1-1.html
+
+## JavaScript实现按键精灵的原理分析
+
+https://www.52jbj.com/jbdq/567653.html
+http://www.jb51.net/article/106286.htm
+
+http://www.phperz.com/article/17/0623/327424.html
+
+
+https://codepen.io/strick/pen/xgNGbz
+
+https://developer.mozilla.org/zh-CN/docs/Web/API/Event
+https://developer.mozilla.org/zh-CN/docs/Web/API/MouseEvent
+https://developer.mozilla.org/zh-CN/docs/Web/API/TouchEvent/TouchEvent
+https://developer.mozilla.org/en-US/docs/Web/API/FocusEvent
+
+
+
+> JavaScript 中的事件处理
+
+https://www.tianmaying.com/tutorial/javascript-event
+https://www.zhihu.com/question/30970837
+
+
+
+> js在输入框屏蔽按键,只能键入数字的示例代码
+
+https://yq.aliyun.com/wenji/169729
+
+
+代码如下:
+
+```html
+
+<input type='text' value='1' onkeydown='return GetInput()' onkeyup='Set(this)' >
+
+
+<script language="javascript">
+    function GetInput(){
+        //屏蔽非数字和非退格符
+        var k = event.keyCode;
+        //48-57是大键盘的数字键，96-105是小键盘的数字键，8是退格符←
+        f ((k <= 57 && k >= 48) || (k <= 105 && k >= 96) || (k== 8)){
+            return true;
+        } else {
+            return false;
+        }
+    }
+    function Set(obj){
+        //即时处理输入框的内容,比如进行某些运算
+    }
+</script>
+
+<pre>
+    技术要领：onkeydown事件先于onkeyup事件被触发.<br/>
+    当 onkeydown 事件 return false; 时 onkeyup 事件将不会被触发，<br/>
+    并且输入框中也不会有用户刚按下的这个字符，从而实现了屏蔽某些字符的目的。<br/>
+    <hr/>
+    了解了这一事件触发原理，思想上应当有所延伸(比如鼠标的几个事件也会是这样的机制)...
+</pre>
+
+```
+
+
+```js
 
 
 console.log(`STOCK_SecCode `, STOCK_SecCode, typeof STOCK_SecCode);
@@ -76,7 +189,101 @@ console.log(`gilcode `, gilcode, typeof gilcode);
 
 // const url = `http://10.1.5.202/webservice/fastview/stock/stockfast${num}/600570.SH`;
 
+```
 
+
+
+# webpack & uglify
+
+> except keywords ???
+
+https://github.com/webpack/webpack
+
+https://webpack.js.org/concepts/loaders/
+
+https://webpack.js.org/loaders/
+
+https://webpack.js.org/development/how-to-write-a-loader/
+
+
+```js
+
+// except: ['$super', '$', 'exports', 'require'],//排除关键字 ???
+
+```
+
+https://webpack.js.org/loaders/babel-loader/
+https://webpack.js.org/loaders/html-loader/
+
+https://webpack.js.org/loaders/imports-loader/
+https://webpack.js.org/loaders/exports-loader/
+
+## plugins
+
+https://webpack.js.org/plugins/
+
+https://github.com/mishoo/UglifyJS2
+https://github.com/alexlamsl
+https://github.com/webpack-contrib/uglifyjs-webpack-plugin/blob/master/package.json
+
+https://github.com/webpack-contrib/uglifyjs-webpack-plugin#uglifyoptions
+https://github.com/webpack-contrib/uglifyjs-webpack-plugin/tree/master#uglifyoptions
+
+https://github.com/mishoo/UglifyJS2/tree/harmony#minify-options
+https://github.com/mishoo/UglifyJS2/tree/harmony#mangle-properties-options
+
+
+https://webpack.js.org/plugins/uglifyjs-webpack-plugin/
+https://www.npmjs.com/package/uglify-es
+
+https://www.npmjs.com/package/uglifyjs-webpack-plugin
+
+https://github.com/mishoo/UglifyJS2/tree/harmony
+https://github.com/mishoo/UglifyJS2/tree/harmony#parse-options
+https://github.com/mishoo/UglifyJS2/tree/harmony#compress-options
+
+https://github.com/mishoo/UglifyJS2/tree/harmony#mangle-options
+
+> 处理选项
+
+撕裂, 乱砍, 轧布; 压榨机
+
+
+## keep_classnames
+
+keep_classnames (default: false)
+
+Pass true to prevent the compressor from discarding class names.
+
+
+## keep_fnames
+keep_fnames (default: false)
+
+Pass true to prevent the compressor from discarding function names.
+Useful for code relying on Function.prototype.name.
+
+
+```js
+
+// test.js
+var globalVar;
+function funcName(firstLongName, anotherLongName) {
+    var myVariable = firstLongName +  anotherLongName;
+}
+
+
+var code = fs.readFileSync("test.js", "utf8");
+
+UglifyJS.minify(code).code;
+// 'function funcName(a,n){}var globalVar;'
+
+UglifyJS.minify(code, {mangle: {reserved: ['firstLongName']}}).code;
+// 'function funcName(firstLongName,a){}var globalVar;'
+
+UglifyJS.minify(code, {mangle: {toplevel: true }}).code;
+// 'function n(n,a){}var a;'
+
+```
 
 
 

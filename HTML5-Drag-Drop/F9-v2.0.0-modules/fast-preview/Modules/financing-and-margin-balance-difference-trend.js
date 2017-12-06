@@ -364,9 +364,12 @@ STOCK_F9_FV.Modules.FMBDtrend.init = STOCK_F9_FV.Modules.FMBDtrend.init || (
 
 
 STOCK_F9_FV.Modules.FMBDtrend.init({
-    ip: `http://10.1.5.202`,
-    path: `/webservice/fastview/stock/stockfast08/`,
+    ip: STOCK_IP,
+    path: `${STOCK_Paths}/stockfast08/`,
     gilcode: STOCK_SecCode
+    // ip: `http://10.1.5.202`,
+    // path: `/webservice/fastview/stock/stockfast08/`,
+    // gilcode: `600570.SH`
 });
 // const url = `http://10.1.5.202/webservice/fastview/stock/${sf_num}/600570.SH`;
 

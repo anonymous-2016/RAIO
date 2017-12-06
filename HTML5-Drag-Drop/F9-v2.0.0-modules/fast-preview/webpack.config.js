@@ -219,7 +219,8 @@ module.exports = {
             //         ...options
             //     },
             //     compress: {...options},
-            //     warnings: false
+            //     warnings: false,
+            //     except: ['$super', '$', 'exports', 'require'],//排除关键字 ???
             // },
             // warningsFilter: (src) => true
         }),
@@ -241,5 +242,11 @@ module.exports = {
         // new webpack.NamedModulesPlugin(),
         // new webpack.HotModuleReplacementPlugin(),
         // new WebpackDevServer(compiler, options)
-    ]
+    ],
+    devServer: {
+        contentBase: path.resolve(__dirname, `dist`),
+        host: `http://10.1.5.202`,
+        compress: true,
+        port: 8080
+    },
 };
