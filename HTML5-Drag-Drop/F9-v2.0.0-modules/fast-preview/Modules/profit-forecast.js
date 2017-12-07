@@ -448,9 +448,12 @@ STOCK_F9_FV.Modules.profitForecast.init = STOCK_F9_FV.Modules.profitForecast.ini
 );
 
 STOCK_F9_FV.Modules.profitForecast.init({
-    ip: `http://10.1.5.202`,
-    path: `/webservice/fastview/stock/stockfast03/`,
+    ip: STOCK_IP,
+    path: `${STOCK_Paths}/stockfast03/`,
     gilcode: STOCK_SecCode
+    // ip: `http://10.1.5.202`,
+    // path: `/webservice/fastview/stock/stockfast03/`,
+    // gilcode: STOCK_SecCode
 });
 
 

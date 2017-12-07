@@ -285,7 +285,7 @@ UglifyJS.minify(code, {mangle: {toplevel: true }}).code;
 
 ```
 
-
+browser-sync start --server --files "./stock/*.*"
 
 
 ```sh
@@ -305,6 +305,10 @@ $ browser-sync start --server --files "./fast-preview/*.*"
 http://10.1.5.202/stock/f9/fastview/sidebar.html
 
 http://jira.gildata.com:8888/secure/RapidBoard.jspa?rapidView=29&projectKey=GFT&view=planning&selectedIssue=GFT-1494&quickFilter=57
+
+
+http://localhost:3000/stock/
+
 
 
 

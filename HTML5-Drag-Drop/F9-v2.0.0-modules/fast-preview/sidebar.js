@@ -219,7 +219,14 @@ window.onload = () => {
     // alert(`loaded!`);
     STOCK_SecCode = STOCK_F9_FV.Utils.getParam(`gilcode`);
     // STOCK_SecCode = STOCK_F9_FV.Utils.getParam(`secucode`);
+    STOCK_IP = `${window.parent.location.host}`;
+    STOCK_Paths = `/webservice/fastview/stock`;
     console.log(`STOCK_SecCode `, STOCK_SecCode, typeof STOCK_SecCode);
+
+    // ip: `http://10.1.5.202`,
+    // path: `/webservice/fastview/stock/stockfast07/`, // => `/webservice/fastview/stock`
+    // gilcode: `600570.SH`
+
     // IP = window.parent.location.host;
     // PATH = window.parent.location.pathname;
     // console.log(`btn = ${container.classList.contains("h5-dnd-nav-container-normal")}`);
@@ -1479,7 +1486,7 @@ STOCK_F9_FV.Modules.modulesLoader = STOCK_F9_FV.Modules.modulesLoader ||(
                             link_css.setAttribute(`href`, `./Modules/${module_uid_name}.css`);
                             link_css.dataset.deleteLinkCss = `delete-link-css-${uid}`;
                             script_dom.dataset.deleteScriptDom = `delete-script-dom-${uid}`;
-                            // script_dom.setAttribute(`src`, `./Modules/${module_uid_name}.js`);
+                            script_dom.setAttribute(`src`, `./Modules/${module_uid_name}.js`);
                             // script_dom.setAttribute(`src`, `./build/js/${module_uid_name}.min.js`);
                             if (box !== null) {
                                 box.insertAdjacentElement(`afterend`, link_css);
