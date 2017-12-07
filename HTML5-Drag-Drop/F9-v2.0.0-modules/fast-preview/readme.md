@@ -1,11 +1,94 @@
 # Stock F9 速览
 
 
-# scrollbar bug!
+# Highchart & scrollbar bug!
 
-lib: highstock.js
 
-method: Highcharts.chart()
+
+1. lib: highstock.js
+
+2. method: Highcharts.chart()
+
+http://10.1.5.202/stock/f9/fastview/build/js/holdings-participation-situation.min.js
+
+http://10.1.5.202/stock/f9/f9-fastview/build/js/indicators-per-share.min.js
+
+
+f9-fastview & fastview
+
+```js
+
+    // init
+    STOCK_SecCode = STOCK_F9_FV.Utils.getParam(`gilcode`);
+    // STOCK_IP = `http://${window.parent.location.host}`;
+    // STOCK_SecCode = `000001.SZ`;
+    STOCK_IP = `http://10.1.5.202`;
+    STOCK_Paths = `/webservice/fastview/stock`;
+    console.log(`STOCK_SecCode `, STOCK_SecCode, typeof STOCK_SecCode);
+
+```
+
+# gilcode=600570.SH & gilcode=000001.SZ
+
+http://10.1.5.202/stock/f9/fastview/sidebar.html?gilcode=000001.SZ&market=4609&sid=hs#模块选择
+
+http://10.1.5.202/stock/f9/fastview/sidebar.html?gilcode=600570.SH&market=4609&sid=hs#模块选择
+
+
+# iframe
+
+> pass .SZ/.SH
+
+
+
+http://localhost:3000/?gilcode=000003&market=4609&sid=hs
+
+http://localhost:3000/?gilcode=600570&market=4609&sid=hs
+
+
+
+
+
+
+# uglifyjs
+
+> --mangle-props & -m
+
+
+```js
+
+/*
+
+
+
+// OK ???
+uglifyjs -h
+
+
+# BAD ???
+uglifyjs ./libs/sidebar.js -o ./build/sidebar.min.js -c --mangle-props reserved=["STOCK_IP", "STOCK_Paths", "STOCK_SecCode"]
+
+
+
+# OK
+uglifyjs ./libs/sidebar.js -o ./build/sidebar.min.js -c --mangle-props reserved=["STOCK_IP"]
+
+
+
+uglifyjs ./libs/sidebar.js -o ./build/sidebar.min.js -c --mangle-props keep_quoted
+
+
+
+properties: {
+    // mangle property options
+    reserved: ["STOCK_IP", "STOCK_Paths", "STOCK_SecCode"]
+},
+
+
+*/
+
+```
+
 
 
 
