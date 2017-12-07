@@ -13,6 +13,25 @@ http://10.1.5.202/stock/f9/fastview/build/js/holdings-participation-situation.mi
 
 http://10.1.5.202/stock/f9/f9-fastview/build/js/indicators-per-share.min.js
 
+# no Data
+
+
+http://cdn.hcharts.cn/highcharts/modules/no-data-to-display.js
+
+https://api.highcharts.com/highcharts/noData
+
+```js
+
+    Highcharts.setOptions({
+        lang: {
+            noData: '暂无数据'
+        }
+    });
+
+
+```
+
+
 
 f9-fastview & fastview
 
@@ -43,9 +62,9 @@ f9-fastview & fastview
 
 # gilcode=600570.SH & gilcode=000001.SZ
 
-http://10.1.5.202/stock/f9/fastview/sidebar.html?gilcode=000001.SZ&market=4609&sid=hs#模块选择
+http://10.1.5.202/stock/f9/fastview/sidebar.html?gilcode=000001.SZ&market=4609&sid=hs
 
-http://10.1.5.202/stock/f9/fastview/sidebar.html?gilcode=600570.SH&market=4609&sid=hs#模块选择
+http://10.1.5.202/stock/f9/fastview/sidebar.html?gilcode=600570.SH&market=4609&sid=hs
 
 
 # iframe

@@ -130,6 +130,11 @@ STOCK_F9_FV.Modules.ISCstatistics.ISCSdrawHS = STOCK_F9_FV.Modules.ISCstatistics
             gridColor = chart_css.gridColor,
             legendColor = chart_css.legendColor,
             yAxisColor = chart_css.yAxisColor;
+        Highcharts.setOptions({
+            lang: {
+                noData: '暂无数据'
+            }
+        });
         Highcharts.chart(container_uid, {
             noData: {// all defualt value
                 attr: undefined,

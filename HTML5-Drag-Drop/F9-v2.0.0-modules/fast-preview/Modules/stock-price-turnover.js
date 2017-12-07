@@ -197,6 +197,11 @@ STOCK_F9_FV.Modules.SPTurnover.SPTdrawHS = STOCK_F9_FV.Modules.SPTurnover.SPTdra
             针对所有图表有效，所有不能单独设置在某个图表中在，
             只能在图表初始化之前通过 Highcharts.setOptions 来设置生效。
         */
+        // Highcharts.setOptions({
+        //     lang: {
+        //         noData: '暂无数据'
+        //     }
+        // });
         Highcharts.setOptions({
             lang: {
                 rangeSelectorZoom: '缩放',// 放大
@@ -211,7 +216,7 @@ STOCK_F9_FV.Modules.SPTurnover.SPTdrawHS = STOCK_F9_FV.Modules.SPTurnover.SPTdra
                 drillUpText: "返回 {series.name}",
                 loading: '加载中...',
                 months: ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月'],
-                noData: "没有数据",
+                noData: "暂无数据",
                 // noData: "没有数据显示!",
                 numericSymbols: ['k', 'M', 'G', 'T', 'P', 'E'],
                 printChart: "打印图表",

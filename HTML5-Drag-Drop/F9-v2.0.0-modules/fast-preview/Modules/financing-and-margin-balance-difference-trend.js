@@ -145,7 +145,12 @@ STOCK_F9_FV.Modules.FMBDtrend.FMBDTdrawHS = STOCK_F9_FV.Modules.FMBDtrend.FMBDTd
             gridColor = chart_css.gridColor,
             legendColor = chart_css.legendColor,
             yAxisColor = chart_css.yAxisColor;
-        // no data ???
+        // no data
+        Highcharts.setOptions({
+            lang: {
+                noData: '暂无数据'
+            }
+        });
         Highcharts.chart(container_uid, {
             noData: {// all defualt value
                 attr: undefined,

@@ -188,6 +188,11 @@ STOCK_F9_FV.Modules.profitForecast.drawHS = STOCK_F9_FV.Modules.profitForecast.d
         //         numericSymbolMagnitude: 10000
         //     }
         // });
+        Highcharts.setOptions({
+            lang: {
+                noData: '暂无数据'
+            }
+        });
         Highcharts.chart(container_uid, {
             noData: {// all defualt value
                 attr: undefined,

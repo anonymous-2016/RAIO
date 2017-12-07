@@ -21,12 +21,6 @@ STOCK_F9_FV.Modal.Public = STOCK_F9_FV.Modal.Public  || ((debug = false) => {
         view: () => {
             const w = document.documentElement.clientWidth;
             const h = document.documentElement.clientHeight;
-            if (debug) {
-                console.log(`clientHeight = `, h);
-                console.log(`clientWidth = `, w);
-            }
-            //w:可视区域的宽度
-            // h:可视区域的高度
             return {
                 w,
                 h
@@ -52,28 +46,9 @@ STOCK_F9_FV.Modal.getClientWidthHeight = STOCK_F9_FV.Modal.getClientWidthHeight 
         bodyheight = document.body.clientHeight;
         height = document.documentElement.clientHeight;
         innerheight = window.innerHeight;
-        if (debug) {
-            console.log(`document.body.clientHeight = `, bodyheight);
-            // 50px ??? bug
-            console.log(`document.documentElement.clientHeight = `, height);
-            console.log(`window.innerHeight = `, innerheight);
-            console.log(`***********************************`);
-            console.log(`document.body.clientWidth = `, bodywidth);
-            console.log(`document.documentElement.clientWidth = `, width);
-            console.log(`window.innerWidth = `, innerwidth);
-        }
     }else{
         width = document.documentElement.clientWidth;
         height = document.documentElement.clientHeight;
-        if (debug) {
-            console.log(`document.documentElement.clientHeight = `, height);
-            console.log(`document.documentElement.clientWidth = `, width);
-        }
-    }
-    if (debug) {
-        console.log(`isIE = `, isIE);
-        console.log(`clientHeight = `, height);
-        console.log(`clientWidth = `, width);
     }
     return {
         w: width,
@@ -93,32 +68,7 @@ STOCK_F9_FV.Modal.getClientWidthHeight = STOCK_F9_FV.Modal.getClientWidthHeight 
  * @augments $.extend === Object.assign
  */
 
-/* 弹框的基本对象 Constructor */
-// STOCK_F9_FV.Modal.BouncedModal = STOCK_F9_FV.Modal.BouncedModal || ((options, debug = false) => {
-function BouncedModal(options, debug = false){
-    if (debug) {
-        console.log(`BouncedModal's options = \n`, JSON.stringify(options, null, 4));
-    }
-    // ??? this ??? not Constructorle ???
-    // this.config = {
-    //     layerBoxClass : "layerBox",
-    //     layerclass:"",
-    //     width: 300,// UDP.getClientWidth()-60
-    //     height: 200,// UDP.getClientWidth()-60
-    //     zIndex: 1000,
-    //     title: "信息",
-    //     setOverflow: "overflow-y:scroll",
-    //     str: "",
-    //     datas: {},
-    //     callback: function () {
-    //         //
-    //     }
-    // };
-    // Object.assign(this.config, options);
-    if (debug) {
-        console.log(`BouncedModal's this.config = \n`, JSON.stringify(this.config, null, 4));
-    }
-    // return this.config;
+function BouncedModal(options){
     this.config = {
         layerBoxClass : "layerBox",
         layerclass:"",
@@ -133,12 +83,10 @@ function BouncedModal(options, debug = false){
             //
         }
     };
-    $.extend(this.config, options);
-    // jquery plugin ???
-    // Object.assign({}, obj1, obj2);
+    // $.extend(this.config, options);
+    Object.assign(this.config, options);
 };
 
-// STOCK_F9_FV.Modal.BouncedModal.prototype = {
 BouncedModal.prototype = {
     /*创建弹出框*/
     _createDialog: function(state, debug = false){
@@ -162,9 +110,6 @@ BouncedModal.prototype = {
         ];
         // shape data ???
         const data = that.config.datas;
-        if (debug) {
-            console.log(`BouncedModal's data = \n`, JSON.stringify(data, null, 4));
-        }
         let url_link = BAD_URLs.includes(data.Url) === true ? `` : `
             <a
                 style="margin-left:10px;color:#5389d2;"
@@ -177,10 +122,6 @@ BouncedModal.prototype = {
                 <i class="icon-external-link"></i>
             </a>
         `;
-        if (debug) {
-            // value="${data.Url}" !== href="${data.Url}"
-            console.log(`BouncedModal's url_link = \n`, url_link);
-        }
         const html_template = `
             <div>
                 <div class="modal-title">
@@ -242,9 +183,6 @@ BouncedModal.prototype = {
             </div>
         `;
         const UDP_wh = UDP.getClientWidthHeight;
-        if (debug) {
-            console.log(`BouncedModal's UDP_wh = \n`, JSON.stringify(UDP_wh, null, 4));
-        }
         // UDP_wh.h
         $("#zxdtModal").empty().html(str);
         $(".modal-body").css("height", UDP.Public.view().h - 200);
@@ -375,19 +313,12 @@ BouncedModal.prototype = {
     }else{
         win.UDP = {
             Public: STOCK_F9_FV.Modal.Public(),
-            // getClientWidth: STOCK_F9_FV.Modal.getClientWidth(),
-            // getClientHeight: STOCK_F9_FV.Modal.getClientHeight(),
             getClientWidthHeight: STOCK_F9_FV.Modal.getClientWidthHeight(),
-            // BouncedModal: STOCK_F9_FV.Modal.BouncedModal()
             BouncedModal: BouncedModal()
         };
-        // window.UDP & window["UDP"]
     }
-})(window, function(debug = false){
+})(window, (debug = false) => {
     let test = `NameSpace testing!`;
-    if (debug) {
-        console.log(`this is a callback function!`);
-    }
     return test;
 });
 
@@ -395,21 +326,12 @@ BouncedModal.prototype = {
 
 /*
 
-npm i -g uglify-es
+$ npm i -g uglify-es
 
-
-uglifyjs ./libs/BouncedModal.js -o ./build/foo.min.js -c -m reserved=['BouncedModal']
 
 // OK ???
 uglifyjs -h
 uglifyjs ./libs/modal.js -o ./build/modal.min.js -c -m reserved=['BouncedModal']
-
-// ??? BAD
-uglifyes -h
-uglifyes ./libs/modal.js -o ./build/modal.min.js -c -m reserved=['BouncedModal']
-
-
-
 
 
 */

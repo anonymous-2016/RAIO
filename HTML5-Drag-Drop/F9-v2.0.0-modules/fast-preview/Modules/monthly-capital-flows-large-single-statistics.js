@@ -156,7 +156,11 @@ STOCK_F9_FV.Modules.MCFLSStatistics.MCFLSSdrawHS = STOCK_F9_FV.Modules.MCFLSStat
             yAxisColor = chart_css.yAxisColor;
         // container_div
         // Highcharts.stockChart
-        // Highcharts.chart
+        Highcharts.setOptions({
+            lang: {
+                noData: '暂无数据'
+            }
+        });
         Highcharts.chart(container_uid, {
             noData: {// all defualt value
                 attr: undefined,

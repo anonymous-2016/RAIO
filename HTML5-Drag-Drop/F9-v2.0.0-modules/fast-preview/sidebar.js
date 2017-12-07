@@ -219,9 +219,13 @@ window.onload = () => {
     // alert(`loaded!`);
     STOCK_SecCode = STOCK_F9_FV.Utils.getParam(`gilcode`);
     // STOCK_SecCode = STOCK_F9_FV.Utils.getParam(`secucode`);
-    STOCK_IP = `${window.parent.location.host}`;
-    STOCK_Paths = `/webservice/fastview/stock`;
+    // STOCK_IP = `http://${window.parent.location.host}`;
+    // STOCK_Paths = `/webservice/fastview/stock`;
     console.log(`STOCK_SecCode `, STOCK_SecCode, typeof STOCK_SecCode);
+
+    STOCK_SecCode = STOCK_F9_FV.Utils.getParam(`gilcode`);
+    STOCK_IP = `${window.parent.location.protocol}//${window.parent.location.host}`;
+    STOCK_Paths = `/webservice/fastview/stock`;
 
     // ip: `http://10.1.5.202`,
     // path: `/webservice/fastview/stock/stockfast07/`, // => `/webservice/fastview/stock`
