@@ -26,6 +26,14 @@ f9-fastview & fastview
     STOCK_Paths = `/webservice/fastview/stock`;
     console.log(`STOCK_SecCode `, STOCK_SecCode, typeof STOCK_SecCode);
 
+    // http://
+    STOCK_SecCode = STOCK_F9_FV.Utils.getParam(`gilcode`);
+    // STOCK_SecCode = STOCK_F9_FV.Utils.getParam(`secucode`);
+    STOCK_IP = `${window.parent.location.protocol}://${window.parent.location.host}`;
+    STOCK_IP = `http://${window.parent.location.host}`;
+    STOCK_Paths = `/webservice/fastview/stock`;
+    console.log(`STOCK_SecCode `, STOCK_SecCode, typeof STOCK_SecCode);
+
 ```
 
 # gilcode=600570.SH & gilcode=000001.SZ

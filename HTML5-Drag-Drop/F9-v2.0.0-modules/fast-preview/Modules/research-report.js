@@ -112,7 +112,8 @@ STOCK_F9_FV.Modules.researchReport = STOCK_F9_FV.Modules.researchReport || (
                     }
                 }, 0);
             }else{
-                alert(`暂无数据!`);
+                // alert(`暂无数据!`);
+                console.log(`暂无数据! = \n`);
             }
         }
     )

@@ -62,7 +62,7 @@ const STOCK_F9 = [
     "research-report",
     "stock-price-turnover",
     "top-ten-shareholders",
-    "sidebar"
+    // "sidebar"
 ];
 
 let entry_obj = {};
@@ -73,7 +73,7 @@ STOCK_F9.forEach(
     }
 );
 // sidebar
-// entry_obj[BASE_URI.index] = `${BASE_URI.index}`;
+entry_obj[BASE_URI.index] = `${BASE_URI.index}`;
 // BouncedModal
 // entry_obj[BASE_URI.modal] = `${BASE_URI.libs}/BouncedModal`;
 // entry_obj[BASE_URI.modal] = `${BASE_URI.libs}/modal`;

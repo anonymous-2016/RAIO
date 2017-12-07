@@ -101,7 +101,7 @@ STOCK_F9_FV.Modules.FMBDtrend = STOCK_F9_FV.Modules.FMBDtrend || (
                     STOCK_F9_FV.Modules.FMBDtrend.FMBDTdrawHS(datas, uid);
                 }else{
                     console.log(`json is empty! = \n`, json);
-                    alert(`暂无数据!`);
+                    // alert(`暂无数据!`);
                 }
             }
         )

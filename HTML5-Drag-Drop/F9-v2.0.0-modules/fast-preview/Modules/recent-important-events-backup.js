@@ -3,14 +3,14 @@
  * recent important events 近期重要事项
  * xgqfrms
  * creadted 2017.10.12
- * @param {* String} url 
- * @param {* Array} tds 
- * @param {* Array} ui_arr 
- * @param {Boolean} debug 
+ * @param {* String} url
+ * @param {* Array} tds
+ * @param {* Array} ui_arr
+ * @param {Boolean} debug
  */
 
 const RIE = {
-    // 
+    //
 };
 
 const recentImportantEvents = (url = ``, td_id = `id`, debug = false) => {
@@ -19,7 +19,7 @@ const recentImportantEvents = (url = ``, td_id = `id`, debug = false) => {
     fetch(url)
     .then(res => res.json())
     .then(
-        //shaped data 
+        //shaped data
         (json) => {
             // json
             data = json;// Array
@@ -80,7 +80,7 @@ const recentImportantEvents = (url = ``, td_id = `id`, debug = false) => {
                     */
                 }
             );
-            /* 
+            /*
                 # Disabled elements, no a link
                 https://www.w3.org/TR/html5/disabled-elements.html
                 <input type="text" value="xxxx" disabled="${arr[i].sj !== undefined ? false : true}" />
@@ -94,7 +94,7 @@ const recentImportantEvents = (url = ``, td_id = `id`, debug = false) => {
                 div.innerText = html_string;// string
                 td_id.insertAdjacentElement('beforeend',div);// string
                 td_id.innerHTML = html_string;
-                td_id.insertAdjacentElement('beforeend',div);// 
+                td_id.insertAdjacentElement('beforeend',div);//
             */
             // td_id.innerText = value;
             td_id.innerHTML = html_string;
@@ -127,8 +127,9 @@ setTimeout(() => {
 setTimeout(function() {
     const clickLinkOpenModuleHandler = (uid = `600570`, debug = false) => {
         // 600570.SH
-        // alert(`uid = `, uid);
-        alert(`uid = ${uid}`);// alert(`desc ${key}`) !== console.log(`desc `, key);
+        //console.log(`uid = `, uid);
+        console.log(`uid = ${uid}`);//console.log(`desc ${key}`) !==
+        // console.log(`desc `, key);
         // fetch data
         // show module
         // cache ?
@@ -167,7 +168,7 @@ setTimeout(function() {
 }, 1000);
 
 
-/* 
+/*
 
 // id="fv-recent-important-tbody"
 
