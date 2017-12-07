@@ -74,7 +74,8 @@ STOCK_F9.forEach(
 // sidebar
 entry_obj[BASE_URI.index] = `${BASE_URI.index}`;
 // BouncedModal
-entry_obj[BASE_URI.modal] = `${BASE_URI.libs}/BouncedModal`;
+// entry_obj[BASE_URI.modal] = `${BASE_URI.libs}/BouncedModal`;
+// entry_obj[BASE_URI.modal] = `${BASE_URI.libs}/modal`;
 
 
 
@@ -210,12 +211,15 @@ module.exports = {
             //     ie8: true,// ie8: false,
             //     ecma: 5,//ecma: 8,
             //     parse: {...options},
-            //     mangle: {
-            //         ...options,
-            //         properties: {
-            //             // mangle property options
-            //         }
-            //     },
+            // mangle: false,
+            // mangle: {
+            //     reserved: ['BouncedModal'],// 标识符
+            //     keep_fnames: true,
+            //     // ...options,
+            //     // properties: {
+            //     //     // mangle property options
+            //     // },
+            // },
             //     output: {
             //         comments: false,
             //         beautify: false,

@@ -288,6 +288,10 @@ UglifyJS.minify(code, {mangle: {toplevel: true }}).code;
 browser-sync start --server --files "./stock/*.*"
 
 
+# https://cdn.xgqfrms.xyz/index.html?gilcode=000001.SZ&market=4609&sid=hs
+
+
+
 ```sh
 
 # ..\F9-v2.0.0-modules\
