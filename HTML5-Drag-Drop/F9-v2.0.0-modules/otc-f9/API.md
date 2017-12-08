@@ -105,534 +105,336 @@ http://10.1.5.202/webservice/fastview/otcper/otcperfast01/430002.OC
 
 
 参数：
-    otcperfast01	最新交易数据
-    otcperfast02	大事提醒
-    otcperfast03	公司简介
-    otcperfast04	最新财务数据
-    otcperfast05	公司表现-市场表现
-    otcperfast06	公司表现-公司规模
-    otcperfast07	公司表现-公司业绩
-    otcperfast08	公司表现-公司估值
-    otcperfast09	主营业务
-    otcperfast10	股本股东
-    otcperfast11	管理层概况
-        news	        新闻
-        bulletin	公告
-        research        研报
-其中：
-otcperfast01：
-    @JsonPropertyDescription("截止日期")
-    private String rq ;
-
-    @JsonPropertyDescription("收盘价")
-    private String spj ;
-
-    @JsonPropertyDescription("涨跌幅")
-    private String zdf ;
-
-    @JsonPropertyDescription("成交量")
-    private String cjl ;
-
-    @JsonPropertyDescription("成交额")
-    private String cje ;
-
-    @JsonPropertyDescription("换手率")
-    private String hsl ;
-
-    @JsonPropertyDescription("总市值")
-    private String zsz ;
-
-    @JsonPropertyDescription("流通市值")
-    private String ltsz ;
-
-    @JsonPropertyDescription("市盈率_TTM")
-    private String sylttm ;
-
-    @JsonPropertyDescription("市盈率_LYR")
-    private String syllyr ;
-
-    @JsonPropertyDescription("市净率_LYR")
-    private String sjllyr ;
-
-otcperfast02:
-    k是第一列，v是第二列;
-
-otcperfast03:
-    /**
-         * 公司名称
-     */
-    private String gsmc;
-    /**
-     * 公司成立时间
-     */
-    private String gsclsj;
-    /**
-     * 公司挂牌时间
-     */
-    private String gsgpsj;
-    /**
-     * 所属证监会行业
-     */
-    private String zjhhy;
-    /**
-     * 总经理
-     */
-    private String zjl;
-    /**
-     * [公司注册资本(万元)]
-     */
-    private String zczb;
-    /**
-     * 法人代表
-     */
-    private String frdb;
-    /**
-     * 注册地址
-     */
-    private String zcdz;
-    /**
-     * 联系电话
-     */
-    private String lxdh;
-    /**
-     * 网址
-     */
-    private String wz;
-    /**
-     * 公司介绍
-     */
-    private String gsjs;
-
-otcperfast04:
-        yjyg:业绩预告；
-        yjkb:业绩快报；
-        cwzy:财务数据摘要；
-其中：
-  yjyg结构:
-    @JsonPropertyDescription("报告期")
-    private String bgq ;
-
-    @JsonPropertyDescription("定报预约_实际披露日期")
-    private String plrq ;
-
-    @JsonPropertyDescription("公告日期")
-    private String ggrq ;
-
-    @JsonPropertyDescription("预告原文")
-    private String ygyw;
-  yjkb结构:
-    @JsonPropertyDescription("报告期")
-    private String bgq ;
-
-    @JsonPropertyDescription("定报预约_实际披露日期")
-    private String plrq ;
-
-    @JsonPropertyDescription("营业收入")
-    private String yysr ;
-
-    @JsonPropertyDescription("营业利润")
-    private String yylr ;
-
-    @JsonPropertyDescription("利润总额")
-    private String lrze ;
-
-    @JsonPropertyDescription("归属挂牌公司股东的净利润")
-    private String jlr ;
-
-    @JsonPropertyDescription("营业收入同比增长")
-    private String yysrzz ;
-
-    @JsonPropertyDescription("基本每股收益")
-    private String jbmgsy ;
-
-    @JsonPropertyDescription("净资产收益率_加权")
-    private String jzcsyljq ;
-
-    @JsonPropertyDescription("归属挂牌公司股东的净利润同比增长")
-    private String jlrtbzz ;
-
-    @JsonPropertyDescription("资产总计")
-    private String zczj ;
-
-    @JsonPropertyDescription("归属于挂牌公司股东的净资产")
-    private String jzc ;
-
-    @JsonPropertyDescription("每股净资产")
-    private String mgjzc ;
-
-    @JsonPropertyDescription("经营活动产生的现金流量净额")
-    private String xjllje ;
-  cwzy结构:
-    @JsonPropertyDescription("报告期")
-    private String bgq ;
-
-    @JsonPropertyDescription("基本每股收益")
-    private String jbmgsy;
-
-    @JsonPropertyDescription("营业收入")
-    private String yysr;
-
-    @JsonPropertyDescription("资产总计")
-    private String zczj;
-
-    @JsonPropertyDescription("稀释每股收益")
-    private String xsmgsy;
-
-    @JsonPropertyDescription("营业利润")
-    private String yylr;
-
-    @JsonPropertyDescription("负债总计")
-    private String fzzj;
-
-    @JsonPropertyDescription("利润总额")
-    private String lrze;
-
-    @JsonPropertyDescription("归属于挂牌公司股东的每股净资产")
-    private String mgjzc;
-
-    @JsonPropertyDescription("归属于挂牌公司股东的净资产")
-    private String jzc;
-
-    @JsonPropertyDescription("归属挂牌公司股东的净利润")
-    private String jlr;
-
-    @JsonPropertyDescription("经营活动产生的现金流量净额")
-    private String llje;
-
-    @JsonPropertyDescription("每股经营活动产生的现金流量净额")
-    private String mgllje;
-
-    @JsonPropertyDescription("归属挂牌公司股东的净利润_扣除")
-    private String jlrkc;
-
-    @JsonPropertyDescription("总资产同比增长")
-    private String zzctbzz;
-
-    @JsonPropertyDescription("净资产收益率_加权")
-    private String jzcsyljq;
-
-    @JsonPropertyDescription("营业收入同比增长")
-    private String yysrtbzz;
-
-    @JsonPropertyDescription("销售毛利率")
-    private String xsmll;
-
-    @JsonPropertyDescription("净资产收益率_扣除加权")
-    private String kcjq;
-
-    @JsonPropertyDescription("净利润同比增长")
-    private String jlrtbzz;
-
-    @JsonPropertyDescription("资产负债率")
-    private String zcfzl;
-
-otcperfast05:
-        /**
-     * 涨跌幅
-     */
-    private List<MarketPerformance> zdf;
-    /**
-     * 换手率
-     */
-    private TurnoverRate hsl;
-  其中换手率hsl结构:
-    /**
-     * "行业日均换手率"
-     */
-    private double hyrjhsl;
-
-    /**
-     * "市场日军换手率"
-     */
-    private double scrjhsl;
-    datas:数据
-    其中hsl里的数据datas里面结构：
-        /**
-     * 证券代码
-     */
-    private String secuCode;
-    /**
-     * 换手率
-     */
-    private double hsl;
-otcperfast06:
-    /**
-     * "行业总市值"
-     */
-    private double hyzsz;
-
-   /**
-    * "行业流通市值"
-    */
-    private double hyltsz;
-    /**
-     * 标的市值（即当前公司的数据）
-     */
-    private TotalShareRank data;
-    private List<TotalShareRank> datas;（前五名公司的数据）
-其中data和datas结构：
-
-    @JsonPropertyDescription("证券代码")
-    private String zqdm;
-
-    @JsonPropertyDescription("总市值")
-    private double zsz ;
-
-    @JsonPropertyDescription("流通市值")
-    private double ltsz ;
-
-    @JsonPropertyDescription("排名")
-    private int pm ;
-
-otcperfast07:
-        stock：当前股票的数据
-        top5：排名前5的数据
- 共用一个结构：
-    @JsonPropertyDescription("SecuCode")
-    private String zqdm;
-
-    @JsonPropertyDescription("每股收益")
-    private double mgsy ;
-
-    @JsonPropertyDescription("排名")
-    private int pm ;
-
-    @JsonPropertyDescription("市盈率TTM")
-    private double ttm ;
-
-otcperfast08:
-     和otcperfast07一样；
-
-otcperfast09:
-        /**
-     * 主营业务增长
-     */
-    private String zz;
-
-    /**
-     * 占营业总收入
-     */
-    private String zb;
-
-  其中datas结构：
-    @JsonPropertyDescription("项目")
-    private String xm;
-
-    @JsonPropertyDescription("营业收入(万元)")
-    private double yysr;
-
-    @JsonPropertyDescription("营业成本(万元)")
-    private double yycb;
-
-    @JsonPropertyDescription("营业收入占比(%)")
-    private String yysrzb;
-
-    @JsonPropertyDescription("毛利(万元)")
-    private double ml;
-
-otcperfast10:
-     gbjg：股本结构
-     限售解禁安排暂无数据，前端去掉这个；
-     sdgd：十大股东
-     gdhs： 股东户数
-  其中gbjg结构：
-    @JsonPropertyDescription("截止日期")
-    private String jzrq ;
-
-    @JsonPropertyDescription("总股本")
-    private double zgb;
-
-    @JsonPropertyDescription("有限售股")
-    private double yxsg;
-
-    @JsonPropertyDescription("无限售股")
-    private double wxsg;
-
-    @JsonPropertyDescription("变动原因")
-    private String bdyy;
-
-    @JsonPropertyDescription("有限售占比")
-    private double yxszb;
-
-    @JsonPropertyDescription("无限售占比")
-    private double wxszb;
-
-    @JsonPropertyDescription("有限售_控股股东和实际制人数量占比")
-    private double yxskzrzb;
-
-    @JsonPropertyDescription("有限售_董事监事高管数量占比")
-    private double yxsggzb;
-
-    @JsonPropertyDescription("有限售_核心员工数量占比")
-    private double yxshxygzb;
-
-    @JsonPropertyDescription("有限售_其它有限售数量占比")
-    private double yxsqtzb;
-
-    @JsonPropertyDescription("无限售_控股股东和实际制人数量")
-    private double wxskzrsl;
-
-    @JsonPropertyDescription("无限售_董事监事高管数量")
-    private double wxsggsl;
-
-    @JsonPropertyDescription("无限售_核心员工数量")
-    private double wxshxygsl;
-
-    @JsonPropertyDescription("有限售_控股股东和实际制人数量")
-    private double yxskzrsl;
-
-    @JsonPropertyDescription("有限售_董事监事高管数量")
-    private double yxsggsl;
-
-    @JsonPropertyDescription("有限售_核心员工数量")
-    private double yxsygsl;
-
-    @JsonPropertyDescription("有限售_其它有限售数量")
-    private double yxsqtsl;
-  其中sdgd结构：
-        /**
-     * 时间
-     */
-    private String sj;
-    /**
-     * 合计
-     */
-    private String hj;
-    /**
-     * 变化
-     */
-    private String bh;
-   sdgd里的datas的结构：
-    @JsonPropertyDescription("股东名称")
-    private String gdmc;
-
-    @JsonPropertyDescription("持股数")
-    private String cgs;
-
-    @JsonPropertyDescription("占比")
-    private String zb;
-
-    @JsonPropertyDescription("增减变动")
-    private String zjbd;
-
-    @JsonPropertyDescription("机构类型")
-    private String jglx;
-  其中gdhs的结构：
-        /**
-     * 时间
-     */
-    private String sj;
-    /**
-     * 总户数
-     */
-    private String zhs;
-    /**
-     * 总户数环比增长
-     */
-    private String zhszz;
-    /**
-     * 户均持股数
-     */
-    private String hjcgs;
-    /**
-     * 户均环比增长
-     */
-    private String hjzz;
-    /**
-     * 户数较上期增加
-     */
-    private String hsjsq;
-    /**
-     * 户均持股较上期
-     */
-    private String hjjsq;
-
-otcperfast11:
-        ggcg：高管持股
-        gglz：高管离职
-其中ggcg的结构：
-     /**
-     * "董事会人数"
-     */
-    private String dsh;
-
-    /**
-     * "监事会人数"
-     */
-    private String jsh;
-
-    /**
-     * "高管人数"
-     */
-    private String gg;
-    /**
-     * 时间
-     */
-    private String sj;
-    /**
-     * 高管们
-     */
-    private List<ManagerPerSon> ggs;
-   其中ggcg的ggs的结构：
-    @JsonPropertyDescription("姓名")
-    private String xm;
-
-    @JsonPropertyDescription("性别")
-    private String xb;
-
-    @JsonPropertyDescription("年龄")
-    private String nl ;
-
-    @JsonPropertyDescription("学历")
-    private String xl;
-
-    @JsonPropertyDescription("职务")
-    private String zw;
-
-    @JsonPropertyDescription("期末持股数量(股)")
-    private String qmcgsl;
-
-    @JsonPropertyDescription("占比")
-    private String zb;
-
-    @JsonPropertyDescription("增减变动")
-    private String zjbd;
-其中gglz的结构：
-        @JsonPropertyDescription("姓名")
-    private String xm;
-
-    @JsonPropertyDescription("职务")
-    private String zw;
-
-    @JsonPropertyDescription("任职起始日期")
-    private String beginDate;
-
-    @JsonPropertyDescription("任职终止日期")
-    private String endDate;
-
-    @JsonPropertyDescription("是否还在公司担任职务")
-    private boolean rz;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    otcperfast01    最新交易数据
+    otcperfast02    大事提醒
+    otcperfast03    公司简介
+    otcperfast04    最新财务数据
+    otcperfast05    公司表现-市场表现
+    otcperfast06    公司表现-公司规模
+    otcperfast07    公司表现-公司业绩
+    otcperfast08    公司表现-公司估值
+    otcperfast09    主营业务
+    otcperfast10    股本股东
+    otcperfast11    管理层概况
+    news            新闻
+    bulletin        公告
+    research        研报
+http://10.1.5.202/webservice/fastview/otcper/news/430002.OC
+http://10.1.5.202/webservice/fastview/otcper/bulletin/430002.OC
+http://10.1.5.202/webservice/fastview/otcper/research/430002.OC
+
+http://10.1.5.202/webservice/fastview/otcper/otcperfast01/430002.OC
+http://10.1.5.202/webservice/fastview/otcper/otcperfast02/430002.OC
+http://10.1.5.202/webservice/fastview/otcper/otcperfast03/430002.OC
+
+http://10.1.5.202/webservice/fastview/otcper/otcperfast04/430002.OC
+http://10.1.5.202/webservice/fastview/otcper/otcperfast04/400066.OC
+有业绩预告
+http://10.1.5.202/webservice/fastview/otcper/otcperfast04/832159.OC
+有业绩快报
+
+
+http://10.1.5.202/webservice/fastview/otcper/otcperfast05/430002.OC
+
+http://10.1.5.202/webservice/fastview/otcper/otcperfast06/430002.OC
+http://10.1.5.202/webservice/fastview/otcper/otcperfast07/430002.OC
+http://10.1.5.202/webservice/fastview/otcper/otcperfast08/430002.OC
+http://10.1.5.202/webservice/fastview/otcper/otcperfast09/430002.OC
+
+http://10.1.5.202/webservice/fastview/otcper/otcperfast10/430002.OC
+http://10.1.5.202/webservice/fastview/otcper/otcperfast11/430002.OC
+
+http://10.1.5.203/webtool/apitool/CompanyShortDesc
+
+
+```js
+
+let publishDate = (arr[i].xwsj !== undefined) ? arr[i].xwsj : `😟暂无 新闻日期`;
+let title = `${(arr[i].xwtitle !== undefined) ? arr[i].xwtitle : `🤓暂无 新闻标题`}`;
+
+
+{
+    "news": {
+        name: "公司新闻",
+        "xwtitle": "新闻标题",
+        "xwnr": "新闻正文",//"xwnr": null,
+        "xwsj": "新闻日期",
+        "newid": "新闻id"
+    },
+    "bulletin": {
+        name: "公告",
+        "gsggtitle": "公告标题",
+        "gsggsj": "公告日期",
+        "id": "公告id",
+        "fileType": "文件类型"
+    },
+    "research": {
+        name: "研究报告",
+        "publishDate": "发布时间",
+        "infoSource": "信息来源",
+        "orgCode": "机构代码",
+        "title": "标题",
+        "pageNum": "页码",
+        "researchId": "id",
+        "fileType": "文件类型",
+        "writeDate": "撰写时间",
+        "summary": "摘要"
+    },
+    "otcperfast01": {
+        name: "最新交易数据",
+        "rq": "截止日期",
+        "spj": "收盘价",
+        "zdf": "涨跌幅",
+        "cjl": "成交量",
+        "cje": "成交额",
+        "hsl": "换手率",
+        "zsz": "总市值",
+        "ltsz": "流通市值",
+        "sylttm": "市盈率_TTM",
+        "syllyr": "市盈率_LYR",
+        "sjllyr": "市净率_LYR",
+    },
+    "otcperfast02": {
+        name: "大事提醒",
+        "k": "k是第一列",
+        "v": "v是第二列"
+    },
+    "otcperfast03": {
+        name: "公司简介",
+        "gsmc": "公司名称",
+        "gsclsj": "公司成立时间",
+        "gsgpsj": "公司挂牌时间",
+        "zycpyfw": "主要产品和服务项目",
+        "zjhhy": "所属证监会行业(二级)",
+        "ssgnbk": "所属概念板块",
+        "zjl": "总经理",
+        "kggd": "控股股东",
+        "sjkzr": "实际控制人",
+        "zczb": "公司注册资本(万元)",
+        "frdb": "法人代表",
+        "zcdz": "注册地址",
+        "lxdh": "联系电话",//"": "联系方式",
+        "wz": "网址",
+        "gsjs": "公司介绍",
+    },
+    "otcperfast04": {
+        name: "最新财务数据",
+        "yjyg": {
+            // 业绩预告
+            "bgq": "报告期",
+            "plrq": "披露日期",
+            "ggrq": "公告日期",
+            "ygyw": "预告原文"
+        },
+        "yjkb": {
+            // "业绩快报
+            "bgq": "报告期",
+            "plrq": "披露日期",
+            "yysr": "营业收入(元)",// 1
+            "yylr": "营业利润(元)",
+            "lrze": "利润总额(元)",
+            "jlr": "归属挂牌公司股东的净利润(元)",
+            "yysrzz": "营业收入同比增长(%)",// 2
+            "jbmgsy": "基本每股收益(%)",
+            "jzcsyljq": "ROE(%)",// 净资产收益率_加权
+            "jlrtbzz": "归属挂牌公司股东的净利润同比增长(%)",
+            "zczj": "总资产(元)",// 3
+            "jzc": "净资产(元)",
+            "mgjzc": "每股净资产(元)",
+            "xjllje": "经营活动产生的现金流量净额(元)"
+        },
+        "cwzy": {
+            // "财务数据摘要"
+            "bgq": "报告期",
+            "jbmgsy": "基本每股收益",
+            "yysr": "营业收入(元)",
+            "zczj": "资产总计(元)",
+            "xsmgsy": "稀释每股收益",
+            "yylr": "营业利润(元)",
+            "fzzj": "负债总计(元)",
+            // "": "每股收益-扣除",
+            "lrze": "利润总额(元)",
+            "mgjzc": "归属于挂牌公司股东的每股净资产(元)",
+            "jzc": "归属于挂牌公司股东的净资产(元)",
+            "jlr": "归属挂牌公司股东的净利润(元)",
+            "llje": "经营活动产生的现金流量净额(元)",
+            "mgllje": "每股经营活动产生的现金流量净额(元)",
+            "jlrkc": "归属挂牌公司股东的净利润_扣除(元)",
+            "zzctbzz": "总资产同比增长(%)",
+            "jzcsyljq": "净资产收益率_加权(%)",
+            "yysrtbzz": "营业收入同比增长(%)",
+            "xsmll": "销售毛利率(%)",
+            "kcjq": "净资产收益率_扣除(%)",
+            "jlrtbzz": "净利润同比增长(%)",
+            "zcfzl": "资产负债率(%)"
+        }
+    },
+    "otcperfast05": {
+        name: "公司表现-市场表现",
+        "zdf": "涨跌幅",
+        "hsl": {//换手率
+            "hyrjhsl": "行业日均换手率",
+            "scrjhsl": "市场日均换手率"
+        },
+        "datas": {// 数据
+            "secuCode": "证券代码",
+            "hsl": "换手率"
+        }// ???
+    },
+    "otcperfast06": {
+        name: "公司表现-公司规模",
+        "hyzsz": "行业总市值",
+        "hyltsz": "行业流通市值",
+        "data": {
+            "zqdm": "证券代码",
+            "zsz": "总市值",
+            "ltsz": "流通市值",
+            "pm": "排名"
+        },// 标的市值（即当前公司的数据）
+        "datas": [
+            {
+                "zqdm": "证券代码",
+                "zsz": "总市值",
+                "ltsz": "流通市值",
+                "pm": "排名"
+            }
+        ]// 前五名公司的数据
+    },
+    "otcperfast07": {
+        name: "公司表现-公司业绩",
+        // "": "行业均值", ???
+        "top5": [
+            {
+                "zqdm": "证券代码",
+                "mgsy": "每股收益",
+                "pm": "排名",
+                "ttm": "市盈率TTM"
+            }
+        ],// 排名前5的数据
+        "stock": {
+            "zqdm": "证券代码",
+            "mgsy": "每股收益",
+            "pm": "排名",
+            "ttm": "市盈率TTM"
+        }// 当前股票的数据
+    },
+    "otcperfast08": {
+        name: "公司表现-公司估值",
+        // "": "行业均值", ???
+        "top5": [
+            {
+                "zqdm": "证券代码",
+                "mgsy": "每股收益",
+                "pm": "排名",
+                "ttm": "市盈率TTM"
+            }
+        ],// 排名前5的数据
+        "stock": {
+            "zqdm": "证券代码",
+            "mgsy": "每股收益",
+            "pm": "排名",
+            "ttm": "市盈率TTM"
+        }// 当前股票的数据
+    },
+    "otcperfast09": {
+        name: "主营业务",
+        "zz": "主营业务增长",
+        "zb": "占营业总收入(元)",
+        "datas": [
+            {
+                "xm": "项目",// 产品及服务
+                "yysr": "营业收入(万元)",
+                "yycb": "营业成本(万元)",
+                "yysrzb": "营业收入占比(%)",
+                "ml": "毛利(万元)",
+            }
+        ]// ???
+    },
+    "otcperfast10": {
+        name: "股本股东",
+        "gbjg": {
+            "jzrq": "截止日期",
+            "zgb": "总股本",
+            "yxsg": "有限售股",
+            "wxsg": "无限售股",
+            "bdyy": "变动原因",
+            "yxszb": "有限售占比",
+            "wxszb": "无限售占比",
+            "yxskzrzb": "有限售_控股股东和实际制人数量占比",
+            "yxsggzb": "有限售_董事监事高管数量占比",
+            "yxshxygzb": "有限售_核心员工数量占比",
+            "yxsqtzb": "有限售_其它有限售数量占比",
+            "wxskzrsl": "无限售_控股股东和实际制人数量",
+            "wxsggsl": "无限售_董事监事高管数量",
+            "wxshxygsl": "无限售_核心员工数量",
+            "yxskzrsl": "有限售_控股股东和实际制人数量",
+            "yxsggsl": "有限售_董事监事高管数量",
+            "yxsygsl": "有限售_核心员工数量",
+            "yxsqtsl": "有限售_其它有限售数量"
+        },// 股本结构
+        "sdgd": {
+            "datas": [
+                {
+                    "gdmc": "股东名称",
+                    "cgs": "持股数(股)",
+                    "zb": "占比(%)",
+                    "zjbd": "增减变动",
+                    "jglx": "机构类型"
+                }
+            ],
+            "sj": "时间",
+            "hj": "合计",
+            "bh": "变化",
+        },// 十大股东
+        "gdhs": {
+            "sj": "时间",
+            "zhs": "总户数",
+            "zhszz": "总户数环比增长",
+            "hjcgs": "户均持股数",
+            "hjzz": "户均环比增长",
+            "hsjsq": "户数较上期增加",
+            "hjjsq": "户均持股较上期"
+        },// 股东户数
+        // 限售解禁安排 ??? 前端去掉这个
+    },
+    "otcperfast11": {
+        name: "管理层概况",
+        "ggcg": {
+            "dsh": "董事会人数",
+            "jsh": "监事会人数",
+            "gg": "高管人数",
+            // "": "",// 核心员工 ???
+            "sj": "时间",
+            "ggs": [
+                {
+                    "xm": "姓名",
+                    "xb": "性别",
+                    "nl": "年龄",
+                    "xl": "学历",
+                    "zw": "职务",
+                    // "": "",// 是否在公司领薪 ???
+                    "qmcgsl": "持股数量(股)",
+                    "zb": "占比(%)",
+                    "zjbd": "增减变动(股)"
+                }
+            ]
+        },// 高管持股
+        "gglz": [
+            {
+                "xm": "姓名在任其他职务",
+                "zw": "职务",
+                "beginDate": "任职起始日期",
+                "endDate": "离职日期",// 任职终止日期
+                "rz": "在任其他职务"// 是否还在公司担任职务
+            }
+        ]// 高管离职
+    },
+    "otcperfast0?": {
+        name: "",
+        "": ""
+    },
+}
+```
 
 
 
