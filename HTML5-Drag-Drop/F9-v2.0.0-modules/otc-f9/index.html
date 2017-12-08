@@ -5,22 +5,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>股票 F9 - 速览</title>
+    <title>新三板 F9 - 速览</title>
     <!-- css -->
-    <link rel="stylesheet" data-css="data-css-uid" href="../js/f9-fastview/sidebar.css">
-    <!-- css order -->
-    <link rel="stylesheet" data-css="data-css-uid" href="../js/f9-fastview/common/module.css">
-    <!-- <link rel="stylesheet" data-css="data-css-uid" href="./modules-title.css"> -->
-    <!-- modal css -->
-    <link rel="stylesheet" data-css="data-css-uid" href="../js/f9-fastview/common/modal.css">
-    <!-- css & loading [data-css="data-css-uid"] dynamicly ??? -->
-    <!-- <link rel="stylesheet" data-css="data-css-uid" href="./Modules/   .css"> -->
-    <!-- <link rel="stylesheet" data-css="data-css-uid" href="./common/modules-title.css"> -->
-    <!-- <link rel="stylesheet" data-css="data-css-uid" href="./common/modules-link.css"> -->
+    <link rel="stylesheet" data-css="data-css-uid" href="./css/index.css">
+    <link rel="stylesheet" data-css="data-css-uid" href="./css/common/module.css">
+    <link rel="stylesheet" data-css="data-css-uid" href="./css/common/modal.css">
 </head>
 
 <body>
-    <!-- data-bt-class="container container-fluid" -->
     <header class="h5-dnd-header-container" data-header="data-header">
         <nav class="h5-dnd-nav-container h5-dnd-nav-container-normal" data-nav-container="nav-container">
             <ul class="h5-dnd-nav-ul">
@@ -47,7 +39,6 @@
             </div>
             <div class="h5-dnd-nav-box h5-dnd-nav-box-hidden" data-nav-box="nav-box">
                 <section class="h5-dnd-icon-container">
-                    <!-- NO need `<img src="../icons/company-news.png" alt="">` any more, just using `CSS3` before! -->
                     <div class="h5-dnd-icon-box" draggable="true" data-icon-uid="module-data-stockfast01" data-name="important-infos">
                         <p class="h5-dnd-icon-p" data-uid="stockfast01" data-title="重要信息">重要信息</p>
                     </div>
@@ -84,11 +75,6 @@
                     <div class="h5-dnd-icon-box" draggable="true" data-icon-uid="module-data-news">
                         <p class="h5-dnd-icon-p">公司新闻</p>
                     </div>
-                    <!--
-                        <div class="h5-dnd-icon-box" draggable="true">
-                            <p class="h5-dnd-icon-p">投资者关系</p>
-                        </div>
-                    -->
                     <div class="h5-dnd-icon-box" draggable="true" data-icon-uid="module-data-stockfast08">
                         <p class="h5-dnd-icon-p">融资余额与融券余额差值走势</p>
                     </div>
@@ -122,7 +108,6 @@
                 <!-- <span>展开侧边栏</span> -->
             </div>
         </div>
-        <!-- show/hidden === display: block/none; -->
     </header>
     <section class="h5-dnd-body-container h5-dnd-body-container-small" data-body-container="data-body-container">
         <!-- data-* & modules.dom placeholder -->
@@ -141,20 +126,16 @@
         <!-- bad css modal -->
     </div>
     <!-- libs -->
-    <script src="./libs/highstock.js"></script>
+    <script src="./libs/highstock.min.js"></script>
     <script src="./libs/Sortable.min.js"></script>
     <script src="./libs/sweetalert.min.js"></script>
     <!-- modal libs -->
     <script src="./libs/jquery1.4.0.min.js"></script>
-    <!-- <script src="./libs/BouncedModal.js"></script> -->
-    <script src="./build/js/modal.min.js"></script>
+    <script src="./libs/BouncedModal.js"></script>
+    <!-- <script src="./build/js/modal.min.js"></script> -->
     <!-- js -->
-    <!-- <script src="./sidebar.js"></script> -->
-    <script src="./build/js/sidebar.min.js"></script>
-    <!-- <script src="./config.js"></script> -->
-    <div class="module-script-box">
-        <!-- modules.js placeholder -->
-    </div>
+    <script src="./sidebar.js"></script>
+    <!-- <script src="./build/js/sidebar.min.js"></script> -->
     <script>
         // Multi groups
         var byId = function(id) {
@@ -163,11 +144,8 @@
         Sortable.create(byId('section-sortable-container'), {
             // container
             animation: 150,
-            draggable: '.div-sortable-box', // sub-container
-            //handle: '.tile__name' // sub-sub-container-title
+            draggable: '.div-sortable-box'
         });
-        // document.querySelector(('[data-div-module-uid*="div-module"]'));
-        // [].forEach.call(byId('multi').getElementsByClassName('div-sortable-box'), function(el) {
         [].forEach.call(byId('section-sortable-container').getElementsByClassName('div-sortable-box'), function(el) {
             // sub-sub-container-list
             Sortable.create(el, {
