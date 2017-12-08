@@ -1,0 +1,53 @@
+@charset "UTF-8";
+.fv-turnover-trend-protocol-diagram-hs {
+    margin: 0 auto;
+    box-sizing: border-box;
+    /* border: 1px solid red; */
+    border: 1px solid rgba(229, 229, 229, 1);
+    max-width: 542px;
+}
+
+.fv-turnover-trend-protocol-diagram-title,
+.fv-turnover-trend-protocol-diagram-container {
+    box-sizing: border-box;
+    max-width: 542px;
+}
+
+.fv-turnover-trend-protocol-diagram-hs-container {
+    /* width: 850px; */
+    /* height: 275px; */
+    /* height: 270px; */
+    /* height: 100%; */
+    /* max-height: 275px; */
+    /* overflow-y: scroll; */
+    /* box-sizing: border-box; */
+    min-height: 275px;
+    height: 275px;
+    max-width: 542px;
+}
+
+
+/* commons-title */
+
+.fv-turnover-trend-protocol-diagram-title {
+    position: relative;
+    color: #000;
+    text-indent: 15px;
+    margin-left: 3px;
+    font-weight: 600;
+    font-size: 14px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.fv-turnover-trend-protocol-diagram-title::before {
+    position: absolute;
+    top: 0px;
+    left: 5px;
+    content: "";
+    display: inline-block;
+    border: 2px solid #f79530;
+    width: 0;
+    height: 16px;
+    /* line-height: 22px; */
+}
