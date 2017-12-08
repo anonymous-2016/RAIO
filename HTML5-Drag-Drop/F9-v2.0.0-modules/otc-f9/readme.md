@@ -1,4 +1,23 @@
-# Stock F9 速览
+# 新三板 F9 速览 (证券速览)
+
+
+# OTC
+
+> OTC（Over-The-Counter）场外交易市场
+
+
+## .SZ & .SH
+
+http://10.1.5.202/stock/f9/fastview/sidebar.html?gilcode=000001.SZ&market=4609&sid=hs
+http://10.1.5.202/stock/f9/fastview/sidebar.html?gilcode=600570.SH&market=4609&sid=hs
+
+
+
+
+
+
+
+
 
 
 # Highchart & scrollbar bug!
