@@ -1,0 +1,226 @@
+@charset "UFT-8";
+
+/* indicators-per-share.css */
+
+
+/* @import url("./common/reset.css"); */
+
+@import url("../common/module.css");
+
+/* module title*/
+
+.fv-indicators-per-share-title-box {
+    /* width: 100%; */
+}
+
+.fv-indicators-per-share-title {
+    position: relative;
+    color: #000;
+    text-indent: 15px;
+    margin-left: 3px;
+    font-weight: 600;
+    font-size: 14px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.fv-indicators-per-share-title::before {
+    position: absolute;
+    top: 0px;
+    left: 5px;
+    content: "";
+    display: inline-block;
+    border: 2px solid #f79530;
+    width: 0;
+    height: 16px;
+    /* line-height: 22px; */
+}
+
+
+/* table */
+
+.fv-indicators-per-share-table {
+    width: 100%;
+    /* 去除table每行之间的空白间隙 */
+    border-collapse: collapse;
+    border-spacing: 0;
+    /* border-collapse: separate; */
+    /* border-spacing: 1px */
+    /* border-color: #c5d2db; */
+    font-size: 13px;
+    font-weight: normal;
+}
+
+.fv-indicators-per-share-table tr td::selection {
+    color: #0f0;
+    background: #000;
+}
+
+
+/* CSS transform & transition*/
+
+
+/*
+.fv-indicators-per-share-table tr td:hover {
+    font-size: 16px;
+    transform: scale(1.2);
+    -webkit-transition: all 0.5s ease 0s;
+    -moz-transition: all 0.5s ease 0s;
+    transition: all 0.5s ease 0s;
+    width: 100%;
+    overflow: scroll;
+}
+*/
+
+.fv-indicators-per-share-table-thead {
+    display: none;
+}
+
+.fv-indicators-per-share-table-tfoot {
+    display: none;
+}
+
+.fv-indicators-per-share-table-tr {
+    box-sizing: border-box;
+    /* border: 1px solid #e9e9e9; */
+    border: 1px solid #c5d2db;
+    /* border-left: 0; */
+    /* border-right: 0; */
+    padding-left: 6px;
+    height: 23px;
+    line-height: 23px;
+    max-height: 23px;
+}
+
+
+/* date no need `:` */
+
+
+/*
+
+.fv-indicators-per-share-table-td-key::after {
+    content: ":"
+}
+
+.fv-indicators-per-share-table-td-key {
+    box-sizing: border-box;
+    min-width: 120px;
+    background: #e8eefa;
+    padding-left: 6px;
+    border-right: 1px solid #c5d2db;
+}
+
+*/
+
+.fv-indicators-per-share-table-td-value {
+    box-sizing: border-box;
+    /* min-width: 205px; */
+    min-width: 80px;
+    padding-left: 6px;
+}
+
+
+/* CSS3 :nth-of-type & nth-type & nth-child & :first-child & last-child*/
+
+
+/*
+.fv-indicators-per-share-table-tbody>tr:nth-of-type(2n)>td:last-child {
+    background-color: #f5f5f5;
+}
+*/
+
+[data-tr="tr-spaces"] {
+    /* background: #f0f; */
+    height: 10px;
+    width: 100%;
+}
+
+tr[data-tr="tr-background"] {
+    /* background-color: #e8eefa; */
+    /* background: #f0f; */
+}
+
+.fv-indicators-per-share-table-tbody>tr:nth-of-type(2n+1) {
+    background-color: #f5f5f5;
+}
+
+.fv-indicators-per-share-table-tbody>tr:nth-of-type(1) {
+    background-color: #e8eefa;
+}
+
+.fv-indicators-per-share-table-tbody>tr:nth-of-type(9) {
+    background-color: #e8eefa;
+}
+
+.fv-indicators-per-share-table-tbody>tr:nth-of-type(2n+10) {
+    background-color: #fff;
+}
+
+.fv-indicators-per-share-table-tbody>tr:nth-of-type(2n+11) {
+    background-color: #f5f5f5;
+}
+
+.fv-indicators-per-share-table-tbody>tr:nth-of-type(n)>td {
+    line-height: 23px;
+    height: 23px;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.fv-indicators-per-share-table-tbody>tr:nth-of-type(n)>td:last-child {
+    border-left: 1px solid #d7dbe0;
+    max-width: 72px;
+    box-sizing: border-box;
+    text-align: left;
+}
+
+.fv-indicators-per-share-table-tbody>tr:nth-of-type(n)>td:nth-child(2) {
+    max-width: 72px;
+    /* max-width: 510px; */
+    overflow-x: hidden;
+    /* overflow: hidden; */
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    /* color: red; */
+    border-left: 1px solid #d7dbe0;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+
+/* https://css-tricks.com/almanac/properties/t/text-overflow/ */
+
+.fv-indicators-per-share-table-tbody>tr:nth-of-type(n)>td:first-child {
+    width: 236px;
+    text-align: left;
+    padding-left: 6px;
+}
+
+[data-more="data-link-more"] {
+    text-decoration: none;
+    color: #3385ff;
+    cursor: pointer;
+}
+
+.fv-indicators-per-share-table-tbody {
+    /* max-width: 70%; */
+    /* max-height: 50px; */
+    max-width: 760px;
+}
+
+
+/* links */
+
+[data-link="fv-indicators-per-share-link"] {
+    text-decoration: none;
+}
+
+[data-link="fv-indicators-per-share-link"]:hover {
+    color: #f0f;
+}
+
+[data-disabled="true"],
+[data-disabled="true"]:hover {
+    cursor: not-allowed;
+    color: grey;
+}
