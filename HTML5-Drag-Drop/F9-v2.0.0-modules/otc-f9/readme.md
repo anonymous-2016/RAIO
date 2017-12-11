@@ -67,8 +67,85 @@ font-family: "Microsoft YaHei", sans-serif;
 股东户数（截止2015-06-30）
 
 
+# modal
+
+```sh
+$ npm i -g uglify-es
 
 
+# uglifyjs ./libs/BouncedModal.js -o ./build/foo.min.js -c -m reserved=['BouncedModal']
+
+# OK
+$ uglifyjs -h
+$ uglifyjs ./libs/modal.js -o ./build/modal.min.js -c -m reserved=['BouncedModal']
+
+# ??? BAD
+$ uglifyes -h
+$ uglifyes ./libs/modal.js -o ./build/modal.min.js -c -m reserved=['BouncedModal']
+
+```
+
+
+
+# uglifyjs
+
+> --mangle-props & -m
+
+
+```js
+
+
+
+
+/*
+
+$ npm i -g uglify-es
+
+
+// OK ???
+uglifyjs -h
+uglifyjs ./libs/modal.js -o ./build/modal.min.js -c -m reserved=['BouncedModal']
+
+
+*/
+
+
+
+/*
+
+$ uglifyjs ./libs/modal.js -o ./libs/modal.min.js -c --mangle reserved=['BouncedModal']
+$ uglifyjs ./libs/modal.js -o ./libs/modal.min.js -c -m reserved=[`BouncedModal`]
+$ uglifyjs ./libs/modal.js -o ./libs/modal.min.js -c -m reserved=["BouncedModal"]
+
+
+
+// OK ???
+uglifyjs -h
+
+
+# BAD ???
+uglifyjs ./libs/sidebar.js -o ./build/sidebar.min.js -c --mangle-props reserved=["STOCK_IP", "STOCK_Paths", "STOCK_SecCode"]
+
+
+
+# OK
+uglifyjs ./libs/sidebar.js -o ./build/sidebar.min.js -c --mangle-props reserved=["STOCK_IP"]
+
+
+
+uglifyjs ./libs/sidebar.js -o ./build/sidebar.min.js -c --mangle-props keep_quoted
+
+
+
+properties: {
+    // mangle property options
+    reserved: ["STOCK_IP", "STOCK_Paths", "STOCK_SecCode"]
+},
+
+
+*/
+
+```
 
 
 

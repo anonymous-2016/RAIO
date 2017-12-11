@@ -107,33 +107,31 @@
     </div>
     <!-- libs -->
     <script src="./libs/highstock.min.js"></script>
-    <script src="./libs/Sortable.min.js"></script>
+    <script src="./libs/sortable.min.js"></script>
     <script src="./libs/sweetalert.min.js"></script>
     <!-- modal libs -->
-    <script src="./libs/jquery1.4.0.min.js"></script>
-    <script src="./libs/BouncedModal.js"></script>
-    <!-- <script src="./build/js/modal.min.js"></script> -->
+    <script src="./libs/jquery-3.2.1.slim.min.js"></script>
+    <script src="./libs/modal.min.js"></script>
     <!-- js -->
     <script src="./index.js"></script>
-    <!-- <script src="./build/js/index.min.js"></script> -->
-    <script>
+    <!-- <script>
         // Multi groups
-        var byId = function(id) {
-            return document.getElementById(id);
-        };
-        Sortable.create(byId('section-sortable-container'), {
-            // container
+        let SortBox = document.querySelector(`#section-sortable-container`),
+            SortItems = SortBox.querySelectorAll(`.div-sortable-box`);
+        // container
+        Sortable.create(SortBox, {
             animation: 150,
             draggable: '.div-sortable-box'
         });
-        [].forEach.call(byId('section-sortable-container').getElementsByClassName('div-sortable-box'), function(el) {
-            // sub-sub-container-list
+        // array
+        [].forEach.call(SortItems, function(el) {
             Sortable.create(el, {
                 group: 'photo',
                 animation: 150
             });
         });
-    </script>
+    </script> -->
+    <script src="./init.js"></script>
 </body>
 
 </html>

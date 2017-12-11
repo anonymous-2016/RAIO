@@ -11,13 +11,6 @@
  *
  */
 
-// import { export } from "module-name";
-
-// import path from "path";
-// import webpack from "webpack";
-// import UglifyJSPlugin from "uglifyjs-webpack-plugin";
-// import HtmlWebpackPlugin from "html-webpack-plugin";
-
 
 const path = require('path');
 const webpack = require('webpack'); //to access built-in plugins
@@ -34,6 +27,8 @@ const BASE_URI = {
     test: `./test`
 };
 
+// process.env.NODE_ENV = `production`;
+process.env.NODE_ENV = `development`;
 
 if (process.env.NODE_ENV !== 'production') {
     console.log('😃, Looks like we are in development mode!');
@@ -42,26 +37,20 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 const STOCK_F9 = [
-    "agency-research-statistics",
-    "agency-rating",
-    "changes-shareholding-executives",
-    "company-announcements",
-    "company-news",
-    "equity-pledge",
-    "financing-and-margin-balance-difference-trend",
-    "holdings-participation-situation",
-    "important-infos",
-    "indicators-per-share",
-    "institutional-shareholding-change-statistics",
-    "investor-relations",
-    "monthly-capital-flows-large-single-statistics",
-    "profit-forecast",
-    "recent-important-events-backup",
-    "recent-important-events",
-    "research-report",
-    "stock-price-turnover",
-    "top-ten-shareholders",
-    // "sidebar"
+    "news",
+    "bulletin",
+    "research",
+    "otcperfast01",
+    "otcperfast02",
+    "otcperfast03",
+    "otcperfast04",
+    "otcperfast05",
+    "otcperfast06",
+    "otcperfast07",
+    "otcperfast08",
+    "otcperfast09",
+    "otcperfast10",
+    "otcperfast11"
 ];
 
 let entry_obj = {};

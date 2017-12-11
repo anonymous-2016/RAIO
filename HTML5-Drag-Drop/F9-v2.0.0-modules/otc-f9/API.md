@@ -62,7 +62,84 @@ http://10.1.5.202/webservice/fastview/otcper/参数/聚源代码
 
 http://10.1.5.202/webservice/fastview/otcper/otcperfast01/430002.OC
 
+
+
+
 ```js
+//  e.target.classList & e.target.dataset
+
+console.log(`e.target.dataset = \n`, e.target.dataset);
+console.log(`uid `, uid);
+
+const consoles = {
+    css: `
+        color: #f0f;
+        font-size: 23px;
+    `,
+    css1: `
+        color: #f00;
+        font-size: 23px;
+    `,
+    css2: `
+        color: #ff0;
+        font-size: 23px;
+    `,
+    css3: `
+        color: #0ff;
+        font-size: 23px;
+    `,
+};
+const console_css = `
+    color: #f0f;
+    font-size: 23px;
+`;
+const console_css1 = `
+    color: #f00;
+    font-size: 23px;
+`;
+const console_css2 = `
+    color: #ff0;
+    font-size: 23px;
+`;
+const console_css3 = `
+    color: #0ff;
+    font-size: 23px;
+`;
+
+window.onload = () => {
+    initTabs();
+    initSider();
+    // OTC_IP = `${window.parent.location.protocol}//${window.parent.location.host}`;
+    OTC_IP = `${window.parent.location.origin}`;
+    OTC_PATH = `/webservice/fastview/stock`;
+    OTC_GILCODE = OTC_F9_FV.Utils.getParam(`gilcode`) ? OTC_F9_FV.Utils.getParam(`gilcode`) : `430002.OC`;
+    // OTC_SOCKET = ``;
+    console.log(`OTC_GILCODE `, OTC_GILCODE, typeof OTC_GILCODE);
+    // OTC_GILCODE = OTC_F9_FV.Utils.getParam(`gilcode`);
+    // OTC_IP = `http://${window.parent.location.host}`;
+    // OTC_Paths = `/webservice/fastview/otcper`;
+};
+
+var OTC_IP = OTC_IP || ``;
+var OTC_PATH = OTC_PATH || ``;
+var OTC_SOCKET = OTC_SOCKET || ``;
+var OTC_GILCODE = OTC_GILCODE || ``;
+
+const OTC_GILCODE_URL = {
+    ip: `http://10.1.5.202`,
+    path: `webservice/fastview/otcper`,
+    socket: `otcperfast11`,
+    gilcode: `430002.OC`
+};
+// window.location.host: "10.1.5.202"
+// window.location.origin: "http://10.1.5.202"
+
+let otc_demo_url = `${OTC_GILCODE_URL.ip}/${OTC_GILCODE_URL.path}/${OTC_GILCODE_URL.socket}/${OTC_GILCODE_URL.gilcode}`;
+
+
+// STOCK_IP = window.parent.location.origin;
+// STOCK_PATH = window.parent.location.pathname;
+// STOCK_GILCODE = OTC_F9_FV.Utils.getParam(`gilcode`);
 
     // const OTC_IP = ``;
     // const OTC_PATH = ``;
@@ -83,14 +160,6 @@ http://10.1.5.202/webservice/fastview/otcper/otcperfast01/430002.OC
     OTC_GILCODE =  OTC_F9_FV.Utils.getParam(`gilcode`);
     OTC_IP = `${window.parent.location.protocol}//${window.parent.location.host}`;
     OTC_PATH = `/webservice/fastview/stock`;
-
-    // ip: `http://10.1.5.202`,
-    // path: `/webservice/fastview/stock/stockfast07/`, // => `/webservice/fastview/stock`
-    // gilcode: `600570.SH`
-
-    // IP = window.parent.location.host;
-    // PATH = window.parent.location.pathname;
-    // console.log(`btn = ${container.classList.contains("h5-dnd-nav-container-normal")}`);
 
 
 ```
@@ -434,7 +503,34 @@ let title = `${(arr[i].xwtitle !== undefined) ? arr[i].xwtitle : `🤓暂无 新
         "": ""
     },
 }
+
+
+
+Object.keys(json);
+copy(Object.keys(json));
+
+[
+    "news",
+    "bulletin",
+    "research",
+    "otcperfast01",
+    "otcperfast02",
+    "otcperfast03",
+    "otcperfast04",
+    "otcperfast05",
+    "otcperfast06",
+    "otcperfast07",
+    "otcperfast08",
+    "otcperfast09",
+    "otcperfast10",
+    "otcperfast11"
+]
+
+copy(Object.values(json));
+
 ```
+
+
 
 # webtool
 
