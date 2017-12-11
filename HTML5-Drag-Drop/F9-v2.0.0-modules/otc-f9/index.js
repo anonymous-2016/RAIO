@@ -2,14 +2,14 @@
 // recentImportantEvents & Uncaught SyntaxError: Delete of an unqualified identifier in strict mode.
 
 // namespaces
-var STOCK_F9_FV = STOCK_F9_FV || {};
+var OTC_F9_FV = OTC_F9_FV || {};
 // sub namespaces
-STOCK_F9_FV.Modules = STOCK_F9_FV.Modules || {};
+OTC_F9_FV.Modules = OTC_F9_FV.Modules || {};
 
+// sub namespaces
+OTC_F9_FV.Utils = OTC_F9_FV.Utils || {};
 
-STOCK_F9_FV.Utils = STOCK_F9_FV.Utils || {};
-
-STOCK_F9_FV.Utils.getParam = STOCK_F9_FV.Utils.getParam || ((key, debug = false) => {
+OTC_F9_FV.Utils.getParam = OTC_F9_FV.Utils.getParam || ((key, debug = false) => {
     let search = decodeURIComponent(window.location.search),
         start = search.indexOf("?") + 1,
         value = ``;
@@ -34,59 +34,35 @@ STOCK_F9_FV.Utils.getParam = STOCK_F9_FV.Utils.getParam || ((key, debug = false)
     }
 });
 
-// STOCK_F9_FV.Utils.getParam(`secucode`);
+// OTC_F9_FV.Utils.getParam(`secucode`);
+
+const debug = false;
+// const debug = false;
+
 
 var STOCK_IP = STOCK_IP || ``;
 var STOCK_Paths = STOCK_Paths || ``;
-var STOCK_SecCode = STOCK_SecCode || ``;
+var STOCK_SECUCODE = STOCK_SECUCODE || ``;
+var STOCK_GILCODE = STOCK_GILCODE || ``;
 
 // ip: `http://10.1.5.202`,
 // path: `/webservice/fastview/stock/stockfast07/`, // `/webservice/fastview/stock`
 // gilcode: `600570.SH`
 
 
-// STOCK_IP = STOCK_F9_FV.Utils.getParam(`ip`);
+// STOCK_IP = OTC_F9_FV.Utils.getParam(`ip`);
 // STOCK_IP = window.parent.location.host;
 
-// STOCK_Paths = STOCK_F9_FV.Utils.getParam(`path`);
+// STOCK_Paths = OTC_F9_FV.Utils.getParam(`path`);
 // STOCK_Paths = window.parent.location.pathname;
 
-// STOCK_SecCode = STOCK_F9_FV.Utils.getParam(`secucode`);
+// STOCK_SECUCODE = OTC_F9_FV.Utils.getParam(`secucode`);
 
 
-// console.log(`STOCK_SecCode `, STOCK_SecCode);
-
-
-// STOCK_SecCode = STOCK_F9_FV.Utils.getParam(`secucode`);
-
-// window.onload = (debug = false) => {
-//     console.log(`STOCK_SecCode `, STOCK_SecCode);
-//     alert(`loaded!`);
-//     STOCK_SecCode = STOCK_F9_FV.Utils.getParam(`secucode`);
-//     if (debug) {
-//         console.log(`STOCK_SecCode `, STOCK_SecCode);
-//     }
-// };
-
-
-/*
-
-queryString.replace(/=/g, ":");
-// "secucode:000001&market:4609&sid:hs"
-
-
-queryString.replace(/=/g, ":").replace(/&/g, ",");
-// "secucode:000001,market:4609,sid:hs"
-
-JSON.parse(eval("({"+"secucode:000001,market:4609,sid:hs"+"})"));
-// Uncaught ReferenceError: hs is not defined at eval
-
-*/
+// console.log(`STOCK_SECUCODE `, STOCK_SECUCODE);
 
 
 
-const debug = false;
-// const debug = false;
 
 
 // tabs
@@ -98,14 +74,6 @@ for (let i = 0; i < lis.length; i++) {
         if (debug) {
             let e_classes = e.target.classList;
             let e_datas = e.target.dataset;
-            console.log(`e = `, e);
-            console.log(`typeof e = `, typeof e);
-            console.log(`e classes= `, e_classes);
-            console.log(`e datas= `, e_datas);
-            console.log(`divs[i] = `, divs[i]);
-            console.log(`divs[i].classList = `, divs[i].classList);
-            console.log(`i = `, i);
-            console.log(`show ${divs[i].classList.contains(`h5-dnd-nav-box-hidden`)}`);
         }
         // lis.h5-dnd-nav-li-active
         if (lis[i].classList.contains("h5-dnd-nav-li-active")) {
@@ -217,13 +185,13 @@ small_btn.onclick = () => {
 // init ???
 window.onload = () => {
     // alert(`loaded!`);
-    STOCK_SecCode = STOCK_F9_FV.Utils.getParam(`gilcode`);
-    // STOCK_SecCode = STOCK_F9_FV.Utils.getParam(`secucode`);
+    STOCK_SECUCODE = OTC_F9_FV.Utils.getParam(`gilcode`);
+    // STOCK_SECUCODE = OTC_F9_FV.Utils.getParam(`secucode`);
     // STOCK_IP = `http://${window.parent.location.host}`;
     // STOCK_Paths = `/webservice/fastview/stock`;
-    console.log(`STOCK_SecCode `, STOCK_SecCode, typeof STOCK_SecCode);
+    console.log(`STOCK_SECUCODE `, STOCK_SECUCODE, typeof STOCK_SECUCODE);
 
-    STOCK_SecCode = STOCK_F9_FV.Utils.getParam(`gilcode`);
+    STOCK_SECUCODE = OTC_F9_FV.Utils.getParam(`gilcode`);
     STOCK_IP = `${window.parent.location.protocol}//${window.parent.location.host}`;
     STOCK_Paths = `/webservice/fastview/stock`;
 
@@ -252,8 +220,8 @@ window.onload = () => {
         // uids = ["stockfast01","stockfast02","stockfast03","stockfast04","stockfast05","stockfast06","stockfast07","stockfast08","stockfast09","stockfast10","stockfast11","stockfast12","stockfast13","news","bulletion","research"]
         let left_uids = ["stockfast01","stockfast04","stockfast07","bulletion","research","stockfast08","stockfast09","stockfast11"];
         let right_uids = ["stockfast02","stockfast03","stockfast05","stockfast06", "stockfast10","stockfast12","stockfast13", "news"];
-        STOCK_F9_FV.Modules.loadAllModules.init(sortable_module_containers[0], left_uids);
-        STOCK_F9_FV.Modules.loadAllModules.init(sortable_module_containers[1], right_uids);
+        OTC_F9_FV.Modules.loadAllModules.init(sortable_module_containers[0], left_uids);
+        OTC_F9_FV.Modules.loadAllModules.init(sortable_module_containers[1], right_uids);
         // ??? reset modules
         // a_modules.click();
         // load all modules & default layout ???
@@ -314,7 +282,7 @@ if (!debug) {
 */
 
 
-STOCK_F9_FV.Modules.loadAllModules = STOCK_F9_FV.Modules.loadAllModules || (
+OTC_F9_FV.Modules.loadAllModules = OTC_F9_FV.Modules.loadAllModules || (
     (sortable_container = `sortable_container`,debug = false) => {
         // const module_container = document.querySelector(`[data-body-container="data-body-container"]`);
         // const sortable_module_container = document.querySelector(`[data-div-inner-box="data-div-inner-box"]`);
@@ -374,7 +342,7 @@ STOCK_F9_FV.Modules.loadAllModules = STOCK_F9_FV.Modules.loadAllModules || (
                             console.log(`uid`, uid);
                         }
                         // OK
-                        STOCK_F9_FV.Modules.modulesLoader.deleteModule(uid);
+                        OTC_F9_FV.Modules.modulesLoader.deleteModule(uid);
                         // call delete
                     });
                     div.dataset.divModuleUid = `div-module-${uid}`;
@@ -1065,9 +1033,9 @@ STOCK_F9_FV.Modules.loadAllModules = STOCK_F9_FV.Modules.loadAllModules || (
 )();
 
 // const uids = ["stockfast01","stockfast02","stockfast03","stockfast04","stockfast05","stockfast06","stockfast07","stockfast08","stockfast09","stockfast10","stockfast11","stockfast12","stockfast13","news","bulletion","research"];
-// STOCK_F9_FV.Modules.loadAllModules.init(uids);
+// OTC_F9_FV.Modules.loadAllModules.init(uids);
 
-// console.log(`typeof STOCK_F9_FV.Modules.loadAllModules =\n`, typeof(STOCK_F9_FV.Modules.loadAllModules));
+// console.log(`typeof OTC_F9_FV.Modules.loadAllModules =\n`, typeof(OTC_F9_FV.Modules.loadAllModules));
 
 
 /**
@@ -1080,10 +1048,10 @@ STOCK_F9_FV.Modules.loadAllModules = STOCK_F9_FV.Modules.loadAllModules || (
 
 
 // IIFE === Closure!
-STOCK_F9_FV.Modules.modulesLoader = STOCK_F9_FV.Modules.modulesLoader ||(
+OTC_F9_FV.Modules.modulesLoader = OTC_F9_FV.Modules.modulesLoader ||(
     () => {
         const debug = false;
-        // const this_name = STOCK_F9_FV.Modules.modulesLoader;
+        // const this_name = OTC_F9_FV.Modules.modulesLoader;
         const consoles = {
             css: `
                 color: #f0f;
@@ -1381,7 +1349,7 @@ STOCK_F9_FV.Modules.modulesLoader = STOCK_F9_FV.Modules.modulesLoader ||(
                         console.log(`uid`, uid);
                         console.log(`e.target`, e.target);
                     }
-                    STOCK_F9_FV.Modules.modulesLoader.deleteModule(uid);
+                    OTC_F9_FV.Modules.modulesLoader.deleteModule(uid);
                 });
                 // icons ??? sub div ???
                 div.dataset.divModuleUid = `div-module-${uid}`;
@@ -2129,17 +2097,17 @@ STOCK_F9_FV.Modules.modulesLoader = STOCK_F9_FV.Modules.modulesLoader ||(
                     console.log(`module_datas = `, module_datas, Array.isArray(module_datas));// false
                 }
                 for (let index = 0; index < module_datas.length; index++) {
-                    module_datas[index].addEventListener(`dragstart`, STOCK_F9_FV.Modules.modulesLoader.dragstart);
+                    module_datas[index].addEventListener(`dragstart`, OTC_F9_FV.Modules.modulesLoader.dragstart);
                 }
                 if (debug) {
                     console.log(`module_containers`, module_containers);
                 }
                 for (let i = 0; i < module_containers.length; i++) {
-                    module_containers[i].addEventListener(`dragenter`, STOCK_F9_FV.Modules.modulesLoader.dragenter);
-                    module_containers[i].addEventListener(`dragover`, STOCK_F9_FV.Modules.modulesLoader.dragover);
-                    module_containers[i].addEventListener(`dragleave`, STOCK_F9_FV.Modules.modulesLoader.dragleave);
+                    module_containers[i].addEventListener(`dragenter`, OTC_F9_FV.Modules.modulesLoader.dragenter);
+                    module_containers[i].addEventListener(`dragover`, OTC_F9_FV.Modules.modulesLoader.dragover);
+                    module_containers[i].addEventListener(`dragleave`, OTC_F9_FV.Modules.modulesLoader.dragleave);
                     // dragleave
-                    module_containers[i].addEventListener(`drop`, STOCK_F9_FV.Modules.modulesLoader.drop);
+                    module_containers[i].addEventListener(`drop`, OTC_F9_FV.Modules.modulesLoader.drop);
                     // module_container.addEventListener(`dragenter`, modulesLoader.dragenter);
                     // module_container.addEventListener(`dragover`, modulesLoader.dragover);
                     // module_container.addEventListener(`drop`, modulesLoader.drop);
@@ -2151,7 +2119,7 @@ STOCK_F9_FV.Modules.modulesLoader = STOCK_F9_FV.Modules.modulesLoader ||(
 
 // init
 setTimeout(function() {
-    STOCK_F9_FV.Modules.modulesLoader.init();
+    OTC_F9_FV.Modules.modulesLoader.init();
 }, 0);
 
 
