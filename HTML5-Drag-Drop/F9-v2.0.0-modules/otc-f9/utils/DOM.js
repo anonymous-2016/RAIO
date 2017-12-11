@@ -1,4 +1,5 @@
-"use-strict";
+// "use-strict";
+// webapck & auto add "use-strict";
 
 const DOM_queryAll = (str = `[data-sortable-box*="sortable-box"]`, debug = false) => {
     let results = document.querySelectorAll(str);

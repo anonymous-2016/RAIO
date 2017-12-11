@@ -1,3 +1,7 @@
+// import {DOM_queryAll, DOM_query} from "./utils/DOM";
+
+// ??? no needs namespace anymore!
+
 // namespaces
 var OTC_F9_FV = OTC_F9_FV || {};
 
