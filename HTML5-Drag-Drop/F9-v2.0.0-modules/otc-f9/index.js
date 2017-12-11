@@ -171,6 +171,7 @@ const initTabs = () => {
     btn_universal.onclick = (e) => {
         sortable_module_containers[0].innerHTML = "";
         sortable_module_containers[1].innerHTML = "";
+        // 最新交易数据 latest-transaction-data
         let left_uids = ["otcperfast01","otcperfast04","otcperfast07","bulletion","research","otcperfast08","otcperfast09","otcperfast11"];
         let right_uids = ["otcperfast02","otcperfast03","otcperfast05","otcperfast06", "otcperfast10","otcperfast12","otcperfast13", "news"];
         OTC_F9_FV.Modules.loadAllModules.init(sortable_module_containers[0], left_uids);
@@ -241,86 +242,86 @@ const HTML_Template = (uid = ``, loadModule = function(){}, debug = false) => {
         delete_uid = ``;
     switch (uid) {
         case "otcperfast01":
-            delete_uid = `important-infos`;
-            loadModule(uid, `important-infos`, true);
+            delete_uid = `latest-transaction-data`;
+            loadModule(uid, `latest-transaction-data`, true);
             htmlstr += `
-                <section class="fv-module-box-3">
+                <section class="fv-module-box-5">
                     <div class="fv-h5dnd-modules-title-box">
-                        <p class="fv-h5dnd-modules-title" data-title="fv-important-infos-title">重要信息</p>
+                        <p class="fv-h5dnd-modules-title" data-title="fv-latest-transaction-data-title">最新交易数据</p>
                     </div>
-                    <table class="fv-important-infos-table">
-                        <thead class="fv-important-infos-table-thead">
-                            <tr class="fv-important-infos-table-tr">
-                                <td class="fv-important-infos-table-td-title">重要信息</td>
+                    <table class="fv-latest-transaction-data-table">
+                        <thead class="fv-latest-transaction-data-table-thead">
+                            <tr class="fv-latest-transaction-data-table-tr">
+                                <td class="fv-latest-transaction-data-table-td-title">重要信息</td>
                             </tr>
                         </thead>
-                        <tbody class="fv-important-infos-table-tbody">
-                            <tr class="fv-important-infos-table-tr">
-                                <td class="fv-important-infos-table-td-key">涉及概念</td>
-                                <td class="fv-important-infos-table-td-value" data-value="data-fv-infos"></td>
+                        <tbody class="fv-latest-transaction-data-table-tbody">
+                            <tr class="fv-latest-transaction-data-table-tr">
+                                <td class="fv-latest-transaction-data-table-td-key">涉及概念</td>
+                                <td class="fv-latest-transaction-data-table-td-value" data-value="data-fv-infos"></td>
                             </tr>
-                            <tr class="fv-important-infos-table-tr">
-                                <td class="fv-important-infos-table-td-key">主营业务</td>
-                                <td class="fv-important-infos-table-td-value" data-value="data-fv-infos"></td>
+                            <tr class="fv-latest-transaction-data-table-tr">
+                                <td class="fv-latest-transaction-data-table-td-key">主营业务</td>
+                                <td class="fv-latest-transaction-data-table-td-value" data-value="data-fv-infos"></td>
                             </tr>
-                            <tr class="fv-important-infos-table-tr">
-                                <td class="fv-important-infos-table-td-key" data-alias="52周波动率">3个月波动率(%)</td>
-                                <td class="fv-important-infos-table-td-value" data-value="data-fv-infos"></td>
+                            <tr class="fv-latest-transaction-data-table-tr">
+                                <td class="fv-latest-transaction-data-table-td-key" data-alias="52周波动率">3个月波动率(%)</td>
+                                <td class="fv-latest-transaction-data-table-td-value" data-value="data-fv-infos"></td>
                             </tr>
-                            <tr class="fv-important-infos-table-tr">
-                                <td class="fv-important-infos-table-td-key" data-alias="日均成交量(3个月)">近90天日均成交量(万股)</td>
-                                <td class="fv-important-infos-table-td-value" data-value="data-fv-infos"></td>
-                            </tr>
-                            <!--
-                                <tr class="fv-important-infos-table-tr">
-                                    <td class="fv-important-infos-table-td-key">总市值</td>
-                                    <td class="fv-important-infos-table-td-value" data-value="data-fv-infos"></td>
-                                </tr>
-                            -->
-                            <tr class="fv-important-infos-table-tr">
-                                <td class="fv-important-infos-table-td-key">净资产(万元)</td>
-                                <td class="fv-important-infos-table-td-value" data-value="data-fv-infos"></td>
-                            </tr>
-                            <tr class="fv-important-infos-table-tr">
-                                <td class="fv-important-infos-table-td-key">总股本(万股)</td>
-                                <td class="fv-important-infos-table-td-value" data-value="data-fv-infos"></td>
-                            </tr>
-                            <tr class="fv-important-infos-table-tr">
-                                <td class="fv-important-infos-table-td-key">流通股本(万股)</td>
-                                <td class="fv-important-infos-table-td-value" data-value="data-fv-infos"></td>
-                            </tr>
-                            <tr class="fv-important-infos-table-tr">
-                                <td class="fv-important-infos-table-td-key">股息率(%)</td>
-                                <td class="fv-important-infos-table-td-value" data-value="data-fv-infos"></td>
+                            <tr class="fv-latest-transaction-data-table-tr">
+                                <td class="fv-latest-transaction-data-table-td-key" data-alias="日均成交量(3个月)">近90天日均成交量(万股)</td>
+                                <td class="fv-latest-transaction-data-table-td-value" data-value="data-fv-infos"></td>
                             </tr>
                             <!--
-                                <tr class="fv-important-infos-table-tr">
-                                    <td class="fv-important-infos-table-td-key">机构家数</td>
-                                    <td class="fv-important-infos-table-td-value" data-value="data-fv-infos"></td>
+                                <tr class="fv-latest-transaction-data-table-tr">
+                                    <td class="fv-latest-transaction-data-table-td-key">总市值</td>
+                                    <td class="fv-latest-transaction-data-table-td-value" data-value="data-fv-infos"></td>
                                 </tr>
                             -->
-                            <tr class="fv-important-infos-table-tr">
-                                <td class="fv-important-infos-table-td-key" data-alias="前十大机构持有">机构持股占比(%)</td>
-                                <td class="fv-important-infos-table-td-value" data-value="data-fv-infos"></td>
+                            <tr class="fv-latest-transaction-data-table-tr">
+                                <td class="fv-latest-transaction-data-table-td-key">净资产(万元)</td>
+                                <td class="fv-latest-transaction-data-table-td-value" data-value="data-fv-infos"></td>
+                            </tr>
+                            <tr class="fv-latest-transaction-data-table-tr">
+                                <td class="fv-latest-transaction-data-table-td-key">总股本(万股)</td>
+                                <td class="fv-latest-transaction-data-table-td-value" data-value="data-fv-infos"></td>
+                            </tr>
+                            <tr class="fv-latest-transaction-data-table-tr">
+                                <td class="fv-latest-transaction-data-table-td-key">流通股本(万股)</td>
+                                <td class="fv-latest-transaction-data-table-td-value" data-value="data-fv-infos"></td>
+                            </tr>
+                            <tr class="fv-latest-transaction-data-table-tr">
+                                <td class="fv-latest-transaction-data-table-td-key">股息率(%)</td>
+                                <td class="fv-latest-transaction-data-table-td-value" data-value="data-fv-infos"></td>
                             </tr>
                             <!--
-                                <tr class="fv-important-infos-table-tr">
-                                    <td class="fv-important-infos-table-td-key">分析师关注度</td>
-                                    <td class="fv-important-infos-table-td-value" data-value="data-fv-infos"></td>
+                                <tr class="fv-latest-transaction-data-table-tr">
+                                    <td class="fv-latest-transaction-data-table-td-key">机构家数</td>
+                                    <td class="fv-latest-transaction-data-table-td-value" data-value="data-fv-infos"></td>
                                 </tr>
                             -->
-                            <tr class="fv-important-infos-table-tr">
-                                <td class="fv-important-infos-table-td-key">目标价格</td>
-                                <td class="fv-important-infos-table-td-value" data-value="data-fv-infos"></td>
+                            <tr class="fv-latest-transaction-data-table-tr">
+                                <td class="fv-latest-transaction-data-table-td-key" data-alias="前十大机构持有">机构持股占比(%)</td>
+                                <td class="fv-latest-transaction-data-table-td-value" data-value="data-fv-infos"></td>
                             </tr>
-                            <tr class="fv-important-infos-table-tr">
-                                <td class="fv-important-infos-table-td-key">综合评级</td>
-                                <td class="fv-important-infos-table-td-value" data-value="data-fv-infos"></td>
+                            <!--
+                                <tr class="fv-latest-transaction-data-table-tr">
+                                    <td class="fv-latest-transaction-data-table-td-key">分析师关注度</td>
+                                    <td class="fv-latest-transaction-data-table-td-value" data-value="data-fv-infos"></td>
+                                </tr>
+                            -->
+                            <tr class="fv-latest-transaction-data-table-tr">
+                                <td class="fv-latest-transaction-data-table-td-key">目标价格</td>
+                                <td class="fv-latest-transaction-data-table-td-value" data-value="data-fv-infos"></td>
+                            </tr>
+                            <tr class="fv-latest-transaction-data-table-tr">
+                                <td class="fv-latest-transaction-data-table-td-key">综合评级</td>
+                                <td class="fv-latest-transaction-data-table-td-value" data-value="data-fv-infos"></td>
                             </tr>
                         </tbody>
-                        <tfoot class="fv-important-infos-table-tfoot">
-                            <tr class="fv-important-infos-table-tr">
-                                <td class="fv-important-infos-table-td-value" data-value="data-fv-infos"></td>
+                        <tfoot class="fv-latest-transaction-data-table-tfoot">
+                            <tr class="fv-latest-transaction-data-table-tr">
+                                <td class="fv-latest-transaction-data-table-td-value" data-value="data-fv-infos"></td>
                             </tr>
                         </tfoot>
                     </table>
@@ -331,7 +332,7 @@ const HTML_Template = (uid = ``, loadModule = function(){}, debug = false) => {
             delete_uid = `recent-important-events`;
             loadModule(uid, `recent-important-events`, true);
             htmlstr += `
-                <section class="fv-module-box-7">
+                <section class="fv-module-box-5">
                     <div class="fv-h5dnd-modules-title-box">
                         <p class="fv-h5dnd-modules-title" data-title="fv-recent-important-events-title">近期重要事项</p>
                     </div>
@@ -355,7 +356,7 @@ const HTML_Template = (uid = ``, loadModule = function(){}, debug = false) => {
             delete_uid = `profit-forecast`;
             loadModule(uid, `profit-forecast`);
             htmlstr += `
-                <section class="fv-module-box-7">
+                <section class="fv-module-box-5">
                     <div class="fv-h5dnd-modules-title-box">
                         <p class="fv-h5dnd-modules-title" data-title="fv-profit-forecast-title">盈利预告</p>
                     </div>
@@ -372,7 +373,7 @@ const HTML_Template = (uid = ``, loadModule = function(){}, debug = false) => {
             delete_uid = `indicators-per-share`;
             loadModule(uid, `indicators-per-share`, true);
             htmlstr += `
-                <section class="fv-module-box-3">
+                <section class="fv-module-box-5">
                     <div class="fv-indicators-per-share-title-box">
                         <p class="fv-h5dnd-modules-title" data-title="fv-indicators-per-share-title">每股指标</p>
                     </div>
@@ -490,7 +491,7 @@ const HTML_Template = (uid = ``, loadModule = function(){}, debug = false) => {
             delete_uid = `agency-rating`;
             loadModule(uid, `agency-rating`);
             htmlstr += `
-                <section class="fv-module-box-7">
+                <section class="fv-module-box-5">
                     <div class="fv-h5dnd-modules-title-box">
                         <p class="fv-h5dnd-modules-title" data-title="fv-agency-rating-title">机构评级</p>
                     </div>
@@ -505,7 +506,7 @@ const HTML_Template = (uid = ``, loadModule = function(){}, debug = false) => {
             delete_uid = `stock-price-turnover`;
             loadModule(uid, `stock-price-turnover`);
             htmlstr += `
-                <section class="fv-module-box-7">
+                <section class="fv-module-box-5">
                     <div class="fv-h5dnd-modules-title-box">
                         <p class="fv-h5dnd-modules-title" data-title="fv-stock-price-turnover-title">股价/成交量</p>
                     </div>
@@ -519,7 +520,7 @@ const HTML_Template = (uid = ``, loadModule = function(){}, debug = false) => {
             delete_uid = `top-ten-shareholders`;
             loadModule(uid, `top-ten-shareholders`, true);// table
             htmlstr += `
-                <section class="fv-module-box-10">
+                <section class="fv-module-box-5">
                     <div class="fv-h5dnd-modules-title-box">
                         <p class="fv-h5dnd-modules-title" data-title="fv-top-ten-shareholders-title" data-more="top-ten-shareholders-title">前十大股东</p>
                     </div>
@@ -547,7 +548,7 @@ const HTML_Template = (uid = ``, loadModule = function(){}, debug = false) => {
             delete_uid = `financing-and-margin-balance-difference-trend`;
             loadModule(uid, `financing-and-margin-balance-difference-trend`, false);// container
             htmlstr += `
-                <section class="fv-module-box-7">
+                <section class="fv-module-box-5">
                     <div class="fv-h5dnd-modules-title-box">
                         <p class="fv-h5dnd-modules-title" data-title="fv-financing-and-margin-balance-difference-trend-title">融资余额与融券余额差值走势</p>
                     </div>
@@ -562,7 +563,7 @@ const HTML_Template = (uid = ``, loadModule = function(){}, debug = false) => {
             delete_uid = `monthly-capital-flows-large-single-statistics`;
             loadModule(uid, `monthly-capital-flows-large-single-statistics`);// false
             htmlstr += `
-                <section class="fv-module-box-7">
+                <section class="fv-module-box-5">
                     <div class="fv-h5dnd-modules-title-box">
                         <p class="fv-h5dnd-modules-title" data-title="fv-monthly-capital-flows-large-single-statistics-title">近一月资金流向大单统计</p>
                     </div>
@@ -577,7 +578,7 @@ const HTML_Template = (uid = ``, loadModule = function(){}, debug = false) => {
             delete_uid = `equity-pledge`;
             loadModule(uid, `equity-pledge`, true);
             htmlstr += `
-                <section class="fv-module-box-10">
+                <section class="fv-module-box-5">
                     <div class="fv-h5dnd-modules-title-box">
                         <p class="fv-h5dnd-modules-title" data-title="fv-equity-pledge-title" data-more="equity-pledge-title">股权质押</p>
                     </div>
@@ -646,51 +647,6 @@ const HTML_Template = (uid = ``, loadModule = function(){}, debug = false) => {
                 </section>
             `;
             break;
-        case "otcperfast12":
-            delete_uid = `changes-shareholding-executives`;
-            loadModule(uid, `changes-shareholding-executives`, true);
-            htmlstr += `
-                <section class="fv-module-box-5">
-                    <div class="fv-h5dnd-modules-title-box">
-                        <p class="fv-h5dnd-modules-title" data-title="fv-changes-shareholding-executives-title" data-more="changes-shareholding-executives-title">高管持股变动情况</p>
-                    </div>
-                    <table class="fv-changes-shareholding-executives-table">
-                        <thead class="fv-changes-shareholding-executives-table-thead">
-                            <tr class="fv-changes-shareholding-executives-table-tr">
-                                <td class="fv-changes-shareholding-executives-table-td-title">变动日期</td>
-                                <td class="fv-changes-shareholding-executives-table-td-title">变动人姓名</td>
-                                <td class="fv-changes-shareholding-executives-table-td-title">变动方向</td>
-                                <td class="fv-changes-shareholding-executives-table-td-title">变动股份数量(股)</td>
-                                <td class="fv-changes-shareholding-executives-table-td-title">成交均价(元)</td>
-                                <!-- <td class="fv-changes-shareholding-executives-table-td-title">变动比例(‰)</td> -->
-                                <td class="fv-changes-shareholding-executives-table-td-title">与董监高关系</td>
-                            </tr>
-                        </thead>
-                        <tbody class="fv-changes-shareholding-executives-table-tbody" id="fv-changes-shareholding-executives-tbody"></tbody>
-                        <tfoot class="fv-changes-shareholding-executives-table-tfoot">
-                            <tr class="fv-changes-shareholding-executives-table-tr">
-                                <td class="fv-changes-shareholding-executives-table-td-value" data-value="data-fv-changes-shareholding-executives"></td>
-                            </tr>
-                        </tfoot>
-                    </table>
-                </section>
-            `;
-            break;
-        case "otcperfast13":
-            delete_uid = `institutional-shareholding-change-statistics`;
-            loadModule(uid, `institutional-shareholding-change-statistics`);
-            htmlstr += `
-                <section class="fv-module-box-7">
-                    <div class="fv-h5dnd-modules-title-box">
-                        <p class="fv-h5dnd-modules-title" data-title="fv-institutional-shareholding-change-statistics-title">机构持股变动统计</p>
-                    </div>
-                    <div class="fv-institutional-shareholding-change-statistics-container">
-                        <!-- 盈利预告 placeholder -->
-                        <div id="institutional_shareholding_change_statistics_hs_container" class="fv-institutional-shareholding-change-statistics-hs fv-institutional-shareholding-change-statistics-hs-container" data-hs-container="data-institutional-shareholding-change-statistics-container-uid"></div>
-                    </div>
-                </section>
-            `;
-            break;
         case "news":
             delete_uid = `company-news`;
             loadModule(uid, `company-news`, true);
@@ -716,7 +672,7 @@ const HTML_Template = (uid = ``, loadModule = function(){}, debug = false) => {
                 </section>
             `;
             break;
-        case "bulletion":
+        case "bulletin":
             delete_uid = `company-announcements`;
             loadModule(uid, `company-announcements`, true);
             htmlstr += `
@@ -756,18 +712,7 @@ const HTML_Template = (uid = ``, loadModule = function(){}, debug = false) => {
                                 <td class="fv-research-report-table-td-title">标题</td>
                             </tr>
                         </thead>
-                        <tbody class="fv-research-report-table-tbody" id="fv-research-report-tbody">
-                            <!--
-                                <tr class="fv-research-report-table-tr">
-                                    <td class="fv-research-report-table-td-key">涉及概念</td>
-                                    <td class="fv-research-report-table-td-value" data-value="data-fv-events">
-                                        <div class="css-data-loading" data-loading="pure-css-data-loading">
-                                            CSS Loading...
-                                        </div>
-                                    </td>
-                                </tr>
-                            -->
-                        </tbody>
+                        <tbody class="fv-research-report-table-tbody" id="fv-research-report-tbody"></tbody>
                         <tfoot class="fv-research-report-table-tfoot">
                             <tr class="fv-research-report-table-tr">
                                 <td class="fv-research-report-table-td-value" data-value="data-fv-research-report"></td>
@@ -791,57 +736,25 @@ const layoutCSS = (uid = ``, div = ``) => {
     // otc-fv-half-box
     switch (uid) {
         case "otcperfast01":
-            div.classList.add(`fv-left-box`);
-            break;
         case "otcperfast02":
-            div.classList.add(`fv-right-box`);
-            break;
         case "otcperfast03":
-            div.classList.add(`fv-right-box`);
-            break;
         case "otcperfast04":
-            div.classList.add(`fv-left-box`);
-            break;
         case "otcperfast05":
-            div.classList.add(`fv-right-box`);
-            break;
         case "otcperfast06":
-            div.classList.add(`fv-right-box`);
-            break;
         case "otcperfast07":
-            div.classList.add(`fv-all-box`);
-            break;
         case "otcperfast08":
-            div.classList.add(`fv-center-box`);
-            break;
         case "otcperfast09":
-            div.classList.add(`fv-center-box`);
-            break;
         case "otcperfast10":
-            div.classList.add(`fv-all-box`);
-            break;
         case "otcperfast11":
-            div.classList.add(`fv-center-box`);
-            break;
-        case "otcperfast12":
-            div.classList.add(`fv-center-box`);
-            break;
-        case "otcperfast13":
-            div.classList.add(`fv-right-box`);
-            break;
         case "news":
-            div.classList.add(`fv-center-box`);
-            break;
         case "bulletion":
-            div.classList.add(`fv-center-box`);
-            break;
         case "research":
             div.classList.add(`fv-center-box`);
             break;
         default:
+            div.classList.add(`fv-center-box`);
             break;
     }
-    // return div;
 };
 
 
@@ -901,10 +814,6 @@ OTC_F9_FV.Modules.loadAllModules = OTC_F9_FV.Modules.loadAllModules || (
         };
         return {
             init: (container_uid = ``, uids = [], debug = false) => {
-                if (debug) {
-                    console.log(`init uids = `, uids);
-                    console.log(`init container_uid = `, container_uid);
-                }
                 dropAll(container_uid, uids);
             },
             // dropAll: dropAll(uids)

@@ -63,6 +63,9 @@ http://10.1.5.202/webservice/fastview/otcper/参数/聚源代码
 http://10.1.5.202/webservice/fastview/otcper/otcperfast01/430002.OC
 
 
+# Screenshots
+
+https://screenshots.firefox.com/#tour
 
 
 ```js
@@ -174,7 +177,7 @@ let otc_demo_url = `${OTC_GILCODE_URL.ip}/${OTC_GILCODE_URL.path}/${OTC_GILCODE_
 
 
 参数：
-    otcperfast01    最新交易数据
+    otcperfast01    最新交易数据 latest-transaction-data
     otcperfast02    大事提醒
     otcperfast03    公司简介
     otcperfast04    最新财务数据
