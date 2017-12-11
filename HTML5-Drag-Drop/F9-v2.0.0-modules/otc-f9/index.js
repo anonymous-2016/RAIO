@@ -34,11 +34,33 @@ OTC_F9_FV.Utils.getParam = OTC_F9_FV.Utils.getParam || ((key, debug = false) => 
     }
 });
 
-// OTC_F9_FV.Utils.getParam(`secucode`);
+const DOM_queryAll = (str = `[data-sortable-box*="sortable-box"]`, debug = false) => {
+    let results = document.querySelectorAll(str);
+    if (debug) {
+        if (results) {
+            console.log(`result = `, results);
+        }else{
+            console.log(`Error: result = `, results);
+            // []
+        }
+    }
+    return results ? results : ``;
+};
+
+const DOM_query = (str = `[data-sortable-box*="sortable-box"]`, debug = false) => {
+    let result = document.querySelector(str);
+    if (debug) {
+        if (result) {
+            console.log(`result = `, result);
+        }else{
+            console.log(`Error: result = `, result);
+            // []
+        }
+    }
+    return result ? result : ``;
+};
 
 const debug = false;
-// const debug = false;
-
 
 var STOCK_IP = STOCK_IP || ``;
 var STOCK_Paths = STOCK_Paths || ``;
@@ -46,7 +68,7 @@ var STOCK_SECUCODE = STOCK_SECUCODE || ``;
 var STOCK_GILCODE = STOCK_GILCODE || ``;
 
 // ip: `http://10.1.5.202`,
-// path: `/webservice/fastview/stock/stockfast07/`, // `/webservice/fastview/stock`
+// path: `/webservice/fastview/stock/otcperfast07/`, // `/webservice/fastview/stock`
 // gilcode: `600570.SH`
 
 
@@ -56,7 +78,7 @@ var STOCK_GILCODE = STOCK_GILCODE || ``;
 // STOCK_Paths = OTC_F9_FV.Utils.getParam(`path`);
 // STOCK_Paths = window.parent.location.pathname;
 
-// STOCK_SECUCODE = OTC_F9_FV.Utils.getParam(`secucode`);
+// STOCK_SECUCODE = OTC_F9_FV.Utils.getParam(`gilcode`);
 
 
 // console.log(`STOCK_SECUCODE `, STOCK_SECUCODE);
@@ -86,13 +108,8 @@ for (let i = 0; i < lis.length; i++) {
             lis[i].classList.remove("add-bottom-margin");
             lis[i].classList.add("no-bottom-margin");
             let arr = [0,1,2];
-            // arr remove i ??? arr.shift();
             arr.map(
                 (item, index) =>{
-                    if (debug) {
-                        console.log(`item = ${item}`);
-                        console.log(`index = ${index}`);
-                    }
                     if(item !== i){
                         if (lis[item].classList.contains(`h5-dnd-nav-li-active`)) {
                             lis[item].classList.remove("no-bottom-margin");
@@ -111,13 +128,8 @@ for (let i = 0; i < lis.length; i++) {
             divs[i].classList.add("h5-dnd-nav-box-active");
             divs[i].classList.remove("h5-dnd-nav-box-hidden");
             let arr = [0,1,2];
-            // arr remove i ??? arr.shift();
             arr.map(
                 (item, index) =>{
-                    if (debug) {
-                        console.log(`item = ${item}`);
-                        console.log(`index = ${index}`);
-                    }
                     if(item !== i){
                         if (divs[i].classList.contains(`h5-dnd-nav-box-active`)) {
                             divs[item].classList.remove("h5-dnd-nav-box-active");
@@ -186,7 +198,7 @@ small_btn.onclick = () => {
 window.onload = () => {
     // alert(`loaded!`);
     STOCK_SECUCODE = OTC_F9_FV.Utils.getParam(`gilcode`);
-    // STOCK_SECUCODE = OTC_F9_FV.Utils.getParam(`secucode`);
+    // STOCK_SECUCODE = OTC_F9_FV.Utils.getParam(`gilcode`);
     // STOCK_IP = `http://${window.parent.location.host}`;
     // STOCK_Paths = `/webservice/fastview/stock`;
     console.log(`STOCK_SECUCODE `, STOCK_SECUCODE, typeof STOCK_SECUCODE);
@@ -196,7 +208,7 @@ window.onload = () => {
     STOCK_Paths = `/webservice/fastview/stock`;
 
     // ip: `http://10.1.5.202`,
-    // path: `/webservice/fastview/stock/stockfast07/`, // => `/webservice/fastview/stock`
+    // path: `/webservice/fastview/stock/otcperfast07/`, // => `/webservice/fastview/stock`
     // gilcode: `600570.SH`
 
     // IP = window.parent.location.host;
@@ -209,51 +221,24 @@ window.onload = () => {
     let a_modules = document.querySelector(`[data-uid="modules-a-link"]`);
     const sortable_module_containers = document.querySelectorAll(`[data-sortable-box*="sortable-box"]`);
     btn_universal.onclick = (e) => {
-        // data-title="通用"
-        // alert(`e.target.dataset.title = ${e.target.dataset.title} \n this click will call loadAllModules()!`);
-        // const sortable_module_container = document.querySelector(`[data-div-inner-box="data-div-inner-box"]`);
-        // const sortable_module_containers = document.querySelectorAll(`[data-sortable-box*="sortable-box"]`);
-        // // init & empty
-        // // sortable_module_container.innerHTML = "";
         sortable_module_containers[0].innerHTML = "";
         sortable_module_containers[1].innerHTML = "";
-        // uids = ["stockfast01","stockfast02","stockfast03","stockfast04","stockfast05","stockfast06","stockfast07","stockfast08","stockfast09","stockfast10","stockfast11","stockfast12","stockfast13","news","bulletion","research"]
-        let left_uids = ["stockfast01","stockfast04","stockfast07","bulletion","research","stockfast08","stockfast09","stockfast11"];
-        let right_uids = ["stockfast02","stockfast03","stockfast05","stockfast06", "stockfast10","stockfast12","stockfast13", "news"];
+        let left_uids = ["otcperfast01","otcperfast04","otcperfast07","bulletion","research","otcperfast08","otcperfast09","otcperfast11"];
+        let right_uids = ["otcperfast02","otcperfast03","otcperfast05","otcperfast06", "otcperfast10","otcperfast12","otcperfast13", "news"];
         OTC_F9_FV.Modules.loadAllModules.init(sortable_module_containers[0], left_uids);
         OTC_F9_FV.Modules.loadAllModules.init(sortable_module_containers[1], right_uids);
-        // ??? reset modules
-        // a_modules.click();
-        // load all modules & default layout ???
-        // loadAllModules();
-        // modulesLoader.loadAllModules();
     }
     btn_customize.onclick = (e) => {
-        // data-title="自定义"
-        // alert(`e.target.dataset.title = ${e.target.dataset.title}`);
-        // data-uid="modules-a-link"
-        // const sortable_module_container = document.querySelector(`[data-div-inner-box="data-div-inner-box"]`);
-        // init & empty
-        // sortable_module_container.innerHTML = "";
         sortable_module_containers[0].innerHTML = "";
         sortable_module_containers[1].innerHTML = "";
         a_modules.click();
-        // <a href="#模块选择" data-uid="modules-a-link">模块选择</a>
-        // H5 DnD modules
     }
-    /* event pop ???  */
     btn_module_setting.addEventListener(`click`, (e) => {
-        // data-title="模块设置"
         const title = `Sorry for that, it still in developing!`;
-        // alert(`e.target.dataset.title = ${e.target.dataset.title} \n\n\n\n\n\n\n ${title} \n\n\n\n\n\n\n Coming soon ...`);
-        alert(`😃😃😃Coming soon ... 😧😒😟`);
+        alert(`😃😃😃Coming soon ... 😧😒😟\n ${title}`);
     });
     btn_module_setting.addEventListener(`click`, (e) => {
-        let debug = true;
-        if (debug) {
-            console.log(`e.target.dataset = ${e.target.dataset}`);
-            console.log(`e.target.dataset.title = ${e.target.dataset.title}`);
-        }
+        // let debug = true;
     });
 };
 
@@ -266,20 +251,7 @@ window.onload = () => {
  * @param {* Array} uids
  * @param {* Boolean} debug
  */
-// document.querySelectorAll(`[data-sortable-box*="sortable-box"]`);
 
-/*
-
-const sortable_containers = document.querySelectorAll(`[data-sortable-box*="sortable-box"]`);
-if (!debug) {
-    console.log(`sortable_containers =\n`, sortable_containers);
-    // left
-    console.log(`sortable_containers =\n`, sortable_containers[0]);
-    // right
-    console.log(`sortable_containers =\n`, sortable_containers[1]);
-}
-
-*/
 
 
 OTC_F9_FV.Modules.loadAllModules = OTC_F9_FV.Modules.loadAllModules || (
@@ -348,43 +320,43 @@ OTC_F9_FV.Modules.loadAllModules = OTC_F9_FV.Modules.loadAllModules || (
                     div.dataset.divModuleUid = `div-module-${uid}`;
                     div.dataset.droppedUid=`module-data-${uid}`;
                     switch (uid) {
-                        case "stockfast01":
+                        case "otcperfast01":
                             div.classList.add(`fv-left-box`);
                             break;
-                        case "stockfast02":
+                        case "otcperfast02":
                             div.classList.add(`fv-right-box`);
                             break;
-                        case "stockfast03":
+                        case "otcperfast03":
                             div.classList.add(`fv-right-box`);
                             break;
-                        case "stockfast04":
+                        case "otcperfast04":
                             div.classList.add(`fv-left-box`);
                             break;
-                        case "stockfast05":
+                        case "otcperfast05":
                             div.classList.add(`fv-right-box`);
                             break;
-                        case "stockfast06":
+                        case "otcperfast06":
                             div.classList.add(`fv-right-box`);
                             break;
-                        case "stockfast07":
+                        case "otcperfast07":
                             div.classList.add(`fv-all-box`);
                             break;
-                        case "stockfast08":
+                        case "otcperfast08":
                             div.classList.add(`fv-center-box`);
                             break;
-                        case "stockfast09":
+                        case "otcperfast09":
                             div.classList.add(`fv-center-box`);
                             break;
-                        case "stockfast10":
+                        case "otcperfast10":
                             div.classList.add(`fv-all-box`);
                             break;
-                        case "stockfast11":
+                        case "otcperfast11":
                             div.classList.add(`fv-center-box`);
                             break;
-                        case "stockfast12":
+                        case "otcperfast12":
                             div.classList.add(`fv-center-box`);
                             break;
-                        case "stockfast13":
+                        case "otcperfast13":
                             div.classList.add(`fv-right-box`);
                             break;
                         case "news":
@@ -440,7 +412,7 @@ OTC_F9_FV.Modules.loadAllModules = OTC_F9_FV.Modules.loadAllModules || (
                     let delete_uid = ``;
                     // class="fv-h5dnd-modules-title" data-title=
                     switch (uid) {
-                        case "stockfast01":
+                        case "otcperfast01":
                             delete_uid = `important-infos`;
                             loadModule(`important-infos`, true);
                             htmlstr += `
@@ -528,7 +500,7 @@ OTC_F9_FV.Modules.loadAllModules = OTC_F9_FV.Modules.loadAllModules || (
                                 </section>
                             `;
                             break;
-                        case "stockfast02":
+                        case "otcperfast02":
                             delete_uid = `recent-important-events`;
                             loadModule(`recent-important-events`, true);
                             htmlstr += `
@@ -563,7 +535,7 @@ OTC_F9_FV.Modules.loadAllModules = OTC_F9_FV.Modules.loadAllModules || (
                                 </section>
                             `;
                             break;
-                        case "stockfast03":
+                        case "otcperfast03":
                             delete_uid = `profit-forecast`;
                             loadModule(`profit-forecast`);
                             htmlstr += `
@@ -580,7 +552,7 @@ OTC_F9_FV.Modules.loadAllModules = OTC_F9_FV.Modules.loadAllModules || (
                                 </section>
                             `;
                             break;
-                        case "stockfast04":
+                        case "otcperfast04":
                             delete_uid = `indicators-per-share`;
                             loadModule(`indicators-per-share`, true);
                             htmlstr += `
@@ -700,7 +672,7 @@ OTC_F9_FV.Modules.loadAllModules = OTC_F9_FV.Modules.loadAllModules || (
                                 </section>
                             `;
                             break;
-                        case "stockfast05":
+                        case "otcperfast05":
                             delete_uid = `agency-rating`;
                             loadModule(`agency-rating`);
                             htmlstr += `
@@ -715,7 +687,7 @@ OTC_F9_FV.Modules.loadAllModules = OTC_F9_FV.Modules.loadAllModules || (
                                 </section>
                             `;
                             break;
-                        case "stockfast06":
+                        case "otcperfast06":
                             delete_uid = `stock-price-turnover`;
                             loadModule(`stock-price-turnover`);
                             htmlstr += `
@@ -730,7 +702,7 @@ OTC_F9_FV.Modules.loadAllModules = OTC_F9_FV.Modules.loadAllModules || (
                                 </section>
                             `;
                             break;
-                        case "stockfast07":
+                        case "otcperfast07":
                             delete_uid = `top-ten-shareholders`;
                             loadModule(`top-ten-shareholders`, true);// table
                             htmlstr += `
@@ -758,7 +730,7 @@ OTC_F9_FV.Modules.loadAllModules = OTC_F9_FV.Modules.loadAllModules || (
                                 </section>
                             `;
                             break;
-                        case "stockfast08":
+                        case "otcperfast08":
                             delete_uid = `financing-and-margin-balance-difference-trend`;
                             loadModule(`financing-and-margin-balance-difference-trend`, false);// container
                             htmlstr += `
@@ -773,7 +745,7 @@ OTC_F9_FV.Modules.loadAllModules = OTC_F9_FV.Modules.loadAllModules || (
                                 </section>
                             `;
                             break;
-                        case "stockfast09":
+                        case "otcperfast09":
                             delete_uid = `monthly-capital-flows-large-single-statistics`;
                             loadModule(`monthly-capital-flows-large-single-statistics`);// false
                             htmlstr += `
@@ -788,7 +760,7 @@ OTC_F9_FV.Modules.loadAllModules = OTC_F9_FV.Modules.loadAllModules || (
                                 </section>
                             `;
                             break;
-                        case "stockfast10":
+                        case "otcperfast10":
                             delete_uid = `equity-pledge`;
                             loadModule(`equity-pledge`, true);
                             htmlstr += `
@@ -833,7 +805,7 @@ OTC_F9_FV.Modules.loadAllModules = OTC_F9_FV.Modules.loadAllModules || (
                                 </section>
                             `;
                             break;
-                        case "stockfast11":
+                        case "otcperfast11":
                             delete_uid = `holdings-participation-situation`;
                             loadModule(`holdings-participation-situation`, true);
                             htmlstr += `
@@ -861,7 +833,7 @@ OTC_F9_FV.Modules.loadAllModules = OTC_F9_FV.Modules.loadAllModules || (
                                 </section>
                             `;
                             break;
-                        case "stockfast12":
+                        case "otcperfast12":
                             delete_uid = `changes-shareholding-executives`;
                             loadModule(`changes-shareholding-executives`, true);
                             htmlstr += `
@@ -891,7 +863,7 @@ OTC_F9_FV.Modules.loadAllModules = OTC_F9_FV.Modules.loadAllModules || (
                                 </section>
                             `;
                             break;
-                        case "stockfast13":
+                        case "otcperfast13":
                             delete_uid = `institutional-shareholding-change-statistics`;
                             loadModule(`institutional-shareholding-change-statistics`);
                             htmlstr += `
@@ -1032,7 +1004,7 @@ OTC_F9_FV.Modules.loadAllModules = OTC_F9_FV.Modules.loadAllModules || (
     }
 )();
 
-// const uids = ["stockfast01","stockfast02","stockfast03","stockfast04","stockfast05","stockfast06","stockfast07","stockfast08","stockfast09","stockfast10","stockfast11","stockfast12","stockfast13","news","bulletion","research"];
+// const uids = ["otcperfast01","otcperfast02","otcperfast03","otcperfast04","otcperfast05","otcperfast06","otcperfast07","otcperfast08","otcperfast09","otcperfast10","otcperfast11","otcperfast12","otcperfast13","news","bulletion","research"];
 // OTC_F9_FV.Modules.loadAllModules.init(uids);
 
 // console.log(`typeof OTC_F9_FV.Modules.loadAllModules =\n`, typeof(OTC_F9_FV.Modules.loadAllModules));
@@ -1111,12 +1083,12 @@ OTC_F9_FV.Modules.modulesLoader = OTC_F9_FV.Modules.modulesLoader ||(
                 if (debug) {
                     console.log(`dom_uid = `, dom_uid);
                 }
-                // dom_uid = delete-module-stockfast01
+                // dom_uid = delete-module-otcperfast01
                 let div_uid = dom_uid.replace(`delete`, `div`);
                 // let div_uid = dom_uid.substr(14);
                 // let this.target.dataset.deleteModuleUid;
                 let tdu = document.querySelector(`[data-div-module-uid="${div_uid}"]`);
-                // tdu = document.querySelector(`[data-div-module-uid="div-module-stockfast01"]`);
+                // tdu = document.querySelector(`[data-div-module-uid="div-module-otcperfast01"]`);
                 // module_container.removeChild(tdu);
                 // alert(`Are sure delete this module?`);
                 // conform !== confirm
@@ -1157,7 +1129,7 @@ OTC_F9_FV.Modules.modulesLoader = OTC_F9_FV.Modules.modulesLoader ||(
                         // window.open("exit.html", "Thanks for Visiting!");
                         // alert(`just remove this module!`);
                         // remove DOM node ???
-                        // [data-delete-script-dom="delete-script-dom-stockfast01"]
+                        // [data-delete-script-dom="delete-script-dom-otcperfast01"]
                         // module_container.removeChild(tdu);
                         if (debug) {
                             console.log(`this = `, this);
@@ -1256,7 +1228,7 @@ OTC_F9_FV.Modules.modulesLoader = OTC_F9_FV.Modules.modulesLoader ||(
                     console.log(`iconUid  `, iconUid);
                     console.log(`droppedUid `, droppedUid);
                 }
-                // or droppedUid="module-data-stockfast01";
+                // or droppedUid="module-data-otcperfast01";
                 // or new dragstart function ???
                 e.effectAllowed = `move`;
                 e.dataTransfer.setData("text/plain", uid);
@@ -1355,43 +1327,43 @@ OTC_F9_FV.Modules.modulesLoader = OTC_F9_FV.Modules.modulesLoader ||(
                 div.dataset.divModuleUid = `div-module-${uid}`;
                 div.dataset.droppedUid=`module-data-${uid}`;
                 switch (uid) {
-                    case "stockfast01":
+                    case "otcperfast01":
                         div.classList.add(`fv-left-box`);
                         break;
-                    case "stockfast02":
+                    case "otcperfast02":
                         div.classList.add(`fv-right-box`);
                         break;
-                    case "stockfast03":
+                    case "otcperfast03":
                         div.classList.add(`fv-right-box`);
                         break;
-                    case "stockfast04":
+                    case "otcperfast04":
                         div.classList.add(`fv-left-box`);
                         break;
-                    case "stockfast05":
+                    case "otcperfast05":
                         div.classList.add(`fv-right-box`);
                         break;
-                    case "stockfast06":
+                    case "otcperfast06":
                         div.classList.add(`fv-right-box`);
                         break;
-                    case "stockfast07":
+                    case "otcperfast07":
                         div.classList.add(`fv-all-box`);
                         break;
-                    case "stockfast08":
+                    case "otcperfast08":
                         div.classList.add(`fv-center-box`);
                         break;
-                    case "stockfast09":
+                    case "otcperfast09":
                         div.classList.add(`fv-center-box`);
                         break;
-                    case "stockfast10":
+                    case "otcperfast10":
                         div.classList.add(`fv-all-box`);
                         break;
-                    case "stockfast11":
+                    case "otcperfast11":
                         div.classList.add(`fv-center-box`);
                         break;
-                    case "stockfast12":
+                    case "otcperfast12":
                         div.classList.add(`fv-center-box`);
                         break;
-                    case "stockfast13":
+                    case "otcperfast13":
                         div.classList.add(`fv-right-box`);
                         break;
                     case "news":
@@ -1409,10 +1381,10 @@ OTC_F9_FV.Modules.modulesLoader = OTC_F9_FV.Modules.modulesLoader ||(
                 let module_exist_checker = ``;
                 if (debug) {
                     console.log(`uid =\n`, uid, typeof uid);
-                    // uid stockfast01 string
+                    // uid otcperfast01 string
                 }
                 if (typeof(uid) === "string" && uid.length < 12) {
-                    // "stockfast13".length;
+                    // "otcperfast13".length;
                     // 11 => 12
                     module_exist_checker = document.querySelector(`[data-div-module-uid="div-module-${uid}"]`)
                 }else{
@@ -1422,7 +1394,7 @@ OTC_F9_FV.Modules.modulesLoader = OTC_F9_FV.Modules.modulesLoader ||(
                 if (debug) {
                     console.log(`module_exist_checker =\n`, module_exist_checker, typeof module_exist_checker);
                     // null object
-                    // <div data-div-module-uid="div-module-stockfast01" data-dropped-uid="module-data-stockfast01" class="fv-left-box">...</div>  object
+                    // <div data-div-module-uid="div-module-otcperfast01" data-dropped-uid="module-data-otcperfast01" class="fv-left-box">...</div>  object
                 }
                 //
                 /**
@@ -1467,13 +1439,13 @@ OTC_F9_FV.Modules.modulesLoader = OTC_F9_FV.Modules.modulesLoader ||(
                         })(module_uid_name, isTable);
                     }, 0);
                 };
-                // module_exist_checker = document.querySelector(`[data-div-module-uid="div-module-stockfast01"]`);
+                // module_exist_checker = document.querySelector(`[data-div-module-uid="div-module-otcperfast01"]`);
                 if (module_exist_checker === null) {
                     // div.appendChild(sub_div);
                     let htmlstr = ``;
                     let delete_uid = ``;
                     switch (uid) {
-                        case "stockfast01":
+                        case "otcperfast01":
                             delete_uid = `important-infos`;
                             loadModule(`important-infos`, true);
                             htmlstr += `
@@ -1561,7 +1533,7 @@ OTC_F9_FV.Modules.modulesLoader = OTC_F9_FV.Modules.modulesLoader ||(
                                 </section>
                             `;
                             break;
-                        case "stockfast02":
+                        case "otcperfast02":
                             delete_uid = `recent-important-events`;
                             loadModule(`recent-important-events`, true);
                             htmlstr += `
@@ -1596,7 +1568,7 @@ OTC_F9_FV.Modules.modulesLoader = OTC_F9_FV.Modules.modulesLoader ||(
                                 </section>
                             `;
                             break;
-                        case "stockfast03":
+                        case "otcperfast03":
                             delete_uid = `profit-forecast`;
                             loadModule(`profit-forecast`);
                             htmlstr += `
@@ -1613,7 +1585,7 @@ OTC_F9_FV.Modules.modulesLoader = OTC_F9_FV.Modules.modulesLoader ||(
                                 </section>
                             `;
                             break;
-                        case "stockfast04":
+                        case "otcperfast04":
                             delete_uid = `indicators-per-share`;
                             loadModule(`indicators-per-share`, true);
                             htmlstr += `
@@ -1733,7 +1705,7 @@ OTC_F9_FV.Modules.modulesLoader = OTC_F9_FV.Modules.modulesLoader ||(
                                 </section>
                             `;
                             break;
-                        case "stockfast05":
+                        case "otcperfast05":
                             delete_uid = `agency-rating`;
                             loadModule(`agency-rating`);
                             htmlstr += `
@@ -1748,7 +1720,7 @@ OTC_F9_FV.Modules.modulesLoader = OTC_F9_FV.Modules.modulesLoader ||(
                                 </section>
                             `;
                             break;
-                        case "stockfast06":
+                        case "otcperfast06":
                             delete_uid = `stock-price-turnover`;
                             loadModule(`stock-price-turnover`);
                             htmlstr += `
@@ -1763,7 +1735,7 @@ OTC_F9_FV.Modules.modulesLoader = OTC_F9_FV.Modules.modulesLoader ||(
                                 </section>
                             `;
                             break;
-                        case "stockfast07":
+                        case "otcperfast07":
                             delete_uid = `top-ten-shareholders`;
                             loadModule(`top-ten-shareholders`, true);// table
                             htmlstr += `
@@ -1791,7 +1763,7 @@ OTC_F9_FV.Modules.modulesLoader = OTC_F9_FV.Modules.modulesLoader ||(
                                 </section>
                             `;
                             break;
-                        case "stockfast08":
+                        case "otcperfast08":
                             delete_uid = `financing-and-margin-balance-difference-trend`;
                             loadModule(`financing-and-margin-balance-difference-trend`, false);// container
                             htmlstr += `
@@ -1806,7 +1778,7 @@ OTC_F9_FV.Modules.modulesLoader = OTC_F9_FV.Modules.modulesLoader ||(
                                 </section>
                             `;
                             break;
-                        case "stockfast09":
+                        case "otcperfast09":
                             delete_uid = `monthly-capital-flows-large-single-statistics`;
                             loadModule(`monthly-capital-flows-large-single-statistics`);// false
                             htmlstr += `
@@ -1821,7 +1793,7 @@ OTC_F9_FV.Modules.modulesLoader = OTC_F9_FV.Modules.modulesLoader ||(
                                 </section>
                             `;
                             break;
-                        case "stockfast10":
+                        case "otcperfast10":
                             delete_uid = `equity-pledge`;
                             loadModule(`equity-pledge`, true);
                             htmlstr += `
@@ -1866,7 +1838,7 @@ OTC_F9_FV.Modules.modulesLoader = OTC_F9_FV.Modules.modulesLoader ||(
                                 </section>
                             `;
                             break;
-                        case "stockfast11":
+                        case "otcperfast11":
                             delete_uid = `holdings-participation-situation`;
                             loadModule(`holdings-participation-situation`, true);
                             htmlstr += `
@@ -1894,7 +1866,7 @@ OTC_F9_FV.Modules.modulesLoader = OTC_F9_FV.Modules.modulesLoader ||(
                                 </section>
                             `;
                             break;
-                        case "stockfast12":
+                        case "otcperfast12":
                             delete_uid = `changes-shareholding-executives`;
                             loadModule(`changes-shareholding-executives`, true);
                             htmlstr += `
@@ -1924,7 +1896,7 @@ OTC_F9_FV.Modules.modulesLoader = OTC_F9_FV.Modules.modulesLoader ||(
                                 </section>
                             `;
                             break;
-                        case "stockfast13":
+                        case "otcperfast13":
                             delete_uid = `institutional-shareholding-change-statistics`;
                             loadModule(`institutional-shareholding-change-statistics`);
                             htmlstr += `

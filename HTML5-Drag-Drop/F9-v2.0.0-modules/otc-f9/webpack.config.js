@@ -30,9 +30,8 @@ const BASE_URI = {
     MODULES: './Modules',
     index: `./sidebar`,
     modal: `./modal`,
-    libs: `./libs`
-    // index: `./index.js`,
-    // `` ??? '' ??? ""
+    libs: `./libs`,
+    test: `./test`
 };
 
 
@@ -67,13 +66,14 @@ const STOCK_F9 = [
 
 let entry_obj = {};
 
-STOCK_F9.forEach(
-    (item, i) => {
-        entry_obj[item] = `${BASE_URI.MODULES}/${item}`;
-    }
-);
-// sidebar
-entry_obj[BASE_URI.index] = `${BASE_URI.index}`;
+// STOCK_F9.forEach(
+//     (item, i) => {
+//         entry_obj[item] = `${BASE_URI.MODULES}/${item}`;
+//     }
+// );
+// // sidebar
+// entry_obj[BASE_URI.index] = `${BASE_URI.index}`;
+entry_obj[BASE_URI.test] = `${BASE_URI.test}`;
 // BouncedModal
 // entry_obj[BASE_URI.modal] = `${BASE_URI.libs}/BouncedModal`;
 // entry_obj[BASE_URI.modal] = `${BASE_URI.libs}/modal`;
