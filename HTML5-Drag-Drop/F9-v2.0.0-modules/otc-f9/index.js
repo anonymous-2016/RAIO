@@ -249,11 +249,14 @@ const HTML_Template = (uid = ``, loadModule = function(){}, debug = false) => {
                     <div class="fv-h5dnd-modules-title-box">
                         <p class="fv-h5dnd-modules-title" data-title="fv-latest-transaction-data-title">
                             最新交易数据
-                            <span>
-                                截止日期:
-                                <span data-title-text="fv-latest-transaction-data-title-text">
-                                    <!--2017-12-12-->
-                                </span>
+                            <span data-title-text="fv-latest-transaction-data-title-text">
+                                    (截止日期:
+                                    <span data-text="fv-latest-transaction-data-text">
+                                        2017-12-12
+                                    </span>)
+                            </span>
+                            <span data-link="fv-latest-transaction-data-link">
+                                <a href="#每日交易数据">每日交易数据</a>
                             </span>
                         </p>
                     </div>

@@ -23,6 +23,25 @@ http://10.1.5.202/stock/f9/fastview/common/modal.css
 font: 12px/20px "Microsoft Yahei", "Arial Narrow", HELVETICA
 font-family: "Microsoft YaHei", sans-serif;
 
+
+
+
+
+```sh
+
+$ browser-sync start --server --files "./stock/*.*"
+
+$ browser-sync start --server --files "./*.*"
+
+
+npm run page
+
+```
+
+
+
+
+
 ## API
 
 
@@ -554,9 +573,12 @@ UglifyJS.minify(code, {mangle: {toplevel: true }}).code;
 
 ```
 
-browser-sync start --server --files "./stock/*.*"
-browser-sync start --server --files "./*.*"
+```sh
+$ browser-sync start --server --files "./stock/*.*"
 
+$ browser-sync start --server --files "./*.*"
+
+```
 
 # https://cdn.xgqfrms.xyz/index.html?gilcode=000001.SZ&market=4609&sid=hs
 

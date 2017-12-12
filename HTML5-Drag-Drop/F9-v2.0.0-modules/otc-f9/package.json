@@ -5,11 +5,12 @@
     "module": "webpack.config.mjs",
     "main": "webpack.config.js",
     "scripts": {
-        "app-new": "webpack -p",
         "app": "npm run rmrf && webpack -p",
+        "prod": "webpack -p",
+        "dev": "webpack -w",
+        "page": "cd modules && browser-sync start --server --files './*.html*'",
         "dev & prod": "??? webpack --config webpack.prod.js ???",
         "hot_modules_loader": "??? webpack hot HMR ???",
-        "dev": "webpack -w",
         "rmrf": "rimraf build/js",
         "linux_rmrf": "rm -rf build/js",
         "windows_clear": "rimraf build/js",
@@ -17,7 +18,7 @@
         "open": "cd ../ && browser-sync start --server --files './fast-preview/*.*' && start http://localhost:3000/fast-preview/sidebar.html",
         "bat": "start start-browser.bat",
         "starts": "start http://localhost:7777/datas/ && start http://localhost:7777/Info/",
-        "test": "echo \"Error: no test specified\" && exit 1"
+        "test": "cd modules && browser-sync start --server --files './*.*'"
     },
     "bin": {
         "f9-fv": "f9-fv",
@@ -46,6 +47,7 @@
         "babel-polyfill": "^6.26.0",
         "babel-preset-env": "^1.6.1",
         "babel-preset-react": "^6.24.1",
+        "browser-sync": "^2.18.13",
         "clean-webpack-plugin": "^0.1.17",
         "colors": "^1.1.2",
         "css-loader": "^0.28.7",

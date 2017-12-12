@@ -8,8 +8,27 @@ thead {
 
 html,
 body {
-    margin: 0;
     padding: 0;
+    margin: 0;
+}
+
+section.fv-module-box-5 {
+    box-sizing: border-box;
+    /* float: left;
+    margin-top: 6px;
+    margin-bottom: 6px; */
+    width: 540px;
+    min-height: 127px;
+    /* background: #eee; */
+    background: #fff;
+}
+
+table.fv-latest-transaction-data-table {
+    box-sizing: border-box;
+    width: 540px;
+    height: 127px;
+    background: #fff;
+    border: 1px solid #d7dbe0;
 }
 
 .fv-left-box,
