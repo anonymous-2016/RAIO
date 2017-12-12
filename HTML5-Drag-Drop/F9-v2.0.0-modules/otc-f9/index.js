@@ -220,8 +220,8 @@ const loadModule = (uid =``, module_uid_name=``, isTable=`false`, debug = false)
     setTimeout(() => {
         ((module_uid_name, isTable) => {
             let box = (isTable === true)
-                ? document.querySelector(`.fv-${module_uid_name}-table`)
-                : document.querySelector(`.fv-${module_uid_name}-container`),
+                ? document.querySelector(`.otc-${module_uid_name}-table`)
+                : document.querySelector(`.otc-${module_uid_name}-container`),
                 link_css = document.createElement(`link`),
                 script_dom = document.createElement(`script`);
             link_css.setAttribute(`rel`, `stylesheet`);
@@ -245,62 +245,62 @@ const HTML_Template = (uid = ``, loadModule = function(){}, debug = false) => {
             delete_uid = `latest-transaction-data`;
             loadModule(uid, `latest-transaction-data`, true);
             htmlstr += `
-                <section class="fv-module-box-5">
-                    <div class="fv-h5dnd-modules-title-box">
-                        <p class="fv-h5dnd-modules-title" data-title="fv-latest-transaction-data-title">
+                <section class="otc-module-box-5">
+                    <div class="otc-h5dnd-modules-title-box">
+                        <p class="otc-h5dnd-modules-title" data-title="otc-latest-transaction-data-title">
                             最新交易数据
-                            <span data-title-text="fv-latest-transaction-data-title-text">
+                            <span data-title-text="otc-latest-transaction-data-title-text">
                                     (截止日期:
-                                    <span data-text="fv-latest-transaction-data-text">
-                                        2017-12-12
+                                    <span data-text="otc-latest-transaction-data-text">
+                                        <!-- 2017-12-12 -->
                                     </span>)
                             </span>
-                            <span data-link="fv-latest-transaction-data-link">
+                            <span data-link="otc-latest-transaction-data-link">
                                 <a href="#每日交易数据">每日交易数据</a>
                             </span>
                         </p>
                     </div>
-                    <table class="fv-latest-transaction-data-table">
-                        <thead class="fv-latest-transaction-data-table-thead">
-                            <tr class="fv-latest-transaction-data-table-tr">
-                                <td class="fv-latest-transaction-data-table-td-title">最新交易数据</td>
+                    <table class="otc-latest-transaction-data-table">
+                        <thead class="otc-latest-transaction-data-table-thead">
+                            <tr class="otc-latest-transaction-data-table-tr">
+                                <td class="otc-latest-transaction-data-table-td-title">最新交易数据</td>
                             </tr>
                         </thead>
-                        <tbody class="fv-latest-transaction-data-table-tbody">
-                            <tr class="fv-latest-transaction-data-table-tr">
-                                <td class="fv-latest-transaction-data-table-td-key" data-alias="收盘价">收盘价</td>
-                                <td class="fv-latest-transaction-data-table-td-value" data-value="data-otc-LTD"></td>
-                                <td class="fv-latest-transaction-data-table-td-key" data-alias="总市值">总市值(元)</td>
-                                <td class="fv-latest-transaction-data-table-td-value" data-value="data-otc-LTD"></td>
+                        <tbody class="otc-latest-transaction-data-table-tbody">
+                            <tr class="otc-latest-transaction-data-table-tr">
+                                <td class="otc-latest-transaction-data-table-td-key" data-alias="收盘价">收盘价</td>
+                                <td class="otc-latest-transaction-data-table-td-value" data-value="data-otc-LTD"></td>
+                                <td class="otc-latest-transaction-data-table-td-key" data-alias="总市值">总市值(元)</td>
+                                <td class="otc-latest-transaction-data-table-td-value" data-value="data-otc-LTD"></td>
                             </tr>
-                            <tr class="fv-latest-transaction-data-table-tr">
-                                <td class="fv-latest-transaction-data-table-td-key" data-alias="涨跌幅">涨跌幅(%)</td>
-                                <td class="fv-latest-transaction-data-table-td-value" data-value="data-otc-LTD"></td>
-                                <td class="fv-latest-transaction-data-table-td-key" data-alias="流通市值">流通市值(元)</td>
-                                <td class="fv-latest-transaction-data-table-td-value" data-value="data-otc-LTD"></td>
+                            <tr class="otc-latest-transaction-data-table-tr">
+                                <td class="otc-latest-transaction-data-table-td-key" data-alias="涨跌幅">涨跌幅(%)</td>
+                                <td class="otc-latest-transaction-data-table-td-value" data-value="data-otc-LTD"></td>
+                                <td class="otc-latest-transaction-data-table-td-key" data-alias="流通市值">流通市值(元)</td>
+                                <td class="otc-latest-transaction-data-table-td-value" data-value="data-otc-LTD"></td>
                             </tr>
-                            <tr class="fv-latest-transaction-data-table-tr">
-                                <td class="fv-latest-transaction-data-table-td-key" data-alias="成交量">成交量(股)</td>
-                                <td class="fv-latest-transaction-data-table-td-value" data-value="data-otc-LTD"></td>
-                                <td class="fv-latest-transaction-data-table-td-key" data-alias="市盈率(TTM)">市盈率(TTM)</td>
-                                <td class="fv-latest-transaction-data-table-td-value" data-value="data-otc-LTD"></td>
+                            <tr class="otc-latest-transaction-data-table-tr">
+                                <td class="otc-latest-transaction-data-table-td-key" data-alias="成交量">成交量(股)</td>
+                                <td class="otc-latest-transaction-data-table-td-value" data-value="data-otc-LTD"></td>
+                                <td class="otc-latest-transaction-data-table-td-key" data-alias="市盈率(TTM)">市盈率(TTM)</td>
+                                <td class="otc-latest-transaction-data-table-td-value" data-value="data-otc-LTD"></td>
                             </tr>
-                            <tr class="fv-latest-transaction-data-table-tr">
-                                <td class="fv-latest-transaction-data-table-td-key" data-alias="换手率">换手率(%)</td>
-                                <td class="fv-latest-transaction-data-table-td-value" data-value="data-otc-LTD"></td>
-                                <td class="fv-latest-transaction-data-table-td-key" data-alias="市盈率(LYR)">市盈率(LYR)</td>
-                                <td class="fv-latest-transaction-data-table-td-value" data-value="data-otc-LTD"></td>
+                            <tr class="otc-latest-transaction-data-table-tr">
+                                <td class="otc-latest-transaction-data-table-td-key" data-alias="换手率">换手率(%)</td>
+                                <td class="otc-latest-transaction-data-table-td-value" data-value="data-otc-LTD"></td>
+                                <td class="otc-latest-transaction-data-table-td-key" data-alias="市盈率(LYR)">市盈率(LYR)</td>
+                                <td class="otc-latest-transaction-data-table-td-value" data-value="data-otc-LTD"></td>
                             </tr>
-                            <tr class="fv-latest-transaction-data-table-tr">
-                                <td class="fv-latest-transaction-data-table-td-key" data-alias="成交额">成交额(元)</td>
-                                <td class="fv-latest-transaction-data-table-td-value" data-value="data-otc-LTD"></td>
-                                <td class="fv-latest-transaction-data-table-td-key" data-alias="市净率">市净率(LYR)</td>
-                                <td class="fv-latest-transaction-data-table-td-value" data-value="data-otc-LTD"></td>
+                            <tr class="otc-latest-transaction-data-table-tr">
+                                <td class="otc-latest-transaction-data-table-td-key" data-alias="成交额">成交额(元)</td>
+                                <td class="otc-latest-transaction-data-table-td-value" data-value="data-otc-LTD"></td>
+                                <td class="otc-latest-transaction-data-table-td-key" data-alias="市净率">市净率(LYR)</td>
+                                <td class="otc-latest-transaction-data-table-td-value" data-value="data-otc-LTD"></td>
                             </tr>
                         </tbody>
-                        <tfoot class="fv-latest-transaction-data-table-tfoot">
-                            <tr class="fv-latest-transaction-data-table-tr">
-                                <td class="fv-latest-transaction-data-table-td-value" data-value="data-otc-LTD"></td>
+                        <tfoot class="otc-latest-transaction-data-table-tfoot">
+                            <tr class="otc-latest-transaction-data-table-tr">
+                                <td class="otc-latest-transaction-data-table-td-value" data-value="data-otc-LTD"></td>
                             </tr>
                         </tfoot>
                     </table>
@@ -735,15 +735,17 @@ const layoutCSS = (uid = ``, div = ``) => {
         case "news":
         case "bulletion":
         case "research":
-            div.classList.add(`fv-center-box`);
+            div.classList.add(`otc-center-box`);
             break;
         default:
-            div.classList.add(`fv-center-box`);
+            div.classList.add(`otc-center-box`);
             break;
     }
 };
 
-
+const deleteModule = () => {
+    //
+};
 
 /**
  * loadAllModules
@@ -765,7 +767,7 @@ OTC_F9_FV.Modules.loadAllModules = OTC_F9_FV.Modules.loadAllModules || (
             uids.forEach(
                 (uid, i) => {
                     let div = document.createElement(`div`),
-                    sub_div = document.createElement(`div`);
+                        sub_div = document.createElement(`div`);
                     sub_div.dataset.deleteModuleUid = `delete-module-${uid}`;
                     sub_div.insertAdjacentHTML(
                         `beforeend`,
@@ -789,7 +791,7 @@ OTC_F9_FV.Modules.loadAllModules = OTC_F9_FV.Modules.loadAllModules || (
                     div.insertAdjacentHTML(`beforeend`, `${htmlstr}`);
                     container.insertAdjacentElement(`beforeend`, div);
                     setTimeout(function() {
-                        let delete_box = document.querySelector(`[data-title="fv-${delete_uid}-title"]`);
+                        let delete_box = document.querySelector(`[data-title="otc-${delete_uid}-title"]`);
                         delete_box.appendChild(sub_div);
                         if (delete_box !== null) {
                             delete_box.appendChild(sub_div);
@@ -979,7 +981,7 @@ OTC_F9_FV.Modules.modulesLoader = OTC_F9_FV.Modules.modulesLoader ||(
                         }
                     }
                     setTimeout(function() {
-                        let delete_box = document.querySelector(`[data-title="fv-${delete_uid}-title"]`);
+                        let delete_box = document.querySelector(`[data-title="otc-${delete_uid}-title"]`);
                         if (delete_box !== null) {
                             delete_box.appendChild(sub_div);
                         }

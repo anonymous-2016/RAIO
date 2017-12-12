@@ -74,47 +74,13 @@ https://screenshots.firefox.com/#tour
 console.log(`e.target.dataset = \n`, e.target.dataset);
 console.log(`uid `, uid);
 
-const consoles = {
-    css: `
-        color: #f0f;
-        font-size: 23px;
-    `,
-    css1: `
-        color: #f00;
-        font-size: 23px;
-    `,
-    css2: `
-        color: #ff0;
-        font-size: 23px;
-    `,
-    css3: `
-        color: #0ff;
-        font-size: 23px;
-    `,
-};
-const console_css = `
-    color: #f0f;
-    font-size: 23px;
-`;
-const console_css1 = `
-    color: #f00;
-    font-size: 23px;
-`;
-const console_css2 = `
-    color: #ff0;
-    font-size: 23px;
-`;
-const console_css3 = `
-    color: #0ff;
-    font-size: 23px;
-`;
 
 window.onload = () => {
     initTabs();
     initSider();
     // OTC_IP = `${window.parent.location.protocol}//${window.parent.location.host}`;
     OTC_IP = `${window.parent.location.origin}`;
-    OTC_PATH = `/webservice/fastview/stock`;
+    OTC_PATH = `/webservice/fastview/otcper`;
     OTC_GILCODE = OTC_F9_FV.Utils.getParam(`gilcode`) ? OTC_F9_FV.Utils.getParam(`gilcode`) : `430002.OC`;
     // OTC_SOCKET = ``;
     console.log(`OTC_GILCODE `, OTC_GILCODE, typeof OTC_GILCODE);
@@ -144,26 +110,20 @@ let otc_demo_url = `${OTC_GILCODE_URL.ip}/${OTC_GILCODE_URL.path}/${OTC_GILCODE_
 // STOCK_PATH = window.parent.location.pathname;
 // STOCK_GILCODE = OTC_F9_FV.Utils.getParam(`gilcode`);
 
-    // const OTC_IP = ``;
-    // const OTC_PATH = ``;
-    // const OTC_PARAM = ``;
-    // const OTC_GILCODE = ``;
-
     var OTC_IP = OTC_IP || ``;
     var OTC_PATH = OTC_PATH || ``;
     var OTC_PARAM = OTC_PARAM = ``;
     var OTC_GILCODE = OTC_GILCODE || ``;
 
     OTC_GILCODE =  OTC_F9_FV.Utils.getParam(`gilcode`);
-    // OTC_GILCODE =  OTC_F9_FV.Utils.getParam(`secucode`);
     // OTC_IP = `http://${window.parent.location.host}`;
-    // OTC_PATH = `/webservice/fastview/stock`;
+    // OTC_PATH = `/webservice/fastview/otcper`;
     console.log(`OTC_GILCODE `, OTC_GILCODE, typeof OTC_GILCODE);
 
     OTC_GILCODE =  OTC_F9_FV.Utils.getParam(`gilcode`);
     OTC_IP = `${window.parent.location.protocol}//${window.parent.location.host}`;
-    OTC_PATH = `/webservice/fastview/stock`;
-
+    OTC_PATH = `/webservice/fastview/otcper`;
+// http://10.1.5.202/webservice/fastview/otcper/otcperfast01/430002.OC
 
 ```
 

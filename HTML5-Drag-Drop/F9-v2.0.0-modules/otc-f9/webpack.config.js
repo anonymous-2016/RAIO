@@ -19,11 +19,11 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 const BASE_URI = {
-    APP: './Modules/',
-    MODULES: './Modules',
-    index: `./sidebar`,
-    modal: `./modal`,
-    libs: `./libs`,
+    // APP: './Modules/',
+    MODULES: './modules',
+    index: `./index`,
+    // modal: `./modal`,
+    // libs: `./libs`,
     test: `./test`
 };
 
@@ -36,32 +36,32 @@ if (process.env.NODE_ENV !== 'production') {
     console.log('Tada, 🎉, we are in production mode!');
 }
 
-const STOCK_F9 = [
-    "news",
-    "bulletin",
-    "research",
-    "otcperfast01",
-    "otcperfast02",
-    "otcperfast03",
-    "otcperfast04",
-    "otcperfast05",
-    "otcperfast06",
-    "otcperfast07",
-    "otcperfast08",
-    "otcperfast09",
-    "otcperfast10",
-    "otcperfast11"
+const OTC_F9 = [
+    "latest-transaction-data",
+    // "news",
+    // "bulletin",
+    // "research",
+    // "otcperfast02",
+    // "otcperfast03",
+    // "otcperfast04",
+    // "otcperfast05",
+    // "otcperfast06",
+    // "otcperfast07",
+    // "otcperfast08",
+    // "otcperfast09",
+    // "otcperfast10",
+    // "otcperfast11"
 ];
 
 let entry_obj = {};
 
-// STOCK_F9.forEach(
-//     (item, i) => {
-//         entry_obj[item] = `${BASE_URI.MODULES}/${item}`;
-//     }
-// );
-// // sidebar
-// entry_obj[BASE_URI.index] = `${BASE_URI.index}`;
+OTC_F9.forEach(
+    (item, i) => {
+        entry_obj[item] = `${BASE_URI.MODULES}/${item}`;
+    }
+);
+// index
+entry_obj[BASE_URI.index] = `${BASE_URI.index}`;
 entry_obj[BASE_URI.test] = `${BASE_URI.test}`;
 // BouncedModal
 // entry_obj[BASE_URI.modal] = `${BASE_URI.libs}/BouncedModal`;
