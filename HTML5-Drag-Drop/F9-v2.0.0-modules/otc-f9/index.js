@@ -247,81 +247,57 @@ const HTML_Template = (uid = ``, loadModule = function(){}, debug = false) => {
             htmlstr += `
                 <section class="fv-module-box-5">
                     <div class="fv-h5dnd-modules-title-box">
-                        <p class="fv-h5dnd-modules-title" data-title="fv-latest-transaction-data-title">最新交易数据</p>
+                        <p class="fv-h5dnd-modules-title" data-title="fv-latest-transaction-data-title">
+                            最新交易数据
+                            <span>
+                                截止日期:
+                                <span data-title-text="fv-latest-transaction-data-title-text">
+                                    <!--2017-12-12-->
+                                </span>
+                            </span>
+                        </p>
                     </div>
                     <table class="fv-latest-transaction-data-table">
                         <thead class="fv-latest-transaction-data-table-thead">
                             <tr class="fv-latest-transaction-data-table-tr">
-                                <td class="fv-latest-transaction-data-table-td-title">重要信息</td>
+                                <td class="fv-latest-transaction-data-table-td-title">最新交易数据</td>
                             </tr>
                         </thead>
                         <tbody class="fv-latest-transaction-data-table-tbody">
                             <tr class="fv-latest-transaction-data-table-tr">
-                                <td class="fv-latest-transaction-data-table-td-key">涉及概念</td>
-                                <td class="fv-latest-transaction-data-table-td-value" data-value="data-fv-infos"></td>
+                                <td class="fv-latest-transaction-data-table-td-key" data-alias="收盘价">收盘价</td>
+                                <td class="fv-latest-transaction-data-table-td-value" data-value="data-otc-LTD"></td>
+                                <td class="fv-latest-transaction-data-table-td-key" data-alias="总市值">总市值(元)</td>
+                                <td class="fv-latest-transaction-data-table-td-value" data-value="data-otc-LTD"></td>
                             </tr>
                             <tr class="fv-latest-transaction-data-table-tr">
-                                <td class="fv-latest-transaction-data-table-td-key">主营业务</td>
-                                <td class="fv-latest-transaction-data-table-td-value" data-value="data-fv-infos"></td>
+                                <td class="fv-latest-transaction-data-table-td-key" data-alias="涨跌幅">涨跌幅(%)</td>
+                                <td class="fv-latest-transaction-data-table-td-value" data-value="data-otc-LTD"></td>
+                                <td class="fv-latest-transaction-data-table-td-key" data-alias="流通市值">流通市值(元)</td>
+                                <td class="fv-latest-transaction-data-table-td-value" data-value="data-otc-LTD"></td>
                             </tr>
                             <tr class="fv-latest-transaction-data-table-tr">
-                                <td class="fv-latest-transaction-data-table-td-key" data-alias="52周波动率">3个月波动率(%)</td>
-                                <td class="fv-latest-transaction-data-table-td-value" data-value="data-fv-infos"></td>
+                                <td class="fv-latest-transaction-data-table-td-key" data-alias="成交量">成交量(股)</td>
+                                <td class="fv-latest-transaction-data-table-td-value" data-value="data-otc-LTD"></td>
+                                <td class="fv-latest-transaction-data-table-td-key" data-alias="市盈率(TTM)">市盈率(TTM)</td>
+                                <td class="fv-latest-transaction-data-table-td-value" data-value="data-otc-LTD"></td>
                             </tr>
                             <tr class="fv-latest-transaction-data-table-tr">
-                                <td class="fv-latest-transaction-data-table-td-key" data-alias="日均成交量(3个月)">近90天日均成交量(万股)</td>
-                                <td class="fv-latest-transaction-data-table-td-value" data-value="data-fv-infos"></td>
-                            </tr>
-                            <!--
-                                <tr class="fv-latest-transaction-data-table-tr">
-                                    <td class="fv-latest-transaction-data-table-td-key">总市值</td>
-                                    <td class="fv-latest-transaction-data-table-td-value" data-value="data-fv-infos"></td>
-                                </tr>
-                            -->
-                            <tr class="fv-latest-transaction-data-table-tr">
-                                <td class="fv-latest-transaction-data-table-td-key">净资产(万元)</td>
-                                <td class="fv-latest-transaction-data-table-td-value" data-value="data-fv-infos"></td>
+                                <td class="fv-latest-transaction-data-table-td-key" data-alias="换手率">换手率(%)</td>
+                                <td class="fv-latest-transaction-data-table-td-value" data-value="data-otc-LTD"></td>
+                                <td class="fv-latest-transaction-data-table-td-key" data-alias="市盈率(LYR)">市盈率(LYR)</td>
+                                <td class="fv-latest-transaction-data-table-td-value" data-value="data-otc-LTD"></td>
                             </tr>
                             <tr class="fv-latest-transaction-data-table-tr">
-                                <td class="fv-latest-transaction-data-table-td-key">总股本(万股)</td>
-                                <td class="fv-latest-transaction-data-table-td-value" data-value="data-fv-infos"></td>
-                            </tr>
-                            <tr class="fv-latest-transaction-data-table-tr">
-                                <td class="fv-latest-transaction-data-table-td-key">流通股本(万股)</td>
-                                <td class="fv-latest-transaction-data-table-td-value" data-value="data-fv-infos"></td>
-                            </tr>
-                            <tr class="fv-latest-transaction-data-table-tr">
-                                <td class="fv-latest-transaction-data-table-td-key">股息率(%)</td>
-                                <td class="fv-latest-transaction-data-table-td-value" data-value="data-fv-infos"></td>
-                            </tr>
-                            <!--
-                                <tr class="fv-latest-transaction-data-table-tr">
-                                    <td class="fv-latest-transaction-data-table-td-key">机构家数</td>
-                                    <td class="fv-latest-transaction-data-table-td-value" data-value="data-fv-infos"></td>
-                                </tr>
-                            -->
-                            <tr class="fv-latest-transaction-data-table-tr">
-                                <td class="fv-latest-transaction-data-table-td-key" data-alias="前十大机构持有">机构持股占比(%)</td>
-                                <td class="fv-latest-transaction-data-table-td-value" data-value="data-fv-infos"></td>
-                            </tr>
-                            <!--
-                                <tr class="fv-latest-transaction-data-table-tr">
-                                    <td class="fv-latest-transaction-data-table-td-key">分析师关注度</td>
-                                    <td class="fv-latest-transaction-data-table-td-value" data-value="data-fv-infos"></td>
-                                </tr>
-                            -->
-                            <tr class="fv-latest-transaction-data-table-tr">
-                                <td class="fv-latest-transaction-data-table-td-key">目标价格</td>
-                                <td class="fv-latest-transaction-data-table-td-value" data-value="data-fv-infos"></td>
-                            </tr>
-                            <tr class="fv-latest-transaction-data-table-tr">
-                                <td class="fv-latest-transaction-data-table-td-key">综合评级</td>
-                                <td class="fv-latest-transaction-data-table-td-value" data-value="data-fv-infos"></td>
+                                <td class="fv-latest-transaction-data-table-td-key" data-alias="成交额">成交额(元)</td>
+                                <td class="fv-latest-transaction-data-table-td-value" data-value="data-otc-LTD"></td>
+                                <td class="fv-latest-transaction-data-table-td-key" data-alias="市净率">市净率(LYR)</td>
+                                <td class="fv-latest-transaction-data-table-td-value" data-value="data-otc-LTD"></td>
                             </tr>
                         </tbody>
                         <tfoot class="fv-latest-transaction-data-table-tfoot">
                             <tr class="fv-latest-transaction-data-table-tr">
-                                <td class="fv-latest-transaction-data-table-td-value" data-value="data-fv-infos"></td>
+                                <td class="fv-latest-transaction-data-table-td-value" data-value="data-otc-LTD"></td>
                             </tr>
                         </tfoot>
                     </table>
@@ -329,23 +305,23 @@ const HTML_Template = (uid = ``, loadModule = function(){}, debug = false) => {
             `;
             break;
         case "otcperfast02":
-            delete_uid = `recent-important-events`;
-            loadModule(uid, `recent-important-events`, true);
+            delete_uid = `big-event-reminder`;
+            loadModule(uid, `big-event-reminder`, true);
             htmlstr += `
                 <section class="fv-module-box-5">
                     <div class="fv-h5dnd-modules-title-box">
-                        <p class="fv-h5dnd-modules-title" data-title="fv-recent-important-events-title">近期重要事项</p>
+                        <p class="fv-h5dnd-modules-title" data-title="fv-big-event-reminder-title">大事提醒</p>
                     </div>
-                    <table class="fv-recent-important-events-table">
-                        <thead class="fv-recent-important-events-table-thead">
-                            <tr class="fv-recent-important-events-table-tr">
-                                <td class="fv-recent-important-events-table-td-title">重要信息</td>
+                    <table class="fv-big-event-reminder-table">
+                        <thead class="fv-big-event-reminder-table-thead">
+                            <tr class="fv-big-event-reminder-table-tr">
+                                <td class="fv-big-event-reminder-table-td-title">大事提醒</td>
                             </tr>
                         </thead>
-                        <tbody class="fv-recent-important-events-table-tbody" id="fv-recent-important-tbody"></tbody>
-                        <tfoot class="fv-recent-important-events-table-tfoot">
-                            <tr class="fv-recent-important-events-table-tr">
-                                <td class="fv-recent-important-events-table-td-value" data-value="data-fv-events"></td>
+                        <tbody class="fv-big-event-reminder-table-tbody" id="fv-big-event-reminder-tbody"></tbody>
+                        <tfoot class="fv-big-event-reminder-table-tfoot">
+                            <tr class="fv-big-event-reminder-table-tr">
+                                <td class="fv-big-event-reminder-table-td-value" data-value="data-fv-events"></td>
                             </tr>
                         </tfoot>
                     </table>
@@ -353,19 +329,26 @@ const HTML_Template = (uid = ``, loadModule = function(){}, debug = false) => {
             `;
             break;
         case "otcperfast03":
-            delete_uid = `profit-forecast`;
-            loadModule(uid, `profit-forecast`);
+            delete_uid = `company-brief-introduction`;
+            loadModule(uid, `company-brief-introduction`);
             htmlstr += `
                 <section class="fv-module-box-5">
                     <div class="fv-h5dnd-modules-title-box">
-                        <p class="fv-h5dnd-modules-title" data-title="fv-profit-forecast-title">盈利预告</p>
+                        <p class="fv-h5dnd-modules-title" data-title="fv-company-brief-introduction-title">公司简介</p>
                     </div>
-                    <div class="fv-profit-forecast-container">
-                        <!-- 盈利预告 placeholder -->
-                        <div id="profit_forecast_hs_container" class="fv-profit-forecast-hs fv-profit-forecast-hs-container" data-hs-container="data-profit-forecast-container-uid">
-                            <!--  -->
-                        </div>
-                    </div>
+                    <table class="fv-company-brief-introduction-table">
+                        <thead class="fv-company-brief-introduction-table-thead">
+                            <tr class="fv-company-brief-introduction-table-tr">
+                                <td class="fv-company-brief-introduction-table-td-title">公司简介</td>
+                            </tr>
+                        </thead>
+                        <tbody class="fv-company-brief-introduction-table-tbody" id="fv-company-brief-introduction-tbody"></tbody>
+                        <tfoot class="fv-company-brief-introduction-table-tfoot">
+                            <tr class="fv-company-brief-introduction-table-tr">
+                                <td class="fv-company-brief-introduction-table-td-value" data-value="data-fv-events"></td>
+                            </tr>
+                        </tfoot>
+                    </table>
                 </section>
             `;
             break;

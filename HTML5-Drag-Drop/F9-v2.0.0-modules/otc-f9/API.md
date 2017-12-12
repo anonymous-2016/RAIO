@@ -169,8 +169,11 @@ let otc_demo_url = `${OTC_GILCODE_URL.ip}/${OTC_GILCODE_URL.path}/${OTC_GILCODE_
 
 
 
+```sh
 
+$ touch company-performance-achievement.js company-performance-achievement.css company-performance-achievement.html company-performance-valuation.js company-performance-valuation.css company-performance-valuation.html
 
+```
 
 
 # 聚源代码 430002.OC
@@ -178,19 +181,20 @@ let otc_demo_url = `${OTC_GILCODE_URL.ip}/${OTC_GILCODE_URL.path}/${OTC_GILCODE_
 
 参数：
     otcperfast01    最新交易数据 latest-transaction-data
-    otcperfast02    大事提醒
-    otcperfast03    公司简介
-    otcperfast04    最新财务数据
-    otcperfast05    公司表现-市场表现
-    otcperfast06    公司表现-公司规模
-    otcperfast07    公司表现-公司业绩
-    otcperfast08    公司表现-公司估值
-    otcperfast09    主营业务
-    otcperfast10    股本股东
-    otcperfast11    管理层概况
-    news            新闻
-    bulletin        公告
-    research        研报
+    otcperfast02    大事提醒 big-event-reminder
+    otcperfast03    公司简介 company-brief-introduction
+    otcperfast04    最新财务数据 latest-financial-data
+    otcperfast05    公司表现-市场表现 company-performance-market
+    otcperfast06    公司表现-公司规模 company-performance-scale
+    otcperfast07    公司表现-公司业绩 company-performance-achievement
+    otcperfast08    公司表现-公司估值 company-performance-valuation
+    otcperfast09    主营业务 main-management-business 主要经营业务
+    otcperfast10    股本股东 equity-shareholder
+    otcperfast11    管理层概况 management-layer-profiles
+    news            公司新闻 company-news
+    bulletin        公司公告 company-news
+    research        研究报告 research-report
+
 http://10.1.5.202/webservice/fastview/otcper/news/430002.OC
 http://10.1.5.202/webservice/fastview/otcper/bulletin/430002.OC
 http://10.1.5.202/webservice/fastview/otcper/research/430002.OC
