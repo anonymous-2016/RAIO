@@ -172,8 +172,8 @@ const initTabs = () => {
         sortable_module_containers[0].innerHTML = "";
         sortable_module_containers[1].innerHTML = "";
         // 最新交易数据 latest-transaction-data
-        let left_uids = ["otcperfast01","otcperfast04","otcperfast07","bulletion","research","otcperfast08","otcperfast09","otcperfast11"];
-        let right_uids = ["otcperfast02","otcperfast03","otcperfast05","otcperfast06", "otcperfast10","otcperfast12","otcperfast13", "news"];
+        let left_uids = ["otcperfast01", "otcperfast02", "news", "research", "otcperfast07", "otcperfast08","otcperfast09","otcperfast11"];
+        let right_uids = ["otcperfast03", "bulletin", "otcperfast04", "otcperfast05","otcperfast06", "otcperfast10","otcperfast12","otcperfast13",];
         OTC_F9_FV.Modules.loadAllModules.init(sortable_module_containers[0], left_uids);
         OTC_F9_FV.Modules.loadAllModules.init(sortable_module_containers[1], right_uids);
     }
@@ -229,7 +229,6 @@ const loadModule = (uid =``, module_uid_name=``, isTable=`false`, debug = false)
             link_css.setAttribute(`href`, `./modules/${module_uid_name}.css`);
             // link_css.setAttribute(`href`, `./build/css/${module_uid_name}.min.css`);
             script_dom.dataset.deleteScriptDom = `delete-script-dom-${uid}`;
-            // script_dom.setAttribute(`src`, `./Modules/${module_uid_name}.js`);
             script_dom.setAttribute(`src`, `./build/js/${module_uid_name}.min.js`);
             box.insertAdjacentElement(`afterend`, link_css);
             link_css.insertAdjacentElement(`afterend`, script_dom);
@@ -379,117 +378,59 @@ const HTML_Template = (uid = ``, loadModule = function(){}, debug = false) => {
             `;
             break;
         case "otcperfast04":
-            delete_uid = `indicators-per-share`;
-            loadModule(uid, `indicators-per-share`, true);
+            delete_uid = `latest-financial-data`;
+            loadModule(uid, `latest-financial-data`, true);
             htmlstr += `
-                <section class="fv-module-box-5">
-                    <div class="fv-indicators-per-share-title-box">
-                        <p class="fv-h5dnd-modules-title" data-title="fv-indicators-per-share-title">每股指标</p>
+                <section class="otc-module-box-5">
+                    <div class="otc-h5dnd-modules-title-box">
+                        <p class="otc-h5dnd-modules-title" data-title="otc-latest-financial-data-title">
+                            最新财务数据
+                            <span data-link="otc-latest-financial-data-link">
+                                <a href="#更多财务数据">更多财务数据</a>
+                            </span>
+                        </p>
                     </div>
-                    <table class="fv-indicators-per-share-table">
-                        <thead class="fv-indicators-per-share-table-thead">
-                            <tr class="fv-indicators-per-share-table-tr">
-                                <td class="fv-indicators-per-share-table-td-title">每股指标</td>
+                    <table class="otc-latest-financial-data-table">
+                        <thead class="otc-latest-financial-data-table-thead">
+                            <tr class="otc-latest-financial-data-table-tr">
+                                <td class="otc-latest-financial-data-table-td-title">最新财务数据</td>
                             </tr>
                         </thead>
-                        <tbody class="fv-indicators-per-share-table-tbody">
-                            <tr class="fv-indicators-per-share-table-tr" data-tr="tr-background">
-                                <td class="fv-indicators-per-share-table-td-key" title="fbrq 发布日期">上市公司公告</td>
-                                <td class="fv-indicators-per-share-table-td-value" data-value="data-fv-indicators-per-share"></td>
+                        <tbody class="otc-latest-financial-data-table-tbody">
+                            <tr class="otc-latest-financial-data-table-tr">
+                                <td class="otc-latest-financial-data-table-td-key" data-alias="收盘价">收盘价</td>
+                                <td class="otc-latest-financial-data-table-td-value" data-value="data-otc-LFD"></td>
+                                <td class="otc-latest-financial-data-table-td-key" data-alias="总市值">总市值(元)</td>
+                                <td class="otc-latest-financial-data-table-td-value" data-value="data-otc-LFD"></td>
                             </tr>
-                            <tr class="fv-indicators-per-share-table-tr">
-                                <td class="fv-indicators-per-share-table-td-key">每股收益-基本(元)</td>
-                                <td class="fv-indicators-per-share-table-td-value" data-value="data-fv-indicators-per-share"></td>
+                            <tr class="otc-latest-financial-data-table-tr">
+                                <td class="otc-latest-financial-data-table-td-key" data-alias="涨跌幅">涨跌幅(%)</td>
+                                <td class="otc-latest-financial-data-table-td-value" data-value="data-otc-LFD"></td>
+                                <td class="otc-latest-financial-data-table-td-key" data-alias="流通市值">流通市值(元)</td>
+                                <td class="otc-latest-financial-data-table-td-value" data-value="data-otc-LFD"></td>
                             </tr>
-                            <tr class="fv-indicators-per-share-table-tr">
-                                <td class="fv-indicators-per-share-table-td-key">每股收益-稀释(元)</td>
-                                <td class="fv-indicators-per-share-table-td-value" data-value="data-fv-indicators-per-share"></td>
+                            <tr class="otc-latest-financial-data-table-tr">
+                                <td class="otc-latest-financial-data-table-td-key" data-alias="成交量">成交量(股)</td>
+                                <td class="otc-latest-financial-data-table-td-value" data-value="data-otc-LFD"></td>
+                                <td class="otc-latest-financial-data-table-td-key" data-alias="市盈率(TTM)">市盈率(TTM)</td>
+                                <td class="otc-latest-financial-data-table-td-value" data-value="data-otc-LFD"></td>
                             </tr>
-                            <tr class="fv-indicators-per-share-table-tr">
-                                <td class="fv-indicators-per-share-table-td-key">每股收益-扣除／基本(元)</td>
-                                <td class="fv-indicators-per-share-table-td-value" data-value="data-fv-indicators-per-share"></td>
+                            <tr class="otc-latest-financial-data-table-tr">
+                                <td class="otc-latest-financial-data-table-td-key" data-alias="换手率">换手率(%)</td>
+                                <td class="otc-latest-financial-data-table-td-value" data-value="data-otc-LFD"></td>
+                                <td class="otc-latest-financial-data-table-td-key" data-alias="市盈率(LYR)">市盈率(LYR)</td>
+                                <td class="otc-latest-financial-data-table-td-value" data-value="data-otc-LFD"></td>
                             </tr>
-                            <tr class="fv-indicators-per-share-table-tr">
-                                <td class="fv-indicators-per-share-table-td-key" data-alias="每股收益-扣除／稀释(元)">每股收益-扣除／稀释(元)</td>
-                                <td class="fv-indicators-per-share-table-td-value" data-value="data-fv-indicators-per-share"></td>
+                            <tr class="otc-latest-financial-data-table-tr">
+                                <td class="otc-latest-financial-data-table-td-key" data-alias="成交额">成交额(元)</td>
+                                <td class="otc-latest-financial-data-table-td-value" data-value="data-otc-LFD"></td>
+                                <td class="otc-latest-financial-data-table-td-key" data-alias="市净率">市净率(LYR)</td>
+                                <td class="otc-latest-financial-data-table-td-value" data-value="data-otc-LFD"></td>
                             </tr>
-                            <tr class="fv-indicators-per-share-table-tr">
-                                <td class="fv-indicators-per-share-table-td-key" data-alias="每股净资产(元)">每股净资产(元)</td>
-                                <td class="fv-indicators-per-share-table-td-value" data-value="data-fv-indicators-per-share"></td>
-                            </tr>
-                            <tr class="fv-indicators-per-share-table-tr">
-                                <td class="fv-indicators-per-share-table-td-key">每股经营活动产生的现金流量净额(元)</td>
-                                <td class="fv-indicators-per-share-table-td-value" data-value="data-fv-indicators-per-share"></td>
-                            </tr>
-                            <tr data-tr="tr-spaces">
-                                <!-- <td></td>
-                                <td></td> -->
-                            </tr>
-                            <!-- 聚源计算 -->
-                            <tr class="fv-indicators-per-share-table-tr" data-tr="tr-background">
-                                <td class="fv-indicators-per-share-table-td-key">聚源计算</td>
-                                <td class="fv-indicators-per-share-table-td-value" data-value="data-fv-indicators-per-share"></td>
-                            </tr>
-                            <tr class="fv-indicators-per-share-table-tr">
-                                <td class="fv-indicators-per-share-table-td-key">每股收益-期末股本摊薄(元)</td>
-                                <td class="fv-indicators-per-share-table-td-value" data-value="data-fv-indicators-per-share"></td>
-                            </tr>
-                            <tr class="fv-indicators-per-share-table-tr">
-                                <td class="fv-indicators-per-share-table-td-key">每股收益-扣除/期末股本摊薄(元)</td>
-                                <td class="fv-indicators-per-share-table-td-value" data-value="data-fv-indicators-per-share"></td>
-                            </tr>
-                            <tr class="fv-indicators-per-share-table-tr">
-                                <td class="fv-indicators-per-share-table-td-key">每股营业总收入(元)</td>
-                                <td class="fv-indicators-per-share-table-td-value" data-value="data-fv-indicators-per-share"></td>
-                            </tr>
-                            <tr class="fv-indicators-per-share-table-tr">
-                                <td class="fv-indicators-per-share-table-td-key">每股营业收入(元)</td>
-                                <td class="fv-indicators-per-share-table-td-value" data-value="data-fv-indicators-per-share"></td>
-                            </tr>
-                            <tr class="fv-indicators-per-share-table-tr">
-                                <td class="fv-indicators-per-share-table-td-key">每股息税前利润(元)</td>
-                                <td class="fv-indicators-per-share-table-td-value" data-value="data-fv-indicators-per-share"></td>
-                            </tr>
-                            <tr class="fv-indicators-per-share-table-tr">
-                                <td class="fv-indicators-per-share-table-td-key" data-alias="每股资本公积">每股资本公积(元)</td>
-                                <td class="fv-indicators-per-share-table-td-value" data-value="data-fv-indicators-per-share"></td>
-                            </tr>
-                            <tr class="fv-indicators-per-share-table-tr">
-                                <td class="fv-indicators-per-share-table-td-key">每股盈余公积(元)</td>
-                                <td class="fv-indicators-per-share-table-td-value" data-value="data-fv-indicators-per-share"></td>
-                            </tr>
-                            <tr class="fv-indicators-per-share-table-tr">
-                                <td class="fv-indicators-per-share-table-td-key">每股未分配利润(元)</td>
-                                <td class="fv-indicators-per-share-table-td-value" data-value="data-fv-indicators-per-share"></td>
-                            </tr>
-                            <tr class="fv-indicators-per-share-table-tr">
-                                <td class="fv-indicators-per-share-table-td-key">每股留存收益(元)</td>
-                                <td class="fv-indicators-per-share-table-td-value" data-value="data-fv-indicators-per-share"></td>
-                            </tr>
-                            <tr class="fv-indicators-per-share-table-tr">
-                                <td class="fv-indicators-per-share-table-td-key">每股现金流量净额(元)</td>
-                                <td class="fv-indicators-per-share-table-td-value" data-value="data-fv-indicators-per-share"></td>
-                            </tr>
-                            <tr class="fv-indicators-per-share-table-tr">
-                                <td class="fv-indicators-per-share-table-td-key">每股企业自由现金流量(元)</td>
-                                <td class="fv-indicators-per-share-table-td-value" data-value="data-fv-indicators-per-share"></td>
-                            </tr>
-                            <tr class="fv-indicators-per-share-table-tr">
-                                <td class="fv-indicators-per-share-table-td-key">每股股东自由现金流量(元)</td>
-                                <td class="fv-indicators-per-share-table-td-value" data-value="data-fv-indicators-per-share"></td>
-                            </tr>
-                            <!--
-                                <tr class="fv-indicators-per-share-table-tr">
-                                    <td class="fv-indicators-per-share-table-td-key">
-                                        ["每股指标", "报表格式", "报表类型", "报告期", "发布日期", "上市前后" ]
-                                    </td>
-                                    <td class="fv-indicators-per-share-table-td-value" data-value="data-fv-indicators-per-share"></td>
-                                </tr>
-                            -->
                         </tbody>
-                        <tfoot class="fv-indicators-per-share-table-tfoot">
-                            <tr class="fv-indicators-per-share-table-tr">
-                                <td class="fv-indicators-per-share-table-td-value" data-value="data-fv-indicators-per-share"></td>
+                        <tfoot class="otc-latest-financial-data-table-tfoot">
+                            <tr class="otc-latest-financial-data-table-tr">
+                                <td class="otc-latest-financial-data-table-td-value" data-value="data-otc-LFD"></td>
                             </tr>
                         </tfoot>
                     </table>
@@ -660,21 +601,53 @@ const HTML_Template = (uid = ``, loadModule = function(){}, debug = false) => {
             delete_uid = `company-news`;
             loadModule(uid, `company-news`, true);
             htmlstr += `
-                <section class="fv-module-box-5">
-                    <div class="fv-h5dnd-modules-title-box">
-                        <p class="fv-h5dnd-modules-title" data-title="fv-company-news-title" data-more="company-news-title">公司新闻</p>
+                <section class="otc-module-box-5">
+                    <div class="otc-h5dnd-modules-title-box">
+                        <p class="otc-h5dnd-modules-title" data-title="otc-company-news-title">
+                            公司新闻
+                            <span data-more="otc-company-news-link">
+                                <a href="#更多新闻" data-more="otc-company-news-link-more">更多新闻</a>
+                            </span>
+                        </p>
                     </div>
-                    <table class="fv-company-news-table">
-                        <thead class="fv-company-news-table-thead">
-                            <tr class="fv-company-news-table-tr">
-                                <td class="fv-company-news-table-td-title">日期</td>
-                                <td class="fv-company-news-table-td-title">标题</td>
+                    <table class="otc-company-news-table">
+                        <thead class="otc-company-news-table-thead">
+                            <tr class="otc-company-news-table-tr">
+                                <td class="otc-company-news-table-td-title">新闻标题</td>
+                                <td class="otc-company-news-table-td-title">新闻日期</td>
+                                <td class="otc-company-news-table-td-title">新闻类型</td>
                             </tr>
                         </thead>
-                        <tbody class="fv-company-news-table-tbody" id="fv-company-news-tbody"></tbody>
-                        <tfoot class="fv-company-news-table-tfoot">
-                            <tr class="fv-company-news-table-tr">
-                                <td class="fv-company-news-table-td-value" data-value="data-fv-company-news"></td>
+                        <tbody class="otc-company-news-table-tbody" data-tbody="otc-company-news-table-tbody">
+                            <tr class="otc-company-news-table-tr">
+                                <td class="otc-company-news-table-td-key" data-alias="公司新闻1" data-key="data-otc-CN"></td>
+                                <td class="otc-company-news-table-td-value" data-value="data-otc-CN"></td>
+                                <td class="otc-company-news-table-td-value" data-value="data-otc-CN"></td>
+                            </tr>
+                            <tr class="otc-company-news-table-tr">
+                                <td class="otc-company-news-table-td-key" data-alias="公司新闻2" data-key="data-otc-CN"></td>
+                                <td class="otc-company-news-table-td-value" data-value="data-otc-CN"></td>
+                                <td class="otc-company-news-table-td-value" data-value="data-otc-CN"></td>
+                            </tr>
+                            <tr class="otc-company-news-table-tr">
+                                <td class="otc-company-news-table-td-key" data-alias="公司新闻3" data-key="data-otc-CN"></td>
+                                <td class="otc-company-news-table-td-value" data-value="data-otc-CN"></td>
+                                <td class="otc-company-news-table-td-value" data-value="data-otc-CN"></td>
+                            </tr>
+                            <tr class="otc-company-news-table-tr">
+                                <td class="otc-company-news-table-td-key" data-alias="公司新闻4" data-key="data-otc-CN"></td>
+                                <td class="otc-company-news-table-td-value" data-value="data-otc-CN"></td>
+                                <td class="otc-company-news-table-td-value" data-value="data-otc-CN"></td>
+                            </tr>
+                            <tr class="otc-company-news-table-tr">
+                                <td class="otc-company-news-table-td-key" data-alias="公司新闻5" data-key="data-otc-CN"></td>
+                                <td class="otc-company-news-table-td-value" data-value="data-otc-CN"></td>
+                                <td class="otc-company-news-table-td-value" data-value="data-otc-CN"></td>
+                            </tr>
+                        </tbody>
+                        <tfoot class="otc-company-news-table-tfoot">
+                            <tr class="otc-company-news-table-tr">
+                                <td class="otc-company-news-table-td-value" data-value="data-otc-CN"></td>
                             </tr>
                         </tfoot>
                     </table>
@@ -682,24 +655,56 @@ const HTML_Template = (uid = ``, loadModule = function(){}, debug = false) => {
             `;
             break;
         case "bulletin":
-            delete_uid = `company-announcements`;
-            loadModule(uid, `company-announcements`, true);
+            delete_uid = `company-bulletin`;
+            loadModule(uid, `company-bulletin`, true);
             htmlstr += `
-                <section class="fv-module-box-5">
-                    <div class="fv-company-announcements-title-box">
-                        <p class="fv-company-announcements-title" data-title="fv-company-announcements-title" data-more="company-announcements-title">公司公告</p>
+                <section class="otc-module-box-5">
+                    <div class="otc-h5dnd-modules-title-box">
+                        <p class="otc-h5dnd-modules-title" data-title="otc-company-bulletin-title">
+                            公司公告
+                            <span data-more="otc-company-bulletin-link">
+                                <a href="#更多公告" data-more="otc-company-bulletin-link-more">更多公告</a>
+                            </span>
+                        </p>
                     </div>
-                    <table class="fv-company-announcements-table">
-                        <thead class="fv-company-announcements-table-thead">
-                            <tr class="fv-company-announcements-table-tr">
-                                <td class="fv-company-announcements-table-td-title">日期</td>
-                                <td class="fv-company-announcements-table-td-title">标题</td>
+                    <table class="otc-company-bulletin-table">
+                        <thead class="otc-company-bulletin-table-thead">
+                            <tr class="otc-company-bulletin-table-tr">
+                                <td class="otc-company-bulletin-table-td-title">公告标题</td>
+                                <td class="otc-company-bulletin-table-td-title">公告日期</td>
+                                <td class="otc-company-bulletin-table-td-title">公告类型</td>
                             </tr>
                         </thead>
-                        <tbody class="fv-company-announcements-table-tbody" id="fv-company-announcements-tbody"></tbody>
-                        <tfoot class="fv-company-announcements-table-tfoot">
-                            <tr class="fv-company-announcements-table-tr">
-                                <td class="fv-company-announcements-table-td-value" data-value="data-fv-company-announcements"></td>
+                        <tbody class="otc-company-bulletin-table-tbody" data-tbody="otc-company-bulletin-table-tbody">
+                            <tr class="otc-company-bulletin-table-tr">
+                                <td class="otc-company-bulletin-table-td-key" data-alias="公司公告1" data-key="data-otc-CB"></td>
+                                <td class="otc-company-bulletin-table-td-value" data-value="data-otc-CB"></td>
+                                <td class="otc-company-bulletin-table-td-value" data-value="data-otc-CB"></td>
+                            </tr>
+                            <tr class="otc-company-bulletin-table-tr">
+                                <td class="otc-company-bulletin-table-td-key" data-alias="公司公告2" data-key="data-otc-CB"></td>
+                                <td class="otc-company-bulletin-table-td-value" data-value="data-otc-CB"></td>
+                                <td class="otc-company-bulletin-table-td-value" data-value="data-otc-CB"></td>
+                            </tr>
+                            <tr class="otc-company-bulletin-table-tr">
+                                <td class="otc-company-bulletin-table-td-key" data-alias="公司公告3" data-key="data-otc-CB"></td>
+                                <td class="otc-company-bulletin-table-td-value" data-value="data-otc-CB"></td>
+                                <td class="otc-company-bulletin-table-td-value" data-value="data-otc-CB"></td>
+                            </tr>
+                            <tr class="otc-company-bulletin-table-tr">
+                                <td class="otc-company-bulletin-table-td-key" data-alias="公司公告4" data-key="data-otc-CB"></td>
+                                <td class="otc-company-bulletin-table-td-value" data-value="data-otc-CB"></td>
+                                <td class="otc-company-bulletin-table-td-value" data-value="data-otc-CB"></td>
+                            </tr>
+                            <tr class="otc-company-bulletin-table-tr">
+                                <td class="otc-company-bulletin-table-td-key" data-alias="公司公告5" data-key="data-otc-CB"></td>
+                                <td class="otc-company-bulletin-table-td-value" data-value="data-otc-CB"></td>
+                                <td class="otc-company-bulletin-table-td-value" data-value="data-otc-CB"></td>
+                            </tr>
+                        </tbody>
+                        <tfoot class="otc-company-bulletin-table-tfoot">
+                            <tr class="otc-company-bulletin-table-tr">
+                                <td class="otc-company-bulletin-table-td-value" data-value="data-otc-CB"></td>
                             </tr>
                         </tfoot>
                     </table>
@@ -710,21 +715,59 @@ const HTML_Template = (uid = ``, loadModule = function(){}, debug = false) => {
             delete_uid = `research-report`;
             loadModule(uid, `research-report`, true);
             htmlstr += `
-                <section class="fv-module-box-5">
-                    <div class="fv-h5dnd-modules-title-box">
-                        <p class="fv-h5dnd-modules-title" data-title="fv-research-report-title" data-more="research-report-title">研究报告</p>
+                <section class="otc-module-box-5">
+                    <div class="otc-h5dnd-modules-title-box">
+                        <p class="otc-h5dnd-modules-title" data-title="otc-research-report-title">
+                            研究报告
+                            <span data-more="otc-research-report-link">
+                                <a href="#更多研报" data-more="otc-research-report-link-more">更多研报</a>
+                            </span>
+                        </p>
                     </div>
-                    <table class="fv-research-report-table">
-                        <thead class="fv-research-report-table-thead">
-                            <tr class="fv-research-report-table-tr">
-                                <td class="fv-research-report-table-td-title">日期</td>
-                                <td class="fv-research-report-table-td-title">标题</td>
+                    <table class="otc-research-report-table">
+                        <thead class="otc-research-report-table-thead">
+                            <tr class="otc-research-report-table-tr">
+                                <td class="otc-research-report-table-td-title">研报标题</td>
+                                <td class="otc-research-report-table-td-title">披露日期</td>
+                                <td class="otc-research-report-table-td-title">研报类型</td>
+                                <td class="otc-research-report-table-td-title">发布机构</td>
                             </tr>
                         </thead>
-                        <tbody class="fv-research-report-table-tbody" id="fv-research-report-tbody"></tbody>
-                        <tfoot class="fv-research-report-table-tfoot">
-                            <tr class="fv-research-report-table-tr">
-                                <td class="fv-research-report-table-td-value" data-value="data-fv-research-report"></td>
+                        <tbody class="otc-research-report-table-tbody" data-tbody="otc-research-report-table-tbody">
+                            <tr class="otc-research-report-table-tr">
+                                <td class="otc-research-report-table-td-key" data-alias="研究报告1" data-key="data-otc-RR"></td>
+                                <td class="otc-research-report-table-td-value" data-value="data-otc-RR"></td>
+                                <td class="otc-research-report-table-td-value" data-value="data-otc-RR"></td>
+                                <td class="otc-research-report-table-td-value" data-value="data-otc-RR"></td>
+                            </tr>
+                            <tr class="otc-research-report-table-tr">
+                                <td class="otc-research-report-table-td-key" data-alias="研究报告2" data-key="data-otc-RR"></td>
+                                <td class="otc-research-report-table-td-value" data-value="data-otc-RR"></td>
+                                <td class="otc-research-report-table-td-value" data-value="data-otc-RR"></td>
+                                <td class="otc-research-report-table-td-value" data-value="data-otc-RR"></td>
+                            </tr>
+                            <tr class="otc-research-report-table-tr">
+                                <td class="otc-research-report-table-td-key" data-alias="研究报告3" data-key="data-otc-RR"></td>
+                                <td class="otc-research-report-table-td-value" data-value="data-otc-RR"></td>
+                                <td class="otc-research-report-table-td-value" data-value="data-otc-RR"></td>
+                                <td class="otc-research-report-table-td-value" data-value="data-otc-RR"></td>
+                            </tr>
+                            <tr class="otc-research-report-table-tr">
+                                <td class="otc-research-report-table-td-key" data-alias="研究报告4" data-key="data-otc-RR"></td>
+                                <td class="otc-research-report-table-td-value" data-value="data-otc-RR"></td>
+                                <td class="otc-research-report-table-td-value" data-value="data-otc-RR"></td>
+                                <td class="otc-research-report-table-td-value" data-value="data-otc-RR"></td>
+                            </tr>
+                            <tr class="otc-research-report-table-tr">
+                                <td class="otc-research-report-table-td-key" data-alias="研究报告5" data-key="data-otc-RR"></td>
+                                <td class="otc-research-report-table-td-value" data-value="data-otc-RR"></td>
+                                <td class="otc-research-report-table-td-value" data-value="data-otc-RR"></td>
+                                <td class="otc-research-report-table-td-value" data-value="data-otc-RR"></td>
+                            </tr>
+                        </tbody>
+                        <tfoot class="otc-research-report-table-tfoot">
+                            <tr class="otc-research-report-table-tr">
+                                <td class="otc-research-report-table-td-value" data-value="data-otc-RR"></td>
                             </tr>
                         </tfoot>
                     </table>
@@ -756,7 +799,7 @@ const layoutCSS = (uid = ``, div = ``) => {
         case "otcperfast10":
         case "otcperfast11":
         case "news":
-        case "bulletion":
+        case "bulletin":
         case "research":
             div.classList.add(`otc-center-box`);
             break;

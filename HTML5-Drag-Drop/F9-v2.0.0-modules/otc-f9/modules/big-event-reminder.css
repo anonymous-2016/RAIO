@@ -125,7 +125,8 @@ td.otc-big-event-reminder-table-td-value {
     padding-left: 6px;
 }
 
-[data-tbody="otc-big-event-reminder-table-tbody"]>tr.otc-big-event-reminder-table-tr:nth-of-type(2)>td.otc-big-event-reminder-table-td-value {
+[data-tbody="otc-big-event-reminder-table-tbody"]>tr.otc-big-event-reminder-table-tr:nth-of-type(2)>td.otc-big-event-reminder-table-td-value,
+[data-tbody="otc-big-event-reminder-table-tbody"]>tr.otc-big-event-reminder-table-tr:nth-of-type(3)>td.otc-big-event-reminder-table-td-value {
     height: 46px;
     overflow: hidden;
     word-wrap: break-word;

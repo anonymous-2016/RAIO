@@ -205,6 +205,52 @@ const UserException = (message = ``, fileName = ``, lineNumber = 0) => {
 
 console.log(`datas = \n`, datas);
 
+
+let html = `
+    <a
+        href="#${id}"
+        title="${title}"
+        data-title="${title}"
+        data-link="fv-company-news-link"
+        data-disabled="${id !== "null" ? false : true}"
+        data-link-detail="company-news-link-detail-module"
+        data-newsId="${id}">
+        ${title}
+    </a>
+`;
+dom.insertAdjacentHTML(`beforeend`, html);
+
+https://developer.mozilla.org/en-US/docs/Web/CSS/text-overflow
+
+*{
+    overflow: hidden;
+    white-space: nowrap;
+    /* single line & nowrap */
+}
+
+*{
+    box-sizing: border-box;
+    width: 438px;
+    height: 46px;
+    overflow: hidden;
+    word-wrap: break-word;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    /* multi lines & no need nowrap */
+}
+
+tbody.otc-company-news-table-tbody>tr.otc-company-news-table-tr>td:nth-of-type(1) {
+    box-sizing: border-box;
+    overflow: hidden;
+    word-wrap: break-word;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+
+
 参数：
     otcperfast01    最新交易数据 latest-transaction-data
     otcperfast02    大事提醒 big-event-reminder

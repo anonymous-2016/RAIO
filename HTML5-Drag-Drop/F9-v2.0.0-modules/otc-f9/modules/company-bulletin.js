@@ -1,7 +1,7 @@
 "use strict";
 
 /**
- * company-news 公司新闻
+ * company-bulletin 公司公告
  * xgqfrms
  * creadted 2017.12.12
  * @param {* String} url
@@ -19,7 +19,7 @@ var OTC_F9_FV = OTC_F9_FV || {};
 OTC_F9_FV.Modules = OTC_F9_FV.Modules || {};
 
 
-OTC_F9_FV.Modules.companyNews = OTC_F9_FV.Modules.companyNews || (
+OTC_F9_FV.Modules.companyBulletin = OTC_F9_FV.Modules.companyBulletin || (
     (url = ``, td_keys = [], tds = [], more = ``, debug = false) => {
         let datas = {};
         fetch(url)
@@ -30,35 +30,36 @@ OTC_F9_FV.Modules.companyNews = OTC_F9_FV.Modules.companyNews || (
                 try {
                     if (Array.isArray(datas) && datas.length > 0) {
                         for (let i = 0; i < td_keys.length; i++) {
-                            let title = (datas[i].xwtitle !== undefined) ? datas[i].xwtitle.replace(/(：：)/ig, "：") : `暂无数据`,
-                                time = (datas[i].xwsj !== undefined && datas[i].xwsj !== null) ? datas[i].xwsj : `暂无数据`,
-                                type = (datas[i].newsType !== undefined && datas[i].newsType !== null) ? datas[i].newsType : `暂无数据`,
-                                id = (datas[i].newid !== undefined) ? datas[i].newid : `暂无数据`;
-                            let html = `
+                            let title = (datas[i].gsggtitle !== undefined) ? datas[i].gsggtitle.replace(/(：：)/ig, "：") : `暂无数据`,
+                                time = (datas[i].gsggsj !== undefined && datas[i].gsggsj !== null) ? datas[i].gsggsj : `暂无数据`,
+                                type = (datas[i].bulletinType !== undefined && datas[i].bulletinType !== null) ? datas[i].bulletinType : `暂无数据`,
+                                fileType = (datas[i].fileType !== undefined && datas[i].fileType !== null) ? datas[i].fileType : `暂无数据`,
+                                id = (datas[i].id !== undefined) ? datas[i].id : `暂无数据`;
+                            let html = ``;
+                            html = `
                                 <a
                                     href="#${id}"
                                     title="${title}"
                                     data-title="${title}"
-                                    data-link="otc-company-news-link"
+                                    data-link="otc-company-bulletin-link"
                                     data-disabled="${id !== "null" ? false : true}"
-                                    data-link-detail="company-news-link-detail-module"
+                                    data-link-detail="company-bulletin-link-detail-module"
                                     data-newsId="${id}">
                                     ${title}
                                 </a>
                             `;
                             td_keys[i].insertAdjacentHTML(`beforeend`, html);
-                            // td_keys[i].setAttribute(`title`, title);
                             tds[2*i].innerText = time;
                             tds[2*i+1].innerText = type;
                         }
                     }else{
                         let message = `handle json error!`,
-                            fileName = `company-news.js`,
+                            fileName = `company-bulletin.js`,
                             lineNumber = 29;
                         throw new UserException(message, fileName, lineNumber);
                     }
                 } catch (err) {
-                    let url =`file:///E:/github/RAIO/HTML5-Drag-Drop/F9-v2.0.0-modules/otc-f9/modules/company-news.js`;
+                    let url =`file:///E:/github/RAIO/HTML5-Drag-Drop/F9-v2.0.0-modules/otc-f9/modules/company-bulletin.js`;
                     ConsoleError(err, url);
                 }
             }
@@ -69,7 +70,7 @@ OTC_F9_FV.Modules.companyNews = OTC_F9_FV.Modules.companyNews || (
 );
 
 
-OTC_F9_FV.Modules.companyNews.init = OTC_F9_FV.Modules.companyNews.init || (
+OTC_F9_FV.Modules.companyBulletin.init = OTC_F9_FV.Modules.companyBulletin.init || (
     (
         {
             ip,
@@ -79,15 +80,15 @@ OTC_F9_FV.Modules.companyNews.init = OTC_F9_FV.Modules.companyNews.init || (
         } = {
             ip: `http://10.1.5.202`,
             path: `/webservice/fastview/otcper`,
-            socket: `/news/`,
+            socket: `/bulletin/`,
             gilcode: `430002.OC`
         }
     ) => {
         let url = `${ip}${path}${socket}${gilcode}`,
-            td_keys = document.querySelectorAll(`[data-key="data-otc-CN"]`),
-            tds = document.querySelectorAll(`[data-value="data-otc-CN"]`),
-            more = document.querySelector(`[data-more="otc-company-news-link-more"]`);
-        OTC_F9_FV.Modules.companyNews(url, td_keys, tds, more, false);
+            td_keys = document.querySelectorAll(`[data-key="data-otc-CB"]`),
+            tds = document.querySelectorAll(`[data-value="data-otc-CB"]`),
+            more = document.querySelector(`[data-more="otc-company-bulletin-link-more"]`);
+        OTC_F9_FV.Modules.companyBulletin(url, td_keys, tds, more, false);
     }
 );
 
@@ -96,13 +97,12 @@ var OTC_IP = OTC_IP || `http://10.1.5.202`,
     OTC_PATH = OTC_PATH || `/webservice/fastview/otcper`,
     OTC_GILCODE = OTC_GILCODE || `430002.OC`;
 
-OTC_F9_FV.Modules.companyNews.init({
+OTC_F9_FV.Modules.companyBulletin.init({
     ip: OTC_IP,
     path: OTC_PATH,
-    socket: `/news/`,
+    socket: `/bulletin/`,
     gilcode: OTC_GILCODE
 });
 
-// OTC_F9_FV.Modules.companyNews.init();
-// const url = `http://10.1.5.202/webservice/fastview/otcper/news/430002.OC`;
-
+// OTC_F9_FV.Modules.companyBulletin.init();
+// const url = `http://10.1.5.202/webservice/fastview/otcper/bulletin/430002.OC`;
