@@ -17,37 +17,56 @@ OTC_F9_FV.Modules = OTC_F9_FV.Modules || {};
 
 
 OTC_F9_FV.Modules.bigEventReminder = OTC_F9_FV.Modules.bigEventReminder || (
-    (url = ``, tds = [], ui_arr = [], debug = false) => {
-        let data = [];
+    (url = ``, tds = [], dom = ``, debug = false) => {
+        let datas = [];
         fetch(url)
         .then(res => res.json())
         .then(
             (json) => {
-                data = json;console.log(`json = \n`, json);
-                for (let i = 0; i < tds.length - 1; i++) {
-                    let key = ui_arr[i],
-                        value = (data[key] !== `--` ? data[key] : 0);
-                    if (i < 2) {
-                        tds[i].innerText = value;
-                        // tds[i].setAttribute(`title`, value);
-                        // title
-                    }else{
-                        tds[i].innerText = value;
+                datas = json;
+                try {
+                    if (Array.isArray(datas) && datas.length > 0) {
+                        for (let i = 0; i < tds.length - 1; i++) {console.log(`tds[i] = \n`, tds[i]);
+                            let key = (datas[i] !== undefined && datas[i]["k"] !== undefined) ? datas[i]["k"] : `--`,
+                                value = (datas[i] !== undefined && datas[i]["v"] !== undefined) ? datas[i]["v"] : `--`;
+                            switch (i) {
+                                case 0:
+                                case 1:
+                                case 2:
+                                case 3:
+                                case 4:
+                                case 5:
+                                    tds[i].innerText = value;console.log(`value = \n`, value);
+                                    tds[i].setAttribute(`title`, value);
+                                    break;
+                                default:
+                                    tds[i].innerText = value;
+                                    tds[i].setAttribute(`title`, value);
+                                    break;
+                            }
+                        }
+                        // let html = ``;
+                        // datas.map(
+                        //     (data, i) => {
+                        //         let key = datas[i]["k"] ? datas[i]["k"] : `--`,
+                        //             value = datas[i]["v"] ? datas[i]["v"] : `--`;
+                        //         html += `
+                        //             <tr class="otc-big-event-reminder-table-tr">
+                        //                 <td class="otc-big-event-reminder-table-td-key" data-alias="${key}">${key}</td>
+                        //                 <td class="otc-big-event-reminder-table-td-value" data-value="data-otc-BER">${value}</td>
+                        //             </tr>
+                        //         `;
+                        //     }
+                        // );
+                        // dom.insertAdjacentHTML(`beforeend`, html);
                     }
+                } catch (err) {
+                    console.log(`json error = \n`, err);
                 }
-                let html = `
-                    <tr class="fv-big-event-reminder-table-tr">
-                        <td class="fv-big-event-reminder-table-td-key" data-alias="最新分红预案">最新分红预案</td>
-                        <td class="fv-big-event-reminder-table-td-value" data-value="data-otc-BER"></td>
-                    </tr>
-                `;
-                let title_key = ui_arr[tds.length - 1],
-                    title_value = (data[title_key] !== `--` ? data[title_key] : 0);
-                title.innerText = title_value || `暂无数据`;
             }
         )
         .catch(error => console.log(`error = \n`, error));
-        return data;
+        return datas;
     }
 );
 
@@ -67,17 +86,17 @@ OTC_F9_FV.Modules.bigEventReminder.init = OTC_F9_FV.Modules.bigEventReminder.ini
         }
     ) => {
         let url = `${ip}${path}${socket}${gilcode}`,
-            dom = document.querySelector('[data-value="data-otc-BER"]');
-        // copy(Object.keys(json));
-        OTC_F9_FV.Modules.bigEventReminder(url, dom, false);
-        // document.querySelectorAll('[data-value="data-otc-BER"]');
+            dom = document.querySelector(`[data-tbody="otc-big-event-reminder-table-tbody"]`),
+            tds = document.querySelectorAll(`[data-value="data-otc-BER"]`);
+        // const ui_arr = ["spj", "zsz", "zdf", "ltsz", "cjl", "sylttm", "hsl", "syllyr", "cje", "sjllyr", "rq"];
+        OTC_F9_FV.Modules.bigEventReminder(url, tds, dom, false);
     }
 );
 
 
-const OTC_IP = `http://10.1.5.202`,
-    OTC_PATH = `/webservice/fastview/otcper`,
-    OTC_GILCODE = `430002.OC`;
+var OTC_IP = OTC_IP || `http://10.1.5.202`,
+    OTC_PATH = OTC_PATH || `/webservice/fastview/otcper`,
+    OTC_GILCODE = OTC_GILCODE || `430002.OC`;
 
 OTC_F9_FV.Modules.bigEventReminder.init({
     ip: OTC_IP,

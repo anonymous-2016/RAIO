@@ -138,6 +138,33 @@ $ touch company-performance-achievement.js company-performance-achievement.css c
 
 # 聚源代码 430002.OC
 
+```js
+
+
+console.log(`json = \n`, json);
+
+{
+    "prependHeader": false,
+    "maxJsonSize": 400,
+    "alwaysFold": false,
+    "alwaysRenderAllContent": false,
+    "sortKeys": false,
+    "clickableUrls": true,
+    "wrapLinkWithAnchorTag": false,
+    "openLinksInNewWindow": true,
+    "autoHighlight": true
+},
+{
+    "readOnly": true,
+    "lineNumbers": true,
+    "lineWrapping": true,
+    "foldGutter": true,
+    "tabSize": 4,
+    "indentCStyle": false,
+    "showArraySize": false
+},
+
+
 
 参数：
     otcperfast01    最新交易数据 latest-transaction-data
@@ -181,6 +208,8 @@ http://10.1.5.202/webservice/fastview/otcper/otcperfast10/430002.OC
 http://10.1.5.202/webservice/fastview/otcper/otcperfast11/430002.OC
 
 http://10.1.5.203/webtool/apitool/CompanyShortDesc
+
+```
 
 
 ```js

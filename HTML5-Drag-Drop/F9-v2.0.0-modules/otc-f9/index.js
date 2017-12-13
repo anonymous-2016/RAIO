@@ -311,20 +311,31 @@ const HTML_Template = (uid = ``, loadModule = function(){}, debug = false) => {
             delete_uid = `big-event-reminder`;
             loadModule(uid, `big-event-reminder`, true);
             htmlstr += `
-                <section class="fv-module-box-5">
-                    <div class="fv-h5dnd-modules-title-box">
-                        <p class="fv-h5dnd-modules-title" data-title="fv-big-event-reminder-title">大事提醒</p>
+                <section class="otc-module-box-5">
+                    <div class="otc-h5dnd-modules-title-box">
+                        <p class="otc-h5dnd-modules-title" data-title="otc-big-event-reminder-title">
+                            大事提醒
+                            <span data-link="otc-big-event-reminder-link">
+                                <a href="#分红数据">分红数据</a>
+                                <a href="#增发数据">增发数据</a>
+                            </span>
+                        </p>
                     </div>
-                    <table class="fv-big-event-reminder-table">
-                        <thead class="fv-big-event-reminder-table-thead">
-                            <tr class="fv-big-event-reminder-table-tr">
-                                <td class="fv-big-event-reminder-table-td-title">大事提醒</td>
+                    <table class="otc-big-event-reminder-table">
+                        <thead class="otc-big-event-reminder-table-thead">
+                            <tr class="otc-big-event-reminder-table-tr">
+                                <td class="otc-big-event-reminder-table-td-title">大事提醒</td>
                             </tr>
                         </thead>
-                        <tbody class="fv-big-event-reminder-table-tbody" id="fv-big-event-reminder-tbody"></tbody>
-                        <tfoot class="fv-big-event-reminder-table-tfoot">
-                            <tr class="fv-big-event-reminder-table-tr">
-                                <td class="fv-big-event-reminder-table-td-value" data-value="data-fv-events"></td>
+                        <tbody class="otc-big-event-reminder-table-tbody" data-tbody="otc-big-event-reminder-table-tbody">
+                            <!-- <tr class="otc-big-event-reminder-table-tr">
+                                <td class="otc-big-event-reminder-table-td-key" data-alias="最新分红预案">最新分红预案</td>
+                                <td class="otc-big-event-reminder-table-td-value" data-value="data-otc-BER"></td>
+                            </tr> -->
+                        </tbody>
+                        <tfoot class="otc-big-event-reminder-table-tfoot">
+                            <tr class="otc-big-event-reminder-table-tr">
+                                <td class="otc-big-event-reminder-table-td-value" data-value="data-otc-BER"></td>
                             </tr>
                         </tfoot>
                     </table>

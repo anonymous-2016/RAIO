@@ -61,8 +61,8 @@ OTC_F9_FV.Modules.latestTransactionData.init = OTC_F9_FV.Modules.latestTransacti
         }
     ) => {
         let url = `${ip}${path}${socket}${gilcode}`,
-            tds = document.querySelectorAll('[data-value="data-otc-LTD"]'),
-            title = document.querySelector('[data-text="otc-latest-transaction-data-text"]');
+            tds = document.querySelectorAll(`[data-value="data-otc-LTD"]`),
+            title = document.querySelector(`[data-text="otc-latest-transaction-data-text"]`);
         // copy(Object.keys(json));
         const ui_arr = ["spj", "zsz", "zdf", "ltsz", "cjl", "sylttm", "hsl", "syllyr", "cje", "sjllyr", "rq"];
         OTC_F9_FV.Modules.latestTransactionData(url, tds, title, ui_arr, false);
@@ -70,9 +70,9 @@ OTC_F9_FV.Modules.latestTransactionData.init = OTC_F9_FV.Modules.latestTransacti
 );
 
 
-const OTC_IP = `http://10.1.5.202`,
-    OTC_PATH = `/webservice/fastview/otcper`,
-    OTC_GILCODE = `430002.OC`;
+var OTC_IP = OTC_IP || `http://10.1.5.202`,
+    OTC_PATH = OTC_PATH || `/webservice/fastview/otcper`,
+    OTC_GILCODE = OTC_GILCODE || `430002.OC`;
 
 OTC_F9_FV.Modules.latestTransactionData.init({
     ip: OTC_IP,
