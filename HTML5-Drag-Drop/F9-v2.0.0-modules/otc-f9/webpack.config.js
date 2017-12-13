@@ -38,6 +38,20 @@ if (process.env.NODE_ENV !== 'production') {
 
 const OTC_F9 = [
     "latest-transaction-data",
+    "big-event-reminder",
+    // "company-brief-introduction",
+    // "latest-financial-data",
+    // "company-performance-market",
+    // "company-performance-scale",
+    // "company-performance-achievement",
+    // "company-performance-valuation",
+    // "main-management-business",
+    // "equity-shareholder",
+    // "management-layer-profiles",
+    // "company-news",
+    // "company-bulletin",
+    // "research-report",
+    //
     // "news",
     // "bulletin",
     // "research",

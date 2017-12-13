@@ -44,20 +44,20 @@ OTC_F9_FV.Modules.bigEventReminder = OTC_F9_FV.Modules.bigEventReminder || (
                                     break;
                             }
                         }
-                        let html = ``;
-                        datas.map(
-                            (data, i) => {
-                                let key = datas[i]["k"] ? datas[i]["k"] : `--`,
-                                    value = datas[i]["v"] ? datas[i]["v"] : `--`;
-                                html += `
-                                    <tr class="otc-big-event-reminder-table-tr">
-                                        <td class="otc-big-event-reminder-table-td-key" data-alias="${key}">${key}</td>
-                                        <td class="otc-big-event-reminder-table-td-value" data-value="data-otc-BER">${value}</td>
-                                    </tr>
-                                `;
-                            }
-                        );
-                        dom.insertAdjacentHTML(`beforeend`, html);
+                        // let html = ``;
+                        // datas.map(
+                        //     (data, i) => {
+                        //         let key = datas[i]["k"] ? datas[i]["k"] : `--`,
+                        //             value = datas[i]["v"] ? datas[i]["v"] : `--`;
+                        //         html += `
+                        //             <tr class="otc-big-event-reminder-table-tr">
+                        //                 <td class="otc-big-event-reminder-table-td-key" data-alias="${key}">${key}</td>
+                        //                 <td class="otc-big-event-reminder-table-td-value" data-value="data-otc-BER">${value}</td>
+                        //             </tr>
+                        //         `;
+                        //     }
+                        // );
+                        // dom.insertAdjacentHTML(`beforeend`, html);
                     }
                 } catch (err) {
                     console.log(`json error = \n`, err);

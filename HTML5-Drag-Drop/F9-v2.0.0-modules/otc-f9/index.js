@@ -328,10 +328,22 @@ const HTML_Template = (uid = ``, loadModule = function(){}, debug = false) => {
                             </tr>
                         </thead>
                         <tbody class="otc-big-event-reminder-table-tbody" data-tbody="otc-big-event-reminder-table-tbody">
-                            <!-- <tr class="otc-big-event-reminder-table-tr">
+                            <tr class="otc-big-event-reminder-table-tr">
                                 <td class="otc-big-event-reminder-table-td-key" data-alias="最新分红预案">最新分红预案</td>
                                 <td class="otc-big-event-reminder-table-td-value" data-value="data-otc-BER"></td>
-                            </tr> -->
+                            </tr>
+                            <tr class="otc-big-event-reminder-table-tr">
+                                <td class="otc-big-event-reminder-table-td-key" data-alias="最新分红实施">最新分红实施</td>
+                                <td class="otc-big-event-reminder-table-td-value" data-value="data-otc-BER"></td>
+                            </tr>
+                            <tr class="otc-big-event-reminder-table-tr">
+                                <td class="otc-big-event-reminder-table-td-key" data-alias="最新增发预案">最新增发预案</td>
+                                <td class="otc-big-event-reminder-table-td-value" data-value="data-otc-BER"></td>
+                            </tr>
+                            <tr class="otc-big-event-reminder-table-tr">
+                                <td class="otc-big-event-reminder-table-td-key" data-alias="定报预约披露">定报预约披露</td>
+                                <td class="otc-big-event-reminder-table-td-value" data-value="data-otc-BER"></td>
+                            </tr>
                         </tbody>
                         <tfoot class="otc-big-event-reminder-table-tfoot">
                             <tr class="otc-big-event-reminder-table-tr">

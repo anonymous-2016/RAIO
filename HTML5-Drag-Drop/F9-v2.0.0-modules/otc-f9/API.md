@@ -177,7 +177,7 @@ console.log(`json = \n`, json);
     otcperfast10    股本股东 equity-shareholder
     otcperfast11    管理层概况 management-layer-profiles
     news            公司新闻 company-news
-    bulletin        公司公告 company-news
+    bulletin        公司公告 company-bulletin
     research        研究报告 research-report
 
 http://10.1.5.202/webservice/fastview/otcper/news/430002.OC
