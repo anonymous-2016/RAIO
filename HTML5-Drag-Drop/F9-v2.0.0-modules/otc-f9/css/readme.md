@@ -1,5 +1,12 @@
 # CSS
 
+
+## 半角字符 与 全角字符
+
+https://www.zhihu.com/question/19605819a
+https://zh.wikipedia.org/zh-cn/%E5%85%A8%E5%BD%A2
+
+
 ## CSS Variables
 
 https://drafts.csswg.org/css-variables/

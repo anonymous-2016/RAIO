@@ -162,9 +162,7 @@ console.log(`json = \n`, json);
     "tabSize": 4,
     "indentCStyle": false,
     "showArraySize": false
-},
-
-
+}
 
 参数：
     otcperfast01    最新交易数据 latest-transaction-data

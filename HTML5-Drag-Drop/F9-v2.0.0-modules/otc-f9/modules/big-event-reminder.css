@@ -116,12 +116,23 @@ td.otc-big-event-reminder-table-td-value {
     width: 438px;
     min-width: 438px;
     max-width: 438px;
+    /* height: 46px;
+    line-height: 46px; */
     height: 23px;
     line-height: 23px;
     font-size: 13px;
-    padding-right: 7px;
     text-align: left;
-    text-indent: 4px;
+    padding-left: 6px;
+}
+
+[data-tbody="otc-big-event-reminder-table-tbody"]>tr.otc-big-event-reminder-table-tr:nth-of-type(2)>td.otc-big-event-reminder-table-td-value {
+    height: 46px;
+    overflow: hidden;
+    word-wrap: break-word;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
 }
 
 tbody.otc-big-event-reminder-table-tbody>tr {

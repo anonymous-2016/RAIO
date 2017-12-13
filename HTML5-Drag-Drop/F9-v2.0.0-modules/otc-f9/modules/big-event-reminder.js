@@ -24,18 +24,17 @@ OTC_F9_FV.Modules.bigEventReminder = OTC_F9_FV.Modules.bigEventReminder || (
         .then(
             (json) => {
                 datas = json;
+                console.log(`datas[0]["k"]= \n`, datas[0]["v"], typeof datas[0]["v"]);
                 try {
                     if (Array.isArray(datas) && datas.length > 0) {
-                        for (let i = 0; i < tds.length - 1; i++) {console.log(`tds[i] = \n`, tds[i]);
+                        for (let i = 0; i < tds.length - 1; i++) {
                             let key = (datas[i] !== undefined && datas[i]["k"] !== undefined) ? datas[i]["k"] : `--`,
-                                value = (datas[i] !== undefined && datas[i]["v"] !== undefined) ? datas[i]["v"] : `--`;
+                                value = (datas[i] !== undefined && datas[i]["v"] !== undefined) ? datas[i]["v"].replace(/【/ig, "[ ").replace(/】/ig, " ] ") : `--`;
                             switch (i) {
                                 case 0:
                                 case 1:
                                 case 2:
                                 case 3:
-                                case 4:
-                                case 5:
                                     tds[i].innerText = value;console.log(`value = \n`, value);
                                     tds[i].setAttribute(`title`, value);
                                     break;
@@ -45,20 +44,20 @@ OTC_F9_FV.Modules.bigEventReminder = OTC_F9_FV.Modules.bigEventReminder || (
                                     break;
                             }
                         }
-                        // let html = ``;
-                        // datas.map(
-                        //     (data, i) => {
-                        //         let key = datas[i]["k"] ? datas[i]["k"] : `--`,
-                        //             value = datas[i]["v"] ? datas[i]["v"] : `--`;
-                        //         html += `
-                        //             <tr class="otc-big-event-reminder-table-tr">
-                        //                 <td class="otc-big-event-reminder-table-td-key" data-alias="${key}">${key}</td>
-                        //                 <td class="otc-big-event-reminder-table-td-value" data-value="data-otc-BER">${value}</td>
-                        //             </tr>
-                        //         `;
-                        //     }
-                        // );
-                        // dom.insertAdjacentHTML(`beforeend`, html);
+                        let html = ``;
+                        datas.map(
+                            (data, i) => {
+                                let key = datas[i]["k"] ? datas[i]["k"] : `--`,
+                                    value = datas[i]["v"] ? datas[i]["v"] : `--`;
+                                html += `
+                                    <tr class="otc-big-event-reminder-table-tr">
+                                        <td class="otc-big-event-reminder-table-td-key" data-alias="${key}">${key}</td>
+                                        <td class="otc-big-event-reminder-table-td-value" data-value="data-otc-BER">${value}</td>
+                                    </tr>
+                                `;
+                            }
+                        );
+                        dom.insertAdjacentHTML(`beforeend`, html);
                     }
                 } catch (err) {
                     console.log(`json error = \n`, err);
