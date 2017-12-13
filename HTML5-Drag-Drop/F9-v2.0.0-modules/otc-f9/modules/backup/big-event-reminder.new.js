@@ -20,7 +20,7 @@ OTC_F9_FV.Modules = OTC_F9_FV.Modules || {};
 
 
 OTC_F9_FV.Modules.bigEventReminder = OTC_F9_FV.Modules.bigEventReminder || (
-    (url = ``, tds = [], debug = false) => {
+    (url = ``, tds = [], dom = ``, debug = false) => {
         let datas = [];
         fetch(url)
         .then(res => res.json())
@@ -50,6 +50,20 @@ OTC_F9_FV.Modules.bigEventReminder = OTC_F9_FV.Modules.bigEventReminder || (
                                     break;
                             }
                         }
+                        // let html = ``;
+                        // datas.map(
+                        //     (data, i) => {
+                        //         let key = datas[i]["k"] ? datas[i]["k"] : `--`,
+                        //             value = datas[i]["v"] ? datas[i]["v"] : `--`;
+                        //         html += `
+                        //             <tr class="otc-big-event-reminder-table-tr">
+                        //                 <td class="otc-big-event-reminder-table-td-key" data-alias="${key}">${key}</td>
+                        //                 <td class="otc-big-event-reminder-table-td-value" data-value="data-otc-BER">${value}</td>
+                        //             </tr>
+                        //         `;
+                        //     }
+                        // );
+                        // dom.insertAdjacentHTML(`beforeend`, html);
                     }else{
                         let message = `handle json error!`,
                             fileName = `big-event-reminder.js`,
@@ -57,8 +71,7 @@ OTC_F9_FV.Modules.bigEventReminder = OTC_F9_FV.Modules.bigEventReminder || (
                         throw new UserException(message, fileName, lineNumber);
                     }
                 } catch (err) {
-                    let url =`file:///E:/github/RAIO/HTML5-Drag-Drop/F9-v2.0.0-modules/otc-f9/modules/big-event-reminder.js`;
-                    ConsoleError(err, url);
+                    console.log(`json error = \n`, err);
                 }
             }
         )
@@ -83,8 +96,10 @@ OTC_F9_FV.Modules.bigEventReminder.init = OTC_F9_FV.Modules.bigEventReminder.ini
         }
     ) => {
         let url = `${ip}${path}${socket}${gilcode}`,
+            dom = document.querySelector(`[data-tbody="otc-big-event-reminder-table-tbody"]`),
             tds = document.querySelectorAll(`[data-value="data-otc-BER"]`);
-        OTC_F9_FV.Modules.bigEventReminder(url, tds, false);
+        // const ui_arr = ["spj", "zsz", "zdf", "ltsz", "cjl", "sylttm", "hsl", "syllyr", "cje", "sjllyr", "rq"];
+        OTC_F9_FV.Modules.bigEventReminder(url, tds, dom, false);
     }
 );
 

@@ -27,7 +27,7 @@ OTC_F9_FV.Modules.latestTransactionData = OTC_F9_FV.Modules.latestTransactionDat
             (json) => {
                 datas = json;
                 try {
-                    if (typeof(datas) === "object" && Object.keys(datas).length > 0) {
+                    if (typeof(datas) === "" && Object.keys(datas).length > 0) {
                         for (let i = 0; i < tds.length - 1; i++) {
                             let key = ui_arr[i],
                                 value = (datas[key] !== `--` ? datas[key] : 0);
@@ -42,10 +42,16 @@ OTC_F9_FV.Modules.latestTransactionData = OTC_F9_FV.Modules.latestTransactionDat
                             fileName = `latest-transaction-data.js`,
                             lineNumber = 29;
                         throw new UserException(message, fileName, lineNumber);
+                        // throw new Error(message, fileName, lineNumber);
+                        // new Error([message[, fileName[, lineNumber]]]);
                     }
                 } catch (err) {
-                    let url =`file:///E:/github/RAIO/HTML5-Drag-Drop/F9-v2.0.0-modules/otc-f9/modules/latest-transaction-data.js`;
-                    ConsoleError(err, url);
+                    ConsoleError(err);
+                    // console.log(`catch error = \n`, err);
+                    // console.log(`catch error.name = \n`, err.name);
+                    // console.log(`catch error.message = \n`, err.message);
+                    // console.log(`catch error.fileName = \n`, err.fileName);
+                    // console.log(`catch error.lineNumber = \n`, err.lineNumber);
                 }
             }
         )

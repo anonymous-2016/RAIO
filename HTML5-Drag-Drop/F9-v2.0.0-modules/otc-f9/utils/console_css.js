@@ -52,17 +52,24 @@ const css3 = `
     font-size: 23px;
 `;
 
+const css4 = `
+    color: #0f0;
+    font-size: 23px;
+`;
+
 const CONSOLE = {
     css0,
     css1,
     css2,
-    css3
+    css3,
+    css4,
+    consoles
 };
 
 // export default consoles;
 // export {console_css, console_css1, console_css2, console_css3};
 export default CONSOLE;
-export {css0, css1, css2, css3};
+export {css0, css1, css2, css3, css4, consoles};
 
 
 

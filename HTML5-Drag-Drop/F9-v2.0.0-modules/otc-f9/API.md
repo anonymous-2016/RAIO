@@ -140,6 +140,10 @@ $ touch company-performance-achievement.js company-performance-achievement.css c
 
 ```js
 
+import {UserException} from "../utils/throw_error";
+import {UserConsoleError as ConsoleError} from "../utils/console_error";
+
+
 
 console.log(`json = \n`, json);
 console.log(`value = \n`, value);
@@ -199,7 +203,7 @@ const UserException = (message = ``, fileName = ``, lineNumber = 0) => {
 };
 // TypeError: UserException is not a constructor
 
-
+console.log(`datas = \n`, datas);
 
 参数：
     otcperfast01    最新交易数据 latest-transaction-data

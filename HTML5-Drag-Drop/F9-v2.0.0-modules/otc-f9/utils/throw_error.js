@@ -19,6 +19,11 @@ function UserException(message = ``, fileName = ``, lineNumber = 0){
     this.name = 'UserException';
 }
 
+export default UserException;
+export {UserException};
+
+/*
+
 try {
     let message = `handle json error!`,
         fileName = `latest-transaction-data.js`,
@@ -32,3 +37,5 @@ try {
     console.log(`catch error.fileName = \n`, err.fileName);
     console.log(`catch error.lineNumber = \n`, err.lineNumber);
 }
+
+*/

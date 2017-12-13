@@ -19,7 +19,6 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 const BASE_URI = {
-    // APP: './Modules/',
     MODULES: './modules',
     index: `./index`,
     // modal: `./modal`,
@@ -48,7 +47,7 @@ const OTC_F9 = [
     // "main-management-business",
     // "equity-shareholder",
     // "management-layer-profiles",
-    // "company-news",
+    "company-news",
     // "company-bulletin",
     // "research-report",
     //
