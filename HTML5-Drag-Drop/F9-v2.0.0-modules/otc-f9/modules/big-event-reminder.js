@@ -24,18 +24,21 @@ OTC_F9_FV.Modules.bigEventReminder = OTC_F9_FV.Modules.bigEventReminder || (
         .then(
             (json) => {
                 datas = json;
-                console.log(`datas[0]["k"]= \n`, datas[0]["v"], typeof datas[0]["v"]);
                 try {
                     if (Array.isArray(datas) && datas.length > 0) {
                         for (let i = 0; i < tds.length - 1; i++) {
                             let key = (datas[i] !== undefined && datas[i]["k"] !== undefined) ? datas[i]["k"] : `--`,
-                                value = (datas[i] !== undefined && datas[i]["v"] !== undefined) ? datas[i]["v"].replace(/【/ig, "[ ").replace(/】/ig, " ] ") : `--`;
+                                value = (datas[i] !== undefined && datas[i]["v"] !== undefined)
+                                ?
+                                (datas[i]["v"] !== "" ? datas[i]["v"].replace(/【/ig, "[ ").replace(/】/ig, " ] ") : `--`)
+                                :
+                                `--`;
                             switch (i) {
                                 case 0:
                                 case 1:
                                 case 2:
                                 case 3:
-                                    tds[i].innerText = value;console.log(`value = \n`, value);
+                                    tds[i].innerText = value;
                                     tds[i].setAttribute(`title`, value);
                                     break;
                                 default:
@@ -64,7 +67,7 @@ OTC_F9_FV.Modules.bigEventReminder = OTC_F9_FV.Modules.bigEventReminder || (
                 }
             }
         )
-        .catch(error => console.log(`error = \n`, error));
+        .catch(err => console.log(`fetch error = \n`, err));
         return datas;
     }
 );

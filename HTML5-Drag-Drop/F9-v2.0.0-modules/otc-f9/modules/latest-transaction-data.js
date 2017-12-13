@@ -18,30 +18,41 @@ OTC_F9_FV.Modules = OTC_F9_FV.Modules || {};
 
 OTC_F9_FV.Modules.latestTransactionData = OTC_F9_FV.Modules.latestTransactionData || (
     (url = ``, tds = [], title = ``, ui_arr = [], debug = false) => {
-        let data = [];
+        let datas = {};
         fetch(url)
         .then(res => res.json())
         .then(
             (json) => {
-                data = json;
-                for (let i = 0; i < tds.length - 1; i++) {
-                    let key = ui_arr[i],
-                        value = (data[key] !== `--` ? data[key] : 0);
-                    if (i < 2) {
-                        tds[i].innerText = value;
-                        // tds[i].setAttribute(`title`, value);
-                        // title
+                datas = json;
+                try {
+                    if (typeof(datas) === "object" && Object.keys(datas).length > 0) {
+                        for (let i = 0; i < tds.length - 1; i++) {
+                            let key = ui_arr[i],
+                                value = (datas[key] !== `--` ? datas[key] : 0);
+                            tds[i].innerText = value;
+                            tds[i].setAttribute(`title`, value);
+                        }
+                        let title_key = ui_arr[tds.length - 1],
+                            title_value = (datas[title_key] !== `--` ? datas[title_key] : 0);
+                        title.innerText = title_value || `暂无数据`;
                     }else{
-                        tds[i].innerText = value;
+                        let message = `handle json error!`,
+                            fileName = `latest-transaction-data.js`,
+                            lineNumber = 29;
+                        throw new Error(message, fileName, lineNumber);
+                        // new Error([message[, fileName[, lineNumber]]]);
                     }
+                } catch (err) {
+                    console.log(`catch error = \n`, err);
+                    console.log(`catch error.name = \n`, err.name);
+                    console.log(`catch error.message = \n`, err.message);
+                    console.log(`catch error.fileName = \n`, err.fileName);
+                    console.log(`catch error.lineNumber = \n`, err.lineNumber);
                 }
-                let title_key = ui_arr[tds.length - 1],
-                    title_value = (data[title_key] !== `--` ? data[title_key] : 0);
-                title.innerText = title_value || `暂无数据`;
             }
         )
-        .catch(error => console.log(`error = \n`, error));
-        return data;
+        .catch(err => console.log(`fetch error = \n`, err));
+        return datas;
     }
 );
 

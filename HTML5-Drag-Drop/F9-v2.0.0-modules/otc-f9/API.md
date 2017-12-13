@@ -142,27 +142,64 @@ $ touch company-performance-achievement.js company-performance-achievement.css c
 
 
 console.log(`json = \n`, json);
+console.log(`value = \n`, value);
+console.log(`datas[0]["k"]= \n`, datas[0]["v"], typeof datas[0]["v"]);
+console.log(`json = \n`, json, typeof(datas), Object.keys(datas));
 
-{
-    "prependHeader": false,
-    "maxJsonSize": 400,
-    "alwaysFold": false,
-    "alwaysRenderAllContent": false,
-    "sortKeys": false,
-    "clickableUrls": true,
-    "wrapLinkWithAnchorTag": false,
-    "openLinksInNewWindow": true,
-    "autoHighlight": true
-},
-{
-    "readOnly": true,
-    "lineNumbers": true,
-    "lineWrapping": true,
-    "foldGutter": true,
-    "tabSize": 4,
-    "indentCStyle": false,
-    "showArraySize": false
+
+try {
+    throw new Error('Whoops!');
+} catch (e) {
+    console.log(e.name + ': ' + e.message);
 }
+
+try {
+    let message = `handle json error!`,
+        fileName = ``,
+        lineNumber = ``;
+    throw new Error(message, fileName, lineNumber);
+    // new Error([message[, fileName[, lineNumber]]])
+    // throw `Exception: \n handle json error!`;
+} catch (err) {
+    console.log(`catch error = \n`, err);
+    console.log(`catch error.name = \n`, err.name);
+    console.log(`catch error.message = \n`, err.message);
+    console.log(`catch error.fileName = \n`, err.fileName);
+    console.log(`catch error.lineNumber = \n`, err.lineNumber);
+}
+
+
+function UserException(message = ``, fileName = ``, lineNumber = 0){
+   this.message = message;
+   this.fileName = fileName;
+   this.lineNumber = lineNumber;
+   this.name = 'UserException';
+}
+
+try {
+    let message = `handle json error!`,
+        fileName = `latest-transaction-data.js`,
+        lineNumber = 29;
+    throw new UserException(message, fileName, lineNumber);
+    // new Error([message[, fileName[, lineNumber]]]);
+} catch (err) {
+    console.log(`catch error = \n`, err);
+    console.log(`catch error.name = \n`, err.name);
+    console.log(`catch error.message = \n`, err.message);
+    console.log(`catch error.fileName = \n`, err.fileName);
+    console.log(`catch error.lineNumber = \n`, err.lineNumber);
+}
+
+
+const UserException = (message = ``, fileName = ``, lineNumber = 0) => {
+   this.message = message;
+   this.fileName = fileName;
+   this.lineNumber = lineNumber;
+   this.name = 'UserException';
+};
+// TypeError: UserException is not a constructor
+
+
 
 参数：
     otcperfast01    最新交易数据 latest-transaction-data
