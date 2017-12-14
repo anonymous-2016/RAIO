@@ -798,15 +798,20 @@ div.h5-dnd-module-box:nth-of-type(1) {
 
 /*
 
-.fv-important-infos-title-box:hover {
+.otc-important-infos-title-box:hover {
     cursor: move;
 }
 
 */
 
-.fv-module-box-3>div:nth-of-type(1):hover,
-.fv-module-box-5>div:nth-of-type(1):hover,
-.fv-module-box-7>div:nth-of-type(1):hover,
-.fv-module-box-10>div:nth-of-type(1):hover {
+
+/* .otc-module-box-3>div:nth-of-type(1):hover,
+.otc-module-box-5>div:nth-of-type(1):hover,
+.otc-module-box-7>div:nth-of-type(1):hover,
+.otc-module-box-10>div:nth-of-type(1):hover {
+    cursor: move;
+} */
+
+.otc-module-box-5>div:nth-of-type(1):hover {
     cursor: move;
 }

@@ -397,40 +397,157 @@ const HTML_Template = (uid = ``, loadModule = function(){}, debug = false) => {
                             </tr>
                         </thead>
                         <tbody class="otc-latest-financial-data-table-tbody">
+                            <tr>
+                                <div data-div="tbody-div" data-titles="data-otc-LFD-title"></div>
+                            </tr>
+                            <tr>
+                                <td colspan="3" data-title="td-colspan" data-titles="data-otc-LFD-title"></td>
+                            </tr>
                             <tr class="otc-latest-financial-data-table-tr">
-                                <td class="otc-latest-financial-data-table-td-key" data-alias="收盘价">收盘价</td>
-                                <td class="otc-latest-financial-data-table-td-value" data-value="data-otc-LFD"></td>
-                                <td class="otc-latest-financial-data-table-td-key" data-alias="总市值">总市值(元)</td>
+                                <td class="otc-latest-financial-data-table-td-key" data-alias="营业收入(元)">营业收入(元)</td>
                                 <td class="otc-latest-financial-data-table-td-value" data-value="data-otc-LFD"></td>
                             </tr>
                             <tr class="otc-latest-financial-data-table-tr">
-                                <td class="otc-latest-financial-data-table-td-key" data-alias="涨跌幅">涨跌幅(%)</td>
-                                <td class="otc-latest-financial-data-table-td-value" data-value="data-otc-LFD"></td>
-                                <td class="otc-latest-financial-data-table-td-key" data-alias="流通市值">流通市值(元)</td>
+                                <td class="otc-latest-financial-data-table-td-key" data-alias="营业收入同比增长(%)">营业收入同比增长(%)</td>
                                 <td class="otc-latest-financial-data-table-td-value" data-value="data-otc-LFD"></td>
                             </tr>
                             <tr class="otc-latest-financial-data-table-tr">
-                                <td class="otc-latest-financial-data-table-td-key" data-alias="成交量">成交量(股)</td>
-                                <td class="otc-latest-financial-data-table-td-value" data-value="data-otc-LFD"></td>
-                                <td class="otc-latest-financial-data-table-td-key" data-alias="市盈率(TTM)">市盈率(TTM)</td>
+                                <td class="otc-latest-financial-data-table-td-key" data-alias="总资产(元)">总资产(元)</td>
                                 <td class="otc-latest-financial-data-table-td-value" data-value="data-otc-LFD"></td>
                             </tr>
                             <tr class="otc-latest-financial-data-table-tr">
-                                <td class="otc-latest-financial-data-table-td-key" data-alias="换手率">换手率(%)</td>
-                                <td class="otc-latest-financial-data-table-td-value" data-value="data-otc-LFD"></td>
-                                <td class="otc-latest-financial-data-table-td-key" data-alias="市盈率(LYR)">市盈率(LYR)</td>
+                                <td class="otc-latest-financial-data-table-td-key" data-alias="营业利润(元)">营业利润(元)</td>
                                 <td class="otc-latest-financial-data-table-td-value" data-value="data-otc-LFD"></td>
                             </tr>
                             <tr class="otc-latest-financial-data-table-tr">
-                                <td class="otc-latest-financial-data-table-td-key" data-alias="成交额">成交额(元)</td>
+                                <td class="otc-latest-financial-data-table-td-key" data-alias="基本每股收益">基本每股收益</td>
                                 <td class="otc-latest-financial-data-table-td-value" data-value="data-otc-LFD"></td>
-                                <td class="otc-latest-financial-data-table-td-key" data-alias="市净率">市净率(LYR)</td>
+                            </tr>
+                            <tr class="otc-latest-financial-data-table-tr">
+                                <td class="otc-latest-financial-data-table-td-key" data-alias="净资产(元)">净资产(元)</td>
+                                <td class="otc-latest-financial-data-table-td-value" data-value="data-otc-LFD"></td>
+                            </tr>
+                            <tr class="otc-latest-financial-data-table-tr">
+                                <td class="otc-latest-financial-data-table-td-key" data-alias="利润总额(元)">利润总额(元)</td>
+                                <td class="otc-latest-financial-data-table-td-value" data-value="data-otc-LFD"></td>
+                            </tr>
+                            <tr class="otc-latest-financial-data-table-tr">
+                                <td class="otc-latest-financial-data-table-td-key" data-alias="ROE(%)">ROE(%)</td>
+                                <td class="otc-latest-financial-data-table-td-value" data-value="data-otc-LFD"></td>
+                            </tr>
+                            <tr class="otc-latest-financial-data-table-tr">
+                                <td class="otc-latest-financial-data-table-td-key" data-alias="每股净资产">每股净资产</td>
+                                <td class="otc-latest-financial-data-table-td-value" data-value="data-otc-LFD"></td>
+                            </tr>
+                            <tr class="otc-latest-financial-data-table-tr">
+                                <td class="otc-latest-financial-data-table-td-key" data-alias="归属挂牌公司股东的净利润(元)">归属挂牌公司股东的净利润(元)</td>
+                                <td class="otc-latest-financial-data-table-td-value" data-value="data-otc-LFD"></td>
+                            </tr>
+                            <tr class="otc-latest-financial-data-table-tr">
+                                <td class="otc-latest-financial-data-table-td-key" data-alias="归母净利润同比增长(%)">归母净利润同比增长(%)</td>
+                                <td class="otc-latest-financial-data-table-td-value" data-value="data-otc-LFD"></td>
+                            </tr>
+                            <tr class="otc-latest-financial-data-table-tr">
+                                <td class="otc-latest-financial-data-table-td-key" data-alias="经营活动产生的现金流量净额(元)">经营活动产生的现金流量净额(元)</td>
+                                <td class="otc-latest-financial-data-table-td-value" data-value="data-otc-LFD"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="3" data-space="tr-space"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="3" data-title="td-colspan" data-titles="data-otc-LFD-title"></td>
+                            </tr>
+                            <tr class="otc-latest-financial-data-table-tr">
+                                <td class="otc-latest-financial-data-table-td-key" data-alias="基本每股收益">基本每股收益</td>
+                                <td class="otc-latest-financial-data-table-td-value" data-value="data-otc-LFD"></td>
+                            </tr>
+                            <tr class="otc-latest-financial-data-table-tr">
+                                <td class="otc-latest-financial-data-table-td-key" data-alias="营业收入(元)">营业收入(元)</td>
+                                <td class="otc-latest-financial-data-table-td-value" data-value="data-otc-LFD"></td>
+                            </tr>
+                            <tr class="otc-latest-financial-data-table-tr">
+                                <td class="otc-latest-financial-data-table-td-key" data-alias="资产总计(元)">资产总计(元)</td>
+                                <td class="otc-latest-financial-data-table-td-value" data-value="data-otc-LFD"></td>
+                            </tr>
+                            <tr class="otc-latest-financial-data-table-tr">
+                                <td class="otc-latest-financial-data-table-td-key" data-alias="稀释每股收益">稀释每股收益</td>
+                                <td class="otc-latest-financial-data-table-td-value" data-value="data-otc-LFD"></td>
+                            </tr>
+                            <tr class="otc-latest-financial-data-table-tr">
+                                <td class="otc-latest-financial-data-table-td-key" data-alias="营业利润(元)">营业利润(元)</td>
+                                <td class="otc-latest-financial-data-table-td-value" data-value="data-otc-LFD"></td>
+                            </tr>
+                            <tr class="otc-latest-financial-data-table-tr">
+                                <td class="otc-latest-financial-data-table-td-key" data-alias="负债总计(元)">负债总计(元)</td>
+                                <td class="otc-latest-financial-data-table-td-value" data-value="data-otc-LFD"></td>
+                            </tr>
+                            <tr class="otc-latest-financial-data-table-tr">
+                                <td class="otc-latest-financial-data-table-td-key" data-alias="每股收益-扣除">每股收益-扣除</td>
+                                <td class="otc-latest-financial-data-table-td-value" data-value="data-otc-LFD"></td>
+                            </tr>
+                            <tr class="otc-latest-financial-data-table-tr">
+                                <td class="otc-latest-financial-data-table-td-key" data-alias="利润总额(元)">利润总额(元)</td>
+                                <td class="otc-latest-financial-data-table-td-value" data-value="data-otc-LFD"></td>
+                            </tr>
+                            <tr class="otc-latest-financial-data-table-tr">
+                                <td class="otc-latest-financial-data-table-td-key" data-alias="归属于挂牌公司股东的净资产(元)">归属于挂牌公司股东的净资产(元)</td>
+                                <td class="otc-latest-financial-data-table-td-value" data-value="data-otc-LFD"></td>
+                            </tr>
+                            <tr class="otc-latest-financial-data-table-tr">
+                                <td class="otc-latest-financial-data-table-td-key" data-alias="归属于挂牌公司股东的每股净资产(元)">归属于挂牌公司股东的每股净资产(元)
+                                </td>
+                                <td class="otc-latest-financial-data-table-td-value" data-value="data-otc-LFD"></td>
+                            </tr>
+                            <tr class="otc-latest-financial-data-table-tr">
+                                <td class="otc-latest-financial-data-table-td-key" data-alias="归属挂牌公司股东的净利润(元)">归属挂牌公司股东的净利润(元)</td>
+                                <td class="otc-latest-financial-data-table-td-value" data-value="data-otc-LFD"></td>
+                            </tr>
+                            <tr class="otc-latest-financial-data-table-tr">
+                                <td class="otc-latest-financial-data-table-td-key" data-alias="经营活动产生的现金流量净额(元)">经营活动产生的现金流量净额(元)</td>
+                                <td class="otc-latest-financial-data-table-td-value" data-value="data-otc-LFD"></td>
+                            </tr>
+                            <tr class="otc-latest-financial-data-table-tr">
+                                <td class="otc-latest-financial-data-table-td-key" data-alias="每股经营活动产生的现金流量净额(元">每股经营活动产生的现金流量净额(元</td>
+                                <td class="otc-latest-financial-data-table-td-value" data-value="data-otc-LFD"></td>
+                            </tr>
+                            <tr class="otc-latest-financial-data-table-tr">
+                                <td class="otc-latest-financial-data-table-td-key" data-alias="归属挂牌公司股东的净利润-扣除(元)">归属挂牌公司股东的净利润-扣除(元)</td>
+                                <td class="otc-latest-financial-data-table-td-value" data-value="data-otc-LFD"></td>
+                            </tr>
+                            <tr class="otc-latest-financial-data-table-tr">
+                                <td class="otc-latest-financial-data-table-td-key" data-alias="总资产同比增长(%)">总资产同比增长(%)</td>
+                                <td class="otc-latest-financial-data-table-td-value" data-value="data-otc-LFD"></td>
+                            </tr>
+                            <tr class="otc-latest-financial-data-table-tr">
+                                <td class="otc-latest-financial-data-table-td-key" data-alias="净资产收益率-加权(%)">净资产收益率-加权(%)</td>
+                                <td class="otc-latest-financial-data-table-td-value" data-value="data-otc-LFD"></td>
+                            </tr>
+                            <tr class="otc-latest-financial-data-table-tr">
+                                <td class="otc-latest-financial-data-table-td-key" data-alias="营业收入同比增长(%)">营业收入同比增长(%)</td>
+                                <td class="otc-latest-financial-data-table-td-value" data-value="data-otc-LFD"></td>
+                            </tr>
+                            <tr class="otc-latest-financial-data-table-tr">
+                                <td class="otc-latest-financial-data-table-td-key" data-alias="销售毛利率(%)">销售毛利率(%)</td>
+                                <td class="otc-latest-financial-data-table-td-value" data-value="data-otc-LFD"></td>
+                            </tr>
+                            <tr class="otc-latest-financial-data-table-tr">
+                                <td class="otc-latest-financial-data-table-td-key" data-alias="净资产收益率-扣除(%)">净资产收益率-扣除(%)</td>
+                                <td class="otc-latest-financial-data-table-td-value" data-value="data-otc-LFD"></td>
+                            </tr>
+                            <tr class="otc-latest-financial-data-table-tr">
+                                <td class="otc-latest-financial-data-table-td-key" data-alias="净利润同比增长(%)">净利润同比增长(%)</td>
+                                <td class="otc-latest-financial-data-table-td-value" data-value="data-otc-LFD"></td>
+                            </tr>
+                            <tr class="otc-latest-financial-data-table-tr">
+                                <td class="otc-latest-financial-data-table-td-key" data-alias="资产负债率(%)">资产负债率(%)</td>
                                 <td class="otc-latest-financial-data-table-td-value" data-value="data-otc-LFD"></td>
                             </tr>
                         </tbody>
                         <tfoot class="otc-latest-financial-data-table-tfoot">
                             <tr class="otc-latest-financial-data-table-tr">
-                                <td class="otc-latest-financial-data-table-td-value" data-value="data-otc-LFD"></td>
+                                <td class="otc-latest-financial-data-table-td-value" data-value="data-otc-LFD">
+                                    <!-- bug -->
+                                </td>
                             </tr>
                         </tfoot>
                     </table>

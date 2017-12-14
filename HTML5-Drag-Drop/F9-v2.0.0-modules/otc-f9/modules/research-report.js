@@ -26,33 +26,37 @@ OTC_F9_FV.Modules.researchReport = OTC_F9_FV.Modules.researchReport || (
         .then(res => res.json())
         .then(
             (json) => {
-                datas = json;
+                datas = json;console.log(`json = \n`, json);
                 try {
                     if (Array.isArray(datas) && datas.length > 0) {
                         for (let i = 0; i < td_keys.length; i++) {
-                            let title = (datas[i].title !== undefined) ? datas[i].title.replace(/(：：)/ig, "：") : `暂无数据`,
-                                time = (datas[i].publishDate !== undefined && datas[i].publishDate !== null) ? datas[i].publishDate : `暂无数据`,
-                                source = (datas[i].infoSource !== undefined && datas[i].infoSource !== null) ? datas[i].infoSource : `暂无数据`,
-                                type = (datas[i].researchType !== undefined && datas[i].researchType !== null) ? datas[i].researchType : `暂无数据`,
-                                fileType = (datas[i].fileType !== undefined && datas[i].fileType !== null) ? datas[i].fileType : `暂无数据`,
-                                id = (datas[i].researchId !== undefined) ? datas[i].researchId : `暂无数据`;
-                            let html = ``;
-                            html = `
-                                <a
-                                    href="#${id}"
-                                    title="${title}"
-                                    data-title="${title}"
-                                    data-link="otc-research-report-link"
-                                    data-disabled="${id !== "null" ? false : true}"
-                                    data-link-detail="research-report-link-detail-module"
-                                    data-newsId="${id}">
-                                    ${title}
-                                </a>
-                            `;
-                            td_keys[i].insertAdjacentHTML(`beforeend`, html);
-                            tds[2*i].innerText = time;
-                            tds[2*i+1].innerText = type;
-                            tds[2*i+2].innerText = source;
+                            if (datas[i] !== undefined) {
+                                let title = (datas[i].title !== undefined  && datas[i].title !== null) ? datas[i].title.replace(/(：：)/ig, "：") : `暂无数据`,
+                                    time = (datas[i].publishDate !== undefined && datas[i].publishDate !== null) ? datas[i].publishDate : `暂无数据`,
+                                    source = (datas[i].infoSource !== undefined && datas[i].infoSource !== null) ? datas[i].infoSource : `暂无数据`,
+                                    type = (datas[i].researchType !== undefined && datas[i].researchType !== null) ? datas[i].researchType : `暂无数据`,
+                                    fileType = (datas[i].fileType !== undefined && datas[i].fileType !== null) ? datas[i].fileType : `暂无数据`,
+                                    id = (datas[i].researchId !== undefined  && datas[i].researchId !== null) ? datas[i].researchId : `暂无数据`;
+                                let html = ``;
+                                html = `
+                                    <a
+                                        href="#${id}"
+                                        title="${title}"
+                                        data-title="${title}"
+                                        data-link="otc-research-report-link"
+                                        data-disabled="${id !== "null" ? false : true}"
+                                        data-link-detail="research-report-link-detail-module"
+                                        data-newsId="${id}">
+                                        ${title}
+                                    </a>
+                                `;
+                                td_keys[i].insertAdjacentHTML(`beforeend`, html);
+                                tds[2*i].innerText = time;
+                                tds[2*i+1].innerText = type;
+                                tds[2*i+2].innerText = source;
+                            }else{
+                                // no data
+                            }
                         }
                     }else{
                         let message = `handle json error!`,
@@ -87,7 +91,7 @@ OTC_F9_FV.Modules.researchReport.init = OTC_F9_FV.Modules.researchReport.init ||
         }
     ) => {
         let url = `${ip}${path}${socket}${gilcode}`,
-            td_keys = document.querySelectorAll(`[data-key="data-otc-RR"]`),
+            td_keys = document.querySelectorAll(`[data-key="data-otc-RR"]`),// 5
             tds = document.querySelectorAll(`[data-value="data-otc-RR"]`),
             more = document.querySelector(`[data-more="otc-research-report-link-more"]`);
         OTC_F9_FV.Modules.researchReport(url, td_keys, tds, more, false);

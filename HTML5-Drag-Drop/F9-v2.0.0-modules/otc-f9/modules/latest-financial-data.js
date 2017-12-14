@@ -10,8 +10,8 @@
  * @param {* Array} ui_arr
  * @param {Boolean} debug
  */
-// import {UserException} from "../utils/throw_error";
-// import {UserConsoleError as ConsoleError} from "../utils/console_error";
+import {UserException} from "../utils/throw_error";
+import {UserConsoleError as ConsoleError} from "../utils/console_error";
 
 // namespaces
 var OTC_F9_FV = OTC_F9_FV || {};
@@ -21,16 +21,15 @@ OTC_F9_FV.Modules = OTC_F9_FV.Modules || {};
 
 OTC_F9_FV.Modules.latestFinancialData = OTC_F9_FV.Modules.latestFinancialData || (
     (url = ``, tds = [], titles = [], debug = false) => {
-        let datas = {};// http://10.1.5.202/otc/f9/datas/4.json
-        fetch(`http://10.1.5.202/otc/f9/datas/4.json`)
-        // fetch(url)
+        let datas = {};
+        fetch(url)
         .then(res => res.json())
         .then(
             (json) => {
                 datas = json;
                 try {
                     if (typeof(datas) === "object" && Object.keys(datas).length > 0) {
-                        let keys = Object.keys(json);
+                        // let keys = Object.keys(json);
                         let title = ``,
                             td_title1 = ``,
                             td_title2 = ``;
@@ -66,8 +65,7 @@ OTC_F9_FV.Modules.latestFinancialData = OTC_F9_FV.Modules.latestFinancialData ||
                             `;
                             for (let i = 0; i < 12; i++) {
                                 tds[i].parentElement.setAttribute(`data-display`, "display-none");
-                                // tds[0].parentElement;
-                                // tds[0].parentNode;
+                                // tds[0].parentElement; / tds[0].parentNode;
                             }
                         }
                         // tds & values === 0-11 & 12-34
@@ -75,13 +73,11 @@ OTC_F9_FV.Modules.latestFinancialData = OTC_F9_FV.Modules.latestFinancialData ||
                             td_title2 = `
                                 财务数据摘要 (报告期<span data-title-span="td-colspan-span">${datas["cwzy"].bgq}</span>)
                             `;
-                            const ui_tds2 = ["jbmgsy", "yysr", "zczj", "xsmgsy", "yylr", "fzzj", "lrze", "mgjzc", "jzc", "jlr", "llje", "mgllje", "jlrkc", "zzctbzz", "jzcsyljq", "yysrtbzz", "xsmll", "kcjq", "jlrtbzz", "zcfzl"];
+                            const ui_tds2 = ["jbmgsy", "yysr", "zczj", "xsmgsy", "yylr", "fzzj", "mgsykc", "lrze", "mgjzc", "jzc", "jlr", "llje", "mgllje", "jlrkc", "zzctbzz", "jzcsyljq", "yysrtbzz", "xsmll", "kcjq", "jlrtbzz", "zcfzl"];
+                            // (tds.length - 1) && no tfoot!
                             for (let i = 12; i < tds.length - 1; i++) {
-                                // no tfoot!
                                 let k = ui_tds2[i - 12];
                                 tds[i].innerText = `${datas["cwzy"][k]}`;
-                                console.log(`k = `, k);
-                                console.log(`v = `, `${datas["cwzy"][k]}`);
                             }
                         }else{
                             td_title2 = `
@@ -94,16 +90,16 @@ OTC_F9_FV.Modules.latestFinancialData = OTC_F9_FV.Modules.latestFinancialData ||
                         // insert DOM
                         titles[0].insertAdjacentHTML(`beforeend`, title);
                         titles[1].insertAdjacentHTML(`beforeend`, td_title1);
-                        titles[2].insertAdjacentHTML(`beforeend`, td_title1);
+                        titles[2].insertAdjacentHTML(`beforeend`, td_title2);
                     }else{
                         let message = `handle json error!`,
                             fileName = `latest-financial-data.js`,
                             lineNumber = 29;
-                        // throw new UserException(message, fileName, lineNumber);
+                        throw new UserException(message, fileName, lineNumber);
                     }
                 } catch (err) {
                     let url =`file:///E:/github/RAIO/HTML5-Drag-Drop/F9-v2.0.0-modules/otc-f9/modules/latest-financial-data.js`;
-                    // ConsoleError(err, url);
+                    ConsoleError(err, url);
                 }
             }
         )
@@ -127,12 +123,10 @@ OTC_F9_FV.Modules.latestFinancialData.init = OTC_F9_FV.Modules.latestFinancialDa
             gilcode: `430002.OC`
         }
     ) => {
+        // let url = `http://10.1.5.202/otc/f9/datas/4.json`,
         let url = `${ip}${path}${socket}${gilcode}`,
             tds = document.querySelectorAll(`[data-value="data-otc-LFD"]`),
-            // title = document.querySelector(`[data-text="otc-latest-financial-data-text"]`);
             titles = document.querySelectorAll(`[data-titles="data-otc-LFD-title"]`);
-        // copy(Object.keys(json));
-        // const ui_arr = ["spj", "zsz", "zdf", "ltsz", "cjl", "sylttm", "hsl", "syllyr", "cje", "sjllyr", "rq"];
         OTC_F9_FV.Modules.latestFinancialData(url, tds, titles, false);
     }
 );
