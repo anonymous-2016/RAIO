@@ -615,7 +615,7 @@ const HTML_Template = (uid = ``, loadModule = function(){}, debug = false) => {
                             <tr class="otc-company-news-table-tr">
                                 <td class="otc-company-news-table-td-title">新闻标题</td>
                                 <td class="otc-company-news-table-td-title">新闻日期</td>
-                                <td class="otc-company-news-table-td-title">新闻类型</td>
+                                <td class="otc-company-news-table-td-title">新闻来源</td>
                             </tr>
                         </thead>
                         <tbody class="otc-company-news-table-tbody" data-tbody="otc-company-news-table-tbody">
