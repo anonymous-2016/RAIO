@@ -251,6 +251,9 @@ tbody.otc-company-news-table-tbody>tr.otc-company-news-table-tr>td:nth-of-type(1
 
 // display: table-header-group;
 
+/usr/local/apache2/webapps/otc/f9
+E:\github\RAIO\HTML5-Drag-Drop\F9-v2.0.0-modules\otc-f9
+
 参数：
     otcperfast01    最新交易数据 latest-transaction-data
     otcperfast02    大事提醒 big-event-reminder
