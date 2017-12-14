@@ -11,7 +11,6 @@
 
 import * as CSS from "./console_css";
 
-
 const UserConsoleError = (error = {}, url = ``) => {
     console.log(`%ccatch error = \n`, CSS.css0, JSON.stringify(error, null, 4));
     console.log(`%ccatch error.name = \n`, CSS.css1, error.name);

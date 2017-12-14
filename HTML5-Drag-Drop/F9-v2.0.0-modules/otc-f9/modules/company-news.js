@@ -1,8 +1,8 @@
 "use strict";
 
 /**
- * company-news 公司新闻
- * xgqfrms
+ * @name company-news 公司新闻
+ * @author xgqfrms
  * creadted 2017.12.12
  * @param {* String} url
  * @param {* Array} td_keys

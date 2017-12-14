@@ -1,8 +1,8 @@
 "use strict";
 
 /**
- * latest-financial-data 最新财务数据
- * xgqfrms
+ * @name latest-financial-data 最新财务数据
+ * @author xgqfrms
  * creadted 2017.12.12
  * @param {* String} url
  * @param {* Array} tds

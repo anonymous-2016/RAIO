@@ -1,8 +1,8 @@
 "use strict";
 
 /**
- * latest-transaction-data 最新交易数据
- * xgqfrms
+ * @name latest-transaction-data 最新交易数据
+ * @author xgqfrms
  * creadted 2017.12.12
  * @param {* String} url
  * @param {* Array} tds

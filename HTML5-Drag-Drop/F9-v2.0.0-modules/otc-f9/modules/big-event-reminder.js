@@ -1,8 +1,8 @@
 "use strict";
 
 /**
- * big-event-reminder 大事提醒
- * xgqfrms
+ * @name big-event-reminder 大事提醒
+ * @author xgqfrms
  * creadted 2017.12.12
  * @param {* String} url
  * @param {* Array} tds

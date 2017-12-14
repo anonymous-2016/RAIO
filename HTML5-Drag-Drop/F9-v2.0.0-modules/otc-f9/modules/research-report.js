@@ -1,8 +1,8 @@
 "use strict";
 
 /**
- * research-report 研究报告
- * xgqfrms
+ * @name research-report 研究报告
+ * @author xgqfrms
  * creadted 2017.12.12
  * @param {* String} url
  * @param {* Array} td_keys
