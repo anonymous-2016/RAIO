@@ -262,7 +262,7 @@ tbody.otc-company-news-table-tbody>tr.otc-company-news-table-tr>td:nth-of-type(1
     otcperfast08    公司表现-公司估值 company-performance-valuation
     otcperfast09    主营业务 main-management-business 主要经营业务
     otcperfast10    股本股东 equity-shareholder
-    otcperfast11    管理层概况 management-layer-profiles
+    otcperfast11    管理层概况 management-layer-profiles 管理层概况与持股
     news            公司新闻 company-news
     bulletin        公司公告 company-bulletin
     research        研究报告 research-report

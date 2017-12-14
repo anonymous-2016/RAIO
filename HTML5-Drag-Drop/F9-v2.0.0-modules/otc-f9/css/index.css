@@ -452,53 +452,55 @@ div.h5-dnd-icon-box:nth-of-type(0) {
 /* background */
 
 .h5-dnd-icon-container>div.h5-dnd-icon-box:nth-child(1)>p.h5-dnd-icon-p::before {
-    content: url("../img/icons/important-infos.png");
+    content: url("../img/icons/latest-transaction-data.png");
 }
 
 .h5-dnd-icon-container>div.h5-dnd-icon-box:nth-child(2)>p.h5-dnd-icon-p::before {
-    content: url("../img/icons/recent-important-events.png");
+    content: url("../img/icons/big-event-reminder.png");
 }
 
 .h5-dnd-icon-container>div.h5-dnd-icon-box:nth-child(3)>p.h5-dnd-icon-p::before {
-    content: url("../img/icons/profit-forecast.png");
+    content: url("../img/icons/company-news.png");
 }
 
 .h5-dnd-icon-container>div.h5-dnd-icon-box:nth-child(4)>p.h5-dnd-icon-p::before {
-    content: url("../img/icons/indicators-per-share.png");
+    content: url("../img/icons/company-bulletin.png");
 }
 
 .h5-dnd-icon-container>div.h5-dnd-icon-box:nth-child(5)>p.h5-dnd-icon-p::before {
-    content: url("../img/icons/agency-rating.png");
+    content: url("../img/icons/company-performance.png");
 }
 
 .h5-dnd-icon-container>div.h5-dnd-icon-box:nth-child(6)>p.h5-dnd-icon-p::before {
-    content: url("../img/icons/institutional-shareholding-change-statistics.png");
+    content: url("../img/icons/equity-shareholder.png");
 }
 
 .h5-dnd-icon-container>div.h5-dnd-icon-box:nth-child(7)>p.h5-dnd-icon-p::before {
-    content: url("../img/icons/stock-price-turnover.png");
+    content: url("../img/icons/company-brief-introduction.png");
 }
 
 .h5-dnd-icon-container>div.h5-dnd-icon-box:nth-child(8)>p.h5-dnd-icon-p::before {
-    content: url("../img/icons/agency-research-statistics.png");
-}
-
-.h5-dnd-icon-container>div.h5-dnd-icon-box:nth-child(9)>p.h5-dnd-icon-p::before {
-    content: url("../img/icons/top-ten-shareholders.png");
-}
-
-.h5-dnd-icon-container>div.h5-dnd-icon-box:nth-child(10)>p.h5-dnd-icon-p::before {
     content: url("../img/icons/research-report.png");
 }
 
+.h5-dnd-icon-container>div.h5-dnd-icon-box:nth-child(9)>p.h5-dnd-icon-p::before {
+    content: url("../img/icons/latest-financial-data.png");
+}
+
+.h5-dnd-icon-container>div.h5-dnd-icon-box:nth-child(10)>p.h5-dnd-icon-p::before {
+    content: url("../img/icons/main-management-business.png");
+}
+
 .h5-dnd-icon-container>div.h5-dnd-icon-box:nth-child(11)>p.h5-dnd-icon-p::before {
-    content: url("../img/icons/company-announcements.png");
+    content: url("../img/icons/management-layer-profiles.png");
 }
 
 .h5-dnd-icon-container>div.h5-dnd-icon-box:nth-child(12)>p.h5-dnd-icon-p::before {
     content: url("../img/icons/company-news.png");
 }
 
+
+/*
 .h5-dnd-icon-container>div.h5-dnd-icon-box:nth-child(13)>p.h5-dnd-icon-p::before {
     content: url("../img/icons/financing-and-margin-balance-difference-trend.png");
 }
@@ -521,7 +523,7 @@ div.h5-dnd-icon-box:nth-of-type(0) {
 
 .h5-dnd-icon-container>div.h5-dnd-icon-box:nth-child(11)>p.h5-dnd-icon-p {
     text-indent: 5px;
-}
+} */
 
 
 /* h5-dnd-header-container */
