@@ -34,9 +34,10 @@
 
 /* big-event-reminder */
 
-thead,
-tfoot {
+thead.otc-big-event-reminder-table-thead,
+tfoot.otc-big-event-reminder-table-tfoot {
     display: none;
+    /* display: table-header-group; */
 }
 
 html,

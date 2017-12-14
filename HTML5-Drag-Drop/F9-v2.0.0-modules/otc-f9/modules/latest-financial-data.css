@@ -34,9 +34,10 @@
 
 /* latest-financial-data */
 
-thead,
-tfoot {
+thead.otc-latest-financial-data-table-thead,
+tfoot.otc-latest-financial-data-table-tfoot {
     display: none;
+    /* display: table-header-group; */
 }
 
 html,

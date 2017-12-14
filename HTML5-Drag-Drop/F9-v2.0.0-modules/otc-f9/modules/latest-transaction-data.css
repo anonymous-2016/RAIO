@@ -34,9 +34,10 @@
 
 /* latest-transaction-data */
 
-thead,
-tfoot {
+thead.otc-latest-transaction-data-table-thead,
+tfoot.otc-latest-transaction-data-table-tfoot {
     display: none;
+    /* display: table-header-group; */
 }
 
 html,

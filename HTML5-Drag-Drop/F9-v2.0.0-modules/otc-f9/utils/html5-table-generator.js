@@ -158,6 +158,8 @@ export {HTML5TableGenerator, H5TG};
 
 
 
+
+
 /**
  * @namespace OTC_F9_FV
  * @subnamespace OTC_F9_FV.Utils
@@ -174,7 +176,7 @@ export {HTML5TableGenerator, H5TG};
  * @param {* Boolean} debug
  */
 
-
+/*
 
 // namespaces
 var OTC_F9_FV = OTC_F9_FV || {};
@@ -202,13 +204,15 @@ OTC_F9_FV.Utils.HTML5TableGenerator.init = OTC_F9_FV.Utils.HTML5TableGenerator.i
         }
     ) => {
         let url = `${ip}${path}${socket}${gilcode}`,
-            tds = document.querySelectorAll(`[data-value="data-${namespace}-LFD"]`),
-            title = document.querySelector(`[data-text="${namespace}-latest-financial-data-text"]`);
+            tds = document.querySelectorAll(`[data-value="data-${namespace}-${moduleAlias}"]`),
+            title = document.querySelector(`[data-text="${namespace}-${moduleName}-text"]`);
         // copy(Object.keys(json));
         OTC_F9_FV.Utils.HTML5TableGenerator(url, tds, title, false);
     }
     // HTML5TableGenerator
 );
+
+*/
 
 
 

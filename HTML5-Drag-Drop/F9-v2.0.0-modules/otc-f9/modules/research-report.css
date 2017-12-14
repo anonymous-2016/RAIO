@@ -37,7 +37,14 @@
 
 /* thead, */
 
-tfoot {
+
+/* display: table; */
+
+thead.otc-research-report-table-thead {
+    display: table-header-group;
+}
+
+tfoot.otc-research-report-table-tfoot {
     display: none;
 }
 

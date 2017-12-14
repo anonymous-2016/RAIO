@@ -249,7 +249,7 @@ tbody.otc-company-news-table-tbody>tr.otc-company-news-table-tr>td:nth-of-type(1
     text-overflow: ellipsis;
 }
 
-
+// display: table-header-group;
 
 参数：
     otcperfast01    最新交易数据 latest-transaction-data

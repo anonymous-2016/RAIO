@@ -37,7 +37,11 @@
 
 /* thead, */
 
-tfoot {
+thead.otc-company-bulletin-table-thead {
+    display: table-header-group;
+}
+
+tfoot.otc-company-bulletin-table-tfoot {
     display: none;
 }
 
