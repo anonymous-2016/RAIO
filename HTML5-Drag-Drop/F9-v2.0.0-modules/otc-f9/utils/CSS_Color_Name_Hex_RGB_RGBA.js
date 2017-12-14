@@ -1,8 +1,10 @@
+"use strict";
 
 /**
- *
+ * @name CSS Color Codes Generator
+ * @author xgqfrms 2017-12-13
+ * @license MIT
  * @description CSS_Color_Name_Hex_RGB_RGBA
- *
  *
  * @param {* String} key
  * @param {* Boolean} debug
@@ -43,25 +45,54 @@ const rgba_ff01 = `
     font-size: 23px;
 `;
 
+// HSL: hsl(0, 0%, 100%)
+// HSV: hsv(0, 0%, 100%)
+// HWB: hwb(0, 100%, 0%)
+// CMYK: cmyk(0%, 0%, 0%, 0%)
 
-const CSS_Colors = (key = ``, debug = false) => {
+// CSS Color Codes Generator
+// CSSColorCodesGenerator : CCCG
+const CSSColorCodesGenerator = (key = ``, debug = false) => {
     // alias
     // purple === ff0 === ff0000 === rgb_ff0 === rgba_ff01
+    // purple === hashff0 === hashff0000 === rgb_ff0 === rgba_ff01
     // length ??? prefix ??? Regex
     let result = ``,
-        keyword = key.replace(/_/ig, `0`);
+        keyword = ``;
+    if (typeof key === "string") {
+        // hash #
+        if (key.includes(`#`)) {
+            // hex
+            (key.length === 4) ? keyword = `hex` : keyword = `full_hex`;
+        }else{
+            // name
+            keyword = `name`;
+        }
+    }else if (Array.isArray(key) && key.length === 3) {
+        // rgb
+        keyword = `rgb`;
+    }else if (Array.isArray(key) && key.length === 4) {
+        // rgba
+        keyword = `rgba`;
+    }
     switch (keyword) {
         case `name`:
             result = `color: ${key};`;
             break;
         case `hex`:
-            result = `color: #${key[0]}${key[1]}${key[2]};`;
+            let hex = key.replace(/#/ig, ``);
+            // let fullhex = `${(key[0]).toString().repeat(2)}${(key[1]).toString().repeat(2)}${(key[2]).toString().repeat(2)}`;
+            // result = `color: #${key[0]}${key[1]}${key[2]};`;
+            result = `color: #${hex};`;
             break;
         case `full_hex`:
-            result = `color: #${key[0]}${key[1]}${key[2]};`;
+            let hex_key = key.replace(/#/ig, ``);
+                // fullhex = `${hex_key.slice(0,2)}${hex_key.slice(2,4)}${hex_key.slice(4)}`;
+            // result = `color: #${fullhex};`;
+            result = `color: #${hex_key};`;
             break;
         case `rgba`:
-            result = `color: rgb(${key[0]}, ${key[1]}, ${key[2]}, ${key[3]});`;
+            result = `color: rgba(${key[0]}, ${key[1]}, ${key[2]}, ${key[3]});`;
             break;
         case `rgb`:
         default:
@@ -71,9 +102,10 @@ const CSS_Colors = (key = ``, debug = false) => {
     return result;
 };
 
-export default ConsoleFormatJSON;
-export {ConsoleFormatJSON};
-
+export default CSSColorCodesGenerator;
+export {CSSColorCodesGenerator};
+// export default CCCG;
+// export {CCCG};
 
 
 
@@ -122,4 +154,55 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects
 
 */
 
+// # , !== ;
 
+const CSS_Colors = (key = ``, debug = false) => {
+    let result = ``,
+        keyword = ``;
+    if (typeof key === "string") {
+        if (key.includes(`#`)) {
+            // hex && hash #
+            (key.length === 4) ? keyword = `hex` : keyword = `full_hex`;
+        }else{
+            // name
+            keyword = `name`;
+        }
+    }else if (Array.isArray(key) && key.length === 3) {
+        // rgb
+        keyword = `rgb`;
+    }else if (Array.isArray(key) && key.length === 4) {
+        // rgba
+        keyword = `rgba`;
+    }
+    switch (keyword) {
+        case `name`:
+            result = `color: ${key};`;
+            break;
+        case `hex`:
+            let hex = key.replace(/#/ig, ``);
+            result = `color: #${hex};`;
+            break;
+        case `full_hex`:
+            let hex_key = key.replace(/#/ig, ``);
+            result = `color: #${hex_key};`;
+            break;
+        case `rgba`:
+            result = `color: rgba(${key[0]}, ${key[1]}, ${key[2]}, ${key[3]});`;
+            break;
+        case `rgb`:
+        default:
+            result = `color: rgb(${key[0]}, ${key[1]}, ${key[2]});`;
+            break;
+    }
+    return result;
+};
+
+/*
+
+CSS_Colors(`purple`);
+CSS_Colors(`#f0f`);
+CSS_Colors(`#ff00ff`);
+CSS_Colors([255, 0, 255]);
+CSS_Colors([255, 0, 255]);
+
+*/
