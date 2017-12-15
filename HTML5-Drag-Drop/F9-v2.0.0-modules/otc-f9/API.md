@@ -63,6 +63,26 @@ http://10.1.5.202/webservice/fastview/otcper/参数/聚源代码
 http://10.1.5.202/webservice/fastview/otcper/otcperfast01/430002.OC
 
 
+# stackLabels
+
+http://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/highcharts/demo/column-stacked/
+
+
+```js
+
+stackLabels: {
+    enabled: true,
+    style: {
+        fontWeight: 'bold',
+        color: (Highcharts.theme && Highcharts.theme.textColor) || 'gray'
+    }
+}
+
+
+```
+
+
+
 # Screenshots
 
 https://screenshots.firefox.com/#tour
