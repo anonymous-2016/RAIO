@@ -162,6 +162,14 @@ STOCK_F9_FV.Modules.profitForecast.drawHS = STOCK_F9_FV.Modules.profitForecast.d
             console.log(`average = \n`, average);
             console.log(`keep = \n`, keep);
         }
+        // let min_time = time.sort()[0];
+        // let max_time = time.sort()[time.length-1];
+        // console.log(`time = \n`, time);
+        // console.log(`min_time = \n`, min_time);
+        // console.log(`max_time = \n`, max_time);
+        let max_time = (time.length-1)/2;// ???
+        console.log(`time.length = \n`, time.length);
+        console.log(`max_time = \n`, max_time);
         // datas
         const chart_css = {
             color: `#0B1016`,
@@ -236,8 +244,9 @@ STOCK_F9_FV.Modules.profitForecast.drawHS = STOCK_F9_FV.Modules.profitForecast.d
             xAxis: {
                 // categories: ['2017-02', '2017-02', '2017-02', '2017-02', '2017-02'],
                 categories: time,
-                min: 0,
-                max: 8,
+                // min: 0,// auto right === max x value
+                min: max_time,// auto right === max x value
+                // max: 8,
                 // xAxis datas
                 labels: {
                     // autoRotation:'false',
@@ -453,12 +462,12 @@ STOCK_F9_FV.Modules.profitForecast.init = STOCK_F9_FV.Modules.profitForecast.ini
 );
 
 STOCK_F9_FV.Modules.profitForecast.init({
-    ip: STOCK_IP,
-    path: `${STOCK_Paths}/stockfast03/`,
-    gilcode: STOCK_SecCode
-    // ip: `http://10.1.5.202`,
-    // path: `/webservice/fastview/stock/stockfast03/`,
+    // ip: STOCK_IP,
+    // path: `${STOCK_Paths}/stockfast03/`,
     // gilcode: STOCK_SecCode
+    ip: `http://10.1.5.202`,
+    path: `/webservice/fastview/stock/stockfast03/`,
+    gilcode: `600570.SH`
 });
 
 

@@ -146,3 +146,17 @@ OTC_F9_FV.Modules.companyBriefIntroduction.init({
 // OTC_F9_FV.Modules.companyBriefIntroduction.init();
 // const url = `http://10.1.5.202/webservice/fastview/otcper/otcperfast03/430002.OC`;
 
+
+const autoAlignHeight = (uids = [], debug = false) => {
+    let domx = document.querySelector(uids[0]),
+        domy = document.querySelector(uids[1]);
+        // height = window.getComputedStyle(domx, null).getPropertyValue("height");
+        // height = domx.clientHeight; // no border
+        height = domx.offsetHeight; // include border
+        domy.setAttribute(`style`, "height: ${height}px;");
+        domy.style.height = `500px`;
+};
+
+const uids = [`[data-float="float-table"]`, `[data-float="float-div"]`];
+
+
