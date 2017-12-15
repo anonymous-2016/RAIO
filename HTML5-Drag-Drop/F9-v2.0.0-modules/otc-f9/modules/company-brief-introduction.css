@@ -1,10 +1,53 @@
-[data-div="div"] {
+thead,
+tfoot {
+    display: none;
+}
+
+tr {
+    background: #f0f;
+    height: 23px;
+    line-height: 23px;
+}
+
+[data-float="float-table"],
+[data-float="float-section"] {
+    float: left;
+}
+
+[data-float="float-section"] {
+    text-align: left;
+    text-indent: 4px;
+}
+
+[data-float="float-title"] {
+    text-align: center;
+    background: #ccc;
+}
+
+[data-float="float-div"] {
     box-sizing: border-box;
-    width: 320px;
-    max-height: 200px;
+    width: 242px;
+    height: 399px;
+    /* max-height: 399px; */
     overflow-y: scroll;
 }
 
-th[data-rowspan="rowspan0"] {
-    /* height: 0px; */
+
+/* table */
+
+td.otc-company-brief-introduction-table-td-key {
+    box-sizing: border-box;
+    line-height: 23px;
+    height: 23px;
+    width: 91px;
 }
+
+td.otc-company-brief-introduction-table-td-value {
+    box-sizing: border-box;
+    line-height: 23px;
+    height: 23px;
+    width: 203px;
+}
+
+
+/* 356 */
