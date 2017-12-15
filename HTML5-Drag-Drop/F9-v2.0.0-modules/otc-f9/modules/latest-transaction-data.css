@@ -43,7 +43,7 @@ table.otc-latest-transaction-data-table {
     background: #fff;
     border-collapse: collapse;
     border-spacing: 0;
-    font-size: 13px;
+    font-size: 12px;
     font-weight: normal;
     color: #4d4d4d;
 }
@@ -59,7 +59,7 @@ tr.otc-latest-transaction-data-table-tr {
 
 [data-title-text="otc-latest-transaction-data-title-text"] {
     color: #4d4d4d;
-    font-size: 13px;
+    font-size: 12px;
     font-weight: normal;
 }
 
@@ -67,7 +67,7 @@ td.otc-latest-transaction-data-table-td-key {
     box-sizing: border-box;
     color: #4d4d4d;
     background: #e8eefa;
-    font-size: 13px;
+    font-size: 12px;
     width: 112px;
     min-width: 112px;
     max-width: 112px;
@@ -82,7 +82,7 @@ td.otc-latest-transaction-data-table-td-value {
     width: 158px;
     min-width: 158px;
     max-width: 158px;
-    font-size: 13px;
+    font-size: 12px;
     height: 23px;
     line-height: 23px;
     text-align: right;
@@ -125,7 +125,7 @@ tr.otc-latest-transaction-data-table-tr>td:nth-of-type(4) {
 [data-link="otc-latest-transaction-data-link"]>a {
     color: #3285ff;
     text-decoration: none;
-    font-size: 13px;
+    font-size: 12px;
     font-weight: normal;
     margin-right: 54px;
     float: right;

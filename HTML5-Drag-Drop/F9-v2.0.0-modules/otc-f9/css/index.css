@@ -815,3 +815,12 @@ div.h5-dnd-module-box:nth-of-type(1) {
 .otc-module-box-5>div:nth-of-type(1):hover {
     cursor: move;
 }
+
+[data-link*="otc-"]>a {
+    color: #3285ff;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: normal;
+    float: right;
+    margin-top: 3px;
+}

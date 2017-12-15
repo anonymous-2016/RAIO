@@ -1,0 +1,10 @@
+[data-div="div"] {
+    box-sizing: border-box;
+    width: 320px;
+    max-height: 200px;
+    overflow-y: scroll;
+}
+
+th[data-rowspan="rowspan0"] {
+    /* height: 0px; */
+}

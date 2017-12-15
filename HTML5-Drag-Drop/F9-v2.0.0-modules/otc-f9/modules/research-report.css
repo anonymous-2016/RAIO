@@ -53,7 +53,7 @@ table.otc-research-report-table {
     background: #fff;
     border-collapse: collapse;
     border-spacing: 0;
-    font-size: 13px;
+    font-size: 12px;
     font-weight: normal;
     color: #4d4d4d;
 }
@@ -69,7 +69,7 @@ tr.otc-research-report-table-tr {
 
 [data-title-text="otc-research-report-title-text"] {
     color: #4d4d4d;
-    font-size: 13px;
+    font-size: 12px;
     font-weight: normal;
 }
 
@@ -77,7 +77,7 @@ td.otc-research-report-table-td-key {
     box-sizing: border-box;
     color: #4d4d4d;
     /* background: #e8eefa; */
-    font-size: 13px;
+    font-size: 12px;
     width: 325px;
     min-width: 325px;
     max-width: 325px;
@@ -151,7 +151,7 @@ tr.otc-research-report-table-tr>td:nth-of-type(4) {
 [data-more="otc-research-report-link"]>a {
     color: #3285ff;
     text-decoration: none;
-    font-size: 13px;
+    font-size: 12px;
     font-weight: normal;
     margin-right: 54px;
     float: right;
@@ -170,7 +170,7 @@ thead.otc-research-report-table-thead>tr.otc-research-report-table-tr {
 
 thead.otc-research-report-table-thead>tr.otc-research-report-table-tr>td.otc-research-report-table-td-title:nth-of-type(n) {
     box-sizing: border-box;
-    font-size: 13px;
+    font-size: 12px;
     height: 23px;
     line-height: 23px;
     text-align: center;

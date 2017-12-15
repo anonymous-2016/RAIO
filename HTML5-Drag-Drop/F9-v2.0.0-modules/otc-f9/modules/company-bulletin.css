@@ -50,7 +50,7 @@ table.otc-company-bulletin-table {
     background: #fff;
     border-collapse: collapse;
     border-spacing: 0;
-    font-size: 13px;
+    font-size: 12px;
     font-weight: normal;
     color: #4d4d4d;
 }
@@ -66,7 +66,7 @@ tr.otc-company-bulletin-table-tr {
 
 [data-title-text="otc-company-bulletin-title-text"] {
     color: #4d4d4d;
-    font-size: 13px;
+    font-size: 12px;
     font-weight: normal;
 }
 
@@ -74,7 +74,7 @@ td.otc-company-bulletin-table-td-key {
     box-sizing: border-box;
     color: #4d4d4d;
     /* background: #e8eefa; */
-    font-size: 13px;
+    font-size: 12px;
     width: 395px;
     min-width: 395px;
     max-width: 395px;
@@ -148,7 +148,7 @@ tr.otc-company-bulletin-table-tr>td:nth-of-type(4) {
 [data-more="otc-company-bulletin-link"]>a {
     color: #3285ff;
     text-decoration: none;
-    font-size: 13px;
+    font-size: 12px;
     font-weight: normal;
     margin-right: 54px;
     float: right;
@@ -167,7 +167,7 @@ thead.otc-company-bulletin-table-thead>tr.otc-company-bulletin-table-tr {
 
 thead.otc-company-bulletin-table-thead>tr.otc-company-bulletin-table-tr>td.otc-company-bulletin-table-td-title:nth-of-type(n) {
     box-sizing: border-box;
-    font-size: 13px;
+    font-size: 12px;
     height: 23px;
     line-height: 23px;
     text-align: center;
