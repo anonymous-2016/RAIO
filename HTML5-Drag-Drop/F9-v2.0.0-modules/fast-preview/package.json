@@ -7,9 +7,9 @@
     "scripts": {
         "app-new": "webpack -p",
         "app": "npm run rmrf && webpack -p",
+        "dev": "npm run rmrf && webpack -p -w",
         "dev & prod": "??? webpack --config webpack.prod.js ???",
         "hot_modules_loader": "??? webpack hot HMR ???",
-        "dev": "webpack -w",
         "rmrf": "rimraf build/js",
         "linux_rmrf": "rm -rf build/js",
         "windows_clear": "rimraf build/js",

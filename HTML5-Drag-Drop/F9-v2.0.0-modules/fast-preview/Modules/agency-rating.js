@@ -163,6 +163,9 @@ STOCK_F9_FV.Modules.agencyRating.drawHS = STOCK_F9_FV.Modules.agencyRating.drawH
         //     down = datas.down,
         //     stock_price = datas.stock_price,
         //     keep = datas.keep;
+        let max_time = (time.length-10);// ???
+        console.log(`time.length = \n`, time.length);
+        console.log(`max_time = \n`, max_time);
         const chart_css = {
             color: `#0B1016`,
             colors: ['#ff1919', '#ffff66', '#92d050'],
@@ -215,8 +218,9 @@ STOCK_F9_FV.Modules.agencyRating.drawHS = STOCK_F9_FV.Modules.agencyRating.drawH
             },
             xAxis: {
                 categories: time,
-                min: 0,
-                max: 8,
+                min: max_time,
+                // min: 0,
+                // max: 8,
                 // xAxis datas
                 labels: {
                     autoRotation: [0],// autoRotation:'false',

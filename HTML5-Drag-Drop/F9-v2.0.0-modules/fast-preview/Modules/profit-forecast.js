@@ -167,9 +167,9 @@ STOCK_F9_FV.Modules.profitForecast.drawHS = STOCK_F9_FV.Modules.profitForecast.d
         // console.log(`time = \n`, time);
         // console.log(`min_time = \n`, min_time);
         // console.log(`max_time = \n`, max_time);
-        let max_time = (time.length-1)/2;// ???
-        console.log(`time.length = \n`, time.length);
-        console.log(`max_time = \n`, max_time);
+        let max_time = (time.length-10);// ???
+        // console.log(`time.length = \n`, time.length);
+        // console.log(`max_time = \n`, max_time);
         // datas
         const chart_css = {
             color: `#0B1016`,
@@ -462,12 +462,12 @@ STOCK_F9_FV.Modules.profitForecast.init = STOCK_F9_FV.Modules.profitForecast.ini
 );
 
 STOCK_F9_FV.Modules.profitForecast.init({
-    // ip: STOCK_IP,
-    // path: `${STOCK_Paths}/stockfast03/`,
-    // gilcode: STOCK_SecCode
-    ip: `http://10.1.5.202`,
-    path: `/webservice/fastview/stock/stockfast03/`,
-    gilcode: `600570.SH`
+    ip: STOCK_IP,
+    path: `${STOCK_Paths}/stockfast03/`,
+    gilcode: STOCK_SecCode
+    // ip: `http://10.1.5.202`,
+    // path: `/webservice/fastview/stock/stockfast03/`,
+    // gilcode: `600570.SH`
 });
 
 
