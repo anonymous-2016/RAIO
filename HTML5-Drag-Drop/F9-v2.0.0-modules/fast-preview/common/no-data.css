@@ -5,34 +5,41 @@
 
 /* font-family: Simsun, serif; */
 
+
+/* font-family: "Microsoft YaHei", sans-serif, serif; */
+
 [data-none="no-data-p"] {
     box-sizing: border-box;
     line-height: 23px;
     height: 23px;
     width: 100%;
-    font-family: "Microsoft YaHei", sans-serif, serif;
+    /* font-family: "Microsoft YaHei", sans-serif, serif; */
+    font-family: Simsun, serif;
     font-weight: normal;
-    font-size: 12px;
-    color: #4d4d4d;
-    margin-right: 30px;
-    padding-left: 30px;
-    /* text-indent: 50px; */
+    font-size: 14px;
     text-align: center;
     vertical-align: middle;
+    /* color: #4d4d4d; */
+    color: #3f4044;
+    background: #f2f2f2;
+}
+
+[data-none="no-data-p"]::after {
+    content: "暂无数据";
 }
 
 [data-none="no-data-span"] {
     box-sizing: border-box;
     display: inline-block;
-    /* background: #ccc; */
     position: relative;
     line-height: 20px;
     height: 20px;
     width: 20px;
     font-family: "Microsoft YaHei", sans-serif, serif;
     font-weight: normal;
-    font-size: 12px;
-    color: #4d4d4d;
+    font-size: 14px;
+    text-align: center;
+    vertical-align: middle;
     margin-right: 5px;
 }
 
@@ -43,5 +50,16 @@
     height: 20px;
     width: 20px;
     left: 0;
-    top: 0px;
+    top: -2px;
 }
+
+
+/*
+
+// example
+
+<p data-none="no-data-p">
+    <span data-none="no-data-span"></span>
+</p>
+
+*/
