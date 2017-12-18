@@ -70,13 +70,13 @@ http://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/sample
 
 ```js
 
-stackLabels: {
-    enabled: true,
-    style: {
-        fontWeight: 'bold',
-        color: (Highcharts.theme && Highcharts.theme.textColor) || 'gray'
+    stackLabels: {
+        enabled: true,
+        style: {
+            fontWeight: 'bold',
+            color: (Highcharts.theme && Highcharts.theme.textColor) || 'gray'
+        }
     }
-}
 
 
 ```

@@ -113,6 +113,7 @@ STOCK_F9_FV.Modules.ISCstatistics.ISCSdrawHS = STOCK_F9_FV.Modules.ISCstatistics
             console.log(`shares = \n`, shares);
             console.log(`stock_price = \n`, stock_price);
         }
+        let max_time = (time.length-10);// ???
         // datas
         const chart_css = {
             color: `#0B1016`,
@@ -171,8 +172,9 @@ STOCK_F9_FV.Modules.ISCstatistics.ISCSdrawHS = STOCK_F9_FV.Modules.ISCstatistics
             xAxis: {
                 // categories: ['2017-02', '2017-02', '2017-02', '2017-02', '2017-02'],
                 categories: time,
-                min: 0,
-                max: 8,
+                // min: 0,
+                min: max_time,
+                // max: 8,
                 // xAxis datas
                 labels: {
                     // autoRotation:'false',
@@ -284,14 +286,14 @@ STOCK_F9_FV.Modules.ISCstatistics.ISCSdrawHS = STOCK_F9_FV.Modules.ISCstatistics
                     // stacking: 'null',
                     // stacking: 'percent',// 百分比堆叠柱形图
                     dataLabels: {
-                        // enabled: true,
+                        enabled: true,
                         color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white'
                     }
                 },
                 spline: {
                     // stacking: 'normal',
                     dataLabels: {
-                        enabled: true,
+                        // enabled: true,
                         color: "#434348"
                     }
                 }

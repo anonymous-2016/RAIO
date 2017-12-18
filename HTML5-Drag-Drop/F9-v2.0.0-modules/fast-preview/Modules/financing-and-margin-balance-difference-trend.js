@@ -129,6 +129,7 @@ STOCK_F9_FV.Modules.FMBDtrend.FMBDTdrawHS = STOCK_F9_FV.Modules.FMBDtrend.FMBDTd
             console.log(`shares = \n`, shares);
             console.log(`stock_price = \n`, stock_price);
         }
+        let max_time = (time.length-10);
         // datas
         const chart_css = {
             color: `#0B1016`,
@@ -185,8 +186,9 @@ STOCK_F9_FV.Modules.FMBDtrend.FMBDTdrawHS = STOCK_F9_FV.Modules.FMBDtrend.FMBDTd
             xAxis: {
                 // categories: ['2017-02', '2017-02', '2017-02', '2017-02', '2017-02'],
                 categories: time,
-                min: 0,
-                max: 8,
+                min: max_time,
+                // min: 0,
+                // max: 8,
                 // xAxis datas
                 labels: {
                     // autoRotation:'false',

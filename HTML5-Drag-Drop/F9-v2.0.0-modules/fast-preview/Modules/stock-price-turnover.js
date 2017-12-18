@@ -127,6 +127,7 @@ STOCK_F9_FV.Modules.SPTurnover.SPTdrawHS = STOCK_F9_FV.Modules.SPTurnover.SPTdra
             stock_price = datas.stock_price;
         // 2012-12-31 => var oldTime = (new Date("2012/12/31 20:11:11").getTime();
         // 得到毫秒数
+        let max_time = (time.length-10);// ???
         // datas
         if (debug) {
             console.log(`datas = \n`, datas);
@@ -202,347 +203,357 @@ STOCK_F9_FV.Modules.SPTurnover.SPTdrawHS = STOCK_F9_FV.Modules.SPTurnover.SPTdra
         //         noData: '暂无数据'
         //     }
         // });
-        Highcharts.setOptions({
-            lang: {
-                rangeSelectorZoom: '缩放',// 放大
-                rangeSelectorFrom: '从',
-                rangeSelectorTo: '到',
-                contextButtonTitle: '图表导出菜单',
-                decimalPoint: '.',
-                downloadJPEG: "下载JPEG图片",
-                downloadPDF: "下载PDF文件",
-                downloadPNG: "下载PNG文件",
-                downloadSVG: "下载SVG文件",
-                drillUpText: "返回 {series.name}",
-                loading: '加载中...',
-                months: ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月'],
-                noData: "暂无数据",
-                // noData: "没有数据显示!",
-                numericSymbols: ['k', 'M', 'G', 'T', 'P', 'E'],
-                printChart: "打印图表",
-                resetZoom: '重置缩放比例',
-                resetZoomTitle: '重置为原始大小',
-                shortMonths: ['一', '二', '三', '四', '五', '六', '七', '八', '九', '十', '十一', '十二'],
-                thousandsSep: ',',
-                shortWeekdays: ['周天', '周一', '周二', '周三', '周四', '周五', '周六'],
-                weekdays: ['星期天','星期一', '星期二', '星期三', '星期四', '星期五', '星期六']
-            },
-        });
-        Highcharts.stockChart(container_uid, {
-            chart: {
-                // type: 'column',
-                // height: 272,
-                marginTop: 20,
-            },
-            noData: {
-                attr: undefined,
-                position: {
-                    align: "center",
-                    verticalAlign: "middle",
-                    x: 0,
-                    y: 0
+        // Highcharts.setOptions({
+        //     lang: {
+        //         rangeSelectorZoom: '缩放',// 放大
+        //         rangeSelectorFrom: '从',
+        //         rangeSelectorTo: '到',
+        //         contextButtonTitle: '图表导出菜单',
+        //         decimalPoint: '.',
+        //         downloadJPEG: "下载JPEG图片",
+        //         downloadPDF: "下载PDF文件",
+        //         downloadPNG: "下载PNG文件",
+        //         downloadSVG: "下载SVG文件",
+        //         drillUpText: "返回 {series.name}",
+        //         loading: '加载中...',
+        //         months: ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月'],
+        //         noData: "暂无数据",
+        //         // noData: "没有数据显示!",
+        //         numericSymbols: ['k', 'M', 'G', 'T', 'P', 'E'],
+        //         printChart: "打印图表",
+        //         resetZoom: '重置缩放比例',
+        //         resetZoomTitle: '重置为原始大小',
+        //         shortMonths: ['一', '二', '三', '四', '五', '六', '七', '八', '九', '十', '十一', '十二'],
+        //         thousandsSep: ',',
+        //         shortWeekdays: ['周天', '周一', '周二', '周三', '周四', '周五', '周六'],
+        //         weekdays: ['星期天','星期一', '星期二', '星期三', '星期四', '星期五', '星期六']
+        //     },
+        // });
+        setTimeout(() => {
+            Highcharts.stockChart(container_uid, {
+                chart: {
+                    // type: 'column',
+                    // height: 272,
+                    marginTop: 20,
                 },
-                style: { "fontSize": "12px", "fontWeight": "bold", "color": "#777" },
-                useHTML: false
-            },
-            rangeSelector: {
-                // enabled: false,
-                // height: 10,
-                // enabled: false,
-                selected: 0,// button index
-                // The index of the button to appear pre-selected. 默认是：undefined.
-                inputDateFormat: '%Y-%m-%d',//'%Y年%m月%d日'
-                // inputDateFormat: '%Y年 %m月 %d日'
-                // allButtonsEnabled: true,// highcharts-range-selector-buttons ???
-                buttons: [
+                // noData: {
+                //     attr: undefined,
+                //     position: {
+                //         align: "center",
+                //         verticalAlign: "middle",
+                //         x: 0,
+                //         y: 0
+                //     },
+                //     style: { "fontSize": "12px", "fontWeight": "bold", "color": "#777" },
+                //     useHTML: false
+                // },
+                credits: {
+                    // enabled: true,//
+                    enabled: false,
+                    href: `https://www.gildata.com`,
+                    text: `gildata`,
+                    // position: https://api.highcharts.com/highstock/credits.style,
+                    // style: https://api.highcharts.com/highstock/credits.style
+                },
+                title: {
+                    // text: '股价/成交量'
+                },
+                xAxis: {
+                    categories: time,
+                    min: max_time,
+                    // min: 0,
+                    // max: 8,
+                    // tickPixelInterval: 120
+                    labels: {
+                        // autoRotation:'false',
+                        autoRotation: [0],
+                        step: 2
+                    },
+                    type: 'datetime',
+                    dateTimeLabelFormats: {
+                        // millisecond: '%H:%M:%S.%L',
+                        // second: '%H:%M:%S',
+                        // minute: '%H:%M',
+                        // hour: '%H:%M',
+                        // day: '%m-%d',
+                        // week: '%m-%d',
+                        // month: '%y-%m',
+                        // year: '%Y'
+                        // millisecond: '%H:%M:%S.%L',
+                        // second: '%H:%M:%S',
+                        // minute: '%H:%M',
+                        // hour: '%H:%M',
+                        day: '%m月 %d日',
+                        week: '%m月 %d日',
+                        month: '%y年 %m月',
+                        year: '%Y年'
+                    },
+                    tooltip: {
+                        xDateFormat: '%Y年 %m月 %d日',
+                        // valueDecimals: 3
+                    }
+                },
+                yAxis: [
+                    {
+                        labels: {
+                            align: 'right',
+                            x: -3,
+                            // formatter: () => {
+                            //     console.log(`this.value`, this.value);
+                            //     // undefined
+                            //     // ??? -20 / 30
+                            //     return this.value > 0 ? `+${this.value}%` : `${this.value}%`;
+                            // },
+                        },
+                        title: {
+                            // text: '股价/上证指数',
+                            text: '股价'
+                        },
+                        // height: '60%',
+                        height: '70%',
+                        lineWidth: 2,
+                        plotLines: [{
+                            value: 0,
+                            width: 2,
+                            color: 'silver'
+                        }],
+                        // min: 0,
+                        opposite: false,// default true
+                    },
+                    {
+                        // opposite: true,
+                        labels: {
+                            align: 'left',
+                            x: 3
+                        },
+                        title: {
+                            text: '上证指数'
+                        },
+                        // height: '60%',
+                        height: '70%',
+                        offset: 0,
+                        lineWidth: 2,
+                        // min: 0,
+                    },
+                    {
+                        labels: {
+                            align: 'left',
+                            x: 3
+                        },
+                        title: {
+                            text: '成交量'
+                        },
+                        // top: '62.5%',
+                        // height: '37.5%',
+                        top: '72.5%',
+                        height: '27.5%',
+                        offset: 0,
+                        lineWidth: 2,
+                        // opposite: false,// default true
+                    },
                     // {
-                    //     type: 'day',
-                    //     count: 1,
-                    //     text: '一天',
-                    //     dataGrouping: {
-                    //         forced: true,
-                    //         units: [['day', [1]]]
-                    //     }
-                    // },
-                    // {
-                    //     type: 'week',
-                    //     count: 1,
-                    //     text: '一周',
-                    //     dataGrouping: {
-                    //         forced: true,
-                    //         units: [['week', [1]]]
-                    //     }
-                    // },
-                    // {
-                    //     type: 'month',
-                    //     count: 1,
-                    //     text: '一月',
-                    //     dataGrouping: {
-                    //         forced: true,
-                    //         units: [['month', [1]]]
-                    //     }
-                    // },
-                    // {
-                    //     type: 'month',
-                    //     count: 3,
-                    //     text: '三月',
-                    //     dataGrouping: {
-                    //         forced: true,
-                    //         units: [['month', [1]]]
-                    //     }
-                    // },
-                    // {
-                    //     type: 'month',
-                    //     count: 6,
-                    //     text: '六月',
-                    //     dataGrouping: {
-                    //         forced: true,
-                    //         units: [['month', [1]]]
-                    //     }
-                    // },
-                    // {
-                    //     type: 'year',
-                    //     count: 1,
-                    //     text: '一年',
-                    //     dataGrouping: {
-                    //         forced: true,
-                    //         units: [['year', [1]]]
-                    //     }
-                    // },
-                    // {
-                    //     type: 'all',
-                    //     text: '全部',
-                    //     dataGrouping: {
-                    //         forced: true,
-                    //         units: [['year', [1]]]
-                    //     }
+                    //     labels: {
+                    //         align: 'right',
+                    //         x: 3
+                    //     },
+                    //     title: {
+                    //         text: '成交量'
+                    //     },
+                    //     // top: '62.5%',
+                    //     // height: '37.5%',
+                    //     top: '82.5%',
+                    //     height: '17.5%',
+                    //     offset: 0,
+                    //     lineWidth: 2
                     // }
                 ],
-                buttonTheme: {
-                    // width: 30,
-                    width: 0
-                }
-            },
-            credits: {
-                // enabled: true,//
-                enabled: false,
-                href: `https://www.gildata.com`,
-                text: `gildata`,
-                // position: https://api.highcharts.com/highstock/credits.style,
-                // style: https://api.highcharts.com/highstock/credits.style
-            },
-            title: {
-                // text: '股价/成交量'
-            },
-            xAxis: {
-                type: 'datetime',
-                dateTimeLabelFormats: {
-                    // millisecond: '%H:%M:%S.%L',
-                    // second: '%H:%M:%S',
-                    // minute: '%H:%M',
-                    // hour: '%H:%M',
-                    // day: '%m-%d',
-                    // week: '%m-%d',
-                    // month: '%y-%m',
-                    // year: '%Y'
-                    // millisecond: '%H:%M:%S.%L',
-                    // second: '%H:%M:%S',
-                    // minute: '%H:%M',
-                    // hour: '%H:%M',
-                    day: '%m月 %d日',
-                    week: '%m月 %d日',
-                    month: '%y年 %m月',
-                    year: '%Y年'
-                },
+                series: [
+                    {
+                        // type: 'candlestick',
+                        type: 'line',// 样条 "spline"
+                        name: '股价',
+                        color: 'green',
+                        lineColor: 'green',
+                        upColor: 'red',
+                        upLineColor: 'red',
+                        tooltip: {
+                            // formatter: () => {
+                            //     return `
+                            //         <b> ${this.series.name} </b><br/>
+                            //     `;
+                            // },
+                            valueSuffix: ' 元'
+                        },
+                        // tooltip: {
+                        //     formatter: () => {
+                        //         return `
+                        //         <b> ${this.series.name} </b><br/>
+                        //         ${Highcharts.dateFormat('%Y年%m月%e日', this.x)}:
+                        //         ${this.y} m
+                        //         `;
+                        //     }
+                        // },
+                        navigatorOptions: {
+                            color: Highcharts.getOptions().colors[0]
+                        },
+                        data: ohlc,
+                        // dataGrouping: {
+                        //     units: groupingUnits
+                        // },
+                        yAxis: 0
+                        // compare: 'percent',
+                        // showInNavigator: true
+                    },
+                    {
+                        type: 'column',
+                        name: '成交量',
+                        data: volume,
+                        yAxis: 2,
+                        // dataGrouping: {
+                        //     units: groupingUnits
+                        // },
+                        tooltip: {
+                            // formatter: () => {
+                            //     return `
+                            //         <b> ${this.series.name} </b><br/>
+                            //     `;
+                            // },
+                            valueSuffix: `手`
+                            // valueSuffix: ' 万手'
+                        },
+                    },
+                    {
+                        type: 'line',
+                        name: '上证指数',
+                        data: sh_index,
+                        color:"#1a75bc",
+                        yAxis: 1,
+                        // dataGrouping: {
+                        //     units: groupingUnits
+                        // },
+                        tooltip: {
+                            // formatter: () => {
+                            //     return `
+                            //         <b> ${this.series.name} </b><br/>
+                            //     `;
+                            // },
+                            valueSuffix: ' 点'
+                        },
+                    },
+                ],
                 tooltip: {
                     xDateFormat: '%Y年 %m月 %d日',
+                    shared: true,
                     // valueDecimals: 3
                 },
-                // tickPixelInterval: 120
-                labels: {
-                    // autoRotation:'false',
-                    autoRotation: [0],
-                    step: 2
+                plotOptions: {
+                    // series: {
+                    //     pointStart: Date.UTC(2012, 0, 1),
+                    //     pointInterval: 24 * 3600 * 1000
+                    // }
+                },
+                // navigator: {
+                //     adaptToUpdatedData: true,
+                //     series: {
+                //         data: data
+                //     }
+                // },
+                // scrollbar: {
+                //     liveRedraw: true
+                // },
+                navigator: {
+                    height: 20,
+                    margin: 10,
+                    // categories: time,
+                    // min: max_time,
+                },
+                scrollbar: {
+                    // enabled: false,
+                    enabled: true,
+                    // no scrollbar, only using rangeSelector
+                },
+                rangeSelector: {
+                    // height: 10,
+                    // enabled: false,
+                    selected: 0,// button index
+                    // The index of the button to appear pre-selected. 默认是：undefined.
+                    inputDateFormat: '%Y-%m-%d',//'%Y年%m月%d日'
+                    // inputDateFormat: '%Y年 %m月 %d日'
+                    // allButtonsEnabled: true,// highcharts-range-selector-buttons ???
+                    buttons: [
+                        // {
+                        //     type: 'day',
+                        //     count: 1,
+                        //     text: '一天',
+                        //     dataGrouping: {
+                        //         forced: true,
+                        //         units: [['day', [1]]]
+                        //     }
+                        // },
+                        // {
+                        //     type: 'week',
+                        //     count: 1,
+                        //     text: '一周',
+                        //     dataGrouping: {
+                        //         forced: true,
+                        //         units: [['week', [1]]]
+                        //     }
+                        // },
+                        // {
+                        //     type: 'month',
+                        //     count: 1,
+                        //     text: '一月',
+                        //     dataGrouping: {
+                        //         forced: true,
+                        //         units: [['month', [1]]]
+                        //     }
+                        // },
+                        // {
+                        //     type: 'month',
+                        //     count: 3,
+                        //     text: '三月',
+                        //     dataGrouping: {
+                        //         forced: true,
+                        //         units: [['month', [1]]]
+                        //     }
+                        // },
+                        // {
+                        //     type: 'month',
+                        //     count: 6,
+                        //     text: '六月',
+                        //     dataGrouping: {
+                        //         forced: true,
+                        //         units: [['month', [1]]]
+                        //     }
+                        // },
+                        // {
+                        //     type: 'year',
+                        //     count: 1,
+                        //     text: '一年',
+                        //     dataGrouping: {
+                        //         forced: true,
+                        //         units: [['year', [1]]]
+                        //     }
+                        // },
+                        // {
+                        //     type: 'all',
+                        //     text: '全部',
+                        //     dataGrouping: {
+                        //         forced: true,
+                        //         units: [['year', [1]]]
+                        //     }
+                        // }
+                    ],
+                    buttonTheme: {
+                        // width: 30,
+                        width: 0
+                    }
                 }
-            },
-            yAxis: [
-                {
-                    labels: {
-                        align: 'right',
-                        x: -3,
-                        // formatter: () => {
-                        //     console.log(`this.value`, this.value);
-                        //     // undefined
-                        //     // ??? -20 / 30
-                        //     return this.value > 0 ? `+${this.value}%` : `${this.value}%`;
-                        // },
-                    },
-                    title: {
-                        // text: '股价/上证指数',
-                        text: '股价'
-                    },
-                    // height: '60%',
-                    height: '70%',
-                    lineWidth: 2,
-                    plotLines: [{
-                        value: 0,
-                        width: 2,
-                        color: 'silver'
-                    }],
-                    // min: 0,
-                    opposite: false,// default true
-                },
-                {
-                    // opposite: true,
-                    labels: {
-                        align: 'left',
-                        x: 3
-                    },
-                    title: {
-                        text: '上证指数'
-                    },
-                    // height: '60%',
-                    height: '70%',
-                    offset: 0,
-                    lineWidth: 2,
-                    // min: 0,
-                },
-                {
-                    labels: {
-                        align: 'left',
-                        x: 3
-                    },
-                    title: {
-                        text: '成交量'
-                    },
-                    // top: '62.5%',
-                    // height: '37.5%',
-                    top: '72.5%',
-                    height: '27.5%',
-                    offset: 0,
-                    lineWidth: 2,
-                    // opposite: false,// default true
-                },
-                // {
-                //     labels: {
-                //         align: 'right',
-                //         x: 3
-                //     },
-                //     title: {
-                //         text: '成交量'
-                //     },
-                //     // top: '62.5%',
-                //     // height: '37.5%',
-                //     top: '82.5%',
-                //     height: '17.5%',
-                //     offset: 0,
-                //     lineWidth: 2
-                // }
-            ],
-            series: [
-                {
-                    // type: 'candlestick',
-                    type: 'line',// 样条 "spline"
-                    name: '股价',
-                    color: 'green',
-                    lineColor: 'green',
-                    upColor: 'red',
-                    upLineColor: 'red',
-                    tooltip: {
-                        // formatter: () => {
-                        //     return `
-                        //         <b> ${this.series.name} </b><br/>
-                        //     `;
-                        // },
-                        valueSuffix: ' 元'
-                    },
-                    // tooltip: {
-                    //     formatter: () => {
-                    //         return `
-                    //         <b> ${this.series.name} </b><br/>
-                    //         ${Highcharts.dateFormat('%Y年%m月%e日', this.x)}:
-                    //         ${this.y} m
-                    //         `;
-                    //     }
-                    // },
-                    navigatorOptions: {
-                        color: Highcharts.getOptions().colors[0]
-                    },
-                    data: ohlc,
-                    // dataGrouping: {
-                    //     units: groupingUnits
-                    // },
-                    yAxis: 0
-                    // compare: 'percent',
-                    // showInNavigator: true
-                },
-                {
-                    type: 'column',
-                    name: '成交量',
-                    data: volume,
-                    yAxis: 2,
-                    // dataGrouping: {
-                    //     units: groupingUnits
-                    // },
-                    tooltip: {
-                        // formatter: () => {
-                        //     return `
-                        //         <b> ${this.series.name} </b><br/>
-                        //     `;
-                        // },
-                        valueSuffix: ' 万手'
-                    },
-                },
-                {
-                    type: 'line',
-                    name: '上证指数',
-                    data: sh_index,
-                    color:"#1a75bc",
-                    yAxis: 1,
-                    // dataGrouping: {
-                    //     units: groupingUnits
-                    // },
-                    tooltip: {
-                        // formatter: () => {
-                        //     return `
-                        //         <b> ${this.series.name} </b><br/>
-                        //     `;
-                        // },
-                        valueSuffix: ' 点'
-                    },
-                },
-            ],
-            tooltip: {
-                xDateFormat: '%Y年 %m月 %d日',
-                shared: true,
-                // valueDecimals: 3
-            },
-            plotOptions: {
-                // series: {
-                //     pointStart: Date.UTC(2012, 0, 1),
-                //     pointInterval: 24 * 3600 * 1000
-                // }
-            },
-            // navigator: {
-            //     adaptToUpdatedData: true,
-            //     series: {
-            //         data: data
-            //     }
-            // },
-            // scrollbar: {
-            //     liveRedraw: true
-            // },
-            navigator: {
-                height: 20,
-                margin: 10
-            },
-            scrollbar: {
-                enabled: false,
-                // no scrollbar, only using rangeSelector
-            },
-        });
-        let no_zoom = document.querySelector(`.highcharts-range-selector-buttons`);
-        no_zoom.style.display = "none";
+            });
+            // let no_zoom = document.querySelector(`.highcharts-range-selector-buttons`);
+            // no_zoom.style.display = "none";
+        }, 0);
+        //
     }
 );
 
@@ -568,12 +579,13 @@ STOCK_F9_FV.Modules.SPTurnover.init = STOCK_F9_FV.Modules.SPTurnover.init || (
 
 
 STOCK_F9_FV.Modules.SPTurnover.init({
-    ip: STOCK_IP,
-    path: `${STOCK_Paths}/stockfast06/`,
-    gilcode: STOCK_SecCode
+    // ip: STOCK_IP,
+    // path: `${STOCK_Paths}/stockfast06/`,
+    // gilcode: STOCK_SecCode
     // ip: `http://10.1.5.202`,
-    // path: `/webservice/fastview/stock/stockfast06/`,
-    // gilcode: `600570.SH`
+    ip: `http://10.1.5.31`,
+    path: `/webservice/fastview/stock/stockfast06/`,
+    gilcode: `600580.SH`
 });
 
 // const url = `http://10.1.5.202/webservice/fastview/stock/${sf_num}/600570.SH`;

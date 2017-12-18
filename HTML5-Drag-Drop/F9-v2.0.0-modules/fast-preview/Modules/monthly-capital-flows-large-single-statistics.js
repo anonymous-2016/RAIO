@@ -137,6 +137,7 @@ STOCK_F9_FV.Modules.MCFLSStatistics.MCFLSSdrawHS = STOCK_F9_FV.Modules.MCFLSStat
             console.log(`purchase_amount = \n`, purchase_amount);
             console.log(`closing_price = \n`, closing_price);
         }
+        let max_time = (time.length-10);
         // datas
         const chart_css = {
             color: `#0B1016`,
@@ -197,8 +198,9 @@ STOCK_F9_FV.Modules.MCFLSStatistics.MCFLSSdrawHS = STOCK_F9_FV.Modules.MCFLSStat
             xAxis: {
                 // categories: ['2017-02', '2017-02', '2017-02', '2017-02', '2017-02'],
                 categories: time,
-                min: 0,
-                max: 8,
+                min: max_time,
+                // min: 0,
+                // max: 8,
                 // xAxis datas
                 // xAxis datas
                 labels: {

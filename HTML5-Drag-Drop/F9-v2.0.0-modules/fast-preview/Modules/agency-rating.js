@@ -164,8 +164,8 @@ STOCK_F9_FV.Modules.agencyRating.drawHS = STOCK_F9_FV.Modules.agencyRating.drawH
         //     stock_price = datas.stock_price,
         //     keep = datas.keep;
         let max_time = (time.length-10);// ???
-        console.log(`time.length = \n`, time.length);
-        console.log(`max_time = \n`, max_time);
+        // console.log(`time.length = \n`, time.length);
+        // console.log(`max_time = \n`, max_time);
         const chart_css = {
             color: `#0B1016`,
             colors: ['#ff1919', '#ffff66', '#92d050'],
@@ -251,7 +251,14 @@ STOCK_F9_FV.Modules.agencyRating.drawHS = STOCK_F9_FV.Modules.agencyRating.drawH
                         style: {
                             color: Highcharts.getOptions().colors[1]
                         }
-                    }
+                    },
+                    // stackLabels: {// stackLabels
+                    //     enabled: true,
+                    //     style: {
+                    //         fontWeight: 'bold',
+                    //         color: (Highcharts.theme && Highcharts.theme.textColor) || 'gray'
+                    //     }
+                    // }
                 }, // yAxis 2
                 {
                     // x: -50,
@@ -261,7 +268,14 @@ STOCK_F9_FV.Modules.agencyRating.drawHS = STOCK_F9_FV.Modules.agencyRating.drawH
                     // ceiling: 100,
                     // step: 10,
                     title: {
-                        text: '',
+                        text: 'xxx',
+                    },
+                    stackLabels: {// stackLabels
+                        // enabled: true,
+                        style: {
+                            fontWeight: 'bold',
+                            color: (Highcharts.theme && Highcharts.theme.textColor) || 'gray'
+                        }
                     },
                     opposite: true,
                     gridLineColor: '#2D3039'
@@ -310,7 +324,7 @@ STOCK_F9_FV.Modules.agencyRating.drawHS = STOCK_F9_FV.Modules.agencyRating.drawH
                     // stacking: 'null',
                     stacking: 'percent',// 百分比堆叠柱形图
                     dataLabels: {
-                        // enabled: true,
+                        enabled: true,
                         color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white'
                     }
                 },

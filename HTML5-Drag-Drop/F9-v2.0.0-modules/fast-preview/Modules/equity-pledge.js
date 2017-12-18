@@ -26,6 +26,24 @@ STOCK_F9_FV.Modules.equityPledge = STOCK_F9_FV.Modules.equityPledge || (
                     console.log(`data = \n`, data);
                 }
                 let arr = data;
+                if (Array.isArray(arr) && arr.length > 4) {
+                    //
+                }else{
+                    let l = 5 - arr.length;
+                    for (let i = 0; i < l; i++) {
+                        arr.push(
+                            {
+                                "ggrq": undefined,
+                                "czr": undefined,
+                                "zqr": undefined,
+                                "zygs": undefined,
+                                "zybl": undefined,
+                                "qsrq": undefined,
+                                "jzrq": undefined
+                            }
+                        );
+                    }
+                }
                 let html_string1 = ``,
                     html_string2 = ``,
                     html_string3 = ``,
@@ -38,13 +56,13 @@ STOCK_F9_FV.Modules.equityPledge = STOCK_F9_FV.Modules.equityPledge || (
                     (obj, i) => {
                         // ["ggrq", "czr", "zqr", "zygs", "zybl", "qsrq", "jzrq"]
                         // ["公告日期", "出质人", "质权人", "质押股数", "质押比例", "起始日期", "截止日期"]
-                        let announcement_date = (arr[i].ggrq !== undefined) ? arr[i].ggrq : `暂无 数据`,
-                            quality_people = (arr[i].czr !== undefined) ? arr[i].czr : `暂无 数据`,
-                            right_person = (arr[i].zqr !== undefined) ? arr[i].zqr : `暂无 数据`,
-                            pledged_shares = `${(arr[i].zygs !== undefined) ? arr[i].zygs : `暂无 数据`}`,
-                            pledge_ratio = (arr[i].zybl !== undefined) ? arr[i].zybl : `暂无 数据`,
-                            start_date = (arr[i].qsrq !== undefined) ? arr[i].qsrq : `暂无 数据`,
-                            deadline_date = (arr[i].jzrq !== undefined) ? arr[i].jzrq : `暂无 数据`;
+                        let announcement_date = (arr[i].ggrq !== undefined) ? arr[i].ggrq : `暂无数据`,
+                            quality_people = (arr[i].czr !== undefined) ? arr[i].czr : `暂无数据`,
+                            right_person = (arr[i].zqr !== undefined) ? arr[i].zqr : `暂无数据`,
+                            pledged_shares = `${(arr[i].zygs !== undefined) ? arr[i].zygs : `暂无数据`}`,
+                            pledge_ratio = (arr[i].zybl !== undefined) ? arr[i].zybl : `暂无数据`,
+                            start_date = (arr[i].qsrq !== undefined) ? arr[i].qsrq : `暂无数据`,
+                            deadline_date = (arr[i].jzrq !== undefined) ? arr[i].jzrq : `暂无数据`;
                         // 2012-10-18 = 2012/10/18
                         announcement_date = announcement_date.replace(/-/gi, `/`);
                         // const re = /(\d+)-(\d+)/;

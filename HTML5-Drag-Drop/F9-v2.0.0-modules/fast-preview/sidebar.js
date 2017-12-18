@@ -1804,7 +1804,7 @@ STOCK_F9_FV.Modules.modulesLoader = STOCK_F9_FV.Modules.modulesLoader ||(
                                                 <td class="fv-top-ten-shareholders-table-td-title fv-top-ten-shareholders-table-td-value" data-value="data-fv-top-ten-shareholders">时间</td>
                                                 <td class="fv-top-ten-shareholders-table-td-title">机构或基金名称</td>
                                                 <td class="fv-top-ten-shareholders-table-td-title">持有数量(股)</td>
-                                                <td class="fv-top-ten-shareholders-table-td-title">占流通股比例(%))</td>
+                                                <td class="fv-top-ten-shareholders-table-td-title">占流通股比例(%)</td>
                                                 <td class="fv-top-ten-shareholders-table-td-title">股本性质</td>
                                             </tr>
                                         </thead>
