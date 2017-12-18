@@ -63,7 +63,7 @@ Equity pledge
 股权质押
 equity-pledge
 
-Holdings participation 
+Holdings participation
 控股参股情况
 Holding status / Participation situation
 
@@ -110,10 +110,11 @@ research:研报，
 
 投资者关系 ??? template hidden
 
+# no-data.png
 
 
 
-每股指标: 
+每股指标:
 // CSS (元)
 {
     "syjb": "每股收益-基本",
@@ -156,7 +157,7 @@ let title = `${(arr[i].xwtitle !== undefined) ? arr[i].xwtitle : `🤓暂无 新
 
 
 {
-    
+
     "news": {
         name: "新闻",
         "xwtitle": "新闻标题",
@@ -200,7 +201,7 @@ let title = `${(arr[i].xwtitle !== undefined) ? arr[i].xwtitle : `🤓暂无 新
     "stockfast02": {
         name: "近期重要事项 / 近期中重要事项",
         rq: "日期",
-        sj: "事件", 
+        sj: "事件",
         nr: "内容"// 更多>> ???
     },
     "stockfast03": {
@@ -302,10 +303,10 @@ let title = `${(arr[i].xwtitle !== undefined) ? arr[i].xwtitle : `🤓暂无 新
     },
     "stockfast12": {
         name: "高管持股变动情况",
-        "bdr": "变动截止日",// 变动日期	
+        "bdr": "变动截止日",// 变动日期
         "mc": "股东名称",// 变动人姓名
         "fx": "方向",// 变动方向
-        "sl": "变动数量",// 变动股份数量(股)	
+        "sl": "变动数量",// 变动股份数量(股)
         "glgg": "关联高管",// 成交均价(元)
         "jyjj": "交易均价"
         // 变动比例(‰)
@@ -407,7 +408,7 @@ http://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/sample
     svg_legend.lastChild.setAttribute(`height`, 10);
     svg_legend.lastChild.setAttribute(`rx`, 0);
     svg_legend.lastChild.setAttribute(`ry`, 0);
-    /* 
+    /*
         <rect x="2" y="4" width="17" height="12" fill="#1a75bc" rx="0" ry="0" class="highcharts-point"></rect>
         <rect x="0" y="5" width="17" height="10" fill="#1a75bc" rx="0" ry="0" class="highcharts-point"></rect>
     */

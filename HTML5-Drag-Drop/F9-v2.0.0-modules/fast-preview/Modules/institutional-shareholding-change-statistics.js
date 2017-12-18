@@ -73,7 +73,8 @@ STOCK_F9_FV.Modules.ISCstatistics = STOCK_F9_FV.Modules.ISCstatistics || (
                         let time = ``, shares = ``, stock_price = ``;
                         time = (obj.sj !== undefined) ? obj.sj : `😟 暂无数据`;
                         // no string, just keep number!
-                        shares = (obj.bl !== undefined) ? obj.bl : `😟 暂无数据`;
+                        // toFixed(2) & string
+                        shares = (obj.bl !== undefined) ? parseFloat((obj.bl).toFixed(2)) : `😟 暂无数据`;
                         stock_price = (obj.gj !== undefined) ? obj.gj : `😟 暂无数据`;
                         arr_obj.time.push(time);
                         arr_obj.shares.push(shares);

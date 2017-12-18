@@ -78,6 +78,13 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects
 
 https://stackoverflow.com/questions/11695618/dealing-with-float-precision-in-javascript
 
+```js
+
+shares = (obj.bl !== undefined) ? parseFloat((obj.bl).toFixed(2)) : `😟 暂无数据`;
+
+```
+
+
 ***
 
 

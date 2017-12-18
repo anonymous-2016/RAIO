@@ -22,3 +22,8 @@ Math.round(68.5100000000002);
 // 69
 Math.round(68.4900000000002);
 // 68
+
+
+
+let shares = (obj.bl !== undefined) ? parseFloat((68.5500000000002).toFixed(2)) : `😟 暂无数据`;
+// 68.55
