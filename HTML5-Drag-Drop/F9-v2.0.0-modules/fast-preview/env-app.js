@@ -1,12 +1,138 @@
 // node.js & process.env
 
+console.log(`process version: \n ${process.version}`);
+// v8.9.1
+console.log(`process versions: \n ${process.versions}`);
+
+console.log(`process title: \n ${process.title}`);
+// npm
+console.log(`process moduleLoadList: \n ${process.moduleLoadList}`);
+
+/*
+Binding contextify,Binding natives,Binding config,NativeModule events,Binding async_wrap,Binding icu,NativeModule util,NativeModule internal/errors,NativeModule internal/encoding,NativeModule internal/util,Binding util,Binding constants,NativeModule internal/util/types,Binding buffer,NativeModule buffer,NativeModule internal/buffer,Binding uv,NativeModule internal/process,NativeModule internal/process/warning,NativeModule internal/process/next_tick,NativeModule async_hooks,NativeModule internal/process/promises,NativeModule internal/process/stdio,Binding performance,NativeModule perf_hooks,NativeModule internal/linkedlist,NativeModule internal/inspector_async_hook,Binding inspector,NativeModule timers,Binding timer_wrap,NativeModule assert,NativeModule module,NativeModule internal/module,NativeModule internal/url,NativeModule internal/querystring,NativeModule querystring,Binding url,NativeModule vm,NativeModule fs,NativeModule path,Binding fs,NativeModule stream,NativeModule internal/streams/legacy,NativeModule _stream_readable,NativeModule internal/streams/BufferList,NativeModule internal/streams/destroy,NativeModule _stream_writable,NativeModule _stream_duplex,NativeModule _stream_transform,NativeModule _stream_passthrough,Binding fs_event_wrap,NativeModule
+internal/fs,NativeModule internal/loader/Loader,NativeModule internal/loader/ModuleWrap,Internal Binding module_wrap,NativeModule internal/loader/ModuleMap,NativeModule internal/loader/ModuleJob,NativeModule internal/safe_globals,NativeModule internal/loader/ModuleRequest,NativeModule url,NativeModule internal/loader/search,NativeModule console,Binding tty_wrap,NativeModule tty,NativeModule net,NativeModule internal/net,Binding cares_wrap,Binding tcp_wrap,Binding pipe_wrap,Binding stream_wrap,NativeModule dns,NativeModule readline,NativeModule string_decoder,NativeModule internal/readline,Binding signal_wrap
+
+*/
+console.log(`process arch: \n ${process.arch}`);
+// x64
+console.log(`process platform: \n ${process.platform}`);
+// win32
+console.log(`process release: \n ${process.release}`);
+
+
+
+console.log(`process argv: \n ${process.argv}`);
+console.log(`process config: \n ${process.config}`);
+//
+console.log(`process pid: \n ${process.pid}`);
+// 5840
+console.log(`process cpuUsage: \n ${process.cpuUsage}`);
+// function
+
+// console.log(`process object \n`, JSON.stringify(process, null, 4));
+let keys = Object.keys(process),
+    values = Object.values(process);
+
+// console.log(`process keys \n`, JSON.stringify(keys, null, 4));
+// console.log(`process values \n`, values);
+// console.log(`process values \n`, JSON.stringify(values, null, 4));
 
 // console.log(`process.env \n`, process.env);
+// console.log(`process.env \n`, JSON.stringify(process.env, null, 4));
 
 
-console.log(`process.env \n`, JSON.stringify(process.env, null, 4));
+// The process.cwd() method returns the current working directory of the Node.js process.
+// console.log(`Current directory: ${process.cwd()}`);
 
 
+/*
+
+process.env.test = null;
+console.log(process.env.test);
+// => 'null'
+
+process.env.test = undefined;
+console.log(process.env.test);
+// => 'undefined'
+
+
+process.env.TEST = 1;
+delete process.env.TEST;
+console.log(process.env.TEST);
+// => undefined
+
+// On Windows operating systems, environment variables are case-insensitive.
+
+process.env.TEST = 1;
+console.log(process.env.test);
+// => 1
+
+*/
+
+/*
+
+process keys
+ [
+    "title",
+    "version",
+    "moduleLoadList",
+    "versions",
+    "arch",
+    "platform",
+    "release",
+    "argv",
+    "execArgv",
+    "env",
+    "pid",
+    "features",
+    "_needImmediateCallback",
+    "execPath",
+    "debugPort",
+    "_startProfilerIdleNotifier",
+    "_stopProfilerIdleNotifier",
+    "_getActiveRequests",
+    "_getActiveHandles",
+    "reallyExit",
+    "abort",
+    "chdir",
+    "cwd",
+    "umask",
+    "_kill",
+    "_debugProcess",
+    "_debugPause",
+    "_debugEnd",
+    "hrtime",
+    "cpuUsage",
+    "dlopen",
+    "uptime",
+    "memoryUsage",
+    "binding",
+    "_linkedBinding",
+    "_setupDomainUse",
+    "_events",
+    "_rawDebug",
+    "_eventsCount",
+    "domain",
+    "_maxListeners",
+    "_fatalException",
+    "_exiting",
+    "assert",
+    "config",
+    "emitWarning",
+    "nextTick",
+    "_tickCallback",
+    "_tickDomainCallback",
+    "stdout",
+    "stderr",
+    "stdin",
+    "openStdin",
+    "exit",
+    "kill",
+    "argv0",
+    "mainModule"
+]
+
+*/
 
 
 /*
