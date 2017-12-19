@@ -2,9 +2,10 @@
 .fv-stock-price-turnover-hs {
     margin: 0 auto;
     box-sizing: border-box;
-    /* border: 1px solid red; */
-    /* border: 1px solid rgba(229, 229, 229, 1); */
+    /* border: 1px solid red;
+    border: 1px solid rgba(229, 229, 229, 1); */
     border: 1px solid #d7dbe0;
+    /* border-top: 0; */
 }
 
 .fv-stock-price-turnover-title,
@@ -48,4 +49,9 @@
     width: 0;
     height: 16px;
     /* line-height: 22px; */
+}
+
+[data-title-box="stock-title"] {
+    background: #f00;
+    margin: 10px auto;
 }
