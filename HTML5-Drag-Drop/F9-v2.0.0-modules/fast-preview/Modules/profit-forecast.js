@@ -27,104 +27,115 @@ STOCK_F9_FV.Modules.profitForecast = STOCK_F9_FV.Modules.profitForecast || (
                 if (debug) {
                     console.log(`data = \n`, json);
                 }
-                let strs = json.map(
-                    (obj) => {
-                        if (debug) {
-                            console.log(obj.rq);
-                        }
-                        return obj.rq;
-                        //return num = parseInt(obj.rq.replace(/-/g, ``));
-                    }
-                );
-                strs = strs.sort();
-                arr = strs.map(
-                    (date) => {
-                        // "2007-04-30"
-                        for (var i = 0; i < strs.length; i++) {
-                            if(date === arr[i].rq){
-                                return arr[i];
-                            }
-                        }
-                        // return arr[i];
-                    }
-                );
-                let keys = Object.keys(arr[0]);
-                const arr_obj = {};
-                keys.forEach(
-                    (key, index) => {
-                        // as / alias
-                        let new_key = ``;
-                        switch (key) {
-                            case "rq":
-                                new_key = `time`;
-                                break;
-                            case "st":
-                                new_key = `up`;
-                                break;
-                            case "xt":
-                                new_key = `down`;
-                                break;
-                            case "pj":
-                                new_key = `average`;
-                                break;
-                            case "wc":
-                                new_key = `keep`;
-                                break;
-                            default:
-                                new_key = `暂无数据`;
-                                break;
-                        }
-                        arr_obj[new_key] = [];
-                    }
-                );
-                if (debug) {
-                    console.log(`arr_obj = `, JSON.stringify(arr_obj, null, 4));
-                }
-                let counter = 1;
-                arr.map(
-                    (obj, i) => {
-                        // console.log(`obj = `, JSON.stringify(obj, null, 4));
-                        let time = ``, up = ``, down = ``, average = ``, keep = ``;
-                        // let time = up = down = average = keep = ``;
-                        // ReferenceError: keep is not defined
-                        // time.push();
-                        // time = `${(obj.rq !== undefined) ? obj.rq : `暂无数据`}`;
-                        time = (obj.rq !== undefined) ? obj.rq : `暂无数据`;
-                        // no string, just keep number!
-                        up = (obj.st !== undefined) ? obj.st : `暂无数据`;
-                        down = (obj.xt !== undefined) ? obj.xt : `暂无数据`;
-                        // average = -1.7976931348623157e+308;
-                        average = (obj.pj !== undefined) ? (obj.pj >= 0 ? obj.pj : null) : `暂无数据`;
-                        // average = (obj.pj !== undefined) ? (obj.pj >= 0 ? obj.pj : `--`) : `暂无数据`;
-                        // invalid value === 展示“--”
-                        keep = (obj.wc !== undefined) ? obj.wc : `暂无数据`;
-                        // arr[i] ??? bug
-                        // console.log(`keep = `, keep);
-                        arr_obj.time.push(time);
-                        arr_obj.up.push(up);
-                        arr_obj.down.push(down);
-                        arr_obj.average.push(average);
-                        arr_obj.keep.push(keep);
-                        // return arr_obj;
-                        if (counter === 1) {
+                if (Array.isArray(arr) && arr.length > 0){
+                    let strs = json.map(
+                        (obj) => {
                             if (debug) {
-                                console.log(`arr_obj = `, JSON.stringify(arr_obj, null, 4));
+                                console.log(obj.rq);
                             }
-                            counter ++;
+                            return obj.rq;
+                            //return num = parseInt(obj.rq.replace(/-/g, ``));
                         }
+                    );
+                    strs = strs.sort();
+                    arr = strs.map(
+                        (date) => {
+                            // "2007-04-30"
+                            for (var i = 0; i < strs.length; i++) {
+                                if(date === arr[i].rq){
+                                    return arr[i];
+                                }
+                            }
+                            // return arr[i];
+                        }
+                    );
+                    let keys = Object.keys(arr[0]);
+                    const arr_obj = {};
+                    keys.forEach(
+                        (key, index) => {
+                            // as / alias
+                            let new_key = ``;
+                            switch (key) {
+                                case "rq":
+                                    new_key = `time`;
+                                    break;
+                                case "st":
+                                    new_key = `up`;
+                                    break;
+                                case "xt":
+                                    new_key = `down`;
+                                    break;
+                                case "pj":
+                                    new_key = `average`;
+                                    break;
+                                case "wc":
+                                    new_key = `keep`;
+                                    break;
+                                default:
+                                    new_key = `暂无数据`;
+                                    break;
+                            }
+                            arr_obj[new_key] = [];
+                        }
+                    );
+                    if (debug) {
+                        console.log(`arr_obj = `, JSON.stringify(arr_obj, null, 4));
                     }
-                );
-                if (debug) {
-                    console.log(`arr_obj = `, JSON.stringify(arr_obj, null, 4));
+                    let counter = 1;
+                    arr.map(
+                        (obj, i) => {
+                            // console.log(`obj = `, JSON.stringify(obj, null, 4));
+                            let time = ``, up = ``, down = ``, average = ``, keep = ``;
+                            // let time = up = down = average = keep = ``;
+                            // ReferenceError: keep is not defined
+                            // time.push();
+                            // time = `${(obj.rq !== undefined) ? obj.rq : `暂无数据`}`;
+                            time = (obj.rq !== undefined) ? obj.rq : `暂无数据`;
+                            // no string, just keep number!
+                            up = (obj.st !== undefined) ? obj.st : `暂无数据`;
+                            down = (obj.xt !== undefined) ? obj.xt : `暂无数据`;
+                            // average = -1.7976931348623157e+308;
+                            average = (obj.pj !== undefined) ? (obj.pj >= 0 ? obj.pj : null) : `暂无数据`;
+                            // average = (obj.pj !== undefined) ? (obj.pj >= 0 ? obj.pj : `--`) : `暂无数据`;
+                            // invalid value === 展示“--”
+                            keep = (obj.wc !== undefined) ? obj.wc : `暂无数据`;
+                            // arr[i] ??? bug
+                            // console.log(`keep = `, keep);
+                            arr_obj.time.push(time);
+                            arr_obj.up.push(up);
+                            arr_obj.down.push(down);
+                            arr_obj.average.push(average);
+                            arr_obj.keep.push(keep);
+                            // return arr_obj;
+                            if (counter === 1) {
+                                if (debug) {
+                                    console.log(`arr_obj = `, JSON.stringify(arr_obj, null, 4));
+                                }
+                                counter ++;
+                            }
+                        }
+                    );
+                    if (debug) {
+                        console.log(`arr_obj = `, JSON.stringify(arr_obj, null, 4));
+                    }
+                    // let {...arr_obj} = {rq: [], st: [], xt: [], pj: [], wc: []};
+                    // Object.assign()
+                    // arr.forEach() just use for addEventListener() / do somthing, no return value / undefined!
+                    // arr.map(), return an shaped new array!
+                    datas = Object.assign(datas, arr_obj);
+                    // return Object.assign(datas, arr_obj);
+                    // return arr_obj;
+                    STOCK_F9_FV.Modules.profitForecast.drawHS(datas, uid);
+                }else{
+                    // console.log(`json is empty! = \n`, json);
+                    // alert(`暂无数据!`);
+                    datas.time = [];
+                    datas.up = [];
+                    datas.down = [];
+                    datas.average = [];
+                    datas.keep = [];
+                    STOCK_F9_FV.Modules.profitForecast.drawHS(datas, uid);
                 }
-                // let {...arr_obj} = {rq: [], st: [], xt: [], pj: [], wc: []};
-                // Object.assign()
-                // arr.forEach() just use for addEventListener() / do somthing, no return value / undefined!
-                // arr.map(), return an shaped new array!
-                datas = Object.assign(datas, arr_obj);
-                // return Object.assign(datas, arr_obj);
-                // return arr_obj;
-                STOCK_F9_FV.Modules.profitForecast.drawHS(datas, uid);
             }
         )
         .catch(error => console.log(`error = \n`, error));
@@ -198,24 +209,31 @@ STOCK_F9_FV.Modules.profitForecast.drawHS = STOCK_F9_FV.Modules.profitForecast.d
         // });
         Highcharts.setOptions({
             lang: {
-                noData: '暂无数据'
+                // noData: '暂无数据',
+                noData:  `
+                    <p data-none="no-data-hc">
+                        <span data-none="no-data-span"></span>
+                    </p>
+                `,
+                loading: `Loading....`,
             }
         });
         Highcharts.chart(container_uid, {
             noData: {// all defualt value
-                attr: undefined,
-                position: {
-                    align: `center`,
-                    verticalAlign: `middle`,
-                    x: 0,
-                    y: 0,
-                },
-                style: {
-                    color: `#666666`,
-                    fontSize: `12px`,
-                    fontWeight: `bold`
-                },
-                useHTML: false,
+                // attr: undefined,
+                // position: {
+                //     align: `center`,
+                //     verticalAlign: `middle`,
+                //     x: 0,
+                //     y: 0,
+                // },
+                // style: {
+                //     color: `#666666`,
+                //     fontSize: `12px`,
+                //     fontWeight: `bold`
+                // },
+                useHTML: true,
+                // useHTML: false,
             },
             /* rangeSelector: {
                 selected: 4
@@ -375,14 +393,16 @@ STOCK_F9_FV.Modules.profitForecast.drawHS = STOCK_F9_FV.Modules.profitForecast.d
                     stacking: 'percent',// 百分比堆叠柱形图
                     dataLabels: {
                         enabled: true,
-                        color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white'
+                        // color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white',
+                        // color: "#7cb5ec",
+                        color: "#434348"
                     }
                 },
                 spline: {
                     // stacking: 'normal',
                     dataLabels: {
-                        // enabled: true,
-                        color: "#7cb5ec"
+                        enabled: true,
+                        color: "#434348"
                     }
                 }
             },
@@ -419,7 +439,7 @@ STOCK_F9_FV.Modules.profitForecast.drawHS = STOCK_F9_FV.Modules.profitForecast.d
                         `,
                         pointFormat: `
                             <span style="color:{point.color}">\u25CF</span>
-                            {series.name}: <b>{point.y}</b><br/>
+                            {series.name}: <b>{point.y} 元</b><br/>
                         `,
                         // <span style="color:{point.color}">\u25CF</span> 百分比 :{point.percentage:.0f}%
                     },
@@ -464,7 +484,7 @@ STOCK_F9_FV.Modules.profitForecast.init = STOCK_F9_FV.Modules.profitForecast.ini
 STOCK_F9_FV.Modules.profitForecast.init({
     ip: STOCK_IP,
     path: `${STOCK_Paths}/stockfast03/`,
-    gilcode: STOCK_SecCode
+    gilcode: STOCK_SecCode,
     // ip: `http://10.1.5.202`,
     // path: `/webservice/fastview/stock/stockfast03/`,
     // gilcode: `600570.SH`

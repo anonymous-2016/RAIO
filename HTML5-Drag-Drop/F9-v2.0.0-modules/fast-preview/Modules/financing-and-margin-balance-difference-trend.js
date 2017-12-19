@@ -100,8 +100,12 @@ STOCK_F9_FV.Modules.FMBDtrend = STOCK_F9_FV.Modules.FMBDtrend || (
                     datas = Object.assign(datas, arr_obj);
                     STOCK_F9_FV.Modules.FMBDtrend.FMBDTdrawHS(datas, uid);
                 }else{
-                    console.log(`json is empty! = \n`, json);
+                    // console.log(`json is empty! = \n`, json);
                     // alert(`暂无数据!`);
+                    datas.time = [];
+                    datas.shares = [];
+                    datas.stock_price = [];
+                    STOCK_F9_FV.Modules.FMBDtrend.FMBDTdrawHS(datas, uid);
                 }
             }
         )
@@ -149,25 +153,32 @@ STOCK_F9_FV.Modules.FMBDtrend.FMBDTdrawHS = STOCK_F9_FV.Modules.FMBDtrend.FMBDTd
         // no data
         Highcharts.setOptions({
             lang: {
-                noData: '暂无数据'
+                // noData: '暂无数据',
+                noData:  `
+                    <p data-none="no-data-hc">
+                        <span data-none="no-data-span"></span>
+                    </p>
+                `,
+                // <h1>No Data to Show, now!</h1>
+                // CSS & content: url("../img/no-data.png");
+                loading: `Loading....`,
             }
         });
         Highcharts.chart(container_uid, {
             noData: {// all defualt value
-                attr: undefined,
-                position: {
-                    align: `center`,
-                    verticalAlign: `middle`,
-                    x: 0,
-                    y: 0,
-                },
-                style: {
-                    color: `#666666`,
-                    fontSize: `12px`,
-                    fontWeight: `bold`
-                },
+                // attr: undefined,
+                // position: {
+                //     align: `center`,
+                //     verticalAlign: `middle`,
+                //     x: 0,
+                //     y: 0,
+                // },
+                // style: {
+                //     color: `#666666`,
+                //     fontSize: `12px`,
+                //     fontWeight: `bold`
+                // },
                 useHTML: true,
-                // <h1>No Data to Show, now!</h1>
             },
             chart: {
                 type: 'column',
@@ -273,17 +284,17 @@ STOCK_F9_FV.Modules.FMBDtrend.FMBDTdrawHS = STOCK_F9_FV.Modules.FMBDtrend.FMBDTd
             },
             // tooltip ??? array
             tooltip: {
-                shared: true,// ???
+                shared: true,// shared 元
                 headerFormat: `
                     <strong>
                         {point.x}
                     </strong>
                     <br/>
-                `,
+                `,// title 万元
                 pointFormat: `
                     <span style="color:{point.color}">\u25CF</span>
-                    {series.name}: {point.y}<br/>
-                `,
+                    {series.name}: {point.y} 元<br/>
+                `,// items
                 // <span style="color:{point.color}">\u25CF</span> 百分比 :{point.percentage:.0f}%
                 // 总数/总共/总量/总额/共有/总数
                 // {${point.stackTotal ? point.stackTotal : point.y}} ???
@@ -312,17 +323,24 @@ STOCK_F9_FV.Modules.FMBDtrend.FMBDTdrawHS = STOCK_F9_FV.Modules.FMBDtrend.FMBDTd
             },
             series: [
                 {
-                    name: '净利润',
+                    name: '融资余额与融券余额差值差值',
                     // type = column (chart)
                     // 净利润/融资余额与融券余额差值
                     data: shares,
-                    color: `#1a75bc`
+                    color: `#1a75bc`,
+                    tooltip: {
+                        pointFormat: `
+                            <span style="color:{point.color}">\u25CF</span>
+                            {series.name}: {point.y} 元<br/>
+                        `,// items 万元
+                    }
                 },
                 {
                     type:'spline',
                     yAxis: 1,
-                    color:"#fbb728",
-                    name: '每股收益',
+                    color: "#fbb728",
+                    // name: '每股收益',
+                    name: '股价',
                     // data: [3, 4, 4, 2, 5],
                     data: stock_price,
                     connectNulls: true,// OK
@@ -376,11 +394,12 @@ STOCK_F9_FV.Modules.FMBDtrend.init({
     gilcode: STOCK_SecCode
     // ip: `http://10.1.5.202`,
     // path: `/webservice/fastview/stock/stockfast08/`,
+    // gilcode: `600590.SH`,
     // gilcode: `600570.SH`
 });
 // const url = `http://10.1.5.202/webservice/fastview/stock/${sf_num}/600570.SH`;
 
-
+// http://10.1.5.202/stock/f9/fastview/sidebar.html?gilcode=600590.SH
 
 
 

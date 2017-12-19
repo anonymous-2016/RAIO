@@ -2,6 +2,7 @@
 
 /* @import url('./reset.css'); */
 
+@import url('./no-data.css');
 
 /* bug ??? */
 
@@ -202,7 +203,7 @@ body {
     min-width: 542px;
     max-width: 542px;
     /* width: calc(100% - 6px); */
-    min-height: 100px;
+    /* min-height: 100px; */
     height: 100%;
     /* margin-left: 6px; */
     /* float: left; */

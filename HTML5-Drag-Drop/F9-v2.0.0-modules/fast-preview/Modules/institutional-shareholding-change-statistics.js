@@ -27,66 +27,76 @@ STOCK_F9_FV.Modules.ISCstatistics = STOCK_F9_FV.Modules.ISCstatistics || (
                 if (debug) {
                     console.log(`data = \n`, json);
                 }
-                let strs = json.map(
-                    (obj) => {
-                        return obj.sj;
-                        //return num = parseInt(obj.sj.replace(/-/g, ``));
-                    }
-                );
-                strs = strs.sort();
-                arr = strs.map(
-                    (date) => {
-                        for (var i = 0; i < strs.length; i++) {
-                            if(date === arr[i].sj){
-                                return arr[i];
+                if (Array.isArray(arr) && arr.length > 0) {
+                    let strs = json.map(
+                        (obj) => {
+                            return obj.sj;
+                            //return num = parseInt(obj.sj.replace(/-/g, ``));
+                        }
+                    );
+                    strs = strs.sort();
+                    arr = strs.map(
+                        (date) => {
+                            for (var i = 0; i < strs.length; i++) {
+                                if(date === arr[i].sj){
+                                    return arr[i];
+                                }
+                            }
+                            // return arr[i];
+                        }
+                    );
+                    let keys = Object.keys(arr[0]);
+                    const arr_obj = {};
+                    keys.forEach(
+                        (key, index) => {
+                            // as / alias
+                            let new_key = ``;
+                            switch (key) {
+                                case "sj":
+                                    new_key = `time`;
+                                    break;
+                                case "bl":
+                                    new_key = `shares`;
+                                    break;
+                                case "gj":
+                                    new_key = `stock_price`;
+                                    break;
+                                default:
+                                    new_key = `😟 暂无数据`;
+                                    break;
+                            }
+                            arr_obj[new_key] = [];
+                        }
+                    );
+                    let counter = 1;
+                    arr.map(
+                        (obj, i) => {
+                            let time = ``, shares = ``, stock_price = ``;
+                            time = (obj.sj !== undefined) ? obj.sj : `😟 暂无数据`;
+                            // no string, just keep number!
+                            // toFixed(2) & string
+                            shares = (obj.bl !== undefined) ? parseFloat((obj.bl).toFixed(2)) : `😟 暂无数据`;
+                            stock_price = (obj.gj !== undefined) ? obj.gj : `😟 暂无数据`;
+                            arr_obj.time.push(time);
+                            arr_obj.shares.push(shares);
+                            arr_obj.stock_price.push(stock_price);
+                            if (debug && counter === 1) {
+                                console.log(`arr_obj = `, JSON.stringify(arr_obj, null, 4));
+                                counter ++;
                             }
                         }
-                        // return arr[i];
-                    }
-                );
-                let keys = Object.keys(arr[0]);
-                const arr_obj = {};
-                keys.forEach(
-                    (key, index) => {
-                        // as / alias
-                        let new_key = ``;
-                        switch (key) {
-                            case "sj":
-                                new_key = `time`;
-                                break;
-                            case "bl":
-                                new_key = `shares`;
-                                break;
-                            case "gj":
-                                new_key = `stock_price`;
-                                break;
-                            default:
-                                new_key = `😟 暂无数据`;
-                                break;
-                        }
-                        arr_obj[new_key] = [];
-                    }
-                );
-                let counter = 1;
-                arr.map(
-                    (obj, i) => {
-                        let time = ``, shares = ``, stock_price = ``;
-                        time = (obj.sj !== undefined) ? obj.sj : `😟 暂无数据`;
-                        // no string, just keep number!
-                        // toFixed(2) & string
-                        shares = (obj.bl !== undefined) ? parseFloat((obj.bl).toFixed(2)) : `😟 暂无数据`;
-                        stock_price = (obj.gj !== undefined) ? obj.gj : `😟 暂无数据`;
-                        arr_obj.time.push(time);
-                        arr_obj.shares.push(shares);
-                        arr_obj.stock_price.push(stock_price);
-                        if (debug && counter === 1) {
-                            console.log(`arr_obj = `, JSON.stringify(arr_obj, null, 4));
-                            counter ++;
-                        }
-                    }
-                );
-                datas = Object.assign(datas, arr_obj);
-                STOCK_F9_FV.Modules.ISCstatistics.ISCSdrawHS(datas, uid);
+                    );
+                    datas = Object.assign(datas, arr_obj);
+                    STOCK_F9_FV.Modules.ISCstatistics.ISCSdrawHS(datas, uid);
+                }else{
+                    // console.log(`json is empty! = \n`, json);
+                    // alert(`暂无数据!`);
+                    datas.time = [];
+                    datas.shares = [];
+                    datas.stock_price = [];
+                    STOCK_F9_FV.Modules.ISCstatistics.ISCSdrawHS(datas, uid);
+                }
+
             }
         )
         .catch(error => console.log(`error = \n`, error));
@@ -134,24 +144,30 @@ STOCK_F9_FV.Modules.ISCstatistics.ISCSdrawHS = STOCK_F9_FV.Modules.ISCstatistics
             yAxisColor = chart_css.yAxisColor;
         Highcharts.setOptions({
             lang: {
-                noData: '暂无数据'
+                // noData: '暂无数据',
+                noData:  `
+                    <p data-none="no-data-hc">
+                        <span data-none="no-data-span"></span>
+                    </p>
+                `,
+                loading: `Loading....`,
             }
         });
         Highcharts.chart(container_uid, {
             noData: {// all defualt value
-                attr: undefined,
-                position: {
-                    align: `center`,
-                    verticalAlign: `middle`,
-                    x: 0,
-                    y: 0,
-                },
-                style: {
-                    color: `#666666`,
-                    fontSize: `12px`,
-                    fontWeight: `bold`
-                },
-                useHTML: false,
+                // attr: undefined,
+                // position: {
+                //     align: `center`,
+                //     verticalAlign: `middle`,
+                //     x: 0,
+                //     y: 0,
+                // },
+                // style: {
+                //     color: `#666666`,
+                //     fontSize: `12px`,
+                //     fontWeight: `bold`
+                // },
+                useHTML: true,
             },
             /* rangeSelector: {
                 selected: 4
@@ -200,7 +216,7 @@ STOCK_F9_FV.Modules.ISCstatistics.ISCSdrawHS = STOCK_F9_FV.Modules.ISCstatistics
                     // x: -50,
                     // y: -50,
                     min: 0,
-                    max: 100,
+                    max: 100,// 100%
                     title: {
                         text: '',
                         // text: 'Total fruit consumption'
@@ -262,17 +278,17 @@ STOCK_F9_FV.Modules.ISCstatistics.ISCSdrawHS = STOCK_F9_FV.Modules.ISCstatistics
             },
             // tooltip ??? array
             tooltip: {
-                shared: true,
+                shared: true,// shared 元
                 headerFormat: `
                     <strong>
                         {point.x}
                     </strong>
                     <br/>
-                `,
+                `,// title 万元
                 pointFormat: `
                     <span style="color:{point.color}">\u25CF</span>
-                    {series.name}: {point.y}<br/>
-                `,
+                    {series.name}: {point.y}%<br/>
+                `,// items
                 // <span style="color:{point.color}">\u25CF</span> 百分比 :{point.percentage:.0f}%
                 // 总数/总共/总量/总额/共有/总数
                 // {${point.stackTotal ? point.stackTotal : point.y}} ???
@@ -287,14 +303,14 @@ STOCK_F9_FV.Modules.ISCstatistics.ISCSdrawHS = STOCK_F9_FV.Modules.ISCstatistics
                     // stacking: 'null',
                     // stacking: 'percent',// 百分比堆叠柱形图
                     dataLabels: {
-                        enabled: true,
+                        // enabled: true,
                         color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white'
                     }
                 },
                 spline: {
                     // stacking: 'normal',
                     dataLabels: {
-                        // enabled: true,
+                        enabled: true,
                         color: "#434348"
                     }
                 }
@@ -315,15 +331,15 @@ STOCK_F9_FV.Modules.ISCstatistics.ISCSdrawHS = STOCK_F9_FV.Modules.ISCstatistics
                     data: stock_price,
                     connectNulls: true,// OK
                     tooltip: {
-                        headerFormat: `
-                            <strong>
-                                {point.x}
-                            </strong>
-                            <br/>
-                        `,
+                        // headerFormat: `
+                        //     <strong>
+                        //         {point.x}
+                        //     </strong>
+                        //     <br/>
+                        // `,
                         pointFormat: `
                             <span style="color:{point.color}">\u25CF</span>
-                            {series.name}: <b>{point.y}</b><br/>
+                            {series.name}: <b>{point.y} 元</b><br/>
                         `,
                         // <span style="color:{point.color}">\u25CF</span> 百分比 :{point.percentage:.0f}%
                     },
@@ -367,5 +383,7 @@ STOCK_F9_FV.Modules.ISCstatistics.init({
 });
 
 // const url = `http://10.1.5.202/webservice/fastview/stock/${sf_num}/600570.SH`;
+// const url = `http://10.1.5.202/webservice/fastview/stock/stockfast13/600570.SH`;
+// const url = `http://10.1.5.202/webservice/fastview/stock/stockfast13/600590.SH`;
 
 

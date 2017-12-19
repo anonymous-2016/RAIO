@@ -27,83 +27,92 @@ STOCK_F9_FV.Modules.MCFLSStatistics = STOCK_F9_FV.Modules.MCFLSStatistics || (
                 if (debug) {
                     console.log(`data = \n`, json);
                 }
-                let strs = json.map(
-                    (obj) => {
-                        if (debug) {
-                            console.log(obj.sj);
-                        }
-                        return obj.sj;
-                        //return num = parseInt(obj.sj.replace(/-/g, ``));
-                    }
-                );
-                strs = strs.sort();
-                arr = strs.map(
-                    (date) => {
-                        for (var i = 0; i < strs.length; i++) {
-                            if(date === arr[i].sj){
-                                return arr[i];
-                            }
-                        }
-                        // return arr[i];
-                    }
-                );
-                let keys = Object.keys(arr[0]);
-                const arr_obj = {};
-                keys.forEach(
-                    (key, index) => {
-                        // as / alias
-                        let new_key = ``;
-                        switch (key) {
-                            case "sj":
-                                new_key = `time`;
-                                break;
-                            case "bl":
-                                new_key = `purchase_amount`;
-                                break;
-                            case "gj":
-                                new_key = `closing_price`;
-                                break;
-                            default:
-                                new_key = `😟 暂无数据`;
-                                break;
-                        }
-                        arr_obj[new_key] = [];
-                    }
-                );
-                if (debug) {
-                    console.log(`arr_obj = `, JSON.stringify(arr_obj, null, 4));
-                }
-                let counter = 1;
-                arr.map(
-                    (obj, i) => {
-                        // console.log(`obj = `, JSON.stringify(obj, null, 4));
-                        let time = ``, purchase_amount = ``, closing_price = ``;
-                        time = (obj.sj !== undefined) ? obj.sj : `😟 暂无数据`;
-                        // no string, just keep number!
-                        purchase_amount = (obj.bl !== undefined) ? obj.bl : `😟 暂无数据`;
-                        closing_price = (obj.gj !== undefined) ? obj.gj : `😟 暂无数据`;
-                        // average = -1.7976931348623157e+308;
-                        // average = (obj.pj !== undefined) ? (obj.pj >= 0 ? obj.pj : null) : `😟 暂无数据`;
-                        // average = (obj.pj !== undefined) ? (obj.pj >= 0 ? obj.pj : `--`) : `😟 暂无数据`;
-                        // invalid value === 展示“--”
-                        // console.log(`keep = `, keep);
-                        arr_obj.time.push(time);
-                        arr_obj.purchase_amount.push(purchase_amount);
-                        arr_obj.closing_price.push(closing_price);
-                        // return arr_obj;
-                        if (counter === 1) {
+                if (Array.isArray(arr) && arr.length > 0){
+                    let strs = json.map(
+                        (obj) => {
                             if (debug) {
-                                console.log(`arr_obj = `, JSON.stringify(arr_obj, null, 4));
+                                console.log(obj.sj);
                             }
-                            counter ++;
+                            return obj.sj;
+                            //return num = parseInt(obj.sj.replace(/-/g, ``));
                         }
+                    );
+                    strs = strs.sort();
+                    arr = strs.map(
+                        (date) => {
+                            for (var i = 0; i < strs.length; i++) {
+                                if(date === arr[i].sj){
+                                    return arr[i];
+                                }
+                            }
+                            // return arr[i];
+                        }
+                    );
+                    let keys = Object.keys(arr[0]);
+                    const arr_obj = {};
+                    keys.forEach(
+                        (key, index) => {
+                            // as / alias
+                            let new_key = ``;
+                            switch (key) {
+                                case "sj":
+                                    new_key = `time`;
+                                    break;
+                                case "bl":
+                                    new_key = `purchase_amount`;
+                                    break;
+                                case "gj":
+                                    new_key = `closing_price`;
+                                    break;
+                                default:
+                                    new_key = `😟 暂无数据`;
+                                    break;
+                            }
+                            arr_obj[new_key] = [];
+                        }
+                    );
+                    if (debug) {
+                        console.log(`arr_obj = `, JSON.stringify(arr_obj, null, 4));
                     }
-                );
-                if (debug) {
-                    console.log(`arr_obj = `, JSON.stringify(arr_obj, null, 4));
+                    let counter = 1;
+                    arr.map(
+                        (obj, i) => {
+                            // console.log(`obj = `, JSON.stringify(obj, null, 4));
+                            let time = ``, purchase_amount = ``, closing_price = ``;
+                            time = (obj.sj !== undefined) ? obj.sj : `😟 暂无数据`;
+                            // no string, just keep number!
+                            purchase_amount = (obj.bl !== undefined) ? obj.bl : `😟 暂无数据`;
+                            closing_price = (obj.gj !== undefined) ? obj.gj : `😟 暂无数据`;
+                            // average = -1.7976931348623157e+308;
+                            // average = (obj.pj !== undefined) ? (obj.pj >= 0 ? obj.pj : null) : `😟 暂无数据`;
+                            // average = (obj.pj !== undefined) ? (obj.pj >= 0 ? obj.pj : `--`) : `😟 暂无数据`;
+                            // invalid value === 展示“--”
+                            // console.log(`keep = `, keep);
+                            arr_obj.time.push(time);
+                            arr_obj.purchase_amount.push(purchase_amount);
+                            arr_obj.closing_price.push(closing_price);
+                            // return arr_obj;
+                            if (counter === 1) {
+                                if (debug) {
+                                    console.log(`arr_obj = `, JSON.stringify(arr_obj, null, 4));
+                                }
+                                counter ++;
+                            }
+                        }
+                    );
+                    if (debug) {
+                        console.log(`arr_obj = `, JSON.stringify(arr_obj, null, 4));
+                    }
+                    datas = Object.assign(datas, arr_obj);
+                    STOCK_F9_FV.Modules.MCFLSStatistics.MCFLSSdrawHS(datas, uid);
+                }else{
+                    // console.log(`json is empty! = \n`, json);
+                    // alert(`暂无数据!`);
+                    datas.time = [];
+                    datas.purchase_amount = [];
+                    datas.closing_price = [];
+                    STOCK_F9_FV.Modules.MCFLSStatistics.MCFLSSdrawHS(datas, uid);
                 }
-                datas = Object.assign(datas, arr_obj);
-                STOCK_F9_FV.Modules.MCFLSStatistics.MCFLSSdrawHS(datas, uid);
             }
         )
         .catch(error => console.log(`error = \n`, error));
@@ -159,24 +168,31 @@ STOCK_F9_FV.Modules.MCFLSStatistics.MCFLSSdrawHS = STOCK_F9_FV.Modules.MCFLSStat
         // Highcharts.stockChart
         Highcharts.setOptions({
             lang: {
-                noData: '暂无数据'
+                // noData: '暂无数据',
+                noData:  `
+                    <p data-none="no-data-hc">
+                        <span data-none="no-data-span"></span>
+                    </p>
+                `,
+                loading: `Loading....`,
             }
         });
         Highcharts.chart(container_uid, {
             noData: {// all defualt value
-                attr: undefined,
-                position: {
-                    align: `center`,
-                    verticalAlign: `middle`,
-                    x: 0,
-                    y: 0,
-                },
-                style: {
-                    color: `#666666`,
-                    fontSize: `12px`,
-                    fontWeight: `bold`
-                },
+                // attr: undefined,
+                // position: {
+                //     align: `center`,
+                //     verticalAlign: `middle`,
+                //     x: 0,
+                //     y: 0,
+                // },
+                // style: {
+                //     color: `#666666`,
+                //     fontSize: `12px`,
+                //     fontWeight: `bold`
+                // },
                 useHTML: false,
+                useHTML: true,
             },
             /* rangeSelector: {
                 selected: 4
@@ -296,7 +312,7 @@ STOCK_F9_FV.Modules.MCFLSStatistics.MCFLSSdrawHS = STOCK_F9_FV.Modules.MCFLSStat
                 pointFormat: `
                     <span style="color:{point.color}">\u25CF</span>
                     {series.name}: {point.y}<br/>
-                `,
+                `,// 元
                 // 总数/总共/总量/总额/共有/总数
                 // <span style="color:{point.color}">\u25CF</span> 百分比 :{point.percentage:.0f}%
             },
@@ -344,7 +360,7 @@ STOCK_F9_FV.Modules.MCFLSStatistics.MCFLSSdrawHS = STOCK_F9_FV.Modules.MCFLSStat
                         `,
                         pointFormat: `
                             <span style="color:{point.color}">\u25CF</span>
-                            {series.name}: <b>{point.y}</b><br/>
+                            {series.name}: <b>{point.y} 元</b><br/>
                         `,
                         // <span style="color:{point.color}">\u25CF</span> 百分比 :{point.percentage:.0f}%
                     },

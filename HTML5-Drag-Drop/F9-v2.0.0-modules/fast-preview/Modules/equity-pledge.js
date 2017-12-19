@@ -15,7 +15,7 @@ var STOCK_F9_FV = STOCK_F9_FV || {};
 STOCK_F9_FV.Modules = STOCK_F9_FV.Modules || {};
 
 STOCK_F9_FV.Modules.equityPledge = STOCK_F9_FV.Modules.equityPledge || (
-    (url = ``, tds = `ids`, debug = false) => {
+    (url = ``, uid = ``, debug = false) => {
         let data = [];
         fetch(url)
         .then(res => res.json())
@@ -51,7 +51,6 @@ STOCK_F9_FV.Modules.equityPledge = STOCK_F9_FV.Modules.equityPledge || (
                     html_string5 = ``,
                     html_string6 = ``,
                     html_string7 = ``;
-                // let html_string1 = html_string2 = html_string3 = html_string4 = html_string5 = html_string6 = html_string7 = ``;
                 arr.map(
                     (obj, i) => {
                         // ["ggrq", "czr", "zqr", "zygs", "zybl", "qsrq", "jzrq"]
@@ -155,7 +154,7 @@ STOCK_F9_FV.Modules.equityPledge = STOCK_F9_FV.Modules.equityPledge || (
                 if (debug) {
                     console.log(`html_strings = \n`, JSON.stringify(html_strings, null, 4));
                 }
-                let td_ids = document.querySelectorAll(tds);
+                let td_ids = document.querySelectorAll(uid);
                 for (let i = 0; i < td_ids.length; i++) {
                     td_ids[i].insertAdjacentHTML('beforeend', html_strings[i]);
                 }

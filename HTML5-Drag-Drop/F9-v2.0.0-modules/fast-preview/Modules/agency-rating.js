@@ -31,102 +31,113 @@ STOCK_F9_FV.Modules.agencyRating = STOCK_F9_FV.Modules.agencyRating || ((url = `
                 if (debug) {
                     console.log(`data = \n`, json);
                 }
-                let strs = json.map(
-                    (obj) => {
-                        if (debug) {
-                            console.log(obj.sj);
-                        }
-                        return obj.sj;
-                        //return num = parseInt(obj.sj.replace(/-/g, ``));
-                    }
-                );
-                strs = strs.sort();
-                //  ["2007-04-30", "2009-10-31", "2010-02-28", "2016-10-31", "2017-09-30"]
-                arr = strs.map(
-                    (date) => {
-                        // "2007-04-30"
-                        for (var i = 0; i < strs.length; i++) {
-                            if(date === arr[i].sj){
-                                return arr[i];
-                            }
-                        }
-                        // return arr[i];
-                    }
-                );
-                // Array.isArray(arr);
-                let keys = Object.keys(arr[0]);
-                // (5) ["rq", "pj", "st", "wc", "xt"]
-                const arr_obj = {};
-                keys.forEach(
-                    (key, index) => {
-                        // console.log(`key, index = \n`, key, index);
-                        // arr_obj[key] = [];
-                        // as / alias
-                        let new_key = ``;
-                        switch (key) {
-                            case "sj":
-                                new_key = `time`;
-                                break;
-                            case "st":
-                                new_key = `up`;
-                                break;
-                            case "xt":
-                                new_key = `down`;
-                                break;
-                            case "gj":
-                                new_key = `stock_price`;
-                                break;
-                            case "wc":
-                                new_key = `keep`;
-                                break;
-                            default:
-                                new_key = `暂无数据`;
-                                break;
-                        }
-                        /*
-                            const json = {A: `1`, B: `22`, C: `333`};
-                            const {A: a, B: b, C: c} = {...json};
-                            // rename object's key!
-                            // import & export ??? old_name as new_name
-                        */
-                        arr_obj[new_key] = [];
-                    }
-                );
-                if (debug) {
-                    console.log(`arr_obj = `, JSON.stringify(arr_obj, null, 4));
-                }
-                let counter = 1;
-                arr.map(
-                    (obj, i) => {
-                        // console.log(`obj = `, JSON.stringify(obj, null, 4));
-                        let time = ``, up = ``, down = ``, stock_price = ``, keep = ``;
-                        time = (obj.sj !== undefined) ? obj.sj : `暂无数据`;
-                        // no string, just keep number!
-                        up = (obj.st !== undefined) ? obj.st : `暂无数据`;
-                        down = (obj.xt !== undefined) ? obj.xt : `暂无数据`;
-                        // 股价
-                        stock_price = (obj.gj !== undefined) ? (obj.gj >= 0 ? obj.gj : null) : `暂无数据`;
-                        // invalid value === 展示“--”
-                        keep = (obj.wc !== undefined) ? obj.wc : `暂无数据`;
-                        arr_obj.time.push(time);
-                        arr_obj.up.push(up);
-                        arr_obj.down.push(down);
-                        arr_obj.stock_price.push(stock_price);
-                        arr_obj.keep.push(keep);
-                        // return arr_obj;
-                        if (counter === 1) {
+                if (Array.isArray(arr) && arr.length > 0) {
+                    let strs = json.map(
+                        (obj) => {
                             if (debug) {
-                                console.log(`arr_obj = `, JSON.stringify(arr_obj, null, 4));
+                                console.log(obj.sj);
                             }
-                            counter ++;
+                            return obj.sj;
+                            //return num = parseInt(obj.sj.replace(/-/g, ``));
                         }
+                    );
+                    strs = strs.sort();
+                    //  ["2007-04-30", "2009-10-31", "2010-02-28", "2016-10-31", "2017-09-30"]
+                    arr = strs.map(
+                        (date) => {
+                            // "2007-04-30"
+                            for (var i = 0; i < strs.length; i++) {
+                                if(date === arr[i].sj){
+                                    return arr[i];
+                                }
+                            }
+                            // return arr[i];
+                        }
+                    );
+                    // Array.isArray(arr);
+                    let keys = Object.keys(arr[0]);
+                    // (5) ["rq", "pj", "st", "wc", "xt"]
+                    const arr_obj = {};
+                    keys.forEach(
+                        (key, index) => {
+                            // console.log(`key, index = \n`, key, index);
+                            // arr_obj[key] = [];
+                            // as / alias
+                            let new_key = ``;
+                            switch (key) {
+                                case "sj":
+                                    new_key = `time`;
+                                    break;
+                                case "st":
+                                    new_key = `up`;
+                                    break;
+                                case "xt":
+                                    new_key = `down`;
+                                    break;
+                                case "gj":
+                                    new_key = `stock_price`;
+                                    break;
+                                case "wc":
+                                    new_key = `keep`;
+                                    break;
+                                default:
+                                    new_key = `暂无数据`;
+                                    break;
+                            }
+                            /*
+                                const json = {A: `1`, B: `22`, C: `333`};
+                                const {A: a, B: b, C: c} = {...json};
+                                // rename object's key!
+                                // import & export ??? old_name as new_name
+                            */
+                            arr_obj[new_key] = [];
+                        }
+                    );
+                    if (debug) {
+                        console.log(`arr_obj = `, JSON.stringify(arr_obj, null, 4));
                     }
-                );
-                if (debug) {
-                    console.log(`arr_obj = `, JSON.stringify(arr_obj, null, 4));
+                    let counter = 1;
+                    arr.map(
+                        (obj, i) => {
+                            // console.log(`obj = `, JSON.stringify(obj, null, 4));
+                            let time = ``, up = ``, down = ``, stock_price = ``, keep = ``;
+                            time = (obj.sj !== undefined) ? obj.sj : `暂无数据`;
+                            // no string, just keep number!
+                            up = (obj.st !== undefined) ? obj.st : `暂无数据`;
+                            down = (obj.xt !== undefined) ? obj.xt : `暂无数据`;
+                            // 股价
+                            stock_price = (obj.gj !== undefined) ? (obj.gj >= 0 ? obj.gj : null) : `暂无数据`;
+                            // invalid value === 展示“--”
+                            keep = (obj.wc !== undefined) ? obj.wc : `暂无数据`;
+                            arr_obj.time.push(time);
+                            arr_obj.up.push(up);
+                            arr_obj.down.push(down);
+                            arr_obj.stock_price.push(stock_price);
+                            arr_obj.keep.push(keep);
+                            // return arr_obj;
+                            if (counter === 1) {
+                                if (debug) {
+                                    console.log(`arr_obj = `, JSON.stringify(arr_obj, null, 4));
+                                }
+                                counter ++;
+                            }
+                        }
+                    );
+                    if (debug) {
+                        console.log(`arr_obj = `, JSON.stringify(arr_obj, null, 4));
+                    }
+                    datas = Object.assign(datas, arr_obj);
+                    STOCK_F9_FV.Modules.agencyRating.drawHS(datas, uid);
+                }else{
+                    // console.log(`json is empty! = \n`, json);
+                    // alert(`暂无数据!`);
+                    datas.time = [];
+                    datas.up = [];
+                    datas.down = [];
+                    datas.stock_price = [];
+                    datas.keep = [];
+                    STOCK_F9_FV.Modules.agencyRating.drawHS(datas, uid);
                 }
-                datas = Object.assign(datas, arr_obj);
-                STOCK_F9_FV.Modules.agencyRating.drawHS(datas, uid);
             }
         )
         .catch(error => console.log(`error = \n`, error));
@@ -184,24 +195,30 @@ STOCK_F9_FV.Modules.agencyRating.drawHS = STOCK_F9_FV.Modules.agencyRating.drawH
         // Highcharts.chart
         Highcharts.setOptions({
             lang: {
-                noData: '暂无数据'
+                // noData: '暂无数据',
+                noData:  `
+                    <p data-none="no-data-hc">
+                        <span data-none="no-data-span"></span>
+                    </p>
+                `,
+                loading: `Loading....`,
             }
         });
         Highcharts.chart(container_uid, {
             noData: {// all defualt value
-                attr: undefined,
-                position: {
-                    align: `center`,
-                    verticalAlign: `middle`,
-                    x: 0,
-                    y: 0,
-                },
-                style: {
-                    color: `#666666`,
-                    fontSize: `12px`,
-                    fontWeight: `bold`
-                },
-                useHTML: false,
+                // attr: undefined,
+                // position: {
+                //     align: `center`,
+                //     verticalAlign: `middle`,
+                //     x: 0,
+                //     y: 0,
+                // },
+                // style: {
+                //     color: `#666666`,
+                //     fontSize: `12px`,
+                //     fontWeight: `bold`
+                // },
+                useHTML: true,
             },
             chart: {
                 type: 'column',
@@ -268,7 +285,7 @@ STOCK_F9_FV.Modules.agencyRating.drawHS = STOCK_F9_FV.Modules.agencyRating.drawH
                     // ceiling: 100,
                     // step: 10,
                     title: {
-                        text: 'xxx',
+                        text: '',
                     },
                     stackLabels: {// stackLabels
                         // enabled: true,
@@ -325,11 +342,16 @@ STOCK_F9_FV.Modules.agencyRating.drawHS = STOCK_F9_FV.Modules.agencyRating.drawH
                     stacking: 'percent',// 百分比堆叠柱形图
                     dataLabels: {
                         enabled: true,
-                        color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white'
+                        // color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white'
+                        color: "#434348"
                     }
                 },
                 spline: {
                     stacking: 'normal',
+                    dataLabels: {
+                        enabled: true,
+                        color: "#434348"
+                    }
                 }
             },
             series: [
@@ -357,15 +379,15 @@ STOCK_F9_FV.Modules.agencyRating.drawHS = STOCK_F9_FV.Modules.agencyRating.drawH
                     data: stock_price,
                     connectNulls: true,// OK
                     tooltip: {
-                        headerFormat: `
-                            <strong>
-                                {point.x}
-                            </strong>
-                            <br/>
-                        `,
+                        // headerFormat: `
+                        //     <strong>
+                        //         {point.x}
+                        //     </strong>
+                        //     <br/>
+                        // `,
                         pointFormat: `
                             <span style="color:{point.color}">\u25CF</span>
-                            {series.name}: <b>{point.y}</b><br/>
+                            {series.name}: <b>{point.y} 元</b><br/>
                         `,
                         // <span style="color:{point.color}">\u25CF</span> 百分比 :{point.percentage:.0f}%
                     },
