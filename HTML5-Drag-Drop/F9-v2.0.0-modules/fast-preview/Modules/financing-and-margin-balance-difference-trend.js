@@ -361,7 +361,8 @@ STOCK_F9_FV.Modules.FMBDtrend.FMBDTdrawHS = STOCK_F9_FV.Modules.FMBDtrend.FMBDTd
                 }
             ],
             scrollbar: {
-                enabled: true
+                enabled: true,
+                minWidth: 30,
             }
         });
     }

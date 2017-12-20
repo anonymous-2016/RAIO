@@ -27,11 +27,40 @@ STOCK_F9_FV.Modules.indicatorsPerShare = STOCK_F9_FV.Modules.indicatorsPerShare 
                     console.log(`json = \n`, json);
                 }
                 data = json;
-                let tds = document.querySelectorAll(uid);
-                for (let i = 0; i < tds.length; i++) {
-                    let key = ui_arr[i];
-                    let value = data[key];// ??? (key in data) ? data[key] : ""
-                    tds[i].innerText = value;
+                if (typeof(data) === "object" && Object.keys(json).length > 0) {
+                    let tds = document.querySelectorAll(uid);
+                    for (let i = 0; i < tds.length; i++) {
+                        let key = ui_arr[i],
+                            value = data[key] ? data[key] : `--`;
+                        if (Number.isNaN(parseFloat(value)) === true) {
+                            // isNaN(NaN); // true
+                            tds[i].innerText = value;
+                        }else{
+                            if (value !== `--` && value[0] === "-") {
+                                tds[i].dataset.color = "red";
+                                // tds[i].innerText = value;
+                            }else{
+                                // tds[i].dataset.color = "green";
+                                // tds[i].innerText = `+${value}`;
+                            }
+                            tds[i].innerText = value;
+                        }
+                    }
+                }else{
+                    let table_uid = document.querySelector(`.fv-indicators-per-share-table`),
+                        // table_parent = table_uid.parentNode,
+                        table_prev_dom = table_uid.previousElementSibling,
+                        no_data_html = `
+                            <div>
+                                <p data-none="no-data-p">
+                                    <span data-none="no-data-span"></span>
+                                </p>
+                            </div>
+                        `;
+                    // remove self
+                    table_uid.remove();
+                    // add no-data
+                    table_prev_dom.insertAdjacentHTML(`afterend`, no_data_html);
                 }
             }
         )
@@ -68,7 +97,8 @@ STOCK_F9_FV.Modules.indicatorsPerShare.init({
     gilcode: STOCK_SecCode
     // ip: `http://10.1.5.202`,
     // path: `/webservice/fastview/stock/stockfast04/`,
-    // gilcode: `600570.SH`
+    // gilcode: `600570.SH`,
+    // gilcode: `000003.SZ`,
 });
 
 // const url = `http://10.1.5.202/webservice/fastview/stock/stockfast04/600570.SH`;

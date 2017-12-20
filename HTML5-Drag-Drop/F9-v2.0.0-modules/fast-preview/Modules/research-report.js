@@ -113,7 +113,21 @@ STOCK_F9_FV.Modules.researchReport = STOCK_F9_FV.Modules.researchReport || (
                 }, 0);
             }else{
                 // alert(`暂无数据!`);
-                console.log(`暂无数据! = \n`);
+                // console.log(`暂无数据! = \n`);
+                let table_uid = document.querySelector(`.fv-research-report-table`),
+                    // table_parent = table_uid.parentNode,
+                    table_prev_dom = table_uid.previousElementSibling,
+                    no_data_html = `
+                        <div>
+                            <p data-none="no-data-p">
+                                <span data-none="no-data-span"></span>
+                            </p>
+                        </div>
+                    `;
+                // remove self
+                table_uid.remove();
+                // add no-data
+                table_prev_dom.insertAdjacentHTML(`afterend`, no_data_html);
             }
         }
     )

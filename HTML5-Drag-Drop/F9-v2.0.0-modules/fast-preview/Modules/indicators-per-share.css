@@ -224,3 +224,11 @@ tr[data-tr="tr-background"] {
     cursor: not-allowed;
     color: grey;
 }
+
+[data-color="red"] {
+    color: #ff2323;
+}
+
+[data-color="green"] {
+    color: #5aa884;
+}

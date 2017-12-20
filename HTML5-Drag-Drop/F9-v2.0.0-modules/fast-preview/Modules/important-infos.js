@@ -29,34 +29,61 @@ STOCK_F9_FV.Modules.importantInfos = STOCK_F9_FV.Modules.importantInfos || (
                 if (debug) {
                     console.log(`json = \n`, json);
                 }
-                let data = [];
-                data = json;
+                let data = json || [];
                 // async
                 if (debug) {
                     console.log(`data = \n`, data);
                 }
-                // copy(JSON.stringify(data, null, 4));
-                let arr = [];
-                // get Object keys
-                for(let key in data){
-                    arr.push(key);
-                }
-                // shit api, can I trust you?
-                // arr === (11) ["sjgn", "zyyw", "bdl", "cjl", "jzc", "zgb", "ltgb", "gxl", "cgzb", "mbjg", "zhpj"]
-                // dead & hard code
-                // const ui_arr = ["sjgn", "zyyw", "bdl", "cjl", "jzc", "zgb", "ltgb", "gxl", "cgzb", "mbjg", "zhpj"];
-                for (let i = 0; i < tds.length; i++) {
-                    let key = ui_arr[i];
-                    let value = data[key] !== `--` ? data[key] : 0;
-                    if (i < 2) {
-                        tds[i].innerText = value;
-                        tds[i].setAttribute(`title`, value);
-                        // title
-                    }else{
-                        tds[i].innerText = value;
+                if (typeof(data) === "object" && Object.keys(json).length > 0) {
+                    // copy(JSON.stringify(data, null, 4));
+                    let arr = [];
+                    // get Object keys
+                    for(let key in data){
+                        arr.push(key);
                     }
-                    // HTML in JS ???
-                    // let tds = document.querySelectorAll('[data-fv-td-show-title="fv-td-show-title"]');
+                    // shit api, can I trust you?
+                    // arr === (11) ["sjgn", "zyyw", "bdl", "cjl", "jzc", "zgb", "ltgb", "gxl", "cgzb", "mbjg", "zhpj"]
+                    // dead & hard code
+                    // const ui_arr = ["sjgn", "zyyw", "bdl", "cjl", "jzc", "zgb", "ltgb", "gxl", "cgzb", "mbjg", "zhpj"];
+                    for (let i = 0; i < tds.length; i++) {
+                        let key = ui_arr[i],
+                            value = data[key];
+                        if (i < 2) {
+                            tds[i].setAttribute(`title`, value);
+                        }else{
+                            // tds[i].innerText = value;
+                        }
+                        if (Number.isNaN(parseFloat(value)) === true) {
+                            // isNaN(NaN); // true
+                            tds[i].innerText = value;
+                        }else{
+                            if (value !== `--` && value[0] === "-") {
+                                tds[i].dataset.color = "red";
+                                // tds[i].innerText = value;
+                            }else{
+                                // tds[i].dataset.color = "green";
+                                // tds[i].innerText = `+${value}`;
+                            }
+                            tds[i].innerText = value;
+                        }
+                        // HTML in JS ???
+                        // let tds = document.querySelectorAll('[data-fv-td-show-title="fv-td-show-title"]');
+                    }
+                }else{
+                    let table_uid = document.querySelector(`.fv-important-infos-table`),
+                        // table_parent = table_uid.parentNode,
+                        table_prev_dom = table_uid.previousElementSibling,
+                        no_data_html = `
+                            <div>
+                                <p data-none="no-data-p">
+                                    <span data-none="no-data-span"></span>
+                                </p>
+                            </div>
+                        `;
+                    // remove self
+                    table_uid.remove();
+                    // add no-data
+                    table_prev_dom.insertAdjacentHTML(`afterend`, no_data_html);
                 }
             }
         )

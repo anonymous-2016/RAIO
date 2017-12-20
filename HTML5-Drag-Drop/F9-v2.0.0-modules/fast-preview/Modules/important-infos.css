@@ -275,3 +275,11 @@ mds.forEach(
 
 
 */
+
+[data-color="red"] {
+    color: #ff2323;
+}
+
+[data-color="green"] {
+    color: #5aa884;
+}

@@ -29,7 +29,7 @@ STOCK_F9_FV.Utils.getParam = STOCK_F9_FV.Utils.getParam || ((key, debug = false)
                 }
             }
         }
-        console.log(`value = `, value);
+        // console.log(`value = `, value);
         return value;
     }
 });
@@ -221,8 +221,8 @@ window.onload = () => {
     // STOCK_SecCode = STOCK_F9_FV.Utils.getParam(`secucode`);
     // STOCK_IP = `http://${window.parent.location.host}`;
     // STOCK_Paths = `/webservice/fastview/stock`;
-    console.log(`STOCK_SecCode `, STOCK_SecCode, typeof STOCK_SecCode);
-
+    console.log(`STOCK_SecCode = `, STOCK_SecCode);
+    // console.log(`STOCK_SecCode `, STOCK_SecCode, typeof STOCK_SecCode);
     STOCK_SecCode = STOCK_F9_FV.Utils.getParam(`gilcode`);
     STOCK_IP = `${window.parent.location.protocol}//${window.parent.location.host}`;
     STOCK_Paths = `/webservice/fastview/stock`;

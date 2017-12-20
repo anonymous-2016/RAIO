@@ -17,6 +17,7 @@ STOCK_F9_FV.Modules = STOCK_F9_FV.Modules || {};
 STOCK_F9_FV.Modules.SPTurnover = STOCK_F9_FV.Modules.SPTurnover || (
     (url = ``, uid = `default_dom_uid`, debug = false) => {
         let datas = {};
+        // fetch(`http://10.1.5.202/stock/f9/fastview/datas/sort6.json`)
         fetch(url)
         .then(res => res.json())
         .then(
@@ -64,9 +65,13 @@ STOCK_F9_FV.Modules.SPTurnover = STOCK_F9_FV.Modules.SPTurnover || (
                             console.log(`small_spans = \n`, small_spans);
                         }
                         // window.getComputedStyle(big_spans[0], null).getPropertyValue("background-image");
-                        let isBigDown = false;
+                        let isBigDown = false,
+                            isBigDefault = false;
                         if (isUpTest(big_arr[1]) || isUpTest(big_arr[2])) {
                             isBigDown = true;
+                        }
+                        if (big_arr[1] === "0.00" && big_arr[2] === "0.00") {
+                            isBigDefault = true;
                         }
                         for (let i = 0; i < big_spans.length; i++) {
                             // big_spans[i].classList.toggle("big-span-green");
@@ -75,14 +80,23 @@ STOCK_F9_FV.Modules.SPTurnover = STOCK_F9_FV.Modules.SPTurnover || (
                                 big_spans[i].classList.add(`big-span-green`);
                                 if (i === 0) {
                                     big_span_icon.setAttribute("data-status", `big-span-down`);
-                                    // data-status="big-span"
-                                    // data-status="big-span-up"
-                                    // data-status="big-span-down"
                                 }
                             }else{
-                                big_spans[i].classList.add(`big-span-red`);
-                                if (i === 0) {
-                                    big_span_icon.setAttribute("data-status", `big-span-up`);
+                                if (isBigDefault === true) {
+                                    // default
+                                    big_spans[i].classList.add(`big-span-default`);
+                                    if (i === 0) {
+                                        big_span_icon.setAttribute("data-status", `big-span-default`);
+                                        // data-status="big-span*"
+                                        // data-status="big-span-up"
+                                        // data-status="big-span-down"
+                                        // data-status="big-span-default"
+                                    }
+                                }else{
+                                    big_spans[i].classList.add(`big-span-red`);
+                                    if (i === 0) {
+                                        big_span_icon.setAttribute("data-status", `big-span-up`);
+                                    }
                                 }
                             }
                         }
@@ -123,6 +137,7 @@ STOCK_F9_FV.Modules.SPTurnover = STOCK_F9_FV.Modules.SPTurnover || (
                                         // 1508889600000
                                     */
                                     return json.details[i];
+                                    // break;
                                 }
                             }
                         }
@@ -159,11 +174,12 @@ STOCK_F9_FV.Modules.SPTurnover = STOCK_F9_FV.Modules.SPTurnover || (
                                 turn_over = ``,
                                 stock_price = ``,
                                 SH_Index = ``;
-                            time = (obj.sjz !== undefined) ? obj.sjz : `暂无数据`;
+                            // `暂无数据` === null
+                            time = (obj.sjz !== undefined) ? obj.sjz : null;
                             // no string, just keep number!
-                            turn_over = (obj.cjl !== undefined) ? obj.cjl : `暂无数据`;
-                            stock_price = (obj.gj !== undefined) ? obj.gj : `暂无数据`;
-                            SH_Index = (obj.szzs !== undefined) ? obj.szzs : `暂无数据`;
+                            turn_over = (obj.cjl !== undefined) ? parseFloat(obj.cjl) : null;
+                            stock_price = (obj.gj !== undefined) ? parseFloat(obj.gj) : null;
+                            SH_Index = (obj.szzs !== undefined) ? ((obj.szzs !== "--") ? parseFloat(obj.szzs) : null ) : null;
                             arr_obj.time.push(time);
                             arr_obj.stock_price.push(stock_price);
                             arr_obj.turn_over.push(turn_over);
@@ -185,6 +201,22 @@ STOCK_F9_FV.Modules.SPTurnover = STOCK_F9_FV.Modules.SPTurnover || (
                     datas.stock_price = [];
                     STOCK_F9_FV.Modules.SPTurnover.SPTdrawHS(datas, uid);
                 }
+                // else{
+                //     let hc_uid = document.querySelector(`[data-uid="stock-price-turnover"]`),
+                //         // hc_parent = hc_uid.parentNode,
+                //         hc_prev_dom = hc_uid.previousElementSibling,
+                //         no_data_html = `
+                //             <div>
+                //                 <p data-none="no-data-p">
+                //                     <span data-none="no-data-span"></span>
+                //                 </p>
+                //             </div>
+                //         `;
+                //     // remove self
+                //     hc_uid.remove();
+                //     // add no-data
+                //     hc_prev_dom.insertAdjacentHTML(`afterend`, no_data_html);
+                // }
             }
         )
         .catch(error => console.log(`error = \n`, error));
@@ -236,6 +268,7 @@ STOCK_F9_FV.Modules.SPTurnover.SPTdrawHS = STOCK_F9_FV.Modules.SPTurnover.SPTdra
             legendColor = chart_css.legendColor,
             yAxisColor = chart_css.yAxisColor;
         let ohlc = [],
+            prices = [],
             volume = [],
             sh_index = [],
             dataLength = datas.time.length,
@@ -262,10 +295,14 @@ STOCK_F9_FV.Modules.SPTurnover.SPTdrawHS = STOCK_F9_FV.Modules.SPTurnover.SPTdra
                 datas.turn_over[i],
                 datas.SH_Index[i]
             ]);
-            ohlc.push([
-                new_ms_time, // the date ??? 1147651200000 (ms) ??? new Date(oldTime);
-                datas.stock_price[i],
-                datas.SH_Index[i]
+            // ohlc.push([
+            //     new_ms_time,
+            //     datas.stock_price[i],
+            //     datas.SH_Index[i]
+            // ]);
+            prices.push([
+                new_ms_time,
+                datas.stock_price[i]
             ]);
             volume.push([
                 new_ms_time,
@@ -278,8 +315,9 @@ STOCK_F9_FV.Modules.SPTurnover.SPTdrawHS = STOCK_F9_FV.Modules.SPTurnover.SPTdra
         }
         if (debug) {
             console.log(ohlc);
-            console.log(volume);
+            console.log(prices);
             console.log(sh_index);
+            console.log(volume);
         }
         // let max_time = (time.length-10);// ???
         /*
@@ -287,43 +325,48 @@ STOCK_F9_FV.Modules.SPTurnover.SPTdrawHS = STOCK_F9_FV.Modules.SPTurnover.SPTdra
             针对所有图表有效，所有不能单独设置在某个图表中在，
             只能在图表初始化之前通过 Highcharts.setOptions 来设置生效。
         */
+        // Highcharts.setOptions({
+        //     lang: {
+        //         // noData: '暂无数据',
+        //         noData:  `
+        //             <p data-none="no-data-hc">
+        //                 <span data-none="no-data-span"></span>
+        //             </p>
+        //         `,
+        //         loading: `Loading....`,
+        //     }
+        // });
         Highcharts.setOptions({
             lang: {
-                // noData: '暂无数据',
+                rangeSelectorZoom: '缩放',// 放大
+                rangeSelectorFrom: '从',
+                rangeSelectorTo: '到',
+                contextButtonTitle: '图表导出菜单',
+                decimalPoint: '.',
+                downloadJPEG: "下载JPEG图片",
+                downloadPDF: "下载PDF文件",
+                downloadPNG: "下载PNG文件",
+                downloadSVG: "下载SVG文件",
+                drillUpText: "返回 {series.name}",
+                loading: '加载中...',
+                months: ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月'],
+                // noData: "暂无数据",
+                // noData: "没有数据显示!",
                 noData:  `
                     <p data-none="no-data-hc">
                         <span data-none="no-data-span"></span>
                     </p>
                 `,
-                loading: `Loading....`,
-            }
+                numericSymbols: ['k', 'M', 'G', 'T', 'P', 'E'],
+                printChart: "打印图表",
+                resetZoom: '重置缩放比例',
+                resetZoomTitle: '重置为原始大小',
+                shortMonths: ['一', '二', '三', '四', '五', '六', '七', '八', '九', '十', '十一', '十二'],
+                thousandsSep: ',',
+                shortWeekdays: ['周天', '周一', '周二', '周三', '周四', '周五', '周六'],
+                weekdays: ['星期天','星期一', '星期二', '星期三', '星期四', '星期五', '星期六']
+            },
         });
-        // Highcharts.setOptions({
-        //     lang: {
-        //         rangeSelectorZoom: '缩放',// 放大
-        //         rangeSelectorFrom: '从',
-        //         rangeSelectorTo: '到',
-        //         contextButtonTitle: '图表导出菜单',
-        //         decimalPoint: '.',
-        //         downloadJPEG: "下载JPEG图片",
-        //         downloadPDF: "下载PDF文件",
-        //         downloadPNG: "下载PNG文件",
-        //         downloadSVG: "下载SVG文件",
-        //         drillUpText: "返回 {series.name}",
-        //         loading: '加载中...',
-        //         months: ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月'],
-        //         noData: "暂无数据",
-        //         // noData: "没有数据显示!",
-        //         numericSymbols: ['k', 'M', 'G', 'T', 'P', 'E'],
-        //         printChart: "打印图表",
-        //         resetZoom: '重置缩放比例',
-        //         resetZoomTitle: '重置为原始大小',
-        //         shortMonths: ['一', '二', '三', '四', '五', '六', '七', '八', '九', '十', '十一', '十二'],
-        //         thousandsSep: ',',
-        //         shortWeekdays: ['周天', '周一', '周二', '周三', '周四', '周五', '周六'],
-        //         weekdays: ['星期天','星期一', '星期二', '星期三', '星期四', '星期五', '星期六']
-        //     },
-        // });
         Highcharts.stockChart(container_uid, {
             chart: {
                 // type: 'column',
@@ -354,7 +397,7 @@ STOCK_F9_FV.Modules.SPTurnover.SPTdrawHS = STOCK_F9_FV.Modules.SPTurnover.SPTdra
                 // text: '股价/成交量'
             },
             xAxis: {
-                categories: time,
+                // categories: time,
                 // min: max_time,// auto right === max x value
                 // min: 0,
                 // max: 8,
@@ -362,27 +405,27 @@ STOCK_F9_FV.Modules.SPTurnover.SPTdrawHS = STOCK_F9_FV.Modules.SPTurnover.SPTdra
                 labels: {
                     // autoRotation:'false',
                     autoRotation: [0],
-                    step: 2
+                    step: 1
                 },
                 type: 'datetime',
-                // dateTimeLabelFormats: {
-                //     // millisecond: '%H:%M:%S.%L',
-                //     // second: '%H:%M:%S',
-                //     // minute: '%H:%M',
-                //     // hour: '%H:%M',
-                //     // day: '%m-%d',
-                //     // week: '%m-%d',
-                //     // month: '%y-%m',
-                //     // year: '%Y'
-                //     // millisecond: '%H:%M:%S.%L',
-                //     // second: '%H:%M:%S',
-                //     // minute: '%H:%M',
-                //     // hour: '%H:%M',
-                //     day: '%m月 %d日',
-                //     week: '%m月 %d日',
-                //     month: '%y年 %m月',
-                //     year: '%Y年'
-                // },
+                dateTimeLabelFormats: {
+                    // millisecond: '%H:%M:%S.%L',
+                    // second: '%H:%M:%S',
+                    // minute: '%H:%M',
+                    // hour: '%H:%M',
+                    // day: '%m-%d',
+                    // week: '%m-%d',
+                    // month: '%y-%m',
+                    // year: '%Y'
+                    // millisecond: '%H:%M:%S.%L',
+                    // second: '%H:%M:%S',
+                    // minute: '%H:%M',
+                    // hour: '%H:%M',
+                    day: '%m月 %d日',
+                    week: '%m月 %d日',
+                    month: '%y年 %m月',
+                    year: '%Y年'
+                },
                 tooltip: {
                     xDateFormat: '%Y年 %m月 %d日',
                     // valueDecimals: 3
@@ -491,7 +534,8 @@ STOCK_F9_FV.Modules.SPTurnover.SPTdrawHS = STOCK_F9_FV.Modules.SPTurnover.SPTdra
                     // navigatorOptions: {
                     //     color: Highcharts.getOptions().colors[0]
                     // },
-                    data: ohlc,
+                    data: prices,
+                    // data: ohlc,
                     // dataGrouping: {
                     //     units: groupingUnits
                     // },
@@ -542,12 +586,14 @@ STOCK_F9_FV.Modules.SPTurnover.SPTdrawHS = STOCK_F9_FV.Modules.SPTurnover.SPTdra
                 // valueDecimals: 3
             },
             plotOptions: {
-                // series: {
-                //     pointStart: Date.UTC(2012, 0, 1),
-                //     pointInterval: 24 * 3600 * 1000
-                // }
+                series: {
+                    pointStart: Date.UTC(2012, 0, 1),
+                    pointInterval: 24 * 3600 * 1000
+                }
             },
             navigator: {
+                enabled: false,
+                // enabled: true,
                 height: 20,
                 margin: 10,
                 // categories: time,
@@ -557,18 +603,18 @@ STOCK_F9_FV.Modules.SPTurnover.SPTdrawHS = STOCK_F9_FV.Modules.SPTurnover.SPTdra
                     borderColor: '#000'
                 },
                 baseSeries: 7,
-                adaptToUpdatedData: true,
+                // adaptToUpdatedData: true,
                 // maskFill: 'rgba(180, 198, 220, 0.75)',
                 // series: {
                 //     data: data
                 // }
             },
             scrollbar: {
-                enabled: false,
-                // enabled: true,
+                // enabled: false,
+                enabled: true,
                 // no scrollbar, only using rangeSelector
-                step: 7,
-                minWidth: 32,
+                step: 3,
+                minWidth: 23,
                 liveRedraw: true,
             },
             rangeSelector: {
@@ -577,18 +623,19 @@ STOCK_F9_FV.Modules.SPTurnover.SPTdrawHS = STOCK_F9_FV.Modules.SPTurnover.SPTdra
                 selected: 0,// button index
                 // The index of the button to appear pre-selected. 默认是：undefined.
                 inputDateFormat: '%Y-%m-%d',//'%Y年%m月%d日'
-                // inputDateFormat: '%Y年 %m月 %d日'
+                // inputDateFormat: '%Y年 %m月 %d日',
                 // allButtonsEnabled: true,// highcharts-range-selector-buttons ???
+                allButtonsEnabled: false,
                 buttons: [
-                    // {
-                    //     type: 'day',
-                    //     count: 1,
-                    //     text: '一天',
-                    //     dataGrouping: {
-                    //         forced: true,
-                    //         units: [['day', [1]]]
-                    //     }
-                    // },
+                    {
+                        type: 'day',
+                        count: 36,
+                        text: '一天',
+                        dataGrouping: {
+                            // forced: true,
+                            units: [['day', [1]]]
+                        }
+                    },
                     // {
                     //     type: 'week',
                     //     count: 1,
@@ -613,7 +660,7 @@ STOCK_F9_FV.Modules.SPTurnover.SPTdrawHS = STOCK_F9_FV.Modules.SPTurnover.SPTdra
                     //     text: '三月',
                     //     dataGrouping: {
                     //         forced: true,
-                    //         units: [['month', [1]]]
+                    //         units: [['month', [3]]]
                     //     }
                     // },
                     // {
@@ -622,7 +669,7 @@ STOCK_F9_FV.Modules.SPTurnover.SPTdrawHS = STOCK_F9_FV.Modules.SPTurnover.SPTdra
                     //     text: '六月',
                     //     dataGrouping: {
                     //         forced: true,
-                    //         units: [['month', [1]]]
+                    //         units: [['month', [6]]]
                     //     }
                     // },
                     // {
@@ -650,8 +697,8 @@ STOCK_F9_FV.Modules.SPTurnover.SPTdrawHS = STOCK_F9_FV.Modules.SPTurnover.SPTdra
             }
         });
         setTimeout(() => {
-            // let no_zoom = document.querySelector(`.highcharts-range-selector-buttons`);
-            // no_zoom.style.display = "none";
+            let no_zoom = document.querySelector(`.highcharts-range-selector-buttons`);
+            no_zoom.style.display = "none";
         }, 0);
         //
     }
@@ -684,9 +731,10 @@ STOCK_F9_FV.Modules.SPTurnover.init({
     gilcode: STOCK_SecCode
     // ip: `http://10.1.5.202`,
     // path: `/webservice/fastview/stock/stockfast06/`,
+    // gilcode: `000003.SZ`,
     // gilcode: `600570.SH`,
     // gilcode: `600580.SH`,
-    // gilcode: `600590.SH`
+    // gilcode: `600590.SH`,
 });
 
 // const url = `http://10.1.5.202/webservice/fastview/stock/${sf_num}/600570.SH`;
