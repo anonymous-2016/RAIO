@@ -751,8 +751,8 @@ STOCK_F9_FV.Modules.loadAllModules = STOCK_F9_FV.Modules.loadAllModules || (
                             loadModule(`stock-price-turnover`);
                             htmlstr += `
                                 <section class="fv-module-box-7">
-                                    <div class="fv-stock-price-turnover-title-box">
-                                        <p class="fv-stock-price-turnover-title">股价/成交量</p>
+                                    <div class="fv-h5dnd-modules-title-box">
+                                        <p class="fv-h5dnd-modules-title" data-title="fv-stock-price-turnover-title">股价/成交量</p>
                                     </div>
                                     <section data-uid="stock-price-turnover">
                                         <div class="fv-stock-price-turnover-container">
@@ -1799,8 +1799,8 @@ STOCK_F9_FV.Modules.modulesLoader = STOCK_F9_FV.Modules.modulesLoader ||(
                             loadModule(`stock-price-turnover`);
                             htmlstr += `
                                 <section class="fv-module-box-7">
-                                    <div class="fv-stock-price-turnover-title-box">
-                                        <p class="fv-stock-price-turnover-title">股价/成交量</p>
+                                    <div class="fv-h5dnd-modules-title-box">
+                                        <p class="fv-h5dnd-modules-title" data-title="fv-stock-price-turnover-title">股价/成交量</p>
                                     </div>
                                     <section data-uid="stock-price-turnover">
                                         <div class="fv-stock-price-turnover-container">

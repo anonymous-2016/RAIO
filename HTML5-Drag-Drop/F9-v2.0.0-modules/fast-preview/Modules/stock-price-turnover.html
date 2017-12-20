@@ -12,18 +12,33 @@
 
 <body>
     <section class="fv-module-box-7">
-        <!-- <section data-uid="stock-price-turnover"></section> -->
         <div class="fv-stock-price-turnover-title-box">
             <p class="fv-stock-price-turnover-title">股价/成交量</p>
         </div>
-
-        <div class="fv-stock-price-turnover-container">
-            <div data-title-box="stock-title">
-                股价/成交量
+        <!-- <div class="fv-h5dnd-modules-title-box">
+            <p class="fv-h5dnd-modules-title" data-title="fv-stock-price-turnover-title">股价/成交量</p>
+        </div> -->
+        <section data-uid="stock-price-turnover">
+            <div class="fv-stock-price-turnover-container">
+                <div data-title-box="stock-title">
+                    <p data-title="big-title">
+                        <span data-title-span="big-span" data-status="big-span"></span>
+                        <span data-title-span="big-span"></span>
+                        <span data-title-span="big-span"></span>
+                    </p>
+                    <p data-title="small-title">
+                        今年以来涨跌幅
+                        <span data-title-span="small-span"></span> 3个月涨跌幅
+                        <span data-title-span="small-span"></span>
+                        <br> 52周涨跌幅
+                        <span data-title-span="small-span"></span> 52周Beta
+                        <span data-title-span="small-span"></span>
+                    </p>
+                </div>
+                <!-- 股价/成交量 -->
+                <div id="stock_price_turnover_hs_container" class="fv-stock-price-turnover-hs fv-stock-price-turnover-hs-container" data-hs-container="data-stock-price-turnover-container-uid"></div>
             </div>
-            <!-- 股价/成交量 -->
-            <div id="stock_price_turnover_hs_container" class="fv-stock-price-turnover-hs fv-stock-price-turnover-hs-container" data-hs-container="data-stock-price-turnover-container-uid"></div>
-        </div>
+        </section>
     </section>
     <!-- js -->
     <script src="../libs/highstock.js"></script>
@@ -35,3 +50,15 @@
 </body>
 
 </html>
+
+
+<!--
+    <section class="fv-module-box-7">
+        <div class="fv-h5dnd-modules-title-box">
+            <p class="fv-h5dnd-modules-title" data-title="fv-stock-price-turnover-title">股价/成交量</p>
+        </div>
+        <div class="fv-stock-price-turnover-container">
+            <div id="stock_price_turnover_hs_container" class="fv-stock-price-turnover-hs fv-stock-price-turnover-hs-container" data-hs-container="data-stock-price-turnover-container-uid"></div>
+        </div>
+    </section>
+ -->

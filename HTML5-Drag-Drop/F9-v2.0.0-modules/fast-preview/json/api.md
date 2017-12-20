@@ -249,6 +249,7 @@ let title = `${(arr[i].xwtitle !== undefined) ? arr[i].xwtitle : `🤓暂无 新
     },
     "stockfast06": {
         name: "股价/成交量",
+        //  "gj": "股价",
         "zd": "涨跌",
         "zdf": "涨跌幅(%)",
         "jnzdf": "今年以来涨跌幅(%)",

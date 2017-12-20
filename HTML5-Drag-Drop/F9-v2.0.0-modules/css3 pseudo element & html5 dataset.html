@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Modify pseudo element styles with JavaScript</title>
+    <style>
+        [data-attr="red5"]::before {
+            content: attr(data-attr);
+            color: red;
+        }
+        
+        [data-attr="green5"]:before {
+            content: 'green5';
+            color: green;
+        }
+        
+        [data-box="div"] {
+            text-align: center;
+            vertical-align: middle;
+        }
+    </style>
+</head>
+
+<body>
+    <div data-box="div">
+        <p data-attr="red5" data-uid="uid-5">red5</p>
+    </div>
+    <!-- js -->
+    <script>
+        setTimeout(() => {
+            document.querySelector(`[data-uid="uid-5"]`).setAttribute('data-attr', 'green5');
+        }, 3000);
+    </script>
+</body>
+
+</html>

@@ -27,6 +27,76 @@ STOCK_F9_FV.Modules.SPTurnover = STOCK_F9_FV.Modules.SPTurnover || (
                     console.log(`json = \n`, json);
                 }
                 if (typeof(json) === "object"  && Object.keys(json).length > 0) {
+                    let {
+                        zd: up_drop,
+                        zdf: up_drop_amplitude,
+                        jnzdf: since_amplitude,
+                        zdf3: quarter_amplitude,
+                        zdf12: year_amplitude,
+                        beta: year_beta,
+                        gj: stcok_price,
+                    } = json;
+                    // let stcok_price = `88.8`;// only for test!
+                    if (debug) {
+                        console.log(`up_drop = \n`, up_drop);
+                        console.log(`up_drop_amplitude = \n`, up_drop_amplitude);
+                        console.log(`stcok_price = \n`, stcok_price);
+                        console.log(`since_amplitude = \n`, since_amplitude);
+                        console.log(`year_amplitude = \n`, year_amplitude);
+                        console.log(`up_drop = \n`, up_drop);
+                        console.log(`year_beta = \n`, year_beta);
+                    }
+                    let big_values = [stcok_price, up_drop, up_drop_amplitude],
+                        small_values = [since_amplitude, quarter_amplitude, year_amplitude, year_beta];
+                    if (debug) {
+                        console.log(`big_values = \n`, big_values);
+                        console.log(`small_values = \n`, small_values);
+                    }
+                    const isUpTest = (str_num = ``) => {
+                        return str_num.includes(`-`);
+                    };
+                    const showStockTitles = (big_arr = [],  small_arr= []) => {
+                        let big_spans = document.querySelectorAll(`[data-title-span="big-span"]`),
+                            small_spans = document.querySelectorAll(`[data-title-span="small-span"]`),
+                            big_span_icon = document.querySelector(`[data-status="big-span"]`);
+                        if (debug) {
+                            console.log(`big_spans = \n`, big_spans);
+                            console.log(`small_spans = \n`, small_spans);
+                        }
+                        // window.getComputedStyle(big_spans[0], null).getPropertyValue("background-image");
+                        let isBigDown = false;
+                        if (isUpTest(big_arr[1]) || isUpTest(big_arr[2])) {
+                            isBigDown = true;
+                        }
+                        for (let i = 0; i < big_spans.length; i++) {
+                            // big_spans[i].classList.toggle("big-span-green");
+                            big_spans[i].innerHTML = big_arr[i];
+                            if (isBigDown === true) {
+                                big_spans[i].classList.add(`big-span-green`);
+                                if (i === 0) {
+                                    big_span_icon.setAttribute("data-status", `big-span-down`);
+                                    // data-status="big-span"
+                                    // data-status="big-span-up"
+                                    // data-status="big-span-down"
+                                }
+                            }else{
+                                big_spans[i].classList.add(`big-span-red`);
+                                if (i === 0) {
+                                    big_span_icon.setAttribute("data-status", `big-span-up`);
+                                }
+                            }
+                        }
+                        for (let i = 0; i < small_spans.length; i++) {
+                            if (isUpTest(small_arr[i]) === true) {
+                                small_spans[i].innerHTML = small_arr[i];
+                                small_spans[i].classList.add(`small-span-green`);
+                            }else{
+                                small_spans[i].innerHTML = `+${small_arr[i]}`;
+                                small_spans[i].classList.add(`small-span-red`);
+                            }
+                        }
+                    };
+                    showStockTitles(big_values, small_values);
                     let strs = json.details.map(
                         (obj, i) => {
                             if (debug) {
@@ -142,7 +212,7 @@ STOCK_F9_FV.Modules.SPTurnover.SPTdrawHS = STOCK_F9_FV.Modules.SPTurnover.SPTdra
         // 得到毫秒数
         let max_time = (time.length-10);// ???
         // datas
-        if (!debug) {
+        if (debug) {
             console.log(`datas = \n`, datas);
         }
         const chart_css = {
@@ -211,6 +281,7 @@ STOCK_F9_FV.Modules.SPTurnover.SPTdrawHS = STOCK_F9_FV.Modules.SPTurnover.SPTdra
             console.log(volume);
             console.log(sh_index);
         }
+        // let max_time = (time.length-10);// ???
         /*
             Highcharts lang 配置是全局配置
             针对所有图表有效，所有不能单独设置在某个图表中在，
@@ -283,8 +354,8 @@ STOCK_F9_FV.Modules.SPTurnover.SPTdrawHS = STOCK_F9_FV.Modules.SPTurnover.SPTdra
                 // text: '股价/成交量'
             },
             xAxis: {
-                // categories: time,
-                // min: max_time,
+                categories: time,
+                // min: max_time,// auto right === max x value
                 // min: 0,
                 // max: 8,
                 // tickPixelInterval: 120
@@ -476,26 +547,30 @@ STOCK_F9_FV.Modules.SPTurnover.SPTdrawHS = STOCK_F9_FV.Modules.SPTurnover.SPTdra
                 //     pointInterval: 24 * 3600 * 1000
                 // }
             },
-            // navigator: {
-            //     adaptToUpdatedData: true,
-            //     series: {
-            //         data: data
-            //     }
-            // },
-            // scrollbar: {
-            //     liveRedraw: true
-            // },
-            // navigator: {
-            //     height: 20,
-            //     margin: 10,
-            //     // categories: time,
-            //     // min: max_time,
-            // },
-            // scrollbar: {
-            //     // enabled: false,
-            //     enabled: true,
-            //     // no scrollbar, only using rangeSelector
-            // },
+            navigator: {
+                height: 20,
+                margin: 10,
+                // categories: time,
+                // min: max_time,
+                handles: {
+                    backgroundColor: '#fff',
+                    borderColor: '#000'
+                },
+                baseSeries: 7,
+                adaptToUpdatedData: true,
+                // maskFill: 'rgba(180, 198, 220, 0.75)',
+                // series: {
+                //     data: data
+                // }
+            },
+            scrollbar: {
+                enabled: false,
+                // enabled: true,
+                // no scrollbar, only using rangeSelector
+                step: 7,
+                minWidth: 32,
+                liveRedraw: true,
+            },
             rangeSelector: {
                 // height: 10,
                 // enabled: false,
@@ -604,15 +679,21 @@ STOCK_F9_FV.Modules.SPTurnover.init = STOCK_F9_FV.Modules.SPTurnover.init || (
 
 
 STOCK_F9_FV.Modules.SPTurnover.init({
-    // ip: STOCK_IP,
-    // path: `${STOCK_Paths}/stockfast06/`,
-    // gilcode: STOCK_SecCode
-    ip: `http://10.1.5.202`, // ip: `http://10.1.5.31`,
-    path: `/webservice/fastview/stock/stockfast06/`,
-    gilcode: `600580.SH`
+    ip: STOCK_IP,
+    path: `${STOCK_Paths}/stockfast06/`,
+    gilcode: STOCK_SecCode
+    // ip: `http://10.1.5.202`,
+    // path: `/webservice/fastview/stock/stockfast06/`,
+    // gilcode: `600570.SH`,
+    // gilcode: `600580.SH`,
+    // gilcode: `600590.SH`
 });
 
 // const url = `http://10.1.5.202/webservice/fastview/stock/${sf_num}/600570.SH`;
 // const url = `http://10.1.5.202/webservice/fastview/stock/stockfast06/600570.SH`;
 // http://10.1.5.31/webservice/fastview/stock/stockfast06/600570.SH
+// ip: `http://10.1.5.31`,
+
+
+
 

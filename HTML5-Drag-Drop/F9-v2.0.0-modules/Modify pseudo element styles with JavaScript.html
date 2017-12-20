@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Modify pseudo element styles with JavaScript</title>
+    <style>
+        .red::before {
+            content: 'red';
+            color: red;
+        }
+        
+        .green::before {
+            content: 'green';
+            color: green;
+        }
+        
+        [data-attr="red5"]::before {
+            content: attr(data-attr);
+            color: red;
+        }
+        
+        [data-attr="green5"]:before {
+            content: 'green5';
+            color: green;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <p class="red" data-uid="uid-1">Hi, this is a plain-old, sad-looking paragraph tag.</p>
+    </div>
+    <div>
+        <p>
+            <span data-title-span="big-span">Modify pseudo element styles with JavaScript</span>
+        </p>
+    </div>
+    <div>
+        <p data-attr="red5" data-uid="uid-5">red5</p>
+    </div>
+    <!-- js -->
+    <script>
+        // document.styleSheets
+        let p1 = document.querySelector(`[data-uid="uid-1"]`);
+        var str = window.getComputedStyle(p1, '::before').getPropertyValue('content');
+        // let big_spans = document.querySelectorAll(`[data-title-span="big-span"]`);
+        // window.getComputedStyle(big_spans[0], "::after").getPropertyValue("background-image");
+        // window.getComputedStyle(big_spans[0], "::after").setAttribute("background-image", `url("../img/down.png")`);
+        // document.styleSheets[0].addRule('.red::before', 'content: "' + str + str + '"');
+        document.styleSheets[0].addRule('.red::before', `content: ${str}; color: ${str};`);
+        document.styleSheets[0].insertRule('.red::before { content: "' + str + str + '" }', 0);
+        setTimeout(() => {
+            document.querySelector(`[data-uid="uid-5"]`).setAttribute('data-attr', 'green5');
+        }, 1000);
+    </script>
+</body>
+
+</html>
