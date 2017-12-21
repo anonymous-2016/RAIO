@@ -290,6 +290,16 @@ E:\github\RAIO\HTML5-Drag-Drop\F9-v2.0.0-modules\otc-f9
     bulletin        公司公告 company-bulletin
     research        研究报告 research-report
 
+
+touch company-performance-all.css company-performance-all.html company-performance-all.js
+touch main-management-business.css main-management-business.html main-management-business.js
+
+touch .css .html .js
+touch .css .html .js
+touch .css .html .js
+
+
+
 http://10.1.5.202/webservice/fastview/otcper/news/430002.OC
 http://10.1.5.202/webservice/fastview/otcper/bulletin/430002.OC
 http://10.1.5.202/webservice/fastview/otcper/research/430002.OC
@@ -444,15 +454,20 @@ let title = `${(arr[i].xwtitle !== undefined) ? arr[i].xwtitle : `🤓暂无 新
     },
     "otcperfast05": {
         name: "公司表现-市场表现",
-        "zdf": "涨跌幅",
+        // "zdf": "涨跌幅",
+        "zdf": {// "涨跌幅"
+            "rq": "日期",
+            "index": "三板成指",
+            "stock": "涨跌幅"
+        },
         "hsl": {//换手率
             "hyrjhsl": "行业日均换手率",
-            "scrjhsl": "市场日均换手率"
-        },
-        "datas": {// 数据
-            "secuCode": "证券代码",
-            "hsl": "换手率"
-        }// ???
+            "scrjhsl": "市场日均换手率",
+            "datas": {// 数据
+                "secuCode": "证券代码",
+                "hsl": "换手率"
+            }// ???
+        }
     },
     "otcperfast06": {
         name: "公司表现-公司规模",

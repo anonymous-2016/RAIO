@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Tabs</title>
+    <link rel="stylesheet" href="./tabs.css">
+</head>
+
+<body>
+    <section data-tabs="tabs-box">
+        <div data-tab="tab-title-box">
+            <ul data-tab="tab-title-ul">
+                <li data-tab="tab-title">
+                    <a href="#1" data-tab-uid="0" data-tab="tab-link" class="hover-link-color">Tab 1</a>
+                </li>
+                <li data-tab="tab-title">
+                    <a href="#2" data-tab-uid="1" data-tab="tab-link" class="default-link-color">Tab 2</a>
+                </li>
+                <li data-tab="tab-title">
+                    <a href="#3" data-tab-uid="2" data-tab="tab-link" class="default-link-color">Tab 3</a>
+                </li>
+            </ul>
+        </div>
+        <div data-tab="tab-container-box">
+            <div data-tab="tab-container">
+                Contanier 1
+            </div>
+            <div data-tab="tab-container">
+                Contanier 2
+            </div>
+            <div data-tab="tab-container">
+                Contanier 3
+            </div>
+        </div>
+    </section>
+    <!-- js -->
+    <script src="./tabs.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,155 @@
+@charset "UTF-8";
+
+/* tabs */
+
+div,
+ul,
+li,
+a {
+    box-sizing: border-box;
+    margin: 0px;
+    padding: 0px;
+}
+
+[data-tabs="tabs-box"] {
+    box-sizing: border-box;
+    width: 502px;
+    height: 100%;
+    margin: 50px auto;
+    background: #ccc;
+}
+
+
+/* tab-title & li */
+
+[data-tab="tab-title-ul"] {
+    box-sizing: border-box;
+    width: 302px;
+    border: 1px solid #bacadb;
+    height: 23px;
+    /* line-height: 23px; */
+}
+
+[data-tab="tab-title-ul"]::after {
+    display: table;
+    clear: both;
+    overflow: auto;
+    visibility: hidden;
+    content: "";
+    width: 0;
+    height: 0;
+    zoom: 1;
+}
+
+[data-tab="tab-title"] {
+    box-sizing: border-box;
+    width: 100px;
+    float: left;
+    text-align: center;
+    background: #e8eefa;
+}
+
+.default-link-color {
+    color: #4d4d4d;
+    background: #e8eefa;
+}
+
+.hover-link-color {
+    color: #fff;
+    background: #3385ff;
+}
+
+
+/* li hover & datalist */
+
+[data-tab="tab-title-hover"] {
+    box-sizing: border-box;
+    width: 100px;
+    float: left;
+    text-align: center;
+    background: #3385ff;
+}
+
+[data-tab="tab-title"]:nth-of-type(n):hover,
+[data-tab="tab-title"]:nth-of-type(n):hover>a[data-tab="tab-link"] {
+    background: #3385ff;
+    color: #fff;
+    cursor: pointer;
+}
+
+[data-tab="tab-title"]:nth-of-type(1) {
+    border-right: 1px solid #bacadb;
+}
+
+[data-tab="tab-title"]:nth-of-type(2) {
+    border-right: 1px solid #bacadb;
+}
+
+[data-tab="tab-title"]:nth-last-of-type(1) {
+    /* background: #ff00ff; */
+}
+
+li[data-tab="tab-title"] {
+    list-style: none;
+}
+
+a[data-tab="tab-link"] {
+    text-decoration: none;
+    display: inline-block;
+    width: 100%;
+}
+
+
+/* a[data-tab="tab-link"] {
+    color: #4d4d4d;
+}
+
+a[data-tab="tab-link"]:hover {
+    color: #fff;
+} */
+
+
+/*
+[data-tab="tab-title"]:nth-last-of-type(1)::after {
+    display: table;
+    clear: both;
+    overflow: auto;
+    visibility: hidden;
+    content: "";
+    zoom: 1;
+}
+*/
+
+
+/* tab-container & div */
+
+[data-tab="tab-container-box"] {
+    box-sizing: border-box;
+    background: #ff00ff;
+    width: 502px;
+    height: 500px;
+    overflow: hidden;
+}
+
+[data-tab="tab-container"] {
+    box-sizing: border-box;
+    background: #ffffff;
+    border: 1px solid red;
+    width: 502px;
+    height: 500px;
+    float: left;
+}
+
+
+/* clearfix */
+
+[data-clearfix="css-clearfix"] {
+    display: table;
+    clear: both;
+    overflow: auto;
+    visibility: hidden;
+    content: "";
+    width: 0;
+    height: 0;
+    zoom: 1;
+}
