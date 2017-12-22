@@ -45,26 +45,12 @@ const OTC_F9 = [
     "company-performance-scale",
     "company-performance-achievement",
     "company-performance-valuation",
-    // "main-management-business",
-    // "equity-shareholder",
-    // "management-layer-profiles",
+    "main-management-business",
+    "equity-shareholder",
+    "management-layer-profiles",
     "company-news",
     "company-bulletin",
-    "research-report",
-    //
-    // "news",
-    // "bulletin",
-    // "research",
-    // "otcperfast02",
-    // "otcperfast03",
-    // "otcperfast04",
-    // "otcperfast05",
-    // "otcperfast06",
-    // "otcperfast07",
-    // "otcperfast08",
-    // "otcperfast09",
-    // "otcperfast10",
-    // "otcperfast11"
+    "research-report"
 ];
 
 let entry_obj = {};

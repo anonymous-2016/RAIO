@@ -300,7 +300,6 @@ touch equity-shareholder.css equity-shareholder.html equity-shareholder.js
 touch .css .html .js
 touch .css .html .js
 
-姓名性别年龄学历职务是否在公司领薪持股数量(股)占比(%)增减变动(股
 
 
 http://10.1.5.202/webservice/fastview/otcper/news/430002.OC
@@ -620,13 +619,13 @@ let title = `${(arr[i].xwtitle !== undefined) ? arr[i].xwtitle : `🤓暂无 新
         },// 高管持股
         "gglz": [
             {
-                "xm": "姓名在任其他职务",
+                "xm": "姓名",
                 "zw": "职务",
                 "beginDate": "任职起始日期",
                 "endDate": "离职日期",// 任职终止日期
                 "rz": "在任其他职务"// 是否还在公司担任职务
             }
-        ]// 高管离职
+        ]// 高管离职信息
     },
     "otcperfast0?": {
         name: "",
