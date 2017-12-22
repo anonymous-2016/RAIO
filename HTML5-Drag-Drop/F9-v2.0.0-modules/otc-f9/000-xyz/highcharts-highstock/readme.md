@@ -27,6 +27,24 @@ series : [{
 ```
 
 
+## plotBorderWidth:
 
+```js
+
+    chart: {
+        // type: 'column',
+        // backgroundColor: chart_css.color
+        // backgroundColor: color
+        // height: (9 / 16 * 100) + '%',
+        // height: 272,// 275px;
+        // 16:9 ratio
+        // marginTop: 30,
+        // marginBottom: 65,
+        plotBorderWidth: 1,
+        // marginLeft: 80
+    },
+
+
+```
 
 

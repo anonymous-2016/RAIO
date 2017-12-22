@@ -330,10 +330,13 @@ http://10.1.5.203/webtool/apitool/CompanyShortDesc
 ```
 
 
+
+
 ```js
 
 let publishDate = (arr[i].xwsj !== undefined) ? arr[i].xwsj : `😟暂无 新闻日期`;
 let title = `${(arr[i].xwtitle !== undefined) ? arr[i].xwtitle : `🤓暂无 新闻标题`}`;
+
 
 
 {
@@ -507,7 +510,9 @@ let title = `${(arr[i].xwtitle !== undefined) ? arr[i].xwtitle : `🤓暂无 新
             "mgsy": "每股收益",
             "pm": "排名",
             "ttm": "市盈率TTM"
-        }// 当前股票的数据
+        },//
+        "mgsypj": "每股收益 行业均值",
+        "sylpj": "TTM 行业均值" // 高于, 低于, 弱于
     },
     "otcperfast08": {
         name: "公司表现-公司估值",

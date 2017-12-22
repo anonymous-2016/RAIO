@@ -5,9 +5,11 @@
  * @author xgqfrms
  * creadted 2017.12.21
  * @param {* String} url
- * @param {* Array} tds
- * @param {* String} title
- * @param {* Array} ui_arr
+ * @param {* String} hst_uid
+ * @param {* String} hst_uid2
+ * @param {* Array} hst_uids (hst_uid, hst_uid2)
+ * @param {* String} hsc_uid
+ * @param {* String} hsc_uid2
  * @param {Boolean} debug
  */
 import {UserException} from "../utils/throw_error";
@@ -20,17 +22,17 @@ OTC_F9_FV.Modules = OTC_F9_FV.Modules || {};
 
 
 OTC_F9_FV.Modules.companyPerformanceMarket = OTC_F9_FV.Modules.companyPerformanceMarket || (
-    (url = ``, hst_uid = ``, hsc_uid = ``, hsc_uid2 = ``, debug = false) => {
+    (url = ``, hst_uids = ``, hsc_uid = ``, hsc_uid2 = ``, debug = false) => {
         let datas = {};
         fetch(url)
         .then(res => res.json())
         .then(
             (json) => {
                 datas = json;
-                let hst_dom = document.querySelector(hst_uid);
+                let hst_doms = document.querySelectorAll(hst_uids);
                 if (debug) {
                     console.log(`data = \n`, json);
-                    console.log(`hst_dom = \n`, hst_dom);
+                    console.log(`hst_doms = \n`, hst_doms);
                     // console.log(`hsc_dom = \n`, hsc_dom);
                 }
                 try {
@@ -149,23 +151,59 @@ OTC_F9_FV.Modules.companyPerformanceMarket = OTC_F9_FV.Modules.companyPerformanc
                                 OTC_F9_FV.Modules.companyPerformanceMarket.drawHS2(arr_obj, hsc_uid2);
                             }
                         }
-                        // for (let i = 0; i < tds.length - 1; i++) {
-                        //     let key = ui_arr[i],
-                        //         value = (datas[key] !== `--` ? datas[key] : 0);
-                        //     tds[i].innerText = value;
-                        //     tds[i].setAttribute(`title`, value);
+                        // no data
+                        let html = ``;
+                        let html2 = ``;
+                        html = `
+                            <p data-none="no-data-p">
+                                <span data-none="no-data-span"></span>
+                            </p>
+                        `;
+                        html2 = `
+                            <p data-none="no-data-p">
+                                <span data-none="no-data-span"></span>
+                            </p>
+                        `;
+                        // if (datas.data !== undefined && typeof(datas.data) === "object") {
+                        //     html = `
+                        //         <p data-p="company-performance-market-p">
+                        //             <span data-span="company-performance-market-span">中科软</span>
+                        //             <span data-span="company-performance-market-span">${datas.data.zdf}</span>近一个月涨跌幅市场排名
+                        //             <span data-span="company-performance-market-span">${datas.data.pm}</span> 名，
+                        //             <span data-span="company-performance-market-span">弱于</span>三板成指。
+                        //         </p>
+                        //     `;
+                        //     html2 = `
+                        //         <p data-p="company-performance-market-p">
+                        //             <span data-span="company-performance-market-span">中科软</span> 近一个月平均换手率为
+                        //             <span data-span="company-performance-market-span">0.406</span> %,
+                        //             <span data-span="company-performance-market-span">低于</span>市场平均值，市场排名
+                        //             <span data-span="company-performance-market-span">856</span>。
+                        //         </p>
+                        //     `;
+                        // }else{
+                        //     // no data
+                        //     html = `
+                        //         <p data-none="no-data-p">
+                        //             <span data-none="no-data-span"></span>
+                        //         </p>
+                        //     `;
+                        //     html2 = `
+                        //         <p data-none="no-data-p">
+                        //             <span data-none="no-data-span"></span>
+                        //         </p>
+                        //     `;
                         // }
-                        // let title_key = ui_arr[tds.length - 1],
-                        //     title_value = (datas[title_key] !== `--` ? datas[title_key] : 0);
-                        // title.innerText = title_value || `暂无数据`;
+                        hst_doms[0].insertAdjacentHTML(`beforeend`, html);
+                        hst_doms[1].insertAdjacentHTML(`beforeend`, html2);
                     }else{
                         let message = `handle json error!`,
-                            fileName = `latest-transaction-data.js`,
+                            fileName = `company-performance-market.js`,
                             lineNumber = 29;
                         throw new UserException(message, fileName, lineNumber);
                     }
                 } catch (err) {
-                    let url =`file:///E:/github/RAIO/HTML5-Drag-Drop/F9-v2.0.0-modules/otc-f9/modules/latest-transaction-data.js`;
+                    let url =`file:///E:/github/RAIO/HTML5-Drag-Drop/F9-v2.0.0-modules/otc-f9/modules/company-performance-market.js`;
                     ConsoleError(err, url);
                 }
             }
@@ -185,7 +223,7 @@ OTC_F9_FV.Modules.companyPerformanceMarket = OTC_F9_FV.Modules.companyPerformanc
  * @param {* Boolean} debug
  */
 
-// const
+
 OTC_F9_FV.Modules.companyPerformanceMarket.drawHS = OTC_F9_FV.Modules.companyPerformanceMarket.drawHS || (
     (
         datas = {},
@@ -271,7 +309,8 @@ OTC_F9_FV.Modules.companyPerformanceMarket.drawHS = OTC_F9_FV.Modules.companyPer
                     // ceiling: 100,
                     // max: 100,
                     title: {
-                        text: '三板成指',
+                        // text: '三板成指',
+                        text: ``,
                     },
                     labels: {
                         format: '{value}',// 百分比
@@ -295,7 +334,8 @@ OTC_F9_FV.Modules.companyPerformanceMarket.drawHS = OTC_F9_FV.Modules.companyPer
                     // ceiling: 100,
                     // step: 10,
                     title: {
-                        text: '涨跌幅',
+                        // text: '涨跌幅',
+                        text: ``,
                     },
                     labels: {
                         format: '{value} %',// 百分比
@@ -415,7 +455,8 @@ OTC_F9_FV.Modules.companyPerformanceMarket.drawHS = OTC_F9_FV.Modules.companyPer
                 }
             ],
             scrollbar: {
-                enabled: true
+                enabled: true,
+                minWidth: 23,
             }
         });
     }
@@ -444,8 +485,8 @@ OTC_F9_FV.Modules.companyPerformanceMarket.drawHS2 = OTC_F9_FV.Modules.companyPe
             legendColor: `#fff`,
             yAxisColor: `#FFB400`,
         };
-        console.log(`industry_average = \n`, industry_average, typeof(industry_average));
-        console.log(`market_average = \n`, market_average);
+        // console.log(`industry_average = \n`, industry_average, typeof(industry_average));
+        // console.log(`market_average = \n`, market_average);
         const {color, colors, optioncolor, gridColor, legendColor, yAxisColor, index_color} = {...chart_css};
         // Highcharts.chart
         Highcharts.setOptions({
@@ -464,7 +505,7 @@ OTC_F9_FV.Modules.companyPerformanceMarket.drawHS2 = OTC_F9_FV.Modules.companyPe
                 useHTML: true,
             },
             chart: {
-                // type: 'column',
+                type: 'column',
                 // backgroundColor: chart_css.color
                 // backgroundColor: color
                 // height: (9 / 16 * 100) + '%',
@@ -489,7 +530,7 @@ OTC_F9_FV.Modules.companyPerformanceMarket.drawHS2 = OTC_F9_FV.Modules.companyPe
                 // xAxis datas
                 labels: {
                     autoRotation: [0],// autoRotation:'false',
-                    step: 2
+                    step: 1
                 },
                 // plotLines: [{
                 //     color: 'black',
@@ -524,10 +565,11 @@ OTC_F9_FV.Modules.companyPerformanceMarket.drawHS2 = OTC_F9_FV.Modules.companyPe
                     // ceiling: 100,
                     // max: 100,
                     title: {
-                        text: '换手率',
+                        // text: '换手率',
+                        text: '',
                     },
                     labels: {
-                        format: '{value}',// 百分比
+                        format: '{value} %',// 百分比
                         style: {
                             color: Highcharts.getOptions().colors[1]
                         }
@@ -640,7 +682,8 @@ OTC_F9_FV.Modules.companyPerformanceMarket.drawHS2 = OTC_F9_FV.Modules.companyPe
                     // color: "#f04949",
                     color: '#00ff00',
                     data: industry_average,
-                    lineWidth: 5,
+                    lineWidth: 2,
+                    zIndex: 3,
                     marker : {
                         enabled : true,
                         radius : 0,
@@ -666,7 +709,8 @@ OTC_F9_FV.Modules.companyPerformanceMarket.drawHS2 = OTC_F9_FV.Modules.companyPe
                     // color: "#f04949",
                     color: '#ff00ff',
                     data: market_average,
-                    lineWidth: 5,
+                    lineWidth: 2,
+                    zIndex: 2,
                     marker : {
                         enabled : true,
                         radius : 0,
@@ -687,11 +731,12 @@ OTC_F9_FV.Modules.companyPerformanceMarket.drawHS2 = OTC_F9_FV.Modules.companyPe
                     },
                 },
                 {
-                    type: 'spline',
+                    // type: 'spline',
                     // yAxis: 1, // 0 ???
                     color: "skyblue",
                     name: '月平均换手率',
                     data: change_rate,
+                    zIndex: 1,
                     connectNulls: true,// OK
                     tooltip: {
                         // headerFormat: `
@@ -730,12 +775,14 @@ OTC_F9_FV.Modules.companyPerformanceMarket.init = OTC_F9_FV.Modules.companyPerfo
         }
     ) => {
         let url = `${ip}${path}${socket}${gilcode}`,
-            hst_uid = `[data-hs-title="data-company-performance-market-title-uid"]`,
+            // hst_uid = `[data-hs-title="data-company-performance-market-title-uid"]`,
+            // hst_uid2 = `[data-hs-title="data-company-performance-market-title-uid"]`,
+            hst_uids = `[data-hs-title="data-company-performance-market-title-uid"]`,
             hsc_uid = `company_performance_market_hs_container`,
             hsc_uid2 = `company_performance_market_hs_container2`;
             // hsc_uid = `[data-hs-container="data-company-performance-market-container-uid"]`;
         // copy(Object.keys(json));
-        OTC_F9_FV.Modules.companyPerformanceMarket(url, hst_uid, hsc_uid, hsc_uid2, false);
+        OTC_F9_FV.Modules.companyPerformanceMarket(url, hst_uids, hsc_uid, hsc_uid2, false);
     }
 );
 
