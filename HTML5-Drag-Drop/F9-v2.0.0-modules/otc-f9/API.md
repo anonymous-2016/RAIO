@@ -279,25 +279,28 @@ E:\github\RAIO\HTML5-Drag-Drop\F9-v2.0.0-modules\otc-f9
     otcperfast02    大事提醒 big-event-reminder
     otcperfast03    公司简介 company-brief-introduction
     otcperfast04    最新财务数据 latest-financial-data
+
     otcperfast05    公司表现-市场表现 company-performance-market
     otcperfast06    公司表现-公司规模 company-performance-scale
     otcperfast07    公司表现-公司业绩 company-performance-achievement
     otcperfast08    公司表现-公司估值 company-performance-valuation
+
     otcperfast09    主营业务 main-management-business 主要经营业务
     otcperfast10    股本股东 equity-shareholder
     otcperfast11    管理层概况 management-layer-profiles 管理层概况与持股
+
     news            公司新闻 company-news 新闻来源
     bulletin        公司公告 company-bulletin
     research        研究报告 research-report
 
 
-touch company-performance-all.css company-performance-all.html company-performance-all.js
-touch main-management-business.css main-management-business.html main-management-business.js
+touch equity-shareholder.css equity-shareholder.html equity-shareholder.js
+
 
 touch .css .html .js
 touch .css .html .js
-touch .css .html .js
 
+姓名性别年龄学历职务是否在公司领薪持股数量(股)占比(%)增减变动(股
 
 
 http://10.1.5.202/webservice/fastview/otcper/news/430002.OC
