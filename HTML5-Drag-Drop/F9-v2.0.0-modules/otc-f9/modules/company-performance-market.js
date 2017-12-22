@@ -428,6 +428,12 @@ OTC_F9_FV.Modules.companyPerformanceMarket.drawHS2 = OTC_F9_FV.Modules.companyPe
         debug = false
     ) => {
         let {code, change_rate, industry_average, market_average} = datas;
+        let v1 = market_average[0],
+            v2 = industry_average[0];
+        for (let i = 0; i < 4; i++) {
+            market_average.push(v1);
+            industry_average.push(v2);
+        }
         // let max_time = (time.length-10);
         const chart_css = {
             color: `#0B1016`,
@@ -533,22 +539,42 @@ OTC_F9_FV.Modules.companyPerformanceMarket.drawHS2 = OTC_F9_FV.Modules.companyPe
                     //         color: (Highcharts.theme && Highcharts.theme.textColor) || 'gray'
                     //     }
                     // }
-                    plotLines: [{
-                        color: 'black',
-                        dashStyle: 'dot',
-                        width: 2,
-                        value: 1,//
-                        label: {
-                            rotation: 0,
-                            y: 15,
-                            style: {
-                                fontStyle: 'italic'
-                            },
-                            // text: 'Safe fat intake 65g/day',
-                            text: ''
-                        },
-                        zIndex: 3
-                    }]
+                    // plotLines: [
+                    //     {
+                    //         color: '#ff0000',
+                    //         // dashStyle: 'dot',
+                    //         dashStyle: 'Solid',
+                    //         width: 2,
+                    //         // value: 1,
+                    //         value: market_average,
+                    //         label: {
+                    //             rotation: 0,
+                    //             y: 15,
+                    //             style: {
+                    //                 fontStyle: 'italic'
+                    //             },
+                    //             text: `市场平均 ${market_average} %`,
+                    //         },
+                    //         zIndex: 3
+                    //     },
+                    //     {
+                    //         color: '#00ff00',
+                    //         // dashStyle: 'dot',
+                    //         dashStyle: 'Solid',
+                    //         width: 2,
+                    //         value: 1,
+                    //         // value: industry_average,
+                    //         label: {
+                    //             rotation: 0,
+                    //             y: 15,
+                    //             style: {
+                    //                 fontStyle: 'italic'
+                    //             },
+                    //             text: `行业平均 ${(industry_average)} %`,
+                    //         },
+                    //         zIndex: 3
+                    //     }
+                    // ],
                 }
             ],
             legend: {
@@ -614,6 +640,12 @@ OTC_F9_FV.Modules.companyPerformanceMarket.drawHS2 = OTC_F9_FV.Modules.companyPe
                     // color: "#f04949",
                     color: '#00ff00',
                     data: industry_average,
+                    lineWidth: 5,
+                    marker : {
+                        enabled : true,
+                        radius : 0,
+                        symbol: 'square'
+                    },
                     tooltip: {
                         // headerFormat: `
                         //     <strong>
@@ -623,7 +655,7 @@ OTC_F9_FV.Modules.companyPerformanceMarket.drawHS2 = OTC_F9_FV.Modules.companyPe
                         // `,
                         pointFormat: `
                             <span style="color:{point.color}">\u25CF</span>
-                            {series.name}: <b>{point.y} </b><br/>
+                            {series.name}: <b>{point.y} %</b><br/>
                         `,
                         // 点 <span style="color:{point.color}">\u25CF</span> 百分比 :{point.percentage:.0f}%
                     },
@@ -634,6 +666,12 @@ OTC_F9_FV.Modules.companyPerformanceMarket.drawHS2 = OTC_F9_FV.Modules.companyPe
                     // color: "#f04949",
                     color: '#ff00ff',
                     data: market_average,
+                    lineWidth: 5,
+                    marker : {
+                        enabled : true,
+                        radius : 0,
+                        symbol: 'square'
+                    },
                     tooltip: {
                         // headerFormat: `
                         //     <strong>
@@ -643,7 +681,7 @@ OTC_F9_FV.Modules.companyPerformanceMarket.drawHS2 = OTC_F9_FV.Modules.companyPe
                         // `,
                         pointFormat: `
                             <span style="color:{point.color}">\u25CF</span>
-                            {series.name}: <b>{point.y} </b><br/>
+                            {series.name}: <b>{point.y} %</b><br/>
                         `,
                         // 点 <span style="color:{point.color}">\u25CF</span> 百分比 :{point.percentage:.0f}%
                     },
@@ -715,5 +753,8 @@ OTC_F9_FV.Modules.companyPerformanceMarket.init({
 
 // OTC_F9_FV.Modules.companyPerformanceMarket.init();
 // const url = `http://10.1.5.202/webservice/fastview/otcper/otcperfast05/430002.OC`;
+
+
+
 
 
