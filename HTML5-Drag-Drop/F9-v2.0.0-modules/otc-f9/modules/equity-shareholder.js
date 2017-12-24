@@ -466,3 +466,20 @@ OTC_F9_FV.Modules.equityShareholder.init({
 // OTC_F9_FV.Modules.equityShareholder.init();
 // const url = `http://10.1.5.202/webservice/fastview/otcper/otcperfast10/430002.OC`;
 
+
+
+/*
+
+
+# Pie charts
+
+https://www.highcharts.com/demo
+
+https://www.highcharts.com/demo/pie-gradient
+https://www.highcharts.com/demo/pie-drilldown
+https://www.highcharts.com/demo/pie-basic
+
+
+
+
+*/
