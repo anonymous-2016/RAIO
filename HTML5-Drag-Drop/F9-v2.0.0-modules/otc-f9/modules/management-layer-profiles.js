@@ -72,30 +72,30 @@ OTC_F9_FV.Modules.managementLayerProfiles = OTC_F9_FV.Modules.managementLayerPro
                                     zjbd: change
                                 } = datas.ggcg.ggs[i];
                                 trs += `
-                                    <tr class="otc-management-layer-profiles-table-tr">
+                                    <tr class="otc-management-layer-profiles-table-tr" data-test="${i}">
                                         <td class="otc-management-layer-profiles-table-td-value" data-value="data-otc-MLP">
-                                            ${name}
+                                            ${name !== undefined ? name : `--`}
                                         </td>
                                         <td class="otc-management-layer-profiles-table-td-value" data-value="data-otc-MLP">
-                                            ${gender}
+                                            ${gender !== undefined ? gender : `--`}
                                         </td>
                                         <td class="otc-management-layer-profiles-table-td-value" data-value="data-otc-MLP">
-                                            ${age}
+                                            ${age !== undefined ? age : `--`}
                                         </td>
                                         <td class="otc-management-layer-profiles-table-td-value" data-value="data-otc-MLP">
-                                            ${degree}
+                                            ${degree !== undefined ? degree : `--`}
                                         </td>
                                         <td class="otc-management-layer-profiles-table-td-value" data-value="data-otc-MLP">
-                                            ${position}
+                                            ${position !== undefined ? position : `--`}
                                         </td>
                                         <td class="otc-management-layer-profiles-table-td-value" data-value="data-otc-MLP">
-                                            ${amount}
+                                            ${amount !== undefined ? amount : `--`}
                                         </td>
                                         <td class="otc-management-layer-profiles-table-td-value" data-value="data-otc-MLP">
-                                            ${proportion}
+                                            ${proportion !== undefined ? proportion : `--`}
                                         </td>
                                         <td class="otc-management-layer-profiles-table-td-value" data-value="data-otc-MLP">
-                                            ${change}
+                                            ${change !== undefined ? change : `--`}
                                         </td>
                                     </tr>
                                 `;
@@ -111,7 +111,6 @@ OTC_F9_FV.Modules.managementLayerProfiles = OTC_F9_FV.Modules.managementLayerPro
                         }
                         if (Array.isArray(datas.gglz) && datas.gglz.length > 0) {
                             let trs2 = ``;
-                            let xyz = ``;
                             // let name = ``,
                             //     position = ``,
                             //     begin = ``,
@@ -125,10 +124,8 @@ OTC_F9_FV.Modules.managementLayerProfiles = OTC_F9_FV.Modules.managementLayerPro
                                     endDate: end,
                                     rz: ok,
                                 } = datas.gglz[i];
-                                xyz = (ok === true) ? "是" : "否";
-                                console.log(`xyz = `, xyz);
                                 trs2 += `
-                                    <tr class="otc-management-layer-profiles-table-tr">
+                                    <tr class="otc-management-layer-profiles-table-tr" data-test="${i}">
                                         <td class="otc-management-layer-profiles-table-td-value" data-value="data-otc-MLP">
                                             ${name}
                                         </td>
@@ -142,7 +139,7 @@ OTC_F9_FV.Modules.managementLayerProfiles = OTC_F9_FV.Modules.managementLayerPro
                                             ${end}
                                         </td>
                                         <td class="otc-management-layer-profiles-table-td-value" data-value="data-otc-MLP">
-                                            ${xyz}
+                                            ${(ok === true) ? "是" : "否"}
                                         </td>
                                     </tr>
                                 `;// 是否
