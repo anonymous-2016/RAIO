@@ -21,14 +21,14 @@ OTC_F9_FV.Modules = OTC_F9_FV.Modules || {};
 
 
 OTC_F9_FV.Modules.equityShareholder = OTC_F9_FV.Modules.equityShareholder || (
-    (url = ``, time_uid = ``, hst_uid = ``, hsc_uid = ``, tbody_uid = ``, debug = false) => {
+    (url = ``, links_uid = ``, hst_uid = ``, hsc_uid = ``, tbody_uid = ``, debug = false) => {
         let datas = {};
         fetch(url)
         .then(res => res.json())
         .then(
             (json) => {
                 datas = json;
-                let time_dom = document.querySelector(time_uid),
+                let links_dom = document.querySelectorAll(links_uid),
                     hst_dom = document.querySelector(hst_uid),
                     tbody_dom = document.querySelector(tbody_uid);
                 if (debug) {
