@@ -9,6 +9,7 @@
  * @param {* String} hst_uid
  * @param {* String} hsc_uid
  * @param {* String} tbody_uid
+ * @param {* Array} tbody_uids
  * @param {Boolean} debug
  */
 import {UserException} from "../utils/throw_error";
@@ -21,7 +22,7 @@ OTC_F9_FV.Modules = OTC_F9_FV.Modules || {};
 
 
 OTC_F9_FV.Modules.equityShareholder = OTC_F9_FV.Modules.equityShareholder || (
-    (url = ``, links_uid = ``, hst_uid = ``, hsc_uid = ``, tbody_uid = ``, debug = false) => {
+    (url = ``, links_uid = ``, hst_uid = ``, hsc_uid = ``, tbody_uids = ``, debug = false) => {
         let datas = {};
         fetch(url)
         .then(res => res.json())
@@ -30,129 +31,102 @@ OTC_F9_FV.Modules.equityShareholder = OTC_F9_FV.Modules.equityShareholder || (
                 datas = json;
                 let links_dom = document.querySelectorAll(links_uid),
                     hst_dom = document.querySelector(hst_uid),
-                    tbody_dom = document.querySelector(tbody_uid);
+                    tbodys_dom = document.querySelectorAll(tbody_uids);
                 if (debug) {
                     console.log(`data = \n`, json);
                 }
                 try {
                     if (json !== undefined && typeof(json) === "object") {
-                        if (json.datas !== undefined && Array.isArray(json.datas)) {
-                            if (json.datas.length > 0) {
-                                // backend & sort time
-                                let arr = json.datas,
-                                    keys = Object.keys(arr[0]);
-                                let arr_obj = {},
-                                    arr_obj2 = {};
-                                // array bug & one data also need aray!
-                                keys.forEach(
-                                    (key, index) => {
-                                        let new_key = ``;
-                                        switch (key) {
-                                            case "xm":
-                                                new_key = `products`;
-                                                break;
-                                            case "yysr":
-                                                new_key = `income`;
-                                                break;
-                                            case "yycb":
-                                                new_key = `cost`;
-                                                break;
-                                            case "ml":
-                                                new_key = `gross_profit`;
-                                                break;
-                                            default:
-                                                // new_key = `暂无数据`;// null
-                                                break;
-                                        }
-                                        arr_obj[new_key] = [];
-                                    }
-                                );
-                                arr.map(
-                                    (obj, i) => {
-                                        let products = ``,
-                                            income = ``,
-                                            cost = ``,
-                                            gross_profit = ``;
-                                        products = (obj.xm !== undefined) ? obj.xm : null;
-                                        income = (obj.yysr !== undefined) ? (obj.yysr !== `--` ? parseFloat(obj.yysr) : null) : null;
-                                        cost = (obj.yycb !== undefined) ? (obj.yycb !== `--` ? parseFloat(obj.yycb) : null) : null;
-                                        gross_profit = (obj.ml !== undefined) ? (obj.ml !== `--` ? parseFloat(obj.ml) : null) : null;
-                                        // array
-                                        arr_obj.products.push(products);
-                                        arr_obj.income.push(income);
-                                        arr_obj.cost.push(cost);
-                                        arr_obj.gross_profit.push(gross_profit);
-                                    }
-                                );
-                                if (debug) {
-                                    console.log(`arr_obj = `, JSON.stringify(arr_obj, null, 4));
-                                }
-                                // Y & column === income cost gross_profit
-                                // 按项目 X === xm
-                                // Y & column === xm
-                                // 按产品 X === income cost gross_profit
-                                OTC_F9_FV.Modules.equityShareholder.drawHS(arr_obj, hsc_uid);
-                                // table
-                                let trs = ``;
-                                for (let i = 0; i < arr.length; i++) {
-                                    trs += `
-                                        <tr class="otc-equity-shareholder-table-tr">
-                                            <td class="otc-equity-shareholder-table-td-value" data-value="data-otc-MMB">
-                                                ${arr[i].xm}
-                                            </td>
-                                            <td class="otc-equity-shareholder-table-td-value" data-value="data-otc-MMB">
-                                                ${arr[i].yysr}
-                                            </td>
-                                            <td class="otc-equity-shareholder-table-td-value" data-value="data-otc-MMB">
-                                                ${arr[i].yycb}
-                                            </td>
-                                            <td class="otc-equity-shareholder-table-td-value" data-value="data-otc-MMB">
-                                                ${arr[i].yysrzb}
-                                            </td>
-                                        </tr>
-                                    `;
-                                }
-                                tbody_dom.insertAdjacentHTML(`beforeend`, trs);
-                            }else{
-                                // `暂无数据` & no data!
-                                console.log(`json.datas is empty! = \n`, json, json.datas);
-                                let arr_obj = {};
-                                arr_obj.productst = [];
-                                arr_obj.incomet = [];
-                                arr_obj.costt = [];
-                                arr_obj.gross_profit = [];
-                                OTC_F9_FV.Modules.equityShareholder.drawHS(arr_obj, hsc_uid);
-                            }
-                        }
-                        let time = ``,
-                            p = ``,
-                            today = new Date().toLocaleString().substr(0, 10).replace(/\//ig, `-`);
-                        // "2017/12/24 下午2:15:55" => "2017-12-24"
-                        (json.time !== undefined)
-                        ?
-                        time = `<span data-time="data-otc-MMB-time">${json.time}</span>`
-                        :
-                        `<span data-time="data-otc-MMB-time">${today}</span>`;
-                        time_dom.insertAdjacentHTML(`beforeend`, time);
-                        if (json.zz !== undefined && json.zb !== undefined) {
-                            p = `
-                                <p data-p="data-otc-MMB-title">
-                                    本报告期公司主营业务同比增长
-                                    <span data-span="data-otc-MMB-title">${json.zz}</span>%, 占营业总收入
-                                    <span data-span="data-otc-MMB-title">${json.zb}</span>%。
-                                </p>
+                        let tr = ``,
+                            trs = ``,
+                            tr2 = ``;
+                        // table 1
+                        if (json.gbjg !== undefined && typeof(json.gbjg) === "object") {
+                            tr = `
+                                <tr class="otc-equity-shareholder-table-tr">
+                                    <td class="otc-equity-shareholder-table-td-value" data-value="data-otc-ES">${json.gbjg.jzrq}</td>
+                                    <td class="otc-equity-shareholder-table-td-value" data-value="data-otc-ES">${json.gbjg.zgb}</td>
+                                    <td class="otc-equity-shareholder-table-td-value" data-value="data-otc-ES">${json.gbjg.yxsg}</td>
+                                    <td class="otc-equity-shareholder-table-td-value" data-value="data-otc-ES">${json.gbjg.wxsg}</td>
+                                    <td class="otc-equity-shareholder-table-td-value" data-value="data-otc-ES">${json.gbjg.bdyy}</td>
+                                </tr>
                             `;
+                            // json.gbjg.yxszb
+                            // json.gbjg.wxszb
                         }else{
                             // no data
-                            p = `
+                            tr = `
                                 <p data-none="no-data-p">
                                     <span data-none="no-data-span"></span>
                                 </p>
                             `;
                         }
-                        hst_dom.insertAdjacentHTML(`beforeend`, p);
-                        // HC & one container with diff datas
-                    }else{
+                        tbodys_dom[0].insertAdjacentHTML(`beforeend`, tr);
+                        // table 2
+                        if (json.sdgd !== undefined && typeof(json.sdgd) === "object") {
+                            if (json.sdgd.datas !== undefined && Array.isArray(json.sdgd.datas)) {
+                                let arr = json.sdgd.datas || [];
+                                for (let i = 0; i < arr.length; i++) {
+                                    trs += `
+                                        <tr class="otc-equity-shareholder-table-tr">
+                                            <td class="otc-equity-shareholder-table-td-value" data-value="data-otc-ES" title="${arr[i].gdmc}">
+                                                ${arr[i].gdmc}
+                                            </td>
+                                            <td class="otc-equity-shareholder-table-td-value" data-value="data-otc-ES">
+                                                ${arr[i].cgs}
+                                            </td>
+                                            <td class="otc-equity-shareholder-table-td-value" data-value="data-otc-ES">
+                                                ${arr[i].zb}
+                                            </td>
+                                            <td class="otc-equity-shareholder-table-td-value" data-value="data-otc-ES">
+                                                ${arr[i].zjbd}
+                                            </td>
+                                            <td class="otc-equity-shareholder-table-td-value" data-value="data-otc-ES">
+                                                ${arr[i].jglx}
+                                            </td>
+                                        </tr>
+                                    `;
+                                }
+                            }
+                        }else{
+                            // no data
+                            trs = `
+                                <p data-none="no-data-p">
+                                    <span data-none="no-data-span"></span>
+                                </p>
+                            `;
+                        }
+                        tbodys_dom[1].insertAdjacentHTML(`beforeend`, trs);
+                        // table 3
+                        if (json.gdhs !== undefined && typeof(json.gdhs) === "object") {
+                            // json.gdhs.sj && json.gdhs.hsjsq &&  json.gdhs.hjjsq ???
+                            tr2 = `
+                                <tr class="otc-equity-shareholder-table-tr">
+                                    <td class="otc-equity-shareholder-table-td-value" data-value="data-otc-ES">
+                                        ${json.gdhs.zhs}
+                                    </td>
+                                    <td class="otc-equity-shareholder-table-td-value" data-value="data-otc-ES">
+                                        ${json.gdhs.zhszz}
+                                    </td>
+                                    <td class="otc-equity-shareholder-table-td-value" data-value="data-otc-ES">
+                                        ${json.gdhs.hjcgs}
+                                    </td>
+                                    <td class="otc-equity-shareholder-table-td-value" data-value="data-otc-ES">
+                                        ${json.gdhs.hjzz}
+                                    </td>
+                                </tr>
+                            `;
+                        }else{
+                            // no data
+                            tr2 = `
+                                <p data-none="no-data-p">
+                                    <span data-none="no-data-span"></span>
+                                </p>
+                            `;
+                        }
+                        console.log(`tr2 =\n`, tr2);
+                        tbodys_dom[2].insertAdjacentHTML(`beforeend`, tr2);
+                    } else{
                         let message = `handle json error!`,
                             fileName = `equity-shareholder.js`,
                             lineNumber = 29;
@@ -468,11 +442,12 @@ OTC_F9_FV.Modules.equityShareholder.init = OTC_F9_FV.Modules.equityShareholder.i
     ) => {
         let url = `${ip}${path}${socket}${gilcode}`,
             links_uid = `[data-time="otc-equity-shareholder-time"]`,
-            hst_uid = `[data-titles="data-otc-MMB-title"]`,
+            hst_uid = `[data-titles="data-otc-ES-title"]`,
             hsc_uid = `equity_shareholder_hs_container`,
-            tbody_uid = `[data-tbody="otc-equity-shareholder-table-tbody"]`;
+            // tbody_uid = `[data-tbody="otc-equity-shareholder-table-tbody"]`;
+            tbody_uids = `[data-tbody="otc-equity-shareholder-table-tbody"]`;
         // copy(Object.keys(json));
-        OTC_F9_FV.Modules.equityShareholder(url, links_uid, hst_uid, hsc_uid, tbody_uid, false);
+        OTC_F9_FV.Modules.equityShareholder(url, links_uid, hst_uid, hsc_uid, tbody_uids, false);
     }
 );
 
@@ -490,13 +465,4 @@ OTC_F9_FV.Modules.equityShareholder.init({
 
 // OTC_F9_FV.Modules.equityShareholder.init();
 // const url = `http://10.1.5.202/webservice/fastview/otcper/otcperfast10/430002.OC`;
-
-
-
-
-
-
-
-
-
 
