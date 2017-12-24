@@ -627,21 +627,19 @@ OTC_F9_FV.Modules.mainManagementBusiness.drawHS2 = OTC_F9_FV.Modules.mainManagem
                 }
             ],
             legend: {
-                symbolRadius: 0,
-                // rectangle
+                symbolRadius: 0, // rectangle
                 align: 'center',// left, center and right. (Defaults to center.)
                 backgroundColor: `#ff00ff`, //Color,
-                /*
-                    x: 0,
-                    y: 340,
-                    verticalAlign: 'top',
-                */
-                // x: 0,
-                y: 0,
                 x: 0,
+                y: 0,
                 // y: 10,
-                itemWidth: 100,
+                itemWidth: 150,
+                lineHeight: 23,
+                itemMarginTop: 5,
+                itemMarginBottom: 5,
+                // margin: 10,
                 verticalAlign: "bottom",
+                // layout: 'vertical',
                 // verticalAlign:'middle',
                 // floating: true,
                 floating: false,
