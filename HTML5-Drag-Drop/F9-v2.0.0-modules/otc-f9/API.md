@@ -561,10 +561,10 @@ let title = `${(arr[i].xwtitle !== undefined) ? arr[i].xwtitle : `🤓暂无 新
             "yxskzrzb": "有限售_控股股东和实际制人数量占比",
             "yxsggzb": "有限售_董事监事高管数量占比",
             "yxshxygzb": "有限售_核心员工数量占比",
-            "yxsqtzb": "有限售_其它有限售数量占比",
+            "yxsqtzb": "有限售_其它有限售数量占比",//
             "wxskzrsl": "无限售_控股股东和实际制人数量",
             "wxsggsl": "无限售_董事监事高管数量",
-            "wxshxygsl": "无限售_核心员工数量",
+            "wxshxygsl": "无限售_核心员工数量",//
             "yxskzrsl": "有限售_控股股东和实际制人数量",
             "yxsggsl": "有限售_董事监事高管数量",
             "yxsygsl": "有限售_核心员工数量",

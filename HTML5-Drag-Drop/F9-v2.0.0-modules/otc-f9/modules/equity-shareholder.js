@@ -40,19 +40,111 @@ OTC_F9_FV.Modules.equityShareholder = OTC_F9_FV.Modules.equityShareholder || (
                         let tr = ``,
                             trs = ``,
                             tr2 = ``;
+                        let objects = {
+                            limite: ``,
+                            unlimite: ``,
+                            limited: [],// Array
+                            unlimited: [],// Array
+                        };
                         // table 1
                         if (json.gbjg !== undefined && typeof(json.gbjg) === "object") {
+                            const hc_data = json.gbjg;
                             tr = `
                                 <tr class="otc-equity-shareholder-table-tr">
-                                    <td class="otc-equity-shareholder-table-td-value" data-value="data-otc-ES">${json.gbjg.jzrq}</td>
-                                    <td class="otc-equity-shareholder-table-td-value" data-value="data-otc-ES">${json.gbjg.zgb}</td>
-                                    <td class="otc-equity-shareholder-table-td-value" data-value="data-otc-ES">${json.gbjg.yxsg}</td>
-                                    <td class="otc-equity-shareholder-table-td-value" data-value="data-otc-ES">${json.gbjg.wxsg}</td>
-                                    <td class="otc-equity-shareholder-table-td-value" data-value="data-otc-ES">${json.gbjg.bdyy}</td>
+                                    <td class="otc-equity-shareholder-table-td-key" data-alias="截止日期">截止日期</td>
+                                    <td class="otc-equity-shareholder-table-td-value" data-value="data-otc-ES">${hc_data.jzrq}</td>
+                                </tr>
+                                <tr class="otc-equity-shareholder-table-tr">
+                                    <td class="otc-equity-shareholder-table-td-key" data-alias="总股本(股)">总股本(股)</td>
+                                    <td class="otc-equity-shareholder-table-td-value" data-value="data-otc-ES">${hc_data.zgb}</td>
+                                </tr>
+                                <tr class="otc-equity-shareholder-table-tr">
+                                    <td class="otc-equity-shareholder-table-td-key" data-alias="无限售股份总数(股)">无限售股份总数(股)</td>
+                                    <td class="otc-equity-shareholder-table-td-value" data-value="data-otc-ES">${hc_data.yxsg}</td>
+                                </tr>
+                                <tr class="otc-equity-shareholder-table-tr">
+                                    <td class="otc-equity-shareholder-table-td-key" data-alias="有限售股份总数(股)">有限售股份总数(股)</td>
+                                    <td class="otc-equity-shareholder-table-td-value" data-value="data-otc-ES">${hc_data.wxsg}</td>
+                                </tr>
+                                <tr class="otc-equity-shareholder-table-tr">
+                                    <td class="otc-equity-shareholder-table-td-key" data-alias="变动原因说明(股)">变动原因说明(股)</td>
+                                    <td class="otc-equity-shareholder-table-td-value" data-value="data-otc-ES">${hc_data.bdyy}</td>
                                 </tr>
                             `;
-                            // json.gbjg.yxszb
-                            // json.gbjg.wxszb
+                            // HC
+                            objects.limite = (hc_data.yxszb !== undefined) ? parseFloat(hc_data.yxszb) : 0;
+                            objects.unlimite = (hc_data.wxszb !== undefined) ? parseFloat(hc_data.wxszb) : 0;
+                            // ??? `--` / 0.00
+                            // parseFloat(0.00) === parseFloat(0);
+                            let arr = [];
+                            arr[0] = (hc_data.yxskzrsl !== undefined && hc_data.yxskzrsl !== `--`) ? parseFloat(hc_data.yxskzrsl) : 0;
+                            arr[1] = (hc_data.yxsggsl !== undefined && hc_data.yxsggsl !== `--`) ? parseFloat(hc_data.yxsggsl) : 0;
+                            arr[2] = (hc_data.yxsygsl !== undefined && hc_data.yxsygsl !== `--`) ? parseFloat(hc_data.yxsygsl) : 0;
+                            arr[3] = (hc_data.yxsqtsl !== undefined && hc_data.yxsqtsl !== `--`) ? parseFloat(hc_data.yxsqtsl) : 0;
+                            // console.log(`arr =\n`, arr);
+                            // Number.prototype.toFixed()
+                            let limite_total = (arr[0]*100 + arr[1]*100 + arr[2]*100 + arr[3]*100)/100;
+                            // (0.10*100 + 0.20*100)/100; // === 0.3
+                            // 0.1 + 0.2; // === 0.30000000000000004
+                            for (let i = 0; i < 4; i++) {
+                                let key = ``,
+                                    value = (arr[i]/limite_total)*100;
+                                // .toFixed(2) && string
+                                // 100/0; // === Infinity
+                                switch (i) {
+                                    case 0:
+                                    key = '控股股东和实际制人数量占比';
+                                        break;
+                                    case 1:
+                                    key = '董事监事高管数量占比';
+                                        break;
+                                    case 2:
+                                    key = '核心员工数量占比';
+                                        break;
+                                    case 3:
+                                    key = '其它有限售数量占比';
+                                        break;
+                                    default:
+                                        break;
+                                }
+                                if (arr[i] !== 0) {
+                                    // no avlue, no key
+                                    objects.limited.push([key, value]);
+                                }else{
+                                    continue;
+                                }
+                            }
+                            let unarr = [];
+                            unarr[0] = (hc_data.wxskzrsl !== undefined && hc_data.wxskzrsl !== `--`) ? parseFloat(hc_data.wxskzrsl) : 0;
+                            unarr[1] = (hc_data.wxsggsl !== undefined && hc_data.wxsggsl !== `--`) ? parseFloat(hc_data.wxsggsl) : 0;
+                            unarr[2] = (hc_data.wxshxygsl !== undefined && hc_data.wxshxygsl !== `--`) ? parseFloat(hc_data.wxshxygsl) : 0;
+                            // console.log(`unarr =\n`, unarr);
+                            let unlimite_total = (unarr[0]*100 + unarr[1]*100 + unarr[2]*100)/100;
+                            for (let i = 0; i < 3; i++) {
+                                // console.log(`unarr[i] =\n`, i, unarr[i], typeof unarr[i]);
+                                let key = ``,
+                                    value = (unarr[i]/unlimite_total)*100;
+                                switch (i) {
+                                    case 0:
+                                    key = '控股股东和实际制人数量占比';
+                                        break;
+                                    case 1:
+                                    key = '董事监事高管数量占比';
+                                        break;
+                                    case 2:
+                                    key = '核心员工数量占比';
+                                        break;
+                                    default:
+                                        break;
+                                }
+                                if (unarr[i] !== 0) {
+                                    // no avlue, no key
+                                    objects.unlimited.push([key, value]);
+                                }else{
+                                    continue;
+                                }
+                            }
+                            OTC_F9_FV.Modules.equityShareholder.drawHS(objects, hsc_uid);
                         }else{
                             // no data
                             tr = `
@@ -124,7 +216,6 @@ OTC_F9_FV.Modules.equityShareholder = OTC_F9_FV.Modules.equityShareholder || (
                                 </p>
                             `;
                         }
-                        console.log(`tr2 =\n`, tr2);
                         tbodys_dom[2].insertAdjacentHTML(`beforeend`, tr2);
                     } else{
                         let message = `handle json error!`,
@@ -151,12 +242,12 @@ OTC_F9_FV.Modules.equityShareholder.drawHS = OTC_F9_FV.Modules.equityShareholder
         debug = false
     ) => {
         let {
-            products,
-            income,
-            cost,
-            gross_profit
+            limite,
+            unlimite,
+            limited,// Array
+            unlimited// Array
         } = datas;
-        // let max_time = (time.length-10);
+        // console.log(`HC objects = \n`, datas);
         const chart_css = {
             color: `#0B1016`,
             colors: ['#ff1919', '#ffff66', '#92d050'],
@@ -177,6 +268,7 @@ OTC_F9_FV.Modules.equityShareholder.drawHS = OTC_F9_FV.Modules.equityShareholder
                     </p>
                 `,
                 loading: `Loading....`,
+                drillUpText: '<span style="color: #ff00ff">< 返回到: </span>{series.name}',
             }
         });
         Highcharts.chart(container_uid, {
@@ -184,242 +276,77 @@ OTC_F9_FV.Modules.equityShareholder.drawHS = OTC_F9_FV.Modules.equityShareholder
                 useHTML: true,
             },
             chart: {
-                type: 'column',
-                // backgroundColor: chart_css.color
-                // backgroundColor: color
-                // height: (9 / 16 * 100) + '%',
-                // height: 272,// 275px;
-                // 16:9 ratio
-                // marginTop: 30,
-                // marginBottom: 65,
-                plotBorderWidth: 1,
-                // marginLeft: 80
+                type: 'pie',
+                // plotBorderWidth: 1,
+                // borderWidth: 1,
+                width: 530,
+                height: 300,
+                className: "css-class-hc-ES",
             },
             title: {
-                // text: '月平均换手率',
+                // text: '股本结构',
+                // text: '<h3>股本结构</h3>',
                 text: '',
                 align: "left",
-                x: 70,
+                x: 10,
                 y: 10,
-            },
-            xAxis: {
-                categories: products,
-                // min: max_time,
-                // min: 0,
-                // max: 8,
-                // xAxis datas
-                labels: {
-                    autoRotation: [0],// autoRotation:'false',
-                    // step: 2,
-                    step: 1
-                },
-                // plotLines: [{
-                //     color: 'black',
-                //     dashStyle: 'dot',
-                //     width: 2,
-                //     value: 1,//
-                //     label: {
-                //         rotation: 0,
-                //         y: 15,
-                //         style: {
-                //             fontStyle: 'italic'
-                //         },
-                //         text: 'Safe fat intake 65g/day'
-                //     },
-                //     zIndex: 3
-                // }]
             },
             credits: {
                 enabled: false,// enabled: true,
                 href: `https://www.gildata.com`,
                 text: `gildata`,
             },
-            colors: ['#ff1919', '#ffff66', '#92d050'],
-            yAxis: [
-                // yAxis 0
-                {
-                    // x: -50,
-                    // y: -50,
-                    // type: 'logarithmic',
-                    min: 0,
-                    // floor: 0,
-                    // ceiling: 100,
-                    // max: 100,
-                    title: {
-                        // text: '换手率',
-                        text: '',
-                    },
-                    // labels: {
-                    //     format: '{value}',// 百分比
-                    //     style: {
-                    //         color: Highcharts.getOptions().colors[1]
-                    //     }
-                    // },
-                    // stackLabels: {// stackLabels
-                    //     enabled: true,
-                    //     style: {
-                    //         fontWeight: 'bold',
-                    //         color: (Highcharts.theme && Highcharts.theme.textColor) || 'gray'
-                    //     }
-                    // }
-                    // plotLines: [
-                    //     {
-                    //         color: '#ff0000',
-                    //         // dashStyle: 'dot',
-                    //         dashStyle: 'Solid',
-                    //         width: 2,
-                    //         // value: 1,
-                    //         value: industry_circulation_value,
-                    //         label: {
-                    //             rotation: 0,
-                    //             y: 15,
-                    //             style: {
-                    //                 fontStyle: 'italic'
-                    //             },
-                    //             text: `市场平均 ${industry_circulation_value} %`,
-                    //         },
-                    //         zIndex: 3
-                    //     },
-                    //     {
-                    //         color: '#00ff00',
-                    //         // dashStyle: 'dot',
-                    //         dashStyle: 'Solid',
-                    //         width: 2,
-                    //         value: 1,
-                    //         // value: industry_total_value,
-                    //         label: {
-                    //             rotation: 0,
-                    //             y: 15,
-                    //             style: {
-                    //                 fontStyle: 'italic'
-                    //             },
-                    //             text: `行业平均 ${(industry_total_value)} %`,
-                    //         },
-                    //         zIndex: 3
-                    //     }
-                    // ],
-                }
-            ],
-            legend: {
-                symbolRadius: 0,
-                // rectangle
-                align: 'center',// left, center and right. (Defaults to center.)
-                backgroundColor: `#ff00ff`, //Color,
-                /*
-                    x: 0,
-                    y: 340,
-                    verticalAlign: 'top',
-                */
-                x: 0,
-                y: 0,
-                verticalAlign: "bottom",
-                // floating: true,
-                floating: false,
-                backgroundColor: (Highcharts.theme && Highcharts.theme.background2) || 'white',
-                borderColor: '#CCC',
-                borderWidth: 1,
-                shadow: false
-            },
-            // tooltip ??? array
-            tooltip: {
-                headerFormat: `
-                    <strong>
-                        {point.x}
-                    </strong>
-                    <br/>
-                `,
-                // pointFormat: `
-                //     <span style="color:{point.color}">\u25CF</span>
-                //     {series.name}: {point.y} <br/>
-                //     <span style="color:{point.color}">\u25CF</span> 百分比 :{point.percentage:.0f}%
-                // `,
-                shared: true
-            },
-            // 情节/绘图选项
             plotOptions: {
-                // (series) type = column (chart)
-                // column: {
-                //     // stacking: 'normal',// 是否将每个系列的值叠加在一起, 默认是：null
-                //     // stacking: 'null',
-                //     // stacking: 'percent',// 百分比堆叠柱形图
-                //     dataLabels: {
-                //         enabled: true,
-                //         // color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white'
-                //         color: "#434348"
-                //     }
-                // },
-                // spline: {
-                //     stacking: 'normal',
-                //     dataLabels: {
-                //         enabled: true,
-                //         color: "#434348"
-                //     }
-                // }
-            },
-            series: [
-                {
-                    name: '营业收入',
-                    color: '#4f81bd',
-                    data: income,
-                    lineWidth: 2,
-                    zIndex: 3,
-                    marker : {
-                        enabled : true,
-                        radius : 0,
-                        symbol: 'square'
-                    },
-                    tooltip: {
-                        pointFormat: `
-                            <span style="color:{point.color}">\u25CF</span>
-                            {series.name}: <b>{point.y} 万元</b><br/>
-                        `
-                    },
-                },
-                {
-                    name: '营业成本',
-                    color: '#c0504d',
-                    data: cost,
-                    lineWidth: 2,
-                    zIndex: 2,
-                    marker : {
-                        enabled : true,
-                        radius : 0,
-                        symbol: 'square'
-                    },
-                    tooltip: {
-                        pointFormat: `
-                            <span style="color:{point.color}">\u25CF</span>
-                            {series.name}: <b>{point.y} 万元</b><br/>
-                        `,
-                    },
-                },
-                {
-                    // type: 'spline',
-                    // yAxis: 0,
-                    color: "#9bbb59",
-                    name: '毛利',
-                    data: gross_profit,
-                    zIndex: 1,
-                    connectNulls: true,// OK
-                    tooltip: {
-                        // headerFormat: `
-                        //     <strong>
-                        //     时间/ 日期 {point.x}
-                        //     </strong>
-                        //     <br/>
-                        // `,
-                        pointFormat: `
-                            <span style="color:{point.color}">\u25CF</span>
-                            {series.name}: <b>{point.y} 万元</b><br/>
-                        `,
-                        // <span style="color:{point.color}">\u25CF</span> 百分比 :{point.percentage:.0f}%
-                    },
+                series: {
+                    dataLabels: {
+                        enabled: true,
+                        format: '{point.name}: {point.y:.2f}%',// .2f
+                    }
                 }
-            ],
-            // scrollbar:{
-            //     enabled: true,
-            //     minWidth: 23,
-            // }
+            },
+            tooltip: {
+                headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+                pointFormat: '<span style="color:{point.color}">{point.name}占比</span>: <b>{point.y:.2f}%</b><br/>'
+            },
+            series: [{
+                name: '股本结构比例',
+                colorByPoint: true,
+                data: [{
+                    name: '有限售股份总数',
+                    // y: 7.91,
+                    y: limite,// Array
+                    drilldown: 'Limited',
+                    color: "#9bbb59"
+                }, {
+                    name: '无限售股份总数',
+                    // y: 92.09,
+                    y: unlimite,
+                    drilldown: 'Unlimited',
+                    color: "#4f81bd"
+                }]
+            }],
+            drilldown: {
+                series: [{
+                    name: '有限售股份',
+                    id: 'Limited',
+                    data: limited,
+                    // data: [
+                    //     ['控股股东和实际制人数量占比', 3.00],
+                    //     ['董事监事高管数量占比', 10],
+                    //     ['核心员工数量占比', 60],
+                    //     ['其它有限售数量占比', 27]
+                    // ]
+                }, {
+                    name: '无限售股份',
+                    id: 'Unlimited',
+                    data: unlimited,
+                    // data: [
+                    //     ['控股股东和实际制人数量占比', 30.00],
+                    //     ['董事监事高管数量占比', 50],
+                    //     ['核心员工数量占比', 20],
+                    // ]
+                }]
+            },
         });
     }
 );
@@ -467,19 +394,3 @@ OTC_F9_FV.Modules.equityShareholder.init({
 // const url = `http://10.1.5.202/webservice/fastview/otcper/otcperfast10/430002.OC`;
 
 
-
-/*
-
-
-# Pie charts
-
-https://www.highcharts.com/demo
-
-https://www.highcharts.com/demo/pie-gradient
-https://www.highcharts.com/demo/pie-drilldown
-https://www.highcharts.com/demo/pie-basic
-
-
-
-
-*/

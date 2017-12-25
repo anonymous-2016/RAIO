@@ -92,6 +92,54 @@ section.otc-module-box-5 {
     color: #f50;
 }
 
+#equity_shareholder_hs_container {
+    margin-left: 4px;
+    margin-top: 5px;
+}
+
+.css-class-hc-ES {
+    border: 1px solid #d7dbe0;
+    /* border: 1px solid #fff; */
+}
+
+span[data-title="sub-title"] {
+    color: #4d4d4d;
+    font-size: 12px;
+    display: inline-block;
+    margin-left: 5px;
+    margin-top: 3px;
+}
+
+section[data-group="mix-hc-table"] {
+    box-sizing: border-box;
+    /* background: #ccc; */
+    width: 540px;
+    max-width: 540px;
+    min-width: 540px;
+    border: 1px solid #ff0000;
+}
+
+td.otc-equity-shareholder-table-td-key {
+    box-sizing: border-box;
+    background: #e8eefa;
+    border-top: 1px solid #c5d2db;
+    text-align: center;
+    width: 200px;
+    min-width: 200px;
+    max-width: 200px;
+}
+
+table.otc-equity-shareholder-table:nth-of-type(1) {
+    box-sizing: border-box;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    width: 530px;
+    max-width: 530px;
+    min-width: 530px;
+    margin-left: 4px;
+    overflow: hidden;
+}
+
 
 /* a[data-link="otc-equity-shareholder-link"] {
     color: #3285ff;
