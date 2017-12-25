@@ -166,16 +166,38 @@ STOCK_F9_FV.Modules.MCFLSStatistics.MCFLSSdrawHS = STOCK_F9_FV.Modules.MCFLSStat
             yAxisColor = chart_css.yAxisColor;
         // container_div
         // Highcharts.stockChart
+        // noData
         Highcharts.setOptions({
             lang: {
-                // noData: '暂无数据',
+                rangeSelectorZoom: '缩放',// 放大
+                rangeSelectorFrom: '从',
+                rangeSelectorTo: '到',
+                contextButtonTitle: '图表导出菜单',
+                decimalPoint: '.',
+                downloadJPEG: "下载JPEG图片",
+                downloadPDF: "下载PDF文件",
+                downloadPNG: "下载PNG文件",
+                downloadSVG: "下载SVG文件",
+                drillUpText: "返回 {series.name}",
+                loading: '加载中...',
+                months: ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月'],
+                // noData: "暂无数据",
+                // noData: "没有数据显示!",
                 noData:  `
                     <p data-none="no-data-hc">
                         <span data-none="no-data-span"></span>
                     </p>
                 `,
-                loading: `Loading....`,
-            }
+                // numericSymbols: ['k', 'M', 'G', 'T', 'P', 'E'],
+                numericSymbols: ['千', '百万', '十亿', '兆', '千兆', '百万兆'],
+                printChart: "打印图表",
+                resetZoom: '重置缩放比例',
+                resetZoomTitle: '重置为原始大小',
+                shortMonths: ['一', '二', '三', '四', '五', '六', '七', '八', '九', '十', '十一', '十二'],
+                thousandsSep: ',',
+                shortWeekdays: ['周天', '周一', '周二', '周三', '周四', '周五', '周六'],
+                weekdays: ['星期天','星期一', '星期二', '星期三', '星期四', '星期五', '星期六']
+            },
         });
         Highcharts.chart(container_uid, {
             noData: {// all defualt value

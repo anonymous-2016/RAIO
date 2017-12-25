@@ -17,7 +17,6 @@ STOCK_F9_FV.Modules = STOCK_F9_FV.Modules || {};
 STOCK_F9_FV.Modules.SPTurnover = STOCK_F9_FV.Modules.SPTurnover || (
     (url = ``, uid = `default_dom_uid`, debug = false) => {
         let datas = {};
-        // fetch(`http://10.1.5.202/stock/f9/fastview/datas/sort6.json`)
         fetch(url)
         .then(res => res.json())
         .then(
@@ -28,89 +27,6 @@ STOCK_F9_FV.Modules.SPTurnover = STOCK_F9_FV.Modules.SPTurnover || (
                     console.log(`json = \n`, json);
                 }
                 if (typeof(json) === "object"  && Object.keys(json).length > 0) {
-                    let {
-                        zd: up_drop,
-                        zdf: up_drop_amplitude,
-                        jnzdf: since_amplitude,
-                        zdf3: quarter_amplitude,
-                        zdf12: year_amplitude,
-                        beta: year_beta,
-                        gj: stcok_price,
-                    } = json;
-                    // let stcok_price = `88.8`;// only for test!
-                    if (debug) {
-                        console.log(`up_drop = \n`, up_drop);
-                        console.log(`up_drop_amplitude = \n`, up_drop_amplitude);
-                        console.log(`stcok_price = \n`, stcok_price);
-                        console.log(`since_amplitude = \n`, since_amplitude);
-                        console.log(`year_amplitude = \n`, year_amplitude);
-                        console.log(`up_drop = \n`, up_drop);
-                        console.log(`year_beta = \n`, year_beta);
-                    }
-                    let big_values = [stcok_price, up_drop, up_drop_amplitude],
-                        small_values = [since_amplitude, quarter_amplitude, year_amplitude, year_beta];
-                    if (debug) {
-                        console.log(`big_values = \n`, big_values);
-                        console.log(`small_values = \n`, small_values);
-                    }
-                    const isUpTest = (str_num = ``) => {
-                        return str_num.includes(`-`);
-                    };
-                    const showStockTitles = (big_arr = [],  small_arr= []) => {
-                        let big_spans = document.querySelectorAll(`[data-title-span="big-span"]`),
-                            small_spans = document.querySelectorAll(`[data-title-span="small-span"]`),
-                            big_span_icon = document.querySelector(`[data-status="big-span"]`);
-                        if (debug) {
-                            console.log(`big_spans = \n`, big_spans);
-                            console.log(`small_spans = \n`, small_spans);
-                        }
-                        // window.getComputedStyle(big_spans[0], null).getPropertyValue("background-image");
-                        let isBigDown = false,
-                            isBigDefault = false;
-                        if (isUpTest(big_arr[1]) || isUpTest(big_arr[2])) {
-                            isBigDown = true;
-                        }
-                        if (big_arr[1] === "0.00" && big_arr[2] === "0.00") {
-                            isBigDefault = true;
-                        }
-                        for (let i = 0; i < big_spans.length; i++) {
-                            // big_spans[i].classList.toggle("big-span-green");
-                            big_spans[i].innerHTML = big_arr[i];
-                            if (isBigDown === true) {
-                                big_spans[i].classList.add(`big-span-green`);
-                                if (i === 0) {
-                                    big_span_icon.setAttribute("data-status", `big-span-down`);
-                                }
-                            }else{
-                                if (isBigDefault === true) {
-                                    // default
-                                    big_spans[i].classList.add(`big-span-default`);
-                                    if (i === 0) {
-                                        big_span_icon.setAttribute("data-status", `big-span-default`);
-                                        // data-status="big-span*"
-                                        // data-status="big-span-up"
-                                        // data-status="big-span-down"
-                                        // data-status="big-span-default"
-                                    }
-                                }else{
-                                    big_spans[i].classList.add(`big-span-red`);
-                                    if (i === 0) {
-                                        big_span_icon.setAttribute("data-status", `big-span-up`);
-                                    }
-                                }
-                            }
-                        }
-                        for (let i = 0; i < small_spans.length; i++) {
-                            if (isUpTest(small_arr[i]) === true) {
-                                small_spans[i].innerHTML = small_arr[i];
-                                small_spans[i].classList.add(`small-span-green`);
-                            }else{
-                                small_spans[i].innerHTML = `+${small_arr[i]}`;
-                                small_spans[i].classList.add(`small-span-red`);
-                            }
-                        }
-                    };
-                    showStockTitles(big_values, small_values);
                     let strs = json.details.map(
                         (obj, i) => {
                             if (debug) {
@@ -137,7 +53,6 @@ STOCK_F9_FV.Modules.SPTurnover = STOCK_F9_FV.Modules.SPTurnover || (
                                         // 1508889600000
                                     */
                                     return json.details[i];
-                                    // break;
                                 }
                             }
                         }
@@ -174,12 +89,11 @@ STOCK_F9_FV.Modules.SPTurnover = STOCK_F9_FV.Modules.SPTurnover || (
                                 turn_over = ``,
                                 stock_price = ``,
                                 SH_Index = ``;
-                            // `暂无数据` === null
-                            time = (obj.sjz !== undefined) ? obj.sjz : null;
+                            time = (obj.sjz !== undefined) ? obj.sjz : `暂无数据`;
                             // no string, just keep number!
-                            turn_over = (obj.cjl !== undefined) ? parseFloat(obj.cjl) : null;
-                            stock_price = (obj.gj !== undefined) ? parseFloat(obj.gj) : null;
-                            SH_Index = (obj.szzs !== undefined) ? ((obj.szzs !== "--") ? parseFloat(obj.szzs) : null ) : null;
+                            turn_over = (obj.cjl !== undefined) ? parseFloat(obj.cjl) : `暂无数据`;
+                            stock_price = (obj.gj !== undefined) ? parseFloat(obj.gj) : `暂无数据`;
+                            SH_Index = (obj.szzs !== undefined) ? parseFloat(obj.szzs) : `暂无数据`;
                             arr_obj.time.push(time);
                             arr_obj.stock_price.push(stock_price);
                             arr_obj.turn_over.push(turn_over);
@@ -201,22 +115,6 @@ STOCK_F9_FV.Modules.SPTurnover = STOCK_F9_FV.Modules.SPTurnover || (
                     datas.stock_price = [];
                     STOCK_F9_FV.Modules.SPTurnover.SPTdrawHS(datas, uid);
                 }
-                // else{
-                //     let hc_uid = document.querySelector(`[data-uid="stock-price-turnover"]`),
-                //         // hc_parent = hc_uid.parentNode,
-                //         hc_prev_dom = hc_uid.previousElementSibling,
-                //         no_data_html = `
-                //             <div>
-                //                 <p data-none="no-data-p">
-                //                     <span data-none="no-data-span"></span>
-                //                 </p>
-                //             </div>
-                //         `;
-                //     // remove self
-                //     hc_uid.remove();
-                //     // add no-data
-                //     hc_prev_dom.insertAdjacentHTML(`afterend`, no_data_html);
-                // }
             }
         )
         .catch(error => console.log(`error = \n`, error));
@@ -244,31 +142,25 @@ STOCK_F9_FV.Modules.SPTurnover.SPTdrawHS = STOCK_F9_FV.Modules.SPTurnover.SPTdra
         // 得到毫秒数
         let max_time = (time.length-10);// ???
         // datas
-        if (debug) {
+        if (!debug) {
             console.log(`datas = \n`, datas);
         }
         const chart_css = {
-            // color: `#0B1016`,
-            color: '#0B1016',
+            color: `#0B1016`,
             colors: ['#ff1919', '#ffff66', '#92d050'],
-            // optioncolor: `red`,
-            optioncolor: 'red',
-            // gridColor: `#2D3039`,
-            gridColor: '#2D3039',
-            legendColor: '#fff',
-            // legendColor: `#fff`,
-            // yAxisColor: `#FFB400`,
-            yAxisColor: '#FFB400',
+            optioncolor: `red`,
+            gridColor: `#2D3039`,
+            legendColor: `#fff`,
+            yAxisColor: `#FFB400`,
         };
         // const {color, colors, optioncolor, gridColor, legendColor, yAxisColor} = {...chart_css};
         let color = chart_css.color,
             colors = chart_css.colors,
-            // optioncolor = chart_css.optioncolor,
+            optioncolor = chart_css.optioncolor,
             gridColor = chart_css.gridColor,
             legendColor = chart_css.legendColor,
             yAxisColor = chart_css.yAxisColor;
         let ohlc = [],
-            prices = [],
             volume = [],
             sh_index = [],
             dataLength = datas.time.length,
@@ -295,14 +187,10 @@ STOCK_F9_FV.Modules.SPTurnover.SPTdrawHS = STOCK_F9_FV.Modules.SPTurnover.SPTdra
                 datas.turn_over[i],
                 datas.SH_Index[i]
             ]);
-            // ohlc.push([
-            //     new_ms_time,
-            //     datas.stock_price[i],
-            //     datas.SH_Index[i]
-            // ]);
-            prices.push([
-                new_ms_time,
-                datas.stock_price[i]
+            ohlc.push([
+                new_ms_time, // the date ??? 1147651200000 (ms) ??? new Date(oldTime);
+                datas.stock_price[i],
+                datas.SH_Index[i]
             ]);
             volume.push([
                 new_ms_time,
@@ -315,27 +203,14 @@ STOCK_F9_FV.Modules.SPTurnover.SPTdrawHS = STOCK_F9_FV.Modules.SPTurnover.SPTdra
         }
         if (debug) {
             console.log(ohlc);
-            console.log(prices);
-            console.log(sh_index);
             console.log(volume);
+            console.log(sh_index);
         }
-        // let max_time = (time.length-10);// ???
         /*
             Highcharts lang 配置是全局配置
             针对所有图表有效，所有不能单独设置在某个图表中在，
             只能在图表初始化之前通过 Highcharts.setOptions 来设置生效。
         */
-        // Highcharts.setOptions({
-        //     lang: {
-        //         // noData: '暂无数据',
-        //         noData:  `
-        //             <p data-none="no-data-hc">
-        //                 <span data-none="no-data-span"></span>
-        //             </p>
-        //         `,
-        //         loading: `Loading....`,
-        //     }
-        // });
         Highcharts.setOptions({
             lang: {
                 rangeSelectorZoom: '缩放',// 放大
@@ -350,7 +225,7 @@ STOCK_F9_FV.Modules.SPTurnover.SPTdrawHS = STOCK_F9_FV.Modules.SPTurnover.SPTdra
                 drillUpText: "返回 {series.name}",
                 loading: '加载中...',
                 months: ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月'],
-                // noData: "暂无数据",
+                // noData: '暂无数据',
                 // noData: "没有数据显示!",
                 noData:  `
                     <p data-none="no-data-hc">
@@ -386,6 +261,18 @@ STOCK_F9_FV.Modules.SPTurnover.SPTdrawHS = STOCK_F9_FV.Modules.SPTurnover.SPTdra
                 useHTML: true,
                 // useHTML: false
             },
+            legend: {
+                enabled: true,
+                // align: 'right',
+                // // align: 'bottom',
+                // backgroundColor: '#FCFFC5',
+                // borderColor: 'black',
+                // borderWidth: 1,
+                // layout: 'vertical',
+                // verticalAlign: 'top',
+                // y: 100,
+                // shadow: true
+            },
             credits: {
                 // enabled: true,//
                 enabled: false,
@@ -399,14 +286,14 @@ STOCK_F9_FV.Modules.SPTurnover.SPTdrawHS = STOCK_F9_FV.Modules.SPTurnover.SPTdra
             },
             xAxis: {
                 // categories: time,
-                // min: max_time,// auto right === max x value
+                // min: max_time,
                 // min: 0,
                 // max: 8,
                 // tickPixelInterval: 120
                 labels: {
                     // autoRotation:'false',
                     autoRotation: [0],
-                    step: 1
+                    step: 2
                 },
                 type: 'datetime',
                 dateTimeLabelFormats: {
@@ -477,7 +364,7 @@ STOCK_F9_FV.Modules.SPTurnover.SPTdrawHS = STOCK_F9_FV.Modules.SPTurnover.SPTdra
                 {
                     labels: {
                         align: 'left',
-                        x: -5
+                        x: 3
                     },
                     title: {
                         text: '成交量'
@@ -532,11 +419,10 @@ STOCK_F9_FV.Modules.SPTurnover.SPTdrawHS = STOCK_F9_FV.Modules.SPTurnover.SPTdra
                     //         `;
                     //     }
                     // },
-                    // navigatorOptions: {
-                    //     color: Highcharts.getOptions().colors[0]
-                    // },
-                    data: prices,
-                    // data: ohlc,
+                    navigatorOptions: {
+                        color: Highcharts.getOptions().colors[0]
+                    },
+                    data: ohlc,
                     // dataGrouping: {
                     //     units: groupingUnits
                     // },
@@ -586,116 +472,46 @@ STOCK_F9_FV.Modules.SPTurnover.SPTdrawHS = STOCK_F9_FV.Modules.SPTurnover.SPTdra
                 shared: true,
                 // valueDecimals: 3
             },
-            // plotOptions: {
-            //     series: {
-            //         pointStart: Date.UTC(2012, 0, 1),
-            //         pointInterval: 24 * 3600 * 1000
-            //     }
-            // },
-            legend: {
-                enabled: true
+            plotOptions: {
+                // series: {
+                //     pointStart: Date.UTC(2012, 0, 1),
+                //     pointInterval: 24 * 3600 * 1000
+                // }
             },
             navigator: {
                 enabled: false,
-                // enabled: true,
                 height: 20,
                 margin: 10,
-                // categories: time,
-                // min: max_time,
                 handles: {
-                    backgroundColor: '#fff',
-                    borderColor: '#000'
+                    backgroundColor: "#fff",
+                    borderColor: "#000"
                 },
-                baseSeries: 7,
-                // adaptToUpdatedData: true,
-                // maskFill: 'rgba(180, 198, 220, 0.75)',
-                // series: {
-                //     data: data
-                // }
+                baseSeries: 7
             },
             scrollbar: {
-                // enabled: false,
                 enabled: true,
-                // no scrollbar, only using rangeSelector
                 step: 3,
                 minWidth: 23,
-                liveRedraw: true,
+                liveRedraw: !0
             },
             rangeSelector: {
-                // height: 10,
-                // enabled: false,
-                selected: 0,// button index
-                // The index of the button to appear pre-selected. 默认是：undefined.
-                inputDateFormat: '%Y-%m-%d',//'%Y年%m月%d日'
-                // inputDateFormat: '%Y年 %m月 %d日',
-                // allButtonsEnabled: true,// highcharts-range-selector-buttons ???
-                allButtonsEnabled: false,
+                selected: 0,
+                inputDateFormat: "%Y-%m-%d",
+                allButtonsEnabled: !1,
                 buttons: [
                     {
-                        type: 'day',
+                        type: "day",
                         count: 36,
-                        text: '一天',
+                        text: "一天",
                         dataGrouping: {
-                            // forced: true,
-                            units: [['day', [1]]]
+                            units: [
+                                ["day", [1]
+                                ]
+                            ]
                         }
-                    },
-                    // {
-                    //     type: 'week',
-                    //     count: 1,
-                    //     text: '一周',
-                    //     dataGrouping: {
-                    //         forced: true,
-                    //         units: [['week', [1]]]
-                    //     }
-                    // },
-                    // {
-                    //     type: 'month',
-                    //     count: 1,
-                    //     text: '一月',
-                    //     dataGrouping: {
-                    //         forced: true,
-                    //         units: [['month', [1]]]
-                    //     }
-                    // },
-                    // {
-                    //     type: 'month',
-                    //     count: 3,
-                    //     text: '三月',
-                    //     dataGrouping: {
-                    //         forced: true,
-                    //         units: [['month', [3]]]
-                    //     }
-                    // },
-                    // {
-                    //     type: 'month',
-                    //     count: 6,
-                    //     text: '六月',
-                    //     dataGrouping: {
-                    //         forced: true,
-                    //         units: [['month', [6]]]
-                    //     }
-                    // },
-                    // {
-                    //     type: 'year',
-                    //     count: 1,
-                    //     text: '一年',
-                    //     dataGrouping: {
-                    //         forced: true,
-                    //         units: [['year', [1]]]
-                    //     }
-                    // },
-                    // {
-                    //     type: 'all',
-                    //     text: '全部',
-                    //     dataGrouping: {
-                    //         forced: true,
-                    //         units: [['year', [1]]]
-                    //     }
-                    // }
+                    }
                 ],
                 buttonTheme: {
-                    // width: 30,
                     width: 0
                 }
             }
@@ -730,22 +546,16 @@ STOCK_F9_FV.Modules.SPTurnover.init = STOCK_F9_FV.Modules.SPTurnover.init || (
 
 
 STOCK_F9_FV.Modules.SPTurnover.init({
-    ip: STOCK_IP,
-    path: `${STOCK_Paths}/stockfast06/`,
-    gilcode: STOCK_SecCode
+    // ip: STOCK_IP,
+    // path: `${STOCK_Paths}/stockfast06/`,
+    // gilcode: STOCK_SecCode
+    ip: `http://10.1.5.31`,
     // ip: `http://10.1.5.202`,
-    // path: `/webservice/fastview/stock/stockfast06/`,
-    // gilcode: `600570.SH`,
-    // gilcode: `000003.SZ`,
-    // gilcode: `600580.SH`,
-    // gilcode: `600590.SH`,
+    path: `/webservice/fastview/stock/stockfast06/`,
+    gilcode: `600580.SH`
 });
 
 // const url = `http://10.1.5.202/webservice/fastview/stock/${sf_num}/600570.SH`;
 // const url = `http://10.1.5.202/webservice/fastview/stock/stockfast06/600570.SH`;
 // http://10.1.5.31/webservice/fastview/stock/stockfast06/600570.SH
-// ip: `http://10.1.5.31`,
-
-
-
 
