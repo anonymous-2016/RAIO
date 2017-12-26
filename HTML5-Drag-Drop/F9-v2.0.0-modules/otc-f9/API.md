@@ -331,6 +331,18 @@ http://10.1.5.203/webtool/apitool/CompanyShortDesc
 
 ```
 
+https://www.extendoffice.com/documents/excel/827-excel-save-selection-workbook-as-pdf.html
+
+https://stackoverflow.com/questions/23540022/export-whole-html-page-to-pdf-using-jspdf-generation
+
+https://addons.mozilla.org/en-US/firefox/addon/screenshot-capture-annotate/
+
+https://addons.mozilla.org/en-US/firefox/addon/screengrab-fix-version/
+https://addons.mozilla.org/en-US/firefox/addon/nimbus-screenshot/
+https://addons.mozilla.org/en-US/firefox/addon/easyscreenshot/
+
+https://getfireshot.com/installed-lite.php?ver=0.98.94&app=fx
+
 
 
 

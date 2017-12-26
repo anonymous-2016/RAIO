@@ -196,7 +196,7 @@ table.otc-equity-shareholder-table {
     box-sizing: border-box;
     width: 540px;
     max-width: 540px;
-    min-width: 540px;
+    /* min-width: 540px; */
     height: 127px;
     background: #fff;
     border-collapse: collapse;
@@ -204,6 +204,22 @@ table.otc-equity-shareholder-table {
     font-size: 12px;
     font-weight: normal;
     color: #4d4d4d;
+}
+
+[data-tbody="otc-equity-shareholder-table-tbody"]:nth-of-type(1) {
+    color: #f0f;
+}
+
+html table:nth-of-type(1)>tbody {
+    color: red;
+}
+
+html table:nth-of-type(2)>tbody {
+    color: green;
+}
+
+html table:nth-of-type(3)>tbody {
+    color: blue;
 }
 
 
@@ -270,6 +286,10 @@ tbody.otc-equity-shareholder-table-tbody>tr:nth-of-type(1) {
 
 tbody.otc-equity-shareholder-table-tbody>tr:nth-of-type(5) {
     border-bottom: 1px solid #d7dbe0;
+}
+
+tbody.otc-equity-shareholder-table-tbody>tr:nth-of-type(n) {
+    border-right: 1px solid #d7dbe0;
 }
 
 tr.otc-equity-shareholder-table-tr>td:nth-of-type(1) {
