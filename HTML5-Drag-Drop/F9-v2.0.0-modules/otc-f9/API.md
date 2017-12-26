@@ -344,6 +344,54 @@ https://addons.mozilla.org/en-US/firefox/addon/easyscreenshot/
 https://getfireshot.com/installed-lite.php?ver=0.98.94&app=fx
 
 
+# print.css & window.print()
+
+
+```js
+
+window.print();
+
+let popupWin = window.open();
+setTimeout(() => {
+    console.log(`stop temporary`);
+    // popupWin
+    let print_btn = popupWin.document.querySelector(`.print.default`);
+    print_btn.click();
+}, 1000);
+console.log(`no stop`);
+
+window.close();
+
+
+```
+
+```js
+
+//Chrome's versions > 34 is some bug who stop all javascript when is show a prints preview
+
+let printContents = "Hello world!";
+
+if(navigator.userAgent.toLowerCase().indexOf('chrome') > -1) {
+    var popupWin = window.open();
+    popupWin.window.focus();
+    popupWin.document.write('<!DOCTYPE html><html><head>' +
+        '<link rel="stylesheet" type="text/css" href="style.css" />' +
+        '</head><body onload="window.print()"><div class="reward-body">' + printContents + '</div></html>');
+    popupWin.onbeforeunload = function (event) {
+        return 'Please use the cancel button on the left side of the print preview to close this window.\n';
+    };
+}else {
+    var popupWin = window.open('', '_blank', 'width=600,height=600,scrollbars=no,menubar=no,toolbar=no,location=no,status=no,titlebar=no');
+    popupWin.document.write('<!DOCTYPE html><html><head>' +
+        '<link rel="stylesheet" type="text/css" href="style.css" />' +
+        '</head><body onload="window.print()"><div class="reward-body">' + printContents + '</div>' +
+        '<script>setTimeout(function(){ window.parent.focus(); window.close() }, 100)</script></html>');
+}
+popupWin.document.close();
+
+```
+
+
 
 
 ```js
