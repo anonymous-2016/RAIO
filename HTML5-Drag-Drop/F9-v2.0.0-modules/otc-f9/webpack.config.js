@@ -21,9 +21,10 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 const BASE_URI = {
     MODULES: './modules',
     index: `./index`,
+    init: `./init`,
     // modal: `./modal`,
     // libs: `./libs`,
-    test: `./test`
+    // test: `./test`
 };
 
 // process.env.NODE_ENV = `production`;
@@ -38,9 +39,9 @@ if (process.env.NODE_ENV !== 'production') {
 const OTC_F9 = [
     "latest-transaction-data",
     "big-event-reminder",
-    // "company-brief-introduction",
+    "company-brief-introduction",
     "latest-financial-data",
-    "company-performance-all",//all
+    "company-performance-all",//company-all
     "company-performance-market",
     "company-performance-scale",
     "company-performance-achievement",
@@ -62,7 +63,8 @@ OTC_F9.forEach(
 );
 // index
 entry_obj[BASE_URI.index] = `${BASE_URI.index}`;
-entry_obj[BASE_URI.test] = `${BASE_URI.test}`;
+entry_obj[BASE_URI.init] = `${BASE_URI.init}`;
+// entry_obj[BASE_URI.test] = `${BASE_URI.test}`;
 // BouncedModal
 // entry_obj[BASE_URI.modal] = `${BASE_URI.libs}/BouncedModal`;
 // entry_obj[BASE_URI.modal] = `${BASE_URI.libs}/modal`;

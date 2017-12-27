@@ -32,7 +32,7 @@
 //     });
 // });
 
-
+// no uglify Sortable ???
 setTimeout(() => {
     // Multi groups
     let SortBox = document.querySelector(`#section-sortable-container`),

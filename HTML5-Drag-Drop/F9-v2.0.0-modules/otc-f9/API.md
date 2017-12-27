@@ -399,7 +399,7 @@ popupWin.document.close();
 let publishDate = (arr[i].xwsj !== undefined) ? arr[i].xwsj : `😟暂无 新闻日期`;
 let title = `${(arr[i].xwtitle !== undefined) ? arr[i].xwtitle : `🤓暂无 新闻标题`}`;
 
-
+console.log(`json = \n`, json);
 
 {
     "news": {

@@ -13,9 +13,9 @@ a {
 
 [data-tabs="tabs-box"] {
     box-sizing: border-box;
-    width: 502px;
+    width: 540px;
     height: 100%;
-    margin: 50px auto;
+    margin: 10px auto;
     background: #ccc;
 }
 
@@ -24,10 +24,12 @@ a {
 
 [data-tab="tab-title-ul"] {
     box-sizing: border-box;
-    width: 302px;
+    width: 540px;
     border: 1px solid #bacadb;
     height: 23px;
-    /* line-height: 23px; */
+    line-height: 23px;
+    font-size: 12px;
+    /* font-weight: bold; */
 }
 
 [data-tab="tab-title-ul"]::after {
@@ -97,6 +99,7 @@ a[data-tab="tab-link"] {
     text-decoration: none;
     display: inline-block;
     width: 100%;
+    /* font-size: 18px; */
 }
 
 
@@ -126,18 +129,30 @@ a[data-tab="tab-link"]:hover {
 [data-tab="tab-container-box"] {
     box-sizing: border-box;
     background: #ff00ff;
-    width: 502px;
-    height: 500px;
+    width: 540px;
+    /* height: 830px; */
+    /* min-height: 100px; */
     overflow: hidden;
 }
 
 [data-tab="tab-container"] {
     box-sizing: border-box;
     background: #ffffff;
-    border: 1px solid red;
-    width: 502px;
-    height: 500px;
+    /* border: 1px solid red; */
+    border: 1px solid #ccc;
+    padding: 5px;
+    width: 540px;
+    /* height: 500px; */
+    height: 100%;
     float: left;
+}
+
+.active-display-block {
+    display: block;
+}
+
+.default-display-block {
+    display: none;
 }
 
 

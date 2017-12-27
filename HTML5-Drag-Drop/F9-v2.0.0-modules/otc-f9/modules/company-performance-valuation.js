@@ -28,7 +28,7 @@ OTC_F9_FV.Modules.companyPerformanceValuation = OTC_F9_FV.Modules.companyPerform
             (json) => {
                 datas = json;
                 let hst_doms = document.querySelectorAll(hst_uids);
-                if (!debug) {
+                if (debug) {
                     console.log(`data = \n`, json);
                     console.log(`hst_doms = \n`, hst_doms);
                     // console.log(`hsc_dom = \n`, hsc_dom);

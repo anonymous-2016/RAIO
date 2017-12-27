@@ -10,87 +10,99 @@
  * @param {* Array} ui_arr
  * @param {Boolean} debug
  */
-import {UserException} from "../utils/throw_error";
-import {UserConsoleError as ConsoleError} from "../utils/console_error";
 
-// namespaces
-var OTC_F9_FV = OTC_F9_FV || {};
-// sub namespaces
-OTC_F9_FV.Modules = OTC_F9_FV.Modules || {};
+/*
 
+import all modules
 
-OTC_F9_FV.Modules.latestTransactionData = OTC_F9_FV.Modules.latestTransactionData || (
-    (url = ``, tds = [], title = ``, ui_arr = [], debug = false) => {
-        let datas = {};
-        fetch(url)
-        .then(res => res.json())
-        .then(
-            (json) => {
-                datas = json;
-                try {
-                    if (typeof(datas) === "object" && Object.keys(datas).length > 0) {
-                        for (let i = 0; i < tds.length - 1; i++) {
-                            let key = ui_arr[i],
-                                value = (datas[key] !== `--` ? datas[key] : 0);
-                            tds[i].innerText = value;
-                            tds[i].setAttribute(`title`, value);
-                        }
-                        let title_key = ui_arr[tds.length - 1],
-                            title_value = (datas[title_key] !== `--` ? datas[title_key] : 0);
-                        title.innerText = title_value || `暂无数据`;
-                    }else{
-                        let message = `handle json error!`,
-                            fileName = `latest-transaction-data.js`,
-                            lineNumber = 29;
-                        throw new UserException(message, fileName, lineNumber);
-                    }
-                } catch (err) {
-                    let url =`file:///E:/github/RAIO/HTML5-Drag-Drop/F9-v2.0.0-modules/otc-f9/modules/latest-transaction-data.js`;
-                    ConsoleError(err, url);
-                }
+*/
+
+/**
+ * @author xgqfrms
+ * @license MIT
+ *
+ * @param {* String} link_uid
+ * @param {* String} div_uid
+ * @param {* Boolean} debug
+ */
+
+var ShowTabs = (link_uid = `[data-tab="tab-link"]`, div_uid = `[data-tab="tab-container"]`, debug = false) => {
+    let tabs = document.querySelectorAll(link_uid),
+        divs = document.querySelectorAll(div_uid);
+    for (let i = 0; i < tabs.length; i++) {
+        tabs[i].addEventListener(`click`, (e) => {
+            if (debug) {
+                console.log(`e = \n`, e);
+                console.log(`e.target.dataset = \n`, e.target.dataset);
+                console.log(`e.target.classList = \n`, e.target.classList);
+                // div.classList.toggle("visible", i < 10);
+                // replace(oldClass, newClass)
+                // toggle(String [, force])
+                // add(String [, String])
+                // remove(String [, String])
+                // contains(String)
+                // item(Number)
+                let uid = parseInt(e.target.dataset.tabUid);
+                console.log(`uid = `, uid, typeof(uid));
             }
-        )
-        .catch(err => console.log(`fetch error = \n`, err));
-        return datas;
+            if (e.target.classList.contains("hover-link-color")) {
+                //
+            }else{
+                e.target.classList.add("hover-link-color");
+                e.target.classList.remove("default-link-color");
+                divs[i].classList.add("active-display-block");
+                divs[i].classList.remove("default-display-block");
+            }
+            let arr = [];
+            for (let ii = 0; ii < tabs.length; ii++) {
+                arr.push(ii);
+            }
+            arr.map(
+                (item, index) =>{
+                    if(item !== i){
+                        if (tabs[index].classList.contains("hover-link-color")) {
+                            tabs[index].classList.add("default-link-color");
+                            tabs[index].classList.remove("hover-link-color");
+                            divs[index].classList.remove("active-display-block");
+                            divs[index].classList.add("default-display-block");
+                        }else{
+                            //
+                        }
+                        // divs[index].style.display = "none";
+                    }
+                }
+            );
+        });
     }
-);
+};
 
 
-OTC_F9_FV.Modules.latestTransactionData.init = OTC_F9_FV.Modules.latestTransactionData.init || (
-    (
-        {
-            ip,
-            path,
-            socket,
-            gilcode
-        } = {
-            ip: `http://10.1.5.202`,
-            path: `/webservice/fastview/otcper`,
-            socket: `/otcperfast01/`,
-            gilcode: `430002.OC`
+/*
+
+insert all
+
+*/
+
+// IIFE & Closure
+setTimeout(() => {
+    ShowTabs();
+    let scripts_container = document.querySelector(`[data-scripts="all-scripts"]`);
+    const arr = [
+        "./build/js/company-performance-market.min.js",
+        "./build/js/company-performance-scale.min.js",
+        "./build/js/company-performance-achievement.min.js",
+        "./build/js/company-performance-valuation.min.js",
+        // "../build/js/company-performance-market.min.js",
+        // "../build/js/company-performance-scale.min.js",
+        // "../build/js/company-performance-achievement.min.js",
+        // "../build/js/company-performance-valuation.min.js",
+    ];
+    // console.log(`arr = \n`, arr);
+    arr.map(
+        (item, i) => {
+            let script = document.createElement('script');
+            script.src = arr[i];
+            scripts_container.insertAdjacentElement(`beforeend`, script);
         }
-    ) => {
-        let url = `${ip}${path}${socket}${gilcode}`,
-            tds = document.querySelectorAll(`[data-value="data-otc-LTD"]`),
-            title = document.querySelector(`[data-text="otc-latest-transaction-data-text"]`);
-        // copy(Object.keys(json));
-        const ui_arr = ["spj", "zsz", "zdf", "ltsz", "cjl", "sylttm", "hsl", "syllyr", "cje", "sjllyr", "rq"];
-        OTC_F9_FV.Modules.latestTransactionData(url, tds, title, ui_arr, false);
-    }
-);
-
-
-var OTC_IP = OTC_IP || `http://10.1.5.202`,
-    OTC_PATH = OTC_PATH || `/webservice/fastview/otcper`,
-    OTC_GILCODE = OTC_GILCODE || `430002.OC`;
-
-OTC_F9_FV.Modules.latestTransactionData.init({
-    ip: OTC_IP,
-    path: OTC_PATH,
-    socket: `/otcperfast01/`,
-    gilcode: OTC_GILCODE
-});
-
-// OTC_F9_FV.Modules.latestTransactionData.init();
-// const url = `http://10.1.5.202/webservice/fastview/otcper/otcperfast01/430002.OC`;
-
+    );
+}, 0);

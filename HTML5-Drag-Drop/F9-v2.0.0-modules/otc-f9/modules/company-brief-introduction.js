@@ -5,9 +5,9 @@
  * @author xgqfrms
  * creadted 2017.12.12
  * @param {* String} url
- * @param {* Array} tds
+ * @param {* String} tbody
  * @param {* String} title
- * @param {* Array} ui_arr
+ * @param {* Array} uids
  * @param {Boolean} debug
  */
 import {UserException} from "../utils/throw_error";
@@ -20,7 +20,7 @@ OTC_F9_FV.Modules = OTC_F9_FV.Modules || {};
 
 
 OTC_F9_FV.Modules.companyBriefIntroduction = OTC_F9_FV.Modules.companyBriefIntroduction || (
-    (url = ``, tds = [], titles = [], debug = false) => {
+    (url = ``, tbody = ``, title = ``, uids = [], debug = false) => {
         let datas = {};
         fetch(url)
         .then(res => res.json())
@@ -30,67 +30,145 @@ OTC_F9_FV.Modules.companyBriefIntroduction = OTC_F9_FV.Modules.companyBriefIntro
                 try {
                     if (typeof(datas) === "object" && Object.keys(datas).length > 0) {
                         // let keys = Object.keys(json);
-                        let title = ``,
-                            td_title1 = ``,
-                            td_title2 = ``;
-                        if (datas["yjyg"] !== null) {
-                            title = `
-                                <p>
-                                    业绩预告 (报告期
-                                    <span>${datas["yjyg"].bgq}</span>, 披露日期
-                                    <span>${datas["yjyg"].plrq}</span>)
-                                </p>
-                                <p>
-                                    [${datas["yjyg"].ggrq}] ${datas["yjyg"].ygyw}
-                                </p>
+                        let html = ``,
+                            text = ``;
+                        // "gsjs": "公司介绍"
+                        if (datas.gsmc !== null && datas.gsmc !== undefined) {
+                            html = `
+                                <tr class="otc-company-brief-introduction-table-tr">
+                                    <td class="otc-company-brief-introduction-table-td-key" data-alias="公司名称">公司名称</td>
+                                    <td class="otc-company-brief-introduction-table-td-value" data-value="data-otc-CBI">
+                                        ${datas.gsmc}
+                                    </td>
+                                </tr>
+                                <tr class="otc-company-brief-introduction-table-tr">
+                                    <td class="otc-company-brief-introduction-table-td-key" data-alias="成立时间">成立时间</td>
+                                    <td class="otc-company-brief-introduction-table-td-value" data-value="data-otc-CBI">
+                                        ${datas.gsclsj}
+                                    </td>
+                                </tr>
+                                <tr class="otc-company-brief-introduction-table-tr">
+                                    <td class="otc-company-brief-introduction-table-td-key" data-alias="挂牌时间">挂牌时间</td>
+                                    <td class="otc-company-brief-introduction-table-td-value" data-value="data-otc-CBI">
+                                        ${datas.gsgpsj}
+                                    </td>
+                                </tr>
+                                <tr class="otc-company-brief-introduction-table-tr">
+                                    <td class="otc-company-brief-introduction-table-td-key" data-alias="主要产品和服务项目">主要产品和服务项目</td>
+                                    <td class="otc-company-brief-introduction-table-td-value" data-value="data-otc-CBI">
+                                        ${datas.zycpyfw}
+                                    </td>
+                                </tr>
+                                <tr class="otc-company-brief-introduction-table-tr">
+                                    <td class="otc-company-brief-introduction-table-td-key" data-alias="所属证监会行业(二级)">所属证监会行业(二级)</td>
+                                    <td class="otc-company-brief-introduction-table-td-value" data-value="data-otc-CBI">
+                                        ${datas.zjhhy}
+                                    </td>
+                                </tr>
+                                <tr class="otc-company-brief-introduction-table-tr">
+                                    <td class="otc-company-brief-introduction-table-td-key" data-alias="所属概念板块">所属概念板块</td>
+                                    <td class="otc-company-brief-introduction-table-td-value" data-value="data-otc-CBI">
+                                        ${datas.ssgnbk}
+                                    </td>
+                                </tr>
+                                <tr class="otc-company-brief-introduction-table-tr">
+                                    <td class="otc-company-brief-introduction-table-td-key" data-alias="总经理">总经理</td>
+                                    <td class="otc-company-brief-introduction-table-td-value" data-value="data-otc-CBI">
+                                        ${datas.zjl}
+                                    </td>
+                                </tr>
+                                <tr class="otc-company-brief-introduction-table-tr">
+                                    <td class="otc-company-brief-introduction-table-td-key" data-alias="控股股东">控股股东</td>
+                                    <td class="otc-company-brief-introduction-table-td-value" data-value="data-otc-CBI">
+                                        ${datas.kggd}
+                                    </td>
+                                </tr>
+                                <tr class="otc-company-brief-introduction-table-tr">
+                                    <td class="otc-company-brief-introduction-table-td-key" data-alias="实际控制人">实际控制人</td>
+                                    <td class="otc-company-brief-introduction-table-td-value" data-value="data-otc-CBI">
+                                        ${datas.sjkzr}
+                                    </td>
+                                </tr>
+                                <tr class="otc-company-brief-introduction-table-tr">
+                                    <td class="otc-company-brief-introduction-table-td-key" data-alias="公司注册资本(万元)">公司注册资本(万元)</td>
+                                    <td class="otc-company-brief-introduction-table-td-value" data-value="data-otc-CBI">
+                                        ${datas.zczb}
+                                    </td>
+                                </tr>
+                                <tr class="otc-company-brief-introduction-table-tr">
+                                    <td class="otc-company-brief-introduction-table-td-key" data-alias="法人代表">法人代表</td>
+                                    <td class="otc-company-brief-introduction-table-td-value" data-value="data-otc-CBI">
+                                        ${datas.frdb}
+                                    </td>
+                                </tr>
+                                <tr class="otc-company-brief-introduction-table-tr">
+                                    <td class="otc-company-brief-introduction-table-td-key" data-alias="注册地址">注册地址</td>
+                                    <td class="otc-company-brief-introduction-table-td-value" data-value="data-otc-CBI">
+                                        ${datas.zcdz}
+                                    </td>
+                                </tr>
+                                <tr class="otc-company-brief-introduction-table-tr">
+                                    <td class="otc-company-brief-introduction-table-td-key" data-alias="联系电话">联系电话</td>
+                                    <td class="otc-company-brief-introduction-table-td-value" data-value="data-otc-CBI">
+                                        ${datas.lxdh}
+                                    </td>
+                                </tr>
+                                <tr class="otc-company-brief-introduction-table-tr">
+                                    <td class="otc-company-brief-introduction-table-td-key" data-alias="网址">网址</td>
+                                    <td class="otc-company-brief-introduction-table-td-value" data-value="data-otc-CBI">
+                                        ${datas.wz}
+                                    </td>
+                                </tr>
                             `;
                         }else{
-                            title = `
-                                <p>业绩预告-暂无数据.</p>
+                            html = `
+                                <p data-none="no-data-p">
+                                    <span data-none="no-data-span"></span>
+                                </p>
                             `;
                         }
-                        if (datas["yjkb"] !== null) {
-                            td_title1 = `
-                                业绩快报 (报告期<span data-title-span="td-colspan-span">${datas["yjkb"].bgq}</span>, 披露日期<span data-title-span="td-colspan-span">${datas["yjkb"].plrq}</span>)
+                        if (datas.gsjs !== null && datas.gsjs !== undefined) {
+                            text = `
+                                <p>
+                                    <span data-title-span="brief-span">
+                                        ${datas.gsjs}
+                                    </span>
+                                </p>
                             `;
-                            // const ui_tds1 = Object.keys(json.yjkb);
-                            const ui_tds1 = ["yysr", "yylr", "lrze", "jlr", "yysrzz", "jbmgsy", "jzcsyljq", "jlrtbzz", "zczj", "jzc", "mgjzc", "xjllje"];
-                            for (let i = 0; i < 12; i++) {
-                                let k = ui_tds1[i];
-                                tds[i].innerText = `${datas["yjkb"][k]}`;
-                            }
                         }else{
-                            td_title1 = `
-                                <p>业绩快报-暂无数据.</p>
+                            text = `
+                                <p data-none="no-data-p">
+                                    <span data-none="no-data-span"></span>
+                                </p>
                             `;
-                            for (let i = 0; i < 12; i++) {
-                                tds[i].parentElement.setAttribute(`data-display`, "display-none");
-                                // tds[0].parentElement; / tds[0].parentNode;
-                            }
-                        }
-                        // tds & values === 0-11 & 12-34
-                        if (datas["cwzy"] !== null) {
-                            td_title2 = `
-                                财务数据摘要 (报告期<span data-title-span="td-colspan-span">${datas["cwzy"].bgq}</span>)
-                            `;
-                            const ui_tds2 = ["jbmgsy", "yysr", "zczj", "xsmgsy", "yylr", "fzzj", "mgsykc", "lrze", "mgjzc", "jzc", "jlr", "llje", "mgllje", "jlrkc", "zzctbzz", "jzcsyljq", "yysrtbzz", "xsmll", "kcjq", "jlrtbzz", "zcfzl"];
-                            // (tds.length - 1) && no tfoot!
-                            for (let i = 12; i < tds.length - 1; i++) {
-                                let k = ui_tds2[i - 12];
-                                tds[i].innerText = `${datas["cwzy"][k]}`;
-                            }
-                        }else{
-                            td_title2 = `
-                                <p>财务数据摘要-暂无数据.</p>
-                            `;
-                            for (let i = 12; i < tds.length; i++) {
-                                tds[i].parentNode.setAttribute(`data-display`, "display-none");
-                            }
                         }
                         // insert DOM
-                        titles[0].insertAdjacentHTML(`beforeend`, title);
-                        titles[1].insertAdjacentHTML(`beforeend`, td_title1);
-                        titles[2].insertAdjacentHTML(`beforeend`, td_title2);
+                        tbody.insertAdjacentHTML(`beforeend`, html);
+                        title.insertAdjacentHTML(`beforeend`, text);
+                        // const & global bug
+                        var autoAlignHeight = (uids = [], debug = false) => {
+                            let domx = document.querySelector(uids[0]),
+                                domy = document.querySelector(uids[1]),
+                                domz = document.querySelector(uids[2]),
+                                // height = window.getComputedStyle(domx, null).getPropertyValue("height");
+                                // height = domx.clientHeight; // no border
+                                X_height = domx.offsetHeight, // include border
+                                Y_height = domx.clientHeight,
+                                title_height = domz.offsetHeight;
+                            // offset includes border 1 + 1
+                            if (debug) {
+                                console.log(`X_height =`, X_height);
+                                console.log(`Y_height =`, Y_height);
+                                console.log(`title_height =`, title_height);
+                            }
+                            if (X_height > Y_height) {
+                                domy.setAttribute(`style`, `height: ${X_height - title_height}px;`);
+                            }else{
+                                domy.setAttribute(`style`, `height: ${X_height - title_height}px;`);
+                                // domy.setAttribute(`style`, "overflow-y: scroll;");
+                            }
+                        };
+                        autoAlignHeight(uids);
                     }else{
                         let message = `handle json error!`,
                             fileName = `company-brief-introduction.js`,
@@ -125,9 +203,10 @@ OTC_F9_FV.Modules.companyBriefIntroduction.init = OTC_F9_FV.Modules.companyBrief
     ) => {
         // let url = `http://10.1.5.202/otc/f9/datas/4.json`,
         let url = `${ip}${path}${socket}${gilcode}`,
-            tds = document.querySelectorAll(`[data-value="data-otc-CBI"]`),
+            tbody = document.querySelector(`.otc-company-brief-introduction-table-tbody`),
             title = document.querySelector(`[data-titles="data-otc-CBI-title"]`);
-        OTC_F9_FV.Modules.companyBriefIntroduction(url, tds, title, false);
+        const uids = [`[data-float="float-table"]`, `[data-float="float-div"]`, `[data-float="float-title"]`];
+        OTC_F9_FV.Modules.companyBriefIntroduction(url, tbody, title, uids, false);
     }
 );
 
@@ -147,16 +226,5 @@ OTC_F9_FV.Modules.companyBriefIntroduction.init({
 // const url = `http://10.1.5.202/webservice/fastview/otcper/otcperfast03/430002.OC`;
 
 
-const autoAlignHeight = (uids = [], debug = false) => {
-    let domx = document.querySelector(uids[0]),
-        domy = document.querySelector(uids[1]);
-        // height = window.getComputedStyle(domx, null).getPropertyValue("height");
-        // height = domx.clientHeight; // no border
-        height = domx.offsetHeight; // include border
-        domy.setAttribute(`style`, "height: ${height}px;");
-        domy.style.height = `500px`;
-};
-
-const uids = [`[data-float="float-table"]`, `[data-float="float-div"]`];
 
 

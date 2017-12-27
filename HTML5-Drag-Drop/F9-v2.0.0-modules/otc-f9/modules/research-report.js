@@ -26,7 +26,7 @@ OTC_F9_FV.Modules.researchReport = OTC_F9_FV.Modules.researchReport || (
         .then(res => res.json())
         .then(
             (json) => {
-                datas = json;console.log(`json = \n`, json);
+                datas = json;
                 try {
                     if (Array.isArray(datas) && datas.length > 0) {
                         for (let i = 0; i < td_keys.length; i++) {
@@ -102,6 +102,8 @@ OTC_F9_FV.Modules.researchReport.init = OTC_F9_FV.Modules.researchReport.init ||
 var OTC_IP = OTC_IP || `http://10.1.5.202`,
     OTC_PATH = OTC_PATH || `/webservice/fastview/otcper`,
     OTC_GILCODE = OTC_GILCODE || `430002.OC`;
+
+console.log(`research & OTC_GILCODE`, OTC_GILCODE);
 
 OTC_F9_FV.Modules.researchReport.init({
     ip: OTC_IP,

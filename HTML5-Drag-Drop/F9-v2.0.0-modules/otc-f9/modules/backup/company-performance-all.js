@@ -1,3 +1,22 @@
+"use strict";
+
+/**
+ * @name company-performance-all 公司表现
+ * @author xgqfrms
+ * creadted 2017.12.21
+ * @param {* String} url
+ * @param {* Array} tds
+ * @param {* String} title
+ * @param {* Array} ui_arr
+ * @param {Boolean} debug
+ */
+
+/*
+
+import all modules
+
+*/
+
 /**
  * @author xgqfrms
  * @license MIT
@@ -58,12 +77,33 @@ const ShowTabs = (link_uid = `[data-tab="tab-link"]`, div_uid = `[data-tab="tab-
 };
 
 
+/*
+
+insert all
+
+*/
 document.addEventListener(`DOMContentLoaded`, () => {
+    ShowTabs();
     setTimeout(() => {
-        ShowTabs();
+        let scripts_container = document.querySelector(`[data-scripts="all-scripts"]`);
+        const arr = [
+            // "../../module/tabs/tabs.js",
+            "../build/js/company-performance-market.min.js",
+            "../build/js/company-performance-scale.min.js",
+            "../build/js/company-performance-achievement.min.js",
+            "../build/js/company-performance-valuation.min.js",
+            // "./company-performance-market.js",
+            // "./company-performance-scale.js",
+            // "./company-performance-achievement.js",
+            // "./company-performance-valuation.js",
+        ];
+        console.log(`arr = \n`, arr);
+        arr.map(
+            (item, i) => {
+                let script = document.createElement('script');
+                script.src = arr[i];
+                scripts_container.insertAdjacentElement(`beforeend`, script);
+            }
+        );
     }, 0);
 });
-
-
-
-

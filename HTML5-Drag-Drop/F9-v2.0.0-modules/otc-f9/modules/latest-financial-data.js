@@ -46,7 +46,9 @@ OTC_F9_FV.Modules.latestFinancialData = OTC_F9_FV.Modules.latestFinancialData ||
                             `;
                         }else{
                             title = `
-                                <p>业绩预告-暂无数据.</p>
+                                <p data-none="no-data-p">
+                                    <span data-none="no-data-span"></span>
+                                </p>
                             `;
                         }
                         if (datas["yjkb"] !== null) {
@@ -60,8 +62,13 @@ OTC_F9_FV.Modules.latestFinancialData = OTC_F9_FV.Modules.latestFinancialData ||
                                 tds[i].innerText = `${datas["yjkb"][k]}`;
                             }
                         }else{
+                            // td_title1 = `
+                            //     <p>业绩快报-暂无数据.</p>
+                            // `;
                             td_title1 = `
-                                <p>业绩快报-暂无数据.</p>
+                                <p data-none="no-data-p">
+                                    <span data-none="no-data-span"></span>
+                                </p>
                             `;
                             for (let i = 0; i < 12; i++) {
                                 tds[i].parentElement.setAttribute(`data-display`, "display-none");
@@ -71,7 +78,10 @@ OTC_F9_FV.Modules.latestFinancialData = OTC_F9_FV.Modules.latestFinancialData ||
                         // tds & values === 0-11 & 12-34
                         if (datas["cwzy"] !== null) {
                             td_title2 = `
-                                财务数据摘要 (报告期<span data-title-span="td-colspan-span">${datas["cwzy"].bgq}</span>)
+                                <span>财务数据摘要 (报告期</span>
+                                <span data-title-span="td-colspan-span">
+                                    ${datas["cwzy"].bgq}
+                                </span>)
                             `;
                             const ui_tds2 = ["jbmgsy", "yysr", "zczj", "xsmgsy", "yylr", "fzzj", "mgsykc", "lrze", "mgjzc", "jzc", "jlr", "llje", "mgllje", "jlrkc", "zzctbzz", "jzcsyljq", "yysrtbzz", "xsmll", "kcjq", "jlrtbzz", "zcfzl"];
                             // (tds.length - 1) && no tfoot!
@@ -80,8 +90,14 @@ OTC_F9_FV.Modules.latestFinancialData = OTC_F9_FV.Modules.latestFinancialData ||
                                 tds[i].innerText = `${datas["cwzy"][k]}`;
                             }
                         }else{
+                            // no data
+                            // td_title2 = `
+                            //     <p>财务数据摘要-暂无数据.</p>
+                            // `;
                             td_title2 = `
-                                <p>财务数据摘要-暂无数据.</p>
+                                <p data-none="no-data-p">
+                                    <span data-none="no-data-span"></span>
+                                </p>
                             `;
                             for (let i = 12; i < tds.length; i++) {
                                 tds[i].parentNode.setAttribute(`data-display`, "display-none");

@@ -789,7 +789,7 @@ OTC_F9_FV.Modules.companyPerformanceMarket.init = OTC_F9_FV.Modules.companyPerfo
 
 var OTC_IP = OTC_IP || `http://10.1.5.202`,
     OTC_PATH = OTC_PATH || `/webservice/fastview/otcper`,
-    OTC_GILCODE = OTC_GILCODE || `430002.OC`;
+    OTC_GILCODE = OTC_GILCODE || `430003.OC`;
 
 OTC_F9_FV.Modules.companyPerformanceMarket.init({
     ip: OTC_IP,
