@@ -99,11 +99,11 @@ OTC_F9_FV.Modules.researchReport.init = OTC_F9_FV.Modules.researchReport.init ||
 );
 
 
-var OTC_IP = OTC_IP || `http://10.1.5.202`,
-    OTC_PATH = OTC_PATH || `/webservice/fastview/otcper`,
-    OTC_GILCODE = OTC_GILCODE || `430002.OC`;
+var OTC_IP = window.OTC_IP || `http://10.1.5.202`,
+    OTC_PATH = window.OTC_PATH || `/webservice/fastview/otcper`,
+    OTC_GILCODE = window.OTC_GILCODE || `430002.OC`;
 
-console.log(`research & OTC_GILCODE`, OTC_GILCODE);
+// console.log(`research & OTC_GILCODE`, OTC_GILCODE);
 
 OTC_F9_FV.Modules.researchReport.init({
     ip: OTC_IP,

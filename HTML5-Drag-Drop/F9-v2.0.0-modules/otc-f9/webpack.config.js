@@ -206,13 +206,16 @@ module.exports = {
             // mangle: false,
             // mangle: {
             //     // reserved: ['BouncedModal', ],// 标识符
+            //     reserved: ["OTC_IP", "OTC_PATH", "OTC_GILCODE"]
             //     // keep_fnames: true,
             //     // ...options,
-            //     properties: {
-            //         // mangle property options
-            //         reserved: ["STOCK_IP", "STOCK_Paths", "STOCK_SecCode"]
-            //     },
+            //     // properties: {
+            //     //     // mangle property options
+            //     //     // reserved: ["STOCK_IP", "STOCK_Paths", "STOCK_SecCode"],
+            //     //     reserved: ["OTC_IP", "OTC_PATH", "OTC_GILCODE"]
+            //     // },
             // },
+            // uglifyjs index.js -o ./build/js/index.min.js -c -m reserved=["OTC_IP", "OTC_PATH", "OTC_GILCODE"]
             //     output: {
             //         comments: false,
             //         beautify: false,

@@ -1,6 +1,6 @@
 // import {DOM_queryAll, DOM_query} from "./utils/DOM";
 
-const xyz_debug = window.xyz_debug ? window.xyz_debug : false;
+// const xyz_debug = window.xyz_debug ? window.xyz_debug : false;
 // var debug = false;
 
 // namespaces
@@ -61,11 +61,22 @@ OTC_F9_FV.Utils.DOM_query = OTC_F9_FV.Utils.DOM_query || ((str = `[data-sortable
 });
 
 // global variable
-var OTC_IP = OTC_IP || ``;
-var OTC_PATH = OTC_PATH || ``;
-// var OTC_SOCKET = OTC_SOCKET || ``;
-var OTC_GILCODE = OTC_GILCODE || ``;
+// var OTC_IP = OTC_IP || ``;
+// var OTC_PATH = OTC_PATH || ``;
+// // var OTC_SOCKET = OTC_SOCKET || ``;
+// var OTC_GILCODE = OTC_GILCODE || ``;
+window.OTC_IP = ``;
+window.OTC_PATH = ``;
+window.OTC_GILCODE = ``;
+// forced global variable
 
+/*
+
+var OTC_IP = window.OTC_IP || `http://10.1.5.202`,
+    OTC_PATH = window.OTC_PATH || `/webservice/fastview/otcper`,
+    OTC_GILCODE = window.OTC_GILCODE || `430002.OC`;
+
+*/
 
 // sub namespaces
 OTC_F9_FV.Modules = OTC_F9_FV.Modules || {};
@@ -193,16 +204,16 @@ const initTabs = () => {
     });
 };
 
-
-
+// webpack ignore ??? bug
 window.onload = () => {
     initTabs();
     initSidebar();
-    OTC_IP = `${window.parent.location.origin}`;
+    OTC_IP = (window.parent.location.origin !== "file://") ? `${window.parent.location.origin}` : `http://10.1.5.202/`;
     OTC_PATH = `/webservice/fastview/otcper`;
     OTC_GILCODE = OTC_F9_FV.Utils.getParam(`gilcode`) ? OTC_F9_FV.Utils.getParam(`gilcode`) : `430002.OC`;
     // OTC_SOCKET = ``;
     console.log(`OTC_GILCODE `, OTC_GILCODE, typeof OTC_GILCODE);
+    // window.OTC_GILCODE = OTC_GILCODE;
     // OTC_GILCODE = OTC_F9_FV.Utils.getParam(`gilcode`);
     // OTC_IP = `${window.parent.location.protocol}//${window.parent.location.host}`;
     // OTC_IP = `http://${window.parent.location.origin}`;

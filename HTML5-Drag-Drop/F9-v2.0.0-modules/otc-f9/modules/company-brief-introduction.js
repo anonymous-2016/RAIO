@@ -210,10 +210,16 @@ OTC_F9_FV.Modules.companyBriefIntroduction.init = OTC_F9_FV.Modules.companyBrief
     }
 );
 
+// console.log(`company-brief-introduction & OTC_GILCODE`, OTC_GILCODE);
+// console.log(`company-brief-introduction & window.OTC_GILCODE`, window.OTC_GILCODE);
+// undefined
 
-var OTC_IP = OTC_IP || `http://10.1.5.202`,
-    OTC_PATH = OTC_PATH || `/webservice/fastview/otcper`,
-    OTC_GILCODE = OTC_GILCODE || `430002.OC`;
+var OTC_IP = window.OTC_IP || `http://10.1.5.202`,
+    OTC_PATH = window.OTC_PATH || `/webservice/fastview/otcper`,
+    OTC_GILCODE = window.OTC_GILCODE || `430002.OC`;
+
+// console.log(`company-brief-introduction & OTC_GILCODE`, OTC_GILCODE);
+// 430002.OC
 
 OTC_F9_FV.Modules.companyBriefIntroduction.init({
     ip: OTC_IP,
