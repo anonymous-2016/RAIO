@@ -106,7 +106,9 @@ tr {
     text-align: center;
     background: #e8eefa;
     width: 234px;
-    /* width: 242px; */
+    height: 23px;
+    line-height: 23px;
+    /* color: red; */
 }
 
 [data-float="float-div"] {

@@ -84,7 +84,7 @@ section.otc-module-box-5 {
     float: right;
 }
 
-[data-more="otc-equity-shareholder-link"]>a:nth-child() {
+[data-more="otc-equity-shareholder-link"]:nth-of-type(1)>a {
     margin-right: 54px;
 }
 
@@ -116,7 +116,7 @@ section[data-group="mix-hc-table"] {
     width: 540px;
     max-width: 540px;
     min-width: 540px;
-    border: 1px solid #ff0000;
+    border: 1px solid #dce0e4;
 }
 
 td.otc-equity-shareholder-table-td-key {
@@ -210,7 +210,8 @@ table.otc-equity-shareholder-table {
     color: #f0f;
 }
 
-html table:nth-of-type(1)>tbody {
+
+/* html table:nth-of-type(1)>tbody {
     color: red;
 }
 
@@ -220,7 +221,7 @@ html table:nth-of-type(2)>tbody {
 
 html table:nth-of-type(3)>tbody {
     color: blue;
-}
+} */
 
 
 /* font height & 0.5px * 2 ??? */

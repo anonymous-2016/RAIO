@@ -53,6 +53,15 @@ table.otc-management-layer-profiles-table {
     font-size: 12px;
     font-weight: normal;
     color: #4d4d4d;
+    overflow-x: scroll;
+}
+
+thead.otc-management-layer-profiles-table-thead>tr {
+    box-sizing: border-box;
+    height: 23px;
+    line-height: 23px;
+    max-width: 540px;
+    overflow-x: scroll;
 }
 
 
@@ -62,6 +71,8 @@ tr.otc-management-layer-profiles-table-tr {
     box-sizing: border-box;
     height: 23px;
     line-height: 23px;
+    max-width: 540px;
+    overflow-x: scroll;
 }
 
 [data-title-text="otc-management-layer-profiles-title-text"] {
@@ -75,9 +86,9 @@ td.otc-management-layer-profiles-table-td-key {
     color: #4d4d4d;
     /* background: #e8eefa; */
     font-size: 12px;
-    width: 70px;
-    min-width: 70px;
-    max-width: 70px;
+    width: 60px;
+    min-width: 60px;
+    max-width: 60px;
     height: 23px;
     line-height: 23px;
     text-align: left;
@@ -88,9 +99,9 @@ td.otc-management-layer-profiles-table-td-key {
 
 td.otc-management-layer-profiles-table-td-value {
     box-sizing: border-box;
-    width: 70px;
-    min-width: 70px;
-    max-width: 70px;
+    width: 60px;
+    min-width: 60px;
+    max-width: 60px;
     height: 23px;
     line-height: 23px;
     text-align: center;
@@ -117,31 +128,49 @@ tbody.otc-management-layer-profiles-table-tbody>tr:nth-of-type(1) {
     border-top: 1px solid #d7dbe0;
 }
 
-tbody.otc-management-layer-profiles-table-tbody>tr:nth-of-type(5) {
+tbody.otc-management-layer-profiles-table-tbody>tr:nth-last-of-type(1) {
     border-bottom: 1px solid #d7dbe0;
+}
+
+table.otc-management-layer-profiles-table:nth-of-type(1) {
+    margin-bottom: 5px;
 }
 
 tr.otc-management-layer-profiles-table-tr>td:nth-of-type(1) {
     border-left: 1px solid #d7dbe0;
-    border-right: 1px solid #e9e9e9;
+    /* border-right: 1px solid #e9e9e9; */
     /* border-bottom: 1px solid #c5d2db; */
 }
 
-tbody.otc-management-layer-profiles-table-tbody>tr.otc-management-layer-profiles-table-tr>td:nth-of-type(1) {
+table.otc-management-layer-profiles-table {
+    box-sizing: border-box;
+    width: 540px;
+    max-width: 540px;
+    overflow-x: scroll;
+}
+
+
+/* tbody.otc-management-layer-profiles-table-tbody>tr.otc-management-layer-profiles-table-tr>td:nth-of-type(1) {
     box-sizing: border-box;
     overflow: hidden;
+    overflow-x: scroll;
     word-wrap: break-word;
     white-space: nowrap;
     text-overflow: ellipsis;
-}
+} */
 
-tr.otc-management-layer-profiles-table-tr>td:nth-of-type(3) {
+
+/* tr.otc-management-layer-profiles-table-tr>td:nth-of-type(3) {
     border-left: 1px solid #e9e9e9;
     border-right: 1px solid #c5d2db;
-    /* border-bottom: 1px solid #c5d2db; */
-}
+} */
 
-tr.otc-management-layer-profiles-table-tr>td:nth-of-type(4) {
+
+/* tr.otc-management-layer-profiles-table-tr>td:nth-of-type(4) {
+    border-right: 1px solid #d7dbe0;
+} */
+
+tr.otc-management-layer-profiles-table-tr>td:nth-of-type(n) {
     border-right: 1px solid #d7dbe0;
 }
 
@@ -163,6 +192,8 @@ thead.otc-management-layer-profiles-table-thead>tr.otc-management-layer-profiles
     background: #e8eefa;
     border-top: 1px solid #c5d2db;
     text-align: center;
+    max-width: 540px;
+    overflow-x: scroll;
 }
 
 thead.otc-management-layer-profiles-table-thead>tr.otc-management-layer-profiles-table-tr>td.otc-management-layer-profiles-table-td-title:nth-of-type(n) {
@@ -171,15 +202,15 @@ thead.otc-management-layer-profiles-table-thead>tr.otc-management-layer-profiles
     height: 23px;
     line-height: 23px;
     text-align: center;
-    width: 70px;
-    min-width: 70px;
-    max-width: 70px;
+    width: 60px;
+    min-width: 60px;
+    max-width: 60px;
 }
 
 thead.otc-management-layer-profiles-table-thead>tr.otc-management-layer-profiles-table-tr>td.otc-management-layer-profiles-table-td-title:nth-of-type(1) {
-    width: 70px;
-    min-width: 70px;
-    max-width: 70px;
+    width: 60px;
+    min-width: 60px;
+    max-width: 60px;
     text-indent: 4px;
 }
 
@@ -200,15 +231,21 @@ a[data-link="otc-management-layer-profiles-link"]:hover {
     color: #f50;
 }
 
+[data-div="tbody-div"]>p:nth-of-type(1) {
+    color: #000;
+    font-weight: normal;
+}
+
 [data-titles="data-otc-MLP-title"] {
     background: rgb(247, 197, 143);
 }
 
 [data-p="data-otc-MLP-title"] {
-    border: 1px solid #ccc;
+    /* border: 1px solid #ccc; */
     line-height: 23px;
     height: 23px;
     font-size: 12px;
+    font-weight: normal;
 }
 
 [data-span="data-otc-MLP-title"] {
