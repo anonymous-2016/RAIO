@@ -219,15 +219,17 @@ thead.otc-management-layer-profiles-table-thead>tr.otc-management-layer-profiles
     border-right: 1px solid #c5d2db;
 }
 
-a[data-link="otc-management-layer-profiles-link"] {
+a[data-more="otc-management-layer-profiles-link-more"] {
     color: #3285ff;
     text-decoration: none;
     font-size: 12px;
     font-weight: normal;
     margin-right: 54px;
+    float: right;
+    margin-top: 3px;
 }
 
-a[data-link="otc-management-layer-profiles-link"]:hover {
+a[data-more="otc-management-layer-profiles-link-more"]:hover {
     color: #f50;
 }
 

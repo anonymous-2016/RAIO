@@ -34,8 +34,8 @@ OTC_F9_FV.Modules.researchReport = OTC_F9_FV.Modules.researchReport || (
                                 let title = (datas[i].title !== undefined  && datas[i].title !== null) ? datas[i].title.replace(/(：：)/ig, "：") : `暂无数据`,
                                     time = (datas[i].publishDate !== undefined && datas[i].publishDate !== null) ? datas[i].publishDate : `暂无数据`,
                                     source = (datas[i].infoSource !== undefined && datas[i].infoSource !== null) ? datas[i].infoSource : `暂无数据`,
-                                    type = (datas[i].researchType !== undefined && datas[i].researchType !== null) ? datas[i].researchType : `暂无数据`,
-                                    fileType = (datas[i].fileType !== undefined && datas[i].fileType !== null) ? datas[i].fileType : `暂无数据`,
+                                    // type = (datas[i].researchType !== undefined && datas[i].researchType !== null) ? datas[i].researchType : `暂无数据`,
+                                    type = (datas[i].fileType !== undefined && datas[i].fileType !== null) ? datas[i].fileType : `暂无数据`,
                                     id = (datas[i].researchId !== undefined  && datas[i].researchId !== null) ? datas[i].researchId : `暂无数据`;
                                 let html = ``;
                                 html = `
@@ -46,7 +46,8 @@ OTC_F9_FV.Modules.researchReport = OTC_F9_FV.Modules.researchReport || (
                                         data-link="otc-research-report-link"
                                         data-disabled="${id !== "null" ? false : true}"
                                         data-link-detail="research-report-link-detail-module"
-                                        data-newsId="${id}">
+                                        data-uid="${id}"
+                                        data-type="${type}">
                                         ${title}
                                     </a>
                                 `;
@@ -58,6 +59,32 @@ OTC_F9_FV.Modules.researchReport = OTC_F9_FV.Modules.researchReport || (
                                 // no data
                             }
                         }
+                        // download & open pdf
+                        setTimeout((debug = false) => {
+                            const host = (window.OTC_IP !== undefined && window.OTC_IP.includes("http")) ? window.OTC_IP : `http://10.1.5.202`;
+                            // const host = ip;
+                            // absolute url ip
+                            let links = document.querySelectorAll(`[data-link-detail="research-report-link-detail-module"]`);
+                            for (let i = 0; i < links.length; i++) {
+                                links[i].addEventListener(`click`, (e) => {
+                                    // e.preventDefault();
+                                    // researchid: "551173471225"
+                                    let id = e.target.dataset.uid,
+                                        type = e.target.dataset.type,
+                                        title = e.target.dataset.title;
+                                    try {
+                                        let download_pdf = `${host}/queryservice/research/attachment/${id}.${type}\\${title}.${type}`;
+                                        // 10.1.5.202/queryservice/research/attachment/551173471225.pdf
+                                        ChromeExternal.Execute("OpenFile", download_pdf);
+                                    } catch (err) {
+                                        window.open(`${host}/queryservice/research/attachment/${id}.${type}`);
+                                        // window.open(`${host}/queryservice/research/attachment/${id}`);
+                                        // http:10.1.5.202/queryservice/research/attachment/551173471225
+                                        console.log(`%c ChromeExternal & caught error = \n`, `color: red; font-size: 23px;`, err);
+                                    }
+                                });
+                            }
+                        }, 0);
                     }else{
                         let message = `handle json error!`,
                             fileName = `research-report.js`,

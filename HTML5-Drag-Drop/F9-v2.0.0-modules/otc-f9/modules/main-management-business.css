@@ -65,7 +65,19 @@ section.otc-module-box-5 {
     font-weight: normal;
 }
 
-[data-link="otc-main-management-business-link"]>a {
+
+/* [data-link="otc-main-management-business-link"]>a {
+    color: #3285ff;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: normal;
+    margin-right: 54px;
+    float: right;
+    margin-top: 3px;
+} */
+
+
+/* [data-more="otc-main-management-business-link"]>a {
     color: #3285ff;
     text-decoration: none;
     font-size: 12px;
@@ -75,16 +87,21 @@ section.otc-module-box-5 {
     margin-top: 3px;
 }
 
-[data-more="otc-main-management-business-link"]>a {
+[data-more="otc-main-management-business-link"]>a:hover {
+    color: #f50;
+} */
+
+[data-more="otc-main-management-business-link-more"] {
     color: #3285ff;
     text-decoration: none;
     font-size: 12px;
     font-weight: normal;
     margin-right: 54px;
     float: right;
+    margin-top: 3px;
 }
 
-[data-more="otc-main-management-business-link"]>a:hover {
+[data-more="otc-main-management-business-link-more"]>a:hover {
     color: #f50;
 }
 
@@ -275,11 +292,11 @@ thead.otc-main-management-business-table-thead>tr.otc-main-management-business-t
 }
 
 [data-titles="data-otc-MMB-title"] {
-    background: rgb(247, 197, 143);
+    /* background: rgb(247, 197, 143); */
 }
 
 [data-p="data-otc-MMB-title"] {
-    border: 1px solid #ccc;
+    /* border: 1px solid #ccc; */
     line-height: 23px;
     height: 23px;
     font-size: 12px;

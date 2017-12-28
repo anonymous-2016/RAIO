@@ -6,7 +6,7 @@
  * creadted 2017.12.21
  * @param {* String} url
  * @param {* String} time_uid
- * @param {* String} hst_uid
+ * @param {* Array} hst_uids
  * @param {* String} hsc_uid
  * @param {* String} tbody_uid
  * @param {* Array} tbody_uids
@@ -22,7 +22,7 @@ OTC_F9_FV.Modules = OTC_F9_FV.Modules || {};
 
 
 OTC_F9_FV.Modules.equityShareholder = OTC_F9_FV.Modules.equityShareholder || (
-    (url = ``, links_uid = ``, hst_uid = ``, hsc_uid = ``, tbody_uids = ``, debug = false) => {
+    (url = ``, links_uid = ``, hst_uids = ``, hsc_uid = ``, tbody_uids = ``, debug = false) => {
         let datas = {};
         fetch(url)
         .then(res => res.json())
@@ -30,10 +30,11 @@ OTC_F9_FV.Modules.equityShareholder = OTC_F9_FV.Modules.equityShareholder || (
             (json) => {
                 datas = json;
                 let links_dom = document.querySelectorAll(links_uid),
-                    hst_dom = document.querySelector(hst_uid),
+                    hsts_dom = document.querySelectorAll(hst_uids),
                     tbodys_dom = document.querySelectorAll(tbody_uids);
                 if (debug) {
                     console.log(`data = \n`, json);
+                    // console.log(`data = \n`, hsts_dom[0]);
                 }
                 try {
                     if (json !== undefined && typeof(json) === "object") {
@@ -158,7 +159,15 @@ OTC_F9_FV.Modules.equityShareholder = OTC_F9_FV.Modules.equityShareholder || (
                         if (json.sdgd !== undefined && typeof(json.sdgd) === "object") {
                             if (json.sdgd.datas !== undefined && Array.isArray(json.sdgd.datas)) {
                                 let arr = json.sdgd.datas || [];
+                                    // total_cgs = 0,
+                                    // total_zb = 0,
+                                    // total_zjbd = 0,
+                                    // total_jglx = 0;
                                 for (let i = 0; i < arr.length; i++) {
+                                    // total_cgs += arr[i].cgs;
+                                    // total_zb += arr[i].zb;
+                                    // total_zjbd += arr[i].zjbd;
+                                    // total_jglx += arr[i].jglx;
                                     trs += `
                                         <tr class="otc-equity-shareholder-table-tr">
                                             <td class="otc-equity-shareholder-table-td-value" data-value="data-otc-ES" title="${arr[i].gdmc}">
@@ -179,7 +188,43 @@ OTC_F9_FV.Modules.equityShareholder = OTC_F9_FV.Modules.equityShareholder || (
                                         </tr>
                                     `;
                                 }
+                                // let total = `
+                                //     <tr class="otc-equity-shareholder-table-tr">
+                                //         <td class="otc-equity-shareholder-table-td-title">合计</td>
+                                //         <td class="otc-equity-shareholder-table-td-value" data-value="data-otc-ES">
+                                //             ${total_cgs}
+                                //         </td>
+                                //         <td class="otc-equity-shareholder-table-td-value" data-value="data-otc-ES">
+                                //             ${total_zb}
+                                //         </td>
+                                //         <td class="otc-equity-shareholder-table-td-value" data-value="data-otc-ES">
+                                //             ${total_zjbd}
+                                //         </td>
+                                //         <td class="otc-equity-shareholder-table-td-value" data-value="data-otc-ES">
+                                //             ${total_jglx}
+                                //         </td>
+                                //     </tr>
+                                // `;
+                                // trs += total;
                             }
+                            let title1 = ``;
+                            if (Object.keys(json.sdgd).length === 4) {
+                                title1 = `
+                                    <p>
+                                        十大股东 (截止<span data-span="data-otc-ES-title">${json.sdgd.sj}</span>)
+                                    </p>
+                                    <p data-p="data-otc-ES-title">
+                                        报告期内十大股东合计持股
+                                        <span data-span="data-otc-ES-title">${json.sdgd.hj}</span>股，
+                                        <span data-span="data-otc-ES-title">${json.sdgd.bh}</span>
+                                        <span data-span="data-otc-ES-title">${(json.sdgd.gds !== 0 && json.sdgd.gds !== undefined) ? `，报告期内有${json.sdgd.gd}位股东有减持行为` : ""}</span>。
+                                    </p>
+                                `;
+                                // 报告期内十大股东，合计持股77894821股，减少455315股，报告期内有2位股东有减持行为。
+                            }else{
+                                // no data
+                            }
+                            hsts_dom[0].insertAdjacentHTML(`beforeend`, title1);
                         }else{
                             // no data
                             trs = `
@@ -208,6 +253,22 @@ OTC_F9_FV.Modules.equityShareholder = OTC_F9_FV.Modules.equityShareholder || (
                                     </td>
                                 </tr>
                             `;
+                            let title2 = ``;
+                            if (Object.keys(json.gdhs).length === 7) {
+                                title2 = `
+                                    <p>
+                                        股东户数 <span>截止2015-06-30</span>
+                                    </p>
+                                    <p data-p="data-otc-ES-title">
+                                        报告期内公司股东比上期增加
+                                        <span data-span="data-otc-ES-title">${(json.gdhs.hsjsq !== undefined) ? json.gdhs.hsjsq : "--"}</span>户，户均持股。减少
+                                        <span data-span="data-otc-ES-title">${(json.gdhs.hjjsq !== undefined) ? json.gdhs.hjjsq : "--"}%</span>。
+                                    </p>
+                                `;
+                            }else{
+                                // no data
+                            }
+                            hsts_dom[1].insertAdjacentHTML(`beforeend`, title2);
                         }else{
                             // no data
                             tr2 = `
@@ -369,12 +430,12 @@ OTC_F9_FV.Modules.equityShareholder.init = OTC_F9_FV.Modules.equityShareholder.i
     ) => {
         let url = `${ip}${path}${socket}${gilcode}`,
             links_uid = `[data-time="otc-equity-shareholder-time"]`,
-            hst_uid = `[data-titles="data-otc-ES-title"]`,
+            hst_uids = `[data-titles="data-otc-ES-title"]`,
             hsc_uid = `equity_shareholder_hs_container`,
             // tbody_uid = `[data-tbody="otc-equity-shareholder-table-tbody"]`;
             tbody_uids = `[data-tbody="otc-equity-shareholder-table-tbody"]`;
         // copy(Object.keys(json));
-        OTC_F9_FV.Modules.equityShareholder(url, links_uid, hst_uid, hsc_uid, tbody_uids, false);
+        OTC_F9_FV.Modules.equityShareholder(url, links_uid, hst_uids, hsc_uid, tbody_uids, false);
     }
 );
 

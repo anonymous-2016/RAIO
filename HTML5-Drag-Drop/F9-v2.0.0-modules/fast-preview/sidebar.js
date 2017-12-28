@@ -117,6 +117,7 @@ for (let i = 0; i < lis.length; i++) {
             lis[i].classList.remove("h5-dnd-nav-li-hidden");
             lis[i].classList.remove("add-bottom-margin");
             lis[i].classList.add("no-bottom-margin");
+            // let arr = [0,1];
             let arr = [0,1,2];
             // arr remove i ??? arr.shift();
             arr.map(
@@ -142,6 +143,7 @@ for (let i = 0; i < lis.length; i++) {
         }else{
             divs[i].classList.add("h5-dnd-nav-box-active");
             divs[i].classList.remove("h5-dnd-nav-box-hidden");
+            // let arr = [0,1];
             let arr = [0,1,2];
             // arr remove i ??? arr.shift();
             arr.map(
@@ -236,8 +238,8 @@ window.onload = () => {
     // console.log(`btn = ${container.classList.contains("h5-dnd-nav-container-normal")}`);
     // init
     let btn_universal = document.querySelector(`[data-uid="universal"]`),
-        btn_customize = document.querySelector(`[data-uid="customize"]`),
-        btn_module_setting = document.querySelector(`[data-uid="module-setting"]`);
+        btn_customize = document.querySelector(`[data-uid="customize"]`);
+        // btn_module_setting = document.querySelector(`[data-uid="module-setting"]`);
     let a_modules = document.querySelector(`[data-uid="modules-a-link"]`);
     const sortable_module_containers = document.querySelectorAll(`[data-sortable-box*="sortable-box"]`);
     btn_universal.onclick = (e) => {
@@ -274,19 +276,19 @@ window.onload = () => {
         // H5 DnD modules
     }
     /* event pop ???  */
-    btn_module_setting.addEventListener(`click`, (e) => {
-        // data-title="模块设置"
-        const title = `Sorry for that, it still in developing!`;
-        // alert(`e.target.dataset.title = ${e.target.dataset.title} \n\n\n\n\n\n\n ${title} \n\n\n\n\n\n\n Coming soon ...`);
-        alert(`😃😃😃Coming soon ... 😧😒😟`);
-    });
-    btn_module_setting.addEventListener(`click`, (e) => {
-        let debug = true;
-        if (debug) {
-            console.log(`e.target.dataset = ${e.target.dataset}`);
-            console.log(`e.target.dataset.title = ${e.target.dataset.title}`);
-        }
-    });
+    // btn_module_setting.addEventListener(`click`, (e) => {
+    //     // data-title="模块设置"
+    //     const title = `Sorry for that, it still in developing!`;
+    //     // alert(`e.target.dataset.title = ${e.target.dataset.title} \n\n\n\n\n\n\n ${title} \n\n\n\n\n\n\n Coming soon ...`);
+    //     // alert(`😃😃😃Coming soon ... 😧😒😟`);
+    // });
+    // btn_module_setting.addEventListener(`click`, (e) => {
+    //     let debug = true;
+    //     if (debug) {
+    //         console.log(`e.target.dataset = ${e.target.dataset}`);
+    //         console.log(`e.target.dataset.title = ${e.target.dataset.title}`);
+    //     }
+    // });
     btn.onclick();
     btn_universal.onclick();
 };
@@ -751,8 +753,8 @@ STOCK_F9_FV.Modules.loadAllModules = STOCK_F9_FV.Modules.loadAllModules || (
                             loadModule(`stock-price-turnover`);
                             htmlstr += `
                                 <section class="fv-module-box-7">
-                                    <div class="fv-stock-price-turnover-title-box">
-                                        <p class="fv-stock-price-turnover-title">股价/成交量</p>
+                                    <div class="fv-h5dnd-modules-title-box">
+                                        <p class="fv-h5dnd-modules-title" data-title="fv-stock-price-turnover-title">股价/成交量</p>
                                     </div>
                                     <section data-uid="stock-price-turnover">
                                         <div class="fv-stock-price-turnover-container">

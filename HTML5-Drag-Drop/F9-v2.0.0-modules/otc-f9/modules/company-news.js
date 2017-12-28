@@ -51,6 +51,70 @@ OTC_F9_FV.Modules.companyNews = OTC_F9_FV.Modules.companyNews || (
                             tds[2*i].innerText = time;
                             tds[2*i+1].innerText = type;
                         }
+                        // open news modal
+                        setTimeout(() => {
+                            const host = (window.OTC_IP !== undefined && window.OTC_IP.includes("http")) ? window.OTC_IP : `http://10.1.5.202`;
+                            // const host = ip;
+                            // absolute url ip
+                            let links = document.querySelectorAll(`[data-link="otc-company-news-link"]`);
+                            if (debug) {
+                                console.log(`links = \n`, links);
+                            }
+                            for (let i = 0; i < links.length; i++) {
+                                links[i].addEventListener(`click`, (e) => {
+                                    e.preventDefault();
+                                    // #hash
+                                    let id = e.target.dataset.newsid,
+                                        title = e.target.dataset.title;
+                                    try {
+                                        let open_link = `${host}/queryservice/news/content/${id}`;
+                                        // #567721125719
+                                        if (debug) {
+                                            console.log(`id = ${id} \ntitle = ${title}`);
+                                            // no need title
+                                        }
+                                        // fetch news summary data
+                                        let data = {};
+                                        fetch(open_link)
+                                        .then(res => res.json())
+                                        .then(
+                                            (json) => {
+                                                if (debug) {
+                                                    console.log(`json = \n`, JSON.stringify(json, null, 4));
+                                                }
+                                                data = json;
+                                                // BouncedModal
+                                                const UDP_wh = UDP.getClientWidthHeight;
+                                                if (debug) {
+                                                    console.log(`UDP_wh = \n`, JSON.stringify(UDP_wh, null, 4));
+                                                }
+                                                let UDP_width = UDP_wh.w - 60,
+                                                    UDP_height = UDP_wh.h - 60;
+                                                // STOCK_F9_FV.Modal.BouncedModal
+                                                const modal = new BouncedModal({
+                                                // const modal = new UDP.BouncedModal({
+                                                    // bouncedclass: "layerContianer2",//存放页面的容器类名
+                                                    width: UDP_width,
+                                                    height: UDP_height,
+                                                    title: "公司新闻",
+                                                    setOverflow: "overflow-y:none",
+                                                    //设置滚动的属性(overflow-y: 竖向  overflow-x: 横向)
+                                                    // str: html.join(''),// array to string
+                                                    // str: html_template,
+                                                    datas: Object.assign({}, data)
+                                                });
+                                                modal.init();
+                                                // return json;
+                                            }
+                                        )
+                                        .catch(err => console.log(`error infos = \n`, err));
+                                    } catch (err) {
+                                        console.log(`${host}/queryservice/news/content/${id}: Error infos = \n`, err);
+                                        // window.open(`${host}/queryservice/news/content/${id}`);
+                                    }
+                                });
+                            }
+                        }, 0);
                     }else{
                         let message = `handle json error!`,
                             fileName = `company-news.js`,

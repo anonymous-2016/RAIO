@@ -832,7 +832,6 @@ const HTML_Template = (uid = ``, loadModule = function(){}, debug = false) => {
                                 <td class="otc-equity-shareholder-table-td-title">占比(%)</td>
                                 <td class="otc-equity-shareholder-table-td-title">增减变动</td>
                                 <td class="otc-equity-shareholder-table-td-title">机构类型</td>
-                                <td class="otc-equity-shareholder-table-td-title">合计</td>
                             </tr>
                             <!-- colspan & rowspan -->
                         </thead>

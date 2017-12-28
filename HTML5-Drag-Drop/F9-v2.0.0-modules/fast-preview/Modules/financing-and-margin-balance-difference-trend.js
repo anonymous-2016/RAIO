@@ -173,7 +173,8 @@ STOCK_F9_FV.Modules.FMBDtrend.FMBDTdrawHS = STOCK_F9_FV.Modules.FMBDtrend.FMBDTd
                     </p>
                 `,
                 // numericSymbols: ['k', 'M', 'G', 'T', 'P', 'E'],
-                numericSymbols: ['千', '百万', '十亿', '兆', '千兆', '百万兆'],
+                // numericSymbols: ['千', '百万', '十亿', '兆', '千兆', '百万兆'],
+                numericSymbols: ['千', '00万', '0亿', '兆', '千兆', '百万兆'],
                 printChart: "打印图表",
                 resetZoom: '重置缩放比例',
                 resetZoomTitle: '重置为原始大小',
@@ -216,16 +217,24 @@ STOCK_F9_FV.Modules.FMBDtrend.FMBDTdrawHS = STOCK_F9_FV.Modules.FMBDtrend.FMBDTd
             xAxis: {
                 // categories: ['2017-02', '2017-02', '2017-02', '2017-02', '2017-02'],
                 categories: time,
-                min: max_time,
+                // min: max_time,
+                // minRange: 30,
+                // softMax: 30,
                 // min: 0,
                 // max: 8,
                 // xAxis datas
+                // step: 7,
                 labels: {
                     // autoRotation:'false',
                     autoRotation: [0],
-                    step: 2
+                    step: 5,
+                    // step: 30，
                 }
             },
+            // scrollbar: {
+            //     enabled: true,
+            //     minWidth: 30,
+            // },
             credits: {
                 // enabled: true,//
                 enabled: false,
@@ -379,10 +388,6 @@ STOCK_F9_FV.Modules.FMBDtrend.FMBDTdrawHS = STOCK_F9_FV.Modules.FMBDtrend.FMBDTd
                     // overwrite
                 }
             ],
-            scrollbar: {
-                enabled: true,
-                minWidth: 30,
-            }
         });
     }
 );
@@ -406,6 +411,10 @@ STOCK_F9_FV.Modules.FMBDtrend.init = STOCK_F9_FV.Modules.FMBDtrend.init || (
         // STOCK_F9_FV.Modules.FMBDtrend(url, uid, true);
     }
 );
+
+var STOCK_IP = window.STOCK_IP || `http://10.1.5.202`,
+    STOCK_Paths = window.STOCK_Paths || `/webservice/fastview/stock`,
+    STOCK_SecCode = window.STOCK_SecCode || `600570.SH`;
 
 
 STOCK_F9_FV.Modules.FMBDtrend.init({

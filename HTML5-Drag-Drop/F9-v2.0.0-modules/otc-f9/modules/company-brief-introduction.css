@@ -152,7 +152,7 @@ td.otc-company-brief-introduction-table-td-key {
     line-height: 23px;
     text-align: left;
     text-indent: 4px;
-    border-right: 1px solid #f0f;
+    /* border-right: 1px solid #f0f; */
 }
 
 td.otc-company-brief-introduction-table-td-value {

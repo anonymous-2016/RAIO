@@ -116,7 +116,7 @@ OTC_F9_FV.Modules.companyBriefIntroduction = OTC_F9_FV.Modules.companyBriefIntro
                                 <tr class="otc-company-brief-introduction-table-tr">
                                     <td class="otc-company-brief-introduction-table-td-key" data-alias="网址">网址</td>
                                     <td class="otc-company-brief-introduction-table-td-value" data-value="data-otc-CBI">
-                                        ${datas.wz}
+                                        <a href="${datas.wz}" target="_blank" data-link="website-link">${datas.wz}</a>
                                     </td>
                                 </tr>
                             `;

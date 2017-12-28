@@ -294,6 +294,7 @@ STOCK_F9_FV.Modules.agencyRating.drawHS = STOCK_F9_FV.Modules.agencyRating.drawH
                             color: (Highcharts.theme && Highcharts.theme.textColor) || 'gray'
                         }
                     },
+                    // zIndex: 9,// Defaults to 7.
                     opposite: true,
                     gridLineColor: '#2D3039'
                 }
@@ -344,14 +345,16 @@ STOCK_F9_FV.Modules.agencyRating.drawHS = STOCK_F9_FV.Modules.agencyRating.drawH
                         enabled: true,
                         // color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white'
                         color: "#434348"
-                    }
+                    },
+                    zIndex: 6,
                 },
                 spline: {
                     stacking: 'normal',
                     dataLabels: {
-                        enabled: true,
-                        color: "#434348"
-                    }
+                        // enabled: true,
+                        color: "#ff00ff"
+                    },
+                    zIndex: 9,
                 }
             },
             series: [
@@ -422,6 +425,9 @@ STOCK_F9_FV.Modules.agencyRating.init = STOCK_F9_FV.Modules.agencyRating.init ||
     }
 );
 
+var STOCK_IP = window.STOCK_IP || `http://10.1.5.202`,
+    STOCK_Paths = window.STOCK_Paths || `/webservice/fastview/stock`,
+    STOCK_SecCode = window.STOCK_SecCode || `600570.SH`;
 
 STOCK_F9_FV.Modules.agencyRating.init({
     ip: STOCK_IP,

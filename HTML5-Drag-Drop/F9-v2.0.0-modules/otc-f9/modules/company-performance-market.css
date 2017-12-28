@@ -148,11 +148,11 @@ tr.otc-company-performance-market-table-tr>td:nth-of-type(4) {
 [data-link="otc-company-performance-market-link"]>a {
     color: #3285ff;
     text-decoration: none;
-    /* font-size: 12px; */
     font-size: 12px;
     font-weight: normal;
     margin-right: 54px;
     float: right;
+    margin-top: 3px;
 }
 
 [data-link="otc-company-performance-market-link"]>a:hover {

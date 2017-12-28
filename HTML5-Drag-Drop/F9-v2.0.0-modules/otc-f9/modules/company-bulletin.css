@@ -152,6 +152,7 @@ tr.otc-company-bulletin-table-tr>td:nth-of-type(4) {
     font-weight: normal;
     margin-right: 54px;
     float: right;
+    margin-top: 3px;
 }
 
 [data-more="otc-company-bulletin-link"]>a:hover {

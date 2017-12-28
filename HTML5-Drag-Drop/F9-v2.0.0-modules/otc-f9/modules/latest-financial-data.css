@@ -135,11 +135,11 @@ tr.otc-latest-financial-data-table-tr>td:nth-of-type(4) {
 [data-link="otc-latest-financial-data-link"]>a {
     color: #3285ff;
     text-decoration: none;
-    /* font-size: 12px; */
     font-size: 12px;
     font-weight: normal;
     margin-right: 54px;
     float: right;
+    margin-top: 3px;
 }
 
 [data-link="otc-latest-financial-data-link"]>a:hover {

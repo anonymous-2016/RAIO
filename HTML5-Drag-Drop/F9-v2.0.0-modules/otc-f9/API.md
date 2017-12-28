@@ -300,6 +300,46 @@ touch equity-shareholder.css equity-shareholder.html equity-shareholder.js
 touch .css .html .js
 touch .css .html .js
 
+/usr/local/apache2/webapps/otc/f9/build/js
+E:\github\RAIO\HTML5-Drag-Drop\F9-v2.0.0-modules\otc-f9\build\js
+
+
+
+/usr/local/apache2/webapps/stock/f9/fastview/build/js
+E:\github\RAIO\HTML5-Drag-Drop\F9-v2.0.0-modules\fast-preview\build\js
+
+
+[data-delete-span="delete-span"] {
+    text-indent: 20px;
+    font-size: 13px;
+    width: 55px;
+    height: 20px;
+    line-height: 20px;
+    float: right;
+    display: block;
+    position: absolute;
+    top: 1px;
+    right: -10px;
+    cursor: pointer;
+    background: url(../img/icons/delete-icon.png) 0px 2px #fff no-repeat;
+    background: #f0f;
+    box-sizing: border-box;
+}
+
+[data-link="otc-latest-transaction-data-link"]>a {
+    color: #3285ff;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: normal;
+    margin-right: 54px;
+    float: right;
+    margin-top: 3px;
+}
+
+
+http://10.1.5.202/queryservice/bulletin/attachment/company/567706202818
+http://10.1.5.202/queryservice/bulletin/attachment/company/1000000101286709
+
 
 
 http://10.1.5.202/webservice/fastview/otcper/news/430002.OC

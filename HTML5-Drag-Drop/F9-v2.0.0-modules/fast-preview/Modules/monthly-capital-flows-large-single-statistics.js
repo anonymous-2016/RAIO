@@ -236,7 +236,8 @@ STOCK_F9_FV.Modules.MCFLSStatistics.MCFLSSdrawHS = STOCK_F9_FV.Modules.MCFLSStat
             xAxis: {
                 // categories: ['2017-02', '2017-02', '2017-02', '2017-02', '2017-02'],
                 categories: time,
-                min: max_time,
+                // min: max_time,
+                minRange: 24,
                 // min: 0,
                 // max: 8,
                 // xAxis datas
@@ -244,7 +245,7 @@ STOCK_F9_FV.Modules.MCFLSStatistics.MCFLSSdrawHS = STOCK_F9_FV.Modules.MCFLSStat
                 labels: {
                     // autoRotation:'false',
                     autoRotation: [0],
-                    step: 2
+                    step: 7
                 }
             },
             credits: {
@@ -388,9 +389,29 @@ STOCK_F9_FV.Modules.MCFLSStatistics.MCFLSSdrawHS = STOCK_F9_FV.Modules.MCFLSStat
                     },
                 }
             ],
-            scrollbar: {
-                enabled: true
-            }
+            // scrollbar: {
+            //     enabled: true,
+            //     step: 22,
+            //     minWidth: 23,
+            // },
+            // rangeSelector: {
+            //     selected: 0,
+            //     // inputDateFormat: '%Y-%m-%d',//'%Y年%m月%d日'
+            //     // inputDateFormat: '%Y年 %m月 %d日',
+            //     // allButtonsEnabled: true,// highcharts-range-selector-buttons ???
+            //     allButtonsEnabled: false,
+            //     buttons: [
+            //         {
+            //             type: 'day',
+            //             count: 36,
+            //             text: '一天',
+            //             dataGrouping: {
+            //                 // forced: true,
+            //                 units: [['day', [1]]]
+            //             }
+            //         },
+            //     ]
+            // },
         });
     }
 );
@@ -414,6 +435,10 @@ STOCK_F9_FV.Modules.MCFLSStatistics.init = STOCK_F9_FV.Modules.MCFLSStatistics.i
         // STOCK_F9_FV.Modules.MCFLSStatistics(url, uid, true);
     }
 );
+
+var STOCK_IP = window.STOCK_IP || `http://10.1.5.202`,
+    STOCK_Paths = window.STOCK_Paths || `/webservice/fastview/stock`,
+    STOCK_SecCode = window.STOCK_SecCode || `600570.SH`;
 
 
 STOCK_F9_FV.Modules.MCFLSStatistics.init({

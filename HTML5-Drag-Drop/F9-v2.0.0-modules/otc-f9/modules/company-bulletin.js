@@ -32,8 +32,8 @@ OTC_F9_FV.Modules.companyBulletin = OTC_F9_FV.Modules.companyBulletin || (
                         for (let i = 0; i < td_keys.length; i++) {
                             let title = (datas[i].gsggtitle !== undefined) ? datas[i].gsggtitle.replace(/(：：)/ig, "：") : `暂无数据`,
                                 time = (datas[i].gsggsj !== undefined && datas[i].gsggsj !== null) ? datas[i].gsggsj : `暂无数据`,
-                                type = (datas[i].bulletinType !== undefined && datas[i].bulletinType !== null) ? datas[i].bulletinType : `暂无数据`,
-                                fileType = (datas[i].fileType !== undefined && datas[i].fileType !== null) ? datas[i].fileType : `暂无数据`,
+                                type = (datas[i].bulletinType !== undefined && datas[i].bulletinType !== null) ? datas[i].bulletinType : `暂无数据`, // "bulletinType": "定期报告"
+                                fileType = (datas[i].fileType !== undefined && datas[i].fileType !== null) ? datas[i].fileType : `暂无数据`,// "fileType": "pdf",
                                 id = (datas[i].id !== undefined) ? datas[i].id : `暂无数据`;
                             let html = ``;
                             html = `
@@ -44,7 +44,8 @@ OTC_F9_FV.Modules.companyBulletin = OTC_F9_FV.Modules.companyBulletin || (
                                     data-link="otc-company-bulletin-link"
                                     data-disabled="${id !== "null" ? false : true}"
                                     data-link-detail="company-bulletin-link-detail-module"
-                                    data-newsId="${id}">
+                                    data-uid="${id}"
+                                    data-type="${fileType}">
                                     ${title}
                                 </a>
                             `;
@@ -52,6 +53,35 @@ OTC_F9_FV.Modules.companyBulletin = OTC_F9_FV.Modules.companyBulletin || (
                             tds[2*i].innerText = time;
                             tds[2*i+1].innerText = type;
                         }
+                        setTimeout((debug = false) => {
+                            // const host = `http://10.1.5.202`;
+                            // window.location.origin.includes(`http`);
+                            const host = (window.OTC_IP !== undefined && window.OTC_IP.includes("http")) ? window.OTC_IP : `http://10.1.5.202`;
+                            // let host = ip;
+                            // absolute url ip
+                            let links = document.querySelectorAll(`[data-link-detail="company-bulletin-link-detail-module"]`);
+                            if (debug) {
+                                console.log(`links = \n`, links);
+                            }
+                            for (let i = 0; i < links.length; i++) {
+                                links[i].addEventListener(`click`, (e) => {
+                                    // e.preventDefault();
+                                    let id = e.target.dataset.uid,
+                                        type = e.target.dataset.type,
+                                        title = e.target.dataset.title;
+                                    try {
+                                        let download_pdf = `${host}/queryservice/bulletin/attachment/otc/${id}.${type}\\${title}.${type}`;
+                                        // let download_pdf = `${host}/queryservice/bulletin/attachment/company/${id}.${type}\\${title}.${type}`;
+                                        // console.log(`%c download_pdf = \n`, `color: #f0f; font-size: 23px;`, download_pdf);
+                                        // http://10.1.5.202/queryservice/bulletin/attachment563999772286.pdf
+                                        ChromeExternal.Execute("OpenFile", download_pdf);
+                                    } catch (err) {
+                                        window.open(`${host}/queryservice/bulletin/attachment/otc/${id}.${type}`);
+                                        console.log(`%c ChromeExternal & caught error = \n`, `color: red; font-size: 23px;`, err);
+                                    }
+                                });
+                            }
+                        }, 0);
                     }else{
                         let message = `handle json error!`,
                             fileName = `company-bulletin.js`,

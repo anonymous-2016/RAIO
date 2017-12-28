@@ -401,8 +401,8 @@ STOCK_F9_FV.Modules.profitForecast.drawHS = STOCK_F9_FV.Modules.profitForecast.d
                 spline: {
                     // stacking: 'normal',
                     dataLabels: {
-                        enabled: true,
-                        color: "#434348"
+                        // enabled: true,
+                        color: "#ff00ff"
                     }
                 }
             },
@@ -480,6 +480,11 @@ STOCK_F9_FV.Modules.profitForecast.init = STOCK_F9_FV.Modules.profitForecast.ini
         // STOCK_F9_FV.Modules.profitForecast(url, uid, true);
     }
 );
+
+var STOCK_IP = window.STOCK_IP || `http://10.1.5.202`,
+    STOCK_Paths = window.STOCK_Paths || `/webservice/fastview/stock`,
+    STOCK_SecCode = window.STOCK_SecCode || `600570.SH`;
+
 
 STOCK_F9_FV.Modules.profitForecast.init({
     ip: STOCK_IP,

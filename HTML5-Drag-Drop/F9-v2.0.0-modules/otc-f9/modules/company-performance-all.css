@@ -28,6 +28,7 @@
     font-weight: normal;
     margin-right: 54px;
     float: right;
+    margin-top: 3px;
 }
 
 [data-link="otc-company-performance-all-link"]>a:hover {

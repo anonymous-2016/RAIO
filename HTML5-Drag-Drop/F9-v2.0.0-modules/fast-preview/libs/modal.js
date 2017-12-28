@@ -186,6 +186,7 @@ BouncedModal.prototype = {
         // UDP_wh.h
         $("#zxdtModal").empty().html(str);
         $(".modal-body").css("height", UDP.Public.view().h - 200);
+        // resize bug
         $(window).resize(function() {
             $(".layerBox").css("width", $(window).width()-60+"px");
             $(".layerBox").css("height", $(window).height()-80+"px");

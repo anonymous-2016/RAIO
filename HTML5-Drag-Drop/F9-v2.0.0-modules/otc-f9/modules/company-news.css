@@ -188,12 +188,24 @@ thead.otc-company-news-table-thead>tr.otc-company-news-table-tr>td:nth-of-type(2
     border-right: 1px solid #c5d2db;
 }
 
-a[data-link="otc-company-news-link"] {
+[data-more="otc-company-news-link-more"] {
     color: #3285ff;
     text-decoration: none;
     font-size: 12px;
     font-weight: normal;
     margin-right: 54px;
+    float: right;
+    margin-top: 3px;
+}
+
+[data-more="otc-company-news-link-more"]:hover {
+    color: #f50;
+}
+
+a[data-link="otc-company-news-link"] {
+    color: #3285ff;
+    text-decoration: none;
+    font-size: 12px;
 }
 
 a[data-link="otc-company-news-link"]:hover {
