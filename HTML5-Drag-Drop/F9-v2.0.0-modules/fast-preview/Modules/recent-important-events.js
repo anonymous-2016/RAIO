@@ -150,6 +150,11 @@ STOCK_F9_FV.Modules.recentImportantEvents.init = STOCK_F9_FV.Modules.recentImpor
     }
 );
 
+var STOCK_IP = window.STOCK_IP || `http://10.1.5.202`,
+    STOCK_Paths = window.STOCK_Paths || `/webservice/fastview/stock`,
+    STOCK_SecCode = window.STOCK_SecCode || `600570.SH`;
+    STOCK_Skin = window.STOCK_Skin || `white`;
+
 
 STOCK_F9_FV.Modules.recentImportantEvents.init({
     ip: STOCK_IP,
