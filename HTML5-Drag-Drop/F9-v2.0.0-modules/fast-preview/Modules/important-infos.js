@@ -111,6 +111,13 @@ STOCK_F9_FV.Modules.importantInfos.init = STOCK_F9_FV.Modules.importantInfos.ini
     }
 );
 
+
+
+var STOCK_IP = window.STOCK_IP || `http://10.1.5.202`,
+    STOCK_Paths = window.STOCK_Paths || `/webservice/fastview/stock`,
+    STOCK_SecCode = window.STOCK_SecCode || `600570.SH`;
+
+
 STOCK_F9_FV.Modules.importantInfos.init({
     ip: STOCK_IP,
     path: `${STOCK_Paths}/stockfast01/`,

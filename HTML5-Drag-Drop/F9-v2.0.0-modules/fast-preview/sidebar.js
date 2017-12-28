@@ -39,6 +39,7 @@ STOCK_F9_FV.Utils.getParam = STOCK_F9_FV.Utils.getParam || ((key, debug = false)
 var STOCK_IP = STOCK_IP || ``;
 var STOCK_Paths = STOCK_Paths || ``;
 var STOCK_SecCode = STOCK_SecCode || ``;
+var STOCK_Skin = STOCK_Skin || ``;
 
 // ip: `http://10.1.5.202`,
 // path: `/webservice/fastview/stock/stockfast07/`, // `/webservice/fastview/stock`

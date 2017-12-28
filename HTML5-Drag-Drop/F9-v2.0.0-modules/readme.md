@@ -317,7 +317,12 @@ const time = [
 
 ```
 
+#000 box bg
 
+
+#4a4c4f border
+#25292e bg
+#bbc1c7 font-color
 
 
 

@@ -56,7 +56,7 @@ OTC_F9_FV.Modules.latestFinancialData = OTC_F9_FV.Modules.latestFinancialData ||
                                 业绩快报 (报告期<span data-title-span="td-colspan-span">${datas["yjkb"].bgq}</span>, 披露日期<span data-title-span="td-colspan-span">${datas["yjkb"].plrq}</span>)
                             `;
                             // const ui_tds1 = Object.keys(json.yjkb);
-                            const ui_tds1 = ["yysr", "yylr", "lrze", "jlr", "yysrzz", "jbmgsy", "jzcsyljq", "jlrtbzz", "zczj", "jzc", "mgjzc", "xjllje"];
+                            const ui_tds1 = ["bgq", "plrq", "yysr", "yysrzz", "zczj", "yylr", "jbmgsy", "jzc", "lrze", "jzcsyljq", "mgjzc", "jlr", "jlrtbzz", "xjllje"]
                             for (let i = 0; i < 12; i++) {
                                 let k = ui_tds1[i];
                                 tds[i].innerText = `${datas["yjkb"][k]}`;
