@@ -5,8 +5,7 @@
  * @author xgqfrms
  * creadted 2017.12.12
  * @param {* String} url
- * @param {* Array} td_keys
- * @param {* Array} tds
+ * @param {* String} tbody_dom
  * @param {* String} more
  * @param {Boolean} debug
  */
@@ -20,7 +19,7 @@ OTC_F9_FV.Modules = OTC_F9_FV.Modules || {};
 
 
 OTC_F9_FV.Modules.companyNews = OTC_F9_FV.Modules.companyNews || (
-    (url = ``, td_keys = [], tds = [], more = ``, debug = false) => {
+    (url = ``, tbody_dom = ``, more = ``, debug = false) => {
         let datas = {};
         fetch(url)
         .then(res => res.json())
@@ -28,29 +27,52 @@ OTC_F9_FV.Modules.companyNews = OTC_F9_FV.Modules.companyNews || (
             (json) => {
                 datas = json;
                 try {
-                    if (Array.isArray(datas) && datas.length > 0) {
-                        for (let i = 0; i < td_keys.length; i++) {
-                            let title = (datas[i].xwtitle !== undefined) ? datas[i].xwtitle.replace(/(：：)/ig, "：") : `暂无数据`,
-                                time = (datas[i].xwsj !== undefined && datas[i].xwsj !== null) ? datas[i].xwsj : `暂无数据`,
-                                type = (datas[i].newsType !== undefined && datas[i].newsType !== null) ? datas[i].newsType : `暂无数据`,
-                                id = (datas[i].newid !== undefined) ? datas[i].newid : `暂无数据`;
-                            let html = `
-                                <a
-                                    href="#${id}"
-                                    title="${title}"
-                                    data-title="${title}"
-                                    data-link="otc-company-news-link"
-                                    data-disabled="${id !== "null" ? false : true}"
-                                    data-link-detail="company-news-link-detail-module"
-                                    data-newsId="${id}">
-                                    ${title}
-                                </a>
+                    if (Array.isArray(datas)) {
+                        let tbody = ``;
+                        if (datas.length < 0) {
+                            for (let i = 0; i < datas.length; i++) {
+                                let title = (datas[i].xwtitle !== undefined) ? datas[i].xwtitle.replace(/(：：)/ig, "：") : `暂无数据`,
+                                    time = (datas[i].xwsj !== undefined && datas[i].xwsj !== null) ? datas[i].xwsj : `暂无数据`,
+                                    type = (datas[i].newsType !== undefined && datas[i].newsType !== null) ? datas[i].newsType : `暂无数据`,
+                                    id = (datas[i].newid !== undefined) ? datas[i].newid : `暂无数据`;
+                                let html = `
+                                    <a
+                                        href="#${id}"
+                                        title="${title}"
+                                        data-title="${title}"
+                                        data-link="otc-company-news-link"
+                                        data-disabled="${id !== "null" ? false : true}"
+                                        data-link-detail="company-news-link-detail-module"
+                                        data-newsId="${id}">
+                                        ${title}
+                                    </a>
+                                `;
+                                if (i < 5) {
+                                    tbody += `
+                                        <tr class="otc-company-news-table-tr">
+                                            <td class="otc-company-news-table-td-key" data-key="data-otc-CN">${html}</td>
+                                            <td class="otc-company-news-table-td-value" data-value="data-otc-CN">${time}</td>
+                                            <td class="otc-company-news-table-td-value" data-value="data-otc-CN">${type}</td>
+                                        </tr>
+                                    `;
+                                }else{
+                                    // only show 5 items
+                                }
+                            }
+                        }else{
+                            // no data
+                            // thead.style.display = "none";
+                            tbody = `
+                                <tr class="otc-company-news-table-tr">
+                                    <td colspan="3">
+                                        <p data-none="no-data-p">
+                                            <span data-none="no-data-span"></span>
+                                        </p>
+                                    </td>
+                                </tr>
                             `;
-                            td_keys[i].insertAdjacentHTML(`beforeend`, html);
-                            // td_keys[i].setAttribute(`title`, title);
-                            tds[2*i].innerText = time;
-                            tds[2*i+1].innerText = type;
                         }
+                        tbody_dom.insertAdjacentHTML(`beforeend`, tbody);
                         // open news modal
                         setTimeout(() => {
                             const host = (window.OTC_IP !== undefined && window.OTC_IP.includes("http")) ? window.OTC_IP : `http://10.1.5.202`;
@@ -148,10 +170,9 @@ OTC_F9_FV.Modules.companyNews.init = OTC_F9_FV.Modules.companyNews.init || (
         }
     ) => {
         let url = `${ip}${path}${socket}${gilcode}`,
-            td_keys = document.querySelectorAll(`[data-key="data-otc-CN"]`),
-            tds = document.querySelectorAll(`[data-value="data-otc-CN"]`),
+            tbody_dom = document.querySelector(`[data-tbody="otc-company-news-table-tbody"]`),
             more = document.querySelector(`[data-more="otc-company-news-link-more"]`);
-        OTC_F9_FV.Modules.companyNews(url, td_keys, tds, more, false);
+        OTC_F9_FV.Modules.companyNews(url, tbody_dom, more, false);
     }
 );
 
@@ -165,7 +186,7 @@ OTC_F9_FV.Modules.companyNews.init({
     ip: OTC_IP,
     path: OTC_PATH,
     socket: `/news/`,
-    gilcode: OTC_GILCODE
+    gilcode: OTC_GILCODE,
 });
 
 // OTC_F9_FV.Modules.companyNews.init();

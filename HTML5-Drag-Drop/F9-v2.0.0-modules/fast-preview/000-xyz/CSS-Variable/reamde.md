@@ -36,3 +36,6 @@ http://10.1.5.202/stock/f9/fastview/sidebar.html?gilcode=600570.SH&skin=black
 
 STOCK_SKIN
 
+
+
+

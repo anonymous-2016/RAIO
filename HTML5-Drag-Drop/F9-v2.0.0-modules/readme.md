@@ -323,7 +323,7 @@ var STOCK_IP = window.STOCK_IP || `http://10.1.5.202`,
 
 skin: `white`
 
-
+skin
 
 skin: STOCK_Skin,
 

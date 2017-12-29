@@ -153,7 +153,6 @@ const initSidebar = () => {
             body_container.classList.add("h5-dnd-body-container-big");
         }
     };
-
     small_btn.onclick = () => {
         if (small_container.classList.contains("h5-dnd-nav-small-btn-hidden")) {
             small_container.classList.add("h5-dnd-nav-small-btn-show");
@@ -174,6 +173,8 @@ const initSidebar = () => {
             body_container.classList.add("h5-dnd-body-container-small");
         }
     };
+    // init
+    btn.onclick();
 };
 // tabs
 const initTabs = () => {
@@ -203,16 +204,17 @@ const initTabs = () => {
     // btn_module_setting.addEventListener(`click`, (e) => {
     //     // let debug = true;
     // });
+    btn_universal.onclick();
 };
 
 // webpack ignore ??? bug
 window.onload = () => {
     initTabs();
     initSidebar();
-    OTC_IP = (window.parent.location.origin !== "file://") ? window.parent.location.origin : `http://10.1.5.202/`;
+    OTC_IP = (window.parent.location.origin !== "file://") ? window.parent.location.origin : `http://10.1.5.202`;
     OTC_PATH = `/webservice/fastview/otcper`;
     OTC_GILCODE = OTC_F9_FV.Utils.getParam(`gilcode`) ? OTC_F9_FV.Utils.getParam(`gilcode`) : `430002.OC`;
-    STOCK_Skin = STOCK_F9_FV.Utils.getParam(`skin`) ? STOCK_F9_FV.Utils.getParam(`skin`) : `white`;
+    OTC_SKIN = OTC_F9_FV.Utils.getParam(`skin`) ? OTC_F9_FV.Utils.getParam(`skin`) : `white`;
     // OTC_SOCKET = ``;
     console.log(`OTC_GILCODE `, OTC_GILCODE, typeof OTC_GILCODE);
     // window.OTC_GILCODE = OTC_GILCODE;
@@ -220,6 +222,8 @@ window.onload = () => {
     // OTC_IP = `${window.parent.location.protocol}//${window.parent.location.host}`;
     // OTC_IP = `http://${window.parent.location.origin}`;
     // OTC_Paths = `/webservice/fastview/otcper`;
+    // btn.onclick();
+    // btn_universal.onclick();
 };
 
 

@@ -156,11 +156,13 @@ STOCK_F9_FV.Modules.companyNews.init = STOCK_F9_FV.Modules.companyNews.init || (
         {
             ip,
             path,
-            gilcode
+            gilcode,
+            skin
         } = {
             ip: `http://10.1.5.202`,
             path: `/webservice/fastview/stock/news/`,
-            gilcode: `600570.SH`
+            gilcode: `600570.SH`,
+            skin: `white`
         }
     ) => {
         let uid = `#fv-company-news-tbody`,
@@ -169,6 +171,7 @@ STOCK_F9_FV.Modules.companyNews.init = STOCK_F9_FV.Modules.companyNews.init || (
         // STOCK_F9_FV.Modules.companyNews(url, uid, ip, true);
     }
 );
+
 
 var STOCK_IP = window.STOCK_IP || `http://10.1.5.202`,
     STOCK_Paths = window.STOCK_Paths || `/webservice/fastview/stock`,
@@ -179,7 +182,8 @@ var STOCK_IP = window.STOCK_IP || `http://10.1.5.202`,
 STOCK_F9_FV.Modules.companyNews.init({
     ip: STOCK_IP,
     path: `${STOCK_Paths}/news/`,
-    gilcode: STOCK_SecCode
+    gilcode: STOCK_SecCode,
+    skin: STOCK_Skin,
     // ip: `http://10.1.5.202`,
     // path: `/webservice/fastview/stock/news/`,
     // gilcode: `600570.SH`

@@ -46,7 +46,7 @@ table.otc-company-news-table {
     width: 540px;
     max-width: 540px;
     min-width: 540px;
-    height: 127px;
+    /* height: 127px; */
     background: #fff;
     border-collapse: collapse;
     border-spacing: 0;
