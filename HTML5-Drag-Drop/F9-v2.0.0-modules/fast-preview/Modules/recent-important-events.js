@@ -37,7 +37,7 @@ STOCK_F9_FV.Modules.recentImportantEvents = STOCK_F9_FV.Modules.recentImportantE
                                 // id = (arr[i].newid !== undefined) ? `${arr[i].newid}` : `暂无数据`;
                                 id = (arr[i].newid !== undefined) ? `${arr[i].newid}` : `null`;
                             // only show 5 items
-                            if (i < 5) {
+                            if (i < 6) {
                                 html_string += `
                                     <tr class="fv-recent-important-events-table-tr">
                                         <td class="fv-recent-important-events-table-td-key" data-value="data-fv-events">
@@ -76,25 +76,29 @@ STOCK_F9_FV.Modules.recentImportantEvents = STOCK_F9_FV.Modules.recentImportantE
                         }
                         for (let index = 0; index < turn_to_uids.length; index++) {
                             turn_to_uids[index].addEventListener(`click`, (e) => {
-                                let uid = e.target.dataset.uid;
-                                if (debug) {
-                                    console.log(`e.target.dataset = \n`, e.target.dataset);
-                                    console.log(`e.target.dataset.uid = \n`, e.target.dataset.uid);
-                                    console.log(`e.target.dataset.disabled = \n`, e.target.dataset.disabled);
-                                }
+                                let uid = e.target.dataset.uid,
+                                    gilcode = STOCK_SecCode;
+                                // if (debug) {
+                                //     console.log(`e.target.dataset = \n`, e.target.dataset);
+                                //     console.log(`e.target.dataset.uid = \n`, e.target.dataset.uid);
+                                //     console.log(`e.target.dataset.disabled = \n`, e.target.dataset.disabled);
+                                // }
+                                let node_path = `12\\${gilcode}\\${uid}`;
+                                // console.log(`node path`, node_path);
                                 // 跳转stock f9 深度资料的命令：
                                 // ChromeExternal.Execute("ExecuteCommand", "命令ID\\证券代码\\节点ID");
                                 // \ 反斜线要转义！
                                 try {
                                     // ??? url get 600570.SH ???
                                     if (uid !== "null") {
-                                        let new_uid = parseInt(uid);
-                                        if (debug) {
-                                            console.log(`ChromeExternal & ${uid}\n`, (typeof uid));
-                                            console.log(`12\\600570.SH\\${uid}`, (typeof uid));
-                                            console.log(`12\\600570.SH\\${new_uid}`, (typeof new_uid));
-                                        }
-                                        ChromeExternal.Execute("ExecuteCommand", `12\\600570.SH\\${uid}`);
+                                        // let new_uid = parseInt(uid),
+                                        //     gilcode = window.gilcode;
+                                        // if (debug) {
+                                        //     console.log(`ChromeExternal & ${uid}\n`, (typeof uid));
+                                        //     console.log(`12\\600570.SH\\${uid}`, (typeof uid));
+                                        //     console.log(`12\\600570.SH\\${new_uid}`, (typeof new_uid));
+                                        // }
+                                        ChromeExternal.Execute("ExecuteCommand", `12\\${gilcode}\\${uid}`);
                                     }else{
                                         console.log(`ChromeExternal & ${uid} === null\n`);
                                     }
@@ -136,11 +140,13 @@ STOCK_F9_FV.Modules.recentImportantEvents.init = STOCK_F9_FV.Modules.recentImpor
         {
             ip,
             path,
-            gilcode
+            gilcode,
+            skin
         } = {
             ip: `http://10.1.5.202`,
             path: `/webservice/fastview/stock/stockfast02/`,
-            gilcode: `600570.SH`
+            gilcode: `600570.SH`,
+            skin: `white`
         }
     ) => {
         let uid = `#fv-recent-important-tbody`,
@@ -152,14 +158,15 @@ STOCK_F9_FV.Modules.recentImportantEvents.init = STOCK_F9_FV.Modules.recentImpor
 
 var STOCK_IP = window.STOCK_IP || `http://10.1.5.202`,
     STOCK_Paths = window.STOCK_Paths || `/webservice/fastview/stock`,
-    STOCK_SecCode = window.STOCK_SecCode || `600570.SH`;
+    STOCK_SecCode = window.STOCK_SecCode || `600570.SH`,
     STOCK_Skin = window.STOCK_Skin || `white`;
 
 
 STOCK_F9_FV.Modules.recentImportantEvents.init({
     ip: STOCK_IP,
     path: `${STOCK_Paths}/stockfast02/`,
-    gilcode: STOCK_SecCode
+    gilcode: STOCK_SecCode,
+    skin: STOCK_Skin,
     // ip: `http://10.1.5.202`,
     // path: `/webservice/fastview/stock/stockfast02/`,
     // gilcode: `600570.SH`

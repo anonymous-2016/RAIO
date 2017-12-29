@@ -51,6 +51,36 @@ OTC_F9_FV.Modules.latestTransactionData = OTC_F9_FV.Modules.latestTransactionDat
             }
         )
         .catch(err => console.log(`fetch error = \n`, err));
+        // turn to node
+        setTimeout((debug = false) => {
+            let turn_to_uid = document.querySelector(`a[data-turn-to-uid="node-uid-latest-transaction-data"]`);
+            // let turn_to_uids = document.querySelectorAll(`a[node-uid-latest-transaction-data]`);
+            if (debug) {
+                console.log(`turn_to_uids = \n`, turn_to_uids);
+            }
+            turn_to_uid.addEventListener(`click`, (e) => {
+                let uid = e.target.dataset.uid,
+                    gilcode = OTC_GILCODE,
+                    node_path = `12\\${gilcode}\\${uid}`;
+                console.log(`node path`, node_path);
+                // 跳转 otc f9 深度资料的命令：
+                // ChromeExternal.Execute("ExecuteCommand", "命令ID\\证券代码\\节点ID");
+                // \ 反斜线要转义！
+                try {
+                    if (uid !== "null") {
+                        ChromeExternal.Execute("ExecuteCommand", `12\\${gilcode}\\${uid}`);
+                        // ChromeExternal.Execute("ExecuteCommand", `12\\${window.OTC_GILCODE}\\${uid}`);
+                        // ChromeExternal.Execute("ExecuteCommand", `12\\600570.SH\\${uid}`);
+                    }else{
+                        console.log(`ChromeExternal & ${uid} === null\n`);
+                    }
+                    // Uncaught SyntaxError: Octal escape sequences are not allowed in strict mode.
+                    // \ 反斜线要转义！
+                } catch (error) {
+                    console.log(`%c ChromeExternal & caught error = \n`, `color: red; font-size: 23px;`, error);
+                }
+            });
+        }, 0);
         return datas;
     }
 );

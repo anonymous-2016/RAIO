@@ -34,26 +34,31 @@ STOCK_F9_FV.Modules.companyNews = STOCK_F9_FV.Modules.companyNews || (
                                 id = `${(arr[i].newid !== undefined) ? arr[i].newid : `暂无数据`}`;
                             // news no type!
                             title = title.replace(/(：：)/ig, "：");
-                            html_string += `
-                                <tr class="fv-company-news-table-tr">
-                                    <td class="fv-company-news-table-td-key" data-value="data-fv-company-news">
-                                        ${publishDate}
-                                    </td>
-                                    <td class="fv-company-news-table-td-value" data-value="data-fv-company-news">
-                                        <a
-                                            href="#${id}"
-                                            title="${title}"
-                                            data-title="${title}"
-                                            data-link="fv-company-news-link"
-                                            data-disabled="${id !== "null" ? false : true}"
-                                            data-link-detail="company-news-link-detail-module"
-                                            data-newsId="${id}">
-                                            ${title}
-                                        </a>
-                                    </td>
-                                </tr>
-                            `;
-                            // no target="_blank"
+                            if (i < 5) {
+                                html_string += `
+                                    <tr class="fv-company-news-table-tr">
+                                        <td class="fv-company-news-table-td-key" data-value="data-fv-company-news">
+                                            ${publishDate}
+                                        </td>
+                                        <td class="fv-company-news-table-td-value" data-value="data-fv-company-news">
+                                            <a
+                                                href="#${id}"
+                                                title="${title}"
+                                                data-title="${title}"
+                                                data-link="fv-company-news-link"
+                                                data-disabled="${id !== "null" ? false : true}"
+                                                data-link-detail="company-news-link-detail-module"
+                                                data-newsId="${id}">
+                                                ${title}
+                                            </a>
+                                        </td>
+                                    </tr>
+                                `;
+                                // no target="_blank"
+                            }else{
+                                // only show 5 items
+                            }
+
                         }
                     );
                     let td_id = document.querySelector(uid);
@@ -167,7 +172,7 @@ STOCK_F9_FV.Modules.companyNews.init = STOCK_F9_FV.Modules.companyNews.init || (
 
 var STOCK_IP = window.STOCK_IP || `http://10.1.5.202`,
     STOCK_Paths = window.STOCK_Paths || `/webservice/fastview/stock`,
-    STOCK_SecCode = window.STOCK_SecCode || `600570.SH`;
+    STOCK_SecCode = window.STOCK_SecCode || `600570.SH`,
     STOCK_Skin = window.STOCK_Skin || `white`;
 
 

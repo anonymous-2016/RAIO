@@ -68,6 +68,7 @@ OTC_F9_FV.Utils.DOM_query = OTC_F9_FV.Utils.DOM_query || ((str = `[data-sortable
 window.OTC_IP = ``;
 window.OTC_PATH = ``;
 window.OTC_GILCODE = ``;
+window.OTC_SKIN = ``;
 // forced global variable
 
 /*
@@ -177,8 +178,8 @@ const initSidebar = () => {
 // tabs
 const initTabs = () => {
     let btn_universal = document.querySelector(`[data-uid="universal"]`),
-        btn_customize = document.querySelector(`[data-uid="customize"]`),
-        btn_module_setting = document.querySelector(`[data-uid="module-setting"]`);
+        btn_customize = document.querySelector(`[data-uid="customize"]`);
+        // btn_module_setting = document.querySelector(`[data-uid="module-setting"]`);
     let a_modules = document.querySelector(`[data-uid="modules-a-link"]`);
     const sortable_module_containers = document.querySelectorAll(`[data-sortable-box*="sortable-box"]`);
     btn_universal.onclick = (e) => {
@@ -195,22 +196,23 @@ const initTabs = () => {
         sortable_module_containers[1].innerHTML = "";
         a_modules.click();
     }
-    btn_module_setting.addEventListener(`click`, (e) => {
-        const title = `Sorry for that, it still in developing!`;
-        alert(`😃😃😃Coming soon ... 😧😒😟\n ${title}`);
-    });
-    btn_module_setting.addEventListener(`click`, (e) => {
-        // let debug = true;
-    });
+    // btn_module_setting.addEventListener(`click`, (e) => {
+    //     const title = `Sorry for that, it still in developing!`;
+    //     alert(`😃😃😃Coming soon ... 😧😒😟\n ${title}`);
+    // });
+    // btn_module_setting.addEventListener(`click`, (e) => {
+    //     // let debug = true;
+    // });
 };
 
 // webpack ignore ??? bug
 window.onload = () => {
     initTabs();
     initSidebar();
-    OTC_IP = (window.parent.location.origin !== "file://") ? `${window.parent.location.origin}` : `http://10.1.5.202/`;
+    OTC_IP = (window.parent.location.origin !== "file://") ? window.parent.location.origin : `http://10.1.5.202/`;
     OTC_PATH = `/webservice/fastview/otcper`;
     OTC_GILCODE = OTC_F9_FV.Utils.getParam(`gilcode`) ? OTC_F9_FV.Utils.getParam(`gilcode`) : `430002.OC`;
+    STOCK_Skin = STOCK_F9_FV.Utils.getParam(`skin`) ? STOCK_F9_FV.Utils.getParam(`skin`) : `white`;
     // OTC_SOCKET = ``;
     console.log(`OTC_GILCODE `, OTC_GILCODE, typeof OTC_GILCODE);
     // window.OTC_GILCODE = OTC_GILCODE;
@@ -271,7 +273,7 @@ const HTML_Template = (uid = ``, loadModule = function(){}, debug = false) => {
                                     </span>)
                             </span>
                             <span data-link="otc-latest-transaction-data-link">
-                                <a href="#每日交易数据">每日交易数据</a>
+                                <a href="#每日交易数据" data-uid="100701" data-turn-to-uid="node-uid-latest-transaction-data">每日交易数据</a>
                             </span>
                         </p>
                     </div>
@@ -342,24 +344,7 @@ const HTML_Template = (uid = ``, loadModule = function(){}, debug = false) => {
                                 <td class="otc-big-event-reminder-table-td-title">大事提醒</td>
                             </tr>
                         </thead>
-                        <tbody class="otc-big-event-reminder-table-tbody" data-tbody="otc-big-event-reminder-table-tbody">
-                            <tr class="otc-big-event-reminder-table-tr">
-                                <td class="otc-big-event-reminder-table-td-key" data-alias="最新分红预案">最新分红预案</td>
-                                <td class="otc-big-event-reminder-table-td-value" data-value="data-otc-BER"></td>
-                            </tr>
-                            <tr class="otc-big-event-reminder-table-tr">
-                                <td class="otc-big-event-reminder-table-td-key" data-alias="最新分红实施">最新分红实施</td>
-                                <td class="otc-big-event-reminder-table-td-value" data-value="data-otc-BER"></td>
-                            </tr>
-                            <tr class="otc-big-event-reminder-table-tr">
-                                <td class="otc-big-event-reminder-table-td-key" data-alias="最新增发预案">最新增发预案</td>
-                                <td class="otc-big-event-reminder-table-td-value" data-value="data-otc-BER"></td>
-                            </tr>
-                            <tr class="otc-big-event-reminder-table-tr">
-                                <td class="otc-big-event-reminder-table-td-key" data-alias="定报预约披露">定报预约披露</td>
-                                <td class="otc-big-event-reminder-table-td-value" data-value="data-otc-BER"></td>
-                            </tr>
-                        </tbody>
+                        <tbody class="otc-big-event-reminder-table-tbody" data-tbody="otc-big-event-reminder-table-tbody"></tbody>
                         <tfoot class="otc-big-event-reminder-table-tfoot">
                             <tr class="otc-big-event-reminder-table-tr">
                                 <td class="otc-big-event-reminder-table-td-value" data-value="data-otc-BER"></td>
@@ -811,19 +796,7 @@ const HTML_Template = (uid = ``, loadModule = function(){}, debug = false) => {
                             </tfoot>
                         </table>
                     </section>
-                    <div data-div="tbody-div" data-titles="data-otc-ES-title">
-                        <p>
-                            十大股东 <span>(截止2015-06-30)</span>
-                        </p>
-                        <!-- no data -->
-                        <p data-p="data-otc-ES-title">
-                            报告期内十大股东与上期相比
-                            <span data-span="data-otc-ES-title">未发生变更</span>，合计持股
-                            <span data-span="data-otc-ES-title">77894821</span>股，减少
-                            <span data-span="data-otc-ES-title">455315</span>股，报告期内有
-                            <span data-span="data-otc-ES-title">2</span>位股东有减持行为。
-                        </p>
-                    </div>
+                    <div data-div="tbody-div" data-titles="data-otc-ES-title"></div>
                     <table class="otc-equity-shareholder-table">
                         <thead class="otc-equity-shareholder-table-thead">
                             <tr class="otc-equity-shareholder-table-tr">
@@ -842,41 +815,19 @@ const HTML_Template = (uid = ``, loadModule = function(){}, debug = false) => {
                             </tr>
                         </tfoot>
                     </table>
-                    <div data-div="tbody-div" data-titles="data-otc-ES-title">
-                        <p>
-                            股东户数 <span>截止2015-06-30</span>
-                        </p>
-                        <!-- no data -->
-                        <p data-p="data-otc-ES-title">
-                            报告期内公司股东比上期
-                            <span data-span="data-otc-ES-title">增加20</span>户，户均持股。
-                            <span data-span="data-otc-ES-title">减少5%</span>。
-                        </p>
-                    </div>
+                    <div data-div="tbody-div" data-titles="data-otc-ES-title"></div>
                     <table class="otc-equity-shareholder-table">
                         <thead class="otc-equity-shareholder-table-thead">
+                            <!--
                             <tr class="otc-equity-shareholder-table-tr">
                                 <td class="otc-equity-shareholder-table-td-title">总户数</td>
                                 <td class="otc-equity-shareholder-table-td-title">环比增长(%)</td>
                                 <td class="otc-equity-shareholder-table-td-title">户均持股数</td>
                                 <td class="otc-equity-shareholder-table-td-title">环比增长(%)</td>
                             </tr>
-                            <!-- <tr class="otc-equity-shareholder-table-tr">
-                                <td class="otc-equity-shareholder-table-td-title">解禁日期</td>
-                                <td class="otc-equity-shareholder-table-td-title">解禁数量(股)</td>
-                                <td class="otc-equity-shareholder-table-td-title">占已流通股本比例(%)</td>
-                                <td class="otc-equity-shareholder-table-td-title">剩余未解禁数量(股)</td>
-                                <td class="otc-equity-shareholder-table-td-title">解禁股份类型</td>
-                            </tr> -->
+                            -->
                         </thead>
-                        <tbody class="otc-equity-shareholder-table-tbody" data-tbody="otc-equity-shareholder-table-tbody">
-                            <!-- <tr class="otc-equity-shareholder-table-tr">
-                                <td class="otc-equity-shareholder-table-td-value" data-value="data-otc-ES">软件技术服务</td>
-                                <td class="otc-equity-shareholder-table-td-value" data-value="data-otc-ES">797,312,267.02</td>
-                                <td class="otc-equity-shareholder-table-td-value" data-value="data-otc-ES">574,643,003.03</td>
-                                <td class="otc-equity-shareholder-table-td-value" data-value="data-otc-ES">47.17</td>
-                            </tr> -->
-                        </tbody>
+                        <tbody class="otc-equity-shareholder-table-tbody" data-tbody="otc-equity-shareholder-table-tbody"></tbody>
                         <tfoot class="otc-equity-shareholder-table-tfoot">
                             <tr class="otc-equity-shareholder-table-tr">
                                 <td class="otc-equity-shareholder-table-td-value" data-value="data-otc-ES"></td>

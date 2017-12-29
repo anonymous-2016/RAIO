@@ -36,27 +36,31 @@ STOCK_F9_FV.Modules.companyAnnouncements = STOCK_F9_FV.Modules.companyAnnounceme
                                 uid = `${(arr[i].id !== undefined) ? arr[i].id : `暂无数据`}`,
                                 type = `${(arr[i].fileType !== undefined) ? arr[i].fileType : `暂无数据`}`;
                             title = title.replace(/(：：)/ig, "：");
-                            html_string += `
-                                <tr class="fv-company-announcements-table-tr">
-                                    <td class="fv-company-announcements-table-td-key" data-value="data-fv-company-announcements">
-                                        ${publishDate}
-                                    </td>
-                                    <td
-                                        class="fv-company-announcements-table-td-value"
-                                        data-value="data-fv-company-announcements">
-                                        <a
-                                            href="#${uid}"
-                                            title="${title}"
-                                            data-title="${title}"
-                                            data-uid="${uid}"
-                                            data-type="${type}"
-                                            data-disabled="${uid ? false : true}"
-                                            data-link="fv-company-announcements-link">
-                                            ${title}
-                                        </a>
-                                    </td>
-                                </tr>
-                            `;
+                            if (i < 5) {
+                                html_string += `
+                                    <tr class="fv-company-announcements-table-tr">
+                                        <td class="fv-company-announcements-table-td-key" data-value="data-fv-company-announcements">
+                                            ${publishDate}
+                                        </td>
+                                        <td
+                                            class="fv-company-announcements-table-td-value"
+                                            data-value="data-fv-company-announcements">
+                                            <a
+                                                href="#${uid}"
+                                                title="${title}"
+                                                data-title="${title}"
+                                                data-uid="${uid}"
+                                                data-type="${type}"
+                                                data-disabled="${uid ? false : true}"
+                                                data-link="fv-company-announcements-link">
+                                                ${title}
+                                            </a>
+                                        </td>
+                                    </tr>
+                                `;
+                            }else{
+                                // only show 5 items
+                            }
                         }
                     );
                     let td_id = document.querySelector(uid);
@@ -128,11 +132,13 @@ STOCK_F9_FV.Modules.companyAnnouncements.init = STOCK_F9_FV.Modules.companyAnnou
         {
             ip,
             path,
-            gilcode
+            gilcode,
+            skin
         } = {
             ip: `http://10.1.5.202`,
             path: `/webservice/fastview/stock/bulletion/`,
-            gilcode: `600570.SH`
+            gilcode: `600570.SH`,
+            skin: `white`
         }
     ) => {
         // console.log(`gilcode `, gilcode, typeof gilcode);
@@ -145,14 +151,15 @@ STOCK_F9_FV.Modules.companyAnnouncements.init = STOCK_F9_FV.Modules.companyAnnou
 
 var STOCK_IP = window.STOCK_IP || `http://10.1.5.202`,
     STOCK_Paths = window.STOCK_Paths || `/webservice/fastview/stock`,
-    STOCK_SecCode = window.STOCK_SecCode || `600570.SH`;
+    STOCK_SecCode = window.STOCK_SecCode || `600570.SH`,
     STOCK_Skin = window.STOCK_Skin || `white`;
 
 
 STOCK_F9_FV.Modules.companyAnnouncements.init({
     ip: STOCK_IP,
     path: `${STOCK_Paths}/bulletion/`,
-    gilcode: STOCK_SecCode
+    gilcode: STOCK_SecCode,
+    skin: STOCK_Skin,
     // ip: `http://10.1.5.202`,
     // path: `/webservice/fastview/stock/bulletion/`,
     // gilcode: `600570.SH`

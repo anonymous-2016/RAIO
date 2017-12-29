@@ -1,0 +1,41 @@
+@charset "UFT-8";
+
+/* @media print */
+
+
+/* @media screnn */
+
+:root {
+    /* % & rem & em */
+    --fontSizeRemBase: 0.75rem;
+    --fontSizeEmBase: 0.75em;
+    --fontSize12: 12px;
+    --fontSizeP75: 75%;
+    --fontSize16: 16px;
+    --background: #fff;
+    --backgroundBlack: #000;
+    --color: #fff;
+    /* js change color value */
+    --red: #f00;
+    --green: #0f0;
+    --blue: #00f;
+    --white: #fff;
+    --black: #000;
+    /* calc() & var() */
+    --font-size-factor: 2.5;
+}
+
+body {
+    color: var(--color);
+    font-size: var(--fontSizeEmBase);
+}
+
+[data-title="h1"] {
+    /* font-size: var(--fontSize12*2); */
+    font-size: calc(var(--font-size-factor) * 1em);
+}
+
+table {
+    color: var(--color);
+    background: #000;
+}

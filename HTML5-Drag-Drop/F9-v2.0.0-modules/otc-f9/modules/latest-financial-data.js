@@ -46,6 +46,7 @@ OTC_F9_FV.Modules.latestFinancialData = OTC_F9_FV.Modules.latestFinancialData ||
                             `;
                         }else{
                             title = `
+                                <p>业绩预告</>
                                 <p data-none="no-data-p">
                                     <span data-none="no-data-span"></span>
                                 </p>
@@ -66,6 +67,7 @@ OTC_F9_FV.Modules.latestFinancialData = OTC_F9_FV.Modules.latestFinancialData ||
                             //     <p>业绩快报-暂无数据.</p>
                             // `;
                             td_title1 = `
+                                <p>业绩快报</p>
                                 <p data-none="no-data-p">
                                     <span data-none="no-data-span"></span>
                                 </p>
@@ -78,10 +80,7 @@ OTC_F9_FV.Modules.latestFinancialData = OTC_F9_FV.Modules.latestFinancialData ||
                         // tds & values === 0-11 & 12-34
                         if (datas["cwzy"] !== null) {
                             td_title2 = `
-                                <span>财务数据摘要 (报告期</span>
-                                <span data-title-span="td-colspan-span">
-                                    ${datas["cwzy"].bgq}
-                                </span>)
+                                <span>财务数据摘要</span><span data-title-span="td-colspan-span">( ${datas["cwzy"].bgq} )</span>
                             `;
                             const ui_tds2 = ["jbmgsy", "yysr", "zczj", "xsmgsy", "yylr", "fzzj", "mgsykc", "lrze", "mgjzc", "jzc", "jlr", "llje", "mgllje", "jlrkc", "zzctbzz", "jzcsyljq", "yysrtbzz", "xsmll", "kcjq", "jlrtbzz", "zcfzl"];
                             // (tds.length - 1) && no tfoot!

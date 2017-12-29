@@ -208,7 +208,7 @@ OTC_F9_FV.Modules.equityShareholder = OTC_F9_FV.Modules.equityShareholder || (
                                 // trs += total;
                             }
                             let title1 = ``;
-                            if (Object.keys(json.sdgd).length === 4) {
+                            if (Object.keys(json.sdgd).length === 5) {
                                 title1 = `
                                     <p>
                                         十大股东 (截止<span data-span="data-otc-ES-title">${json.sdgd.sj}</span>)
@@ -217,17 +217,24 @@ OTC_F9_FV.Modules.equityShareholder = OTC_F9_FV.Modules.equityShareholder || (
                                         报告期内十大股东合计持股
                                         <span data-span="data-otc-ES-title">${json.sdgd.hj}</span>股，
                                         <span data-span="data-otc-ES-title">${json.sdgd.bh}</span>
-                                        <span data-span="data-otc-ES-title">${(json.sdgd.gds !== 0 && json.sdgd.gds !== undefined) ? `，报告期内有${json.sdgd.gd}位股东有减持行为` : ""}</span>。
+                                        <span data-span="data-otc-ES-title">${(json.sdgd.gds !== 0 && json.sdgd.gds !== undefined) ? `，报告期内有 ${json.sdgd.gds}位股东有减持行为` : ""}</span>。
                                     </p>
                                 `;
                                 // 报告期内十大股东，合计持股77894821股，减少455315股，报告期内有2位股东有减持行为。
                             }else{
                                 // no data
+                                title1 = `
+                                    <p>十大股东</p>
+                                    <p data-none="no-data-p">
+                                        <span data-none="no-data-span"></span>
+                                    </p>
+                                `;
                             }
                             hsts_dom[0].insertAdjacentHTML(`beforeend`, title1);
                         }else{
                             // no data
                             trs = `
+                                <p>十大股东</p>
                                 <p data-none="no-data-p">
                                     <span data-none="no-data-span"></span>
                                 </p>
@@ -235,43 +242,84 @@ OTC_F9_FV.Modules.equityShareholder = OTC_F9_FV.Modules.equityShareholder || (
                         }
                         tbodys_dom[1].insertAdjacentHTML(`beforeend`, trs);
                         // table 3
-                        if (json.gdhs !== undefined && typeof(json.gdhs) === "object") {
+                        if (json.gdhs !== undefined && Array.isArray(json.gdhs)) {
                             // json.gdhs.sj && json.gdhs.hsjsq &&  json.gdhs.hjjsq ???
-                            tr2 = `
+                            let times = ``,
+                                holders = ``,
+                                shares = ``;
+                            json.gdhs.map(
+                                (obj, i) => {
+                                    times += `
+                                        <td class="otc-equity-shareholder-table-td-value" data-value="data-otc-ES">
+                                            ${obj.sj}
+                                        </td>
+                                    `;
+                                    holders += `
+                                        <td class="otc-equity-shareholder-table-td-value" data-value="data-otc-ES">
+                                            ${obj.zhs}
+                                        </td>
+                                    `;
+                                    shares += `
+                                        <td class="otc-equity-shareholder-table-td-value" data-value="data-otc-ES">
+                                            ${obj.hjcgs}
+                                        </td>
+                                    `;
+                                }
+                            );
+                            tr2 += `
                                 <tr class="otc-equity-shareholder-table-tr">
-                                    <td class="otc-equity-shareholder-table-td-value" data-value="data-otc-ES">
-                                        ${json.gdhs.zhs}
-                                    </td>
-                                    <td class="otc-equity-shareholder-table-td-value" data-value="data-otc-ES">
-                                        ${json.gdhs.zhszz}
-                                    </td>
-                                    <td class="otc-equity-shareholder-table-td-value" data-value="data-otc-ES">
-                                        ${json.gdhs.hjcgs}
-                                    </td>
-                                    <td class="otc-equity-shareholder-table-td-value" data-value="data-otc-ES">
-                                        ${json.gdhs.hjzz}
-                                    </td>
+                                    <td class="otc-equity-shareholder-table-td-key">日期</td>
+                                    ${times}
+                                </tr>
+                                <tr class="otc-equity-shareholder-table-tr">
+                                    <td class="otc-equity-shareholder-table-td-key">总户数</td>
+                                    ${holders}
+                                </tr>
+                                <tr class="otc-equity-shareholder-table-tr">
+                                    <td class="otc-equity-shareholder-table-td-key">户均持股数</td>
+                                    ${shares}
                                 </tr>
                             `;
                             let title2 = ``;
-                            if (Object.keys(json.gdhs).length === 7) {
+                            // 简述: 报告期内公司股东比上期(增加/减少) hsjsq 户，增长/负数 zhszz %，户均持股hjcgs股，增长/减少 hjzz%；
+                            if (Object.keys(json.gdhs[0]).length === 7) {
                                 title2 = `
                                     <p>
-                                        股东户数 <span>截止2015-06-30</span>
+                                        股东户数 (<span>截止日期 ${json.gdhs[0].sj}</span>)
                                     </p>
                                     <p data-p="data-otc-ES-title">
-                                        报告期内公司股东比上期增加
-                                        <span data-span="data-otc-ES-title">${(json.gdhs.hsjsq !== undefined) ? json.gdhs.hsjsq : "--"}</span>户，户均持股。减少
-                                        <span data-span="data-otc-ES-title">${(json.gdhs.hjjsq !== undefined) ? json.gdhs.hjjsq : "--"}%</span>。
+                                        报告期内公司股东比上期
+                                        ${json.gdhs[0].hsjsq.includes(`-`) ? "减少" : "增加"}
+                                        <span data-span="data-otc-ES-title">
+                                            ${(json.gdhs[0].hsjsq !== undefined) ? json.gdhs[0].hsjsq : "--"}
+                                        </span>户,
+                                        ${json.gdhs[0].zhszz.includes(`-`) ? "减少" : "增加"}
+                                        <span data-span="data-otc-ES-title">
+                                            ${(json.gdhs[0].zhszz !== undefined) ? json.gdhs[0].zhszz : "--"}
+                                        </span>%, 户均持股数,
+                                        <span data-span="data-otc-ES-title">
+                                            ${(json.gdhs[0].hjcgs !== undefined) ? json.gdhs[0].hjcgs : "--"}
+                                        </span>股,
+                                        ${json.gdhs[0].hjzz.includes(`-`) ? "减少" : "增加"}
+                                        <span data-span="data-otc-ES-title">
+                                            ${(json.gdhs[0].hjzz !== undefined) ? json.gdhs[0].hjzz : "--"}
+                                        </span>%。
                                     </p>
                                 `;
                             }else{
                                 // no data
+                                title2 = `
+                                    <p>股东户数</p>
+                                    <p data-none="no-data-p">
+                                        <span data-none="no-data-span"></span>
+                                    </p>
+                                `;
                             }
                             hsts_dom[1].insertAdjacentHTML(`beforeend`, title2);
                         }else{
                             // no data
                             tr2 = `
+                                <p>股东户数</p>
                                 <p data-none="no-data-p">
                                     <span data-none="no-data-span"></span>
                                 </p>

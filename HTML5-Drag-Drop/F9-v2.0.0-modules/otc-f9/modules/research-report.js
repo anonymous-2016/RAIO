@@ -57,6 +57,12 @@ OTC_F9_FV.Modules.researchReport = OTC_F9_FV.Modules.researchReport || (
                                 tds[2*i+2].innerText = source;
                             }else{
                                 // no data
+                                let no_data = `
+                                    <p data-none="no-data-p">
+                                        <span data-none="no-data-span"></span>
+                                    </p>
+                                `;
+                                // tbd.insertAdjacentHTML(`beforeend`, no_data);
                             }
                         }
                         // download & open pdf

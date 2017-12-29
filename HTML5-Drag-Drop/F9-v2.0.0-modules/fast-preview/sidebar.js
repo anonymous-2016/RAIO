@@ -41,6 +41,10 @@ STOCK_F9_FV.Utils.getParam = STOCK_F9_FV.Utils.getParam || ((key, debug = false)
 // var STOCK_SecCode = STOCK_SecCode || ``;
 // var STOCK_Skin = STOCK_Skin || ``;
 
+// window.STOCK_IP = ``;
+// window.STOCK_Paths = ``;
+// window.STOCK_SecCode = ``;
+// window.STOCK_Skin = ``;
 window.STOCK_IP = window.STOCK_IP || ``;
 window.STOCK_Paths = window.STOCK_Paths || ``;
 window.STOCK_SecCode = window.STOCK_SecCode || ``;
@@ -236,6 +240,7 @@ window.onload = () => {
 
     window.STOCK_SecCode = STOCK_F9_FV.Utils.getParam(`gilcode`);
     window.STOCK_IP = `${window.parent.location.protocol}//${window.parent.location.host}`;
+    // window.STOCK_IP = `${window.parent.location.origin}`;
     window.STOCK_Paths = `/webservice/fastview/stock`;
 
     // ip: `http://10.1.5.202`,

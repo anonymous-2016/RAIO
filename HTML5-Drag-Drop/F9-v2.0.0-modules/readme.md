@@ -315,6 +315,18 @@ const time = [
 ]
 
 
+
+var STOCK_IP = window.STOCK_IP || `http://10.1.5.202`,
+    STOCK_Paths = window.STOCK_Paths || `/webservice/fastview/stock`,
+    STOCK_SecCode = window.STOCK_SecCode || `600570.SH`,
+    STOCK_Skin = window.STOCK_Skin || `white`;
+
+skin: `white`
+
+
+
+skin: STOCK_Skin,
+
 ```
 
 #000 box bg
@@ -323,6 +335,8 @@ const time = [
 #4a4c4f border
 #25292e bg
 #bbc1c7 font-color
+
+
 
 
 

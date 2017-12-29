@@ -6,6 +6,7 @@
  * creadted 2017.12.12
  * @param {* String} url
  * @param {* Array} tds
+ * @param {* String} tbd
  * @param {* Array} ui_arr
  * @param {Boolean} debug
  */
@@ -20,7 +21,7 @@ OTC_F9_FV.Modules = OTC_F9_FV.Modules || {};
 
 
 OTC_F9_FV.Modules.bigEventReminder = OTC_F9_FV.Modules.bigEventReminder || (
-    (url = ``, tds = [], debug = false) => {
+    (url = ``, tbd = ``, debug = false) => {
         let datas = [];
         fetch(url)
         .then(res => res.json())
@@ -29,26 +30,47 @@ OTC_F9_FV.Modules.bigEventReminder = OTC_F9_FV.Modules.bigEventReminder || (
                 datas = json;
                 try {
                     if (Array.isArray(datas) && datas.length > 0) {
-                        for (let i = 0; i < tds.length - 1; i++) {
-                            let key = (datas[i] !== undefined && datas[i]["k"] !== undefined) ? datas[i]["k"] : `--`,
-                                value = (datas[i] !== undefined && datas[i]["v"] !== undefined)
-                                ?
-                                (datas[i]["v"] !== "" ? datas[i]["v"].replace(/【/ig, "[ ").replace(/】/ig, " ] ") : `--`)
-                                :
-                                `--`;
-                            switch (i) {
-                                case 0:
-                                case 1:
-                                case 2:
-                                case 3:
-                                    tds[i].innerText = value;
-                                    tds[i].setAttribute(`title`, value);
-                                    break;
-                                default:
-                                    tds[i].innerText = value;
-                                    tds[i].setAttribute(`title`, value);
-                                    break;
+                        if (Object.keys(datas[0]).length > 0 && typeof(datas[0]) === "object") {
+                            let tbody = ``;
+                            for (let i = 0; i < datas.length; i++) {
+                                let key = (datas[i] !== undefined && datas[i]["k"] !== undefined) ? datas[i]["k"] : `--`,
+                                    value = (datas[i] !== undefined && datas[i]["v"] !== undefined)
+                                    ?
+                                    (datas[i]["v"] !== "" ? datas[i]["v"].replace(/【/ig, "[ ").replace(/】/ig, " ] ") : `--`)
+                                    :
+                                    `--`;
+                                // switch (i) {
+                                //     case 0:
+                                //     case 1:
+                                //     case 2:
+                                //     case 3:
+                                //         tds[i].innerText = value;
+                                //         tds[i].setAttribute(`title`, value);
+                                //         break;
+                                //     default:
+                                //         tds[i].innerText = value;
+                                //         tds[i].setAttribute(`title`, value);
+                                //         break;
+                                // }
+                                tbody += `
+                                    <tr class="otc-big-event-reminder-table-tr">
+                                        <td class="otc-big-event-reminder-table-td-key" data-alias="${key}">
+                                            ${key}
+                                        </td>
+                                        <td class="otc-big-event-reminder-table-td-value" data-value="data-otc-BER" title="${value}">
+                                            ${value}
+                                        </td>
+                                    </tr>
+                                `;
                             }
+                            tbd.insertAdjacentHTML(`beforeend`, tbody);
+                        }else{
+                            let no_data = `
+                                <p data-none="no-data-p">
+                                    <span data-none="no-data-span"></span>
+                                </p>
+                            `;
+                            tbd.insertAdjacentHTML(`beforeend`, no_data);
                         }
                     }else{
                         let message = `handle json error!`,
@@ -83,8 +105,9 @@ OTC_F9_FV.Modules.bigEventReminder.init = OTC_F9_FV.Modules.bigEventReminder.ini
         }
     ) => {
         let url = `${ip}${path}${socket}${gilcode}`,
-            tds = document.querySelectorAll(`[data-value="data-otc-BER"]`);
-        OTC_F9_FV.Modules.bigEventReminder(url, tds, false);
+            tbd = document.querySelector(`[data-tbody="otc-big-event-reminder-table-tbody"]`);
+            // tds = document.querySelectorAll(`[data-value="data-otc-BER"]`);
+        OTC_F9_FV.Modules.bigEventReminder(url, tbd, false);
     }
 );
 

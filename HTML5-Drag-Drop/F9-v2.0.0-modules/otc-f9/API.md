@@ -441,6 +441,21 @@ let title = `${(arr[i].xwtitle !== undefined) ? arr[i].xwtitle : `🤓暂无 新
 
 console.log(`json = \n`, json);
 
+/usr/local/apache2/webapps/stock/f9-black/fastview
+
+
+
+
+
+try {
+    let download_pdf = `${host}/queryservice/research/attachment/${id}.${type}\\${title}.${type}`;
+    ChromeExternal.Execute("OpenFile", download_pdf);
+} catch (err) {
+    window.open(`${host}/queryservice/research/attachment/${id}.${type}`);
+    // 无法处理, 后端接口不支持标题浏览器中显示!
+    console.log(`%c ChromeExternal & caught error = \n`, `color: red; font-size: 23px;`, err);
+}
+
 {
     "news": {
         name: "公司新闻",
@@ -559,8 +574,8 @@ console.log(`json = \n`, json);
     },
     "otcperfast05": {
         name: "公司表现-市场表现",
-        // 排名 ???
-        // "zdf": "涨跌幅",
+        "zdfpm": "排名",
+        "zdfbj": "强于",
         "zdf": {// "涨跌幅"
             "rq": "日期",
             "index": "三板成指",
@@ -732,6 +747,38 @@ console.log(`json = \n`, json);
         "": ""
     },
 }
+
+
+简述: 报告期内公司股东比上期(增加/减少) hsjsq 户，增长/负数 zhszz %，户均持股hjcgs股，增长/减少 hjzz%；
+
+// 0
+{
+    "sj": "2017-06-30",
+    "zhs": "979",
+    "zhszz": "0.72",
+    "hjcgs": "39",
+    "hjzz": "-0.72",
+    "hsjsq": "7",
+    "hjjsq": "-0.28"
+}
+
+
+
+
+每日交易数据  100701
+增发数据  100402
+分红数据  100401
+更多新闻  53145
+更多研报  53158
+更多公告  53150
+同业数据  100802
+更多财务数据  100501
+更多主营业务数据  55319
+股东户数  100302
+解禁数据  隐藏
+股东数据  100301
+股本数据  100103
+管理层数据  100201
 
 
 <div data-div="tbody-div" data-titles="data-otc-LFD-title">

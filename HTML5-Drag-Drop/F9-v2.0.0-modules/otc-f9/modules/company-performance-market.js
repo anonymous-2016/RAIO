@@ -154,46 +154,45 @@ OTC_F9_FV.Modules.companyPerformanceMarket = OTC_F9_FV.Modules.companyPerformanc
                         // no data
                         let html = ``;
                         let html2 = ``;
-                        html = `
-                            <p data-none="no-data-p">
-                                <span data-none="no-data-span"></span>
-                            </p>
-                        `;
+                        // html = `
+                        //     <p data-none="no-data-p">
+                        //         <span data-none="no-data-span"></span>
+                        //     </p>
+                        // `;
                         html2 = `
                             <p data-none="no-data-p">
                                 <span data-none="no-data-span"></span>
                             </p>
                         `;
-                        // if (datas.data !== undefined && typeof(datas.data) === "object") {
-                        //     html = `
-                        //         <p data-p="company-performance-market-p">
-                        //             <span data-span="company-performance-market-span">中科软</span>
-                        //             <span data-span="company-performance-market-span">${datas.data.zdf}</span>近一个月涨跌幅市场排名
-                        //             <span data-span="company-performance-market-span">${datas.data.pm}</span> 名，
-                        //             <span data-span="company-performance-market-span">弱于</span>三板成指。
-                        //         </p>
-                        //     `;
-                        //     html2 = `
-                        //         <p data-p="company-performance-market-p">
-                        //             <span data-span="company-performance-market-span">中科软</span> 近一个月平均换手率为
-                        //             <span data-span="company-performance-market-span">0.406</span> %,
-                        //             <span data-span="company-performance-market-span">低于</span>市场平均值，市场排名
-                        //             <span data-span="company-performance-market-span">856</span>。
-                        //         </p>
-                        //     `;
-                        // }else{
-                        //     // no data
-                        //     html = `
-                        //         <p data-none="no-data-p">
-                        //             <span data-none="no-data-span"></span>
-                        //         </p>
-                        //     `;
-                        //     html2 = `
-                        //         <p data-none="no-data-p">
-                        //             <span data-none="no-data-span"></span>
-                        //         </p>
-                        //     `;
-                        // }
+                        if (datas.zdfpm !== undefined && datas.zdfbj !== undefined) {
+                            html = `
+                                <p data-p="company-performance-market-p">
+                                    <span data-span="company-performance-market-span">该股</span>近一个年涨跌幅市场排名
+                                    <span data-span="company-performance-market-span">${datas.zdfpm}</span> 名，
+                                    <span data-span="company-performance-market-span">${datas.zdfbj}</span>三板成指。
+                                </p>
+                            `;
+                            // html2 = `
+                            //     <p data-p="company-performance-market-p">
+                            //         <span data-span="company-performance-market-span">中科软</span> 近一个月平均换手率为
+                            //         <span data-span="company-performance-market-span">0.406</span> %,
+                            //         <span data-span="company-performance-market-span">低于</span>市场平均值，市场排名
+                            //         <span data-span="company-performance-market-span">856</span>。
+                            //     </p>
+                            // `;
+                        }else{
+                            // no data
+                            html = `
+                                <p data-none="no-data-p">
+                                    <span data-none="no-data-span"></span>
+                                </p>
+                            `;
+                            // html2 = `
+                            //     <p data-none="no-data-p">
+                            //         <span data-none="no-data-span"></span>
+                            //     </p>
+                            // `;
+                        }
                         hst_doms[0].insertAdjacentHTML(`beforeend`, html);
                         hst_doms[1].insertAdjacentHTML(`beforeend`, html2);
                     }else{
@@ -276,7 +275,7 @@ OTC_F9_FV.Modules.companyPerformanceMarket.drawHS = OTC_F9_FV.Modules.companyPer
                 // marginLeft: 80
             },
             title: {
-                text: '近一个月涨跌幅',
+                text: '近一年月涨跌幅',
                 align: "left",
                 x: 70,
                 y: 10,
