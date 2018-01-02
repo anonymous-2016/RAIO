@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>CSS3 data-* Selector & Multi Tables bug</title>
+    <link rel="stylesheet" href="./tables.css">
+</head>
+
+<body>
+    <!-- maybe display table bug ??? -->
+    <section data-section="data-table-box">
+        <table class="otc-equity-shareholder-table">
+            <thead class="otc-equity-shareholder-table-thead">
+                <tr class="otc-equity-shareholder-table-tr">
+                    <td class="otc-equity-shareholder-table-td-title">股东名称</td>
+                    <td class="otc-equity-shareholder-table-td-title">持股数(股)</td>
+                    <td class="otc-equity-shareholder-table-td-title">占比(%)</td>
+                    <td class="otc-equity-shareholder-table-td-title">增减变动</td>
+                    <td class="otc-equity-shareholder-table-td-title">机构类型</td>
+                </tr>
+                <!-- colspan & rowspan -->
+            </thead>
+            <tbody class="otc-equity-shareholder-table-tbody" data-tbody="otc-equity-shareholder-table-tbody">
+                <tr class="otc-equity-shareholder-table-tr">
+                    <td class="otc-equity-shareholder-table-td-value" data-value="data-otc-ES" title="中国科学院软件研究所">
+                        中国科学院软件研究所
+                    </td>
+                    <td class="otc-equity-shareholder-table-td-value" data-value="data-otc-ES">
+                        99411840
+                    </td>
+                    <td class="otc-equity-shareholder-table-td-value" data-value="data-otc-ES">
+                        26.05
+                    </td>
+                    <td class="otc-equity-shareholder-table-td-value" data-value="data-otc-ES">
+                        未变
+                    </td>
+                    <td class="otc-equity-shareholder-table-td-value" data-value="data-otc-ES">
+                        --
+                    </td>
+                </tr>
+                <tr class="otc-equity-shareholder-table-tr">
+                    <td class="otc-equity-shareholder-table-td-value" data-value="data-otc-ES" title="北京市海淀区国有资产投资经营有限公司">
+                        北京市海淀区国有资产投资经营有限公司
+                    </td>
+                    <td class="otc-equity-shareholder-table-td-value" data-value="data-otc-ES">
+                        63653040
+                    </td>
+                    <td class="otc-equity-shareholder-table-td-value" data-value="data-otc-ES">
+                        16.68
+                    </td>
+                    <td class="otc-equity-shareholder-table-td-value" data-value="data-otc-ES">
+                        未变
+                    </td>
+                    <td class="otc-equity-shareholder-table-td-value" data-value="data-otc-ES">
+                        --
+                    </td>
+                </tr>
+                <tr class="otc-equity-shareholder-table-tr">
+                    <td class="otc-equity-shareholder-table-td-value" data-value="data-otc-ES" title="孙朋">
+                        孙朋
+                    </td>
+                    <td class="otc-equity-shareholder-table-td-value" data-value="data-otc-ES">
+                        22980000
+                    </td>
+                    <td class="otc-equity-shareholder-table-td-value" data-value="data-otc-ES">
+                        6.02
+                    </td>
+                    <td class="otc-equity-shareholder-table-td-value" data-value="data-otc-ES">
+                        -60,000
+                    </td>
+                    <td class="otc-equity-shareholder-table-td-value" data-value="data-otc-ES">
+                        --
+                    </td>
+                </tr>
+            </tbody>
+            <tfoot class="otc-equity-shareholder-table-tfoot">
+                <tr class="otc-equity-shareholder-table-tr">
+                    <td class="otc-equity-shareholder-table-td-value" data-value="data-otc-ES"></td>
+                </tr>
+            </tfoot>
+        </table>
+    </section>
+    <hr>
+    <section data-section="data-table-box">
+        <table class="otc-equity-shareholder-table">
+            <thead class="otc-equity-shareholder-table-thead">
+                <tr class="otc-equity-shareholder-table-tr">
+                    <td class="otc-equity-shareholder-table-td-title">股东名称</td>
+                    <td class="otc-equity-shareholder-table-td-title">持股数(股)</td>
+                    <td class="otc-equity-shareholder-table-td-title">占比(%)</td>
+                    <td class="otc-equity-shareholder-table-td-title">增减变动</td>
+                    <td class="otc-equity-shareholder-table-td-title">机构类型</td>
+                </tr>
+                <!-- colspan & rowspan -->
+            </thead>
+            <tbody class="otc-equity-shareholder-table-tbody" data-tbody="otc-equity-shareholder-table-tbody">
+                <tr class="otc-equity-shareholder-table-tr">
+                    <td class="otc-equity-shareholder-table-td-value" data-value="data-otc-ES" title="中国科学院软件研究所">
+                        中国科学院软件研究所
+                    </td>
+                    <td class="otc-equity-shareholder-table-td-value" data-value="data-otc-ES">
+                        99411840
+                    </td>
+                    <td class="otc-equity-shareholder-table-td-value" data-value="data-otc-ES">
+                        26.05
+                    </td>
+                    <td class="otc-equity-shareholder-table-td-value" data-value="data-otc-ES">
+                        未变
+                    </td>
+                    <td class="otc-equity-shareholder-table-td-value" data-value="data-otc-ES">
+                        --
+                    </td>
+                </tr>
+                <tr class="otc-equity-shareholder-table-tr">
+                    <td class="otc-equity-shareholder-table-td-value" data-value="data-otc-ES" title="北京市海淀区国有资产投资经营有限公司">
+                        北京市海淀区国有资产投资经营有限公司
+                    </td>
+                    <td class="otc-equity-shareholder-table-td-value" data-value="data-otc-ES">
+                        63653040
+                    </td>
+                    <td class="otc-equity-shareholder-table-td-value" data-value="data-otc-ES">
+                        16.68
+                    </td>
+                    <td class="otc-equity-shareholder-table-td-value" data-value="data-otc-ES">
+                        未变
+                    </td>
+                    <td class="otc-equity-shareholder-table-td-value" data-value="data-otc-ES">
+                        --
+                    </td>
+                </tr>
+                <tr class="otc-equity-shareholder-table-tr">
+                    <td class="otc-equity-shareholder-table-td-value" data-value="data-otc-ES" title="孙朋">
+                        孙朋
+                    </td>
+                    <td class="otc-equity-shareholder-table-td-value" data-value="data-otc-ES">
+                        22980000
+                    </td>
+                    <td class="otc-equity-shareholder-table-td-value" data-value="data-otc-ES">
+                        6.02
+                    </td>
+                    <td class="otc-equity-shareholder-table-td-value" data-value="data-otc-ES">
+                        -60,000
+                    </td>
+                    <td class="otc-equity-shareholder-table-td-value" data-value="data-otc-ES">
+                        --
+                    </td>
+                </tr>
+            </tbody>
+            <tfoot class="otc-equity-shareholder-table-tfoot">
+                <tr class="otc-equity-shareholder-table-tr">
+                    <td class="otc-equity-shareholder-table-td-value" data-value="data-otc-ES"></td>
+                </tr>
+            </tfoot>
+        </table>
+    </section>
+    <hr>
+    <section>
+        <div data-div="div-box">
+            xxxxxxx
+        </div>
+        <hr>
+        <div data-div="div-box">
+            yyyyyyy
+        </div>
+        <hr>
+        <div data-div="div-box">
+            zzzzzzz
+        </div>
+    </section>
+</body>
+
+</html>

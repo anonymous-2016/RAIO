@@ -215,9 +215,9 @@ OTC_F9_FV.Modules.equityShareholder = OTC_F9_FV.Modules.equityShareholder || (
                                     </p>
                                     <p data-p="data-otc-ES-title">
                                         报告期内十大股东合计持股
-                                        <span data-span="data-otc-ES-title">${json.sdgd.hj}</span>股，
+                                        <span data-span="data-otc-ES-title">${json.sdgd.hj}</span>股,
                                         <span data-span="data-otc-ES-title">${json.sdgd.bh}</span>
-                                        <span data-span="data-otc-ES-title">${(json.sdgd.gds !== 0 && json.sdgd.gds !== undefined) ? `，报告期内有 ${json.sdgd.gds}位股东有减持行为` : ""}</span>。
+                                        ${(json.sdgd.gds !== 0 && json.sdgd.gds !== undefined) ? `,报告期内有<span data-span="data-otc-ES-title">${json.sdgd.gds}</span>位股东有减持行为` : ""}</span>.
                                     </p>
                                 `;
                                 // 报告期内十大股东，合计持股77894821股，减少455315股，报告期内有2位股东有减持行为。
@@ -281,7 +281,7 @@ OTC_F9_FV.Modules.equityShareholder = OTC_F9_FV.Modules.equityShareholder || (
                                 </tr>
                             `;
                             let title2 = ``;
-                            // 简述: 报告期内公司股东比上期(增加/减少) hsjsq 户，增长/负数 zhszz %，户均持股hjcgs股，增长/减少 hjzz%；
+                            // 简述: 报告期内公司股东比上期(增加/减少) hsjsq 户，增长/负数 zhszz %，户均持股hjcgs股，增长/减少 hjzz%
                             if (Object.keys(json.gdhs[0]).length === 7) {
                                 title2 = `
                                     <p>
@@ -291,19 +291,19 @@ OTC_F9_FV.Modules.equityShareholder = OTC_F9_FV.Modules.equityShareholder || (
                                         报告期内公司股东比上期
                                         ${json.gdhs[0].hsjsq.includes(`-`) ? "减少" : "增加"}
                                         <span data-span="data-otc-ES-title">
-                                            ${(json.gdhs[0].hsjsq !== undefined) ? json.gdhs[0].hsjsq : "--"}
+                                            ${(json.gdhs[0].hsjsq !== undefined) ? json.gdhs[0].hsjsq.replace(/-/ig, ``) : "--"}
                                         </span>户,
                                         ${json.gdhs[0].zhszz.includes(`-`) ? "减少" : "增加"}
                                         <span data-span="data-otc-ES-title">
-                                            ${(json.gdhs[0].zhszz !== undefined) ? json.gdhs[0].zhszz : "--"}
-                                        </span>%, 户均持股数,
+                                            ${(json.gdhs[0].zhszz !== undefined) ? json.gdhs[0].zhszz.replace(/-/ig, ``) : "--"}
+                                        </span>%, 户均持股数
                                         <span data-span="data-otc-ES-title">
                                             ${(json.gdhs[0].hjcgs !== undefined) ? json.gdhs[0].hjcgs : "--"}
                                         </span>股,
                                         ${json.gdhs[0].hjzz.includes(`-`) ? "减少" : "增加"}
                                         <span data-span="data-otc-ES-title">
-                                            ${(json.gdhs[0].hjzz !== undefined) ? json.gdhs[0].hjzz : "--"}
-                                        </span>%。
+                                            ${(json.gdhs[0].hjzz !== undefined) ? json.gdhs[0].hjzz.replace(/-/ig, ``) : "--"}
+                                        </span>%.
                                     </p>
                                 `;
                             }else{
@@ -503,4 +503,21 @@ OTC_F9_FV.Modules.equityShareholder.init({
 // OTC_F9_FV.Modules.equityShareholder.init();
 // const url = `http://10.1.5.202/webservice/fastview/otcper/otcperfast10/430002.OC`;
 
+/*
 
+
+// "减持661000股" => "661000"
+
+"减持661000股".forEach(item => {
+    // item.includes();
+    // regex number
+    // push item
+});
+
+const isNumber = (str) => {
+    return parseFloat(str);
+    // NaN
+    // Number.isNaN(NaN);
+};
+
+*/

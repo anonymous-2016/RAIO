@@ -45,7 +45,7 @@ setTimeout(() => {
     // array
     [].forEach.call(SortItems, function(el) {
         Sortable.create(el, {
-            group: 'photo',
+            group: 'h5dnd',// group name
             animation: 150
         });
     });

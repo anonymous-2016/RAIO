@@ -271,13 +271,13 @@ const HTML_Template = (uid = ``, loadModule = function(){}, debug = false) => {
                         <p class="otc-h5dnd-modules-title" data-title="otc-latest-transaction-data-title">
                             最新交易数据
                             <span data-title-text="otc-latest-transaction-data-title-text">
-                                    (截止日期:
+                                    (日期:
                                     <span data-text="otc-latest-transaction-data-text">
                                         <!-- 2017-12-12 -->
                                     </span>)
                             </span>
                             <span data-link="otc-latest-transaction-data-link">
-                                <a href="#每日交易数据" data-uid="100701" data-turn-to-uid="node-uid-latest-transaction-data">每日交易数据</a>
+                                <a href="#每日交易数据" data-uid="1106" data-turn-to-uid="node-uid-latest-transaction-data">每日交易数据</a>
                             </span>
                         </p>
                     </div>
@@ -291,13 +291,13 @@ const HTML_Template = (uid = ``, loadModule = function(){}, debug = false) => {
                             <tr class="otc-latest-transaction-data-table-tr">
                                 <td class="otc-latest-transaction-data-table-td-key" data-alias="收盘价">收盘价</td>
                                 <td class="otc-latest-transaction-data-table-td-value" data-value="data-otc-LTD"></td>
-                                <td class="otc-latest-transaction-data-table-td-key" data-alias="总市值">总市值(元)</td>
+                                <td class="otc-latest-transaction-data-table-td-key" data-alias="总市值">总市值(万元)</td>
                                 <td class="otc-latest-transaction-data-table-td-value" data-value="data-otc-LTD"></td>
                             </tr>
                             <tr class="otc-latest-transaction-data-table-tr">
                                 <td class="otc-latest-transaction-data-table-td-key" data-alias="涨跌幅">涨跌幅(%)</td>
                                 <td class="otc-latest-transaction-data-table-td-value" data-value="data-otc-LTD"></td>
-                                <td class="otc-latest-transaction-data-table-td-key" data-alias="流通市值">流通市值(元)</td>
+                                <td class="otc-latest-transaction-data-table-td-key" data-alias="流通市值">流通市值(万元)</td>
                                 <td class="otc-latest-transaction-data-table-td-value" data-value="data-otc-LTD"></td>
                             </tr>
                             <tr class="otc-latest-transaction-data-table-tr">
@@ -313,7 +313,7 @@ const HTML_Template = (uid = ``, loadModule = function(){}, debug = false) => {
                                 <td class="otc-latest-transaction-data-table-td-value" data-value="data-otc-LTD"></td>
                             </tr>
                             <tr class="otc-latest-transaction-data-table-tr">
-                                <td class="otc-latest-transaction-data-table-td-key" data-alias="成交额">成交额(元)</td>
+                                <td class="otc-latest-transaction-data-table-td-key" data-alias="成交金额">成交额(万元)</td>
                                 <td class="otc-latest-transaction-data-table-td-value" data-value="data-otc-LTD"></td>
                                 <td class="otc-latest-transaction-data-table-td-key" data-alias="市净率">市净率(LYR)</td>
                                 <td class="otc-latest-transaction-data-table-td-value" data-value="data-otc-LTD"></td>
@@ -1060,38 +1060,7 @@ const HTML_Template = (uid = ``, loadModule = function(){}, debug = false) => {
                                 <td class="otc-research-report-table-td-title">发布机构</td>
                             </tr>
                         </thead>
-                        <tbody class="otc-research-report-table-tbody" data-tbody="otc-research-report-table-tbody">
-                            <tr class="otc-research-report-table-tr">
-                                <td class="otc-research-report-table-td-key" data-alias="研究报告1" data-key="data-otc-RR"></td>
-                                <td class="otc-research-report-table-td-value" data-value="data-otc-RR"></td>
-                                <td class="otc-research-report-table-td-value" data-value="data-otc-RR"></td>
-                                <td class="otc-research-report-table-td-value" data-value="data-otc-RR"></td>
-                            </tr>
-                            <tr class="otc-research-report-table-tr">
-                                <td class="otc-research-report-table-td-key" data-alias="研究报告2" data-key="data-otc-RR"></td>
-                                <td class="otc-research-report-table-td-value" data-value="data-otc-RR"></td>
-                                <td class="otc-research-report-table-td-value" data-value="data-otc-RR"></td>
-                                <td class="otc-research-report-table-td-value" data-value="data-otc-RR"></td>
-                            </tr>
-                            <tr class="otc-research-report-table-tr">
-                                <td class="otc-research-report-table-td-key" data-alias="研究报告3" data-key="data-otc-RR"></td>
-                                <td class="otc-research-report-table-td-value" data-value="data-otc-RR"></td>
-                                <td class="otc-research-report-table-td-value" data-value="data-otc-RR"></td>
-                                <td class="otc-research-report-table-td-value" data-value="data-otc-RR"></td>
-                            </tr>
-                            <tr class="otc-research-report-table-tr">
-                                <td class="otc-research-report-table-td-key" data-alias="研究报告4" data-key="data-otc-RR"></td>
-                                <td class="otc-research-report-table-td-value" data-value="data-otc-RR"></td>
-                                <td class="otc-research-report-table-td-value" data-value="data-otc-RR"></td>
-                                <td class="otc-research-report-table-td-value" data-value="data-otc-RR"></td>
-                            </tr>
-                            <tr class="otc-research-report-table-tr">
-                                <td class="otc-research-report-table-td-key" data-alias="研究报告5" data-key="data-otc-RR"></td>
-                                <td class="otc-research-report-table-td-value" data-value="data-otc-RR"></td>
-                                <td class="otc-research-report-table-td-value" data-value="data-otc-RR"></td>
-                                <td class="otc-research-report-table-td-value" data-value="data-otc-RR"></td>
-                            </tr>
-                        </tbody>
+                        <tbody class="otc-research-report-table-tbody" data-tbody="otc-research-report-table-tbody"></tbody>
                         <tfoot class="otc-research-report-table-tfoot">
                             <tr class="otc-research-report-table-tr">
                                 <td class="otc-research-report-table-td-value" data-value="data-otc-RR"></td>

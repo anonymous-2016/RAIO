@@ -7,12 +7,16 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>股票 F9 - 速览</title>
     <!-- css -->
-    <link rel="stylesheet" data-css="data-css-uid" href="./sidebar.css">
+    <link rel="stylesheet" data-css="data-css-uid" href="../js/f9-fastview/sidebar.css">
     <!-- css order -->
-    <link rel="stylesheet" data-css="data-css-uid" href="./common/module.css">
+    <link rel="stylesheet" data-css="data-css-uid" href="../js/f9-fastview/common/module.css">
     <!-- <link rel="stylesheet" data-css="data-css-uid" href="./modules-title.css"> -->
     <!-- modal css -->
-    <link rel="stylesheet" data-css="data-css-uid" href="./common/modal.css">
+    <link rel="stylesheet" data-css="data-css-uid" href="../js/f9-fastview/common/modal.css">
+    <!-- css & loading [data-css="data-css-uid"] dynamicly ??? -->
+    <!-- <link rel="stylesheet" data-css="data-css-uid" href="./Modules/   .css"> -->
+    <!-- <link rel="stylesheet" data-css="data-css-uid" href="./common/modules-title.css"> -->
+    <!-- <link rel="stylesheet" data-css="data-css-uid" href="./common/modules-link.css"> -->
 </head>
 
 <body>
@@ -27,9 +31,7 @@
                     <a href="#模块选择" data-uid="modules-a-link">模块选择</a>
                 </li>
                 <li class="h5-dnd-nav-li-hidden add-bottom-margin" data-nav-li="nav-li">
-                    <a href="#模块设置" data-uid="settings-a-link">
-                        <!-- 模块设置 -->
-                    </a>
+                    <a href="#模块设置" data-uid="settings-a-link">模块设置</a>
                 </li>
             </ul>
             <div class="h5-dnd-nav-box h5-dnd-nav-box-active" data-nav-box="nav-box">
@@ -106,9 +108,9 @@
             </div>
             <div class="h5-dnd-nav-box h5-dnd-nav-box-hidden" data-nav-box="nav-box">
                 <section class="h5-dnd-module-container section-hidden" data-display="true">
-                    <!-- <div class="h5-dnd-module-box" data-uid="module-setting" data-title="模块设置">
+                    <div class="h5-dnd-module-box" data-uid="module-setting" data-title="模块设置">
                         <p class="h5-dnd-module-p" data-title="addEventListener 模块设置">模块设置</p>
-                    </div> -->
+                    </div>
                 </section>
             </div>
             <div class="h5-dnd-nav-btn" data-nav-btn="nav-btn" title="折叠侧边栏">
@@ -140,17 +142,15 @@
     </div>
     <!-- libs -->
     <script src="./libs/highstock.js"></script>
-    <script src="./libs/no-data-to-display.js"></script>
     <script src="./libs/Sortable.min.js"></script>
     <script src="./libs/sweetalert.min.js"></script>
     <!-- modal libs -->
     <script src="./libs/jquery1.4.0.min.js"></script>
-    <script src="./libs/BouncedModal.js"></script>
-    <!-- <script src="./build/js/modal.min.js"></script> -->
+    <!-- <script src="./libs/BouncedModal.js"></script> -->
+    <script src="./build/js/modal.min.js"></script>
     <!-- js -->
-    <script src="./sidebar.js"></script>
-    <!-- <script src="./build/js/sidebar.min.js"></script> -->
-    <!-- STOCK_SecCode -->
+    <!-- <script src="./sidebar.js"></script> -->
+    <script src="./build/js/sidebar.min.js"></script>
     <!-- <script src="./config.js"></script> -->
     <div class="module-script-box">
         <!-- modules.js placeholder -->

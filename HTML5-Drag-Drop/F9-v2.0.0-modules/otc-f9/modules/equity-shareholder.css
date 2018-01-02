@@ -359,3 +359,7 @@ thead.otc-equity-shareholder-table-thead>tr.otc-equity-shareholder-table-tr>td:n
 [data-span="data-otc-ES-title"] {
     color: red;
 }
+
+[data-tbody="otc-equity-shareholder-table-tbody"]:nth-of-type(2) {
+    border: 1px solid red;
+}

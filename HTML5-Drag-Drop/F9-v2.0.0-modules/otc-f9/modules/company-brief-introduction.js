@@ -54,21 +54,15 @@ OTC_F9_FV.Modules.companyBriefIntroduction = OTC_F9_FV.Modules.companyBriefIntro
                                     </td>
                                 </tr>
                                 <tr class="otc-company-brief-introduction-table-tr">
-                                    <td class="otc-company-brief-introduction-table-td-key" data-alias="主要产品和服务项目">主要产品和服务项目</td>
-                                    <td class="otc-company-brief-introduction-table-td-value" data-value="data-otc-CBI">
-                                        ${datas.zycpyfw}
-                                    </td>
-                                </tr>
-                                <tr class="otc-company-brief-introduction-table-tr">
-                                    <td class="otc-company-brief-introduction-table-td-key" data-alias="所属证监会行业(二级)">所属证监会行业(二级)</td>
+                                    <td class="otc-company-brief-introduction-table-td-key" data-alias="所属证监会行业">所属证监会行业</td>
                                     <td class="otc-company-brief-introduction-table-td-value" data-value="data-otc-CBI">
                                         ${datas.zjhhy}
                                     </td>
                                 </tr>
                                 <tr class="otc-company-brief-introduction-table-tr">
-                                    <td class="otc-company-brief-introduction-table-td-key" data-alias="所属概念板块">所属概念板块</td>
+                                    <td class="otc-company-brief-introduction-table-td-key" data-alias="董事长">董事长</td>
                                     <td class="otc-company-brief-introduction-table-td-value" data-value="data-otc-CBI">
-                                        ${datas.ssgnbk}
+                                        ${datas.dsz}
                                     </td>
                                 </tr>
                                 <tr class="otc-company-brief-introduction-table-tr">
@@ -90,7 +84,7 @@ OTC_F9_FV.Modules.companyBriefIntroduction = OTC_F9_FV.Modules.companyBriefIntro
                                     </td>
                                 </tr>
                                 <tr class="otc-company-brief-introduction-table-tr">
-                                    <td class="otc-company-brief-introduction-table-td-key" data-alias="公司注册资本(万元)">公司注册资本(万元)</td>
+                                    <td class="otc-company-brief-introduction-table-td-key" data-alias="注册资本(万元)">注册资本(万元)</td>
                                     <td class="otc-company-brief-introduction-table-td-value" data-value="data-otc-CBI">
                                         ${datas.zczb}
                                     </td>
@@ -117,6 +111,12 @@ OTC_F9_FV.Modules.companyBriefIntroduction = OTC_F9_FV.Modules.companyBriefIntro
                                     <td class="otc-company-brief-introduction-table-td-key" data-alias="网址">网址</td>
                                     <td class="otc-company-brief-introduction-table-td-value" data-value="data-otc-CBI">
                                         <a href="${datas.wz}" target="_blank" data-link="website-link">${datas.wz}</a>
+                                    </td>
+                                </tr>
+                                <tr class="otc-company-brief-introduction-table-tr">
+                                    <td class="otc-company-brief-introduction-table-td-key" data-alias="主营业务">主营业务</td>
+                                    <td class="otc-company-brief-introduction-table-td-value" data-value="data-otc-CBI">
+                                        ${datas.zycpyfw}
                                     </td>
                                 </tr>
                             `;

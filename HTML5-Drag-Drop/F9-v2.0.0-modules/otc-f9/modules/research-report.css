@@ -41,7 +41,7 @@ section.otc-module-box-5 {
     /* margin-top: 6px;
     margin-bottom: 6px; */
     width: 540px;
-    min-height: 127px;
+    /* min-height: 127px; */
 }
 
 table.otc-research-report-table {
@@ -49,7 +49,7 @@ table.otc-research-report-table {
     width: 540px;
     max-width: 540px;
     min-width: 540px;
-    height: 127px;
+    /* height: 127px; */
     background: #fff;
     border-collapse: collapse;
     border-spacing: 0;
@@ -202,4 +202,8 @@ a[data-link="otc-research-report-link"] {
 
 a[data-link="otc-research-report-link"]:hover {
     color: #f50;
+}
+
+tbody.otc-research-report-table-tbody>tr:nth-last-of-type(1) {
+    border-bottom: 1px solid #d7dbe0;
 }

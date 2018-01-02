@@ -29,9 +29,10 @@ const BASE_URI = {
     APP: './Modules/',
     MODULES: './Modules',
     index: `./sidebar`,
-    modal: `./modal`,
-    libs: `./libs`
     // index: `./index.js`,
+    modal: `./modal`,
+    libs: `./libs`,
+    init: `./init`,
     // `` ??? '' ??? ""
 };
 
@@ -74,6 +75,8 @@ STOCK_F9.forEach(
 );
 // sidebar
 entry_obj[BASE_URI.index] = `${BASE_URI.index}`;
+entry_obj[BASE_URI.init] = `${BASE_URI.init}`;
+
 // BouncedModal
 // entry_obj[BASE_URI.modal] = `${BASE_URI.libs}/BouncedModal`;
 // entry_obj[BASE_URI.modal] = `${BASE_URI.libs}/modal`;

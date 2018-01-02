@@ -36,21 +36,9 @@ STOCK_F9_FV.Utils.getParam = STOCK_F9_FV.Utils.getParam || ((key, debug = false)
 
 // STOCK_F9_FV.Utils.getParam(`secucode`);
 
-// var STOCK_IP = STOCK_IP || ``;
-// var STOCK_Paths = STOCK_Paths || ``;
-// var STOCK_SecCode = STOCK_SecCode || ``;
-// var STOCK_Skin = STOCK_Skin || ``;
-
-// window.STOCK_IP = ``;
-// window.STOCK_Paths = ``;
-// window.STOCK_SecCode = ``;
-// window.STOCK_Skin = ``;
-window.STOCK_IP = window.STOCK_IP || ``;
-window.STOCK_Paths = window.STOCK_Paths || ``;
-window.STOCK_SecCode = window.STOCK_SecCode || ``;
-window.STOCK_Skin = window.STOCK_Skin || ``;
-// STOCK_F9_FV.Utils.getParam(`skin`);
-// window.STOCK_Skin = STOCK_F9_FV.Utils.getParam(`skin`);
+var STOCK_IP = STOCK_IP || ``;
+var STOCK_Paths = STOCK_Paths || ``;
+var STOCK_SecCode = STOCK_SecCode || ``;
 
 // ip: `http://10.1.5.202`,
 // path: `/webservice/fastview/stock/stockfast07/`, // `/webservice/fastview/stock`
@@ -231,17 +219,15 @@ small_btn.onclick = () => {
 // init ???
 window.onload = () => {
     // alert(`loaded!`);
-    window.STOCK_SecCode = STOCK_F9_FV.Utils.getParam(`gilcode`);
+    STOCK_SecCode = STOCK_F9_FV.Utils.getParam(`gilcode`);
     // STOCK_SecCode = STOCK_F9_FV.Utils.getParam(`secucode`);
     // STOCK_IP = `http://${window.parent.location.host}`;
     // STOCK_Paths = `/webservice/fastview/stock`;
     console.log(`STOCK_SecCode `, STOCK_SecCode, typeof STOCK_SecCode);
-    window.STOCK_Skin = STOCK_F9_FV.Utils.getParam(`skin`);
 
-    window.STOCK_SecCode = STOCK_F9_FV.Utils.getParam(`gilcode`);
-    window.STOCK_IP = window.parent.location.origin.includes("http") ? `${window.parent.location.protocol}//${window.parent.location.host}` : `http://10.1.5.202`;
-    // window.STOCK_IP = `${window.parent.location.origin}`;
-    window.STOCK_Paths = `/webservice/fastview/stock`;
+    STOCK_SecCode = STOCK_F9_FV.Utils.getParam(`gilcode`);
+    STOCK_IP = `${window.parent.location.protocol}//${window.parent.location.host}`;
+    STOCK_Paths = `/webservice/fastview/stock`;
 
     // ip: `http://10.1.5.202`,
     // path: `/webservice/fastview/stock/stockfast07/`, // => `/webservice/fastview/stock`
@@ -2047,8 +2033,8 @@ STOCK_F9_FV.Modules.modulesLoader = STOCK_F9_FV.Modules.modulesLoader ||(
                             loadModule(`company-announcements`, true);
                             htmlstr += `
                                 <section class="fv-module-box-5">
-                                    <div class="fv-h5dnd-modules-title-box>
-                                        <p class="fv-h5dnd-modules-title" data-title="fv-company-announcements-title" data-more="company-announcements-title">公司公告</p>
+                                    <div class="fv-company-announcements-title-box">
+                                        <p class="fv-company-announcements-title" data-title="fv-company-announcements-title" data-more="company-announcements-title">公司公告</p>
                                     </div>
                                     <table class="fv-company-announcements-table">
                                         <thead class="fv-company-announcements-table-thead">

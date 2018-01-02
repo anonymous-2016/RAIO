@@ -5,8 +5,7 @@
  * @author xgqfrms
  * creadted 2017.12.12
  * @param {* String} url
- * @param {* Array} td_keys
- * @param {* Array} tds
+ * @param {* String} tbody_dom
  * @param {* String} more
  * @param {Boolean} debug
  */
@@ -20,7 +19,7 @@ OTC_F9_FV.Modules = OTC_F9_FV.Modules || {};
 
 
 OTC_F9_FV.Modules.researchReport = OTC_F9_FV.Modules.researchReport || (
-    (url = ``, td_keys = [], tds = [], more = ``, debug = false) => {
+    (url = ``, tbody_dom = ``, more = ``, debug = false) => {
         let datas = {};
         fetch(url)
         .then(res => res.json())
@@ -28,10 +27,11 @@ OTC_F9_FV.Modules.researchReport = OTC_F9_FV.Modules.researchReport || (
             (json) => {
                 datas = json;
                 try {
-                    if (Array.isArray(datas) && datas.length > 0) {
-                        for (let i = 0; i < td_keys.length; i++) {
-                            if (datas[i] !== undefined) {
-                                let title = (datas[i].title !== undefined  && datas[i].title !== null) ? datas[i].title.replace(/(：：)/ig, "：") : `暂无数据`,
+                    if (Array.isArray(datas)) {
+                        let tbody = ``;
+                        if (datas.length > 0) {
+                            for (let i = 0; i < datas.length; i++) {
+                                let title = (datas[i].title !== undefined  && datas[i].title !== null) ? datas[i].title.replace(/(：：)/ig, ": ") : `暂无数据`,
                                     time = (datas[i].publishDate !== undefined && datas[i].publishDate !== null) ? datas[i].publishDate : `暂无数据`,
                                     source = (datas[i].infoSource !== undefined && datas[i].infoSource !== null) ? datas[i].infoSource : `暂无数据`,
                                     // type = (datas[i].researchType !== undefined && datas[i].researchType !== null) ? datas[i].researchType : `暂无数据`,
@@ -51,20 +51,30 @@ OTC_F9_FV.Modules.researchReport = OTC_F9_FV.Modules.researchReport || (
                                         ${title}
                                     </a>
                                 `;
-                                td_keys[i].insertAdjacentHTML(`beforeend`, html);
-                                tds[2*i].innerText = time;
-                                tds[2*i+1].innerText = type;
-                                tds[2*i+2].innerText = source;
-                            }else{
-                                // no data
-                                let no_data = `
-                                    <p data-none="no-data-p">
-                                        <span data-none="no-data-span"></span>
-                                    </p>
-                                `;
-                                // tbd.insertAdjacentHTML(`beforeend`, no_data);
+                                if (i < 5) {
+                                    tbody += `
+                                        <tr class="otc-research-report-table-tr">
+                                            <td class="otc-research-report-table-td-value" data-value="data-otc-RR">${html}</td>
+                                            <td class="otc-research-report-table-td-value" data-value="data-otc-RR">${time}</td>
+                                            <td class="otc-research-report-table-td-value" data-value="data-otc-RR">${type}</td>
+                                            <td class="otc-research-report-table-td-value" data-value="data-otc-RR">${source}</td>
+                                        </tr>
+                                    `;
+                                }else{
+                                    // only show 5 items
+                                }
                             }
+                        }else{
+                            // no data
+                            let thead = document.querySelector(`.otc-research-report-table-thead`);
+                            thead.style.display = "none";
+                            tbody = `
+                                <p data-none="no-data-p">
+                                    <span data-none="no-data-span"></span>
+                                </p>
+                            `;
                         }
+                        tbody_dom.insertAdjacentHTML(`beforeend`, tbody);
                         // download & open pdf
                         setTimeout((debug = false) => {
                             const host = (window.OTC_IP !== undefined && window.OTC_IP.includes("http")) ? window.OTC_IP : `http://10.1.5.202`;
@@ -124,13 +134,13 @@ OTC_F9_FV.Modules.researchReport.init = OTC_F9_FV.Modules.researchReport.init ||
         }
     ) => {
         let url = `${ip}${path}${socket}${gilcode}`,
-            td_keys = document.querySelectorAll(`[data-key="data-otc-RR"]`),// 5
-            tds = document.querySelectorAll(`[data-value="data-otc-RR"]`),
+            tbody_dom = document.querySelector(`[data-tbody="otc-research-report-table-tbody"]`),
             more = document.querySelector(`[data-more="otc-research-report-link-more"]`);
-        OTC_F9_FV.Modules.researchReport(url, td_keys, tds, more, false);
+        OTC_F9_FV.Modules.researchReport(url, tbody_dom, more, false);
     }
 );
 
+// OTC_SKIN ???
 
 var OTC_IP = window.OTC_IP || `http://10.1.5.202`,
     OTC_PATH = window.OTC_PATH || `/webservice/fastview/otcper`,

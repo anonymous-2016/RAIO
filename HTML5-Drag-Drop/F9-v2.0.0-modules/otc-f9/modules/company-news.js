@@ -29,9 +29,11 @@ OTC_F9_FV.Modules.companyNews = OTC_F9_FV.Modules.companyNews || (
                 try {
                     if (Array.isArray(datas)) {
                         let tbody = ``;
-                        if (datas.length < 0) {
+                        // no data
+                        // if (datas.length < 0) {
+                        if (datas.length > 0) {
                             for (let i = 0; i < datas.length; i++) {
-                                let title = (datas[i].xwtitle !== undefined) ? datas[i].xwtitle.replace(/(：：)/ig, "：") : `暂无数据`,
+                                let title = (datas[i].xwtitle !== undefined) ? datas[i].xwtitle.replace(/(：：)/ig, ": ") : `暂无数据`,
                                     time = (datas[i].xwsj !== undefined && datas[i].xwsj !== null) ? datas[i].xwsj : `暂无数据`,
                                     type = (datas[i].newsType !== undefined && datas[i].newsType !== null) ? datas[i].newsType : `暂无数据`,
                                     id = (datas[i].newid !== undefined) ? datas[i].newid : `暂无数据`;
@@ -61,7 +63,8 @@ OTC_F9_FV.Modules.companyNews = OTC_F9_FV.Modules.companyNews || (
                             }
                         }else{
                             // no data
-                            // thead.style.display = "none";
+                            let thead = document.querySelector(`.otc-company-news-table-thead`);
+                            thead.style.display = "none";
                             tbody = `
                                 <tr class="otc-company-news-table-tr">
                                     <td colspan="3">
@@ -176,6 +179,7 @@ OTC_F9_FV.Modules.companyNews.init = OTC_F9_FV.Modules.companyNews.init || (
     }
 );
 
+// OTC_SKIN ???
 
 var OTC_IP = window.OTC_IP || `http://10.1.5.202`,
     OTC_PATH = window.OTC_PATH || `/webservice/fastview/otcper`,

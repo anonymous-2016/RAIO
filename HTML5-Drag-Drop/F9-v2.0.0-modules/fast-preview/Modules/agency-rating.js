@@ -168,6 +168,9 @@ STOCK_F9_FV.Modules.agencyRating.drawHS = STOCK_F9_FV.Modules.agencyRating.drawH
             title1: `title 1`,
             title2: `title 2`
         }
+        console.log(`STOCK_Skin = `, STOCK_Skin);
+        // `white` / `black`
+        // console.log(`window.STOCK_Skin = `, window.STOCK_Skin);
         let {time, up, down, stock_price, keep} = {...datas};
         // let time = datas.time,
         //     up = datas.up,
@@ -179,13 +182,14 @@ STOCK_F9_FV.Modules.agencyRating.drawHS = STOCK_F9_FV.Modules.agencyRating.drawH
         // console.log(`max_time = \n`, max_time);
         const chart_css = {
             color: `#0B1016`,
-            colors: ['#ff1919', '#ffff66', '#92d050'],
+            bg_colors:[`#0B1016`, `#21249`],
+            colors: ['#ff1919', '#ffff66', '#92d050'],// 红黄绿
             optioncolor: `red`,
             gridColor: `#2D3039`,
             legendColor: `#fff`,
             yAxisColor: `#FFB400`,
         };
-        const {color, colors, optioncolor, gridColor, legendColor, yAxisColor} = {...chart_css};
+        const {bg_colors, color, colors, optioncolor, gridColor, legendColor, yAxisColor} = {...chart_css};
         // let color = chart_css.color,
         //     colors = chart_css.colors,
         //     optioncolor = chart_css.optioncolor,
@@ -221,8 +225,19 @@ STOCK_F9_FV.Modules.agencyRating.drawHS = STOCK_F9_FV.Modules.agencyRating.drawH
                 useHTML: true,
             },
             chart: {
+                // backgroundColor: {
+                //     linearGradient: [0, 0, 500, 500],
+                //     stops: [
+                //         [0, 'rgb(255, 255, 255)'],
+                //         [1, 'rgb(200, 200, 255)']
+                //     ]
+                // },
+                // polar: true,
                 type: 'column',
-                // backgroundColor: chart_css.color
+                backgroundColor: STOCK_Skin === "black" ? bg_colors[1] :  bg_colors[0],
+                // color: STOCK_Skin === "black" ? `#fff` : `#0f0`,
+                // `white` / `black`
+                // backgroundColor: chart_css.color,
                 // backgroundColor: color
                 // height: (9 / 16 * 100) + '%',
                 height: 272,// 275px;
@@ -242,6 +257,10 @@ STOCK_F9_FV.Modules.agencyRating.drawHS = STOCK_F9_FV.Modules.agencyRating.drawH
                 labels: {
                     autoRotation: [0],// autoRotation:'false',
                     step: 2
+                },
+                style: {
+                    color: `#ff0000`,
+                    fill: `#00ff00`,
                 }
             },
             credits: {
@@ -425,9 +444,11 @@ STOCK_F9_FV.Modules.agencyRating.init = STOCK_F9_FV.Modules.agencyRating.init ||
     }
 );
 
+window.STOCK_Skin = `black`;
+
 var STOCK_IP = window.STOCK_IP || `http://10.1.5.202`,
     STOCK_Paths = window.STOCK_Paths || `/webservice/fastview/stock`,
-    STOCK_SecCode = window.STOCK_SecCode || `600570.SH`;
+    STOCK_SecCode = window.STOCK_SecCode || `600570.SH`,
     STOCK_Skin = window.STOCK_Skin || `white`;
 
 STOCK_F9_FV.Modules.agencyRating.init({

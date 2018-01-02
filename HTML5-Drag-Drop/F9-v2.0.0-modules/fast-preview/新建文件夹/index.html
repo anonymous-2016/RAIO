@@ -9,14 +9,13 @@
     <!-- css -->
     <link rel="stylesheet" data-css="data-css-uid" href="./sidebar.css">
     <!-- css order -->
-    <link rel="stylesheet" data-css="data-css-uid" href="./common/module.css">
-    <!-- <link rel="stylesheet" data-css="data-css-uid" href="./modules-title.css"> -->
+    <link rel="stylesheet" data-css="data-css-uid" href="./common/module1.css">
     <!-- modal css -->
-    <link rel="stylesheet" data-css="data-css-uid" href="./common/modal.css">
+    <link rel="stylesheet" data-css="data-css-uid" href="./common/modal1.css">
+    <link rel="stylesheet" type="text/css" href="./Modules/important-infos.css" />
 </head>
 
 <body>
-    <!-- data-bt-class="container container-fluid" -->
     <header class="h5-dnd-header-container" data-header="data-header">
         <nav class="h5-dnd-nav-container h5-dnd-nav-container-normal" data-nav-container="nav-container">
             <ul class="h5-dnd-nav-ul">
@@ -34,7 +33,6 @@
             </ul>
             <div class="h5-dnd-nav-box h5-dnd-nav-box-active" data-nav-box="nav-box">
                 <section class="h5-dnd-template-container ection-display" data-display="false">
-                    <!-- draggable="true" -->
                     <div class="h5-dnd-template-box" data-uid="universal" data-title="通用模板">
                         <p class="h5-dnd-template-p" data-title="通用模板">通用模板</p>
                     </div>
@@ -45,7 +43,6 @@
             </div>
             <div class="h5-dnd-nav-box h5-dnd-nav-box-hidden" data-nav-box="nav-box">
                 <section class="h5-dnd-icon-container">
-                    <!-- NO need `<img src="../icons/company-news.png" alt="">` any more, just using `CSS3` before! -->
                     <div class="h5-dnd-icon-box" draggable="true" data-icon-uid="module-data-stockfast01" data-name="important-infos">
                         <p class="h5-dnd-icon-p" data-uid="stockfast01" data-title="重要信息">重要信息</p>
                     </div>
@@ -67,9 +64,6 @@
                     <div class="h5-dnd-icon-box" draggable="true" data-icon-uid="module-data-stockfast06">
                         <p class="h5-dnd-icon-p">股价/成交量</p>
                     </div>
-                    <!-- <div class="h5-dnd-icon-box" draggable="true" data-icon-uid="module-data-stockfast???">
-                        <p class="h5-dnd-icon-p">机构调研统计</p>
-                    </div> -->
                     <div class="h5-dnd-icon-box" draggable="true" data-icon-uid="module-data-stockfast07">
                         <p class="h5-dnd-icon-p">前十大股东</p>
                     </div>
@@ -82,11 +76,6 @@
                     <div class="h5-dnd-icon-box" draggable="true" data-icon-uid="module-data-news">
                         <p class="h5-dnd-icon-p">公司新闻</p>
                     </div>
-                    <!--
-                        <div class="h5-dnd-icon-box" draggable="true">
-                            <p class="h5-dnd-icon-p">投资者关系</p>
-                        </div>
-                    -->
                     <div class="h5-dnd-icon-box" draggable="true" data-icon-uid="module-data-stockfast08">
                         <p class="h5-dnd-icon-p">融资余额与融券余额差值走势</p>
                     </div>
@@ -120,14 +109,11 @@
                 <!-- <span>展开侧边栏</span> -->
             </div>
         </div>
-        <!-- show/hidden === display: block/none; -->
     </header>
     <section class="h5-dnd-body-container h5-dnd-body-container-small" data-body-container="data-body-container">
-        <!-- data-* & modules.dom placeholder -->
         <div id="section-sortable-container" class="div-inner-box" data-div-inner-box="data-div-inner-box">
             <div id="left-sortable-container" class="div-sortable-box" data-sortable-box="left-sortable-box">
                 <!-- left -->
-                <!-- data-div-module-uid*="div-module" -->
             </div>
             <div id="right-sortable-container" class="div-sortable-box" data-sortable-box="right-sortable-box">
                 <!-- right -->
@@ -139,16 +125,34 @@
         <!-- bad css modal -->
     </div>
     <!-- libs -->
+    <!-- <script src="./libs/highstock.src.js"></script> -->
     <script src="./libs/highstock.js"></script>
+    <!-- no data -->
     <script src="./libs/no-data-to-display.js"></script>
     <script src="./libs/Sortable.min.js"></script>
     <script src="./libs/sweetalert.min.js"></script>
     <!-- modal libs -->
     <script src="./libs/jquery1.4.0.min.js"></script>
-    <script src="./libs/modal.min.js"></script>
+    <!-- <script src="./libs/BouncedModal.js"></script> -->
+    <script src="./build/modal.min.js"></script>
     <!-- js -->
-    <script src="./build/js/sidebar.min.js"></script>
-    <script src="./build/js/init.min.js"></script>
+    <script src="./sidebar.js"></script>
+    <!-- <script src="./build/js/sidebar.min.js"></script> -->
+    <script>
+        var byId = function(id) {
+            return document.getElementById(id);
+        };
+        Sortable.create(byId('section-sortable-container'), {
+            animation: 150,
+            draggable: '.div-sortable-box',
+        });
+        [].forEach.call(byId('section-sortable-container').getElementsByClassName('div-sortable-box'), function(el) {
+            Sortable.create(el, {
+                group: 'photo',
+                animation: 150
+            });
+        });
+    </script>
 </body>
 
 </html>
