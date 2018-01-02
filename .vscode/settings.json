@@ -4,7 +4,7 @@
         "**/.git": true,
         "**/.DS_Store": true,
         "**/jspm_packages": true,
-        "**/node_modules/*/**": true
+        "**/node_modules/*/**": true,
         "**/.zip": true,
         "**/.sh": true
     },
@@ -41,3 +41,4 @@
     },
     "editor.snippetSuggestions": "top"
 }
+    
