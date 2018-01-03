@@ -1185,14 +1185,6 @@ OTC_F9_FV.Modules.modulesLoader = OTC_F9_FV.Modules.modulesLoader ||(
                     // icon: "warning",
                     // icon: "success",
                     buttons: {
-                        cancel: {
-                            text: "取消",
-                            value: "cancel",
-                            // value: false,
-                            visible: true,
-                            className: "",
-                            // closeModal: true
-                        },
                         ok: {
                             text: "确定",
                             value: "ok",
@@ -1200,6 +1192,14 @@ OTC_F9_FV.Modules.modulesLoader = OTC_F9_FV.Modules.modulesLoader ||(
                             visible: true,
                             className: "",
                             closeModal: true
+                        },
+                        cancel: {
+                            text: "取消",
+                            value: "cancel",
+                            // value: false,
+                            visible: true,
+                            className: "",
+                            // closeModal: true
                         }
                     }
                 })

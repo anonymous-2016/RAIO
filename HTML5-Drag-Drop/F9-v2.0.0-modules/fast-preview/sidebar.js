@@ -235,30 +235,33 @@ document.addEventListener(`DOMContentLoaded`, (e) => {
     // load css
     /* <link rel="stylesheet" data-css="data-css-uid" href="./sidebar.css"> */
     let css_dom = document.querySelector(`head`);
-    let css_link = document.createElement(`link`);
-    css_link.setAttribute(`href`,`./css/black.css`);
-    css_link.setAttribute(`data-css`,`data-css-uid`);
-    css_dom.insertAdjacentElement(`beforeend`, css_link);
-    // replace css by uid
-    let css_links = document.querySelectorAll(`[data-css="data-css-uid"]`);
-    for (let i = 0; i < css_links.length; i++) {
-        // let key = css_links[i].dataset.filename;
-        let key = i;// fixed order
-        let href = ``;
-        switch (key) {
-            case 0:
-                href = `./sidebar.black.css`;
-                break;
-            case 1:
-                href = `./css/black-skin/common/module.black.css`;
-                break;
-            case 2:
-                href = `./css/black-skin/common/modal.black.css`;
-                break;
-            default:
-                break;
+    // let css_link = document.createElement(`link`);
+    // css_link.setAttribute(`href`,`./css/black.css`);
+    // css_link.setAttribute(`data-css`,`data-css-uid`);
+    // css_dom.insertAdjacentElement(`beforeend`, css_link);
+    if (window.STOCK_Skin === "black") {
+        console.log(`window.STOCK_Skin = `, window.STOCK_Skin, typeof(window.STOCK_Skin));
+        // replace css by uid
+        let css_links = document.querySelectorAll(`[data-css="data-css-uid"]`);
+        for (let i = 0; i < css_links.length; i++) {
+            // let key = css_links[i].dataset.filename;
+            let key = i;// fixed order
+            let href = ``;
+            switch (key) {
+                case 0:
+                    href = `./css/black-skin/sidebar.black.css`;
+                    break;
+                case 1:
+                    href = `./css/black-skin/common/module.black.css`;
+                    break;
+                case 2:
+                    href = `./css/black-skin/common/modal.black.css`;
+                    break;
+                default:
+                    break;
+            }
+            css_links[i].setAttribute(`href`, href);
         }
-        css_links[i].setAttribute(`href`, href);
     }
     // window.STOCK_IP = window.parent.location.origin.includes("http") ? `${window.parent.location.protocol}//${window.parent.location.host}` : `http://10.1.5.202`;
     window.STOCK_IP = window.parent.location.origin.includes("http") ? window.parent.location.origin : `http://10.1.5.202`;
