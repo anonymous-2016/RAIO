@@ -33,6 +33,7 @@ const BASE_URI = {
     modal: `./modal`,
     libs: `./libs`,
     init: `./init`,
+    CSS: `./Modules`,
     // `` ??? '' ??? ""
 };
 
@@ -81,6 +82,23 @@ entry_obj[BASE_URI.init] = `${BASE_URI.init}`;
 // entry_obj[BASE_URI.modal] = `${BASE_URI.libs}/BouncedModal`;
 // entry_obj[BASE_URI.modal] = `${BASE_URI.libs}/modal`;
 
+// CSS loader & css modules
+// auto figure out extensions name
+const STOCK_F9_CSS = [
+    "demo",
+    "demo-sass",
+];
+
+// .css !== .js
+
+// STOCK_F9_CSS.forEach(
+//     (item, i) => {
+//         entry_obj[item] = `${BASE_URI.CSS}/${item}`;
+//     }
+// );
+// entry_obj[`demo`] = `${BASE_URI.CSS}/demo`;
+// entry_obj[`demo-sass`] = `${BASE_URI.CSS}/demo-sass`;
+
 
 
 
@@ -118,7 +136,7 @@ module.exports = {
     },
     resolve: {
         // 自动识别的扩展名
-        extensions: ['.js']
+        extensions: ['.js', '.css', '.scss'],
     },
     module: {
         // 引用的 loader
@@ -145,7 +163,8 @@ module.exports = {
                 // }
             },
             {
-                test: /\.css$/,// test: /\.(css|scss|sass)$/,
+                // test: /\.css$/,
+                test: /\.(css|scss|sass)$/,
                 use: [
                     {
                         loader: 'style-loader'
@@ -155,8 +174,8 @@ module.exports = {
                         options: {
                             modules: true,
                             // localIdentName: '[path][name]__[local]--[hash:base64:5]',
-                            // sourceMap: true,
-                            // minimize: true || {/* CSSNano Options */},
+                            sourceMap: true,
+                            minimize: true || {/* CSSNano Options */},
                             // camelCase: true,
                             // importLoaders: 1,
                             // 0 => 无 loader(默认); 1 => postcss-loader; 2 => postcss-loader, sass-loader

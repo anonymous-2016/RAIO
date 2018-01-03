@@ -1,0 +1,22 @@
+@charset "UFT-8";
+
+/* sass(.scss) demo */
+
+@import url("https://fonts.googleapis.com/css?family=Lato");
+
+/* @include & nested & var */
+
+$size: 1em;
+div {
+    width: 160px;
+    height: 90px;
+    color: #f0f;
+    p {
+        color: red;
+        background: #666;
+        margin: $size / 2;
+    }
+}
+
+
+/* sass playground & https://www.sassmeister.com/ & http://sass.js.org/ */

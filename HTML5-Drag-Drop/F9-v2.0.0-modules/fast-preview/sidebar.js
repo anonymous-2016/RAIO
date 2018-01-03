@@ -227,21 +227,56 @@ small_btn.onclick = () => {
     }
 };
 
-
+document.addEventListener(`DOMContentLoaded`, (e) => {
+    console.log("DOM fully loaded and parsed");
+    window.STOCK_SecCode = STOCK_F9_FV.Utils.getParam(`gilcode`);
+    window.STOCK_Skin = STOCK_F9_FV.Utils.getParam(`skin`) || `white`;
+    console.log(`e.target = `, e.target);
+    // load css
+    /* <link rel="stylesheet" data-css="data-css-uid" href="./sidebar.css"> */
+    let css_dom = document.querySelector(`head`);
+    let css_link = document.createElement(`link`);
+    css_link.setAttribute(`href`,`./css/black.css`);
+    css_link.setAttribute(`data-css`,`data-css-uid`);
+    css_dom.insertAdjacentElement(`beforeend`, css_link);
+    // replace css by uid
+    let css_links = document.querySelectorAll(`[data-css="data-css-uid"]`);
+    for (let i = 0; i < css_links.length; i++) {
+        // let key = css_links[i].dataset.filename;
+        let key = i;// fixed order
+        let href = ``;
+        switch (key) {
+            case 0:
+                href = `./sidebar.black.css`;
+                break;
+            case 1:
+                href = `./css/black-skin/common/module.black.css`;
+                break;
+            case 2:
+                href = `./css/black-skin/common/modal.black.css`;
+                break;
+            default:
+                break;
+        }
+        css_links[i].setAttribute(`href`, href);
+    }
+    // window.STOCK_IP = window.parent.location.origin.includes("http") ? `${window.parent.location.protocol}//${window.parent.location.host}` : `http://10.1.5.202`;
+    window.STOCK_IP = window.parent.location.origin.includes("http") ? window.parent.location.origin : `http://10.1.5.202`;
+    window.STOCK_Paths = `/webservice/fastview/stock`;
+});
 // init ???
 window.onload = () => {
     // alert(`loaded!`);
-    window.STOCK_SecCode = STOCK_F9_FV.Utils.getParam(`gilcode`);
     // STOCK_SecCode = STOCK_F9_FV.Utils.getParam(`secucode`);
     // STOCK_IP = `http://${window.parent.location.host}`;
     // STOCK_Paths = `/webservice/fastview/stock`;
-    console.log(`STOCK_SecCode `, STOCK_SecCode, typeof STOCK_SecCode);
-    window.STOCK_Skin = STOCK_F9_FV.Utils.getParam(`skin`);
-
-    window.STOCK_SecCode = STOCK_F9_FV.Utils.getParam(`gilcode`);
-    window.STOCK_IP = window.parent.location.origin.includes("http") ? `${window.parent.location.protocol}//${window.parent.location.host}` : `http://10.1.5.202`;
+    // console.log(`STOCK_SecCode `, STOCK_SecCode, typeof STOCK_SecCode);
+    // window.STOCK_SecCode = STOCK_F9_FV.Utils.getParam(`gilcode`);
     // window.STOCK_IP = `${window.parent.location.origin}`;
-    window.STOCK_Paths = `/webservice/fastview/stock`;
+    // window.STOCK_SecCode = STOCK_F9_FV.Utils.getParam(`gilcode`);
+    // window.STOCK_Skin = STOCK_F9_FV.Utils.getParam(`skin`);
+    // window.STOCK_IP = window.parent.location.origin.includes("http") ? `${window.parent.location.protocol}//${window.parent.location.host}` : `http://10.1.5.202`;
+    // window.STOCK_Paths = `/webservice/fastview/stock`;
 
     // ip: `http://10.1.5.202`,
     // path: `/webservice/fastview/stock/stockfast07/`, // => `/webservice/fastview/stock`
@@ -1191,6 +1226,14 @@ STOCK_F9_FV.Modules.modulesLoader = STOCK_F9_FV.Modules.modulesLoader ||(
                     // icon: "warning",
                     // icon: "success",
                     buttons: {
+                        ok: {
+                            text: "确定",
+                            value: "ok",
+                            // value: true,
+                            visible: true,
+                            className: "",
+                            closeModal: true
+                        },
                         cancel: {
                             text: "取消",
                             value: "cancel",
@@ -1199,14 +1242,6 @@ STOCK_F9_FV.Modules.modulesLoader = STOCK_F9_FV.Modules.modulesLoader ||(
                             className: "",
                             // closeModal: true
                         },
-                        ok: {
-                            text: "确定",
-                            value: "ok",
-                            // value: true,
-                            visible: true,
-                            className: "",
-                            closeModal: true
-                        }
                     }
                 })
                 .then((value) => {

@@ -1,0 +1,23 @@
+@charset "UFT-8";
+
+/* demo.css */
+
+@import url("https://fonts.googleapis.com/css?family=Lato");
+
+/* @import must be first of css style */
+
+* {
+    margin: 0;
+    padding: 0;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+body {
+    padding: 20px;
+    text-align: left;
+    font-family: Lato;
+    color: #fff;
+    background: #9b59b6;
+}
