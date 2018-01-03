@@ -218,7 +218,7 @@ module.exports = {
             },
             {
                 test: /\.(png|jpg|gif|svg|eot|ttf|woff|woff2)$/,
-                loader: 'url-loader',
+                loader: 'url-loader',// base64
                 options: {
                     limit: 10000
                 }
@@ -243,20 +243,24 @@ module.exports = {
     plugins: [
         extractSass,// object
         new UglifyJSPlugin({
-            // minimize: true,
+            // minimize: true, // no exist any longer!
             sourceMap: true,
             extractComments: true,// {Boolean|RegExp|Function<(node, comment) -> {Boolean|Object}>}
+            // uglifyOptions: {
+            //     ie8: false,
+            //     ecma: 8,
+            // },
             // test: /\.js$/i,// test: /\.js($&#124;\?)/i
             // include: /\/includes/,
             // exclude: /\/excludes/,
             // parallel: true,
             // parallel: {
             //     cache: true,
-            //     workers: 2, // for e.g
+            //     workers: 3, // for e.g
             // },
             // uglifyOptions: {
             //     ie8: true,// ie8: false,
-            //     ecma: 5,//ecma: 8,
+            //     ecma: 5,// ecma: 8,
             //     parse: {...options},
             // mangle: false,
             // mangle: {
