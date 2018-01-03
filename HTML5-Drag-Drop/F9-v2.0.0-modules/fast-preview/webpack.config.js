@@ -9,6 +9,8 @@
  * @license MIT
  * @copyright xgqfrms 2016-forever || 2017-present
  *
+ * @todo tree shaking & ES6 import modules(css/js/images)
+ *
  */
 
 // import { export } from "module-name";
@@ -29,6 +31,8 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 const extractSass = new ExtractTextPlugin({
+    // path: path.resolve(__dirname, "build/css/"),
+    // publicPath
     filename: "[name].[contenthash].css",
     disable: process.env.NODE_ENV === "development"
 });
@@ -99,16 +103,16 @@ const STOCK_F9_CSS = [
 
 // .css !== .js
 
-// STOCK_F9_CSS.forEach(
-//     (item, i) => {
-//         entry_obj[item] = `${BASE_URI.CSS}/${item}`;
-//     }
-// );
+STOCK_F9_CSS.forEach(
+    (item, i) => {
+        entry_obj[item] = `${BASE_URI.CSS}/${item}`;
+    }
+);
 // entry_obj[`demo`] = `${BASE_URI.CSS}/demo`;
 // entry_obj[`demo-sass`] = `${BASE_URI.CSS}/demo-sass`;
 
-
-
+// vendors: ['jquery', 'moment'] ???
+// entry_obj["vendors"] = ['jquery', 'moment'];
 
 // "app": "npm run rmrf & webpack -p",
 
@@ -129,11 +133,13 @@ module.exports = {
     //     news: `${BASE_URI.ES5}/company-news`,
     //     // f9fv: `${BASE_URI.F9FV}/turnover-trend-make-market-diagram`,
     //     "turnover-trend-make-market-diagram": `${BASE_URI.F9FV}/turnover-trend-make-market-diagram`,
+    //      // vendors: ['jquery', 'moment']
     // },
     output: {
         // 输出文件 dist/build
         // path: path.resolve(__dirname, "build/"),
         path: path.resolve(__dirname, "build/js/"),
+        // (Absolute path).
         filename: '[name].min.js',// ??? hash version
         // filename: '[name].[hash:16].min.js',// hash version
         // [hash] 和 [chunkhash] 的长度可以使用 [hash:16]（默认为20）来指定。
@@ -173,6 +179,10 @@ module.exports = {
             {
                 test: /\.(css|scss|sass)$/,
                 use: extractSass.extract({
+                    // path: path.resolve(__dirname, "build/css/"),
+                    // publicPath (Relative to server root)
+                    publicPath: `/build/css/`,// Override the publicPath setting for this loader
+                    // publicPath: `${__dirname}/build/css/`,
                     use: [
                         {
                             loader: "css-loader",
@@ -187,41 +197,24 @@ module.exports = {
                                 // alias: {
                                 //     "../fonts/bootstrap": "bootstrap-sass/assets/fonts/bootstrap"
                                 // },
+                                // url: false,
+                                // minimize: true,
+                                // sourceMap: true
                             }
                         },
                         {
-                            loader: "sass-loader"
+                            loader: "sass-loader",
+                            options: {
+                                sourceMap: true,
+                                // includePaths: [
+                                //     path.resolve("./node_modules/bootstrap-sass/assets/stylesheets")
+                                // ],
+                            },
                         }
                     ],
                     // use style-loader in development
                     fallback: "style-loader"
                 }),
-                // {
-                //     loader: 'style-loader'
-                // },
-                // {
-                //     loader: 'css-loader',
-                //     options: {
-                //         modules: true,
-                //         // localIdentName: '[path][name]__[local]--[hash:base64:5]',
-                //         sourceMap: true,
-                //         minimize: true || {/* CSSNano Options */},
-                //         // camelCase: true,
-                //         // importLoaders: 1,
-                //         // 0 => 无 loader(默认); 1 => postcss-loader; 2 => postcss-loader, sass-loader
-                //         // alias: {
-                //         //     "../fonts/bootstrap": "bootstrap-sass/assets/fonts/bootstrap"
-                //         // },
-                //     }
-                // },
-                // {
-                //     loader: 'sass-loader',
-                //     // options: {
-                //     //     includePaths: [
-                //     //         path.resolve("./node_modules/bootstrap-sass/assets/stylesheets")
-                //     //     ]
-                //     // }
-                // }
             },
             {
                 test: /\.(png|jpg|gif|svg|eot|ttf|woff|woff2)$/,
@@ -250,6 +243,7 @@ module.exports = {
     plugins: [
         extractSass,// object
         new UglifyJSPlugin({
+            // minimize: true,
             sourceMap: true,
             extractComments: true,// {Boolean|RegExp|Function<(node, comment) -> {Boolean|Object}>}
             // test: /\.js$/i,// test: /\.js($&#124;\?)/i
@@ -290,10 +284,6 @@ module.exports = {
         //     template: './src/index.html'
         // }),
         // new CleanWebpackPlugin(['dist']),
-        // new webpack.SourceMapDevToolPlugin({
-        //     filename: '[name].js.map',
-        //     exclude: ['vendor.js']
-        // }),
         // new webpack.DefinePlugin({
         //     'process.env': {
         //         'NODE_ENV': JSON.stringify('production')
@@ -302,7 +292,13 @@ module.exports = {
         // }),
         // new webpack.NamedModulesPlugin(),
         // new webpack.HotModuleReplacementPlugin(),
-        // new WebpackDevServer(compiler, options)
+        // new WebpackDevServer(compiler, options),
+        // new webpack.SourceMapDevToolPlugin({
+        //     filename: '[name].js.map',
+        //     exclude: ['vendor.js']
+        // }),
+        // 把入口文件里面的数组打包成verdors.js
+        // new webpack.optimize.CommonsChunkPlugin('vendors', 'vendors.js'),
     ],
     devServer: {
         contentBase: path.resolve(__dirname, `dist`),
