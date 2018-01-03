@@ -25,6 +25,14 @@ const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 
+// Extract separate css file
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
+
+const extractSass = new ExtractTextPlugin({
+    filename: "[name].[contenthash].css",
+    disable: process.env.NODE_ENV === "development"
+});
+
 const BASE_URI = {
     APP: './Modules/',
     MODULES: './Modules',
@@ -163,36 +171,57 @@ module.exports = {
                 // }
             },
             {
-                // test: /\.css$/,
                 test: /\.(css|scss|sass)$/,
-                use: [
-                    {
-                        loader: 'style-loader'
-                    },
-                    {
-                        loader: 'css-loader',
-                        options: {
-                            modules: true,
-                            // localIdentName: '[path][name]__[local]--[hash:base64:5]',
-                            sourceMap: true,
-                            minimize: true || {/* CSSNano Options */},
-                            // camelCase: true,
-                            // importLoaders: 1,
-                            // 0 => 无 loader(默认); 1 => postcss-loader; 2 => postcss-loader, sass-loader
-                            // alias: {
-                            //     "../fonts/bootstrap": "bootstrap-sass/assets/fonts/bootstrap"
-                            // },
+                use: extractSass.extract({
+                    use: [
+                        {
+                            loader: "css-loader",
+                            options: {
+                                modules: true,
+                                // localIdentName: '[path][name]__[local]--[hash:base64:5]',
+                                sourceMap: true,
+                                minimize: true || {/* CSSNano Options */},
+                                // camelCase: true,
+                                // importLoaders: 1,
+                                // 0 => 无 loader(默认); 1 => postcss-loader; 2 => postcss-loader, sass-loader
+                                // alias: {
+                                //     "../fonts/bootstrap": "bootstrap-sass/assets/fonts/bootstrap"
+                                // },
+                            }
+                        },
+                        {
+                            loader: "sass-loader"
                         }
-                    },
-                    {
-                        loader: 'sass-loader',
-                        // options: {
-                        //     includePaths: [
-                        //         path.resolve("./node_modules/bootstrap-sass/assets/stylesheets")
-                        //     ]
-                        // }
-                    }
-                ]
+                    ],
+                    // use style-loader in development
+                    fallback: "style-loader"
+                }),
+                // {
+                //     loader: 'style-loader'
+                // },
+                // {
+                //     loader: 'css-loader',
+                //     options: {
+                //         modules: true,
+                //         // localIdentName: '[path][name]__[local]--[hash:base64:5]',
+                //         sourceMap: true,
+                //         minimize: true || {/* CSSNano Options */},
+                //         // camelCase: true,
+                //         // importLoaders: 1,
+                //         // 0 => 无 loader(默认); 1 => postcss-loader; 2 => postcss-loader, sass-loader
+                //         // alias: {
+                //         //     "../fonts/bootstrap": "bootstrap-sass/assets/fonts/bootstrap"
+                //         // },
+                //     }
+                // },
+                // {
+                //     loader: 'sass-loader',
+                //     // options: {
+                //     //     includePaths: [
+                //     //         path.resolve("./node_modules/bootstrap-sass/assets/stylesheets")
+                //     //     ]
+                //     // }
+                // }
             },
             {
                 test: /\.(png|jpg|gif|svg|eot|ttf|woff|woff2)$/,
@@ -219,6 +248,7 @@ module.exports = {
     devtool: 'source-map',
     // 避免在生产中使用 inline-*** 和 eval-***，因为它们可以增加 bundle 大小，并降低整体性能。
     plugins: [
+        extractSass,// object
         new UglifyJSPlugin({
             sourceMap: true,
             extractComments: true,// {Boolean|RegExp|Function<(node, comment) -> {Boolean|Object}>}
