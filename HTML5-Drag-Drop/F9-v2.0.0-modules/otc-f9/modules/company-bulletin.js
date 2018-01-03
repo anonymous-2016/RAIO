@@ -5,8 +5,7 @@
  * @author xgqfrms
  * creadted 2017.12.12
  * @param {* String} url
- * @param {* Array} td_keys
- * @param {* Array} tds
+ * @param {* String} tbody_dom
  * @param {* String} more
  * @param {Boolean} debug
  */
@@ -20,7 +19,7 @@ OTC_F9_FV.Modules = OTC_F9_FV.Modules || {};
 
 
 OTC_F9_FV.Modules.companyBulletin = OTC_F9_FV.Modules.companyBulletin || (
-    (url = ``, td_keys = [], tds = [], more = ``, debug = false) => {
+    (url = ``, tbody_dom = ``, more = ``, debug = false) => {
         let datas = {};
         fetch(url)
         .then(res => res.json())
@@ -28,31 +27,62 @@ OTC_F9_FV.Modules.companyBulletin = OTC_F9_FV.Modules.companyBulletin || (
             (json) => {
                 datas = json;
                 try {
-                    if (Array.isArray(datas) && datas.length > 0) {
-                        for (let i = 0; i < td_keys.length; i++) {
-                            let title = (datas[i].gsggtitle !== undefined) ? datas[i].gsggtitle.replace(/(：：)/ig, "：") : `暂无数据`,
-                                time = (datas[i].gsggsj !== undefined && datas[i].gsggsj !== null) ? datas[i].gsggsj : `暂无数据`,
-                                type = (datas[i].bulletinType !== undefined && datas[i].bulletinType !== null) ? datas[i].bulletinType : `暂无数据`, // "bulletinType": "定期报告"
-                                fileType = (datas[i].fileType !== undefined && datas[i].fileType !== null) ? datas[i].fileType : `暂无数据`,// "fileType": "pdf",
-                                id = (datas[i].id !== undefined) ? datas[i].id : `暂无数据`;
-                            let html = ``;
-                            html = `
-                                <a
-                                    href="#${id}"
-                                    title="${title}"
-                                    data-title="${title}"
-                                    data-link="otc-company-bulletin-link"
-                                    data-disabled="${id !== "null" ? false : true}"
-                                    data-link-detail="company-bulletin-link-detail-module"
-                                    data-uid="${id}"
-                                    data-type="${fileType}">
-                                    ${title}
-                                </a>
+                    if (Array.isArray(datas)) {
+                        let tbody = ``;
+                        if (datas.length > 0) {
+                            for (let i = 0; i < datas.length; i++) {
+                                let title = (datas[i].gsggtitle !== undefined) ? datas[i].gsggtitle.replace(/(：：)/ig, "：") : `暂无数据`,
+                                    time = (datas[i].gsggsj !== undefined && datas[i].gsggsj !== null) ? datas[i].gsggsj : `暂无数据`,
+                                    type = (datas[i].bulletinType !== undefined && datas[i].bulletinType !== null) ? datas[i].bulletinType : `暂无数据`, // "bulletinType": "定期报告"
+                                    fileType = (datas[i].fileType !== undefined && datas[i].fileType !== null) ? datas[i].fileType : `暂无数据`,// "fileType": "pdf",
+                                    id = (datas[i].id !== undefined) ? datas[i].id : `暂无数据`;
+                                let html = ``;
+                                // href="#${id}"
+                                // target="_blank"
+                                // href="http://10.1.5.202/queryservice/bulletin/attachment/otc/${id}"
+                                // download="${title}.pdf"
+                                html = `
+                                    <a
+                                        href="#${id}"
+                                        title="${title}"
+                                        data-title="${title}"
+                                        data-link="otc-company-bulletin-link"
+                                        data-disabled="${id !== "null" ? false : true}"
+                                        data-link-detail="company-bulletin-link-detail-module"
+                                        data-uid="${id}"
+                                        data-type="${fileType}">
+                                        ${title}
+                                    </a>
+                                `;
+                                // td_keys[i].insertAdjacentHTML(`beforeend`, html);
+                                // tds[2*i].innerText = time;
+                                // tds[2*i+1].innerText = type;
+                                if (i < 5) {
+                                    tbody += `
+                                        <tr class="otc-company-bulletin-table-tr">
+                                            <td class="otc-company-bulletin-table-td-value" data-value="data-otc-CB">${html}</td>
+                                            <td class="otc-company-bulletin-table-td-value" data-value="data-otc-CB">${time}</td>
+                                            <td class="otc-company-bulletin-table-td-value" data-value="data-otc-CB">${type}</td>
+                                        </tr>
+                                    `;
+                                }else{
+                                    // only show 5 items
+                                }
+                            }
+                        }else{
+                            let thead = document.querySelector(`.otc-company-bulletin-table-thead`);
+                            thead.style.display = "none";
+                            tbody = `
+                                <tr class="otc-company-bulletin-table-tr">
+                                    <td colspan="3">
+                                        <p data-none="no-data-p">
+                                            <span data-none="no-data-span"></span>
+                                        </p>
+                                    </td>
+                                </tr>
                             `;
-                            td_keys[i].insertAdjacentHTML(`beforeend`, html);
-                            tds[2*i].innerText = time;
-                            tds[2*i+1].innerText = type;
                         }
+                        tbody_dom.insertAdjacentHTML(`beforeend`, tbody);
                         setTimeout((debug = false) => {
                             // const host = `http://10.1.5.202`;
                             // window.location.origin.includes(`http`);
@@ -76,6 +106,7 @@ OTC_F9_FV.Modules.companyBulletin = OTC_F9_FV.Modules.companyBulletin || (
                                         // http://10.1.5.202/queryservice/bulletin/attachment563999772286.pdf
                                         ChromeExternal.Execute("OpenFile", download_pdf);
                                     } catch (err) {
+                                        // window.open(`${host}/queryservice/bulletin/attachment/otc/${id}.${type}\\${title}.${type}`);
                                         window.open(`${host}/queryservice/bulletin/attachment/otc/${id}.${type}`);
                                         console.log(`%c ChromeExternal & caught error = \n`, `color: red; font-size: 23px;`, err);
                                     }
@@ -115,10 +146,12 @@ OTC_F9_FV.Modules.companyBulletin.init = OTC_F9_FV.Modules.companyBulletin.init 
         }
     ) => {
         let url = `${ip}${path}${socket}${gilcode}`,
-            td_keys = document.querySelectorAll(`[data-key="data-otc-CB"]`),
-            tds = document.querySelectorAll(`[data-value="data-otc-CB"]`),
+            tbody_dom = document.querySelector(`[data-tbody="otc-company-bulletin-table-tbody"]`),
+            // td_keys = document.querySelectorAll(`[data-key="data-otc-CB"]`),
+            // tds = document.querySelectorAll(`[data-value="data-otc-CB"]`),
             more = document.querySelector(`[data-more="otc-company-bulletin-link-more"]`);
-        OTC_F9_FV.Modules.companyBulletin(url, td_keys, tds, more, false);
+        // OTC_F9_FV.Modules.companyBulletin(url, td_keys, tds, more, false);
+        OTC_F9_FV.Modules.companyBulletin(url, tbody_dom, more, false);
     }
 );
 

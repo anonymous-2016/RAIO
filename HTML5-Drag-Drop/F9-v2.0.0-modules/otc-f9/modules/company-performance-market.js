@@ -275,7 +275,8 @@ OTC_F9_FV.Modules.companyPerformanceMarket.drawHS = OTC_F9_FV.Modules.companyPer
                 // marginLeft: 80
             },
             title: {
-                text: '近一年月涨跌幅',
+                // text: '近一年涨跌幅',
+                text: '',
                 align: "left",
                 x: 70,
                 y: 10,
@@ -304,7 +305,7 @@ OTC_F9_FV.Modules.companyPerformanceMarket.drawHS = OTC_F9_FV.Modules.companyPer
                     // y: -50,
                     // type: 'logarithmic',
                     min: 0,
-                    // floor: 0,
+                    floor: 1000,
                     // ceiling: 100,
                     // max: 100,
                     title: {
@@ -334,10 +335,12 @@ OTC_F9_FV.Modules.companyPerformanceMarket.drawHS = OTC_F9_FV.Modules.companyPer
                     // step: 10,
                     title: {
                         // text: '涨跌幅',
+                        // text: `股票价格`,
                         text: ``,
                     },
                     labels: {
-                        format: '{value} %',// 百分比
+                        format: '{value}',// 百分比
+                        // format: '{value} %',// 百分比
                         style: {
                             color: Highcharts.getOptions().colors[1]
                         }
@@ -425,7 +428,7 @@ OTC_F9_FV.Modules.companyPerformanceMarket.drawHS = OTC_F9_FV.Modules.companyPer
                         // `,
                         pointFormat: `
                             <span style="color:{point.color}">\u25CF</span>
-                            {series.name}: <b>{point.y} </b><br/>
+                            {series.name}: <b>{point.y} 点</b><br/>
                         `,
                         // 点 <span style="color:{point.color}">\u25CF</span> 百分比 :{point.percentage:.0f}%
                     },
@@ -435,7 +438,9 @@ OTC_F9_FV.Modules.companyPerformanceMarket.drawHS = OTC_F9_FV.Modules.companyPer
                     yAxis: 1,
                     color: "skyblue",
                     // color: "lawngreen",
-                    name: '涨跌幅',
+                    // name: '股价',
+                    name: '股票价格',
+                    // name: '涨跌幅',
                     data: up_down_amplitude,
                     connectNulls: true,// OK
                     tooltip: {
@@ -447,7 +452,7 @@ OTC_F9_FV.Modules.companyPerformanceMarket.drawHS = OTC_F9_FV.Modules.companyPer
                         // `,
                         pointFormat: `
                             <span style="color:{point.color}">\u25CF</span>
-                            {series.name}: <b>{point.y} %</b><br/>
+                            {series.name}: <b>{point.y} 元</b><br/>
                         `,
                         // <span style="color:{point.color}">\u25CF</span> 百分比 :{point.percentage:.0f}%
                     },

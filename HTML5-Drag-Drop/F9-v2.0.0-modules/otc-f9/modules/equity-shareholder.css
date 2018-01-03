@@ -11,7 +11,7 @@ section.otc-module-box-5 {
     /* margin-top: 6px;
     margin-bottom: 6px; */
     width: 540px;
-    min-height: 127px;
+    /* min-height: 127px; */
 }
 
 .otc-h5dnd-modules-title-box {
@@ -94,7 +94,7 @@ section.otc-module-box-5 {
 }
 
 #equity_shareholder_hs_container {
-    margin-left: 4px;
+    /* margin-left: 4px; */
     margin-top: 5px;
 }
 
@@ -117,7 +117,7 @@ section[data-group="mix-hc-table"] {
     width: 540px;
     max-width: 540px;
     min-width: 540px;
-    border: 1px solid #dce0e4;
+    /* border: 1px solid #dce0e4; */
 }
 
 td.otc-equity-shareholder-table-td-key {
@@ -134,11 +134,15 @@ table.otc-equity-shareholder-table:nth-of-type(1) {
     box-sizing: border-box;
     margin-top: 5px;
     margin-bottom: 5px;
-    width: 530px;
+    width: 540px;
+    max-width: 540px;
+    min-width: 540px;
+    /* width: 530px;
     max-width: 530px;
-    min-width: 530px;
-    margin-left: 4px;
-    overflow: hidden;
+    min-width: 530px; */
+    /* margin-left: 4px; */
+    /* overflow: hidden; */
+    /* background: #f0f; */
 }
 
 
@@ -190,7 +194,7 @@ section.otc-module-box-5 {
     /* margin-top: 6px;
     margin-bottom: 6px; */
     width: 540px;
-    min-height: 127px;
+    /* min-height: 127px; */
 }
 
 table.otc-equity-shareholder-table {
@@ -198,7 +202,7 @@ table.otc-equity-shareholder-table {
     width: 540px;
     max-width: 540px;
     /* min-width: 540px; */
-    height: 127px;
+    /* height: 127px; */
     background: #fff;
     border-collapse: collapse;
     border-spacing: 0;
@@ -207,22 +211,38 @@ table.otc-equity-shareholder-table {
     color: #4d4d4d;
 }
 
-[data-tbody="otc-equity-shareholder-table-tbody"]:nth-of-type(1) {
-    /* color: #f0f; */
+
+/* thead */
+
+thead.otc-equity-shareholder-table-thead>tr.otc-equity-shareholder-table-tr {
+    box-sizing: border-box;
+    background: #e8eefa;
+    border-top: 1px solid #c5d2db;
+    text-align: center;
 }
 
-
-/* html table:nth-of-type(1)>tbody {
-    color: red;
+thead.otc-equity-shareholder-table-thead>tr.otc-equity-shareholder-table-tr>td.otc-equity-shareholder-table-td-title:nth-of-type(n) {
+    box-sizing: border-box;
+    font-size: 12px;
+    height: 23px;
+    line-height: 23px;
+    text-align: center;
+    width: 70px;
+    min-width: 70px;
+    max-width: 70px;
 }
 
-html table:nth-of-type(2)>tbody {
-    color: green;
+thead.otc-equity-shareholder-table-thead>tr.otc-equity-shareholder-table-tr>td.otc-equity-shareholder-table-td-title:nth-of-type(1) {
+    width: 70px;
+    min-width: 70px;
+    max-width: 70px;
+    text-indent: 4px;
 }
 
-html table:nth-of-type(3)>tbody {
-    color: blue;
-} */
+thead.otc-equity-shareholder-table-thead>tr.otc-equity-shareholder-table-tr>td:nth-of-type(1),
+thead.otc-equity-shareholder-table-thead>tr.otc-equity-shareholder-table-tr>td:nth-of-type(2) {
+    border-right: 1px solid #c5d2db;
+}
 
 
 /* font height & 0.5px * 2 ??? */
@@ -326,40 +346,89 @@ tr.otc-equity-shareholder-table-tr>td:nth-last-of-type(1) {
     border-right: 1px solid #d7dbe0;
 }
 
-thead.otc-equity-shareholder-table-thead>tr.otc-equity-shareholder-table-tr {
-    box-sizing: border-box;
-    background: #e8eefa;
-    border-top: 1px solid #c5d2db;
-    text-align: center;
-}
-
-thead.otc-equity-shareholder-table-thead>tr.otc-equity-shareholder-table-tr>td.otc-equity-shareholder-table-td-title:nth-of-type(n) {
-    box-sizing: border-box;
-    font-size: 12px;
-    height: 23px;
-    line-height: 23px;
-    text-align: center;
-    width: 70px;
-    min-width: 70px;
-    max-width: 70px;
-}
-
-thead.otc-equity-shareholder-table-thead>tr.otc-equity-shareholder-table-tr>td.otc-equity-shareholder-table-td-title:nth-of-type(1) {
-    width: 70px;
-    min-width: 70px;
-    max-width: 70px;
-    text-indent: 4px;
-}
-
-thead.otc-equity-shareholder-table-thead>tr.otc-equity-shareholder-table-tr>td:nth-of-type(1),
-thead.otc-equity-shareholder-table-thead>tr.otc-equity-shareholder-table-tr>td:nth-of-type(2) {
-    border-right: 1px solid #c5d2db;
+tr.otc-equity-shareholder-table-tr>td:nth-last-of-type(1) {
+    /* border-right: 1px solid red; */
 }
 
 [data-span="data-otc-ES-title"] {
     color: red;
 }
 
+tbody.otc-equity-shareholder-table-tbody>tr.otc-equity-shareholder-table-tr {
+    border-bottom: 1px solid #c5d2db;
+}
+
+
+/* BAD */
+
 [data-tbody="otc-equity-shareholder-table-tbody"]:nth-of-type(2) {
+    background: red;
     border: 1px solid red;
 }
+
+
+/* multi tables & css selector bug! solution: wrap table with div container box */
+
+
+/* OK */
+
+
+/* [data-table-box="table-conatiner"] {
+    box-sizing: border-box;
+    display: block;
+    width: 100%;
+    min-width: 500px;
+    height: 100%;
+    min-height: 200px;
+}
+
+div[data-table-box="table-conatiner"]:nth-of-type(1) {
+    background: red;
+    border: 1px solid #0f0;
+} */
+
+
+/* :nth-of-type(1) ??? bug */
+
+
+/* div[data-table-box="table-conatiner"]:nth-of-type(1)>table.otc-equity-shareholder-table>tbody.otc-equity-shareholder-table-tbody>tr {
+    color: red;
+    background: #000;
+} */
+
+
+/* div[data-table-box="table-conatiner"]:nth-of-type(2)>table.otc-equity-shareholder-table>tbody.otc-equity-shareholder-table-tbody>tr {
+    color: #0f0;
+    background: #000;
+} */
+
+
+/* div[data-table-box="table-conatiner"]:nth-of-type(3)>table.otc-equity-shareholder-table>tbody.otc-equity-shareholder-table-tbody>tr {
+    color: #00f;
+    background: #000;
+    border: 1px solid red;
+} */
+
+
+/* div[data-table-box="table-conatiner"]:nth-of-type(4)>table.otc-equity-shareholder-table>tbody.otc-equity-shareholder-table-tbody>tr {
+    color: #f0f;
+    background: #000;
+} */
+
+
+/* [data-tbody="otc-equity-shareholder-table-tbody"]:nth-of-type(1) {
+    color: #f0f;
+}
+
+
+html table:nth-of-type(1)>tbody {
+    color: red;
+}
+
+html table:nth-of-type(2)>tbody {
+    color: green;
+}
+
+html table:nth-of-type(3)>tbody {
+    color: blue;
+} */

@@ -146,7 +146,7 @@ OTC_F9_FV.Modules.companyBriefIntroduction = OTC_F9_FV.Modules.companyBriefIntro
                         tbody.insertAdjacentHTML(`beforeend`, html);
                         title.insertAdjacentHTML(`beforeend`, text);
                         // const & global bug
-                        var autoAlignHeight = (uids = [], debug = false) => {
+                        const autoAlignHeight = (uids = [], debug = false) => {
                             let domx = document.querySelector(uids[0]),
                                 domy = document.querySelector(uids[1]),
                                 domz = document.querySelector(uids[2]),

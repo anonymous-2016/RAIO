@@ -1002,33 +1002,7 @@ const HTML_Template = (uid = ``, loadModule = function(){}, debug = false) => {
                                 <td class="otc-company-bulletin-table-td-title">公告类型</td>
                             </tr>
                         </thead>
-                        <tbody class="otc-company-bulletin-table-tbody" data-tbody="otc-company-bulletin-table-tbody">
-                            <tr class="otc-company-bulletin-table-tr">
-                                <td class="otc-company-bulletin-table-td-key" data-alias="公司公告1" data-key="data-otc-CB"></td>
-                                <td class="otc-company-bulletin-table-td-value" data-value="data-otc-CB"></td>
-                                <td class="otc-company-bulletin-table-td-value" data-value="data-otc-CB"></td>
-                            </tr>
-                            <tr class="otc-company-bulletin-table-tr">
-                                <td class="otc-company-bulletin-table-td-key" data-alias="公司公告2" data-key="data-otc-CB"></td>
-                                <td class="otc-company-bulletin-table-td-value" data-value="data-otc-CB"></td>
-                                <td class="otc-company-bulletin-table-td-value" data-value="data-otc-CB"></td>
-                            </tr>
-                            <tr class="otc-company-bulletin-table-tr">
-                                <td class="otc-company-bulletin-table-td-key" data-alias="公司公告3" data-key="data-otc-CB"></td>
-                                <td class="otc-company-bulletin-table-td-value" data-value="data-otc-CB"></td>
-                                <td class="otc-company-bulletin-table-td-value" data-value="data-otc-CB"></td>
-                            </tr>
-                            <tr class="otc-company-bulletin-table-tr">
-                                <td class="otc-company-bulletin-table-td-key" data-alias="公司公告4" data-key="data-otc-CB"></td>
-                                <td class="otc-company-bulletin-table-td-value" data-value="data-otc-CB"></td>
-                                <td class="otc-company-bulletin-table-td-value" data-value="data-otc-CB"></td>
-                            </tr>
-                            <tr class="otc-company-bulletin-table-tr">
-                                <td class="otc-company-bulletin-table-td-key" data-alias="公司公告5" data-key="data-otc-CB"></td>
-                                <td class="otc-company-bulletin-table-td-value" data-value="data-otc-CB"></td>
-                                <td class="otc-company-bulletin-table-td-value" data-value="data-otc-CB"></td>
-                            </tr>
-                        </tbody>
+                        <tbody class="otc-company-bulletin-table-tbody" data-tbody="otc-company-bulletin-table-tbody"></tbody>
                         <tfoot class="otc-company-bulletin-table-tfoot">
                             <tr class="otc-company-bulletin-table-tr">
                                 <td class="otc-company-bulletin-table-td-value" data-value="data-otc-CB"></td>

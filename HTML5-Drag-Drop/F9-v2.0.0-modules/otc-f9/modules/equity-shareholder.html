@@ -36,25 +36,27 @@
             <div class="otc-equity-shareholder-container">
                 <div id="equity_shareholder_hs_container" data-hs-container="data-equity-shareholder-container-uid" class="otc-equity-shareholder-hs otc-equity-shareholder-hs-container"></div>
             </div>
-            <table class="otc-equity-shareholder-table">
-                <thead class="otc-equity-shareholder-table-thead">
-                    <!--
+            <div data-table-box="table-conatiner">
+                <table class="otc-equity-shareholder-table">
+                    <thead class="otc-equity-shareholder-table-thead">
+                        <!--
+                            <tr class="otc-equity-shareholder-table-tr">
+                                <td class="otc-equity-shareholder-table-td-title">截止日期</td>
+                                <td class="otc-equity-shareholder-table-td-title">总股本(股)</td>
+                                <td class="otc-equity-shareholder-table-td-title">无限售股份总数(股)</td>
+                                <td class="otc-equity-shareholder-table-td-title">有限售股份总数(股)</td>
+                                <td class="otc-equity-shareholder-table-td-title">变动原因说明(股)</td>
+                            </tr>
+                        -->
+                    </thead>
+                    <tbody class="otc-equity-shareholder-table-tbody" data-tbody="otc-equity-shareholder-table-tbody"></tbody>
+                    <tfoot class="otc-equity-shareholder-table-tfoot">
                         <tr class="otc-equity-shareholder-table-tr">
-                            <td class="otc-equity-shareholder-table-td-title">截止日期</td>
-                            <td class="otc-equity-shareholder-table-td-title">总股本(股)</td>
-                            <td class="otc-equity-shareholder-table-td-title">无限售股份总数(股)</td>
-                            <td class="otc-equity-shareholder-table-td-title">有限售股份总数(股)</td>
-                            <td class="otc-equity-shareholder-table-td-title">变动原因说明(股)</td>
+                            <td class="otc-equity-shareholder-table-td-value" data-value="data-otc-ES"></td>
                         </tr>
-                    -->
-                </thead>
-                <tbody class="otc-equity-shareholder-table-tbody" data-tbody="otc-equity-shareholder-table-tbody"></tbody>
-                <tfoot class="otc-equity-shareholder-table-tfoot">
-                    <tr class="otc-equity-shareholder-table-tr">
-                        <td class="otc-equity-shareholder-table-td-value" data-value="data-otc-ES"></td>
-                    </tr>
-                </tfoot>
-            </table>
+                    </tfoot>
+                </table>
+            </div>
         </section>
         <div data-div="tbody-div" data-titles="data-otc-ES-title">
             <!-- no data -->
@@ -69,57 +71,61 @@
                 <span data-span="data-otc-ES-title">2</span>位股东有减持行为。
             </p> -->
         </div>
-        <table class="otc-equity-shareholder-table">
-            <thead class="otc-equity-shareholder-table-thead">
-                <tr class="otc-equity-shareholder-table-tr">
-                    <td class="otc-equity-shareholder-table-td-title">股东名称</td>
-                    <td class="otc-equity-shareholder-table-td-title">持股数(股)</td>
-                    <td class="otc-equity-shareholder-table-td-title">占比(%)</td>
-                    <td class="otc-equity-shareholder-table-td-title">增减变动</td>
-                    <td class="otc-equity-shareholder-table-td-title">机构类型</td>
-                </tr>
-                <!-- colspan & rowspan -->
-            </thead>
-            <tbody class="otc-equity-shareholder-table-tbody" data-tbody="otc-equity-shareholder-table-tbody"> </tbody>
-            <tfoot class="otc-equity-shareholder-table-tfoot">
-                <tr class="otc-equity-shareholder-table-tr">
-                    <td class="otc-equity-shareholder-table-td-value" data-value="data-otc-ES"></td>
-                </tr>
-            </tfoot>
-        </table>
+        <div data-table-box="table-conatiner">
+            <table class="otc-equity-shareholder-table">
+                <thead class="otc-equity-shareholder-table-thead">
+                    <tr class="otc-equity-shareholder-table-tr">
+                        <td class="otc-equity-shareholder-table-td-title">股东名称</td>
+                        <td class="otc-equity-shareholder-table-td-title">持股数(股)</td>
+                        <td class="otc-equity-shareholder-table-td-title">占比(%)</td>
+                        <td class="otc-equity-shareholder-table-td-title">增减变动</td>
+                        <td class="otc-equity-shareholder-table-td-title">机构类型</td>
+                    </tr>
+                    <!-- colspan & rowspan -->
+                </thead>
+                <tbody class="otc-equity-shareholder-table-tbody" data-tbody="otc-equity-shareholder-table-tbody"> </tbody>
+                <tfoot class="otc-equity-shareholder-table-tfoot">
+                    <tr class="otc-equity-shareholder-table-tr">
+                        <td class="otc-equity-shareholder-table-td-value" data-value="data-otc-ES"></td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
         <div data-div="tbody-div" data-titles="data-otc-ES-title">
             <!-- no data -->
         </div>
-        <table class="otc-equity-shareholder-table">
-            <thead class="otc-equity-shareholder-table-thead">
-                <!-- <tr class="otc-equity-shareholder-table-tr">
-                    <td class="otc-equity-shareholder-table-td-title">总户数</td>
-                    <td class="otc-equity-shareholder-table-td-title">环比增长(%)</td>
-                    <td class="otc-equity-shareholder-table-td-title">户均持股数</td>
-                    <td class="otc-equity-shareholder-table-td-title">环比增长(%)</td>
-                </tr> -->
-                <!-- <tr class="otc-equity-shareholder-table-tr">
-                    <td class="otc-equity-shareholder-table-td-title">解禁日期</td>
-                    <td class="otc-equity-shareholder-table-td-title">解禁数量(股)</td>
-                    <td class="otc-equity-shareholder-table-td-title">占已流通股本比例(%)</td>
-                    <td class="otc-equity-shareholder-table-td-title">剩余未解禁数量(股)</td>
-                    <td class="otc-equity-shareholder-table-td-title">解禁股份类型</td>
-                </tr> -->
-            </thead>
-            <tbody class="otc-equity-shareholder-table-tbody" data-tbody="otc-equity-shareholder-table-tbody">
-                <!-- <tr class="otc-equity-shareholder-table-tr">
-                    <td class="otc-equity-shareholder-table-td-value" data-value="data-otc-ES">软件技术服务</td>
-                    <td class="otc-equity-shareholder-table-td-value" data-value="data-otc-ES">797,312,267.02</td>
-                    <td class="otc-equity-shareholder-table-td-value" data-value="data-otc-ES">574,643,003.03</td>
-                    <td class="otc-equity-shareholder-table-td-value" data-value="data-otc-ES">47.17</td>
-                </tr> -->
-            </tbody>
-            <tfoot class="otc-equity-shareholder-table-tfoot">
-                <tr class="otc-equity-shareholder-table-tr">
-                    <td class="otc-equity-shareholder-table-td-value" data-value="data-otc-ES"></td>
-                </tr>
-            </tfoot>
-        </table>
+        <div data-table-box="table-conatiner">
+            <table class="otc-equity-shareholder-table">
+                <thead class="otc-equity-shareholder-table-thead">
+                    <!-- <tr class="otc-equity-shareholder-table-tr">
+                                <td class="otc-equity-shareholder-table-td-title">总户数</td>
+                                <td class="otc-equity-shareholder-table-td-title">环比增长(%)</td>
+                                <td class="otc-equity-shareholder-table-td-title">户均持股数</td>
+                                <td class="otc-equity-shareholder-table-td-title">环比增长(%)</td>
+                            </tr> -->
+                    <!-- <tr class="otc-equity-shareholder-table-tr">
+                                <td class="otc-equity-shareholder-table-td-title">解禁日期</td>
+                                <td class="otc-equity-shareholder-table-td-title">解禁数量(股)</td>
+                                <td class="otc-equity-shareholder-table-td-title">占已流通股本比例(%)</td>
+                                <td class="otc-equity-shareholder-table-td-title">剩余未解禁数量(股)</td>
+                                <td class="otc-equity-shareholder-table-td-title">解禁股份类型</td>
+                            </tr> -->
+                </thead>
+                <tbody class="otc-equity-shareholder-table-tbody" data-tbody="otc-equity-shareholder-table-tbody">
+                    <!-- <tr class="otc-equity-shareholder-table-tr">
+                                <td class="otc-equity-shareholder-table-td-value" data-value="data-otc-ES">软件技术服务</td>
+                                <td class="otc-equity-shareholder-table-td-value" data-value="data-otc-ES">797,312,267.02</td>
+                                <td class="otc-equity-shareholder-table-td-value" data-value="data-otc-ES">574,643,003.03</td>
+                                <td class="otc-equity-shareholder-table-td-value" data-value="data-otc-ES">47.17</td>
+                            </tr> -->
+                </tbody>
+                <tfoot class="otc-equity-shareholder-table-tfoot">
+                    <tr class="otc-equity-shareholder-table-tr">
+                        <td class="otc-equity-shareholder-table-td-value" data-value="data-otc-ES"></td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
     </section>
     <!-- libs -->
     <script src="../libs/highstock.min.js"></script>

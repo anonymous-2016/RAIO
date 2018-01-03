@@ -38,7 +38,7 @@ section.otc-module-box-5 {
     /* margin-top: 6px;
     margin-bottom: 6px; */
     width: 540px;
-    min-height: 127px;
+    /* min-height: 127px; */
 }
 
 table.otc-company-bulletin-table {
@@ -46,7 +46,7 @@ table.otc-company-bulletin-table {
     width: 540px;
     max-width: 540px;
     min-width: 540px;
-    height: 127px;
+    /* height: 127px; */
     background: #fff;
     border-collapse: collapse;
     border-spacing: 0;
@@ -133,6 +133,8 @@ tbody.otc-company-bulletin-table-tbody>tr.otc-company-bulletin-table-tr>td:nth-o
     word-wrap: break-word;
     white-space: nowrap;
     text-overflow: ellipsis;
+    text-align: left;
+    text-indent: 4px;
 }
 
 tr.otc-company-bulletin-table-tr>td:nth-of-type(3) {
@@ -200,3 +202,6 @@ a[data-link="otc-company-bulletin-link"] {
 a[data-link="otc-company-bulletin-link"]:hover {
     color: #f50;
 }
+
+
+/* document.querySelectorAll(`[data-tbody="otc-equity-shareholder-table-tbody"]`); */
