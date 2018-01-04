@@ -336,6 +336,10 @@ STOCK_F9_FV.Modules.SPTurnover.SPTdrawHS = STOCK_F9_FV.Modules.SPTurnover.SPTdra
         //         loading: `Loading....`,
         //     }
         // });
+        let bg_skin = (window.STOCK_Skin === "black") ? `#0B1016` : `#ffffff`;
+        let bd_skin = (window.STOCK_Skin === "black") ? `#666` : `#ccc`;
+        let item_skin = (window.STOCK_Skin === "black") ? `#fff` : `#000`;
+        let hover_skin = (window.STOCK_Skin === "black") ? `#f79530` : `#fff`;
         Highcharts.setOptions({
             lang: {
                 rangeSelectorZoom: '缩放',// 放大
@@ -373,6 +377,7 @@ STOCK_F9_FV.Modules.SPTurnover.SPTdrawHS = STOCK_F9_FV.Modules.SPTurnover.SPTdra
                 // type: 'column',
                 // height: 272,
                 marginTop: 20,
+                backgroundColor: bg_skin,
             },
             noData: {
                 // attr: undefined,
@@ -593,7 +598,15 @@ STOCK_F9_FV.Modules.SPTurnover.SPTdrawHS = STOCK_F9_FV.Modules.SPTurnover.SPTdra
             //     }
             // },
             legend: {
-                enabled: true
+                enabled: true,
+                backgroundColor: bg_skin,
+                itemStyle: {
+                    color: item_skin,
+                },
+                itemHoverStyle: {
+                    color: hover_skin
+                },
+                // borderWidth: 1,
             },
             navigator: {
                 enabled: false,
@@ -731,7 +744,7 @@ STOCK_F9_FV.Modules.SPTurnover.init = STOCK_F9_FV.Modules.SPTurnover.init || (
 
 var STOCK_IP = window.STOCK_IP || `http://10.1.5.202`,
     STOCK_Paths = window.STOCK_Paths || `/webservice/fastview/stock`,
-    STOCK_SecCode = window.STOCK_SecCode || `600570.SH`;
+    STOCK_SecCode = window.STOCK_SecCode || `600570.SH`,
     STOCK_Skin = window.STOCK_Skin || `white`;
 
 

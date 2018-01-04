@@ -743,7 +743,7 @@ button.close {
     position: relative;
     line-height: 30px;
     padding: 2%;
-    height: 100%
+    max-height: 600px;
 }
 
 .zxdtData {

@@ -167,9 +167,9 @@ body {
 
 #zxdtContent {
     box-sizing: border-box;
-    max-width: 1000px;
-    max-height: 500px;
-    overflow-y: scroll;
+    /* max-width: 1000px; */
+    /* max-height: 500px; */
+    /* overflow-y: scroll; */
 }
 
 [data-layerContianer="layerContianer"] {

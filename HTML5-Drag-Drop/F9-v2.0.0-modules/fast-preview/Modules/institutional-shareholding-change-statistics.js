@@ -135,13 +135,17 @@ STOCK_F9_FV.Modules.ISCstatistics.ISCSdrawHS = STOCK_F9_FV.Modules.ISCstatistics
             yAxisColor: `#FFB400`,
         };
         // css_obj ???
-        // const {color, colors, optioncolor, gridColor, legendColor, yAxisColor} = {...chart_css};
-        let color = chart_css.color,
-            colors = chart_css.colors,
-            optioncolor = chart_css.optioncolor,
-            gridColor = chart_css.gridColor,
-            legendColor = chart_css.legendColor,
-            yAxisColor = chart_css.yAxisColor;
+        const {color, colors, optioncolor, gridColor, legendColor, yAxisColor} = {...chart_css};
+        // let color = chart_css.color,
+        //     colors = chart_css.colors,
+        //     optioncolor = chart_css.optioncolor,
+        //     gridColor = chart_css.gridColor,
+        //     legendColor = chart_css.legendColor,
+        //     yAxisColor = chart_css.yAxisColor;;
+        let bg_skin = (window.STOCK_Skin === "black") ? `#0B1016` : `#ffffff`;
+        let bd_skin = (window.STOCK_Skin === "black") ? `#666` : `#ccc`;
+        let item_skin = (window.STOCK_Skin === "black") ? `#fff` : `#000`;
+        let hover_skin = (window.STOCK_Skin === "black") ? `#f79530` : `#fff`;
         Highcharts.setOptions({
             lang: {
                 // noData: '暂无数据',
@@ -174,6 +178,7 @@ STOCK_F9_FV.Modules.ISCstatistics.ISCSdrawHS = STOCK_F9_FV.Modules.ISCstatistics
             }, */
             chart: {
                 type: 'column',
+                backgroundColor: bg_skin,
                 // backgroundColor: chart_css.color
                 // backgroundColor: color
                 // height: (9 / 16 * 100) + '%',
@@ -260,7 +265,6 @@ STOCK_F9_FV.Modules.ISCstatistics.ISCSdrawHS = STOCK_F9_FV.Modules.ISCstatistics
                 symbolRadius: 0,
                 // rectangle
                 align: 'center',// left, center and right. (Defaults to center.)
-                backgroundColor: `#ff00ff`, //Color,
                 /*
                     x: 0,
                     y: 340,
@@ -271,9 +275,15 @@ STOCK_F9_FV.Modules.ISCstatistics.ISCSdrawHS = STOCK_F9_FV.Modules.ISCstatistics
                 verticalAlign: "bottom",
                 // floating: true,
                 floating: false,
-                backgroundColor: (Highcharts.theme && Highcharts.theme.background2) || 'white',
-                borderColor: '#CCC',
-                borderWidth: 1,
+                // backgroundColor: (Highcharts.theme && Highcharts.theme.background2) || 'white',
+                backgroundColor: bg_skin,
+                itemStyle: {
+                    color: item_skin,
+                },
+                itemHoverStyle: {
+                    color: hover_skin
+                },
+                // borderWidth: 1,
                 shadow: false
             },
             // tooltip ??? array
@@ -374,7 +384,7 @@ STOCK_F9_FV.Modules.ISCstatistics.init = STOCK_F9_FV.Modules.ISCstatistics.init 
 
 var STOCK_IP = window.STOCK_IP || `http://10.1.5.202`,
     STOCK_Paths = window.STOCK_Paths || `/webservice/fastview/stock`,
-    STOCK_SecCode = window.STOCK_SecCode || `600570.SH`;
+    STOCK_SecCode = window.STOCK_SecCode || `600570.SH`,
     STOCK_Skin = window.STOCK_Skin || `white`;
 
 

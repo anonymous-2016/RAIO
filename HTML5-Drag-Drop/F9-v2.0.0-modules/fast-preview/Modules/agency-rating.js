@@ -168,7 +168,7 @@ STOCK_F9_FV.Modules.agencyRating.drawHS = STOCK_F9_FV.Modules.agencyRating.drawH
             title1: `title 1`,
             title2: `title 2`
         }
-        console.log(`STOCK_Skin = `, STOCK_Skin);
+        // console.log(`STOCK_Skin = `, STOCK_Skin);
         // `white` / `black`
         // console.log(`window.STOCK_Skin = `, window.STOCK_Skin);
         let {time, up, down, stock_price, keep} = {...datas};
@@ -182,7 +182,7 @@ STOCK_F9_FV.Modules.agencyRating.drawHS = STOCK_F9_FV.Modules.agencyRating.drawH
         // console.log(`max_time = \n`, max_time);
         const chart_css = {
             color: `#0B1016`,
-            bg_colors:[`#0B1016`, `#21249`],
+            bg_colors:[`#ffffff`, `#0B1016`],
             colors: ['#ff1919', '#ffff66', '#92d050'],// 红黄绿
             optioncolor: `red`,
             gridColor: `#2D3039`,
@@ -208,6 +208,11 @@ STOCK_F9_FV.Modules.agencyRating.drawHS = STOCK_F9_FV.Modules.agencyRating.drawH
                 loading: `Loading....`,
             }
         });
+        // let bg_skin = (window.STOCK_Skin === "black") ? bg_colors[1] :  bg_colors[0];
+        let bg_skin = (window.STOCK_Skin === "black") ? `#0B1016` : `#fff`;
+        let bd_skin = (window.STOCK_Skin === "black") ? `#666` : `#ccc`;
+        let item_skin = (window.STOCK_Skin === "black") ? `#fff` : `#000`;
+        let hover_skin = (window.STOCK_Skin === "black") ? `#f79530` : `#f79530`;
         Highcharts.chart(container_uid, {
             noData: {// all defualt value
                 // attr: undefined,
@@ -234,7 +239,7 @@ STOCK_F9_FV.Modules.agencyRating.drawHS = STOCK_F9_FV.Modules.agencyRating.drawH
                 // },
                 // polar: true,
                 type: 'column',
-                backgroundColor: STOCK_Skin === "black" ? bg_colors[1] :  bg_colors[0],
+                backgroundColor: bg_skin,
                 // color: STOCK_Skin === "black" ? `#fff` : `#0f0`,
                 // `white` / `black`
                 // backgroundColor: chart_css.color,
@@ -322,7 +327,6 @@ STOCK_F9_FV.Modules.agencyRating.drawHS = STOCK_F9_FV.Modules.agencyRating.drawH
                 symbolRadius: 0,
                 // rectangle
                 align: 'center',// left, center and right. (Defaults to center.)
-                backgroundColor: `#ff00ff`, //Color,
                 /*
                     x: 0,
                     y: 340,
@@ -333,9 +337,15 @@ STOCK_F9_FV.Modules.agencyRating.drawHS = STOCK_F9_FV.Modules.agencyRating.drawH
                 verticalAlign: "bottom",
                 // floating: true,
                 floating: false,
-                backgroundColor: (Highcharts.theme && Highcharts.theme.background2) || 'white',
-                borderColor: '#CCC',
-                borderWidth: 1,
+                // backgroundColor: (Highcharts.theme && Highcharts.theme.background2) || 'white',
+                backgroundColor: bg_skin,
+                itemStyle: {
+                    color: item_skin,
+                },
+                itemHoverStyle: {
+                    color: hover_skin
+                },
+                // borderWidth: 1,
                 shadow: false
             },
             // tooltip ??? array
@@ -444,7 +454,6 @@ STOCK_F9_FV.Modules.agencyRating.init = STOCK_F9_FV.Modules.agencyRating.init ||
     }
 );
 
-window.STOCK_Skin = `black`;
 
 var STOCK_IP = window.STOCK_IP || `http://10.1.5.202`,
     STOCK_Paths = window.STOCK_Paths || `/webservice/fastview/stock`,
