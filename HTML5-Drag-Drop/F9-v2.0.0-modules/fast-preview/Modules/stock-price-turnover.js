@@ -340,7 +340,12 @@ STOCK_F9_FV.Modules.SPTurnover.SPTdrawHS = STOCK_F9_FV.Modules.SPTurnover.SPTdra
         let bd_skin = (window.STOCK_Skin === "black") ? `#666` : `#ccc`;
         let item_skin = (window.STOCK_Skin === "black") ? `#fff` : `#000`;
         let hover_skin = (window.STOCK_Skin === "black") ? `#f79530` : `#f79530`;
-        let input_skin = (window.STOCK_Skin === "black") ? `#fff` : `#f79530`;
+        // HS & stock
+        let input_skin = (window.STOCK_Skin === "black") ? `#bbc1c7` : `#333`;
+        let input_border_skin = (window.STOCK_Skin === "black") ? `#707070` : `#ccc`;
+        let input_label_skin = (window.STOCK_Skin === "black") ? `#707070` : `#ccc`;
+        // bd #707070
+        // fc #bbc1c7
         Highcharts.setOptions({
             lang: {
                 rangeSelectorZoom: '缩放',// 放大
@@ -636,6 +641,15 @@ STOCK_F9_FV.Modules.SPTurnover.SPTdrawHS = STOCK_F9_FV.Modules.SPTurnover.SPTdra
                 liveRedraw: true,
             },
             rangeSelector: {
+                inputBoxBorderColor: input_border_skin,
+                inputStyle: {
+                    color: input_skin,
+                    // fontWeight: 'bold'
+                },
+                labelStyle: {
+                    color: input_label_skin,
+                    // fontWeight: 'bold'
+                },
                 // height: 10,
                 // enabled: false,
                 selected: 0,// button index
@@ -717,6 +731,17 @@ STOCK_F9_FV.Modules.SPTurnover.SPTdrawHS = STOCK_F9_FV.Modules.SPTurnover.SPTdra
         setTimeout(() => {
             let no_zoom = document.querySelector(`.highcharts-range-selector-buttons`);
             no_zoom.style.display = "none";
+            // delay
+            if (window.STOCK_Skin === "black") {
+                let inputs = document.querySelectorAll(`input.highcharts-range-selector`);
+                for (let i = 0; i < inputs.length; i++) {
+                    inputs[i].setAttribute(`data-hs-background`, "no-hs-bg");
+                    // [data-hs-background="no-hs-bg"]{width: 1px !important; height: 1px !important; border: 0px !important;}
+                    // [data-hs-background="no-hs-bg"]{background: #0b1016;}
+                }
+            }else{
+                // delete attribute ???
+            }
         }, 0);
         //
     }
@@ -769,10 +794,5 @@ STOCK_F9_FV.Modules.SPTurnover.init({
 
 
 
-let inputs = document.querySelectorAll(`input.highcharts-range-selector`);
-for (let i = 0; i < inputs.length; i++) {
-    inputs[i].setAttribute(`data-hs-background`, "no-hs-bg");
-    // [data-hs-background="no-hs-bg"]{width: 1px !important; height: 1px !important; border: 0px !important;}
-    // [data-hs-background="no-hs-bg"]{background: #0b1016;}
-}
+
 
