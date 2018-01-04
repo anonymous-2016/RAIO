@@ -6,6 +6,7 @@ var STOCK_F9_FV = STOCK_F9_FV || {};
 // sub namespaces
 STOCK_F9_FV.Modules = STOCK_F9_FV.Modules || {};
 
+
 STOCK_F9_FV.Utils = STOCK_F9_FV.Utils || {};
 
 STOCK_F9_FV.Utils.getParam = STOCK_F9_FV.Utils.getParam || ((key, debug = false) => {
@@ -32,6 +33,73 @@ STOCK_F9_FV.Utils.getParam = STOCK_F9_FV.Utils.getParam || ((key, debug = false)
         return value;
     }
 });
+
+// STOCK_F9_FV.Utils.getParam(`secucode`);
+
+// var STOCK_IP = STOCK_IP || ``;
+// var STOCK_Paths = STOCK_Paths || ``;
+// var STOCK_SecCode = STOCK_SecCode || ``;
+// var STOCK_Skin = STOCK_Skin || ``;
+
+// window.STOCK_IP = ``;
+// window.STOCK_Paths = ``;
+// window.STOCK_SecCode = ``;
+// window.STOCK_Skin = ``;
+window.STOCK_IP = window.STOCK_IP || ``;
+window.STOCK_Paths = window.STOCK_Paths || ``;
+window.STOCK_SecCode = window.STOCK_SecCode || ``;
+window.STOCK_Skin = window.STOCK_Skin || ``;
+// STOCK_F9_FV.Utils.getParam(`skin`);
+// window.STOCK_Skin = STOCK_F9_FV.Utils.getParam(`skin`);
+
+// ip: `http://10.1.5.202`,
+// path: `/webservice/fastview/stock/stockfast07/`, // `/webservice/fastview/stock`
+// gilcode: `600570.SH`
+
+
+// STOCK_IP = STOCK_F9_FV.Utils.getParam(`ip`);
+// STOCK_IP = window.parent.location.host;
+
+// STOCK_Paths = STOCK_F9_FV.Utils.getParam(`path`);
+// STOCK_Paths = window.parent.location.pathname;
+
+// STOCK_SecCode = STOCK_F9_FV.Utils.getParam(`secucode`);
+
+
+// console.log(`STOCK_SecCode `, STOCK_SecCode);
+
+
+// STOCK_SecCode = STOCK_F9_FV.Utils.getParam(`secucode`);
+
+// window.onload = (debug = false) => {
+//     console.log(`STOCK_SecCode `, STOCK_SecCode);
+//     alert(`loaded!`);
+//     STOCK_SecCode = STOCK_F9_FV.Utils.getParam(`secucode`);
+//     if (debug) {
+//         console.log(`STOCK_SecCode `, STOCK_SecCode);
+//     }
+// };
+
+
+/*
+
+queryString.replace(/=/g, ":");
+// "secucode:000001&market:4609&sid:hs"
+
+
+queryString.replace(/=/g, ":").replace(/&/g, ",");
+// "secucode:000001,market:4609,sid:hs"
+
+JSON.parse(eval("({"+"secucode:000001,market:4609,sid:hs"+"})"));
+// Uncaught ReferenceError: hs is not defined at eval
+
+*/
+
+
+
+const debug = false;
+// const debug = false;
+
 
 // tabs
 let lis = document.querySelectorAll(`[data-nav-li="nav-li"]`);
@@ -159,81 +227,73 @@ small_btn.onclick = () => {
     }
 };
 
-const debug = false;
-
-
-window.STOCK_IP = window.STOCK_IP || ``;
-window.STOCK_Paths = window.STOCK_Paths || ``;
-window.STOCK_SecCode = window.STOCK_SecCode || ``;
-window.STOCK_Skin = window.STOCK_Skin || ``;
-// console.log("0, window.STOCK_Skin = ", window.STOCK_Skin);
-
-// set params before DOM ready!
-window.STOCK_SecCode = STOCK_F9_FV.Utils.getParam(`gilcode`);
-window.STOCK_Skin = STOCK_F9_FV.Utils.getParam(`skin`) || `white`;
-window.STOCK_IP = window.parent.location.origin.includes("http") ? window.parent.location.origin : `http://10.1.5.202`;
-window.STOCK_Paths = `/webservice/fastview/stock`;
-// console.log("1, window.STOCK_Skin = ", window.STOCK_Skin);
-
-// const css_arr = ["/sidebar.css", "common/module.css", "common/modal.css"];
-// // "modules/agency-rating.css" ... & with path!
-// let css_dom = document.querySelector(`head`);
-// if (window.STOCK_Skin === "black") {
-//     console.log(`window.STOCK_Skin = `, window.STOCK_Skin, typeof(window.STOCK_Skin));
-//     for (let i = 0; i < css_arr.length; i++) {
-//         let css_link = document.createElement(`link`);
-//         css_link.setAttribute(`href`,`./css/black-skin/${css_arr[i]}`);
-//         css_link.setAttribute(`data-css`,`data-css-uid`);
-//         css_dom.insertAdjacentElement(`beforeend`, css_link);
-//         console.log(`css_link = \n`, css_link);
-//     }
-// }else{
-//     for (let i = 0; i < css_arr.length; i++) {
-//         let css_link = document.createElement(`link`);
-//         css_link.setAttribute(`href`,`./css/white-skin/${css_arr[i]}`);
-//         css_link.setAttribute(`data-css`,`data-css-uid`);
-//         css_dom.insertAdjacentElement(`beforeend`, css_link);
-//         console.log(`css_link = \n`, css_link);
-//     }
-// }
-
-// change skin & dynamic insert css link ??? replace css link (blink bug?)
 document.addEventListener(`DOMContentLoaded`, (e) => {
-    // console.log("2, (DOMContentLoaded)DOM fully loaded and parsed");
+    console.log("DOM fully loaded and parsed");
+    window.STOCK_SecCode = STOCK_F9_FV.Utils.getParam(`gilcode`);
+    window.STOCK_Skin = STOCK_F9_FV.Utils.getParam(`skin`) || `white`;
+    console.log(`e.target = `, e.target);
     // load css
-    const css_arr = ["sidebar.css", "common/module.css", "common/modal.css"];
-    const css_skins = ["black-skin", "white-skin"];
-    const css_links = document.querySelectorAll(`[data-css="data-css-uid"]`);
+    /* <link rel="stylesheet" data-css="data-css-uid" href="./sidebar.css"> */
     let css_dom = document.querySelector(`head`);
+    // let css_link = document.createElement(`link`);
+    // css_link.setAttribute(`href`,`./css/black.css`);
+    // css_link.setAttribute(`data-css`,`data-css-uid`);
+    // css_dom.insertAdjacentElement(`beforeend`, css_link);
     if (window.STOCK_Skin === "black") {
-        // console.log(`window.STOCK_Skin = `, window.STOCK_Skin, typeof(window.STOCK_Skin));
-        //white-skin => black-skin
-        if (css_links[0].href.includes(`white-skin`)) {
-            for (let i = 0; i < css_links.length; i++) {
-                let href= `./css/${css_skins[0]}/${css_arr[i]}`;
-                css_links[i].setAttribute(`href`, href);
+        console.log(`window.STOCK_Skin = `, window.STOCK_Skin, typeof(window.STOCK_Skin));
+        // replace css by uid
+        let css_links = document.querySelectorAll(`[data-css="data-css-uid"]`);
+        for (let i = 0; i < css_links.length; i++) {
+            // let key = css_links[i].dataset.filename;
+            let key = i;// fixed order
+            let href = ``;
+            switch (key) {
+                case 0:
+                    href = `./css/black-skin/sidebar.black.css`;
+                    break;
+                case 1:
+                    href = `./css/black-skin/common/module.black.css`;
+                    break;
+                case 2:
+                    href = `./css/black-skin/common/modal.black.css`;
+                    break;
+                default:
+                    break;
             }
-        }else{
-            // use default
-        }
-    }else{
-        // black-skin => white-skin
-        if (window.STOCK_Skin === "white" && css_links[0].href.includes(`black-skin`)){
-            for (let i = 0; i < css_links.length; i++) {
-                let href= `./css/${css_skins[1]}/${css_arr[i]}`;
-                css_links[i].setAttribute(`href`, href);
-            }
-        }else{
-            // use default
+            css_links[i].setAttribute(`href`, href);
+            // <link rel="stylesheet" href="./Modules/important-infos.css" data-delete-link-css="delete-link-css-stockfast01">
+            // ./css/black-skin/modules/agency-rating.black.css
         }
     }
+    // window.STOCK_IP = window.parent.location.origin.includes("http") ? `${window.parent.location.protocol}//${window.parent.location.host}` : `http://10.1.5.202`;
+    window.STOCK_IP = window.parent.location.origin.includes("http") ? window.parent.location.origin : `http://10.1.5.202`;
+    window.STOCK_Paths = `/webservice/fastview/stock`;
 });
-
+// init ???
 window.onload = () => {
-    // console.log("3, window has been loaded!");
+    // alert(`loaded!`);
+    // STOCK_SecCode = STOCK_F9_FV.Utils.getParam(`secucode`);
+    // STOCK_IP = `http://${window.parent.location.host}`;
+    // STOCK_Paths = `/webservice/fastview/stock`;
+    // console.log(`STOCK_SecCode `, STOCK_SecCode, typeof STOCK_SecCode);
+    // window.STOCK_SecCode = STOCK_F9_FV.Utils.getParam(`gilcode`);
+    // window.STOCK_IP = `${window.parent.location.origin}`;
+    // window.STOCK_SecCode = STOCK_F9_FV.Utils.getParam(`gilcode`);
+    // window.STOCK_Skin = STOCK_F9_FV.Utils.getParam(`skin`);
+    // window.STOCK_IP = window.parent.location.origin.includes("http") ? `${window.parent.location.protocol}//${window.parent.location.host}` : `http://10.1.5.202`;
+    // window.STOCK_Paths = `/webservice/fastview/stock`;
+
+    // ip: `http://10.1.5.202`,
+    // path: `/webservice/fastview/stock/stockfast07/`, // => `/webservice/fastview/stock`
+    // gilcode: `600570.SH`
+
+    // IP = window.parent.location.host;
+    // PATH = window.parent.location.pathname;
+    // console.log(`btn = ${container.classList.contains("h5-dnd-nav-container-normal")}`);
     // init
     let btn_universal = document.querySelector(`[data-uid="universal"]`),
         btn_customize = document.querySelector(`[data-uid="customize"]`);
+        // btn_module_setting = document.querySelector(`[data-uid="module-setting"]`);
     let a_modules = document.querySelector(`[data-uid="modules-a-link"]`);
     const sortable_module_containers = document.querySelectorAll(`[data-sortable-box*="sortable-box"]`);
     btn_universal.onclick = (e) => {
@@ -269,6 +329,20 @@ window.onload = () => {
         // <a href="#模块选择" data-uid="modules-a-link">模块选择</a>
         // H5 DnD modules
     }
+    /* event pop ???  */
+    // btn_module_setting.addEventListener(`click`, (e) => {
+    //     // data-title="模块设置"
+    //     const title = `Sorry for that, it still in developing!`;
+    //     // alert(`e.target.dataset.title = ${e.target.dataset.title} \n\n\n\n\n\n\n ${title} \n\n\n\n\n\n\n Coming soon ...`);
+    //     // alert(`😃😃😃Coming soon ... 😧😒😟`);
+    // });
+    // btn_module_setting.addEventListener(`click`, (e) => {
+    //     let debug = true;
+    //     if (debug) {
+    //         console.log(`e.target.dataset = ${e.target.dataset}`);
+    //         console.log(`e.target.dataset.title = ${e.target.dataset.title}`);
+    //     }
+    // });
     btn.onclick();
     btn_universal.onclick();
 };
@@ -282,9 +356,47 @@ window.onload = () => {
  * @param {* Array} uids
  * @param {* Boolean} debug
  */
+// document.querySelectorAll(`[data-sortable-box*="sortable-box"]`);
+
+/*
+
+const sortable_containers = document.querySelectorAll(`[data-sortable-box*="sortable-box"]`);
+if (!debug) {
+    console.log(`sortable_containers =\n`, sortable_containers);
+    // left
+    console.log(`sortable_containers =\n`, sortable_containers[0]);
+    // right
+    console.log(`sortable_containers =\n`, sortable_containers[1]);
+}
+
+*/
+
 
 STOCK_F9_FV.Modules.loadAllModules = STOCK_F9_FV.Modules.loadAllModules || (
     (sortable_container = `sortable_container`,debug = false) => {
+        // const module_container = document.querySelector(`[data-body-container="data-body-container"]`);
+        // const sortable_module_container = document.querySelector(`[data-div-inner-box="data-div-inner-box"]`);
+        // const sortable_module_containers = document.querySelectorAll(`[data-sortable-box*="sortable-box"]`);
+        // if (debug) {
+        //     console.log(`sortable_module_containers =\n`, sortable_module_containers);
+        //     // left
+        //     console.log(`sortable_module_containers =\n`, sortable_module_containers[0]);
+        //     // right
+        //     console.log(`sortable_module_containers =\n`, sortable_module_containers[1]);
+        // }
+        // const sortable_module_container= document.querySelector(dom_container_uid);
+        if (typeof sortable_container === "string") {
+            // const sortable_module_container = document.querySelector(dom_container_uid);
+        }
+        // const sortable_module_container = dom_container_uid;
+        if (typeof sortable_container === "object") {
+            // const sortable_module_container = sortable_container;
+        }
+        // document.querySelectorAll(`[data-sortable-box*="sortable-box"]`);
+        // data-sortable-box="left-sortable-box" & data-sortable-box="right-sortable-box"\
+        // ??? sortable_module_containers => sortable_module_container
+        // init & empty
+        // sortable_module_container.innerHTML = "";
         /**
          *
          * @param {* DOM} container
@@ -402,13 +514,8 @@ STOCK_F9_FV.Modules.loadAllModules = STOCK_F9_FV.Modules.loadAllModules || (
                                     script_dom = document.createElement(`script`);
                                 link_css.setAttribute(`rel`, `stylesheet`);
                                 // link_css.setAttribute(`href`, `./build/css/${module_uid_name}.min.css`);
-                                let css_module_skin = `white-skin`;
-                                if (window.STOCK_Skin === "black") {
-                                    css_module_skin = "black-skin";
-                                }else{
-                                    // do nothing
-                                }
-                                link_css.setAttribute(`href`, `./css/${css_module_skin}/modules/${module_uid_name}.css`);
+
+                                link_css.setAttribute(`href`, `./Modules/${module_uid_name}.css`);
                                 link_css.dataset.deleteLinkCss = `delete-link-css-${uid}`;
                                 script_dom.dataset.deleteScriptDom = `delete-script-dom-${uid}`;
                                 // script_dom.setAttribute(`src`, `./Modules/${module_uid_name}.js`);
@@ -1015,6 +1122,9 @@ STOCK_F9_FV.Modules.loadAllModules = STOCK_F9_FV.Modules.loadAllModules || (
                 }
             );
         };
+        // setTimeout(() => {
+        //     dropAll(uids);
+        // }, 0);
         return {
             init: (container_uid = ``, uids = [], debug = false) => {
                 if (debug) {
@@ -1022,13 +1132,16 @@ STOCK_F9_FV.Modules.loadAllModules = STOCK_F9_FV.Modules.loadAllModules || (
                     console.log(`init container_uid = `, container_uid);
                 }
                 dropAll(container_uid, uids);
-            }
+            },
+            // dropAll: dropAll(uids)
         };
     }
 )();
 
-// cookies & localStorage & sessionStorage ??? API
 // const uids = ["stockfast01","stockfast02","stockfast03","stockfast04","stockfast05","stockfast06","stockfast07","stockfast08","stockfast09","stockfast10","stockfast11","stockfast12","stockfast13","news","bulletion","research"];
+// STOCK_F9_FV.Modules.loadAllModules.init(uids);
+
+// console.log(`typeof STOCK_F9_FV.Modules.loadAllModules =\n`, typeof(STOCK_F9_FV.Modules.loadAllModules));
 
 
 /**
@@ -1042,7 +1155,8 @@ STOCK_F9_FV.Modules.loadAllModules = STOCK_F9_FV.Modules.loadAllModules || (
 
 // IIFE === Closure!
 STOCK_F9_FV.Modules.modulesLoader = STOCK_F9_FV.Modules.modulesLoader ||(
-    (debug = false) => {
+    () => {
+        const debug = false;
         // const this_name = STOCK_F9_FV.Modules.modulesLoader;
         const consoles = {
             css: `
@@ -1079,8 +1193,15 @@ STOCK_F9_FV.Modules.modulesLoader = STOCK_F9_FV.Modules.modulesLoader ||(
             font-size: 23px;
         `;
         let module_datas = document.querySelectorAll(`[data-icon-uid*="module-data"]`);
+        // let module_container = document.querySelector(`[data-body-container="data-body-container"]`);
         let module_container = document.querySelector(`[data-div-inner-box="data-div-inner-box"]`);
         let module_containers = document.querySelectorAll(`[data-sortable-box*="sortable-box"]`);
+        // [data-div-inner-box="data-div-inner-box"]
+        // let droppedUid_datas = document.querySelectorAll(`[data-droppe-uid*="module-data"]`);
+        // ??? sortable.js
+        // let sortable_container = document.querySelector(`#section-sortable-container`);
+        // Sortable.create(sortable_container);
+        // return obj
         let drop_counter = 0;
         return {
             isExistCheck: function(uid=``){
@@ -1253,6 +1374,7 @@ STOCK_F9_FV.Modules.modulesLoader = STOCK_F9_FV.Modules.modulesLoader ||(
                 e.preventDefault();
             },
             dragenter: (e) => {
+                // console.log(`%c dragEnter = `, console_css1, e.target.id);
                 e.preventDefault();
                 return true;
             },
@@ -1261,17 +1383,31 @@ STOCK_F9_FV.Modules.modulesLoader = STOCK_F9_FV.Modules.modulesLoader ||(
                     console.log(`%c dragOver = `, console_css1, e.target.id);
                     console.log(`e.target = `, e.target, e);
                 }
+                // e.target.style.backgroundColor = "#f0f";
                 if (drop_counter === 0) {
                     let info_div = document.createElement(`div`);
                     info_div.innerHTML = "请将模块拖拽到灰色区域内!";
                     info_div.setAttribute(`id`, `drop_info_div`);
+                    // module_container.insertAdjacentElement(`afterbegin`, info_div);
                     drop_counter++
                 }
+                // module_container.classList.add(`absolute-center-placeholder`);
+                // background
                 e.preventDefault();
                 return true;
             },
             dragleave: (e) => {
                 e.preventDefault();
+                // console.log(`%c dragLeave = `, console_css1, e.target.id);
+                // e.target.style.backgroundColor = "#fff";
+                // module_container.innerHTML = "";
+                // if (drop_counter === 1) {
+                //     let drop_info_div = document.querySelector(`#drop_info_div`);
+                //     // module_container.removeChild(`drop_info_div`);
+                //     module_container.removeChild(module_container.childNodes[0]);
+                //     drop_counter = 0;
+                // }
+                // module_container.classList.remove(`absolute-center-placeholder`);
                 return true;
             },
             drop: function(e) {
@@ -1283,11 +1419,17 @@ STOCK_F9_FV.Modules.modulesLoader = STOCK_F9_FV.Modules.modulesLoader ||(
                 }
                 // let drop_container = e.target;
                 let drop_container_uid = e.target.dataset.sortableBox;
+                // "right-sortable-box" / "left-sortable-box"
+                // module_container.innerHTML = ""; ??? leave bug ??? no drop
                 if (drop_counter === 1) {
                     let drop_info_div = document.querySelector(`#drop_info_div`);
+                    // module_container.removeChild(`drop_info_div`);
+                    // module_container.removeChild(module_container.childNodes[0]);
                     drop_counter = 0;
                 }
+                // module_container.classList.remove(`absolute-center-placeholder`);
                 let uid = e.dataTransfer.getData("text/plain");
+                // let data = e.dataTransfer.getData("xyz");
                 if (debug) {
                     console.log(`drop & uid = %c${uid}\n`, console_css1);
                     // ??? bug
@@ -1385,6 +1527,8 @@ STOCK_F9_FV.Modules.modulesLoader = STOCK_F9_FV.Modules.modulesLoader ||(
                 }
                 if (debug) {
                     console.log(`module_exist_checker =\n`, module_exist_checker, typeof module_exist_checker);
+                    // null object
+                    // <div data-div-module-uid="div-module-stockfast01" data-dropped-uid="module-data-stockfast01" class="fv-left-box">...</div>  object
                 }
                 //
                 /**
@@ -1403,7 +1547,7 @@ STOCK_F9_FV.Modules.modulesLoader = STOCK_F9_FV.Modules.modulesLoader ||(
                             console.log(`document.querySelector('.fv-${module_uid_name}-container')`);
                         }
                     }
-                    // setTimeout & IIFE & Closure
+                    // setTimeout & IIFE & Closure ???
                     setTimeout(function() {
                         ((module_uid_name, isTable) => {
                             let box = (isTable === true)
@@ -1417,13 +1561,7 @@ STOCK_F9_FV.Modules.modulesLoader = STOCK_F9_FV.Modules.modulesLoader ||(
                             }
                             link_css.setAttribute(`rel`, `stylesheet`);
                             // link_css.setAttribute(`href`, `./build/css/${module_uid_name}.min.css`);
-                            let css_module_skin = `white-skin`;
-                            if (window.STOCK_Skin === "black") {
-                                css_module_skin = "black-skin";
-                            }else{
-                                // do nothing
-                            }
-                            link_css.setAttribute(`href`, `./css/${css_module_skin}/modules/${module_uid_name}.css`);
+                            link_css.setAttribute(`href`, `./Modules/${module_uid_name}.css`);
                             link_css.dataset.deleteLinkCss = `delete-link-css-${uid}`;
                             script_dom.dataset.deleteScriptDom = `delete-script-dom-${uid}`;
                             // script_dom.setAttribute(`src`, `./Modules/${module_uid_name}.js`);
@@ -1435,7 +1573,9 @@ STOCK_F9_FV.Modules.modulesLoader = STOCK_F9_FV.Modules.modulesLoader ||(
                         })(module_uid_name, isTable);
                     }, 0);
                 };
+                // module_exist_checker = document.querySelector(`[data-div-module-uid="div-module-stockfast01"]`);
                 if (module_exist_checker === null) {
+                    // div.appendChild(sub_div);
                     let htmlstr = ``;
                     let delete_uid = ``;
                     switch (uid) {
@@ -2020,14 +2160,23 @@ STOCK_F9_FV.Modules.modulesLoader = STOCK_F9_FV.Modules.modulesLoader ||(
                             console.log(`Hold on, it's coming soon...`);
                         }
                     }
+                    // module_containers
+                    // module_containers[0]/module_containers[1]
+                    // insert script.js ??? execute timeline!
+                    // insert DOM
+                    // insert CSS
                     setTimeout(function() {
+                        // let delete_box = document.querySelector(`.fv-${delete_uid}-title-box`);
+                        // :: after ??? fv-important-infos-title
                         let delete_box = document.querySelector(`[data-title="fv-${delete_uid}-title"]`);
+                        // let delete_box = document.querySelector(`.fv-h5dnd-modules-title`);
                         if (debug) {
                             console.log(`delete_uid = `, delete_uid);
                             console.log(`delete_box = `, delete_box);
                         }
                         if (delete_box !== null) {
                             delete_box.appendChild(sub_div);
+                            // Uncaught TypeError: Cannot read property 'appendChild' of null
                         }
                     }, 0);
                 }else{
@@ -2068,8 +2217,8 @@ STOCK_F9_FV.Modules.modulesLoader = STOCK_F9_FV.Modules.modulesLoader ||(
                 if (debug) {
                     console.log(`module_datas = `, module_datas, Array.isArray(module_datas));// false
                 }
-                for (let i = 0; i < module_datas.length; i++) {
-                    module_datas[i].addEventListener(`dragstart`, STOCK_F9_FV.Modules.modulesLoader.dragstart);
+                for (let index = 0; index < module_datas.length; index++) {
+                    module_datas[index].addEventListener(`dragstart`, STOCK_F9_FV.Modules.modulesLoader.dragstart);
                 }
                 if (debug) {
                     console.log(`module_containers`, module_containers);
@@ -2080,6 +2229,9 @@ STOCK_F9_FV.Modules.modulesLoader = STOCK_F9_FV.Modules.modulesLoader ||(
                     module_containers[i].addEventListener(`dragleave`, STOCK_F9_FV.Modules.modulesLoader.dragleave);
                     // dragleave
                     module_containers[i].addEventListener(`drop`, STOCK_F9_FV.Modules.modulesLoader.drop);
+                    // module_container.addEventListener(`dragenter`, modulesLoader.dragenter);
+                    // module_container.addEventListener(`dragover`, modulesLoader.dragover);
+                    // module_container.addEventListener(`drop`, modulesLoader.drop);
                 }
             }
         };
@@ -2098,20 +2250,17 @@ setTimeout(function() {
  * application cache
  * webSQL (sqlite)
  * MongoDB
- * cookies
- * sessionStorage
- *
  */
 
 /*
 
-const saveToLocalStorage = () => {
-    // write
-};
+    const saveToLocalStorage = () => {
+        // write
+    };
 
-const readFromLocalStorage = () => {
-    // read
-};
+    const readFromLocalStorage = () => {
+        // read
+    };
 
 
 */
