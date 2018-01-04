@@ -339,7 +339,8 @@ STOCK_F9_FV.Modules.SPTurnover.SPTdrawHS = STOCK_F9_FV.Modules.SPTurnover.SPTdra
         let bg_skin = (window.STOCK_Skin === "black") ? `#0B1016` : `#ffffff`;
         let bd_skin = (window.STOCK_Skin === "black") ? `#666` : `#ccc`;
         let item_skin = (window.STOCK_Skin === "black") ? `#fff` : `#000`;
-        let hover_skin = (window.STOCK_Skin === "black") ? `#f79530` : `#fff`;
+        let hover_skin = (window.STOCK_Skin === "black") ? `#f79530` : `#f79530`;
+        let input_skin = (window.STOCK_Skin === "black") ? `#fff` : `#f79530`;
         Highcharts.setOptions({
             lang: {
                 rangeSelectorZoom: '缩放',// 放大
@@ -767,4 +768,11 @@ STOCK_F9_FV.Modules.SPTurnover.init({
 
 
 
+
+let inputs = document.querySelectorAll(`input.highcharts-range-selector`);
+for (let i = 0; i < inputs.length; i++) {
+    inputs[i].setAttribute(`data-hs-background`, "no-hs-bg");
+    // [data-hs-background="no-hs-bg"]{width: 1px !important; height: 1px !important; border: 0px !important;}
+    // [data-hs-background="no-hs-bg"]{background: #0b1016;}
+}
 

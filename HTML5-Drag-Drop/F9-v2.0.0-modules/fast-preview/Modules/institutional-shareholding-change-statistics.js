@@ -145,7 +145,7 @@ STOCK_F9_FV.Modules.ISCstatistics.ISCSdrawHS = STOCK_F9_FV.Modules.ISCstatistics
         let bg_skin = (window.STOCK_Skin === "black") ? `#0B1016` : `#ffffff`;
         let bd_skin = (window.STOCK_Skin === "black") ? `#666` : `#ccc`;
         let item_skin = (window.STOCK_Skin === "black") ? `#fff` : `#000`;
-        let hover_skin = (window.STOCK_Skin === "black") ? `#f79530` : `#fff`;
+        let hover_skin = (window.STOCK_Skin === "black") ? `#f79530` : `#f79530`;
         Highcharts.setOptions({
             lang: {
                 // noData: '暂无数据',

@@ -104,11 +104,11 @@ span[data-title-span="small-span"]:nth-of-type(n) {
     margin-right: 0px;
     margin-top: 0;
     width: 50px;
-    /* background: #f79530; */
+    background: #000000;
 }
 
 span.small-span-red {
-    color: #ff2323;
+    color: #0b1016;
 }
 
 span.small-span-green {

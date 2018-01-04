@@ -153,7 +153,7 @@ STOCK_F9_FV.Modules.FMBDtrend.FMBDTdrawHS = STOCK_F9_FV.Modules.FMBDtrend.FMBDTd
         let bg_skin = (window.STOCK_Skin === "black") ? `#0B1016` : `#ffffff`;
         let bd_skin = (window.STOCK_Skin === "black") ? `#666` : `#ccc`;
         let item_skin = (window.STOCK_Skin === "black") ? `#fff` : `#000`;
-        let hover_skin = (window.STOCK_Skin === "black") ? `#f79530` : `#666`;
+        let hover_skin = (window.STOCK_Skin === "black") ? `#f79530` : `#f79530`;
         // no data
         Highcharts.setOptions({
             lang: {
