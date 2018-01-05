@@ -33,92 +33,108 @@ OTC_F9_FV.Modules.companyPerformanceScale = OTC_F9_FV.Modules.companyPerformance
                     // console.log(`hsc_dom = \n`, hsc_dom);
                 }
                 try {
-                    if (typeof(datas) === "object" && Object.keys(datas).length > 0) {
-                        if (datas.data !== undefined && typeof(datas.data) === "object") {
-                            if (Array.isArray(datas.datas) && datas.datas.length > 0) {
-                                // backend & sort time
-                                let arr = datas.datas,
-                                    keys = Object.keys(arr[0]);
-                                const arr_obj = {};
-                                // array bug & one data also need aray!
-                                arr_obj["industry_total_value"] = [parseFloat(datas.hyzsz)];
-                                arr_obj["industry_circulation_value"] = [parseFloat(datas.hyltsz)];
-                                keys.forEach(
-                                    (key, index) => {
-                                        let new_key = ``;
-                                        switch (key) {
-                                            case "zqdm":
-                                                new_key = `code`;
-                                                break;
-                                            case "zsz":
-                                                new_key = `total_value`;
-                                                break;
-                                            case "ltsz":
-                                                new_key = `circulation_value`;
-                                                break;
-                                            case "pm":
-                                                new_key = `ranks`;
-                                                break;
-                                            default:
-                                                new_key = `暂无数据`;// null
-                                                break;
+                    // array ??? object
+                    if (typeof(datas) === "object") {
+                        if(Object.keys(datas).length > 0){
+                            if (datas.data !== undefined && typeof(datas.data) === "object") {
+                                if (Array.isArray(datas.datas) && datas.datas.length > 0) {
+                                    // backend & sort time
+                                    let arr = datas.datas,
+                                        keys = Object.keys(arr[0]);
+                                    const arr_obj = {};
+                                    // array bug & one data also need aray!
+                                    arr_obj["industry_total_value"] = [parseFloat(datas.hyzsz)];
+                                    arr_obj["industry_circulation_value"] = [parseFloat(datas.hyltsz)];
+                                    keys.forEach(
+                                        (key, index) => {
+                                            let new_key = ``;
+                                            switch (key) {
+                                                case "zqdm":
+                                                    new_key = `code`;
+                                                    break;
+                                                case "zsz":
+                                                    new_key = `total_value`;
+                                                    break;
+                                                case "ltsz":
+                                                    new_key = `circulation_value`;
+                                                    break;
+                                                case "pm":
+                                                    new_key = `ranks`;
+                                                    break;
+                                                default:
+                                                    new_key = `暂无数据`;// null
+                                                    break;
+                                            }
+                                            arr_obj[new_key] = [];
                                         }
-                                        arr_obj[new_key] = [];
+                                    );
+                                    if (debug) {
+                                        console.log(`arr_obj = `, JSON.stringify(arr_obj, null, 4));
                                     }
-                                );
-                                if (debug) {
-                                    console.log(`arr_obj = `, JSON.stringify(arr_obj, null, 4));
-                                }
-                                arr.map(
-                                    (obj, i) => {
-                                        let code = ``,
-                                            total_value = ``,
-                                            ranks = ``,
-                                            circulation_value = ``;
-                                        code = (obj.zqdm !== undefined) ? obj.zqdm : null;
-                                        total_value = (obj.zsz !== undefined) ? parseFloat(obj.zsz) : null;
-                                        circulation_value = (obj.ltsz !== undefined) ? parseFloat(obj.ltsz) : null;
-                                        ranks = (obj.pm !== undefined) ? parseFloat(obj.pm) : null;
-                                        // array
-                                        arr_obj.code.push(code);
-                                        arr_obj.total_value.push(total_value);
-                                        arr_obj.circulation_value.push(circulation_value);
-                                        arr_obj.ranks.push(ranks);
+                                    arr.map(
+                                        (obj, i) => {
+                                            let code = ``,
+                                                total_value = ``,
+                                                ranks = ``,
+                                                circulation_value = ``;
+                                            code = (obj.zqdm !== undefined) ? obj.zqdm : null;
+                                            total_value = (obj.zsz !== undefined) ? parseFloat(obj.zsz) : null;
+                                            circulation_value = (obj.ltsz !== undefined) ? parseFloat(obj.ltsz) : null;
+                                            ranks = (obj.pm !== undefined) ? parseFloat(obj.pm) : null;
+                                            // array
+                                            arr_obj.code.push(code);
+                                            arr_obj.total_value.push(total_value);
+                                            arr_obj.circulation_value.push(circulation_value);
+                                            arr_obj.ranks.push(ranks);
+                                        }
+                                    );
+                                    if (debug) {
+                                        console.log(`arr_obj = `, JSON.stringify(arr_obj, null, 4));
                                     }
-                                );
-                                if (debug) {
-                                    console.log(`arr_obj = `, JSON.stringify(arr_obj, null, 4));
+                                    OTC_F9_FV.Modules.companyPerformanceScale.drawHS(arr_obj, hsc_uid);
+                                }else{
+                                    // `暂无数据` & no data!
+                                    console.log(`json is empty! = \n`, json);
+                                    const arr_obj = {};
+                                    arr_obj.industry_total_value = [];
+                                    arr_obj.industry_circulation_value = [];
+                                    arr_obj.code = [];
+                                    arr_obj.change_rate = [];
+                                    OTC_F9_FV.Modules.companyPerformanceScale.drawHS(arr_obj, hsc_uid);
                                 }
-                                OTC_F9_FV.Modules.companyPerformanceScale.drawHS(arr_obj, hsc_uid);
-                            }else{
-                                // `暂无数据` & no data!
-                                console.log(`json is empty! = \n`, json);
-                                const arr_obj = {};
-                                arr_obj.industry_total_value = [];
-                                arr_obj.industry_circulation_value = [];
-                                arr_obj.code = [];
-                                arr_obj.change_rate = [];
-                                OTC_F9_FV.Modules.companyPerformanceScale.drawHS(arr_obj, hsc_uid);
                             }
-                        }
-                        let html = ``;
-                        if (datas.data !== undefined && typeof(datas.data) === "object") {
-                            html = `
-                                <p data-p="company-performance-scale-p">
-                                    <span data-span="company-performance-scale-span">${datas.data.zqdm}</span>总市值为
-                                    <span data-span="company-performance-scale-span">${datas.data.zsz}</span> 万元，高于行业均值，行业排名第
-                                    <span data-span="company-performance-scale-span">${datas.data.pm}</span>。
-                                </p>
-                            `;
+                            let html = ``;
+                            if (datas.data !== undefined && typeof(datas.data) === "object") {
+                                html = `
+                                    <p data-p="company-performance-scale-p">
+                                        <span data-span="company-performance-scale-span">${datas.data.zqdm}</span>总市值为
+                                        <span data-span="company-performance-scale-span">${datas.data.zsz}</span> 万元，高于行业均值，行业排名第
+                                        <span data-span="company-performance-scale-span">${datas.data.pm}</span>。
+                                    </p>
+                                `;
+                            }else{
+                                // no data
+                                html = `
+                                    <p data-none="no-data-p">
+                                        <span data-none="no-data-span"></span>
+                                    </p>
+                                `;
+                            }
+                            hst_dom.insertAdjacentHTML(`beforeend`, html);
                         }else{
                             // no data
-                            html = `
+                            let html = `
                                 <p data-none="no-data-p">
                                     <span data-none="no-data-span"></span>
                                 </p>
                             `;
+                            hst_dom.insertAdjacentHTML(`beforeend`, html);
+                            // `暂无数据` & no data!
+                            let hc_dom = document.querySelector(`#${hsc_uid}`);
+                            hc_dom.setAttribute(`no-data-hs-container`, `no-data-company-performance-scale-container-uid`);
+                            // let hc_dom = document.querySelector(`#company_performance_scale_hs_container`);
+                            // hc_dom.style.display = "none !important;";
                         }
-                        hst_dom.insertAdjacentHTML(`beforeend`, html);
                     }else{
                         let message = `handle json error!`,
                             fileName = `company-performance-scale.js`,
@@ -493,6 +509,7 @@ OTC_F9_FV.Modules.companyPerformanceScale.init = OTC_F9_FV.Modules.companyPerfor
 
 var OTC_IP = window.OTC_IP || `http://10.1.5.202`,
     OTC_PATH = window.OTC_PATH || `/webservice/fastview/otcper`,
+    // OTC_GILCODE = window.OTC_GILCODE || `430007.OC`;// no data
     OTC_GILCODE = window.OTC_GILCODE || `430002.OC`;
 
 

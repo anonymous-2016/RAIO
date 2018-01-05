@@ -20,6 +20,13 @@ p {
     margin-top: 10px;
 }
 
+[no-data-hs-container="no-data-company-performance-market-container-uid"] {
+    display: none;
+    border: 0;
+    height: 0;
+    margin-top: 0;
+}
+
 [data-hs-title="data-company-performance-market-title-uid"] {
     box-sizing: border-box;
     border: 1px solid #e4e6ea;
@@ -44,7 +51,7 @@ section.otc-module-box-5 {
     /* margin-top: 6px;
     margin-bottom: 6px; */
     width: 530px;
-    min-height: 127px;
+    /* min-height: 127px; */
 }
 
 table.otc-company-performance-market-table {
@@ -52,7 +59,7 @@ table.otc-company-performance-market-table {
     width: 530px;
     max-width: 530px;
     min-width: 530px;
-    height: 127px;
+    /* height: 127px; */
     background: #fff;
     border-collapse: collapse;
     border-spacing: 0;

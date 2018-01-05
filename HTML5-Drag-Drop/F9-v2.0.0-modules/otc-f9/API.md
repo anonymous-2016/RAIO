@@ -585,6 +585,7 @@ try {
     },
     "otcperfast05": {
         name: "公司表现-市场表现",
+        "secuName": "中 科 软",
         "zdfpm": "排名",
         "zdfbj": "强于",
         "zdf": {// "涨跌幅"
@@ -600,7 +601,12 @@ try {
                     "secuCode": "证券代码",
                     "hsl": "换手率"
                 },
-            ]
+                // 5/6
+            ],
+            "secuName": "中 科 软",
+            "hslpm": "460",
+            "hsl": "0.05",
+            // secuName 近一个月平均换手率为 hsl，"scrjhsl" ? "hsl" 低于 市场平均值，市场排名 "hslpm"
         }
     },
     "otcperfast06": {

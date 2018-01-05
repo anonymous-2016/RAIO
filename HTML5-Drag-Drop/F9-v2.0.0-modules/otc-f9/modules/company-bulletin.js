@@ -62,9 +62,9 @@ OTC_F9_FV.Modules.companyBulletin = OTC_F9_FV.Modules.companyBulletin || (
                                         <tr class="otc-company-bulletin-table-tr">
                                             <td class="otc-company-bulletin-table-td-value" data-value="data-otc-CB">${html}</td>
                                             <td class="otc-company-bulletin-table-td-value" data-value="data-otc-CB">${time}</td>
-                                            <td class="otc-company-bulletin-table-td-value" data-value="data-otc-CB">${type}</td>
                                         </tr>
                                     `;
+                                    // <td class="otc-company-bulletin-table-td-value" data-value="data-otc-CB">${type}</td>
                                 }else{
                                     // only show 5 items
                                 }

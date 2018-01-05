@@ -54,9 +54,9 @@ OTC_F9_FV.Modules.companyNews = OTC_F9_FV.Modules.companyNews || (
                                         <tr class="otc-company-news-table-tr">
                                             <td class="otc-company-news-table-td-key" data-key="data-otc-CN">${html}</td>
                                             <td class="otc-company-news-table-td-value" data-value="data-otc-CN">${time}</td>
-                                            <td class="otc-company-news-table-td-value" data-value="data-otc-CN">${type}</td>
                                         </tr>
                                     `;
+                                    // <td class="otc-company-news-table-td-value" data-value="data-otc-CN">${type}</td>
                                 }else{
                                     // only show 5 items
                                 }

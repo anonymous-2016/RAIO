@@ -56,10 +56,10 @@ OTC_F9_FV.Modules.researchReport = OTC_F9_FV.Modules.researchReport || (
                                         <tr class="otc-research-report-table-tr">
                                             <td class="otc-research-report-table-td-value" data-value="data-otc-RR">${html}</td>
                                             <td class="otc-research-report-table-td-value" data-value="data-otc-RR">${time}</td>
-                                            <td class="otc-research-report-table-td-value" data-value="data-otc-RR">${type}</td>
                                             <td class="otc-research-report-table-td-value" data-value="data-otc-RR">${source}</td>
                                         </tr>
                                     `;
+                                    // <td class="otc-research-report-table-td-value" data-value="data-otc-RR">${type}</td>
                                 }else{
                                     // only show 5 items
                                 }

@@ -28,108 +28,120 @@ OTC_F9_FV.Modules.companyPerformanceAchievement = OTC_F9_FV.Modules.companyPerfo
             (json) => {
                 datas = json;
                 let hst_doms = document.querySelectorAll(hst_uids);
-                if (debug) {
-                    console.log(`data = \n`, json);
-                    console.log(`hst_doms = \n`, hst_doms);
-                    // console.log(`hsc_dom = \n`, hsc_dom);
-                }
                 try {
-                    if (typeof(datas) === "object" && Object.keys(datas).length > 0) {
-                        if (datas.top5 !== undefined && Array.isArray(datas.top5)) {
-                            // console.log(`datas.top5`, datas.top5);
-                            if (datas.top5.length > 0) {
-                                // backend & sort time
-                                let arr = datas.top5,
-                                    keys = Object.keys(arr[0]);
-                                // ["zqdm", "mgsy", "pm", "ttm"]
-                                const arr_obj = {};
-                                if (datas.mgsypj !== undefined && datas.sylpj !== undefined) {
-                                    arr_obj.share_earnings_average = [parseFloat(datas.mgsypj)];
-                                    arr_obj.ttm_average = [parseFloat(datas.sylpj)];
-                                }
-                                keys.forEach(
-                                    (key, index) => {
-                                        let new_key = ``;
-                                        switch (key) {
-                                            case "zqdm":
-                                                new_key = `code`;
-                                                break;
-                                            case "mgsy":
-                                                new_key = `share_earnings`;
-                                                break;
-                                            case "pm":
-                                                new_key = `ranks`;
-                                                break;
-                                            case "ttm":
-                                                new_key = `ttm`;
-                                                break;
-                                            default:
-                                                new_key = `暂无数据`;// null
-                                                break;
+                    if (typeof(datas) === "object") {
+                        // all no data
+                        if (Object.keys(datas).length > 0) {
+                            if (datas.top5 !== undefined && Array.isArray(datas.top5)) {
+                                // console.log(`datas.top5`, datas.top5);
+                                if (datas.top5.length > 0) {
+                                    // backend & sort time
+                                    let arr = datas.top5,
+                                        keys = Object.keys(arr[0]);
+                                    // ["zqdm", "mgsy", "pm", "ttm"]
+                                    const arr_obj = {};
+                                    if (datas.mgsypj !== undefined && datas.sylpj !== undefined) {
+                                        arr_obj.share_earnings_average = [parseFloat(datas.mgsypj)];
+                                        arr_obj.ttm_average = [parseFloat(datas.sylpj)];
+                                    }
+                                    keys.forEach(
+                                        (key, index) => {
+                                            let new_key = ``;
+                                            switch (key) {
+                                                case "zqdm":
+                                                    new_key = `code`;
+                                                    break;
+                                                case "mgsy":
+                                                    new_key = `share_earnings`;
+                                                    break;
+                                                case "pm":
+                                                    new_key = `ranks`;
+                                                    break;
+                                                case "ttm":
+                                                    new_key = `ttm`;
+                                                    break;
+                                                default:
+                                                    new_key = `暂无数据`;// null
+                                                    break;
+                                            }
+                                            arr_obj[new_key] = [];
                                         }
-                                        arr_obj[new_key] = [];
+                                    );
+                                    if (debug) {
+                                        console.log(`arr_obj = `, JSON.stringify(arr_obj, null, 4));
                                     }
-                                );
-                                if (debug) {
-                                    console.log(`arr_obj = `, JSON.stringify(arr_obj, null, 4));
-                                }
-                                arr.map(
-                                    (obj, i) => {
-                                        let code = ``,
-                                            share_earnings = ``,
-                                            ranks = ``,
-                                            ttm = ``;
-                                        code = (obj.zqdm !== undefined) ? obj.zqdm : null;
-                                        share_earnings = (obj.mgsy !== undefined) ? parseFloat(obj.mgsy) : null;
-                                        // ranks = (obj.pm !== undefined) ? parseFloat(obj.pm) : null;
-                                        ttm = (obj.ttm !== undefined) ? parseFloat(obj.ttm) : null;
-                                        arr_obj.code.push(code);
-                                        arr_obj.share_earnings.push(share_earnings);
-                                        arr_obj.ttm.push(ttm);
-                                        // arr_obj.ranks.push(ranks);
+                                    arr.map(
+                                        (obj, i) => {
+                                            let code = ``,
+                                                share_earnings = ``,
+                                                ranks = ``,
+                                                ttm = ``;
+                                            code = (obj.zqdm !== undefined) ? obj.zqdm : null;
+                                            share_earnings = (obj.mgsy !== undefined) ? parseFloat(obj.mgsy) : null;
+                                            // ranks = (obj.pm !== undefined) ? parseFloat(obj.pm) : null;
+                                            ttm = (obj.ttm !== undefined) ? parseFloat(obj.ttm) : null;
+                                            arr_obj.code.push(code);
+                                            arr_obj.share_earnings.push(share_earnings);
+                                            arr_obj.ttm.push(ttm);
+                                            // arr_obj.ranks.push(ranks);
+                                        }
+                                    );
+                                    if (debug) {
+                                        console.log(`arr_obj = `, JSON.stringify(arr_obj, null, 4));
                                     }
-                                );
-                                if (debug) {
-                                    console.log(`arr_obj = `, JSON.stringify(arr_obj, null, 4));
+                                    OTC_F9_FV.Modules.companyPerformanceAchievement.drawHS(arr_obj, hsc_uid);
+                                    OTC_F9_FV.Modules.companyPerformanceAchievement.drawHS2(arr_obj, hsc_uid2);
+                                }else{
+                                    // `暂无数据` & no data!
+                                    // console.log(`json is empty! = \n`, json);
+                                    const arr_obj = {};
+                                    arr_obj.code = [];// shared xAxis
+                                    arr_obj.share_earnings = [];
+                                    arr_obj.ttm = [];
+                                    // arr_obj.ranks = [];
+                                    arr_obj.share_earnings_average = [];
+                                    arr_obj.ttm_average = [];
+                                    OTC_F9_FV.Modules.companyPerformanceAchievement.drawHS(arr_obj, hsc_uid);
+                                    OTC_F9_FV.Modules.companyPerformanceAchievement.drawHS2(arr_obj, hsc_uid2);
                                 }
-                                OTC_F9_FV.Modules.companyPerformanceAchievement.drawHS(arr_obj, hsc_uid);
-                                OTC_F9_FV.Modules.companyPerformanceAchievement.drawHS2(arr_obj, hsc_uid2);
-                            }else{
-                                // `暂无数据` & no data!
-                                // console.log(`json is empty! = \n`, json);
-                                const arr_obj = {};
-                                arr_obj.code = [];// shared xAxis
-                                arr_obj.share_earnings = [];
-                                arr_obj.ttm = [];
-                                // arr_obj.ranks = [];
-                                arr_obj.share_earnings_average = [];
-                                arr_obj.ttm_average = [];
-                                OTC_F9_FV.Modules.companyPerformanceAchievement.drawHS(arr_obj, hsc_uid);
-                                OTC_F9_FV.Modules.companyPerformanceAchievement.drawHS2(arr_obj, hsc_uid2);
                             }
-                        }
-                        // no data
-                        let html = ``;
-                        if (datas.stock !== undefined && typeof(datas.stock) === "object") {
-                            let text = (parseFloat(datas.stock.mgsy) - parseFloat(datas.mgsypj) > 0) ? "高于" : "低于";
-                            // 高于 ? 低于
-                            html = `
-                                <p data-p="company-performance-achievement-p">
-                                    <span data-span="company-performance-achievement-span">${datas.stock.zqdm}</span> 每股收益(TTM)为
-                                    <span data-span="company-performance-achievement-span">${datas.stock.mgsy}</span>,
-                                    <span data-span="company-performance-achievement-span">${text}</span>行业均值, 行业排名第
-                                    <span data-span="company-performance-achievement-span">${datas.stock.pm}</span> 位。
-                                </p>
-                            `;
-                        }else{
                             // no data
-                            html = `
+                            let html = ``;
+                            if (datas.stock !== undefined && typeof(datas.stock) === "object") {
+                                let text = (parseFloat(datas.stock.mgsy) - parseFloat(datas.mgsypj) > 0) ? "高于" : "低于";
+                                // 高于 ? 低于
+                                html = `
+                                    <p data-p="company-performance-achievement-p">
+                                        <span data-span="company-performance-achievement-span">${datas.stock.zqdm}</span> 每股收益(TTM)为
+                                        <span data-span="company-performance-achievement-span">${datas.stock.mgsy}</span>,
+                                        <span data-span="company-performance-achievement-span">${text}</span>行业均值, 行业排名第
+                                        <span data-span="company-performance-achievement-span">${datas.stock.pm}</span> 位。
+                                    </p>
+                                `;
+                            }else{
+                                // no data
+                                html = `
+                                    <p data-none="no-data-p">
+                                        <span data-none="no-data-span"></span>
+                                    </p>
+                                `;
+                            }
+                            hst_doms[0].insertAdjacentHTML(`beforeend`, html);
+                        } else {
+                            // no data ??? set module container & no data!
+                            let html = `
                                 <p data-none="no-data-p">
                                     <span data-none="no-data-span"></span>
                                 </p>
                             `;
+                            hst_doms[0].insertAdjacentHTML(`beforeend`, html);
+                            // `暂无数据` & no data!
+                            let hc_dom = document.querySelector(`#${hsc_uid}`),
+                                hc_dom2 = document.querySelector(`#${hsc_uid2}`);
+                            hc_dom.setAttribute(`no-data-hs-container`, `no-data-company-performance-achievement-container-uid`);
+                            hc_dom2.setAttribute(`no-data-hs-container`, `no-data-company-performance-achievement-container-uid`);
+                            // hsc_uid2
                         }
-                        hst_doms[0].insertAdjacentHTML(`beforeend`, html);
                     }else{
                         let message = `handle json error!`,
                             fileName = `company-performance-achievement.js`,

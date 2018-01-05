@@ -144,6 +144,10 @@ tr.otc-research-report-table-tr>td:nth-of-type(3) {
     /* border-bottom: 1px solid #c5d2db; */
 }
 
+tr.otc-research-report-table-tr>td:nth-last-of-type(1) {
+    border-right: 1px solid #c5d2db;
+}
+
 tr.otc-research-report-table-tr>td:nth-of-type(4) {
     border-right: 1px solid #d7dbe0;
 }

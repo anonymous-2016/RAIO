@@ -92,10 +92,6 @@ setTimeout(() => {
         "./build/js/company-performance-scale.min.js",
         "./build/js/company-performance-achievement.min.js",
         "./build/js/company-performance-valuation.min.js",
-        // "../build/js/company-performance-market.min.js",
-        // "../build/js/company-performance-scale.min.js",
-        // "../build/js/company-performance-achievement.min.js",
-        // "../build/js/company-performance-valuation.min.js",
     ];
     // console.log(`arr = \n`, arr);
     arr.map(

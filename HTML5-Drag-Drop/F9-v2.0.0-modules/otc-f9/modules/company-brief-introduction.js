@@ -34,6 +34,7 @@ OTC_F9_FV.Modules.companyBriefIntroduction = OTC_F9_FV.Modules.companyBriefIntro
                             text = ``;
                         // "gsjs": "公司介绍"
                         if (datas.gsmc !== null && datas.gsmc !== undefined) {
+                            datas.wz = `--`;
                             html = `
                                 <tr class="otc-company-brief-introduction-table-tr">
                                     <td class="otc-company-brief-introduction-table-td-key" data-alias="公司名称">公司名称</td>
@@ -110,7 +111,7 @@ OTC_F9_FV.Modules.companyBriefIntroduction = OTC_F9_FV.Modules.companyBriefIntro
                                 <tr class="otc-company-brief-introduction-table-tr">
                                     <td class="otc-company-brief-introduction-table-td-key" data-alias="网址">网址</td>
                                     <td class="otc-company-brief-introduction-table-td-value" data-value="data-otc-CBI">
-                                        <a href="${datas.wz}" target="_blank" data-link="website-link">${datas.wz}</a>
+                                        ${datas.wz !== "--" ? `<a href="${datas.wz}" target="_blank" data-link="website-link">${datas.wz}</a>` : "--"}
                                     </td>
                                 </tr>
                                 <tr class="otc-company-brief-introduction-table-tr">
