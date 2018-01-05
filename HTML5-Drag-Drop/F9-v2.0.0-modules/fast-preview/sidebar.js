@@ -37,7 +37,7 @@ STOCK_F9_FV.Utils.getParam = STOCK_F9_FV.Utils.getParam || ((key, debug = false)
 let lis = document.querySelectorAll(`[data-nav-li="nav-li"]`);
 let divs = document.querySelectorAll(`[data-nav-box="nav-box"]`);
 
-for (let i = 0; i < lis.length; i++) {
+for (let i = 0; i < lis.length - 1; i++) {
     lis[i].addEventListener(`click`, (e) => {
         if (debug) {
             let e_classes = e.target.classList;
@@ -87,8 +87,8 @@ for (let i = 0; i < lis.length; i++) {
         }else{
             divs[i].classList.add("h5-dnd-nav-box-active");
             divs[i].classList.remove("h5-dnd-nav-box-hidden");
-            // let arr = [0,1];
-            let arr = [0,1,2];
+            let arr = [0,1];
+            // let arr = [0,1,2];
             // arr remove i ??? arr.shift();
             arr.map(
                 (item, index) =>{
@@ -107,6 +107,8 @@ for (let i = 0; i < lis.length; i++) {
         };
     });
 }
+
+
 
 // btns
 let btn = document.querySelector(`[data-nav-btn="nav-btn"]`),
@@ -136,6 +138,9 @@ btn.onclick = () => {
         body_container.classList.add("h5-dnd-body-container-big");
     }
 };
+
+
+
 
 small_btn.onclick = () => {
     if (small_container.classList.contains("h5-dnd-nav-small-btn-hidden")) {
@@ -271,7 +276,12 @@ window.onload = () => {
     }
     btn.onclick();
     btn_universal.onclick();
+    let print_btn = document.querySelector(`[data-print="print-title"`);
+    print_btn.addEventListener(`click`, () => {
+        window.print();
+    });
 };
+
 
 
 

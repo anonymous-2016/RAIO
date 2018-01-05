@@ -809,3 +809,8 @@ div.h5-dnd-module-box:nth-of-type(1) {
 .fv-module-box-10>div:nth-of-type(1):hover {
     cursor: move;
 }
+
+[data-print="print-title"] {
+    color: #333;
+    font-weight: bold;
+}
