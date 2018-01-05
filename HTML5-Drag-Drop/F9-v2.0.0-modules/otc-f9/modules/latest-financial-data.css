@@ -111,6 +111,20 @@ tbody.otc-latest-financial-data-table-tbody>tr:nth-of-type(5) {
     border-bottom: 1px solid #d7dbe0;
 }
 
+
+/* tbody.otc-latest-financial-data-table-tbody>tr>td ??? parent tr */
+
+tbody.otc-latest-financial-data-table-tbody>tr:nth-of-type(2) {
+    border: 1px solid #fff;
+}
+
+[data-title="td-colspan"] {
+    border: 1px solid #fff;
+}
+
+
+/* data-titles="data-otc-LFD-title" */
+
 tr.otc-latest-financial-data-table-tr>td:nth-of-type(1) {
     border-left: 1px solid #d7dbe0;
     border-right: 1px solid #c5d2db;
@@ -195,7 +209,7 @@ tr.otc-latest-financial-data-table-tr>td:nth-of-type(4) {
 }
 
 [data-title="td-colspan"]>span:nth-of-type(n) {
-    padding-left: 5px;
+    /* padding-left: 5px; */
 }
 
 [ data-titles="data-otc-LFD-title"] {
@@ -214,6 +228,15 @@ tr.otc-latest-financial-data-table-tr>td:nth-of-type(4) {
     width: 100vw;
     height: 100px;
 } */
+
+[data-titles="data-otc-LFD-title"]>p {
+    box-sizing: border-box;
+    color: #616a87;
+    font-weight: bold;
+    padding-left: 4px;
+    width: 100%;
+    line-height: 23px;
+}
 
 
 /* xxx */

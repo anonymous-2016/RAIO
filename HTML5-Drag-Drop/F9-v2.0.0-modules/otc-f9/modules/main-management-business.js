@@ -173,6 +173,13 @@ OTC_F9_FV.Modules.mainManagementBusiness = OTC_F9_FV.Modules.mainManagementBusin
                                     }
                                     tbody_dom.insertAdjacentHTML(`beforeend`, trs);
                                 }else{
+                                    // no data
+                                    let html = `
+                                        <p data-none="no-data-p">
+                                            <span data-none="no-data-span"></span>
+                                        </p>
+                                    `;
+                                    tbody_dom.insertAdjacentHTML(`beforeend`, html);
                                     // `暂无数据` & no data!
                                     console.log(`json.datas is empty! = \n`, json, json.datas);
                                     let arr_obj = {};
@@ -186,6 +193,21 @@ OTC_F9_FV.Modules.mainManagementBusiness = OTC_F9_FV.Modules.mainManagementBusin
                             // HC & one container with diff datas
                         } else {
                             // no data
+                            let thead = document.querySelector(`.otc-main-management-business-table-thead`);
+                            let div = document.querySelector(`[data-titles="data-otc-MMB-title"]`);
+                            // thead.style.display = "none;";
+                            thead.setAttribute("no-thead", "hide-MMB-thead");
+                            div.setAttribute("no-data-titles", "data-otc-MMB-title");
+                            let html = `
+                                <tr>
+                                    <td colspan="4" data-title="td-colspan" data-titles="data-otc-MMB-title">
+                                        <p data-none="no-data-p">
+                                            <span data-none="no-data-span"></span>
+                                        </p>
+                                    </td>
+                                </tr>
+                            `;
+                            tbody_dom.insertAdjacentHTML(`beforeend`, html);
                         }
                     }else{
                         let message = `handle json error!`,
@@ -814,7 +836,8 @@ OTC_F9_FV.Modules.mainManagementBusiness.init = OTC_F9_FV.Modules.mainManagement
 
 var OTC_IP = window.OTC_IP || `http://10.1.5.202`,
     OTC_PATH = window.OTC_PATH || `/webservice/fastview/otcper`,
-    OTC_GILCODE = window.OTC_GILCODE || `430002.OC`;
+    OTC_GILCODE = window.OTC_GILCODE || `430000.OC`;
+    // OTC_GILCODE = window.OTC_GILCODE || `430002.OC`;
 
 
 OTC_F9_FV.Modules.mainManagementBusiness.init({
