@@ -30,6 +30,24 @@ OTC_F9_FV.Modules.companyPerformanceMarket = OTC_F9_FV.Modules.companyPerformanc
             (json) => {
                 datas = json;
                 let hst_doms = document.querySelectorAll(hst_uids);
+                console.log(`hst_doms`, hst_doms[0]);
+                console.log(`hst_doms`, hst_doms[1]);
+                // import utils
+                const emptyChecker = (key = ``) => {
+                    // arr.map() ???
+                    let result = true;
+                    switch (key) {
+                        case undefined:
+                            result = false;
+                            break;
+                        case null:
+                            result = false;
+                            break;
+                        default:
+                            break;
+                    }
+                    return result;
+                };
                 try {
                     if (typeof(datas) === "object") {
                         // no data
@@ -92,7 +110,25 @@ OTC_F9_FV.Modules.companyPerformanceMarket = OTC_F9_FV.Modules.companyPerformanc
                                     OTC_F9_FV.Modules.companyPerformanceMarket.drawHS(arr_obj, hsc_uid);
                                 }
                             }
-                            if (datas.hsl !== undefined && typeof(datas.hsl) === "object") {
+                            // typeof null & "object"
+                            const shitAPI = () => {
+                                // `暂无数据` & no data!
+                                console.log(`json is empty! = \n`, json);
+                                const arr_obj = {};
+                                arr_obj.industry_average = [];
+                                arr_obj.market_average = [];
+                                arr_obj.code = [];
+                                arr_obj.change_rate = [];
+                                OTC_F9_FV.Modules.companyPerformanceMarket.drawHS2(arr_obj, hsc_uid2);
+                            };
+                            // no data
+                            let html1 = ``, html2 = ``;
+                            html1 = html2 = `
+                                <p data-none="no-data-p">
+                                    <span data-none="no-data-span"></span>
+                                </p>
+                            `;
+                            if (datas.hsl !== undefined && datas.hsl !== null) {
                                 if (Array.isArray(datas.hsl.datas) && datas.hsl.datas.length > 0) {
                                     // backend & sort time
                                     let arr = datas.hsl.datas,
@@ -138,29 +174,29 @@ OTC_F9_FV.Modules.companyPerformanceMarket = OTC_F9_FV.Modules.companyPerformanc
                                     }
                                     OTC_F9_FV.Modules.companyPerformanceMarket.drawHS2(arr_obj, hsc_uid2);
                                 }else{
-                                    // `暂无数据` & no data!
-                                    console.log(`json is empty! = \n`, json);
-                                    const arr_obj = {};
-                                    arr_obj.industry_average = [];
-                                    arr_obj.market_average = [];
-                                    arr_obj.code = [];
-                                    arr_obj.change_rate = [];
-                                    OTC_F9_FV.Modules.companyPerformanceMarket.drawHS2(arr_obj, hsc_uid2);
+                                    shitAPI();
                                 }
+                                if (emptyChecker(datas.hsl.hsl) && emptyChecker(datas.hsl.secuName)&& emptyChecker(datas.hsl.hslpm)) {
+                                    let a = parseFloat(datas.hsl.hsl),
+                                        b = parseFloat(datas.hsl.scrjhsl);
+                                    let compare =  (a === b) ? `等于` : ((a > b) ? `高于` : `低于`);
+                                    // console.log(`a`, a, `b` , b, `a > b`, a > b);
+                                    // 等于 equals
+                                    html2 = `
+                                        <p data-p="company-performance-market-p">
+                                            <span data-span="company-performance-market-span">${datas.hsl.secuName}</span> 近一个月平均换手率为
+                                            <span data-span="company-performance-market-span">${datas.hsl.hsl}</span> %,
+                                            <span data-span="company-performance-market-span">${compare}</span>市场平均值, 市场排名
+                                            <span data-span="company-performance-market-span">${datas.hsl.hslpm}</span>.
+                                        </p>
+                                    `;
+                                } else {
+                                    // no data
+                                }
+                            }else{
+                                shitAPI();
                             }
-                            // no data
-                            // let html1 = ``, html2 = ``;
-                            // html1 = html2 = `
-                            //     <p data-none="no-data-p">
-                            //         <span data-none="no-data-span"></span>
-                            //     </p>
-                            // `;
-                            let html1 = html2 = `
-                                <p data-none="no-data-p">
-                                    <span data-none="no-data-span"></span>
-                                </p>
-                            `;
-                            if (datas.zdfpm !== undefined && datas.zdfbj !== undefined && datas.secuName !== undefined) {
+                            if (emptyChecker(datas.zdfpm) && emptyChecker(datas.zdfbj) && emptyChecker(datas.secuName)) {
                                 html1 = `
                                     <p data-p="company-performance-market-p">
                                         <span data-span="company-performance-market-span">${datas.secuName}</span>近一个年涨跌幅市场排名
@@ -169,22 +205,6 @@ OTC_F9_FV.Modules.companyPerformanceMarket = OTC_F9_FV.Modules.companyPerformanc
                                     </p>
                                 `;
                             }else{
-                                // no data
-                            }
-                            if (datas.hsl.hsl !== undefined && datas.hsl.secuName !== undefined && datas.hsl.hslpm !== undefined) {
-                                let a = parseFloat(datas.hsl.hslpm),
-                                    b = parseFloat(datas.hsl.scrjhsl);
-                                let compare =  (a === b) ? `等于` : ((a > b) ? `高于` : `低于`);
-                                // 等于 equals
-                                html2 = `
-                                    <p data-p="company-performance-market-p">
-                                        <span data-span="company-performance-market-span">${datas.hsl.secuName}</span> 近一个月平均换手率为
-                                        <span data-span="company-performance-market-span">${datas.hsl.hsl}</span> %,
-                                        <span data-span="company-performance-market-span">${compare}</span>市场平均值, 市场排名
-                                        <span data-span="company-performance-market-span">${datas.hsl.hslpm}</span>.
-                                    </p>
-                                `;
-                            } else {
                                 // no data
                             }
                             hst_doms[0].insertAdjacentHTML(`beforeend`, html1);
@@ -804,7 +824,8 @@ OTC_F9_FV.Modules.companyPerformanceMarket.init = OTC_F9_FV.Modules.companyPerfo
 
 var OTC_IP = window.OTC_IP || `http://10.1.5.202`,
     OTC_PATH = window.OTC_PATH || `/webservice/fastview/otcper`,
-    OTC_GILCODE = window.OTC_GILCODE || `430002.OC`;
+    OTC_GILCODE = window.OTC_GILCODE || `430007.OC`;// no data
+    // OTC_GILCODE = window.OTC_GILCODE || `430002.OC`;
 
 
 OTC_F9_FV.Modules.companyPerformanceMarket.init({

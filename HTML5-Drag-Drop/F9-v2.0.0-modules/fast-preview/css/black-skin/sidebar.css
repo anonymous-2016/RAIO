@@ -546,7 +546,7 @@ div.h5-dnd-icon-box:nth-of-type(0) {
 .h5-dnd-body-container {
     box-sizing: border-box;
     /* width: calc(100% - 238px); */
-    height: 100vh;
+    /* height: 100vh; */
     overflow-y: scroll;
     /* rollback */
     /* min-width: 400px; */
