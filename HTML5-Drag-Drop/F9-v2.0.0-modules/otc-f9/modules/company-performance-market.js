@@ -30,8 +30,8 @@ OTC_F9_FV.Modules.companyPerformanceMarket = OTC_F9_FV.Modules.companyPerformanc
             (json) => {
                 datas = json;
                 let hst_doms = document.querySelectorAll(hst_uids);
-                console.log(`hst_doms`, hst_doms[0]);
-                console.log(`hst_doms`, hst_doms[1]);
+                // console.log(`hst_doms`, hst_doms[0]);
+                // console.log(`hst_doms`, hst_doms[1]);
                 // import utils
                 const emptyChecker = (key = ``) => {
                     // arr.map() ???
@@ -314,13 +314,14 @@ OTC_F9_FV.Modules.companyPerformanceMarket.drawHS = OTC_F9_FV.Modules.companyPer
             },
             xAxis: {
                 categories: time,
-                min: max_time,
+                // min: max_time,
                 // min: 0,
                 // max: 8,
                 // xAxis datas
                 labels: {
-                    autoRotation: [0],// autoRotation:'false',
-                    step: 2
+                    // autoRotation: [0],// autoRotation:'false',
+                    // step: 100,
+                    // step: 2,
                 }
             },
             credits: {
@@ -489,10 +490,10 @@ OTC_F9_FV.Modules.companyPerformanceMarket.drawHS = OTC_F9_FV.Modules.companyPer
                     },
                 }
             ],
-            scrollbar: {
-                enabled: true,
-                minWidth: 23,
-            }
+            // scrollbar: {
+            //     enabled: true,
+            //     minWidth: 23,
+            // }
         });
     }
 );
@@ -824,8 +825,8 @@ OTC_F9_FV.Modules.companyPerformanceMarket.init = OTC_F9_FV.Modules.companyPerfo
 
 var OTC_IP = window.OTC_IP || `http://10.1.5.202`,
     OTC_PATH = window.OTC_PATH || `/webservice/fastview/otcper`,
-    OTC_GILCODE = window.OTC_GILCODE || `430007.OC`;// no data
-    // OTC_GILCODE = window.OTC_GILCODE || `430002.OC`;
+    // OTC_GILCODE = window.OTC_GILCODE || `430007.OC`;// no data
+    OTC_GILCODE = window.OTC_GILCODE || `430002.OC`;
 
 
 OTC_F9_FV.Modules.companyPerformanceMarket.init({

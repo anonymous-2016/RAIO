@@ -31,7 +31,7 @@ section.otc-module-box-5 {
     /* margin-top: 6px;
     margin-bottom: 6px; */
     width: 540px;
-    min-height: 127px;
+    /* min-height: 127px; */
 }
 
 table.otc-big-event-reminder-table {
@@ -39,7 +39,7 @@ table.otc-big-event-reminder-table {
     width: 540px;
     max-width: 540px;
     min-width: 540px;
-    height: 127px;
+    /* height: 127px; */
     background: #fff;
     border-collapse: collapse;
     border-spacing: 0;

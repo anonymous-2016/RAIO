@@ -36,125 +36,157 @@ OTC_F9_FV.Modules.mainManagementBusiness = OTC_F9_FV.Modules.mainManagementBusin
                     console.log(`data = \n`, json);
                 }
                 try {
-                    if (json !== undefined && typeof(json) === "object") {
-                        if (json.datas !== undefined && Array.isArray(json.datas)) {
-                            if (json.datas.length > 0) {
-                                // backend & sort time
-                                let arr = json.datas,
-                                    keys = Object.keys(arr[0]);
-                                let arr_obj = {},
-                                    arr_obj2 = {};
-                                // array bug & one data also need aray!
-                                keys.forEach(
-                                    (key, index) => {
-                                        let new_key = ``;
-                                        switch (key) {
-                                            case "xm":
-                                                new_key = `products`;
-                                                break;
-                                            case "yysr":
-                                                new_key = `income`;
-                                                break;
-                                            case "yycb":
-                                                new_key = `cost`;
-                                                break;
-                                            case "ml":
-                                                new_key = `gross_profit`;
-                                                break;
-                                            default:
-                                                // new_key = `暂无数据`;// null
-                                                break;
-                                        }
-                                        arr_obj[new_key] = [];
-                                    }
-                                );
-                                arr.map(
-                                    (obj, i) => {
-                                        let products = ``,
-                                            income = ``,
-                                            cost = ``,
-                                            gross_profit = ``;
-                                        products = (obj.xm !== undefined) ? obj.xm : null;
-                                        income = (obj.yysr !== undefined) ? (obj.yysr !== `--` ? parseFloat(obj.yysr) : null) : null;
-                                        cost = (obj.yycb !== undefined) ? (obj.yycb !== `--` ? parseFloat(obj.yycb) : null) : null;
-                                        gross_profit = (obj.ml !== undefined) ? (obj.ml !== `--` ? parseFloat(obj.ml) : null) : null;
-                                        // array
-                                        arr_obj.products.push(products);
-                                        arr_obj.income.push(income);
-                                        arr_obj.cost.push(cost);
-                                        arr_obj.gross_profit.push(gross_profit);
-                                    }
-                                );
-                                if (debug) {
-                                    console.log(`arr_obj = `, JSON.stringify(arr_obj, null, 4));
-                                }
-                                // Y & column === income cost gross_profit
-                                // 按项目 X === xm
-                                // Y & column === xm
-                                // 按产品 X === income cost gross_profit
-                                // OTC_F9_FV.Modules.mainManagementBusiness.drawHS(arr_obj, hsc_uid);
-                                OTC_F9_FV.Modules.mainManagementBusiness.drawHS(arr_obj, hsc_uids[0]);
-                                OTC_F9_FV.Modules.mainManagementBusiness.drawHS2(arr_obj, hsc_uids[1]);
-                                // table
-                                let trs = ``;
-                                for (let i = 0; i < arr.length; i++) {
-                                    trs += `
-                                        <tr class="otc-main-management-business-table-tr">
-                                            <td class="otc-main-management-business-table-td-value" data-value="data-otc-MMB">
-                                                ${arr[i].xm}
-                                            </td>
-                                            <td class="otc-main-management-business-table-td-value" data-value="data-otc-MMB">
-                                                ${arr[i].yysr}
-                                            </td>
-                                            <td class="otc-main-management-business-table-td-value" data-value="data-otc-MMB">
-                                                ${arr[i].yycb}
-                                            </td>
-                                            <td class="otc-main-management-business-table-td-value" data-value="data-otc-MMB">
-                                                ${arr[i].yysrzb}
-                                            </td>
-                                        </tr>
-                                    `;
-                                }
-                                tbody_dom.insertAdjacentHTML(`beforeend`, trs);
-                            }else{
-                                // `暂无数据` & no data!
-                                console.log(`json.datas is empty! = \n`, json, json.datas);
-                                let arr_obj = {};
-                                arr_obj.productst = [];
-                                arr_obj.incomet = [];
-                                arr_obj.costt = [];
-                                arr_obj.gross_profit = [];
-                                OTC_F9_FV.Modules.mainManagementBusiness.drawHS(arr_obj, hsc_uid);
+                    // emptyChcker();
+                    const emptyChecker = (key = ``) => {
+                        let result = true;
+                        switch (key) {
+                            case undefined:
+                                result = false;
+                                break;
+                            case null:
+                                result = false;
+                                break;
+                            default:
+                                break;
+                        }
+                        return result;
+                    };
+                    if (emptyChecker(json)) {
+                        // no data
+                        if (Object.keys(datas).length > 0) {
+                            let time = ``,
+                                p = ``,
+                                today = new Date().toLocaleString().substr(0, 10).replace(/\//ig, `-`);
+                            // "2017/12/24 下午2:15:55" => "2017-12-24"
+                            // "2018/1/5 下午5:26:23" => "2018-1-5 下"& bug ??? year month day
+                            if (emptyChecker(datas.bgq)) {
+                                time = `(截止 <span data-time="data-otc-MMB-time">${datas.bgq}</span>)`;
+                            } else {
+                                // time = `(截止 <span data-time="data-otc-MMB-time">${today}</span>)`;
+                                time = `--`;
                             }
-                        }
-                        let time = ``,
-                            p = ``,
-                            today = new Date().toLocaleString().substr(0, 10).replace(/\//ig, `-`);
-                        // "2017/12/24 下午2:15:55" => "2017-12-24"
-                        (json.time !== undefined)
-                        ?
-                        time = `<span data-time="data-otc-MMB-time">${json.time}</span>`
-                        :
-                        `<span data-time="data-otc-MMB-time">${today}</span>`;
-                        time_dom.insertAdjacentHTML(`beforeend`, time);
-                        if (json.zz !== undefined && json.zb !== undefined) {
-                            p = `
-                                <p data-p="data-otc-MMB-title">
-                                    本报告期公司主营业务同比增长
-                                    <span data-span="data-otc-MMB-title">${json.zz}</span>%, 占营业总收入
-                                    <span data-span="data-otc-MMB-title">${json.zb}</span>%。
-                                </p>
-                            `;
-                        }else{
+                            time_dom.insertAdjacentHTML(`beforeend`, time);
+                            if (emptyChecker(json.zz) && emptyChecker(json.zb)) {
+                                p = `
+                                    <p data-p="data-otc-MMB-title">
+                                        本报告期公司主营业务同比增长
+                                        <span data-span="data-otc-MMB-title">${json.zz}</span>%, 占营业总收入
+                                        <span data-span="data-otc-MMB-title">${json.zb}</span>%。
+                                    </p>
+                                `;
+                            }else{
+                                // no data
+                                p = `
+                                    <p data-none="no-data-p">
+                                        <span data-none="no-data-span"></span>
+                                    </p>
+                                `;
+                            }
+                            hst_dom.insertAdjacentHTML(`beforeend`, p);
+                            // HC
+                            if (json.datas !== undefined && Array.isArray(json.datas)) {
+                                if (json.datas.length > 0) {
+                                    // backend & sort time
+                                    let arr = json.datas,
+                                        keys = Object.keys(arr[0]);
+                                    let arr_obj = {},
+                                        arr_obj2 = {};
+                                    // array bug & one data also need aray!
+                                    keys.forEach(
+                                        (key, index) => {
+                                            let new_key = ``;
+                                            switch (key) {
+                                                case "xm":
+                                                    new_key = `products`;
+                                                    break;
+                                                case "yysr":
+                                                    new_key = `income`;
+                                                    break;
+                                                case "yycb":
+                                                    new_key = `cost`;
+                                                    break;
+                                                case "ml":
+                                                    new_key = `gross_profit`;
+                                                    break;
+                                                default:
+                                                    // new_key = `暂无数据`;// null
+                                                    break;
+                                            }
+                                            arr_obj[new_key] = [];
+                                            arr_obj2[new_key] = [];
+                                        }
+                                    );
+                                    arr.map(
+                                        (obj, i) => {
+                                            let products = ``,
+                                                income = ``,
+                                                cost = ``,
+                                                gross_profit = ``;
+                                            products = (obj.xm !== undefined) ? obj.xm : null;
+                                            income = (obj.yysr !== undefined) ? (obj.yysr !== `--` ? parseFloat(obj.yysr) : null) : null;
+                                            cost = (obj.yycb !== undefined) ? (obj.yycb !== `--` ? parseFloat(obj.yycb) : null) : null;
+                                            gross_profit = (obj.ml !== undefined) ? (obj.ml !== `--` ? parseFloat(obj.ml) : null) : null;
+                                            // array
+                                            if (products !== "合计") {
+                                                // console.log(`products = `, products, i);
+                                                // no total
+                                                arr_obj.products.push(products);
+                                                arr_obj.income.push(income);
+                                                arr_obj.cost.push(cost);
+                                                arr_obj.gross_profit.push(gross_profit);
+                                            }
+                                            arr_obj2.products.push(products);
+                                            arr_obj2.income.push(income);
+                                            arr_obj2.cost.push(cost);
+                                            arr_obj2.gross_profit.push(gross_profit);
+                                        }
+                                    );
+                                    if (debug) {
+                                        console.log(`arr_obj = `, JSON.stringify(arr_obj, null, 4));
+                                    }
+                                    // Y & column === income cost gross_profit
+                                    // 按项目 X === xm
+                                    // Y & column === xm
+                                    // 按产品 X === income cost gross_profit
+                                    // OTC_F9_FV.Modules.mainManagementBusiness.drawHS(arr_obj, hsc_uid);
+                                    OTC_F9_FV.Modules.mainManagementBusiness.drawHS(arr_obj, hsc_uids[0]);
+                                    OTC_F9_FV.Modules.mainManagementBusiness.drawHS2(arr_obj2, hsc_uids[1]);
+                                    // table
+                                    let trs = ``;
+                                    for (let i = 0; i < arr.length; i++) {
+                                        trs += `
+                                            <tr class="otc-main-management-business-table-tr">
+                                                <td class="otc-main-management-business-table-td-value" data-value="data-otc-MMB">
+                                                    ${arr[i].xm}
+                                                </td>
+                                                <td class="otc-main-management-business-table-td-value" data-value="data-otc-MMB">
+                                                    ${arr[i].yysr}
+                                                </td>
+                                                <td class="otc-main-management-business-table-td-value" data-value="data-otc-MMB">
+                                                    ${arr[i].yycb}
+                                                </td>
+                                                <td class="otc-main-management-business-table-td-value" data-value="data-otc-MMB">
+                                                    ${arr[i].yysrzb}
+                                                </td>
+                                            </tr>
+                                        `;
+                                    }
+                                    tbody_dom.insertAdjacentHTML(`beforeend`, trs);
+                                }else{
+                                    // `暂无数据` & no data!
+                                    console.log(`json.datas is empty! = \n`, json, json.datas);
+                                    let arr_obj = {};
+                                    arr_obj.productst = [];
+                                    arr_obj.incomet = [];
+                                    arr_obj.costt = [];
+                                    arr_obj.gross_profit = [];
+                                    OTC_F9_FV.Modules.mainManagementBusiness.drawHS(arr_obj, hsc_uid);
+                                }
+                            }
+                            // HC & one container with diff datas
+                        } else {
                             // no data
-                            p = `
-                                <p data-none="no-data-p">
-                                    <span data-none="no-data-span"></span>
-                                </p>
-                            `;
                         }
-                        hst_dom.insertAdjacentHTML(`beforeend`, p);
-                        // HC & one container with diff datas
                     }else{
                         let message = `handle json error!`,
                             fileName = `main-management-business.js`,
@@ -206,6 +238,7 @@ OTC_F9_FV.Modules.mainManagementBusiness.drawHS = OTC_F9_FV.Modules.mainManageme
                     </p>
                 `,
                 loading: `Loading....`,
+                numericSymbols:["千","00万","0亿","兆","千兆","百万兆"]
             }
         });
         Highcharts.chart(container_uid, {
@@ -502,6 +535,7 @@ OTC_F9_FV.Modules.mainManagementBusiness.drawHS2 = OTC_F9_FV.Modules.mainManagem
                     </p>
                 `,
                 loading: `Loading....`,
+                numericSymbols:["千","00万","0亿","兆","千兆","百万兆"]
             }
         });
         Highcharts.chart(container_uid, {

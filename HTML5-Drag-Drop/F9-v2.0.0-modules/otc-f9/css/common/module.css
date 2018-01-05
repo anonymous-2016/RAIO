@@ -18,7 +18,7 @@ section.otc-module-box-5 {
     margin-top: 6px;
     margin-bottom: 6px; */
     width: 540px;
-    min-height: 127px;
+    /* min-height: 127px; */
     /* background: #eee; */
     background: #fff;
 }
@@ -26,7 +26,7 @@ section.otc-module-box-5 {
 table.otc-latest-transaction-data-table {
     box-sizing: border-box;
     width: 540px;
-    height: 127px;
+    /* height: 127px; */
     background: #fff;
     border: 1px solid #d7dbe0;
 }
@@ -160,7 +160,7 @@ table.otc-latest-transaction-data-table {
     min-width: 542px;
     max-width: 542px;
     width: 100%;
-    min-height: 100px;
+    /* min-height: 100px; */
     height: 100%;
     /* position: absolute; */
     /* margin-left: 50%; */
@@ -183,7 +183,7 @@ table.otc-latest-transaction-data-table {
     max-width: 542px;
     width: 100%;
     /* width: 100vw; */
-    min-height: 100px;
+    /* min-height: 100px; */
     height: 100%;
     /* position: absolute; */
     /* margin-left: 50%; */
@@ -204,7 +204,7 @@ table.otc-latest-transaction-data-table {
     max-width: 542px;
     /* width: 70%; */
     /* width: 100vw; */
-    min-height: 100px;
+    /* min-height: 100px; */
     /* width: 100%; */
     height: 100%;
     /* position: absolute; */
@@ -222,7 +222,7 @@ table.otc-latest-transaction-data-table {
     min-width: 542px;
     max-width: 542px;
     /* width: calc(100% - 6px); */
-    min-height: 100px;
+    /* min-height: 100px; */
     height: 100%;
     /* margin-left: 6px; */
     /* float: left; */

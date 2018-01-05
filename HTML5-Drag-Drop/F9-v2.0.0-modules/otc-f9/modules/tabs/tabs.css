@@ -139,7 +139,7 @@ a[data-tab="tab-link"]:hover {
     box-sizing: border-box;
     background: #ffffff;
     /* border: 1px solid red; */
-    border: 1px solid #ccc;
+    /* border: 1px solid #ccc; */
     padding: 5px;
     width: 540px;
     /* height: 500px; */

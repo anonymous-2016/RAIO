@@ -705,7 +705,7 @@ const HTML_Template = (uid = ``, loadModule = function(){}, debug = false) => {
                     <div class="otc-h5dnd-modules-title-box">
                         <p class="otc-h5dnd-modules-title" data-title="otc-main-management-business-title">
                             主营业务
-                            <span data-time="otc-main-management-business-time">截止</span>
+                            <span data-time="otc-main-management-business-time"></span>
                             <span data-more="otc-main-management-business-link">
                                 <a href="#更多主营业务数据" data-more="otc-main-management-business-link-more">更多主营业务数据</a>
                             </span>
@@ -713,11 +713,6 @@ const HTML_Template = (uid = ``, loadModule = function(){}, debug = false) => {
                     </div>
                     <div data-div="tbody-div" data-titles="data-otc-MMB-title">
                         <!-- no data -->
-                        <!-- <p data-p="data-otc-MMB-title">
-                            本报告期公司主营业务同比增长
-                            <span data-span="data-otc-MMB-title">23</span>%，占营业总收入
-                            <span data-span="data-otc-MMB-title">98.21</span>%。
-                        </p> -->
                     </div>
                     <div class="otc-main-management-business-container">
                         <div id="main_managemen_business_hs_container" data-hs-container="data-main-management-business-container-uid" class="otc-main-management-business-hs otc-main-management-business-hs-container"></div>
@@ -729,19 +724,12 @@ const HTML_Template = (uid = ``, loadModule = function(){}, debug = false) => {
                         <thead class="otc-main-management-business-table-thead">
                             <tr class="otc-main-management-business-table-tr">
                                 <td class="otc-main-management-business-table-td-title">产品及服务</td>
-                                <td class="otc-main-management-business-table-td-title">营业收入(元)</td>
-                                <td class="otc-main-management-business-table-td-title">营业成本(元)</td>
+                                <td class="otc-main-management-business-table-td-title">营业收入(万元)</td>
+                                <td class="otc-main-management-business-table-td-title">营业成本(万元)</td>
                                 <td class="otc-main-management-business-table-td-title">营业收入占比(%)</td>
                             </tr>
                         </thead>
-                        <tbody class="otc-main-management-business-table-tbody" data-tbody="otc-main-management-business-table-tbody">
-                            <!-- <tr class="otc-main-management-business-table-tr">
-                                <td class="otc-main-management-business-table-td-value" data-value="data-otc-MMB">软件技术服务</td>
-                                <td class="otc-main-management-business-table-td-value" data-value="data-otc-MMB">797,312,267.02</td>
-                                <td class="otc-main-management-business-table-td-value" data-value="data-otc-MMB">574,643,003.03</td>
-                                <td class="otc-main-management-business-table-td-value" data-value="data-otc-MMB">47.17</td>
-                            </tr> -->
-                        </tbody>
+                        <tbody class="otc-main-management-business-table-tbody" data-tbody="otc-main-management-business-table-tbody"></tbody>
                         <tfoot class="otc-main-management-business-table-tfoot">
                             <tr class="otc-main-management-business-table-tr">
                                 <td class="otc-main-management-business-table-td-value" data-value="data-otc-MMB"></td>
@@ -942,36 +930,9 @@ const HTML_Template = (uid = ``, loadModule = function(){}, debug = false) => {
                             <tr class="otc-company-news-table-tr">
                                 <td class="otc-company-news-table-td-title">新闻标题</td>
                                 <td class="otc-company-news-table-td-title">新闻日期</td>
-                                <td class="otc-company-news-table-td-title">新闻来源</td>
                             </tr>
                         </thead>
-                        <tbody class="otc-company-news-table-tbody" data-tbody="otc-company-news-table-tbody">
-                            <tr class="otc-company-news-table-tr">
-                                <td class="otc-company-news-table-td-key" data-alias="公司新闻1" data-key="data-otc-CN"></td>
-                                <td class="otc-company-news-table-td-value" data-value="data-otc-CN"></td>
-                                <td class="otc-company-news-table-td-value" data-value="data-otc-CN"></td>
-                            </tr>
-                            <tr class="otc-company-news-table-tr">
-                                <td class="otc-company-news-table-td-key" data-alias="公司新闻2" data-key="data-otc-CN"></td>
-                                <td class="otc-company-news-table-td-value" data-value="data-otc-CN"></td>
-                                <td class="otc-company-news-table-td-value" data-value="data-otc-CN"></td>
-                            </tr>
-                            <tr class="otc-company-news-table-tr">
-                                <td class="otc-company-news-table-td-key" data-alias="公司新闻3" data-key="data-otc-CN"></td>
-                                <td class="otc-company-news-table-td-value" data-value="data-otc-CN"></td>
-                                <td class="otc-company-news-table-td-value" data-value="data-otc-CN"></td>
-                            </tr>
-                            <tr class="otc-company-news-table-tr">
-                                <td class="otc-company-news-table-td-key" data-alias="公司新闻4" data-key="data-otc-CN"></td>
-                                <td class="otc-company-news-table-td-value" data-value="data-otc-CN"></td>
-                                <td class="otc-company-news-table-td-value" data-value="data-otc-CN"></td>
-                            </tr>
-                            <tr class="otc-company-news-table-tr">
-                                <td class="otc-company-news-table-td-key" data-alias="公司新闻5" data-key="data-otc-CN"></td>
-                                <td class="otc-company-news-table-td-value" data-value="data-otc-CN"></td>
-                                <td class="otc-company-news-table-td-value" data-value="data-otc-CN"></td>
-                            </tr>
-                        </tbody>
+                        <tbody class="otc-company-news-table-tbody" data-tbody="otc-company-news-table-tbody"></tbody>
                         <tfoot class="otc-company-news-table-tfoot">
                             <tr class="otc-company-news-table-tr">
                                 <td class="otc-company-news-table-td-value" data-value="data-otc-CN"></td>
@@ -999,7 +960,6 @@ const HTML_Template = (uid = ``, loadModule = function(){}, debug = false) => {
                             <tr class="otc-company-bulletin-table-tr">
                                 <td class="otc-company-bulletin-table-td-title">公告标题</td>
                                 <td class="otc-company-bulletin-table-td-title">公告日期</td>
-                                <td class="otc-company-bulletin-table-td-title">公告类型</td>
                             </tr>
                         </thead>
                         <tbody class="otc-company-bulletin-table-tbody" data-tbody="otc-company-bulletin-table-tbody"></tbody>
@@ -1030,7 +990,6 @@ const HTML_Template = (uid = ``, loadModule = function(){}, debug = false) => {
                             <tr class="otc-research-report-table-tr">
                                 <td class="otc-research-report-table-td-title">研报标题</td>
                                 <td class="otc-research-report-table-td-title">披露日期</td>
-                                <td class="otc-research-report-table-td-title">研报类型</td>
                                 <td class="otc-research-report-table-td-title">发布机构</td>
                             </tr>
                         </thead>
