@@ -13,6 +13,26 @@ const emptyChecker = (key = ``) => {
     return result;
 };
 
+// no -, only --
+
+const newEmptyChecker = (key = ``) => {
+    let result = true;
+    switch (key) {
+        case undefined:
+            result = false;
+            break;
+        case null:
+            result = false;
+            break;
+        case "--":
+            result = false;
+            break;
+        default:
+            break;
+    }
+    return result;
+};
+
 
 const shitAPI = () => {
     // `暂无数据` & no data!
@@ -24,3 +44,6 @@ const shitAPI = () => {
     arr_obj.change_rate = [];
     OTC_F9_FV.Modules.companyPerformanceMarket.drawHS2(arr_obj, hsc_uid2);
 };
+
+
+

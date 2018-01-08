@@ -25,6 +25,24 @@ http://10.1.5.202/webservice/fastview/bond/rate?{"ModelId":"bondratefast15","Com
 http://10.1.5.202/webservice/fastview/bond/rate?{"ModelId":"bondratefast16","Compare":"","CompareDate":""}
 
 
+
+
+http://10.1.5.202/webservice/fastview/bond/rate?{"ModelId":"bondratefast16","Compare":"0","CompareDate":""}
+http://10.1.5.202/webservice/fastview/bond/rate?{"ModelId":"bondratefast16","Compare":"1","CompareDate":""}
+
+http://10.1.5.202/webservice/fastview/bond/rate?{"ModelId":"bondratefast16","Compare":"2","CompareDate":"2018-01-08"}
+
+
+
+
+Compare：--比较日标志
+"0:前一交易日",
+"1:上周",
+"2:自定义"
+CompareDate：--比较日，（比较日标志=2时有效，不为2的时候可传可不传）
+
+
+
 # emmet
 
 div.0$*16
@@ -52,11 +70,11 @@ $touch 10.json 11.json 12.json 13.json 14.json 15.json 16.json
     bondratefast15  七日回购移动平均利率
     bondratefast16  票据直贴/转贴利率
 
-  Compare：--比较日标志
-    "0:前一交易日",
-    "1:上周",
-    "2:自定义"
-  CompareDate：--比较日，（比较日标志=2时有效，不为2的时候可传可不传）
+Compare：--比较日标志
+"0:前一交易日",
+"1:上周",
+"2:自定义"
+CompareDate：--比较日，（比较日标志=2时有效，不为2的时候可传可不传）
 
 
 关于节点模块：->

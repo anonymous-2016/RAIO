@@ -851,7 +851,7 @@ const HTML_Template = (uid = ``, loadModule = function(){}, debug = false) => {
                             <span data-span="data-otc-MLP-title">6</span>人。
                         </p> -->
                     </div>
-                    <table class="otc-management-layer-profiles-table">
+                    <table class="otc-management-layer-profiles-table"  data-css3-table-bug="otc-management-layer-profiles-table1">
                         <thead class="otc-management-layer-profiles-table-thead">
                             <tr class="otc-management-layer-profiles-table-tr">
                                 <td class="otc-management-layer-profiles-table-td-title">姓名</td>
@@ -884,7 +884,7 @@ const HTML_Template = (uid = ``, loadModule = function(){}, debug = false) => {
                             </tr>
                         </tfoot>
                     </table>
-                    <table class="otc-management-layer-profiles-table">
+                    <table class="otc-management-layer-profiles-table"  data-css3-table-bug="otc-management-layer-profiles-table2">
                         <thead class="otc-management-layer-profiles-table-thead">
                             <tr class="otc-management-layer-profiles-table-tr">
                                 <td class="otc-management-layer-profiles-table-td-title">姓名</td>

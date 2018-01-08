@@ -107,7 +107,8 @@ OTC_F9_FV.Modules.managementLayerProfiles = OTC_F9_FV.Modules.managementLayerPro
                             }
                             tbodys[0].insertAdjacentHTML(`beforeend`, trs);
                         }else{
-                            // no data
+                            // no data ??? Array
+                            // http://10.1.5.202/webservice/fastview/otcper/otcperfast11/834380.OC
                         }
                         if (Array.isArray(datas.gglz) && datas.gglz.length > 0) {
                             let trs2 = ``;
@@ -147,6 +148,7 @@ OTC_F9_FV.Modules.managementLayerProfiles = OTC_F9_FV.Modules.managementLayerPro
                             tbodys[1].insertAdjacentHTML(`beforeend`, trs2);
                         }else{
                             // no data
+                            // ??? table, no value => no key!
                         }
                     }else{
                         let message = `handle json error!`,

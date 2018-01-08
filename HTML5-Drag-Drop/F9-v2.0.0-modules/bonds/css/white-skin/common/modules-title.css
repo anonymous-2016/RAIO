@@ -1,0 +1,43 @@
+@charset "UFT-8";
+
+/* @import url("../common/modules-title.css"); */
+
+
+/* modules title*/
+
+.fv-h5dnd-modules-title-box {
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 545px;
+}
+
+.fv-h5dnd-modules-title {
+    position: relative;
+    color: #2e2f33;
+    text-indent: 14px;
+    margin-left: 0;
+    font-weight: 600;
+    font-size: 15px;
+    margin-top: 6px;
+    margin-bottom: 6px;
+}
+
+.fv-h5dnd-modules-title::before {
+    position: absolute;
+    top: 3px;
+    left: 0px;
+    content: "";
+    display: inline-block;
+    width: 4px;
+    background: #f79530;
+    height: 15px;
+}
+
+[data-delete-span="delete-span"] {
+    font-weight: normal;
+    /* font-weight: 100; */
+}
+
+span[data-delete-span="delete-span"] {
+    font-size: 13px;
+}

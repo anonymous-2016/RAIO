@@ -253,3 +253,39 @@ a[data-more="otc-management-layer-profiles-link-more"]:hover {
 [data-span="data-otc-MLP-title"] {
     color: red;
 }
+
+.otc-management-layer-profiles-table-tbody:nth-of-type(1)>tr.otc-management-layer-profiles-table-tr>td:nth-of-type(n) {
+    text-align: left;
+    padding-left: 4px;
+}
+
+.otc-management-layer-profiles-table-tbody:nth-of-type(1)>tr.otc-management-layer-profiles-table-tr>td:nth-of-type(3),
+.otc-management-layer-profiles-table-tbody:nth-of-type(1)>tr.otc-management-layer-profiles-table-tr>td:nth-of-type(4) {
+    text-align: right;
+    padding-right: 4px;
+}
+
+.otc-management-layer-profiles-table-tbody:nth-of-type(1)>tr.otc-management-layer-profiles-table-tr>td:nth-of-type(6),
+.otc-management-layer-profiles-table-tbody:nth-of-type(1)>tr.otc-management-layer-profiles-table-tr>td:nth-of-type(7),
+.otc-management-layer-profiles-table-tbody:nth-of-type(1)>tr.otc-management-layer-profiles-table-tr>td:nth-of-type(8) {
+    text-align: right;
+    padding-right: 4px;
+}
+
+table[data-css3-table-bug="otc-management-layer-profiles-table1"]>tbody.otc-management-layer-profiles-table-tbody>tr.otc-management-layer-profiles-table-tr>td:nth-of-type(4) {
+    text-align: left;
+    padding-left: 4px;
+    /* color: red; */
+}
+
+[data-tbody="otc-management-layer-profiles-table-tbody"]:nth-of-type(1) {
+    /* color: red; */
+}
+
+[data-table="otc-management-layer-profiles-table-box"] {
+    box-sizing: border-box;
+}
+
+div[data-table="otc-management-layer-profiles-table-box"]:nth-of-type(1)>table.otc-management-layer-profiles-table>tbody.otc-management-layer-profiles-table-tbody {
+    color: red;
+}

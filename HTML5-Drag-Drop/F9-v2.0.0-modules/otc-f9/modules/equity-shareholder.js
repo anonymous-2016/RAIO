@@ -36,6 +36,23 @@ OTC_F9_FV.Modules.equityShareholder = OTC_F9_FV.Modules.equityShareholder || (
                     console.log(`data = \n`, json);
                     // console.log(`data = \n`, hsts_dom[0]);
                 }
+                const emptyChecker = (key = ``) => {
+                    let result = true;
+                    switch (key) {
+                        case undefined:
+                            result = false;
+                            break;
+                        case null:
+                            result = false;
+                            break;
+                        case "--":
+                            result = false;
+                            break;
+                        default:
+                            break;
+                    }
+                    return result;
+                };
                 try {
                     if (json !== undefined && typeof(json) === "object") {
                         let tr = ``,
@@ -211,15 +228,22 @@ OTC_F9_FV.Modules.equityShareholder = OTC_F9_FV.Modules.equityShareholder || (
                             if (Object.keys(json.sdgd).length === 5) {
                                 title1 = `
                                     <p>
-                                        十大股东 (截止<span data-span="data-otc-ES-title">${json.sdgd.sj}</span>)
+                                        十大股东 (<span data-span="data-otc-ES-title">${json.sdgd.sj}</span>)
                                     </p>
                                     <p data-p="data-otc-ES-title">
                                         报告期内十大股东合计持股
-                                        <span data-span="data-otc-ES-title">${json.sdgd.hj}</span>股,
+                                        <span data-span="data-otc-ES-title">${json.sdgd.hj}</span>万股,
                                         <span data-span="data-otc-ES-title">${json.sdgd.bh}</span>
-                                        ${(json.sdgd.gds !== 0 && json.sdgd.gds !== undefined) ? `,报告期内有<span data-span="data-otc-ES-title">${json.sdgd.gds}</span>位股东有减持行为` : ""}</span>.
+                                        ${
+                                            (json.sdgd.gds !== 0 && json.sdgd.gds !== undefined)
+                                            ?
+                                            `,报告期内有<span data-span="data-otc-ES-title">${json.sdgd.gds}</span>位股东有减持行为`
+                                            :
+                                            `<span data-span="data-otc-ES-title"></span>`
+                                        }.
                                     </p>
                                 `;
+                                // 万股
                                 // 报告期内十大股东，合计持股77894821股，减少455315股，报告期内有2位股东有减持行为。
                             }else{
                                 // no data
@@ -285,24 +309,24 @@ OTC_F9_FV.Modules.equityShareholder = OTC_F9_FV.Modules.equityShareholder || (
                             if (Object.keys(json.gdhs[0]).length === 7) {
                                 title2 = `
                                     <p>
-                                        股东户数 (<span>截止日期 ${json.gdhs[0].sj}</span>)
+                                        股东户数 (<span>${json.gdhs[0].sj}</span>)
                                     </p>
                                     <p data-p="data-otc-ES-title">
                                         报告期内公司股东比上期
                                         ${json.gdhs[0].hsjsq.includes(`-`) ? "减少" : "增加"}
                                         <span data-span="data-otc-ES-title">
-                                            ${(json.gdhs[0].hsjsq !== undefined) ? json.gdhs[0].hsjsq.replace(/-/ig, ``) : "--"}
+                                            ${emptyChecker(json.gdhs[0].hsjsq) ? json.gdhs[0].hsjsq.replace(/-/ig, ``) : "--"}
                                         </span>户,
                                         ${json.gdhs[0].zhszz.includes(`-`) ? "减少" : "增加"}
                                         <span data-span="data-otc-ES-title">
-                                            ${(json.gdhs[0].zhszz !== undefined) ? json.gdhs[0].zhszz.replace(/-/ig, ``) : "--"}
+                                            ${emptyChecker(json.gdhs[0].zhszz) ? json.gdhs[0].zhszz.replace(/-/ig, ``) : "--"}
                                         </span>%, 户均持股数
                                         <span data-span="data-otc-ES-title">
-                                            ${(json.gdhs[0].hjcgs !== undefined) ? json.gdhs[0].hjcgs : "--"}
+                                            ${emptyChecker(json.gdhs[0].hjcgs) ? json.gdhs[0].hjcgs : "--"}
                                         </span>股,
                                         ${json.gdhs[0].hjzz.includes(`-`) ? "减少" : "增加"}
                                         <span data-span="data-otc-ES-title">
-                                            ${(json.gdhs[0].hjzz !== undefined) ? json.gdhs[0].hjzz.replace(/-/ig, ``) : "--"}
+                                            ${emptyChecker(json.gdhs[0].hjzz) ? json.gdhs[0].hjzz.replace(/-/ig, ``) : "--"}
                                         </span>%.
                                     </p>
                                 `;
@@ -491,6 +515,7 @@ OTC_F9_FV.Modules.equityShareholder.init = OTC_F9_FV.Modules.equityShareholder.i
 
 var OTC_IP = window.OTC_IP || `http://10.1.5.202`,
     OTC_PATH = window.OTC_PATH || `/webservice/fastview/otcper`,
+    // OTC_GILCODE = window.OTC_GILCODE || `834380.OC`;
     OTC_GILCODE = window.OTC_GILCODE || `430002.OC`;
 
 

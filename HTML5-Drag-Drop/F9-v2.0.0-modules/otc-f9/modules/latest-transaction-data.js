@@ -28,16 +28,22 @@ OTC_F9_FV.Modules.latestTransactionData = OTC_F9_FV.Modules.latestTransactionDat
             (json) => {
                 datas = json;
                 try {
-                    if (typeof(datas) === "object" && Object.keys(datas).length > 0) {
-                        for (let i = 0; i < tds.length - 1; i++) {
-                            let key = ui_arr[i],
-                                value = (datas[key] !== `--` ? datas[key] : 0);
-                            tds[i].innerText = value;
-                            tds[i].setAttribute(`title`, value);
+                    if (typeof(datas) === "object") {
+                        if (Object.keys(datas).length > 0) {
+                            for (let i = 0; i < tds.length - 1; i++) {
+                                let key = ui_arr[i],
+                                    value = (datas[key] !== `--` ? datas[key] : 0);
+                                tds[i].innerText = value;
+                                tds[i].setAttribute(`title`, value);
+                            }
+                            let title_key = ui_arr[tds.length - 1],
+                                title_value = (datas[title_key] !== `--` ? datas[title_key] : 0);
+                            title.innerText = title_value || `暂无数据`;
+                        } else {
+                            // no data
+                            // ??? table, no value => no key!
+                            // http://10.1.5.202/webservice/fastview/otcper/otcperfast01/834380.OC
                         }
-                        let title_key = ui_arr[tds.length - 1],
-                            title_value = (datas[title_key] !== `--` ? datas[title_key] : 0);
-                        title.innerText = title_value || `暂无数据`;
                     }else{
                         let message = `handle json error!`,
                             fileName = `latest-transaction-data.js`,

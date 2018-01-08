@@ -8,6 +8,24 @@ interest rates
 
 > dingding files
 
+```js
+
+/**
+ * @namespace 债券-基准利率速览 (BONDS_BIR_FV)
+*/
+
+// namespaces
+var BONDS_BIR_FV = BONDS_BIR_FV || {};
+// sub namespaces
+BONDS_BIR_FV.Modules = BONDS_BIR_FV.Modules || {};
+
+
+
+
+
+```
+
+
 
 http://10.1.5.202/stock/f9/fastview/css/print.css
 
