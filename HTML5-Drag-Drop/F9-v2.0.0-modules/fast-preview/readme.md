@@ -1,6 +1,145 @@
 # Stock F9 速览
 
 
+# turn to node
+
+```html
+
+<link rel="stylesheet" data-css="data-css-uid" href="../common/more.css">
+
+
+<span data-link="fv-important-infos-data-link">
+    <a href="#more" data-uid="2172" data-turn-to-uid="node-uid-important-infos-data">更多</a>
+</span>
+<span data-link="fv-indicators-per-share-data-link">
+    <a href="#more" data-uid="2846" data-turn-to-uid="node-uid-indicators-per-share-data">更多</a>
+</span>
+<span data-link="fv-profit-forecast-data-link">
+    <a href="#more" data-uid="2908" data-turn-to-uid="node-uid-profit-forecast-data">更多</a>
+</span>
+<span data-link="fv-agency-rating-data-link">
+    <a href="#more" data-uid="2910" data-turn-to-uid="node-uid-agency-rating-data">更多</a>
+</span>
+<span data-link="fv-top-ten-shareholders-data-link">
+    <a href="#more" data-uid="2681" data-turn-to-uid="node-uid-top-ten-shareholders-data">更多</a>
+</span>
+<span data-link="fv-company-news-data-link">
+    <a href="#more" data-uid="2906" data-turn-to-uid="node-uid-company-news-data">更多</a>
+</span>
+<span data-link="fv-company-announcements-data-link">
+    <a href="#more" data-uid="2898" data-turn-to-uid="node-uid-company-announcements-data">更多</a>
+</span>
+<span data-link="fv-research-report-data-link">
+    <a href="#more" data-uid="2904" data-turn-to-uid="node-uid-research-report-data">更多</a>
+</span>
+<span data-link="fv-equity-pledge-data-link">
+    <a href="#more" data-uid="2741" data-turn-to-uid="node-uid-equity-pledge-data">更多</a>
+</span>
+<span data-link="fv-changes-shareholding-executives-data-link">
+    <a href="#more" data-uid="62283" data-turn-to-uid="node-uid-changes-shareholding-executives-data">更多</a>
+</span>
+<span data-link="fv-financing-and-margin-balance-difference-trend-data-link">
+    <a href="#more" data-uid="2876" data-turn-to-uid="node-uid-financing-and-margin-balance-difference-trend-data">更多</a>
+</span>
+<span data-link="fv-institutional-shareholding-change-statistics-data-link">
+    <a href="#more" data-uid="2685" data-turn-to-uid="node-uid-institutional-shareholding-change-statistics-data">更多</a>
+</span>
+<span data-link="fv-monthly-capital-flows-large-single-statistics-data-link">
+    <a href="#more" data-uid="2872" data-turn-to-uid="node-uid-monthly-capital-flows-large-single-statistics-data">更多</a>
+</span>
+<span data-link="fv-holdings-participation-situation-data-link">
+    <a href="#more" data-uid="2705" data-turn-to-uid="node-uid-holdings-participation-situation-data">更多</a>
+</span>
+
+
+// 近期重要事项
+// 股价/成交量
+
+<span data-link="fv-recent-important-events-data-link">
+    <a href="#more" data-uid="2705" data-turn-to-uid="node-uid-recent-important-events-data">更多</a>
+</span>
+<span data-link="fv-stock-price-turnover-data-link">
+    <a href="#more" data-uid="2705" data-turn-to-uid="node-uid-stock-price-turnover-data">更多</a>
+</span>
+
+
+
+
+<link rel="stylesheet" data-css="data-css-uid" href="../common/more.css">
+
+
+// bug
+<div class="fv-h5dnd-modules-title-box">
+    <p class="fv-h5dnd-modules-title" data-title="fv-stock-price-turnover-title">股价/成交量</p>
+</div>
+
+```
+
+```js
+
+
+// more
+setTimeout((debug = false) => {
+    let turn_to_uid = document.querySelector(`[data-turn-to-uid="node-uid-important-infos-data"]`);
+    if (debug) {
+        console.log(`turn_to_uid = \n`, turn_to_uid);
+    }
+    if (turn_to_uid !== null) {
+        turn_to_uid.addEventListener(`click`, (e) => {
+            let uid = e.target.dataset.uid,
+                gilcode = STOCK_SecCode ? STOCK_SecCode : window.STOCK_SecCode,
+                node_path = `12\\${gilcode}\\${uid}`;
+            try {
+                if (uid !== "null") {
+                    ChromeExternal.Execute("ExecuteCommand", `12\\${gilcode}\\${uid}`);
+                }else{
+                    console.log(`ChromeExternal & ${uid} === null\n`);
+                }
+            } catch (error) {
+                console.log(`%c ChromeExternal & caught error = \n`, `color: red; font-size: 23px;`, error);
+            }
+        });
+    }else{
+        throw new Error(`turn_to_uid is `, turn_to_uid);
+    }
+}, 0);
+
+
+
+// turn to node
+setTimeout((debug = false) => {
+    let turn_to_uid = document.querySelector(`[data-turn-to-uid="node-uid-latest-transaction-data"]`);
+    // let turn_to_uids = document.querySelectorAll(`a[node-uid-latest-transaction-data]`);
+    if (debug) {
+        console.log(`turn_to_uid = \n`, turn_to_uid);
+    }
+    turn_to_uid.addEventListener(`click`, (e) => {
+        let uid = e.target.dataset.uid,
+            gilcode = OTC_GILCODE,
+            node_path = `12\\${gilcode}\\${uid}`;
+        // console.log(`node path`, node_path);
+        // 跳转 otc f9 深度资料的命令：
+        // ChromeExternal.Execute("ExecuteCommand", "命令ID\\证券代码\\节点ID");
+        // \ 反斜线要转义！
+        try {
+            if (uid !== "null") {
+                ChromeExternal.Execute("ExecuteCommand", `12\\${gilcode}\\${uid}`);
+                // ChromeExternal.Execute("ExecuteCommand", `12\\${window.OTC_GILCODE}\\${uid}`);
+                // ChromeExternal.Execute("ExecuteCommand", `12\\600570.SH\\${uid}`);
+            }else{
+                console.log(`ChromeExternal & ${uid} === null\n`);
+            }
+            // Uncaught SyntaxError: Octal escape sequences are not allowed in strict mode.
+            // \ 反斜线要转义！
+        } catch (error) {
+            console.log(`%c ChromeExternal & caught error = \n`, `color: red; font-size: 23px;`, error);
+        }
+    });
+}, 0);
+
+```
+
+
 # Highchart & scrollbar bug!
 
 

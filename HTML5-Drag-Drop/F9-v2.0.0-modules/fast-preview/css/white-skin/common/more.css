@@ -1,0 +1,45 @@
+@charset "UTF-8";
+div,
+ul,
+li,
+a {
+    box-sizing: border-box;
+    margin: 0px;
+    padding: 0px;
+}
+
+
+/* data-* */
+
+[data-link*="fv-"]>a {
+    color: #3285ff;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: normal;
+    float: right;
+    margin-right: 54px;
+    /* margin-top: 3px; */
+}
+
+[data-link*="fv-"]>a:hover {
+    color: #f50;
+}
+
+
+/* modules */
+
+
+/*
+[data-link="fv-important-infos-data-link"]>a {
+    color: #3285ff;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: normal;
+    margin-right: 54px;
+    float: right;
+}
+
+[data-link="fv-important-infos-data-link"]>a:hover {
+    color: #f50;
+}
+ */

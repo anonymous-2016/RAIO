@@ -78,6 +78,31 @@ STOCK_F9_FV.Modules.topTenShareholders = STOCK_F9_FV.Modules.topTenShareholders 
         }
     )
     .catch(error => console.log(`error = \n`, error));
+    // more
+    setTimeout((debug = false) => {
+        let turn_to_uid = document.querySelector(`[data-turn-to-uid="node-uid-top-ten-shareholders-data"]`);
+        if (debug) {
+            console.log(`turn_to_uid = \n`, turn_to_uid);
+        }
+        if (turn_to_uid !== null) {
+            turn_to_uid.addEventListener(`click`, (e) => {
+                let uid = e.target.dataset.uid,
+                    gilcode = STOCK_SecCode ? STOCK_SecCode : window.STOCK_SecCode,
+                    node_path = `12\\${gilcode}\\${uid}`;
+                try {
+                    if (uid !== "null") {
+                        ChromeExternal.Execute("ExecuteCommand", `12\\${gilcode}\\${uid}`);
+                    }else{
+                        console.log(`ChromeExternal & ${uid} === null\n`);
+                    }
+                } catch (error) {
+                    console.log(`%c ChromeExternal & caught error = \n`, `color: red; font-size: 23px;`, error);
+                }
+            });
+        }else{
+            throw new Error(`turn_to_uid is `, turn_to_uid);
+        }
+    }, 0);
 });
 
 
@@ -103,7 +128,7 @@ STOCK_F9_FV.Modules.topTenShareholders.init = STOCK_F9_FV.Modules.topTenSharehol
 
 var STOCK_IP = window.STOCK_IP || `http://10.1.5.202`,
     STOCK_Paths = window.STOCK_Paths || `/webservice/fastview/stock`,
-    STOCK_SecCode = window.STOCK_SecCode || `600570.SH`;
+    STOCK_SecCode = window.STOCK_SecCode || `600570.SH`,
     STOCK_Skin = window.STOCK_Skin || `white`;
 
 

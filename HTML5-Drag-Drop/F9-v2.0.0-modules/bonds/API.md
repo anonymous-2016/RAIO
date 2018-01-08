@@ -1,5 +1,47 @@
 # 债券-基准利率速览 API
 
+# skip to node
+
+```js
+
+<span data-link="otc-latest-transaction-data-link">
+        <a href="#more" data-uid="2172" data-turn-to-uid="node-uid-latest-transaction-data">更多</a>
+    </span>
+
+ // turn to node
+    setTimeout((debug = false) => {
+        let turn_to_uid = document.querySelector(`[data-turn-to-uid="node-uid-latest-transaction-data"]`);
+        // let turn_to_uids = document.querySelectorAll(`a[node-uid-latest-transaction-data]`);
+        if (debug) {
+            console.log(`turn_to_uid = \n`, turn_to_uid);
+        }
+        turn_to_uid.addEventListener(`click`, (e) => {
+            let uid = e.target.dataset.uid,
+                gilcode = OTC_GILCODE,
+                node_path = `12\\${gilcode}\\${uid}`;
+            // console.log(`node path`, node_path);
+            // 跳转 otc f9 深度资料的命令：
+            // ChromeExternal.Execute("ExecuteCommand", "命令ID\\证券代码\\节点ID");
+            // \ 反斜线要转义！
+            try {
+                if (uid !== "null") {
+                    ChromeExternal.Execute("ExecuteCommand", `12\\${gilcode}\\${uid}`);
+                    // ChromeExternal.Execute("ExecuteCommand", `12\\${window.OTC_GILCODE}\\${uid}`);
+                    // ChromeExternal.Execute("ExecuteCommand", `12\\600570.SH\\${uid}`);
+                }else{
+                    console.log(`ChromeExternal & ${uid} === null\n`);
+                }
+                // Uncaught SyntaxError: Octal escape sequences are not allowed in strict mode.
+                // \ 反斜线要转义！
+            } catch (error) {
+                console.log(`%c ChromeExternal & caught error = \n`, `color: red; font-size: 23px;`, error);
+            }
+        });
+    }, 0);
+
+```
+
+
 
 
 
@@ -33,13 +75,6 @@ http://10.1.5.202/webservice/fastview/bond/rate?{"ModelId":"bondratefast16","Com
 http://10.1.5.202/webservice/fastview/bond/rate?{"ModelId":"bondratefast16","Compare":"2","CompareDate":"2018-01-08"}
 
 
-
-
-Compare：--比较日标志
-"0:前一交易日",
-"1:上周",
-"2:自定义"
-CompareDate：--比较日，（比较日标志=2时有效，不为2的时候可传可不传）
 
 
 

@@ -206,7 +206,7 @@ window.STOCK_Paths = `/webservice/fastview/stock`;
 document.addEventListener(`DOMContentLoaded`, (e) => {
     // console.log("2, (DOMContentLoaded)DOM fully loaded and parsed");
     // load css
-    const css_arr = ["sidebar.css", "common/module.css", "common/modal.css"];
+    const css_arr = ["sidebar.css", "common/module.css", "common/modal.css", "common/more.css"];
     const css_skins = ["black-skin", "white-skin"];
     const css_links = document.querySelectorAll(`[data-css="data-css-uid"]`);
     let css_dom = document.querySelector(`head`);
@@ -443,7 +443,12 @@ STOCK_F9_FV.Modules.loadAllModules = STOCK_F9_FV.Modules.loadAllModules || (
                                 <section class="fv-module-box-3">
                                     <!-- 重要信息 -->
                                     <div class="fv-h5dnd-modules-title-box">
-                                        <p class="fv-h5dnd-modules-title" data-title="fv-important-infos-title">重要信息</p>
+                                        <p class="fv-h5dnd-modules-title" data-title="fv-important-infos-title">
+                                            重要信息
+                                            <span data-link="fv-important-infos-data-link">
+                                                <a href="#more" data-uid="2172" data-turn-to-uid="node-uid-important-infos-data">更多</a>
+                                            </span>
+                                        </p>
                                     </div>
                                     <table class="fv-important-infos-table">
                                         <thead class="fv-important-infos-table-thead">
@@ -530,7 +535,9 @@ STOCK_F9_FV.Modules.loadAllModules = STOCK_F9_FV.Modules.loadAllModules || (
                             htmlstr += `
                                 <section class="fv-module-box-7">
                                     <div class="fv-h5dnd-modules-title-box">
-                                        <p class="fv-h5dnd-modules-title" data-title="fv-recent-important-events-title">近期重要事项</p>
+                                        <p class="fv-h5dnd-modules-title" data-title="fv-recent-important-events-title">
+                                            近期重要事项
+                                        </p>
                                     </div>
                                     <table class="fv-recent-important-events-table">
                                         <thead class="fv-recent-important-events-table-thead">
@@ -565,10 +572,17 @@ STOCK_F9_FV.Modules.loadAllModules = STOCK_F9_FV.Modules.loadAllModules || (
                             htmlstr += `
                                 <section class="fv-module-box-7">
                                     <div class="fv-h5dnd-modules-title-box">
-                                        <p class="fv-h5dnd-modules-title" data-title="fv-profit-forecast-title">盈利预测</p>
+                                        <p class="fv-h5dnd-modules-title" data-title="fv-profit-forecast-title">
+                                            盈利预测
+                                            <span data-link="fv-profit-forecast-data-link">
+                                                <a href="#more" data-uid="2908" data-turn-to-uid="node-uid-profit-forecast-data">更多</a>
+                                            </span>
+                                        </p>
                                     </div>
                                     <div class="fv-profit-forecast-container">
-                                        <div id="profit_forecast_hs_container" class="fv-profit-forecast-hs fv-profit-forecast-hs-container" data-hs-container="data-profit-forecast-container-uid"></div>
+                                        <div id="profit_forecast_hs_container" class="fv-profit-forecast-hs fv-profit-forecast-hs-container" data-hs-container="data-profit-forecast-container-uid">
+                                            <!--  -->
+                                        </div>
                                     </div>
                                 </section>
                             `;
@@ -579,7 +593,12 @@ STOCK_F9_FV.Modules.loadAllModules = STOCK_F9_FV.Modules.loadAllModules || (
                             htmlstr += `
                                 <section class="fv-module-box-3">
                                     <div class="fv-indicators-per-share-title-box">
-                                        <p class="fv-h5dnd-modules-title" data-title="fv-indicators-per-share-title">每股指标</p>
+                                        <p class="fv-h5dnd-modules-title" data-title="fv-indicators-per-share-title">
+                                            每股指标
+                                            <span data-link="fv-indicators-per-share-data-link">
+                                                <a href="#more" data-uid="2846" data-turn-to-uid="node-uid-indicators-per-share-data">更多</a>
+                                            </span>
+                                        </p>
                                     </div>
                                     <table class="fv-indicators-per-share-table">
                                         <thead class="fv-indicators-per-share-table-thead">
@@ -699,7 +718,12 @@ STOCK_F9_FV.Modules.loadAllModules = STOCK_F9_FV.Modules.loadAllModules || (
                             htmlstr += `
                                 <section class="fv-module-box-7">
                                     <div class="fv-h5dnd-modules-title-box">
-                                        <p class="fv-h5dnd-modules-title" data-title="fv-agency-rating-title">机构评级</p>
+                                        <p class="fv-h5dnd-modules-title" data-title="fv-agency-rating-title">
+                                            机构评级
+                                            <span data-link="fv-agency-rating-data-link">
+                                                <a href="#more" data-uid="2910" data-turn-to-uid="node-uid-agency-rating-data">更多</a>
+                                            </span>
+                                        </p>
                                     </div>
                                     <div class="fv-agency-rating-container">
                                         <!-- 机构评级 placeholder -->
@@ -746,7 +770,12 @@ STOCK_F9_FV.Modules.loadAllModules = STOCK_F9_FV.Modules.loadAllModules || (
                             htmlstr += `
                                 <section class="fv-module-box-10">
                                     <div class="fv-h5dnd-modules-title-box">
-                                        <p class="fv-h5dnd-modules-title" data-title="fv-top-ten-shareholders-title" data-more="top-ten-shareholders-title">前十大股东</p>
+                                        <p class="fv-h5dnd-modules-title" data-title="fv-top-ten-shareholders-title" data-more="top-ten-shareholders-title">
+                                            前十大股东
+                                            <span data-link="fv-top-ten-shareholders-data-link">
+                                                <a href="#more" data-uid="2681" data-turn-to-uid="node-uid-top-ten-shareholders-data">更多</a>
+                                            </span>
+                                        </p>
                                     </div>
                                     <table class="fv-top-ten-shareholders-table">
                                         <thead class="fv-top-ten-shareholders-table-thead">
@@ -774,7 +803,12 @@ STOCK_F9_FV.Modules.loadAllModules = STOCK_F9_FV.Modules.loadAllModules || (
                             htmlstr += `
                                 <section class="fv-module-box-7">
                                     <div class="fv-h5dnd-modules-title-box">
-                                        <p class="fv-h5dnd-modules-title" data-title="fv-financing-and-margin-balance-difference-trend-title">融资余额与融券余额差值走势</p>
+                                        <p class="fv-h5dnd-modules-title" data-title="fv-financing-and-margin-balance-difference-trend-title">
+                                            融资余额与融券余额差值走势
+                                            <span data-link="fv-financing-and-margin-balance-difference-trend-data-link">
+                                                <a href="#more" data-uid="2876" data-turn-to-uid="node-uid-financing-and-margin-balance-difference-trend-data">更多</a>
+                                            </span>
+                                        </p>
                                     </div>
                                     <div class="fv-financing-and-margin-balance-difference-trend-container">
                                         <!-- 融资余额与融券余额差值走势 placeholder -->
@@ -789,7 +823,12 @@ STOCK_F9_FV.Modules.loadAllModules = STOCK_F9_FV.Modules.loadAllModules || (
                             htmlstr += `
                                 <section class="fv-module-box-7">
                                     <div class="fv-h5dnd-modules-title-box">
-                                        <p class="fv-h5dnd-modules-title" data-title="fv-monthly-capital-flows-large-single-statistics-title">近一月资金流向大单统计</p>
+                                        <p class="fv-h5dnd-modules-title" data-title="fv-monthly-capital-flows-large-single-statistics-title">
+                                            近一月资金流向大单统计
+                                            <span data-link="fv-monthly-capital-flows-large-single-statistics-data-link">
+                                                <a href="#more" data-uid="2872" data-turn-to-uid="node-uid-monthly-capital-flows-large-single-statistics-data">更多</a>
+                                            </span>
+                                        </p>
                                     </div>
                                     <div class="fv-monthly-capital-flows-large-single-statistics-container">
                                         <!-- 近一月资金流向大单统计 placeholder -->
@@ -804,7 +843,12 @@ STOCK_F9_FV.Modules.loadAllModules = STOCK_F9_FV.Modules.loadAllModules || (
                             htmlstr += `
                                 <section class="fv-module-box-10">
                                     <div class="fv-h5dnd-modules-title-box">
-                                        <p class="fv-h5dnd-modules-title" data-title="fv-equity-pledge-title" data-more="equity-pledge-title">股权质押</p>
+                                        <p class="fv-h5dnd-modules-title" data-title="fv-equity-pledge-title" data-more="equity-pledge-title">
+                                            股权质押
+                                            <span data-link="fv-equity-pledge-data-link">
+                                                <a href="#more" data-uid="2741" data-turn-to-uid="node-uid-equity-pledge-data">更多</a>
+                                            </span>
+                                        </p>
                                     </div>
                                     <table class="fv-equity-pledge-table">
                                         <thead class="fv-equity-pledge-table-thead">
@@ -849,7 +893,12 @@ STOCK_F9_FV.Modules.loadAllModules = STOCK_F9_FV.Modules.loadAllModules || (
                             htmlstr += `
                                 <section class="fv-module-box-5">
                                     <div class="fv-h5dnd-modules-title-box">
-                                        <p class="fv-h5dnd-modules-title" data-title="fv-holdings-participation-situation-title" data-more="holdings-participation-situation-title">控股参股情况</p>
+                                        <p class="fv-h5dnd-modules-title" data-title="fv-holdings-participation-situation-title" data-more="holdings-participation-situation-title">
+                                            控股参股情况
+                                            <span data-link="fv-holdings-participation-situation-data-link">
+                                                <a href="#more" data-uid="2705" data-turn-to-uid="node-uid-holdings-participation-situation-data">更多</a>
+                                            </span>
+                                        </p>
                                     </div>
                                     <table class="fv-holdings-participation-situation-table">
                                         <thead class="fv-holdings-participation-situation-table-thead">
@@ -877,7 +926,12 @@ STOCK_F9_FV.Modules.loadAllModules = STOCK_F9_FV.Modules.loadAllModules || (
                             htmlstr += `
                                 <section class="fv-module-box-5">
                                     <div class="fv-h5dnd-modules-title-box">
-                                        <p class="fv-h5dnd-modules-title" data-title="fv-changes-shareholding-executives-title" data-more="changes-shareholding-executives-title">高管持股变动情况</p>
+                                        <p class="fv-h5dnd-modules-title" data-title="fv-changes-shareholding-executives-title" data-more="changes-shareholding-executives-title">
+                                            高管持股变动情况
+                                            <span data-link="fv-changes-shareholding-executives-data-link">
+                                                <a href="#more" data-uid="62283" data-turn-to-uid="node-uid-changes-shareholding-executives-data">更多</a>
+                                            </span>
+                                        </p>
                                     </div>
                                     <table class="fv-changes-shareholding-executives-table">
                                         <thead class="fv-changes-shareholding-executives-table-thead">
@@ -907,7 +961,12 @@ STOCK_F9_FV.Modules.loadAllModules = STOCK_F9_FV.Modules.loadAllModules || (
                             htmlstr += `
                                 <section class="fv-module-box-7">
                                     <div class="fv-h5dnd-modules-title-box">
-                                        <p class="fv-h5dnd-modules-title" data-title="fv-institutional-shareholding-change-statistics-title">机构持股变动统计</p>
+                                        <p class="fv-h5dnd-modules-title" data-title="fv-institutional-shareholding-change-statistics-title">
+                                            机构持股变动统计
+                                            <span data-link="fv-institutional-shareholding-change-statistics-data-link">
+                                                <a href="#more" data-uid="2685" data-turn-to-uid="node-uid-institutional-shareholding-change-statistics-data">更多</a>
+                                            </span>
+                                        </p>
                                     </div>
                                     <div class="fv-institutional-shareholding-change-statistics-container">
                                         <div id="institutional_shareholding_change_statistics_hs_container" class="fv-institutional-shareholding-change-statistics-hs fv-institutional-shareholding-change-statistics-hs-container" data-hs-container="data-institutional-shareholding-change-statistics-container-uid"></div>
@@ -921,7 +980,12 @@ STOCK_F9_FV.Modules.loadAllModules = STOCK_F9_FV.Modules.loadAllModules || (
                             htmlstr += `
                                 <section class="fv-module-box-5">
                                     <div class="fv-h5dnd-modules-title-box">
-                                        <p class="fv-h5dnd-modules-title" data-title="fv-company-news-title" data-more="company-news-title">公司新闻</p>
+                                        <p class="fv-h5dnd-modules-title" data-title="fv-company-news-title" data-more="company-news-title">
+                                            公司新闻
+                                            <span data-link="fv-company-news-data-link">
+                                                <a href="#more" data-uid="2906" data-turn-to-uid="node-uid-company-news-data">更多</a>
+                                            </span>
+                                        </p>
                                     </div>
                                     <table class="fv-company-news-table">
                                         <thead class="fv-company-news-table-thead">
@@ -945,8 +1009,13 @@ STOCK_F9_FV.Modules.loadAllModules = STOCK_F9_FV.Modules.loadAllModules || (
                             loadModule(`company-announcements`, true);
                             htmlstr += `
                                 <section class="fv-module-box-5">
-                                    <div class="fv-h5dnd-modules-title-box">
-                                        <p class="fv-h5dnd-modules-title" data-title="fv-company-announcements-title" data-more="company-announcements-title">公司公告</p>
+                                    <div class="fv-h5dnd-modules-title-box>
+                                        <p class="fv-h5dnd-modules-title" data-title="fv-company-announcements-title" data-more="company-announcements-title">
+                                            公司公告
+                                            <span data-link="fv-company-announcements-data-link">
+                                                <a href="#more" data-uid="2898" data-turn-to-uid="node-uid-company-announcements-data">更多</a>
+                                            </span>
+                                        </p>
                                     </div>
                                     <table class="fv-company-announcements-table">
                                         <thead class="fv-company-announcements-table-thead">
@@ -971,7 +1040,12 @@ STOCK_F9_FV.Modules.loadAllModules = STOCK_F9_FV.Modules.loadAllModules || (
                             htmlstr += `
                                 <section class="fv-module-box-5">
                                     <div class="fv-h5dnd-modules-title-box">
-                                        <p class="fv-h5dnd-modules-title" data-title="fv-research-report-title" data-more="research-report-title">研究报告</p>
+                                        <p class="fv-h5dnd-modules-title" data-title="fv-research-report-title" data-more="research-report-title">
+                                            研究报告
+                                            <span data-link="fv-research-report-data-link">
+                                                <a href="#more" data-uid="2904" data-turn-to-uid="node-uid-research-report-data">更多</a>
+                                            </span>
+                                        </p>
                                     </div>
                                     <table class="fv-research-report-table">
                                         <thead class="fv-research-report-table-thead">
@@ -1456,7 +1530,12 @@ STOCK_F9_FV.Modules.modulesLoader = STOCK_F9_FV.Modules.modulesLoader ||(
                                 <section class="fv-module-box-3">
                                     <!-- 重要信息 -->
                                     <div class="fv-h5dnd-modules-title-box">
-                                        <p class="fv-h5dnd-modules-title" data-title="fv-important-infos-title">重要信息</p>
+                                        <p class="fv-h5dnd-modules-title" data-title="fv-important-infos-title">
+                                            重要信息
+                                            <span data-link="fv-important-infos-data-link">
+                                                <a href="#more" data-uid="2172" data-turn-to-uid="node-uid-important-infos-data">更多</a>
+                                            </span>
+                                        </p>
                                     </div>
                                     <table class="fv-important-infos-table">
                                         <thead class="fv-important-infos-table-thead">
@@ -1543,7 +1622,9 @@ STOCK_F9_FV.Modules.modulesLoader = STOCK_F9_FV.Modules.modulesLoader ||(
                             htmlstr += `
                                 <section class="fv-module-box-7">
                                     <div class="fv-h5dnd-modules-title-box">
-                                        <p class="fv-h5dnd-modules-title" data-title="fv-recent-important-events-title">近期重要事项</p>
+                                        <p class="fv-h5dnd-modules-title" data-title="fv-recent-important-events-title">
+                                            近期重要事项
+                                        </p>
                                     </div>
                                     <table class="fv-recent-important-events-table">
                                         <thead class="fv-recent-important-events-table-thead">
@@ -1578,7 +1659,12 @@ STOCK_F9_FV.Modules.modulesLoader = STOCK_F9_FV.Modules.modulesLoader ||(
                             htmlstr += `
                                 <section class="fv-module-box-7">
                                     <div class="fv-h5dnd-modules-title-box">
-                                        <p class="fv-h5dnd-modules-title" data-title="fv-profit-forecast-title">盈利预测</p>
+                                        <p class="fv-h5dnd-modules-title" data-title="fv-profit-forecast-title">
+                                            盈利预测
+                                            <span data-link="fv-profit-forecast-data-link">
+                                                <a href="#more" data-uid="2908" data-turn-to-uid="node-uid-profit-forecast-data">更多</a>
+                                            </span>
+                                        </p>
                                     </div>
                                     <div class="fv-profit-forecast-container">
                                         <div id="profit_forecast_hs_container" class="fv-profit-forecast-hs fv-profit-forecast-hs-container" data-hs-container="data-profit-forecast-container-uid">
@@ -1594,7 +1680,12 @@ STOCK_F9_FV.Modules.modulesLoader = STOCK_F9_FV.Modules.modulesLoader ||(
                             htmlstr += `
                                 <section class="fv-module-box-3">
                                     <div class="fv-indicators-per-share-title-box">
-                                        <p class="fv-h5dnd-modules-title" data-title="fv-indicators-per-share-title">每股指标</p>
+                                        <p class="fv-h5dnd-modules-title" data-title="fv-indicators-per-share-title">
+                                            每股指标
+                                            <span data-link="fv-indicators-per-share-data-link">
+                                                <a href="#more" data-uid="2846" data-turn-to-uid="node-uid-indicators-per-share-data">更多</a>
+                                            </span>
+                                        </p>
                                     </div>
                                     <table class="fv-indicators-per-share-table">
                                         <thead class="fv-indicators-per-share-table-thead">
@@ -1714,7 +1805,12 @@ STOCK_F9_FV.Modules.modulesLoader = STOCK_F9_FV.Modules.modulesLoader ||(
                             htmlstr += `
                                 <section class="fv-module-box-7">
                                     <div class="fv-h5dnd-modules-title-box">
-                                        <p class="fv-h5dnd-modules-title" data-title="fv-agency-rating-title">机构评级</p>
+                                        <p class="fv-h5dnd-modules-title" data-title="fv-agency-rating-title">
+                                            机构评级
+                                            <span data-link="fv-agency-rating-data-link">
+                                                <a href="#more" data-uid="2910" data-turn-to-uid="node-uid-agency-rating-data">更多</a>
+                                            </span>
+                                        </p>
                                     </div>
                                     <div class="fv-agency-rating-container">
                                         <!-- 机构评级 placeholder -->
@@ -1728,8 +1824,8 @@ STOCK_F9_FV.Modules.modulesLoader = STOCK_F9_FV.Modules.modulesLoader ||(
                             loadModule(`stock-price-turnover`);
                             htmlstr += `
                                 <section class="fv-module-box-7">
-                                    <div class="fv-stock-price-turnover-title-box">
-                                        <p class="fv-stock-price-turnover-title">股价/成交量</p>
+                                    <div class="fv-h5dnd-modules-title-box">
+                                        <p class="fv-h5dnd-modules-title" data-title="fv-stock-price-turnover-title">股价/成交量</p>
                                     </div>
                                     <section data-uid="stock-price-turnover">
                                         <div class="fv-stock-price-turnover-container">
@@ -1761,7 +1857,12 @@ STOCK_F9_FV.Modules.modulesLoader = STOCK_F9_FV.Modules.modulesLoader ||(
                             htmlstr += `
                                 <section class="fv-module-box-10">
                                     <div class="fv-h5dnd-modules-title-box">
-                                        <p class="fv-h5dnd-modules-title" data-title="fv-top-ten-shareholders-title" data-more="top-ten-shareholders-title">前十大股东</p>
+                                        <p class="fv-h5dnd-modules-title" data-title="fv-top-ten-shareholders-title" data-more="top-ten-shareholders-title">
+                                            前十大股东
+                                            <span data-link="fv-top-ten-shareholders-data-link">
+                                                <a href="#more" data-uid="2681" data-turn-to-uid="node-uid-top-ten-shareholders-data">更多</a>
+                                            </span>
+                                        </p>
                                     </div>
                                     <table class="fv-top-ten-shareholders-table">
                                         <thead class="fv-top-ten-shareholders-table-thead">
@@ -1789,7 +1890,12 @@ STOCK_F9_FV.Modules.modulesLoader = STOCK_F9_FV.Modules.modulesLoader ||(
                             htmlstr += `
                                 <section class="fv-module-box-7">
                                     <div class="fv-h5dnd-modules-title-box">
-                                        <p class="fv-h5dnd-modules-title" data-title="fv-financing-and-margin-balance-difference-trend-title">融资余额与融券余额差值走势</p>
+                                        <p class="fv-h5dnd-modules-title" data-title="fv-financing-and-margin-balance-difference-trend-title">
+                                            融资余额与融券余额差值走势
+                                            <span data-link="fv-financing-and-margin-balance-difference-trend-data-link">
+                                                <a href="#more" data-uid="2876" data-turn-to-uid="node-uid-financing-and-margin-balance-difference-trend-data">更多</a>
+                                            </span>
+                                        </p>
                                     </div>
                                     <div class="fv-financing-and-margin-balance-difference-trend-container">
                                         <!-- 融资余额与融券余额差值走势 placeholder -->
@@ -1804,7 +1910,12 @@ STOCK_F9_FV.Modules.modulesLoader = STOCK_F9_FV.Modules.modulesLoader ||(
                             htmlstr += `
                                 <section class="fv-module-box-7">
                                     <div class="fv-h5dnd-modules-title-box">
-                                        <p class="fv-h5dnd-modules-title" data-title="fv-monthly-capital-flows-large-single-statistics-title">近一月资金流向大单统计</p>
+                                        <p class="fv-h5dnd-modules-title" data-title="fv-monthly-capital-flows-large-single-statistics-title">
+                                            近一月资金流向大单统计
+                                            <span data-link="fv-monthly-capital-flows-large-single-statistics-data-link">
+                                                <a href="#more" data-uid="2872" data-turn-to-uid="node-uid-monthly-capital-flows-large-single-statistics-data">更多</a>
+                                            </span>
+                                        </p>
                                     </div>
                                     <div class="fv-monthly-capital-flows-large-single-statistics-container">
                                         <!-- 近一月资金流向大单统计 placeholder -->
@@ -1819,7 +1930,12 @@ STOCK_F9_FV.Modules.modulesLoader = STOCK_F9_FV.Modules.modulesLoader ||(
                             htmlstr += `
                                 <section class="fv-module-box-10">
                                     <div class="fv-h5dnd-modules-title-box">
-                                        <p class="fv-h5dnd-modules-title" data-title="fv-equity-pledge-title" data-more="equity-pledge-title">股权质押</p>
+                                        <p class="fv-h5dnd-modules-title" data-title="fv-equity-pledge-title" data-more="equity-pledge-title">
+                                            股权质押
+                                            <span data-link="fv-equity-pledge-data-link">
+                                                <a href="#more" data-uid="2741" data-turn-to-uid="node-uid-equity-pledge-data">更多</a>
+                                            </span>
+                                        </p>
                                     </div>
                                     <table class="fv-equity-pledge-table">
                                         <thead class="fv-equity-pledge-table-thead">
@@ -1864,7 +1980,12 @@ STOCK_F9_FV.Modules.modulesLoader = STOCK_F9_FV.Modules.modulesLoader ||(
                             htmlstr += `
                                 <section class="fv-module-box-5">
                                     <div class="fv-h5dnd-modules-title-box">
-                                        <p class="fv-h5dnd-modules-title" data-title="fv-holdings-participation-situation-title" data-more="holdings-participation-situation-title">控股参股情况</p>
+                                        <p class="fv-h5dnd-modules-title" data-title="fv-holdings-participation-situation-title" data-more="holdings-participation-situation-title">
+                                            控股参股情况
+                                            <span data-link="fv-holdings-participation-situation-data-link">
+                                                <a href="#more" data-uid="2705" data-turn-to-uid="node-uid-holdings-participation-situation-data">更多</a>
+                                            </span>
+                                        </p>
                                     </div>
                                     <table class="fv-holdings-participation-situation-table">
                                         <thead class="fv-holdings-participation-situation-table-thead">
@@ -1892,7 +2013,12 @@ STOCK_F9_FV.Modules.modulesLoader = STOCK_F9_FV.Modules.modulesLoader ||(
                             htmlstr += `
                                 <section class="fv-module-box-5">
                                     <div class="fv-h5dnd-modules-title-box">
-                                        <p class="fv-h5dnd-modules-title" data-title="fv-changes-shareholding-executives-title" data-more="changes-shareholding-executives-title">高管持股变动情况</p>
+                                        <p class="fv-h5dnd-modules-title" data-title="fv-changes-shareholding-executives-title" data-more="changes-shareholding-executives-title">
+                                            高管持股变动情况
+                                            <span data-link="fv-changes-shareholding-executives-data-link">
+                                                <a href="#more" data-uid="62283" data-turn-to-uid="node-uid-changes-shareholding-executives-data">更多</a>
+                                            </span>
+                                        </p>
                                     </div>
                                     <table class="fv-changes-shareholding-executives-table">
                                         <thead class="fv-changes-shareholding-executives-table-thead">
@@ -1922,7 +2048,12 @@ STOCK_F9_FV.Modules.modulesLoader = STOCK_F9_FV.Modules.modulesLoader ||(
                             htmlstr += `
                                 <section class="fv-module-box-7">
                                     <div class="fv-h5dnd-modules-title-box">
-                                        <p class="fv-h5dnd-modules-title" data-title="fv-institutional-shareholding-change-statistics-title">机构持股变动统计</p>
+                                        <p class="fv-h5dnd-modules-title" data-title="fv-institutional-shareholding-change-statistics-title">
+                                            机构持股变动统计
+                                            <span data-link="fv-institutional-shareholding-change-statistics-data-link">
+                                                <a href="#more" data-uid="2685" data-turn-to-uid="node-uid-institutional-shareholding-change-statistics-data">更多</a>
+                                            </span>
+                                        </p>
                                     </div>
                                     <div class="fv-institutional-shareholding-change-statistics-container">
                                         <div id="institutional_shareholding_change_statistics_hs_container" class="fv-institutional-shareholding-change-statistics-hs fv-institutional-shareholding-change-statistics-hs-container" data-hs-container="data-institutional-shareholding-change-statistics-container-uid"></div>
@@ -1936,7 +2067,12 @@ STOCK_F9_FV.Modules.modulesLoader = STOCK_F9_FV.Modules.modulesLoader ||(
                             htmlstr += `
                                 <section class="fv-module-box-5">
                                     <div class="fv-h5dnd-modules-title-box">
-                                        <p class="fv-h5dnd-modules-title" data-title="fv-company-news-title" data-more="company-news-title">公司新闻</p>
+                                        <p class="fv-h5dnd-modules-title" data-title="fv-company-news-title" data-more="company-news-title">
+                                            公司新闻
+                                            <span data-link="fv-company-news-data-link">
+                                                <a href="#more" data-uid="2906" data-turn-to-uid="node-uid-company-news-data">更多</a>
+                                            </span>
+                                        </p>
                                     </div>
                                     <table class="fv-company-news-table">
                                         <thead class="fv-company-news-table-thead">
@@ -1961,7 +2097,12 @@ STOCK_F9_FV.Modules.modulesLoader = STOCK_F9_FV.Modules.modulesLoader ||(
                             htmlstr += `
                                 <section class="fv-module-box-5">
                                     <div class="fv-h5dnd-modules-title-box>
-                                        <p class="fv-h5dnd-modules-title" data-title="fv-company-announcements-title" data-more="company-announcements-title">公司公告</p>
+                                        <p class="fv-h5dnd-modules-title" data-title="fv-company-announcements-title" data-more="company-announcements-title">
+                                            公司公告
+                                            <span data-link="fv-company-announcements-data-link">
+                                                <a href="#more" data-uid="2898" data-turn-to-uid="node-uid-company-announcements-data">更多</a>
+                                            </span>
+                                        </p>
                                     </div>
                                     <table class="fv-company-announcements-table">
                                         <thead class="fv-company-announcements-table-thead">
@@ -1986,7 +2127,12 @@ STOCK_F9_FV.Modules.modulesLoader = STOCK_F9_FV.Modules.modulesLoader ||(
                             htmlstr += `
                                 <section class="fv-module-box-5">
                                     <div class="fv-h5dnd-modules-title-box">
-                                        <p class="fv-h5dnd-modules-title" data-title="fv-research-report-title" data-more="research-report-title">研究报告</p>
+                                        <p class="fv-h5dnd-modules-title" data-title="fv-research-report-title" data-more="research-report-title">
+                                            研究报告
+                                            <span data-link="fv-research-report-data-link">
+                                                <a href="#more" data-uid="2904" data-turn-to-uid="node-uid-research-report-data">更多</a>
+                                            </span>
+                                        </p>
                                     </div>
                                     <table class="fv-research-report-table">
                                         <thead class="fv-research-report-table-thead">
