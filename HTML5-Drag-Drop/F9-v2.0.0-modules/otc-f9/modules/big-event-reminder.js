@@ -104,7 +104,8 @@ OTC_F9_FV.Modules.bigEventReminder.init = OTC_F9_FV.Modules.bigEventReminder.ini
             gilcode: `430002.OC`
         }
     ) => {
-        let url = `${ip}${path}${socket}${gilcode}`,
+        // let url = `${ip}${path}${socket}${gilcode}`,
+        let url = `http://10.1.5.202/JSON/otc-f9/2.json`,
             tbd = document.querySelector(`[data-tbody="otc-big-event-reminder-table-tbody"]`);
             // tds = document.querySelectorAll(`[data-value="data-otc-BER"]`);
         OTC_F9_FV.Modules.bigEventReminder(url, tbd, false);

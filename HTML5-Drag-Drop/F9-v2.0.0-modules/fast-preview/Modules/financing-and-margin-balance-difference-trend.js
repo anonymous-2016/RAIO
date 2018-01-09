@@ -386,7 +386,7 @@ STOCK_F9_FV.Modules.FMBDtrend.FMBDTdrawHS = STOCK_F9_FV.Modules.FMBDtrend.FMBDTd
             },
             series: [
                 {
-                    name: '融资余额与融券余额差值差值',
+                    name: '融资余额与融券余额差值走势',
                     // type = column (chart)
                     // 净利润/融资余额与融券余额差值
                     data: shares,

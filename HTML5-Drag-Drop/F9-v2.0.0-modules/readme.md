@@ -7,6 +7,8 @@
 
 $ browser-sync start --server --files "./fast-preview/*.*"
 
+http://localhost:3000/fast-preview/index.html
+
 # http://localhost:3000/fast-preview/sidebar.html#模块选择
 
 # HTML5-Drag-Drop/F9-v2.0.0-modules/fast-preview/common/absolute-center.html

@@ -107,7 +107,8 @@ OTC_F9_FV.Modules.latestTransactionData.init = OTC_F9_FV.Modules.latestTransacti
             gilcode: `430002.OC`
         }
     ) => {
-        let url = `${ip}${path}${socket}${gilcode}`,
+        // let url = `${ip}${path}${socket}${gilcode}`,
+        let url = `http://10.1.5.202/JSON/otc-f9/1.json`,
             tds = document.querySelectorAll(`[data-value="data-otc-LTD"]`),
             title = document.querySelector(`[data-text="otc-latest-transaction-data-text"]`);
         // copy(Object.keys(json));

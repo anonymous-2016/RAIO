@@ -202,8 +202,8 @@ OTC_F9_FV.Modules.companyBriefIntroduction.init = OTC_F9_FV.Modules.companyBrief
             gilcode: `430002.OC`
         }
     ) => {
-        // let url = `http://10.1.5.202/otc/f9/datas/4.json`,
-        let url = `${ip}${path}${socket}${gilcode}`,
+        // let url = `${ip}${path}${socket}${gilcode}`,
+        let url = `http://10.1.5.202/JSON/otc-f9/3.json`,
             tbody = document.querySelector(`.otc-company-brief-introduction-table-tbody`),
             title = document.querySelector(`[data-titles="data-otc-CBI-title"]`);
         const uids = [`[data-float="float-table"]`, `[data-float="float-div"]`, `[data-float="float-title"]`];

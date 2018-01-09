@@ -31,16 +31,13 @@ STOCK_F9_FV.Modules.topTenShareholders = STOCK_F9_FV.Modules.topTenShareholders 
                 arr.map(
                     (obj, i) => {
                         let time, name, amount, percentage , property;
-                        time = (arr[i].sj !== undefined) ? arr[i].sj : `暂无数据`;
+                        // time = (arr[i].sj !== undefined) ? arr[i].sj : `暂无数据`;
                         name = (arr[i].mc !== undefined) ? arr[i].mc : `暂无数据`;
                         amount = (arr[i].sl !== undefined) ? arr[i].sl : `暂无数据`;
                         percentage = (arr[i].bl !== undefined) ? arr[i].bl : `暂无数据`;
                         property = (arr[i].xz !== undefined) ? arr[i].xz : `暂无数据`;
                         html_string += `
                             <tr class="fv-top-ten-shareholders-table-tr" data-value="fv-top-ten-shareholders-table-tr">
-                                <td class="fv-top-ten-shareholders-table-td-value" data-value="data-fv-top-ten-shareholders">
-                                    ${time}
-                                </td>
                                 <td class="fv-top-ten-shareholders-table-td-value" data-value="data-fv-top-ten-shareholders" title="${name}">
                                     ${name}
                                 </td>
@@ -55,6 +52,7 @@ STOCK_F9_FV.Modules.topTenShareholders = STOCK_F9_FV.Modules.topTenShareholders 
                                 </td>
                             </tr>
                         `;
+                        // <td class="fv-top-ten-shareholders-table-td-value" data-value="data-fv-top-ten-shareholders">${time}</td>
                     }
                 );
                 let td_id = document.querySelector(uid);
@@ -118,12 +116,16 @@ STOCK_F9_FV.Modules.topTenShareholders.init = STOCK_F9_FV.Modules.topTenSharehol
             gilcode: `600570.SH`
         }
     ) => {
-        let uid = `#fv-top-ten-shareholders-tbody`,
-            url = `${ip}${path}${gilcode}`;
+        let url = `http://10.1.5.202/JSON/stock-f9/7.json`,
+        // let url = `${ip}${path}${gilcode}`,
+            uid = `#fv-top-ten-shareholders-tbody`;
         STOCK_F9_FV.Modules.topTenShareholders(url, uid, false);
         // STOCK_F9_FV.Modules.topTenShareholders(url, uid, true);
     }
 );
+
+
+// http://10.1.5.202/JSON/stock-f9/7.json
 
 
 var STOCK_IP = window.STOCK_IP || `http://10.1.5.202`,

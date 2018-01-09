@@ -820,7 +820,8 @@ OTC_F9_FV.Modules.mainManagementBusiness.init = OTC_F9_FV.Modules.mainManagement
             gilcode: `430002.OC`
         }
     ) => {
-        let url = `${ip}${path}${socket}${gilcode}`,
+        let url = `http://10.1.5.202/JSON/otc-f9/9.json`,
+        // let url = `${ip}${path}${socket}${gilcode}`,
             time_uid = `[data-time="otc-main-management-business-time"]`,
             hst_uid = `[data-titles="data-otc-MMB-title"]`,
             hsc_uids = [`main_managemen_business_hs_container`, `main_managemen_business_hs_container2`],

@@ -138,8 +138,8 @@ OTC_F9_FV.Modules.latestFinancialData.init = OTC_F9_FV.Modules.latestFinancialDa
             gilcode: `430002.OC`
         }
     ) => {
-        // let url = `http://10.1.5.202/otc/f9/datas/4.json`,
-        let url = `${ip}${path}${socket}${gilcode}`,
+        let url = `http://10.1.5.202/JSON/otc-f9/4.json`,
+        // let url = `${ip}${path}${socket}${gilcode}`,
             tds = document.querySelectorAll(`[data-value="data-otc-LFD"]`),
             titles = document.querySelectorAll(`[data-titles="data-otc-LFD-title"]`);
         OTC_F9_FV.Modules.latestFinancialData(url, tds, titles, false);
