@@ -134,11 +134,16 @@ OTC_F9_FV.Modules.mainManagementBusiness = OTC_F9_FV.Modules.mainManagementBusin
                                                 arr_obj.income.push(income);
                                                 arr_obj.cost.push(cost);
                                                 arr_obj.gross_profit.push(gross_profit);
+                                                // no total
+                                                arr_obj2.products.push(products);
+                                                arr_obj2.income.push(income);
+                                                arr_obj2.cost.push(cost);
+                                                arr_obj2.gross_profit.push(gross_profit);
                                             }
-                                            arr_obj2.products.push(products);
-                                            arr_obj2.income.push(income);
-                                            arr_obj2.cost.push(cost);
-                                            arr_obj2.gross_profit.push(gross_profit);
+                                            // arr_obj2.products.push(products);
+                                            // arr_obj2.income.push(income);
+                                            // arr_obj2.cost.push(cost);
+                                            // arr_obj2.gross_profit.push(gross_profit);
                                         }
                                     );
                                     if (debug) {
@@ -260,7 +265,7 @@ OTC_F9_FV.Modules.mainManagementBusiness.drawHS = OTC_F9_FV.Modules.mainManageme
                     </p>
                 `,
                 loading: `Loading....`,
-                numericSymbols:["千","00万","0亿","兆","千兆","百万兆"]
+                // numericSymbols:["千","00万","0亿","兆","千兆","百万兆"]
             }
         });
         Highcharts.chart(container_uid, {
@@ -557,7 +562,7 @@ OTC_F9_FV.Modules.mainManagementBusiness.drawHS2 = OTC_F9_FV.Modules.mainManagem
                     </p>
                 `,
                 loading: `Loading....`,
-                numericSymbols:["千","00万","0亿","兆","千兆","百万兆"]
+                // numericSymbols:["千","00万","0亿","兆","千兆","百万兆"]
             }
         });
         Highcharts.chart(container_uid, {
@@ -820,8 +825,8 @@ OTC_F9_FV.Modules.mainManagementBusiness.init = OTC_F9_FV.Modules.mainManagement
             gilcode: `430002.OC`
         }
     ) => {
-        let url = `http://10.1.5.202/JSON/otc-f9/9.json`,
-        // let url = `${ip}${path}${socket}${gilcode}`,
+        // let url = `http://10.1.5.202/JSON/otc-f9/9.json`,
+        let url = `${ip}${path}${socket}${gilcode}`,
             time_uid = `[data-time="otc-main-management-business-time"]`,
             hst_uid = `[data-titles="data-otc-MMB-title"]`,
             hsc_uids = [`main_managemen_business_hs_container`, `main_managemen_business_hs_container2`],

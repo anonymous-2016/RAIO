@@ -772,6 +772,9 @@ STOCK_F9_FV.Modules.loadAllModules = STOCK_F9_FV.Modules.loadAllModules || (
                                     <div class="fv-h5dnd-modules-title-box">
                                         <p class="fv-h5dnd-modules-title" data-title="fv-top-ten-shareholders-title" data-more="top-ten-shareholders-title">
                                             前十大股东
+                                            <span data-title-text="fv-top-ten-shareholders-data-title-text">
+                                                (日期: <span data-text="fv-top-ten-shareholders-data-text"></span>)
+                                            </span>
                                             <span data-link="fv-top-ten-shareholders-data-link">
                                                 <a href="#more" data-uid="2681" data-turn-to-uid="node-uid-top-ten-shareholders-data">更多</a>
                                             </span>
@@ -780,7 +783,6 @@ STOCK_F9_FV.Modules.loadAllModules = STOCK_F9_FV.Modules.loadAllModules || (
                                     <table class="fv-top-ten-shareholders-table">
                                         <thead class="fv-top-ten-shareholders-table-thead">
                                             <tr class="fv-top-ten-shareholders-table-tr">
-                                                <td class="fv-top-ten-shareholders-table-td-title fv-top-ten-shareholders-table-td-value" data-value="data-fv-top-ten-shareholders">时间</td>
                                                 <td class="fv-top-ten-shareholders-table-td-title">机构或基金名称</td>
                                                 <td class="fv-top-ten-shareholders-table-td-title">持有数量(股)</td>
                                                 <td class="fv-top-ten-shareholders-table-td-title">占流通股比例(%)</td>
@@ -1009,7 +1011,7 @@ STOCK_F9_FV.Modules.loadAllModules = STOCK_F9_FV.Modules.loadAllModules || (
                             loadModule(`company-announcements`, true);
                             htmlstr += `
                                 <section class="fv-module-box-5">
-                                    <div class="fv-h5dnd-modules-title-box>
+                                    <div class="fv-h5dnd-modules-title-box">
                                         <p class="fv-h5dnd-modules-title" data-title="fv-company-announcements-title" data-more="company-announcements-title">
                                             公司公告
                                             <span data-link="fv-company-announcements-data-link">
@@ -1859,6 +1861,9 @@ STOCK_F9_FV.Modules.modulesLoader = STOCK_F9_FV.Modules.modulesLoader ||(
                                     <div class="fv-h5dnd-modules-title-box">
                                         <p class="fv-h5dnd-modules-title" data-title="fv-top-ten-shareholders-title" data-more="top-ten-shareholders-title">
                                             前十大股东
+                                            <span data-title-text="fv-top-ten-shareholders-data-title-text">
+                                                (日期: <span data-text="fv-top-ten-shareholders-data-text"></span>)
+                                            </span>
                                             <span data-link="fv-top-ten-shareholders-data-link">
                                                 <a href="#more" data-uid="2681" data-turn-to-uid="node-uid-top-ten-shareholders-data">更多</a>
                                             </span>
@@ -1867,7 +1872,6 @@ STOCK_F9_FV.Modules.modulesLoader = STOCK_F9_FV.Modules.modulesLoader ||(
                                     <table class="fv-top-ten-shareholders-table">
                                         <thead class="fv-top-ten-shareholders-table-thead">
                                             <tr class="fv-top-ten-shareholders-table-tr">
-                                                <td class="fv-top-ten-shareholders-table-td-title fv-top-ten-shareholders-table-td-value" data-value="data-fv-top-ten-shareholders">时间</td>
                                                 <td class="fv-top-ten-shareholders-table-td-title">机构或基金名称</td>
                                                 <td class="fv-top-ten-shareholders-table-td-title">持有数量(股)</td>
                                                 <td class="fv-top-ten-shareholders-table-td-title">占流通股比例(%)</td>
@@ -2096,7 +2100,7 @@ STOCK_F9_FV.Modules.modulesLoader = STOCK_F9_FV.Modules.modulesLoader ||(
                             loadModule(`company-announcements`, true);
                             htmlstr += `
                                 <section class="fv-module-box-5">
-                                    <div class="fv-h5dnd-modules-title-box>
+                                    <div class="fv-h5dnd-modules-title-box">
                                         <p class="fv-h5dnd-modules-title" data-title="fv-company-announcements-title" data-more="company-announcements-title">
                                             公司公告
                                             <span data-link="fv-company-announcements-data-link">

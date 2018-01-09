@@ -4,8 +4,8 @@
  * xgqfrms
  * creadted 2017.10.31
  * @param {* String} url
- * @param {* Array} tds
- * @param {* Array} ui_arr
+ * @param {* String} time_uid
+ * @param {* String} id
  * @param {Boolean} debug
  */
 // namespaces
@@ -14,7 +14,7 @@ var STOCK_F9_FV = STOCK_F9_FV || {};
 STOCK_F9_FV.Modules = STOCK_F9_FV.Modules || {};
 
 STOCK_F9_FV.Modules.topTenShareholders = STOCK_F9_FV.Modules.topTenShareholders || (
-    (url = ``, uid = `id`, debug = false) => {
+    (url = ``, time_uid = ``, uid = ``, debug = false) => {
     let data = [];
     fetch(url)
     .then(res => res.json())
@@ -22,6 +22,7 @@ STOCK_F9_FV.Modules.topTenShareholders = STOCK_F9_FV.Modules.topTenShareholders 
         (json) => {
             // json = {};
             data = json;
+            let time_dom = document.querySelector(time_uid);
             if (debug) {
                 console.log(`data = \n`, data);
             }
@@ -30,8 +31,11 @@ STOCK_F9_FV.Modules.topTenShareholders = STOCK_F9_FV.Modules.topTenShareholders 
                 let arr = data;
                 arr.map(
                     (obj, i) => {
-                        let time, name, amount, percentage , property;
-                        // time = (arr[i].sj !== undefined) ? arr[i].sj : `暂无数据`;
+                        let name, amount, percentage , property;
+                        if (i === 0) {
+                            let time = (arr[i].sj !== undefined) ? arr[i].sj : `暂无数据`;
+                            time_dom.insertAdjacentHTML(`beforeend`, time);
+                        }
                         name = (arr[i].mc !== undefined) ? arr[i].mc : `暂无数据`;
                         amount = (arr[i].sl !== undefined) ? arr[i].sl : `暂无数据`;
                         percentage = (arr[i].bl !== undefined) ? arr[i].bl : `暂无数据`;
@@ -116,10 +120,12 @@ STOCK_F9_FV.Modules.topTenShareholders.init = STOCK_F9_FV.Modules.topTenSharehol
             gilcode: `600570.SH`
         }
     ) => {
-        let url = `http://10.1.5.202/JSON/stock-f9/7.json`,
-        // let url = `${ip}${path}${gilcode}`,
+        // let url = `http://10.1.5.202/JSON/stock-f9/7.json`,
+        let url = `${ip}${path}${gilcode}`,
+            // time_uid = `[data-time="otc-main-management-business-time"]`,
+            time_uid = `[data-text="fv-top-ten-shareholders-data-text"]`,
             uid = `#fv-top-ten-shareholders-tbody`;
-        STOCK_F9_FV.Modules.topTenShareholders(url, uid, false);
+        STOCK_F9_FV.Modules.topTenShareholders(url, time_uid, uid, false);
         // STOCK_F9_FV.Modules.topTenShareholders(url, uid, true);
     }
 );

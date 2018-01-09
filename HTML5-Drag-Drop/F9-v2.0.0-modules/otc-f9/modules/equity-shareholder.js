@@ -226,20 +226,21 @@ OTC_F9_FV.Modules.equityShareholder = OTC_F9_FV.Modules.equityShareholder || (
                             }
                             let title1 = ``;
                             if (Object.keys(json.sdgd).length === 5) {
+                                //  data-span="data-otc-ES-title"
                                 title1 = `
                                     <p>
-                                        十大股东 (<span data-span="data-otc-ES-title">${json.sdgd.sj}</span>)
+                                        十大股东 (<span>${json.sdgd.sj}</span>)
                                     </p>
                                     <p data-p="data-otc-ES-title">
                                         报告期内十大股东合计持股
-                                        <span data-span="data-otc-ES-title">${json.sdgd.hj}</span>万股,
-                                        <span data-span="data-otc-ES-title">${json.sdgd.bh}</span>
+                                        <span>${json.sdgd.hj}</span>万股,
+                                        <span>${json.sdgd.bh}</span>
                                         ${
                                             (json.sdgd.gds !== 0 && json.sdgd.gds !== undefined)
                                             ?
-                                            `,报告期内有<span data-span="data-otc-ES-title">${json.sdgd.gds}</span>位股东有减持行为`
+                                            `,报告期内有<span>${json.sdgd.gds}</span>位股东有减持行为`
                                             :
-                                            `<span data-span="data-otc-ES-title"></span>`
+                                            `<span></span>`
                                         }.
                                     </p>
                                 `;
@@ -307,6 +308,7 @@ OTC_F9_FV.Modules.equityShareholder = OTC_F9_FV.Modules.equityShareholder || (
                             let title2 = ``;
                             // 简述: 报告期内公司股东比上期(增加/减少) hsjsq 户，增长/负数 zhszz %，户均持股hjcgs股，增长/减少 hjzz%
                             if (Object.keys(json.gdhs[0]).length === 7) {
+                                // data-span="data-otc-ES-title"
                                 title2 = `
                                     <p>
                                         股东户数 (<span>${json.gdhs[0].sj}</span>)
@@ -314,18 +316,18 @@ OTC_F9_FV.Modules.equityShareholder = OTC_F9_FV.Modules.equityShareholder || (
                                     <p data-p="data-otc-ES-title">
                                         报告期内公司股东比上期
                                         ${json.gdhs[0].hsjsq.includes(`-`) ? "减少" : "增加"}
-                                        <span data-span="data-otc-ES-title">
+                                        <span>
                                             ${emptyChecker(json.gdhs[0].hsjsq) ? json.gdhs[0].hsjsq.replace(/-/ig, ``) : "--"}
                                         </span>户,
                                         ${json.gdhs[0].zhszz.includes(`-`) ? "减少" : "增加"}
-                                        <span data-span="data-otc-ES-title">
+                                        <span>
                                             ${emptyChecker(json.gdhs[0].zhszz) ? json.gdhs[0].zhszz.replace(/-/ig, ``) : "--"}
                                         </span>%, 户均持股数
-                                        <span data-span="data-otc-ES-title">
+                                        <span>
                                             ${emptyChecker(json.gdhs[0].hjcgs) ? json.gdhs[0].hjcgs : "--"}
                                         </span>股,
                                         ${json.gdhs[0].hjzz.includes(`-`) ? "减少" : "增加"}
-                                        <span data-span="data-otc-ES-title">
+                                        <span>
                                             ${emptyChecker(json.gdhs[0].hjzz) ? json.gdhs[0].hjzz.replace(/-/ig, ``) : "--"}
                                         </span>%.
                                     </p>
