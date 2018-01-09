@@ -227,7 +227,33 @@ OTC_F9_FV.Modules.mainManagementBusiness = OTC_F9_FV.Modules.mainManagementBusin
             }
         )
         .catch(err => console.log(`fetch error = \n`, err));
-        return datas;
+        // return datas;
+        // more
+        setTimeout((debug = false) => {
+            let turn_to_uid = document.querySelector(`[data-turn-to-uid="node-uid-main-management-business-data"]`);
+            if (debug) {
+                console.log(`turn_to_uids = \n`, turn_to_uid);
+            }
+            if (turn_to_uid !== null) {
+                turn_to_uid.addEventListener(`click`, (e) => {
+                    let uid = e.target.dataset.uid,
+                        gilcode = OTC_GILCODE ? OTC_GILCODE : window.OTC_GILCODE,
+                        node_path = `12\\${gilcode}\\${uid}`;
+                    try {
+                        if (uid !== "null") {
+                            ChromeExternal.Execute("ExecuteCommand", `12\\${gilcode}\\${uid}`);
+                        }else{
+                            console.log(`ChromeExternal & ${uid} === null\n`);
+                        }
+                    } catch (error) {
+                        console.log(`%c ChromeExternal & caught error = \n`, `color: red; font-size: 23px;`, error);
+                        console.log(`node uid = `, uid);
+                    }
+                });
+            }else{
+                throw new Error(`turn_to_uid is `, turn_to_uid);
+            }
+        }, 0);
     }
 );
 

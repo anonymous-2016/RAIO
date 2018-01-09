@@ -271,10 +271,7 @@ const HTML_Template = (uid = ``, loadModule = function(){}, debug = false) => {
                         <p class="otc-h5dnd-modules-title" data-title="otc-latest-transaction-data-title">
                             最新交易数据
                             <span data-title-text="otc-latest-transaction-data-title-text">
-                                    (日期:
-                                    <span data-text="otc-latest-transaction-data-text">
-                                        <!-- 2017-12-12 -->
-                                    </span>)
+                                    (日期: <span data-text="otc-latest-transaction-data-text"></span>)
                             </span>
                             <span data-link="otc-latest-transaction-data-link">
                                 <a href="#每日交易数据" data-uid="1106" data-turn-to-uid="node-uid-latest-transaction-data">每日交易数据</a>
@@ -337,8 +334,8 @@ const HTML_Template = (uid = ``, loadModule = function(){}, debug = false) => {
                         <p class="otc-h5dnd-modules-title" data-title="otc-big-event-reminder-title">
                             大事提醒
                             <span data-link="otc-big-event-reminder-link">
-                                <a href="#分红数据">分红数据</a>
-                                <a href="#增发数据">增发数据</a>
+                                <a href="#分红数据" data-uid="1112" data-turn-to-uid="node-uid-big-event-reminder-data">分红数据</a>
+                                <a href="#增发数据" data-uid="1085" data-turn-to-uid="node-uid-big-event-reminder-data">增发数据</a>
                             </span>
                         </p>
                     </div>
@@ -403,7 +400,7 @@ const HTML_Template = (uid = ``, loadModule = function(){}, debug = false) => {
                         <p class="otc-h5dnd-modules-title" data-title="otc-latest-financial-data-title">
                             最新财务数据
                             <span data-link="otc-latest-financial-data-link">
-                                <a href="#更多财务数据">更多财务数据</a>
+                                <a href="#更多财务数据" data-uid="1115" data-turn-to-uid="node-uid-latest-financial-data">更多财务数据</a>
                             </span>
                         </p>
                     </div>
@@ -580,7 +577,7 @@ const HTML_Template = (uid = ``, loadModule = function(){}, debug = false) => {
                         <p class="otc-h5dnd-modules-title" data-title="otc-company-performance-all-title">
                             公司表现 (所属三板管理型行业二级)
                             <span data-link="otc-company-performance-all-link">
-                                <a href="#同业数据">同业数据</a>
+                                <a href="#同业数据" data-uid="1094" data-turn-to-uid="node-uid-company-performance-all-data">同业数据</a>
                             </span>
                         </p>
                     </div>
@@ -707,7 +704,7 @@ const HTML_Template = (uid = ``, loadModule = function(){}, debug = false) => {
                             主营业务
                             <span data-time="otc-main-management-business-time"></span>
                             <span data-more="otc-main-management-business-link">
-                                <a href="#更多主营业务数据" data-more="otc-main-management-business-link-more">更多主营业务数据</a>
+                                <a href="#更多主营业务数据" data-more="otc-main-management-business-link-more" data-uid="85648" data-turn-to-uid="node-uid-main-management-business-data">更多主营业务数据</a>
                             </span>
                         </p>
                     </div>
@@ -748,16 +745,13 @@ const HTML_Template = (uid = ``, loadModule = function(){}, debug = false) => {
                         <p class="otc-h5dnd-modules-title" data-title="otc-equity-shareholder-title">
                             股本股东
                             <span data-more="otc-equity-shareholder-link">
-                                <a href="#股本数据" data-more="otc-equity-shareholder-link-more">股本数据</a>
+                                <a href="#股东户数" data-uid="1079" data-more="otc-equity-shareholder-link-more" data-turn-to-uid="node-uid-equity-shareholder-data">股东户数</a>
                             </span>
                             <span data-more="otc-equity-shareholder-link">
-                                <a href="#股东数据" data-more="otc-equity-shareholder-link-more">股东数据</a>
+                                <a href="#股东数据" data-uid="1076" data-more="otc-equity-shareholder-link-more" data-turn-to-uid="node-uid-equity-shareholder-data">股东数据</a>
                             </span>
                             <span data-more="otc-equity-shareholder-link">
-                                <a href="#解禁数据" data-more="otc-equity-shareholder-link-more">解禁数据</a>
-                            </span>
-                            <span data-more="otc-equity-shareholder-link">
-                                <a href="#股东户数" data-more="otc-equity-shareholder-link-more">股东户数</a>
+                                <a href="#股本数据" data-uid="1058" data-more="otc-equity-shareholder-link-more" data-turn-to-uid="node-uid-equity-shareholder-data">股本数据</a>
                             </span>
                         </p>
                     </div>
@@ -838,7 +832,7 @@ const HTML_Template = (uid = ``, loadModule = function(){}, debug = false) => {
                         <p class="otc-h5dnd-modules-title" data-title="otc-management-layer-profiles-title">
                             管理层概况与持股
                             <span data-more="otc-management-layer-profiles-link">
-                                <a href="#管理层数据" data-more="otc-management-layer-profiles-link-more">管理层数据</a>
+                                <a href="#管理层数据" data-more="otc-management-layer-profiles-link-more" data-uid="1094" data-turn-to-uid="node-uid-management-layer-profiles-data">管理层数据</a>
                             </span>
                         </p>
                     </div>
@@ -914,14 +908,14 @@ const HTML_Template = (uid = ``, loadModule = function(){}, debug = false) => {
             break;
         case "news":
             delete_uid = `company-news`;
-            loadModule(uid, `company-news`, true);
+            loadModule(uid, `company-news`, true);// data-link="otc-company-news-link"
             htmlstr += `
                 <section class="otc-module-box-5">
                     <div class="otc-h5dnd-modules-title-box">
                         <p class="otc-h5dnd-modules-title" data-title="otc-company-news-title">
                             公司新闻
                             <span data-more="otc-company-news-link">
-                                <a href="#更多新闻" data-more="otc-company-news-link-more">更多新闻</a>
+                                <a href="#更多新闻" data-more="otc-company-news-link-more" data-uid="82540" data-turn-to-uid="node-uid-company-news-data">更多新闻</a>
                             </span>
                         </p>
                     </div>
@@ -951,7 +945,7 @@ const HTML_Template = (uid = ``, loadModule = function(){}, debug = false) => {
                         <p class="otc-h5dnd-modules-title" data-title="otc-company-bulletin-title">
                             公司公告
                             <span data-more="otc-company-bulletin-link">
-                                <a href="#更多公告" data-more="otc-company-bulletin-link-more">更多公告</a>
+                                <a href="#更多公告" data-more="otc-company-bulletin-link-more" data-uid="82542 " data-turn-to-uid="node-uid-company-bulletin-data">更多公告</a>
                             </span>
                         </p>
                     </div>
@@ -981,7 +975,7 @@ const HTML_Template = (uid = ``, loadModule = function(){}, debug = false) => {
                         <p class="otc-h5dnd-modules-title" data-title="otc-research-report-title">
                             研究报告
                             <span data-more="otc-research-report-link">
-                                <a href="#更多研报" data-more="otc-research-report-link-more">更多研报</a>
+                                <a href="#更多研报" data-more="otc-research-report-link-more" data-uid="82546" data-turn-to-uid="node-uid-research-report-data">更多研报</a>
                             </span>
                         </p>
                     </div>

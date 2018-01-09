@@ -109,6 +109,8 @@ span[data-title="sub-title"] {
     display: inline-block;
     margin-left: 5px;
     margin-top: 3px;
+    font-weight: bold;
+    /* font-weight: normal; */
 }
 
 section[data-group="mix-hc-table"] {
@@ -437,4 +439,34 @@ html table:nth-of-type(3)>tbody {
 tbody>tr.otc-equity-shareholder-table-tr>td:nth-of-type(1) {
     text-align: left;
     padding-left: 4px;
+}
+
+[data-hide-table="no-data-hide-table"] {
+    display: none;
+}
+
+[data-p="no-data-p"] {
+    margin-bottom: 5px;
+}
+
+div[data-titles="data-otc-ES-title"] {
+    box-sizing: border-box;
+    background: #fffce9;
+    border: 1px solid #d7dbe0;
+    line-height: 23px;
+    font-size: 12px;
+    width: 100%;
+    margin-bottom: 10px;
+    padding-left: 0;
+}
+
+div[data-titles="no-data-otc-ES-title"] {
+    box-sizing: border-box;
+    background: #fff;
+    border: 1px solid #fff;
+    line-height: 23px;
+    font-size: 12px;
+    width: 100%;
+    margin-bottom: 10px;
+    padding-left: 0;
 }

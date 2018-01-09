@@ -29,54 +29,64 @@ OTC_F9_FV.Modules.bigEventReminder = OTC_F9_FV.Modules.bigEventReminder || (
             (json) => {
                 datas = json;
                 try {
-                    if (Array.isArray(datas) && datas.length > 0) {
-                        if (Object.keys(datas[0]).length > 0 && typeof(datas[0]) === "object") {
-                            let tbody = ``;
-                            for (let i = 0; i < datas.length; i++) {
-                                let key = (datas[i] !== undefined && datas[i]["k"] !== undefined) ? datas[i]["k"] : `--`,
-                                    value = (datas[i] !== undefined && datas[i]["v"] !== undefined)
-                                    ?
-                                    (datas[i]["v"] !== "" ? datas[i]["v"].replace(/【/ig, "[ ").replace(/】/ig, " ] ") : `--`)
-                                    :
-                                    `--`;
-                                // switch (i) {
-                                //     case 0:
-                                //     case 1:
-                                //     case 2:
-                                //     case 3:
-                                //         tds[i].innerText = value;
-                                //         tds[i].setAttribute(`title`, value);
-                                //         break;
-                                //     default:
-                                //         tds[i].innerText = value;
-                                //         tds[i].setAttribute(`title`, value);
-                                //         break;
-                                // }
-                                tbody += `
-                                    <tr class="otc-big-event-reminder-table-tr">
-                                        <td class="otc-big-event-reminder-table-td-key" data-alias="${key}">
-                                            ${key}
-                                        </td>
-                                        <td class="otc-big-event-reminder-table-td-value" data-value="data-otc-BER" title="${value}">
-                                            ${value}
-                                        </td>
-                                    </tr>
+                    if (Object.keys(datas).length > 0) {
+                        if (Array.isArray(datas) && datas.length > 0) {
+                            if (Object.keys(datas[0]).length > 0 && typeof(datas[0]) === "object") {
+                                let tbody = ``;
+                                for (let i = 0; i < datas.length; i++) {
+                                    let key = (datas[i] !== undefined && datas[i]["k"] !== undefined) ? datas[i]["k"] : `--`,
+                                        value = (datas[i] !== undefined && datas[i]["v"] !== undefined)
+                                        ?
+                                        (datas[i]["v"] !== "" ? datas[i]["v"].replace(/【/ig, "[ ").replace(/】/ig, " ] ") : `--`)
+                                        :
+                                        `--`;
+                                    // switch (i) {
+                                    //     case 0:
+                                    //     case 1:
+                                    //     case 2:
+                                    //     case 3:
+                                    //         tds[i].innerText = value;
+                                    //         tds[i].setAttribute(`title`, value);
+                                    //         break;
+                                    //     default:
+                                    //         tds[i].innerText = value;
+                                    //         tds[i].setAttribute(`title`, value);
+                                    //         break;
+                                    // }
+                                    tbody += `
+                                        <tr class="otc-big-event-reminder-table-tr">
+                                            <td class="otc-big-event-reminder-table-td-key" data-alias="${key}">
+                                                ${key}
+                                            </td>
+                                            <td class="otc-big-event-reminder-table-td-value" data-value="data-otc-BER" title="${value}">
+                                                ${value}
+                                            </td>
+                                        </tr>
+                                    `;
+                                }
+                                tbd.insertAdjacentHTML(`beforeend`, tbody);
+                            }else{
+                                let no_data = `
+                                    <p data-none="no-data-p">
+                                        <span data-none="no-data-span"></span>
+                                    </p>
                                 `;
+                                tbd.insertAdjacentHTML(`beforeend`, no_data);
                             }
-                            tbd.insertAdjacentHTML(`beforeend`, tbody);
                         }else{
-                            let no_data = `
-                                <p data-none="no-data-p">
-                                    <span data-none="no-data-span"></span>
-                                </p>
-                            `;
-                            tbd.insertAdjacentHTML(`beforeend`, no_data);
+                            let message = `handle json error!`,
+                                fileName = `big-event-reminder.js`,
+                                lineNumber = 29;
+                            throw new UserException(message, fileName, lineNumber);
                         }
-                    }else{
-                        let message = `handle json error!`,
-                            fileName = `big-event-reminder.js`,
-                            lineNumber = 29;
-                        throw new UserException(message, fileName, lineNumber);
+                    } else {
+                        // no data
+                        let no_data = `
+                            <p data-none="no-data-p">
+                                <span data-none="no-data-span"></span>
+                            </p>
+                        `;
+                        tbd.insertAdjacentHTML(`beforeend`, no_data);
                     }
                 } catch (err) {
                     let url =`file:///E:/github/RAIO/HTML5-Drag-Drop/F9-v2.0.0-modules/otc-f9/modules/big-event-reminder.js`;
@@ -85,7 +95,35 @@ OTC_F9_FV.Modules.bigEventReminder = OTC_F9_FV.Modules.bigEventReminder || (
             }
         )
         .catch(err => console.log(`fetch error = \n`, err));
-        return datas;
+        // return datas;
+        // more
+        setTimeout((debug = false) => {
+            let turn_to_uids = document.querySelectorAll(`[data-turn-to-uid="node-uid-big-event-reminder-data"]`);
+            if (debug) {
+                console.log(`turn_to_uids = \n`, turn_to_uids);
+            }
+            if (turn_to_uids.length > 0) {
+                for (let i = 0; i < turn_to_uids.length; i++) {
+                    turn_to_uids[i].addEventListener(`click`, (e) => {
+                        let uid = e.target.dataset.uid,
+                            gilcode = OTC_GILCODE ? OTC_GILCODE : window.OTC_GILCODE,
+                            node_path = `12\\${gilcode}\\${uid}`;
+                        try {
+                            if (uid !== "null") {
+                                ChromeExternal.Execute("ExecuteCommand", `12\\${gilcode}\\${uid}`);
+                            }else{
+                                console.log(`ChromeExternal & ${uid} === null\n`);
+                            }
+                        } catch (error) {
+                            console.log(`%c ChromeExternal & caught error = \n`, `color: red; font-size: 23px;`, error);
+                            console.log(`node uid = `, uid);
+                        }
+                    });
+                }
+            }else{
+                throw new Error(`turn_to_uids is `, turn_to_uids);
+            }
+        }, 0);
     }
 );
 

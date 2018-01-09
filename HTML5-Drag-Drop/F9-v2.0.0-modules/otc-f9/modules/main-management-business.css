@@ -311,7 +311,7 @@ thead.otc-main-management-business-table-thead>tr.otc-main-management-business-t
 }
 
 [data-span="data-otc-MMB-title"] {
-    color: red;
+    /* color: red; */
 }
 
 thead[no-thead="hide-MMB-thead"] {
@@ -320,4 +320,10 @@ thead[no-thead="hide-MMB-thead"] {
 
 div[no-data-titles="data-otc-MMB-title"] {
     display: none;
+}
+
+div[data-div="tbody-div"]>p[data-p="data-otc-MMB-title"] {
+    color: #616a87;
+    font-size: 12px;
+    font-weight: normal;
 }

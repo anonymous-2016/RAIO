@@ -1,6 +1,130 @@
 # API
 
 
+```css
+
+[data-more="otc-main-management-business-link-more"]>a:hover {
+    color: #f50;
+}
+
+[data-link="otc-main-management-business-link"]>a:hover {
+    color: #f50;
+}
+
+
+[data-more*="otc-"]>a:hover {
+    color: #f50;
+}
+
+[data-link*="otc-"]>a:hover {
+    color: #f50;
+}
+
+
+```
+
+每日交易数据 1106 
+
+增发数据 1112 
+分红数据 1085 
+
+更多新闻 82540 
+更多研报 82546 
+更多公告 82542 
+
+股东户数 1079 
+解禁数据 隐藏 
+股东数据 1076 
+股本数据 1058 
+
+
+同业数据 1094 
+更多财务数据 1115 
+更多主营业务数据 85648 
+
+管理层数据 1073
+
+```html
+
+<span data-more="otc-company-news-link">
+    <a href="#更多新闻" data-more="otc-company-news-link-more" data-uid="82540" data-turn-to-uid="node-uid-company-news-data">更多新闻</a>
+</span>
+
+
+<span data-link="otc-company-performance-all-link">
+    <a href="#同业数据" data-uid="1094" data-turn-to-uid="node-uid-company-performance-all-data">同业数据</a>
+</span>
+
+
+
+```
+
+
+
+```js
+
+    // more
+    setTimeout((debug = false) => {
+        let turn_to_uid = document.querySelector(`[data-turn-to-uid="node-uid-company-news-data"]`);
+        if (debug) {
+            console.log(`turn_to_uids = \n`, turn_to_uid);
+        }
+        if (turn_to_uid !== null) {
+            turn_to_uid.addEventListener(`click`, (e) => {
+                let uid = e.target.dataset.uid,
+                    gilcode = OTC_GILCODE ? OTC_GILCODE : window.OTC_GILCODE,
+                    node_path = `12\\${gilcode}\\${uid}`;
+                try {
+                    if (uid !== "null") {
+                        ChromeExternal.Execute("ExecuteCommand", `12\\${gilcode}\\${uid}`);
+                    }else{
+                        console.log(`ChromeExternal & ${uid} === null\n`);
+                    }
+                } catch (error) {
+                    console.log(`%c ChromeExternal & caught error = \n`, `color: red; font-size: 23px;`, error);
+                    console.log(`node uid = `, uid);
+                }
+            });
+        }else{
+            throw new Error(`turn_to_uid is `, turn_to_uid);
+        }
+    }, 0);
+
+
+    // more
+    setTimeout((debug = false) => {
+        let turn_to_uids = document.querySelectorAll(`[data-turn-to-uid="node-uid-big-event-reminder-data"]`);
+        if (debug) {
+            console.log(`turn_to_uids = \n`, turn_to_uids);
+        }
+        if (turn_to_uids.length > 0) {
+            for (let i = 0; i < turn_to_uids.length; i++) {
+                turn_to_uids[i].addEventListener(`click`, (e) => {
+                    let uid = e.target.dataset.uid,
+                        gilcode = OTC_GILCODE ? OTC_GILCODE : window.OTC_GILCODE,
+                        node_path = `12\\${gilcode}\\${uid}`;
+                    try {
+                        if (uid !== "null") {
+                            ChromeExternal.Execute("ExecuteCommand", `12\\${gilcode}\\${uid}`);
+                        }else{
+                            console.log(`ChromeExternal & ${uid} === null\n`);
+                        }
+                    } catch (error) {
+                        console.log(`%c ChromeExternal & caught error = \n`, `color: red; font-size: 23px;`, error);
+                        console.log(`node uid = `, uid);
+                    }
+                });
+            }
+        }else{
+            throw new Error(`turn_to_uids is `, turn_to_uids);
+        }
+    }, 0);
+
+```
+
+
+
+
 最新交易数据
 公司简介
 
@@ -784,21 +908,6 @@ try {
 
 
 
-每日交易数据  100701
-增发数据  100402
-分红数据  100401
-更多新闻  53145
-更多研报  53158
-更多公告  53150
-同业数据  100802
-更多财务数据  100501
-更多主营业务数据  55319
-股东户数  100302
-解禁数据  隐藏
-股东数据  100301
-股本数据  100103
-管理层数据  100201
-
 
 <div data-div="tbody-div" data-titles="data-otc-LFD-title">
     <p>业绩预告-暂无数据.</p>
@@ -828,6 +937,18 @@ copy(Object.values(json));
 
 ```
 
+```js
+// null 
+
+// no data
+let no_data = `
+    <p data-none="no-data-p">
+        <span data-none="no-data-span"></span>
+    </p>
+`;
+tbd.insertAdjacentHTML(`beforeend`, no_data);
+
+```
 
 
 # webtool

@@ -27,8 +27,23 @@ OTC_F9_FV.Modules.managementLayerProfiles = OTC_F9_FV.Modules.managementLayerPro
         .then(
             (json) => {
                 datas = json;
+                // emptyChcker();
+                const emptyChecker = (key = ``) => {
+                    let result = true;
+                    switch (key) {
+                        case undefined:
+                            result = false;
+                            break;
+                        case null:
+                            result = false;
+                            break;
+                        default:
+                            break;
+                    }
+                    return result;
+                };
                 try {
-                    if (json !== undefined && typeof(json) === "object") {
+                    if (emptyChecker(json)) {
                         let text = ``,
                             time = ``;
                         if (datas.ggcg !== undefined && typeof(datas.ggcg) === "object") {
@@ -39,10 +54,10 @@ OTC_F9_FV.Modules.managementLayerProfiles = OTC_F9_FV.Modules.managementLayerPro
                             text = `
                                 <p data-p="data-otc-MLP-title">
                                     报告期内, 公司在职董事会人数
-                                    <span data-span="data-otc-MLP-title">${dsh}</span>人，监事会
-                                    <span data-span="data-otc-MLP-title">${jsh}</span>人，高级管理人员
-                                    <span data-span="data-otc-MLP-title">${gg}</span>人，核心员工
-                                    <span data-span="data-otc-MLP-title">${hxyg}</span>人。
+                                    <span data-span="data-otc-MLP-title">${dsh}</span>人, 监事会
+                                    <span data-span="data-otc-MLP-title">${jsh}</span>人, 高级管理人员
+                                    <span data-span="data-otc-MLP-title">${gg}</span>人, 核心员工
+                                    <span data-span="data-otc-MLP-title">${hxyg}</span>人.
                                 </p>
                             `;
                         }else{
@@ -151,6 +166,7 @@ OTC_F9_FV.Modules.managementLayerProfiles = OTC_F9_FV.Modules.managementLayerPro
                             // ??? table, no value => no key!
                         }
                     }else{
+                        // all no data & hide table & show no data
                         let message = `handle json error!`,
                             fileName = `management-layer-profiles.js`,
                             lineNumber = 29;
@@ -163,7 +179,33 @@ OTC_F9_FV.Modules.managementLayerProfiles = OTC_F9_FV.Modules.managementLayerPro
             }
         )
         .catch(err => console.log(`fetch error = \n`, err));
-        return datas;
+        // return datas;
+        // more
+        setTimeout((debug = false) => {
+            let turn_to_uid = document.querySelector(`[data-turn-to-uid="node-uid-management-layer-profiles-data"]`);
+            if (debug) {
+                console.log(`turn_to_uids = \n`, turn_to_uid);
+            }
+            if (turn_to_uid !== null) {
+                turn_to_uid.addEventListener(`click`, (e) => {
+                    let uid = e.target.dataset.uid,
+                        gilcode = OTC_GILCODE ? OTC_GILCODE : window.OTC_GILCODE,
+                        node_path = `12\\${gilcode}\\${uid}`;
+                    try {
+                        if (uid !== "null") {
+                            ChromeExternal.Execute("ExecuteCommand", `12\\${gilcode}\\${uid}`);
+                        }else{
+                            console.log(`ChromeExternal & ${uid} === null\n`);
+                        }
+                    } catch (error) {
+                        console.log(`%c ChromeExternal & caught error = \n`, `color: red; font-size: 23px;`, error);
+                        console.log(`node uid = `, uid);
+                    }
+                });
+            }else{
+                throw new Error(`turn_to_uid is `, turn_to_uid);
+            }
+        }, 0);
     }
 );
 

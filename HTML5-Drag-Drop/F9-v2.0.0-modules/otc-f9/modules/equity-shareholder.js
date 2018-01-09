@@ -36,6 +36,7 @@ OTC_F9_FV.Modules.equityShareholder = OTC_F9_FV.Modules.equityShareholder || (
                     console.log(`data = \n`, json);
                     // console.log(`data = \n`, hsts_dom[0]);
                 }
+                // console.log(`tbodys_dom = \n`, tbodys_dom);
                 const emptyChecker = (key = ``) => {
                     let result = true;
                     switch (key) {
@@ -54,18 +55,18 @@ OTC_F9_FV.Modules.equityShareholder = OTC_F9_FV.Modules.equityShareholder || (
                     return result;
                 };
                 try {
-                    if (json !== undefined && typeof(json) === "object") {
+                    if (emptyChecker(json)) {
                         let tr = ``,
                             trs = ``,
                             tr2 = ``;
                         let objects = {
-                            limite: ``,
-                            unlimite: ``,
+                            limite: "",
+                            unlimite: "",
                             limited: [],// Array
                             unlimited: [],// Array
                         };
                         // table 1
-                        if (json.gbjg !== undefined && typeof(json.gbjg) === "object") {
+                        if (emptyChecker(json.gbjg) && Object.keys(json.gbjg).length > 0) {
                             const hc_data = json.gbjg;
                             tr = `
                                 <tr class="otc-equity-shareholder-table-tr">
@@ -170,11 +171,12 @@ OTC_F9_FV.Modules.equityShareholder = OTC_F9_FV.Modules.equityShareholder || (
                                     <span data-none="no-data-span"></span>
                                 </p>
                             `;
+                            // OTC_F9_FV.Modules.equityShareholder.drawHS(objects, hsc_uid);
                         }
                         tbodys_dom[0].insertAdjacentHTML(`beforeend`, tr);
                         // table 2
-                        if (json.sdgd !== undefined && typeof(json.sdgd) === "object") {
-                            if (json.sdgd.datas !== undefined && Array.isArray(json.sdgd.datas)) {
+                        if (emptyChecker(json.sdgd) && Object.keys(json.sdgd).length > 0) {
+                            if (emptyChecker(json.sdgd.datas)) {
                                 let arr = json.sdgd.datas || [];
                                     // total_cgs = 0,
                                     // total_zb = 0,
@@ -205,24 +207,9 @@ OTC_F9_FV.Modules.equityShareholder = OTC_F9_FV.Modules.equityShareholder || (
                                         </tr>
                                     `;
                                 }
-                                // let total = `
-                                //     <tr class="otc-equity-shareholder-table-tr">
-                                //         <td class="otc-equity-shareholder-table-td-title">合计</td>
-                                //         <td class="otc-equity-shareholder-table-td-value" data-value="data-otc-ES">
-                                //             ${total_cgs}
-                                //         </td>
-                                //         <td class="otc-equity-shareholder-table-td-value" data-value="data-otc-ES">
-                                //             ${total_zb}
-                                //         </td>
-                                //         <td class="otc-equity-shareholder-table-td-value" data-value="data-otc-ES">
-                                //             ${total_zjbd}
-                                //         </td>
-                                //         <td class="otc-equity-shareholder-table-td-value" data-value="data-otc-ES">
-                                //             ${total_jglx}
-                                //         </td>
-                                //     </tr>
-                                // `;
-                                // trs += total;
+                                tbodys_dom[1].insertAdjacentHTML(`beforeend`, trs);
+                            }else{
+                                tbodys_dom[1].parentElement.setAttribute(`data-hide-table`, `no-data-hide-table`);
                             }
                             let title1 = ``;
                             if (Object.keys(json.sdgd).length === 5) {
@@ -233,12 +220,12 @@ OTC_F9_FV.Modules.equityShareholder = OTC_F9_FV.Modules.equityShareholder || (
                                     </p>
                                     <p data-p="data-otc-ES-title">
                                         报告期内十大股东合计持股
-                                        <span>${json.sdgd.hj}</span>万股,
+                                        <span>${json.sdgd.hj}</span> 万股,
                                         <span>${json.sdgd.bh}</span>
                                         ${
                                             (json.sdgd.gds !== 0 && json.sdgd.gds !== undefined)
                                             ?
-                                            `,报告期内有<span>${json.sdgd.gds}</span>位股东有减持行为`
+                                            `,报告期内有<span>${json.sdgd.gds}</span> 位股东有减持行为`
                                             :
                                             `<span></span>`
                                         }.
@@ -249,25 +236,30 @@ OTC_F9_FV.Modules.equityShareholder = OTC_F9_FV.Modules.equityShareholder || (
                             }else{
                                 // no data
                                 title1 = `
-                                    <p>十大股东</p>
+                                    <p data-p="no-data-p"><span data-title="sub-title">十大股东</span></p>
                                     <p data-none="no-data-p">
                                         <span data-none="no-data-span"></span>
                                     </p>
                                 `;
+                                hsts_dom[0].setAttribute(`data-titles`, `no-data-otc-ES-title`);
                             }
                             hsts_dom[0].insertAdjacentHTML(`beforeend`, title1);
                         }else{
+                            // console.log(`no data =`, json.sdgd, tbodys_dom[1]);
                             // no data
                             trs = `
-                                <p>十大股东</p>
+                                <p data-p="no-data-p"><span data-title="sub-title">十大股东</span></p>
                                 <p data-none="no-data-p">
                                     <span data-none="no-data-span"></span>
                                 </p>
                             `;
+                            hsts_dom[0].insertAdjacentHTML(`beforeend`, trs);
+                            hsts_dom[0].setAttribute(`data-titles`, `no-data-otc-ES-title`);
+                            tbodys_dom[1].parentElement.setAttribute(`data-hide-table`, `no-data-hide-table`);
                         }
-                        tbodys_dom[1].insertAdjacentHTML(`beforeend`, trs);
+                        // tbodys_dom[1].insertAdjacentHTML(`beforeend`, trs);
                         // table 3
-                        if (json.gdhs !== undefined && Array.isArray(json.gdhs)) {
+                        if (emptyChecker(json.gdhs) && Object.keys(json.gdhs).length > 0) {
                             // json.gdhs.sj && json.gdhs.hsjsq &&  json.gdhs.hjjsq ???
                             let times = ``,
                                 holders = ``,
@@ -335,23 +327,28 @@ OTC_F9_FV.Modules.equityShareholder = OTC_F9_FV.Modules.equityShareholder || (
                             }else{
                                 // no data
                                 title2 = `
-                                    <p>股东户数</p>
+                                    <p data-p="no-data-p"><span data-title="sub-title">股东户数</span></p>
                                     <p data-none="no-data-p">
                                         <span data-none="no-data-span"></span>
                                     </p>
                                 `;
+                                hsts_dom[1].setAttribute(`data-titles`, `no-data-otc-ES-title`);
                             }
                             hsts_dom[1].insertAdjacentHTML(`beforeend`, title2);
+                            tbodys_dom[2].insertAdjacentHTML(`beforeend`, trs2);
+                            // tbodys_dom[2].parentElement.setAttribute(`data-hide-table`, `no-data-hide-table`);
                         }else{
                             // no data
                             tr2 = `
-                                <p>股东户数</p>
+                                <p data-p="no-data-p"><span data-title="sub-title">股东户数</span></p>
                                 <p data-none="no-data-p">
                                     <span data-none="no-data-span"></span>
                                 </p>
                             `;
+                            hsts_dom[1].insertAdjacentHTML(`beforeend`, tr2);
+                            hsts_dom[1].setAttribute(`data-titles`, `no-data-otc-ES-title`);
+                            tbodys_dom[2].parentElement.setAttribute(`data-hide-table`, `no-data-hide-table`);
                         }
-                        tbodys_dom[2].insertAdjacentHTML(`beforeend`, tr2);
                     } else{
                         let message = `handle json error!`,
                             fileName = `equity-shareholder.js`,
@@ -365,7 +362,35 @@ OTC_F9_FV.Modules.equityShareholder = OTC_F9_FV.Modules.equityShareholder || (
             }
         )
         .catch(err => console.log(`fetch error = \n`, err));
-        return datas;
+        // return datas;
+        // more
+        setTimeout((debug = false) => {
+            let turn_to_uids = document.querySelectorAll(`[data-turn-to-uid="node-uid-equity-shareholder-data"]`);
+            if (debug) {
+                console.log(`turn_to_uids = \n`, turn_to_uids);
+            }
+            if (turn_to_uids.length > 0) {
+                for (let i = 0; i < turn_to_uids.length; i++) {
+                    turn_to_uids[i].addEventListener(`click`, (e) => {
+                        let uid = e.target.dataset.uid,
+                            gilcode = OTC_GILCODE ? OTC_GILCODE : window.OTC_GILCODE,
+                            node_path = `12\\${gilcode}\\${uid}`;
+                        try {
+                            if (uid !== "null") {
+                                ChromeExternal.Execute("ExecuteCommand", `12\\${gilcode}\\${uid}`);
+                            }else{
+                                console.log(`ChromeExternal & ${uid} === null\n`);
+                            }
+                        } catch (error) {
+                            console.log(`%c ChromeExternal & caught error = \n`, `color: red; font-size: 23px;`, error);
+                            console.log(`node uid = `, uid);
+                        }
+                    });
+                }
+            }else{
+                throw new Error(`turn_to_uids is `, turn_to_uids);
+            }
+        }, 0);
     }
 );
 
@@ -517,6 +542,7 @@ OTC_F9_FV.Modules.equityShareholder.init = OTC_F9_FV.Modules.equityShareholder.i
 
 var OTC_IP = window.OTC_IP || `http://10.1.5.202`,
     OTC_PATH = window.OTC_PATH || `/webservice/fastview/otcper`,
+    // OTC_GILCODE = window.OTC_GILCODE || `430007.OC`;
     // OTC_GILCODE = window.OTC_GILCODE || `834380.OC`;
     OTC_GILCODE = window.OTC_GILCODE || `430002.OC`;
 
@@ -547,5 +573,22 @@ const isNumber = (str) => {
     // NaN
     // Number.isNaN(NaN);
 };
+
+*/
+
+
+/*
+
+
+bodys_dom = document.querySelectorAll(`[data-tbody="otc-equity-shareholder-table-tbody"]`);
+// NodeList(3)
+
+// tbodys_dom[1].style.dispaly = "none";
+
+tbodys_dom[1].setAttribute(`data-hide-table`, `no-data-hide-table`);
+
+[data-hide-table="no-data-hide-table"] {
+    display: none;
+}
 
 */

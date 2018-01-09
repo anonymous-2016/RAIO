@@ -286,7 +286,7 @@ OTC_F9_FV.Modules.companyPerformanceMarket.drawHS = OTC_F9_FV.Modules.companyPer
                         <span data-none="no-data-span"></span>
                     </p>
                 `,
-                loading: `Loading....`,
+                // loading: `Loading....`,
             }
         });
         Highcharts.chart(container_uid, {
@@ -553,7 +553,8 @@ OTC_F9_FV.Modules.companyPerformanceMarket.drawHS2 = OTC_F9_FV.Modules.companyPe
                 // marginLeft: 80
             },
             title: {
-                text: '月平均换手率',
+                // text: '月平均换手率',
+                text: '',
                 align: "left",
                 x: 70,
                 y: 10,
@@ -605,7 +606,7 @@ OTC_F9_FV.Modules.companyPerformanceMarket.drawHS2 = OTC_F9_FV.Modules.companyPe
                         text: '',
                     },
                     labels: {
-                        format: '{value} %',// 百分比
+                        format: '{value}',// 百分比  %
                         style: {
                             color: Highcharts.getOptions().colors[1]
                         }

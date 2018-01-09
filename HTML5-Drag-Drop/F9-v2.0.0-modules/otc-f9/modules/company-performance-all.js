@@ -101,4 +101,31 @@ setTimeout(() => {
             scripts_container.insertAdjacentElement(`beforeend`, script);
         }
     );
+    var OTC_GILCODE = window.OTC_GILCODE || `430003.OC`;
+    // more
+    setTimeout((debug = false) => {
+        let turn_to_uid = document.querySelector(`[data-turn-to-uid="node-uid-company-performance-all-data"]`);
+        if (debug) {
+            console.log(`turn_to_uids = \n`, turn_to_uid);
+        }
+        if (turn_to_uid !== null) {
+            turn_to_uid.addEventListener(`click`, (e) => {
+                let uid = e.target.dataset.uid,
+                    gilcode = OTC_GILCODE ? OTC_GILCODE : window.OTC_GILCODE,
+                    node_path = `12\\${gilcode}\\${uid}`;
+                try {
+                    if (uid !== "null") {
+                        ChromeExternal.Execute("ExecuteCommand", `12\\${gilcode}\\${uid}`);
+                    }else{
+                        console.log(`ChromeExternal & ${uid} === null\n`);
+                    }
+                } catch (error) {
+                    console.log(`%c ChromeExternal & caught error = \n`, `color: red; font-size: 23px;`, error);
+                    console.log(`node uid = `, uid);
+                }
+            });
+        }else{
+            throw new Error(`turn_to_uid is `, turn_to_uid);
+        }
+    }, 0);
 }, 0);

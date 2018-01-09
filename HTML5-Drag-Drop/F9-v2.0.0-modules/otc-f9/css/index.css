@@ -826,3 +826,25 @@ div.otc-h5dnd-modules-title-box {
     float: right;
     margin-top: 3px;
 }
+
+
+/* link & more */
+
+[data-more="otc-main-management-business-link-more"]>a:hover {
+    color: #f50;
+}
+
+[data-link="otc-main-management-business-link"]>a:hover {
+    color: #f50;
+}
+
+
+/* universal & data* */
+
+[data-more*="otc-"]>a:hover {
+    color: #f50;
+}
+
+[data-link*="otc-"]>a:hover {
+    color: #f50;
+}

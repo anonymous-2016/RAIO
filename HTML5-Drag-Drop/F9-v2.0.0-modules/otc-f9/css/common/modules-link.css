@@ -18,3 +18,19 @@ td>a[data-disabled="true"]:hover {
 
 
 /* box #d7dbe0 */
+
+[data-more="otc-main-management-business-link-more"]>a:hover {
+    color: #f50;
+}
+
+[data-link="otc-main-management-business-link"]>a:hover {
+    color: #f50;
+}
+
+[data-more*="otc-"]>a:hover {
+    color: #f50;
+}
+
+[data-link*="otc-"]>a:hover {
+    color: #f50;
+}

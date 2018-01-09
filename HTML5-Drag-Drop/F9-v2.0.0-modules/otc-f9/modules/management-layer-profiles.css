@@ -238,8 +238,25 @@ a[data-more="otc-management-layer-profiles-link-more"]:hover {
     font-weight: normal;
 }
 
-[data-titles="data-otc-MLP-title"] {
-    background: rgb(247, 197, 143);
+[data-div="tbody-div"] {
+    box-sizing: border-box;
+    line-height: 23px;
+    font-size: 12px;
+    width: 100%;
+    margin-bottom: 10px;
+    padding-left: 8px;
+    background: rgb(255, 252, 233);
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgb(215, 219, 224);
+    border-image: initial;
+    color: rgb(97, 106, 135);
+}
+
+div[data-div="tbody-div"]>p[data-p="data-otc-MLP-title"] {
+    color: #616a87;
+    font-size: 12px;
+    font-weight: normal;
 }
 
 [data-p="data-otc-MLP-title"] {
@@ -251,7 +268,7 @@ a[data-more="otc-management-layer-profiles-link-more"]:hover {
 }
 
 [data-span="data-otc-MLP-title"] {
-    color: red;
+    /* color: red; */
 }
 
 .otc-management-layer-profiles-table-tbody:nth-of-type(1)>tr.otc-management-layer-profiles-table-tr>td:nth-of-type(n) {
@@ -288,4 +305,10 @@ table[data-css3-table-bug="otc-management-layer-profiles-table1"]>tbody.otc-mana
 
 div[data-table="otc-management-layer-profiles-table-box"]:nth-of-type(1)>table.otc-management-layer-profiles-table>tbody.otc-management-layer-profiles-table-tbody {
     color: red;
+}
+
+div[data-div="tbody-div"]>p[data-p="data-otc-MLP-title"] {
+    color: #616a87;
+    font-size: 12px;
+    font-weight: normal;
 }
