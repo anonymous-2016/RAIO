@@ -169,7 +169,7 @@ window.onload = () => {
     }
     btn_module_setting.addEventListener(`click`, (e) => {
         const title = `Sorry for that, it still in developing!`;
-        alert(`😃😃😃Coming soon ... 😧😒😟`);
+        // alert(`😃😃😃Coming soon ... 😧😒😟`);
     });
     btn_module_setting.addEventListener(`click`, (e) => {
         let debug = true;

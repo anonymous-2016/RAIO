@@ -335,7 +335,7 @@ OTC_F9_FV.Modules.equityShareholder = OTC_F9_FV.Modules.equityShareholder || (
                                 hsts_dom[1].setAttribute(`data-titles`, `no-data-otc-ES-title`);
                             }
                             hsts_dom[1].insertAdjacentHTML(`beforeend`, title2);
-                            tbodys_dom[2].insertAdjacentHTML(`beforeend`, trs2);
+                            tbodys_dom[2].insertAdjacentHTML(`beforeend`, tr2);
                             // tbodys_dom[2].parentElement.setAttribute(`data-hide-table`, `no-data-hide-table`);
                         }else{
                             // no data

@@ -762,7 +762,7 @@ const HTML_Template = (uid = ``, loadModule = function(){}, debug = false) => {
                         <div class="otc-equity-shareholder-container">
                             <div id="equity_shareholder_hs_container" data-hs-container="data-equity-shareholder-container-uid" class="otc-equity-shareholder-hs otc-equity-shareholder-hs-container"></div>
                         </div>
-                        <table class="otc-equity-shareholder-table">
+                        <table class="otc-equity-shareholder-table" data-tables="otc-equity-shareholder-table1">
                             <thead class="otc-equity-shareholder-table-thead">
                                 <!--
                                     <tr class="otc-equity-shareholder-table-tr">
@@ -783,7 +783,7 @@ const HTML_Template = (uid = ``, loadModule = function(){}, debug = false) => {
                         </table>
                     </section>
                     <div data-div="tbody-div" data-titles="data-otc-ES-title"></div>
-                    <table class="otc-equity-shareholder-table">
+                    <table class="otc-equity-shareholder-table" data-tables="otc-equity-shareholder-table2">
                         <thead class="otc-equity-shareholder-table-thead">
                             <tr class="otc-equity-shareholder-table-tr">
                                 <td class="otc-equity-shareholder-table-td-title">股东名称</td>
@@ -802,7 +802,7 @@ const HTML_Template = (uid = ``, loadModule = function(){}, debug = false) => {
                         </tfoot>
                     </table>
                     <div data-div="tbody-div" data-titles="data-otc-ES-title"></div>
-                    <table class="otc-equity-shareholder-table">
+                    <table class="otc-equity-shareholder-table" data-tables="otc-equity-shareholder-table3">
                         <thead class="otc-equity-shareholder-table-thead">
                             <!--
                             <tr class="otc-equity-shareholder-table-tr">

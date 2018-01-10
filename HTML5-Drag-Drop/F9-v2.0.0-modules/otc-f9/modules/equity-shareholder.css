@@ -436,9 +436,24 @@ html table:nth-of-type(3)>tbody {
     color: blue;
 } */
 
+
+/* ,
+tbody>tr.otc-equity-shareholder-table-tr>td:nth-of-type(4),
+tbody>tr.otc-equity-shareholder-table-tr>td:nth-of-type(5)  */
+
 tbody>tr.otc-equity-shareholder-table-tr>td:nth-of-type(1) {
     text-align: left;
     padding-left: 4px;
+}
+
+tbody>tr.otc-equity-shareholder-table-tr>td:nth-of-type(2),
+tbody>tr.otc-equity-shareholder-table-tr>td:nth-of-type(3) {
+    text-align: right;
+    /* padding-right: 4px; */
+}
+
+[data-table-box="table-conatiner"]:nth-of-type(2)>table.otc-equity-shareholder-table>tbody.otc-equity-shareholder-table-tbody>tr.otc-equity-shareholder-table-tr>td.otc-equity-shareholder-table-td-value:nth-of-type(4) {
+    text-align: right;
 }
 
 [data-hide-table="no-data-hide-table"] {
@@ -470,3 +485,24 @@ div[data-titles="no-data-otc-ES-title"] {
     margin-bottom: 10px;
     padding-left: 0;
 }
+
+
+/* shit multi tables */
+
+table[data-tables="otc-equity-shareholder-table2"]>tbody.otc-equity-shareholder-table-tbody {
+    /* color: red; */
+}
+
+table[data-tables="otc-equity-shareholder-table2"]>tbody.otc-equity-shareholder-table-tbody>tr.otc-equity-shareholder-table-tr>td.otc-equity-shareholder-table-td-value:nth-of-type(4) {
+    text-align: left;
+}
+
+table[data-tables="otc-equity-shareholder-table2"]>tbody.otc-equity-shareholder-table-tbody>tr.otc-equity-shareholder-table-tr>td.otc-equity-shareholder-table-td-value:nth-of-type(5) {
+    text-align: left;
+}
+
+
+/* data-tables="otc-equity-shareholder-table1" */
+
+
+/* data-right-tr="otc-equity-shareholder-tr-right"  */

@@ -111,6 +111,7 @@ for (let i = 0; i < lis.length - 1; i++) {
 
 
 // btns
+// hide sidebar
 let btn = document.querySelector(`[data-nav-btn="nav-btn"]`),
     small_btn = document.querySelector(`[data-nav-small-btn="nav-small-btn"]`),
     container = document.querySelector(`[data-nav-container="nav-container"]`),
@@ -141,7 +142,7 @@ btn.onclick = () => {
 
 
 
-
+// show sidebar
 small_btn.onclick = () => {
     if (small_container.classList.contains("h5-dnd-nav-small-btn-hidden")) {
         small_container.classList.add("h5-dnd-nav-small-btn-show");
@@ -278,7 +279,13 @@ window.onload = () => {
     btn_universal.onclick();
     let print_btn = document.querySelector(`[data-print="print-title"`);
     print_btn.addEventListener(`click`, () => {
+        btn.onclick();
+        // not show sidebar
         window.print();
+        setTimeout(() => {
+            // show sidebar
+            small_btn.onclick();
+        }, 0);
     });
 };
 

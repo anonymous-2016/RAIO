@@ -43,6 +43,9 @@ OTC_F9_FV.Modules.companyPerformanceMarket = OTC_F9_FV.Modules.companyPerformanc
                         case null:
                             result = false;
                             break;
+                        // case "--":
+                        //     result = false;
+                        //     break;
                         default:
                             break;
                     }
@@ -128,7 +131,7 @@ OTC_F9_FV.Modules.companyPerformanceMarket = OTC_F9_FV.Modules.companyPerformanc
                                     <span data-none="no-data-span"></span>
                                 </p>
                             `;
-                            if (datas.hsl !== undefined && datas.hsl !== null) {
+                            if (emptyChecker(datas.hsl)) {
                                 if (Array.isArray(datas.hsl.datas) && datas.hsl.datas.length > 0) {
                                     // backend & sort time
                                     let arr = datas.hsl.datas,
@@ -505,9 +508,11 @@ OTC_F9_FV.Modules.companyPerformanceMarket.drawHS2 = OTC_F9_FV.Modules.companyPe
         debug = false
     ) => {
         let {code, change_rate, industry_average, market_average} = datas;
+        // console.log(`drawHS2 datas = `, JSON.stringify(datas, null, 4));
         let v1 = market_average[0],
-            v2 = industry_average[0];
-        for (let i = 0; i < 4; i++) {
+            v2 = industry_average[0],
+            len = code.length !== undefined ? (code.length - 1) : (6 - 1);
+        for (let i = 0; i < len; i++) {
             market_average.push(v1);
             industry_average.push(v2);
         }
