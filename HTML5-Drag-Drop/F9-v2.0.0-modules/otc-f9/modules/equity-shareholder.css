@@ -493,9 +493,10 @@ table[data-tables="otc-equity-shareholder-table2"]>tbody.otc-equity-shareholder-
     /* color: red; */
 }
 
-table[data-tables="otc-equity-shareholder-table2"]>tbody.otc-equity-shareholder-table-tbody>tr.otc-equity-shareholder-table-tr>td.otc-equity-shareholder-table-td-value:nth-of-type(4) {
+
+/* table[data-tables="otc-equity-shareholder-table2"]>tbody.otc-equity-shareholder-table-tbody>tr.otc-equity-shareholder-table-tr>td.otc-equity-shareholder-table-td-value:nth-of-type(4) {
     text-align: left;
-}
+} */
 
 table[data-tables="otc-equity-shareholder-table2"]>tbody.otc-equity-shareholder-table-tbody>tr.otc-equity-shareholder-table-tr>td.otc-equity-shareholder-table-td-value:nth-of-type(5) {
     text-align: left;

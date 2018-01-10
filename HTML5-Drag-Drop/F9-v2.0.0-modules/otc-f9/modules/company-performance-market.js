@@ -305,7 +305,7 @@ OTC_F9_FV.Modules.companyPerformanceMarket.drawHS = OTC_F9_FV.Modules.companyPer
                 // 16:9 ratio
                 // marginTop: 30,
                 // marginBottom: 65,
-                plotBorderWidth: 1,
+                // plotBorderWidth: 1,
                 // marginLeft: 80
             },
             title: {
@@ -339,7 +339,7 @@ OTC_F9_FV.Modules.companyPerformanceMarket.drawHS = OTC_F9_FV.Modules.companyPer
                     // x: -50,
                     // y: -50,
                     // type: 'logarithmic',
-                    min: 0,
+                    // min: 0,
                     floor: 1000,
                     // ceiling: 100,
                     // max: 100,
@@ -723,7 +723,7 @@ OTC_F9_FV.Modules.companyPerformanceMarket.drawHS2 = OTC_F9_FV.Modules.companyPe
                     name: '市场平均',
                     // color: "#f04949",
                     color: '#00ff00',
-                    data: industry_average,
+                    data: market_average,
                     lineWidth: 2,
                     zIndex: 3,
                     marker : {
@@ -750,7 +750,7 @@ OTC_F9_FV.Modules.companyPerformanceMarket.drawHS2 = OTC_F9_FV.Modules.companyPe
                     name: '行业平均',
                     // color: "#f04949",
                     color: '#ff00ff',
-                    data: market_average,
+                    data: industry_average,
                     lineWidth: 2,
                     zIndex: 2,
                     marker : {
@@ -832,6 +832,7 @@ OTC_F9_FV.Modules.companyPerformanceMarket.init = OTC_F9_FV.Modules.companyPerfo
 var OTC_IP = window.OTC_IP || `http://10.1.5.202`,
     OTC_PATH = window.OTC_PATH || `/webservice/fastview/otcper`,
     // OTC_GILCODE = window.OTC_GILCODE || `430007.OC`;// no data
+    // OTC_GILCODE = window.OTC_GILCODE || `430003.OC`;
     OTC_GILCODE = window.OTC_GILCODE || `430002.OC`;
 
 

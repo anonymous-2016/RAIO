@@ -312,3 +312,14 @@ div[data-div="tbody-div"]>p[data-p="data-otc-MLP-title"] {
     font-size: 12px;
     font-weight: normal;
 }
+
+[data-no-table="otc-management-layer-profiles-table-box"] {
+    display: none;
+}
+
+
+/* classList.toggle(`.otc-management-layer-profiles-table-box-hidden`); */
+
+.otc-management-layer-profiles-table-box-hidden {
+    display: none;
+}
