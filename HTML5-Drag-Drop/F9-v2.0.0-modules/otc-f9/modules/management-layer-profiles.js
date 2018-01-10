@@ -45,8 +45,33 @@ OTC_F9_FV.Modules.managementLayerProfiles = OTC_F9_FV.Modules.managementLayerPro
                 try {
                     if (emptyChecker(json)) {
                         let text = ``,
-                            time = ``;
-                       if (Object.keys(json).length > 0) {
+                            time = ``,
+                            table_text = ``;
+                        text = `
+                            <p data-none="no-data-p">
+                                <span data-none="no-data-span"></span>
+                            </p>
+                        `;
+                        // tr & td colspan="5/9"
+                        const no_data_table = (title = `标题`, colsapn = 1) => {
+                            let result = `
+                                <tr>
+                                    <td>
+                                        <p data-p="no-data-p"><span data-title="sub-title">${title}</span></p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="${colsapn}">
+                                        <p data-none="no-data-p">
+                                            <span data-none="no-data-span"></span>
+                                        </p>
+                                    </td>
+                                </tr>
+                            `;// 高管信息 高管离职信息
+                            return result;
+                        };
+                        let theads = document.querySelectorAll(`.otc-management-layer-profiles-table-thead`);
+                        if (Object.keys(json).length > 0) {
                             if (emptyChecker(datas.ggcg)) {
                                 let obj = datas.ggcg || {};
                                 let {dsh, jsh, gg, sj, hxyg} = obj;
@@ -56,18 +81,14 @@ OTC_F9_FV.Modules.managementLayerProfiles = OTC_F9_FV.Modules.managementLayerPro
                                 text = `
                                     <p data-p="data-otc-MLP-title">
                                         报告期内, 公司在职董事会人数
-                                        <span data-span="data-otc-MLP-title">${dsh}</span>人, 监事会
-                                        <span data-span="data-otc-MLP-title">${jsh}</span>人, 高级管理人员
-                                        <span data-span="data-otc-MLP-title">${gg}</span>人, 核心员工
-                                        <span data-span="data-otc-MLP-title">${hxyg}</span>人.
+                                        <span data-span="data-otc-MLP-title">${(dsh !== "0") ? dsh : `--`}</span>人, 监事会
+                                        <span data-span="data-otc-MLP-title">${(jsh !== "0") ? jsh : `--`}</span>人, 高级管理人员
+                                        <span data-span="data-otc-MLP-title">${(gg !== "0") ? gg : `--`}</span>人, 核心员工
+                                        <span data-span="data-otc-MLP-title">${(hxyg !== "0") ? hxyg : `--`}</span>人.
                                     </p>
                                 `;
                             }else{
-                                text = `
-                                    <p data-none="no-data-p">
-                                        <span data-none="no-data-span"></span>
-                                    </p>
-                                `;
+                                // default
                             }
                             title.insertAdjacentHTML(`beforeend`, text);
                             // date.insertAdjacentHTML(`beforeend`, time);
@@ -126,7 +147,10 @@ OTC_F9_FV.Modules.managementLayerProfiles = OTC_F9_FV.Modules.managementLayerPro
                             }else{
                                 // no data ??? Array
                                 // http://10.1.5.202/webservice/fastview/otcper/otcperfast11/834380.OC
-                                tbodys[0].insertAdjacentHTML(`beforeend`, trs);
+                                theads[0].classList.toggle("otc-management-layer-profiles-table-thead");
+                                theads[0].setAttribute(`data-no-table`, `otc-management-layer-profiles-table-box`);
+                                table_text = no_data_table(`高管信息`, 9);
+                                tbodys[0].insertAdjacentHTML(`beforeend`, table_text);
                             }
                             if (Array.isArray(datas.gglz) && datas.gglz.length > 0) {
                                 let trs2 = ``;
@@ -167,19 +191,25 @@ OTC_F9_FV.Modules.managementLayerProfiles = OTC_F9_FV.Modules.managementLayerPro
                             }else{
                                 // no data
                                 // ??? table, no value => no key!
-                                tbodys[1].insertAdjacentHTML(`beforeend`, trs2);
+                                theads[1].classList.toggle("otc-management-layer-profiles-table-thead");
+                                theads[1].setAttribute(`data-no-table`, `otc-management-layer-profiles-table-box`);
+                                table_text = no_data_table(`高管离职信息`, 5);
+                                tbodys[1].insertAdjacentHTML(`beforeend`, table_text);
                             }
-                       } else {
-                           // no data
-                           // all no data & hide table & show no data
-                            let div = document.querySelector(`[data-titles="data-otc-MLP-title"]`);
-                            div.style.display = "none;";
-                            let tables = document.querySelectorAll(`[data-table="otc-management-layer-profiles-table-box"]`);
-                            for (let i = 0; i < tables.length; i++) {
-                                tables[i].setAttribute(`data-no-table`, `otc-management-layer-profiles-table-box`);
-                                // tables[i].style.display = "none;";
-                            }
-                       }
+                        } else {
+                            // no data
+                            // all no data & hide table & show no data
+                                let div = document.querySelector(`[data-titles="data-otc-MLP-title"]`);
+                                // div.style.display = "none;";
+                                // div.setAttribute(`data-no-table`, `otc-management-layer-profiles-table-box`);
+                                div.setAttribute(`data-no-div`, `otc-management-layer-profiles-div-box`);
+                                div.insertAdjacentHTML(`beforeend`, text);
+                                let tables = document.querySelectorAll(`[data-table="otc-management-layer-profiles-table-box"]`);
+                                for (let i = 0; i < tables.length; i++) {
+                                    tables[i].setAttribute(`data-no-table`, `otc-management-layer-profiles-table-box`);
+                                    // tables[i].style.display = "none;";
+                                }
+                        }
                     }else{
                         // error === no data ???
                         let message = `handle json error!`,
@@ -251,9 +281,10 @@ OTC_F9_FV.Modules.managementLayerProfiles.init = OTC_F9_FV.Modules.managementLay
 
 var OTC_IP = window.OTC_IP || `http://10.1.5.202`,
     OTC_PATH = window.OTC_PATH || `/webservice/fastview/otcper`,
-    OTC_GILCODE = window.OTC_GILCODE || `430000.OC`;
+    // OTC_GILCODE = window.OTC_GILCODE || `430000.OC`;
     // OTC_GILCODE = window.OTC_GILCODE || `430007.OC`;
-    // OTC_GILCODE = window.OTC_GILCODE || `430002.OC`;
+    // OTC_GILCODE = window.OTC_GILCODE || `834380.OC`;
+    OTC_GILCODE = window.OTC_GILCODE || `430002.OC`;
 
 
 OTC_F9_FV.Modules.managementLayerProfiles.init({

@@ -46,3 +46,7 @@
 .h5-dnd-body-container::-webkit-scrollbar {
     display: none;
 }
+
+[data-link*="fv-"]>a {
+    display: none;
+}

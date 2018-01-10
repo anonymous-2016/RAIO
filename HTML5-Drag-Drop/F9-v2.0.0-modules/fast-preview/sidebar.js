@@ -936,7 +936,7 @@ STOCK_F9_FV.Modules.loadAllModules = STOCK_F9_FV.Modules.loadAllModules || (
                                 <section class="fv-module-box-5">
                                     <div class="fv-h5dnd-modules-title-box">
                                         <p class="fv-h5dnd-modules-title" data-title="fv-changes-shareholding-executives-title" data-more="changes-shareholding-executives-title">
-                                            高管持股变动情况
+                                            重要股东买卖
                                             <span data-link="fv-changes-shareholding-executives-data-link">
                                                 <a href="#more" data-uid="62283" data-turn-to-uid="node-uid-changes-shareholding-executives-data">更多</a>
                                             </span>
@@ -2025,7 +2025,7 @@ STOCK_F9_FV.Modules.modulesLoader = STOCK_F9_FV.Modules.modulesLoader ||(
                                 <section class="fv-module-box-5">
                                     <div class="fv-h5dnd-modules-title-box">
                                         <p class="fv-h5dnd-modules-title" data-title="fv-changes-shareholding-executives-title" data-more="changes-shareholding-executives-title">
-                                            高管持股变动情况
+                                            重要股东买卖
                                             <span data-link="fv-changes-shareholding-executives-data-link">
                                                 <a href="#more" data-uid="62283" data-turn-to-uid="node-uid-changes-shareholding-executives-data">更多</a>
                                             </span>
@@ -2051,7 +2051,7 @@ STOCK_F9_FV.Modules.modulesLoader = STOCK_F9_FV.Modules.modulesLoader ||(
                                         </tfoot>
                                     </table>
                                 </section>
-                            `;
+                            `;// 高管持股变动情况
                             break;
                         case "stockfast13":
                             delete_uid = `institutional-shareholding-change-statistics`;

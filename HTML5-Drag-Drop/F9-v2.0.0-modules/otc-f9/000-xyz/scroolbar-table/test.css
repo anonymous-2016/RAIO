@@ -1,0 +1,50 @@
+@charset "UTF-8";
+
+/* scroll table */
+
+table {
+    box-sizing: border-box;
+    border-collapse: collapse;
+    border-spacing: 0;
+    border: 1px solid red;
+    font-size: 12px;
+    font-weight: normal;
+    max-width: 540px;
+    overflow-y: scroll;
+    color: #4d4d4d;
+    background: #fff;
+}
+
+[data-scrollbar="section-scrollbar"] {
+    max-height: 300px;
+    max-width: 400px;
+    overflow: scroll;
+}
+
+[data-scrollbar="table-scrollbar"] {
+    /* max-height: 300px; */
+    /* max-width: 500px; */
+    overflow: scroll;
+    word-break: keep-all"
+
+}
+
+table>tr {
+    box-sizing: border-box;
+    max-width: 300px;
+    max-height: 50px;
+    overflow: scroll;
+    word-break: keep-all"
+
+}
+
+table>tr>td {
+    box-sizing: border-box;
+    width: 400px;
+    height: 50px;
+    word-break: keep-all"
+
+}
+
+
+/* width:100%;height:100;overflow-x:hidden;overflow-y:scroll */
