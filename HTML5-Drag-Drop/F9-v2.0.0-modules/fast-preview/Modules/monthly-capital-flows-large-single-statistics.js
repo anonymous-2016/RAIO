@@ -140,7 +140,7 @@ STOCK_F9_FV.Modules.MCFLSStatistics = STOCK_F9_FV.Modules.MCFLSStatistics || (
             }
         )
         .catch(error => console.log(`error = \n`, error));
-        return datas;
+        // return datas;
         // more
         setTimeout((debug = false) => {
             let turn_to_uid = document.querySelector(`[data-turn-to-uid="node-uid-monthly-capital-flows-large-single-statistics-data"]`);

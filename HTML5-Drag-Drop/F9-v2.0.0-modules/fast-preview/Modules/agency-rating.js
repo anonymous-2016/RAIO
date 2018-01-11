@@ -141,7 +141,7 @@ STOCK_F9_FV.Modules.agencyRating = STOCK_F9_FV.Modules.agencyRating || ((url = `
             }
         )
         .catch(error => console.log(`error = \n`, error));
-        return datas;
+        // return datas;
         // return only work out Promise!
         setTimeout((debug = false) => {
             let turn_to_uid = document.querySelector(`[data-turn-to-uid="node-uid-agency-rating-data"]`);
