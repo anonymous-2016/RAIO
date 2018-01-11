@@ -94,6 +94,7 @@ OTC_F9_FV.Modules.latestFinancialData = OTC_F9_FV.Modules.latestFinancialData ||
                             //     <p>财务数据摘要-暂无数据.</p>
                             // `;
                             td_title2 = `
+                                <p>财务数据</>
                                 <p data-none="no-data-p">
                                     <span data-none="no-data-span"></span>
                                 </p>

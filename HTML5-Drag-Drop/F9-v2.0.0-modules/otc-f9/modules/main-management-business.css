@@ -327,3 +327,7 @@ div[data-div="tbody-div"]>p[data-p="data-otc-MMB-title"] {
     font-size: 12px;
     font-weight: normal;
 }
+
+thead[data-hide="otc-main-management-business-table-thead-hide"] {
+    display: none !important;
+}

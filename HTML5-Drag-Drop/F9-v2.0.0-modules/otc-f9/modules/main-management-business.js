@@ -180,17 +180,23 @@ OTC_F9_FV.Modules.mainManagementBusiness = OTC_F9_FV.Modules.mainManagementBusin
                                 }else{
                                     // no data
                                     let html = `
-                                        <p data-none="no-data-p">
-                                            <span data-none="no-data-span"></span>
-                                        </p>
+                                        <tr>
+                                            <td colspan="4">
+                                                <p data-none="no-data-p">
+                                                    <span data-none="no-data-span"></span>
+                                                </p>
+                                            </td>
+                                        </tr>
                                     `;
                                     tbody_dom.insertAdjacentHTML(`beforeend`, html);
+                                    // tbody_dom.previousElementSibling.style.display = "none;";
+                                    tbody_dom.previousElementSibling.setAttribute(`data-hide`, `otc-main-management-business-table-thead-hide`);
                                     // `暂无数据` & no data!
-                                    console.log(`json.datas is empty! = \n`, json, json.datas);
+                                    // console.log(`json.datas is empty! = \n`, json, json.datas);
                                     let arr_obj = {};
-                                    arr_obj.productst = [];
-                                    arr_obj.incomet = [];
-                                    arr_obj.costt = [];
+                                    arr_obj.products = [];
+                                    arr_obj.income = [];
+                                    arr_obj.cost = [];
                                     arr_obj.gross_profit = [];
                                     OTC_F9_FV.Modules.mainManagementBusiness.drawHS(arr_obj, hsc_uid);
                                 }
@@ -869,7 +875,8 @@ OTC_F9_FV.Modules.mainManagementBusiness.init = OTC_F9_FV.Modules.mainManagement
 var OTC_IP = window.OTC_IP || `http://10.1.5.202`,
     OTC_PATH = window.OTC_PATH || `/webservice/fastview/otcper`,
     // OTC_GILCODE = window.OTC_GILCODE || `834380.OC`;
-    OTC_GILCODE = window.OTC_GILCODE || `430002.OC`;
+    OTC_GILCODE = window.OTC_GILCODE || `430009.OC`;
+    // OTC_GILCODE = window.OTC_GILCODE || `430002.OC`;
 
 
 OTC_F9_FV.Modules.mainManagementBusiness.init({
