@@ -11,6 +11,7 @@ table {
     font-weight: normal;
     max-width: 540px;
     overflow-y: scroll;
+    overflow-x: scroll;
     color: #4d4d4d;
     background: #fff;
 }
@@ -18,32 +19,33 @@ table {
 [data-scrollbar="section-scrollbar"] {
     max-height: 300px;
     max-width: 400px;
-    overflow: scroll;
+    /* overflow: scroll; */
+    overflow-x: scroll;
 }
 
 [data-scrollbar="table-scrollbar"] {
     /* max-height: 300px; */
     /* max-width: 500px; */
-    overflow: scroll;
-    word-break: keep-all"
-
+    /* overflow: scroll; */
+    word-break: keep-all;
+    overflow-x: scroll;
 }
 
 table>tr {
     box-sizing: border-box;
     max-width: 300px;
     max-height: 50px;
-    overflow: scroll;
-    word-break: keep-all"
-
+    /* overflow: scroll; */
+    overflow-x: scroll;
+    word-break: keep-all;
 }
 
 table>tr>td {
     box-sizing: border-box;
     width: 400px;
     height: 50px;
-    word-break: keep-all"
-
+    word-break: keep-all;
+    overflow-x: scroll;
 }
 
 

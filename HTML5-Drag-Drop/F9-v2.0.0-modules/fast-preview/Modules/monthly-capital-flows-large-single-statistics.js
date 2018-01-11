@@ -27,6 +27,24 @@ STOCK_F9_FV.Modules.MCFLSStatistics = STOCK_F9_FV.Modules.MCFLSStatistics || (
                 if (debug) {
                     console.log(`data = \n`, json);
                 }
+                // emptyChcker();
+                const emptyChecker = (key = ``) => {
+                    let result = true;
+                    switch (key) {
+                        case undefined:
+                            result = false;
+                            break;
+                        case null:
+                            result = false;
+                            break;
+                        case -1.7976931348623157e+308:
+                            result = false;// Number Invalid Value
+                            break;
+                        default:
+                            break;
+                    }
+                    return result;
+                };
                 if (Array.isArray(arr) && arr.length > 0){
                     let strs = json.map(
                         (obj) => {
@@ -78,11 +96,17 @@ STOCK_F9_FV.Modules.MCFLSStatistics = STOCK_F9_FV.Modules.MCFLSStatistics || (
                     arr.map(
                         (obj, i) => {
                             // console.log(`obj = `, JSON.stringify(obj, null, 4));
-                            let time = ``, purchase_amount = ``, closing_price = ``;
-                            time = (obj.sj !== undefined) ? obj.sj : `😟 暂无数据`;
+                            let time = ``,
+                                purchase_amount = ``,
+                                closing_price = ``;
+                            // null
+                            // time = emptyChecker(obj.sj) ? obj.sj : `😟 暂无数据`;
+                            // purchase_amount = emptyChecker(obj.b) ? obj.bl : `😟 暂无数据`;
+                            // closing_price = emptyChecker(obj.gj) ? obj.gj : `😟 暂无数据`;
+                            time = emptyChecker(obj.sj) ? obj.sj : `--`;
                             // no string, just keep number!
-                            purchase_amount = (obj.bl !== undefined) ? obj.bl : `😟 暂无数据`;
-                            closing_price = (obj.gj !== undefined) ? obj.gj : `😟 暂无数据`;
+                            purchase_amount = emptyChecker(obj.b) ? obj.bl : null;
+                            closing_price = emptyChecker(obj.gj) ? obj.gj : null;
                             // average = -1.7976931348623157e+308;
                             // average = (obj.pj !== undefined) ? (obj.pj >= 0 ? obj.pj : null) : `😟 暂无数据`;
                             // average = (obj.pj !== undefined) ? (obj.pj >= 0 ? obj.pj : `--`) : `😟 暂无数据`;
@@ -225,6 +249,42 @@ STOCK_F9_FV.Modules.MCFLSStatistics.MCFLSSdrawHS = STOCK_F9_FV.Modules.MCFLSStat
                 weekdays: ['星期天','星期一', '星期二', '星期三', '星期四', '星期五', '星期六']
             },
         });
+        // dynamic push serie ???
+        let data1 = {
+                name: '大单净买入额',// type = column (chart)
+                data: purchase_amount,
+                // color: "#00ce9b",// ""
+                color: "#7cb5ec",
+                negativeColor: '#00ce9b'
+            },
+            data2 = {
+                type:'spline',
+                yAxis: 1,
+                color: "#f7337f",
+                name: '最新收盘价',
+                data: closing_price,
+                connectNulls: true,// OK
+                tooltip: {
+                    headerFormat: `
+                        <strong>
+                            {point.x}
+                        </strong>
+                        <br/>
+                    `,
+                    pointFormat: `
+                        <span style="color:{point.color}">\u25CF</span>
+                        {series.name}: <b>{point.y} 元</b><br/>
+                    `,
+                    // <span style="color:{point.color}">\u25CF</span> 百分比 :{point.percentage:.0f}%
+                },
+            };
+        let series = [];
+        if (purchase_amount[0] !== null) {
+            series.push(data1);
+        }
+        if (closing_price[0] !== null) {
+            series.push(data2);
+        }
         Highcharts.chart(container_uid, {
             noData: {// all defualt value
                 // attr: undefined,
@@ -392,36 +452,37 @@ STOCK_F9_FV.Modules.MCFLSStatistics.MCFLSSdrawHS = STOCK_F9_FV.Modules.MCFLSStat
                     }
                 }
             },
-            series: [
-                {
-                    name: '大单净买入额',// type = column (chart)
-                    data: purchase_amount,
-                    // color: "#00ce9b",// ""
-                    color: "#7cb5ec",
-                    negativeColor: '#00ce9b'
-                },
-                {
-                    type:'spline',
-                    yAxis: 1,
-                    color: "#f7337f",
-                    name: '最新收盘价',
-                    data: closing_price,
-                    connectNulls: true,// OK
-                    tooltip: {
-                        headerFormat: `
-                            <strong>
-                                {point.x}
-                            </strong>
-                            <br/>
-                        `,
-                        pointFormat: `
-                            <span style="color:{point.color}">\u25CF</span>
-                            {series.name}: <b>{point.y} 元</b><br/>
-                        `,
-                        // <span style="color:{point.color}">\u25CF</span> 百分比 :{point.percentage:.0f}%
-                    },
-                }
-            ],
+            series: series,
+            // series: [
+            //     {
+            //         name: '大单净买入额',// type = column (chart)
+            //         data: purchase_amount,
+            //         // color: "#00ce9b",// ""
+            //         color: "#7cb5ec",
+            //         negativeColor: '#00ce9b'
+            //     },
+            //     {
+            //         type:'spline',
+            //         yAxis: 1,
+            //         color: "#f7337f",
+            //         name: '最新收盘价',
+            //         data: closing_price,
+            //         connectNulls: true,// OK
+            //         tooltip: {
+            //             headerFormat: `
+            //                 <strong>
+            //                     {point.x}
+            //                 </strong>
+            //                 <br/>
+            //             `,
+            //             pointFormat: `
+            //                 <span style="color:{point.color}">\u25CF</span>
+            //                 {series.name}: <b>{point.y} 元</b><br/>
+            //             `,
+            //             // <span style="color:{point.color}">\u25CF</span> 百分比 :{point.percentage:.0f}%
+            //         },
+            //     }
+            // ],
             // scrollbar: {
             //     enabled: true,
             //     step: 22,
