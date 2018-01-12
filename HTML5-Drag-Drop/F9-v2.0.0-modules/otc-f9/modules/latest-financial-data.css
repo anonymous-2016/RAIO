@@ -229,7 +229,7 @@ tr.otc-latest-financial-data-table-tr>td:nth-of-type(4) {
     height: 100px;
 } */
 
-[data-titles="data-otc-LFD-title"]>p {
+[data-titles="data-otc-LFD-title"]>p:nth-of-type(1) {
     box-sizing: border-box;
     color: #616a87;
     font-weight: bold;
@@ -281,4 +281,23 @@ tr.otc-latest-financial-data-table-tr>td:nth-of-type(4) {
 
 [data-display="display-none"] {
     display: none;
+}
+
+div[data-titles="data-otc-LFD-title"] {
+    box-sizing: border-box;
+    background: #fff;
+    border: 0;
+    line-height: 23px;
+    font-size: 12px;
+    width: 100%;
+    margin-bottom: 10px;
+    padding-left: 0;
+}
+
+div[data-titles="data-otc-LFD-title"]>p:nth-of-type(2) {
+    color: #616a87;
+    font-size: 12px;
+    background: #fffce9;
+    padding-left: 4px;
+    /* line-height: 23px; */
 }

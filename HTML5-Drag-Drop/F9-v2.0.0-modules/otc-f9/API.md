@@ -507,6 +507,34 @@ https://addons.mozilla.org/en-US/firefox/addon/easyscreenshot/
 
 https://getfireshot.com/installed-lite.php?ver=0.98.94&app=fx
 
+# SKIN
+
+```js
+// SKIN
+let skin_color = (OTC_SKIN === "black") ? `#0b1016` : `#fff`,
+    legend_item_color = (OTC_SKIN === "black") ? `#fff` : `#0b1016`,
+    legend_item_hover_color = (OTC_SKIN === "black") ? `#f79530` : `#000`,
+    legend_bg_color = (OTC_SKIN === "black") ? `#0b1016` : `#ff00ff`;
+// console.log(`OTC_SKIN = `, OTC_SKIN);
+// console.log(`skin_color = `, skin_color);
+
+
+backgroundColor: legend_bg_color,
+itemStyle: {
+    color: legend_item_color,
+    // fontWeight: 'bold'
+},
+itemHoverStyle: {
+    color: legend_item_hover_color,
+},
+
+
+OTC_SKIN = window.OTC_SKIN || `black`,
+
+
+```
+
+
 
 # print.css & window.print()
 

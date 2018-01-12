@@ -262,7 +262,8 @@ div[data-div="tbody-div"]>p[data-p="data-otc-MLP-title"] {
 [data-p="data-otc-MLP-title"] {
     /* border: 1px solid #ccc; */
     line-height: 23px;
-    height: 23px;
+    /* height: 46px; */
+    /* height: 23px; */
     font-size: 12px;
     font-weight: normal;
 }

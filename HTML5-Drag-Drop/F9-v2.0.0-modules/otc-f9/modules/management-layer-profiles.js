@@ -74,7 +74,7 @@ OTC_F9_FV.Modules.managementLayerProfiles = OTC_F9_FV.Modules.managementLayerPro
                         if (Object.keys(json).length > 0) {
                             if (emptyChecker(datas.ggcg)) {
                                 let obj = datas.ggcg || {};
-                                let {dsh, jsh, gg, sj, hxyg} = obj;
+                                let {dsh, jsh, gg, sj, hxyg, gghjcg, zb} = obj;
                                 emptyChecker(sj) ? time = `(${sj})` : time = ``;
                                 // (截止2015-06-30) ??? data-title
                                 // "sj": "2017-06-30",
@@ -84,7 +84,9 @@ OTC_F9_FV.Modules.managementLayerProfiles = OTC_F9_FV.Modules.managementLayerPro
                                         <span data-span="data-otc-MLP-title">${(dsh !== "0") ? dsh : `--`}</span>人, 监事会
                                         <span data-span="data-otc-MLP-title">${(jsh !== "0") ? jsh : `--`}</span>人, 高级管理人员
                                         <span data-span="data-otc-MLP-title">${(gg !== "0") ? gg : `--`}</span>人, 核心员工
-                                        <span data-span="data-otc-MLP-title">${(hxyg !== "0") ? hxyg : `--`}</span>人.
+                                        <span data-span="data-otc-MLP-title">${(hxyg !== "0") ? hxyg : `--`}</span>人, 高管合计持股
+                                        <span data-span="data-otc-MLP-title">${(gghjcg !== "0") ? gghjcg : `--`}</span>万股, 占比
+                                        <span data-span="data-otc-MLP-title">${(zb !== "0") ? zb : `--`}</span>%.
                                     </p>
                                 `;
                             }else{
@@ -152,50 +154,50 @@ OTC_F9_FV.Modules.managementLayerProfiles = OTC_F9_FV.Modules.managementLayerPro
                                 table_text = no_data_table(`高管信息`, 9);
                                 tbodys[0].insertAdjacentHTML(`beforeend`, table_text);
                             }
-                            if (Array.isArray(datas.gglz) && datas.gglz.length > 0) {
-                                let trs2 = ``;
-                                // let name = ``,
-                                //     position = ``,
-                                //     begin = ``,
-                                //     end = ``,
-                                //     ok = ``;
-                                for (let i = 0; i < datas.gglz.length; i++) {
-                                    let {
-                                        xm: name,
-                                        zw: position,
-                                        beginDate: begin,
-                                        endDate: end,
-                                        rz: ok,
-                                    } = datas.gglz[i];
-                                    trs2 += `
-                                        <tr class="otc-management-layer-profiles-table-tr" data-test="${i}">
-                                            <td class="otc-management-layer-profiles-table-td-value" data-value="data-otc-MLP">
-                                                ${name}
-                                            </td>
-                                            <td class="otc-management-layer-profiles-table-td-value" data-value="data-otc-MLP">
-                                                ${position}
-                                            </td>
-                                            <td class="otc-management-layer-profiles-table-td-value" data-value="data-otc-MLP">
-                                                ${begin}
-                                            </td>
-                                            <td class="otc-management-layer-profiles-table-td-value" data-value="data-otc-MLP">
-                                                ${end}
-                                            </td>
-                                            <td class="otc-management-layer-profiles-table-td-value" data-value="data-otc-MLP">
-                                                ${(ok === true) ? "是" : "否"}
-                                            </td>
-                                        </tr>
-                                    `;// 是否
-                                }
-                                tbodys[1].insertAdjacentHTML(`beforeend`, trs2);
-                            }else{
-                                // no data
-                                // ??? table, no value => no key!
-                                theads[1].classList.toggle("otc-management-layer-profiles-table-thead");
-                                theads[1].setAttribute(`data-no-table`, `otc-management-layer-profiles-table-box`);
-                                table_text = no_data_table(`高管离职信息`, 5);
-                                tbodys[1].insertAdjacentHTML(`beforeend`, table_text);
-                            }
+                            // if (Array.isArray(datas.gglz) && datas.gglz.length > 0) {
+                            //     let trs2 = ``;
+                            //     let name = ``,
+                            //         position = ``,
+                            //         begin = ``,
+                            //         end = ``,
+                            //         ok = ``;
+                            //     for (let i = 0; i < datas.gglz.length; i++) {
+                            //         let {
+                            //             xm: name,
+                            //             zw: position,
+                            //             beginDate: begin,
+                            //             endDate: end,
+                            //             rz: ok,
+                            //         } = datas.gglz[i];
+                            //         trs2 += `
+                            //             <tr class="otc-management-layer-profiles-table-tr" data-test="${i}">
+                            //                 <td class="otc-management-layer-profiles-table-td-value" data-value="data-otc-MLP">
+                            //                     ${name}
+                            //                 </td>
+                            //                 <td class="otc-management-layer-profiles-table-td-value" data-value="data-otc-MLP">
+                            //                     ${position}
+                            //                 </td>
+                            //                 <td class="otc-management-layer-profiles-table-td-value" data-value="data-otc-MLP">
+                            //                     ${begin}
+                            //                 </td>
+                            //                 <td class="otc-management-layer-profiles-table-td-value" data-value="data-otc-MLP">
+                            //                     ${end}
+                            //                 </td>
+                            //                 <td class="otc-management-layer-profiles-table-td-value" data-value="data-otc-MLP">
+                            //                     ${(ok === true) ? "是" : "否"}
+                            //                 </td>
+                            //             </tr>
+                            //         `;// 是否
+                            //     }
+                            //     tbodys[1].insertAdjacentHTML(`beforeend`, trs2);
+                            // }else{
+                            //     // no data
+                            //     // ??? table, no value => no key!
+                            //     theads[1].classList.toggle("otc-management-layer-profiles-table-thead");
+                            //     theads[1].setAttribute(`data-no-table`, `otc-management-layer-profiles-table-box`);
+                            //     table_text = no_data_table(`高管离职信息`, 5);
+                            //     tbodys[1].insertAdjacentHTML(`beforeend`, table_text);
+                            // }
                         } else {
                             // no data
                             // all no data & hide table & show no data

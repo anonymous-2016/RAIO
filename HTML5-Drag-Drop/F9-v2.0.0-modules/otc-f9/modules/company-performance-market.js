@@ -280,6 +280,13 @@ OTC_F9_FV.Modules.companyPerformanceMarket.drawHS = OTC_F9_FV.Modules.companyPer
             yAxisColor: `#FFB400`,
         };
         const {color, colors, optioncolor, gridColor, legendColor, yAxisColor, index_color} = {...chart_css};
+        // SKIN
+        let skin_color = (OTC_SKIN === "black") ? `#0b1016` : `#fff`,
+            legend_item_color = (OTC_SKIN === "black") ? `#fff` : `#0b1016`,
+            legend_item_hover_color = (OTC_SKIN === "black") ? `#f79530` : `#000`,
+            legend_bg_color = (OTC_SKIN === "black") ? `#0b1016` : `#fff`;
+        // console.log(`OTC_SKIN = `, OTC_SKIN);
+        // console.log(`skin_color = `, skin_color);
         // Highcharts.chart
         Highcharts.setOptions({
             lang: {
@@ -299,7 +306,7 @@ OTC_F9_FV.Modules.companyPerformanceMarket.drawHS = OTC_F9_FV.Modules.companyPer
             chart: {
                 // type: 'column',
                 // backgroundColor: chart_css.color
-                // backgroundColor: color
+                backgroundColor: skin_color,
                 // height: (9 / 16 * 100) + '%',
                 // height: 272,// 275px;
                 // 16:9 ratio
@@ -395,7 +402,14 @@ OTC_F9_FV.Modules.companyPerformanceMarket.drawHS = OTC_F9_FV.Modules.companyPer
                 symbolRadius: 0,
                 // rectangle
                 align: 'center',// left, center and right. (Defaults to center.)
-                backgroundColor: `#ff00ff`, //Color,
+                backgroundColor: legend_bg_color,
+                itemStyle: {
+                    color: legend_item_color,
+                    // fontWeight: 'bold'
+                },
+                itemHoverStyle: {
+                    color: legend_item_hover_color,
+                },
                 /*
                     x: 0,
                     y: 340,
@@ -406,9 +420,9 @@ OTC_F9_FV.Modules.companyPerformanceMarket.drawHS = OTC_F9_FV.Modules.companyPer
                 verticalAlign: "bottom",
                 // floating: true,
                 floating: false,
-                backgroundColor: (Highcharts.theme && Highcharts.theme.background2) || 'white',
-                borderColor: '#CCC',
-                borderWidth: 1,
+                // backgroundColor: (Highcharts.theme && Highcharts.theme.background2) || 'white',
+                // borderColor: '#CCC',
+                // borderWidth: 1,
                 shadow: false
             },
             // tooltip ??? array
@@ -529,6 +543,10 @@ OTC_F9_FV.Modules.companyPerformanceMarket.drawHS2 = OTC_F9_FV.Modules.companyPe
         // console.log(`industry_average = \n`, industry_average, typeof(industry_average));
         // console.log(`market_average = \n`, market_average);
         const {color, colors, optioncolor, gridColor, legendColor, yAxisColor, index_color} = {...chart_css};
+        let skin_color = (OTC_SKIN === "black") ? `#0b1016` : `#fff`,
+            legend_item_color = (OTC_SKIN === "black") ? `#fff` : `#0b1016`,
+            legend_item_hover_color = (OTC_SKIN === "black") ? `#f79530` : `#000`,
+            legend_bg_color = (OTC_SKIN === "black") ? `#0b1016` : `#fff`;
         // Highcharts.chart
         Highcharts.setOptions({
             lang: {
@@ -548,7 +566,7 @@ OTC_F9_FV.Modules.companyPerformanceMarket.drawHS2 = OTC_F9_FV.Modules.companyPe
             chart: {
                 type: 'column',
                 // backgroundColor: chart_css.color
-                // backgroundColor: color
+                backgroundColor: skin_color,
                 // height: (9 / 16 * 100) + '%',
                 // height: 272,// 275px;
                 // 16:9 ratio
@@ -665,7 +683,14 @@ OTC_F9_FV.Modules.companyPerformanceMarket.drawHS2 = OTC_F9_FV.Modules.companyPe
                 symbolRadius: 0,
                 // rectangle
                 align: 'center',// left, center and right. (Defaults to center.)
-                backgroundColor: `#ff00ff`, //Color,
+                backgroundColor: legend_bg_color,
+                itemStyle: {
+                    color: legend_item_color,
+                    // fontWeight: 'bold'
+                },
+                itemHoverStyle: {
+                    color: legend_item_hover_color,
+                },
                 /*
                     x: 0,
                     y: 340,
@@ -676,9 +701,9 @@ OTC_F9_FV.Modules.companyPerformanceMarket.drawHS2 = OTC_F9_FV.Modules.companyPe
                 verticalAlign: "bottom",
                 // floating: true,
                 floating: false,
-                backgroundColor: (Highcharts.theme && Highcharts.theme.background2) || 'white',
-                borderColor: '#CCC',
-                borderWidth: 1,
+                // backgroundColor: (Highcharts.theme && Highcharts.theme.background2) || 'white',
+                // borderColor: '#CCC',
+                // borderWidth: 1,
                 shadow: false
             },
             // tooltip ??? array
@@ -831,9 +856,11 @@ OTC_F9_FV.Modules.companyPerformanceMarket.init = OTC_F9_FV.Modules.companyPerfo
 
 var OTC_IP = window.OTC_IP || `http://10.1.5.202`,
     OTC_PATH = window.OTC_PATH || `/webservice/fastview/otcper`,
+    // OTC_SKIN = window.OTC_SKIN || `black`,
+    OTC_SKIN = window.OTC_SKIN || `white`,
     // OTC_GILCODE = window.OTC_GILCODE || `430007.OC`;// no data
-    // OTC_GILCODE = window.OTC_GILCODE || `430003.OC`;
-    OTC_GILCODE = window.OTC_GILCODE || `430002.OC`;
+    OTC_GILCODE = window.OTC_GILCODE || `430003.OC`;
+    // OTC_GILCODE = window.OTC_GILCODE || `430002.OC`;
 
 
 OTC_F9_FV.Modules.companyPerformanceMarket.init({

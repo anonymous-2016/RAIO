@@ -176,8 +176,14 @@ OTC_F9_FV.Modules.latestFinancialData.init = OTC_F9_FV.Modules.latestFinancialDa
 
 var OTC_IP = window.OTC_IP || `http://10.1.5.202`,
     OTC_PATH = window.OTC_PATH || `/webservice/fastview/otcper`,
+    // OTC_GILCODE = window.OTC_GILCODE || `832159.OC`;// 业绩快报
+    // OTC_GILCODE = window.OTC_GILCODE || `400066.OC`;// 业绩预告
     OTC_GILCODE = window.OTC_GILCODE || `430002.OC`;
 
+/*
+    http://10.1.5.202/webservice/fastview/otcper/otcperfast04/400066.OC
+    http://10.1.5.202/webservice/fastview/otcper/otcperfast04/832159.OC
+*/
 
 OTC_F9_FV.Modules.latestFinancialData.init({
     ip: OTC_IP,
@@ -189,3 +195,31 @@ OTC_F9_FV.Modules.latestFinancialData.init({
 // OTC_F9_FV.Modules.latestFinancialData.init();
 // const url = `http://10.1.5.202/webservice/fastview/otcper/otcperfast04/430002.OC`;
 
+
+
+/*
+
+<div data-div="tbody-div" data-titles="data-otc-LFD-title">
+    <p data-p="data-otc-LFD-title">
+        报告期内十大股东合计持股位股东有减持行为.
+    </p>
+</div>
+
+div[data-titles="data-otc-LFD-title"] {
+    box-sizing: border-box;
+    background: #fffce9;
+    border: 1px solid #d7dbe0;
+    line-height: 23px;
+    font-size: 12px;
+    width: 100%;
+    margin-bottom: 10px;
+    padding-left: 0;
+}
+
+div[data-div="tbody-div"]>p:nth-of-type(1) {
+    color: #616a87;
+    font-size: 12px;
+}
+
+
+*/

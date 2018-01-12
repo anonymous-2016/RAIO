@@ -287,6 +287,13 @@ OTC_F9_FV.Modules.mainManagementBusiness.drawHS = OTC_F9_FV.Modules.mainManageme
             yAxisColor: `#FFB400`,
         };
         const {color, colors, optioncolor, gridColor, legendColor, yAxisColor, index_color} = {...chart_css};
+        // SKIN
+        let skin_color = (OTC_SKIN === "black") ? `#0b1016` : `#fff`,
+            legend_item_color = (OTC_SKIN === "black") ? `#fff` : `#0b1016`,
+            legend_item_hover_color = (OTC_SKIN === "black") ? `#f79530` : `#000`,
+            legend_bg_color = (OTC_SKIN === "black") ? `#0b1016` : `#ff00ff`;
+        // console.log(`OTC_SKIN = `, OTC_SKIN);
+        // console.log(`skin_color = `, skin_color);
         // Highcharts.chart
         Highcharts.setOptions({
             lang: {
@@ -307,7 +314,7 @@ OTC_F9_FV.Modules.mainManagementBusiness.drawHS = OTC_F9_FV.Modules.mainManageme
             chart: {
                 type: 'column',
                 // backgroundColor: chart_css.color
-                // backgroundColor: color
+                backgroundColor: skin_color,
                 // height: (9 / 16 * 100) + '%',
                 // height: 272,// 275px;
                 // 16:9 ratio
@@ -425,7 +432,13 @@ OTC_F9_FV.Modules.mainManagementBusiness.drawHS = OTC_F9_FV.Modules.mainManageme
                 symbolRadius: 0,
                 // rectangle
                 align: 'center',// left, center and right. (Defaults to center.)
-                backgroundColor: `#ff00ff`, //Color,
+                itemStyle: {
+                    color: legend_item_color,
+                    // fontWeight: 'bold'
+                },
+                itemHoverStyle: {
+                    color: legend_item_hover_color,
+                },
                 /*
                     x: 0,
                     y: 340,
@@ -436,9 +449,9 @@ OTC_F9_FV.Modules.mainManagementBusiness.drawHS = OTC_F9_FV.Modules.mainManageme
                 verticalAlign: "bottom",
                 // floating: true,
                 floating: false,
-                backgroundColor: (Highcharts.theme && Highcharts.theme.background2) || 'white',
-                borderColor: '#CCC',
-                borderWidth: 1,
+                // backgroundColor: (Highcharts.theme && Highcharts.theme.background2) || 'white',
+                // borderColor: '#CCC',
+                // borderWidth: 1,
                 shadow: false
             },
             // tooltip ??? array
@@ -568,6 +581,13 @@ OTC_F9_FV.Modules.mainManagementBusiness.drawHS2 = OTC_F9_FV.Modules.mainManagem
             yAxisColor: `#FFB400`,
         };
         const {color, colors, optioncolor, gridColor, legendColor, yAxisColor, index_color} = {...chart_css};
+        // SKIN
+        let skin_color = (OTC_SKIN === "black") ? `#0b1016` : `#fff`,
+            legend_item_color = (OTC_SKIN === "black") ? `#fff` : `#0b1016`,
+            legend_item_hover_color = (OTC_SKIN === "black") ? `#f79530` : `#000`,
+            legend_bg_color = (OTC_SKIN === "black") ? `#0b1016` : `#ff00ff`;
+        // console.log(`OTC_SKIN = `, OTC_SKIN);
+        // console.log(`skin_color = `, skin_color);
         // Highcharts.chart
         const hc_colors = ["#4781b1", "#6ab437", "#f27211", "#8d0f3e", "#857fab", "#37b5a0", "#c3caab", "#055281", "#f3254b", "#ffb611", "#af4698", "#d4c6c3"];
         let series = [];
@@ -604,7 +624,7 @@ OTC_F9_FV.Modules.mainManagementBusiness.drawHS2 = OTC_F9_FV.Modules.mainManagem
             chart: {
                 type: 'column',
                 // backgroundColor: chart_css.color
-                // backgroundColor: color
+                backgroundColor: skin_color,
                 // height: (9 / 16 * 100) + '%',
                 // height: 272,// 275px;
                 // 16:9 ratio
@@ -722,7 +742,13 @@ OTC_F9_FV.Modules.mainManagementBusiness.drawHS2 = OTC_F9_FV.Modules.mainManagem
             legend: {
                 symbolRadius: 0, // rectangle
                 align: 'center',// left, center and right. (Defaults to center.)
-                backgroundColor: `#ff00ff`, //Color,
+                bitemStyle: {
+                    color: legend_item_color,
+                    // fontWeight: 'bold'
+                },
+                itemHoverStyle: {
+                    color: legend_item_hover_color,
+                },
                 x: 0,
                 y: 0,
                 // y: 10,
@@ -736,9 +762,9 @@ OTC_F9_FV.Modules.mainManagementBusiness.drawHS2 = OTC_F9_FV.Modules.mainManagem
                 // verticalAlign:'middle',
                 // floating: true,
                 floating: false,
-                backgroundColor: (Highcharts.theme && Highcharts.theme.background2) || 'white',
-                borderColor: '#CCC',
-                borderWidth: 1,
+                // backgroundColor: (Highcharts.theme && Highcharts.theme.background2) || 'white',
+                // borderColor: '#CCC',
+                // borderWidth: 1,
                 shadow: false
             },
             // tooltip ??? array
@@ -874,9 +900,11 @@ OTC_F9_FV.Modules.mainManagementBusiness.init = OTC_F9_FV.Modules.mainManagement
 
 var OTC_IP = window.OTC_IP || `http://10.1.5.202`,
     OTC_PATH = window.OTC_PATH || `/webservice/fastview/otcper`,
+    OTC_SKIN = window.OTC_SKIN || `white`,
+    // OTC_SKIN = window.OTC_SKIN || `black`,
     // OTC_GILCODE = window.OTC_GILCODE || `834380.OC`;
-    OTC_GILCODE = window.OTC_GILCODE || `430009.OC`;
-    // OTC_GILCODE = window.OTC_GILCODE || `430002.OC`;
+    // OTC_GILCODE = window.OTC_GILCODE || `430009.OC`;
+    OTC_GILCODE = window.OTC_GILCODE || `430002.OC`;
 
 
 OTC_F9_FV.Modules.mainManagementBusiness.init({

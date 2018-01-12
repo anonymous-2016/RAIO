@@ -28,6 +28,11 @@ OTC_F9_FV.Utils.getParam = OTC_F9_FV.Utils.getParam || ((key, debug = false) => 
                 }
             }
         }
+        if (!debug) {
+            console.log(`value =`, value);
+        } else {
+
+        }
         return value;
     }
 });
@@ -61,17 +66,12 @@ OTC_F9_FV.Utils.DOM_query = OTC_F9_FV.Utils.DOM_query || ((str = `[data-sortable
 });
 
 // global variable
-// var OTC_IP = OTC_IP || ``;
-// var OTC_PATH = OTC_PATH || ``;
-// // var OTC_SOCKET = OTC_SOCKET || ``;
-// var OTC_GILCODE = OTC_GILCODE || ``;
 window.OTC_IP = window.OTC_IP || ``;
 window.OTC_PATH = window.OTC_PATH || ``;
 window.OTC_GILCODE = window.OTC_GILCODE || ``;
 window.OTC_SKIN = window.OTC_SKIN || ``;
-// forced global variable
 
-// console.log("0, window.OTC_SKIN = ", window.OTC_SKIN);
+
 
 // set params before DOM ready!
 window.OTC_GILCODE = OTC_F9_FV.Utils.getParam(`gilcode`);
@@ -213,15 +213,16 @@ const initTabs = () => {
 
 
 // change skin & dynamic insert css link ??? replace css link (blink bug?)
+// css var ???
 document.addEventListener(`DOMContentLoaded`, (e) => {
     // console.log("2, (DOMContentLoaded)DOM fully loaded and parsed");
     // load css
-    const css_arr = ["index.css", "common/module.css", "common/modal.css", "common/more.css"];
+    const css_arr = ["index.css", "tabs.css", "common/module.css", "common/modal.css", "common/no-data.css"];
     const css_skins = ["black-skin", "white-skin"];
     const css_links = document.querySelectorAll(`[data-css="data-css-uid"]`);
     let css_dom = document.querySelector(`head`);
-    if (window.STOCK_Skin === "black") {
-        // console.log(`window.STOCK_Skin = `, window.STOCK_Skin, typeof(window.STOCK_Skin));
+    if (window.OTC_SKIN === "black") {
+        // console.log(`window.OTC_SKIN = `, window.OTC_SKIN, typeof(window.OTC_SKIN));
         //white-skin => black-skin
         if (css_links[0].href.includes(`white-skin`)) {
             for (let i = 0; i < css_links.length; i++) {
@@ -233,7 +234,7 @@ document.addEventListener(`DOMContentLoaded`, (e) => {
         }
     }else{
         // black-skin => white-skin
-        if (window.STOCK_Skin === "white" && css_links[0].href.includes(`black-skin`)){
+        if (window.OTC_SKIN === "white" && css_links[0].href.includes(`black-skin`)){
             for (let i = 0; i < css_links.length; i++) {
                 let href= `./css/${css_skins[1]}/${css_arr[i]}`;
                 css_links[i].setAttribute(`href`, href);
@@ -246,8 +247,8 @@ document.addEventListener(`DOMContentLoaded`, (e) => {
 
 window.onload = () => {
     // console.log("3, window has been loaded!");
-    console.log(`OTC_GILCODE `, OTC_GILCODE, typeof OTC_GILCODE);
-    console.log("0, window.OTC_SKIN = ", window.OTC_SKIN);
+    // console.log(`OTC_GILCODE `, OTC_GILCODE);
+    // console.log("OTC_SKIN = ", window.OTC_SKIN);
     initTabs();
     initSidebar();
     // init
@@ -286,8 +287,15 @@ const loadModule = (uid =``, module_uid_name=``, isTable=`false`, debug = false)
             // console.log(`box = `, box);
             // box =  null
             link_css.setAttribute(`rel`, `stylesheet`);
+            // link_css.setAttribute(`href`, `./build/css/${module_uid_name}.min.css`);
+            let css_module_skin = `white-skin`;
+            if (window.OTC_SKIN === "black") {
+                css_module_skin = "black-skin";
+            }else{
+                // do nothing
+            }
             link_css.dataset.deleteLinkCss = `delete-link-css-${uid}`;
-            link_css.setAttribute(`href`, `./modules/${module_uid_name}.css`);
+            link_css.setAttribute(`href`, `./css/${css_module_skin}/modules/${module_uid_name}.css`);
             // link_css.setAttribute(`href`, `./build/css/${module_uid_name}.min.css`);
             script_dom.dataset.deleteScriptDom = `delete-script-dom-${uid}`;
             script_dom.setAttribute(`src`, `./build/js/${module_uid_name}.min.js`);
@@ -826,9 +834,9 @@ const HTML_Template = (uid = ``, loadModule = function(){}, debug = false) => {
                         <thead class="otc-equity-shareholder-table-thead">
                             <tr class="otc-equity-shareholder-table-tr">
                                 <td class="otc-equity-shareholder-table-td-title">股东名称</td>
-                                <td class="otc-equity-shareholder-table-td-title">持股数(股)</td>
+                                <td class="otc-equity-shareholder-table-td-title">持股数(万股)</td>
                                 <td class="otc-equity-shareholder-table-td-title">占比(%)</td>
-                                <td class="otc-equity-shareholder-table-td-title">增减变动</td>
+                                <td class="otc-equity-shareholder-table-td-title">增减变动(万股)</td>
                                 <td class="otc-equity-shareholder-table-td-title">机构类型</td>
                             </tr>
                             <!-- colspan & rowspan -->
@@ -909,31 +917,6 @@ const HTML_Template = (uid = ``, loadModule = function(){}, debug = false) => {
                                 <td class="otc-management-layer-profiles-table-td-value" data-value="data-otc-MLP">3258064.00</td>
                                 <td class="otc-management-layer-profiles-table-td-value" data-value="data-otc-MLP">0.85</td>
                                 <td class="otc-management-layer-profiles-table-td-value" data-value="data-otc-MLP">0.00</td>
-                            </tr> -->
-                        </tbody>
-                        <tfoot class="otc-management-layer-profiles-table-tfoot">
-                            <tr class="otc-management-layer-profiles-table-tr">
-                                <td class="otc-management-layer-profiles-table-td-value" data-value="data-otc-MLP"></td>
-                            </tr>
-                        </tfoot>
-                    </table>
-                    <table class="otc-management-layer-profiles-table"  data-css3-table-bug="otc-management-layer-profiles-table2">
-                        <thead class="otc-management-layer-profiles-table-thead">
-                            <tr class="otc-management-layer-profiles-table-tr">
-                                <td class="otc-management-layer-profiles-table-td-title">姓名</td>
-                                <td class="otc-management-layer-profiles-table-td-title">职务</td>
-                                <td class="otc-management-layer-profiles-table-td-title">任职起始日</td>
-                                <td class="otc-management-layer-profiles-table-td-title">离职日期</td>
-                                <td class="otc-management-layer-profiles-table-td-title">在任其他职务</td>
-                            </tr>
-                        </thead>
-                        <tbody class="otc-management-layer-profiles-table-tbody" data-tbody="otc-management-layer-profiles-table-tbody">
-                            <!-- <tr class="otc-management-layer-profiles-table-tr">
-                                <td class="otc-management-layer-profiles-table-td-value" data-value="data-otc-MLP">张玮</td>
-                                <td class="otc-management-layer-profiles-table-td-value" data-value="data-otc-MLP">董事会秘书</td>
-                                <td class="otc-management-layer-profiles-table-td-value" data-value="data-otc-MLP">2010-05-05</td>
-                                <td class="otc-management-layer-profiles-table-td-value" data-value="data-otc-MLP">2017-05-17</td>
-                                <td class="otc-management-layer-profiles-table-td-value" data-value="data-otc-MLP">true</td>
                             </tr> -->
                         </tbody>
                         <tfoot class="otc-management-layer-profiles-table-tfoot">
@@ -1374,3 +1357,34 @@ setTimeout(function() {
     OTC_F9_FV.Modules.modulesLoader.init();
 }, 0);
 
+
+
+/*
+
+<table class="otc-management-layer-profiles-table"  data-css3-table-bug="otc-management-layer-profiles-table2">
+    <thead class="otc-management-layer-profiles-table-thead">
+        <tr class="otc-management-layer-profiles-table-tr">
+            <td class="otc-management-layer-profiles-table-td-title">姓名</td>
+            <td class="otc-management-layer-profiles-table-td-title">职务</td>
+            <td class="otc-management-layer-profiles-table-td-title">任职起始日</td>
+            <td class="otc-management-layer-profiles-table-td-title">离职日期</td>
+            <td class="otc-management-layer-profiles-table-td-title">在任其他职务</td>
+        </tr>
+    </thead>
+    <tbody class="otc-management-layer-profiles-table-tbody" data-tbody="otc-management-layer-profiles-table-tbody">
+        <!-- <tr class="otc-management-layer-profiles-table-tr">
+            <td class="otc-management-layer-profiles-table-td-value" data-value="data-otc-MLP">张玮</td>
+            <td class="otc-management-layer-profiles-table-td-value" data-value="data-otc-MLP">董事会秘书</td>
+            <td class="otc-management-layer-profiles-table-td-value" data-value="data-otc-MLP">2010-05-05</td>
+            <td class="otc-management-layer-profiles-table-td-value" data-value="data-otc-MLP">2017-05-17</td>
+            <td class="otc-management-layer-profiles-table-td-value" data-value="data-otc-MLP">true</td>
+        </tr> -->
+    </tbody>
+    <tfoot class="otc-management-layer-profiles-table-tfoot">
+        <tr class="otc-management-layer-profiles-table-tr">
+            <td class="otc-management-layer-profiles-table-td-value" data-value="data-otc-MLP"></td>
+        </tr>
+    </tfoot>
+</table>
+
+*/

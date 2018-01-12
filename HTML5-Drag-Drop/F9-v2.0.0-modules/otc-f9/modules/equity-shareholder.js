@@ -418,6 +418,15 @@ OTC_F9_FV.Modules.equityShareholder.drawHS = OTC_F9_FV.Modules.equityShareholder
             yAxisColor: `#FFB400`,
         };
         const {color, colors, optioncolor, gridColor, legendColor, yAxisColor, index_color} = {...chart_css};
+        // SKIN
+        let skin_color = (OTC_SKIN === "black") ? `#0b1016` : `#fff`,
+            legend_item_color = (OTC_SKIN === "black") ? `#fff` : `#0b1016`,
+            legend_item_hover_color = (OTC_SKIN === "black") ? `#f79530` : `#000`,
+            legend_bg_color = (OTC_SKIN === "black") ? `#0b1016` : `#ff00ff`,
+            data_color1 = (OTC_SKIN === "black") ? `#fff` : `#0b1016`,
+            data_color2 = (OTC_SKIN === "black") ? `#0b1016` : `#ff00ff`;
+        // console.log(`OTC_SKIN = `, OTC_SKIN);
+        // console.log(`skin_color = `, skin_color);
         // Highcharts.chart
         Highcharts.setOptions({
             lang: {
@@ -437,6 +446,7 @@ OTC_F9_FV.Modules.equityShareholder.drawHS = OTC_F9_FV.Modules.equityShareholder
             },
             chart: {
                 type: 'pie',
+                backgroundColor: skin_color,
                 // plotBorderWidth: 1,
                 // borderWidth: 1,
                 width: 540,
@@ -461,6 +471,12 @@ OTC_F9_FV.Modules.equityShareholder.drawHS = OTC_F9_FV.Modules.equityShareholder
                 series: {
                     dataLabels: {
                         enabled: true,
+                        // color: '#0f0',// level 1 color
+                        style: {
+                            textShadow: false,
+                            textOutline: false,
+                            color: '#f0f',// level 2 color
+                        },
                         format: '{point.name}: {point.y:.2f}%',// .2f
                     }
                 }
@@ -477,16 +493,28 @@ OTC_F9_FV.Modules.equityShareholder.drawHS = OTC_F9_FV.Modules.equityShareholder
                     // y: 7.91,
                     y: limite,// Array
                     drilldown: 'Limited',
-                    color: "#9bbb59"
+                    color: "#9bbb59",
+                    // color: "#0f0"
                 }, {
                     name: '无限售股份总数',
                     // y: 92.09,
                     y: unlimite,
                     drilldown: 'Unlimited',
-                    color: "#4f81bd"
+                    color: "#4f81bd",
+                    // color: "#f00"
                 }]
             }],
             drilldown: {
+                activeAxisLabelStyle: {
+                    textDecoration: 'none',
+                    fontStyle: 'italic',
+                    color: `#f0f`
+                },
+                activeDataLabelStyle: {
+                    textDecoration: 'none',
+                    fontStyle: 'italic',
+                    color: `#0f0`
+                },
                 series: [{
                     name: '有限售股份',
                     id: 'Limited',
@@ -508,10 +536,64 @@ OTC_F9_FV.Modules.equityShareholder.drawHS = OTC_F9_FV.Modules.equityShareholder
                     // ]
                 }]
             },
+            // labels: {
+            //     items: [
+            //         {
+            //             style: {
+            //                 left: '10px',
+            //                 top: '10px'
+            //             },
+            //             // html: ``,
+            //         }
+            //     ],
+            //     style: {
+            //         color: `#ccc`,
+            //         position: `absolute`
+            //     }
+            // },
+            // legend: {
+            //     symbolRadius: 0,
+            //     // rectangle
+            //     align: 'center',// left, center and right. (Defaults to center.)
+            //     itemStyle: {
+            //         color: legend_item_color,
+            //         // fontWeight: 'bold'
+            //     },
+            //     itemHoverStyle: {
+            //         color: legend_item_hover_color,
+            //     },
+            //     /*
+            //         x: 0,
+            //         y: 340,
+            //         verticalAlign: 'top',
+            //     */
+            //     x: 0,
+            //     y: 0,
+            //     verticalAlign: "bottom",
+            //     // floating: true,
+            //     floating: false,
+            //     // backgroundColor: (Highcharts.theme && Highcharts.theme.background2) || 'white',
+            //     // borderColor: '#CCC',
+            //     // borderWidth: 1,
+            //     shadow: false
+            // },
         });
     }
 );
 
+
+/*
+
+
+highcharts-label
+highcharts-data-label
+highcharts-data-label-color-1
+
+highcharts-drilldown-data-label"
+
+highcharts-text-outline
+
+*/
 
 
 OTC_F9_FV.Modules.equityShareholder.init = OTC_F9_FV.Modules.equityShareholder.init || (
@@ -542,6 +624,8 @@ OTC_F9_FV.Modules.equityShareholder.init = OTC_F9_FV.Modules.equityShareholder.i
 
 var OTC_IP = window.OTC_IP || `http://10.1.5.202`,
     OTC_PATH = window.OTC_PATH || `/webservice/fastview/otcper`,
+    // OTC_SKIN = window.OTC_SKIN || `white`,
+    OTC_SKIN = window.OTC_SKIN || `black`,
     // OTC_GILCODE = window.OTC_GILCODE || `430007.OC`;
     // OTC_GILCODE = window.OTC_GILCODE || `834380.OC`;
     OTC_GILCODE = window.OTC_GILCODE || `430002.OC`;
