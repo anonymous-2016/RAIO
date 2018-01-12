@@ -742,7 +742,7 @@ OTC_F9_FV.Modules.mainManagementBusiness.drawHS2 = OTC_F9_FV.Modules.mainManagem
             legend: {
                 symbolRadius: 0, // rectangle
                 align: 'center',// left, center and right. (Defaults to center.)
-                bitemStyle: {
+                itemStyle: {
                     color: legend_item_color,
                     // fontWeight: 'bold'
                 },
@@ -900,8 +900,8 @@ OTC_F9_FV.Modules.mainManagementBusiness.init = OTC_F9_FV.Modules.mainManagement
 
 var OTC_IP = window.OTC_IP || `http://10.1.5.202`,
     OTC_PATH = window.OTC_PATH || `/webservice/fastview/otcper`,
-    OTC_SKIN = window.OTC_SKIN || `white`,
-    // OTC_SKIN = window.OTC_SKIN || `black`,
+    // OTC_SKIN = window.OTC_SKIN || `white`,
+    OTC_SKIN = window.OTC_SKIN || `black`,
     // OTC_GILCODE = window.OTC_GILCODE || `834380.OC`;
     // OTC_GILCODE = window.OTC_GILCODE || `430009.OC`;
     OTC_GILCODE = window.OTC_GILCODE || `430002.OC`;

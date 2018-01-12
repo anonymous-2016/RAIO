@@ -313,3 +313,21 @@ div[data-no-table="otc-management-layer-profiles-table-box"] {
     margin-bottom: 10px;
     padding-left: 0;
 }
+
+div[data-div="tbody-div"]>p[data-p="data-otc-MLP-title"] {
+    box-sizing: border-box;
+    color: #bbc1c7;
+    line-height: 23px;
+    background: #25292e;
+    font-weight: normal;
+    font-size: 12px;
+    border: 0;
+    padding-left: 8px;
+    border: 1px solid #4a4c4f;
+}
+
+div[data-titles="data-otc-MLP-title"] {
+    box-sizing: border-box;
+    padding-left: 0;
+    border: 0;
+}

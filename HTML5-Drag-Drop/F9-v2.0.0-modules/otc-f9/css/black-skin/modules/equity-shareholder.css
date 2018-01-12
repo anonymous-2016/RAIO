@@ -100,8 +100,7 @@ section.otc-module-box-5 {
 }
 
 .css-class-hc-ES {
-    border: 1px solid #d7dbe0;
-    /* border: 1px solid #fff; */
+    border: 1px solid #4a4c4f;
 }
 
 span[data-title="sub-title"] {
@@ -110,6 +109,7 @@ span[data-title="sub-title"] {
     display: inline-block;
     margin-left: 5px;
     margin-top: 3px;
+    font-weight: bold;
 }
 
 section[data-group="mix-hc-table"] {
@@ -189,13 +189,16 @@ td {
     margin: 0;
     border: 0;
 }
-table{
-     /* background-color: #25292e; */
+
+table {
+    /* background-color: #25292e; */
 }
-thead{
+
+thead {
     background-color: #31373d;
     color: #777374;
 }
+
 section.otc-module-box-5 {
     box-sizing: border-box;
     float: left;
@@ -455,4 +458,39 @@ html table:nth-of-type(3)>tbody {
 tbody>tr.otc-equity-shareholder-table-tr>td:nth-of-type(1) {
     text-align: left;
     padding-left: 4px;
+}
+
+div[data-titles="data-otc-ES-title"] {
+    box-sizing: border-box;
+    background: #000;
+    border: 0;
+    line-height: 23px;
+    font-size: 12px;
+    margin-bottom: 10px;
+}
+
+div[data-titles="data-otc-ES-title"]>p:nth-of-type(1) {
+    color: #bbc1c7;
+    font-weight: bold;
+}
+
+div[data-titles="data-otc-ES-title"]>p:nth-of-type(2) {
+    box-sizing: border-box;
+    background: #ccc;
+    border: 1px solid #4a4c4f;
+    line-height: 23px;
+    font-size: 12px;
+    color: #bbc1c7;
+    font-weight: normal;
+}
+
+div[data-titles="data-otc-ES-title"]>p[data-p="data-otc-ES-title"] {
+    box-sizing: border-box;
+    color: #bbc1c7;
+    line-height: 23px;
+    background: #25292e;
+    font-weight: normal;
+    font-size: 12px;
+    padding-left: 8px;
+    border: 1px solid #4a4c4f;
 }

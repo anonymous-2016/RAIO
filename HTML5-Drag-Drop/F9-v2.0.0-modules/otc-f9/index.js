@@ -381,8 +381,8 @@ const HTML_Template = (uid = ``, loadModule = function(){}, debug = false) => {
                         <p class="otc-h5dnd-modules-title" data-title="otc-big-event-reminder-title">
                             大事提醒
                             <span data-link="otc-big-event-reminder-link">
-                                <a href="#分红数据" data-uid="1112" data-turn-to-uid="node-uid-big-event-reminder-data">分红数据</a>
-                                <a href="#增发数据" data-uid="1085" data-turn-to-uid="node-uid-big-event-reminder-data">增发数据</a>
+                                <a href="#分红数据" data-uid="1085" data-turn-to-uid="node-uid-big-event-reminder-data">分红数据</a>
+                                <a href="#增发数据" data-uid="1112" data-turn-to-uid="node-uid-big-event-reminder-data">增发数据</a>
                             </span>
                         </p>
                     </div>
@@ -879,7 +879,7 @@ const HTML_Template = (uid = ``, loadModule = function(){}, debug = false) => {
                         <p class="otc-h5dnd-modules-title" data-title="otc-management-layer-profiles-title">
                             管理层概况与持股
                             <span data-more="otc-management-layer-profiles-link">
-                                <a href="#管理层数据" data-more="otc-management-layer-profiles-link-more" data-uid="1094" data-turn-to-uid="node-uid-management-layer-profiles-data">管理层数据</a>
+                                <a href="#管理层数据" data-more="otc-management-layer-profiles-link-more" data-uid="1070" data-turn-to-uid="node-uid-management-layer-profiles-data">管理层数据</a>
                             </span>
                         </p>
                     </div>
@@ -949,7 +949,7 @@ const HTML_Template = (uid = ``, loadModule = function(){}, debug = false) => {
                         <p class="otc-h5dnd-modules-title" data-title="otc-company-bulletin-title">
                             公司公告
                             <span data-more="otc-company-bulletin-link">
-                                <a href="#更多公告" data-more="otc-company-bulletin-link-more" data-uid="82542 " data-turn-to-uid="node-uid-company-bulletin-data">更多公告</a>
+                                <a href="#更多公告" data-more="otc-company-bulletin-link-more" data-uid="82542" data-turn-to-uid="node-uid-company-bulletin-data">更多公告</a>
                             </span>
                         </p>
                     </div>

@@ -114,19 +114,30 @@ tr {
     border-left: none;
 }
 
+
+/* overflow-y: auto; & auto show/hide scrollbar */
+
+
+/* [data-float="float-div"] {
+    box-sizing: border-box;
+    width: 234px;
+    overflow-y: auto;
+    border-top: 1px solid #d7e0eb;
+    border-right: 1px solid #d7e0eb;
+    border-bottom: 1px solid #d7e0eb;
+    font-size: 12px;
+    padding: 4px;
+} */
+
 [data-float="float-div"] {
     box-sizing: border-box;
-    /* width: 242px; */
     width: 234px;
-    /* max-height: 450px; */
-    overflow-y: scroll;
-    /* border-top: 1px solid #4a4c4f; */
-    /* border-right: 1px solid #4a4c4f; */
+    overflow-y: auto;
     border-bottom: 1px solid #4a4c4f;
     font-size: 12px;
     padding: 4px;
     color: #bbc1c7;
-    text-indent:2em;
+    /* text-indent: 2em; */
     background: #25292e;
 }
 

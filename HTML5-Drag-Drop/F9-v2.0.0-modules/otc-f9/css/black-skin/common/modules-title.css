@@ -13,7 +13,7 @@
 
 .otc-h5dnd-modules-title {
     position: relative;
-    color: #bbc1c7;
+    color: #bbc1c7 !important;
     text-indent: 14px;
     margin-left: 0;
     font-weight: 600;

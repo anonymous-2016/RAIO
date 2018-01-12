@@ -18,9 +18,11 @@ table {
     margin: 0;
     /* background-color: #25292e; */
 }
-section{
-    background-color:#000;
+
+section {
+    background-color: #000;
 }
+
 tr,
 td {
     padding: 0;
@@ -170,15 +172,15 @@ tr.otc-latest-financial-data-table-tr>td:nth-of-type(4) {
 
 [data-div="tbody-div"] {
     box-sizing: border-box;
-    background: #25292e;
-    border: 1px solid #4a4c4f;
+    background: #000;
+    /* border: 1px solid #4a4c4f; */
     /* min-height: 46px; */
     line-height: 23px;
     /* font-size: 14px; */
     font-size: 12px;
     width: 100%;
     margin-bottom: 10px;
-    padding-left: 8px;
+    /* padding-left: 8px; */
 }
 
 [data-div="tbody-div"]>p:nth-of-type(1) {
@@ -287,5 +289,13 @@ tr.otc-latest-financial-data-table-tr>td:nth-of-type(4) {
 }
 
 [data-display="display-none"] {
+    display: none;
+}
+
+[data-display="display-none"] {
+    display: none;
+}
+
+[data-hide-table="no-data-hide-table"] {
     display: none;
 }

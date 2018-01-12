@@ -14,8 +14,8 @@ p {
 
 [data-hs-container="data-company-performance-market-container-uid"] {
     box-sizing: border-box;
-    /* border: 1px solid #4a4c4f; */
-    border-left: none;
+    border: 1px solid #4a4c4f;
+    /* border-left: none; */
     min-height: 300px;
     height: 100%;
     margin-top: 10px;
@@ -30,9 +30,10 @@ p {
 
 [data-hs-title="data-company-performance-market-title-uid"] {
     box-sizing: border-box;
-    border: 1px solid #4a4c4f;
-    width: 98%;
-    margin-left: 4px;
+    /* border-top: 1px solid #4a4c4f;
+    border-bottom: 1px solid #4a4c4f; */
+    /* border: 1px solid #4a4c4f; */
+    border: 0;
     height: 100%;
     margin-top: 10px;
 }
@@ -44,6 +45,7 @@ p {
     background: #25292e;
     color: #bbc1c7;
     padding-left: 5px;
+    border: 1px solid #4a4c4f;
 }
 
 [data-span="company-performance-market-span"] {
@@ -176,7 +178,7 @@ tr.otc-company-performance-market-table-tr>td:nth-of-type(4) {
 
 [data-div="tbody-div"] {
     box-sizing: border-box;
-    background: #fffce9;
+    /* background: #fffce9; */
     /* border: 1px solid #d7dbe0; */
     /* min-height: 46px; */
     /* line-height: 23px; */
@@ -184,7 +186,7 @@ tr.otc-company-performance-market-table-tr>td:nth-of-type(4) {
     font-size: 12px;
     width: 100%;
     margin-bottom: 10px;
-    padding-left: 8px;
+    /* padding-left: 8px; */
 }
 
 [data-div="tbody-div"]>p:nth-of-type(1) {
@@ -234,35 +236,6 @@ tr.otc-company-performance-market-table-tr>td:nth-of-type(4) {
 
 /* xxx */
 
-.otc-h5dnd-modules-title-box {
-    box-sizing: border-box;
-    width: 100%;
-    max-width: 530px;
-}
-
-.otc-h5dnd-modules-title {
-    position: relative;
-    color: #2e2f33;
-    text-indent: 14px;
-    margin-left: 0;
-    font-weight: 600;
-    font-size: 15px;
-    margin-top: 6px;
-    margin-bottom: 5px;
-    font-family: "MicroSoft YaHei", sans-serif, serif;
-}
-
-.otc-h5dnd-modules-title::before {
-    position: absolute;
-    top: 3px;
-    left: 0px;
-    content: "";
-    display: inline-block;
-    width: 4px;
-    background: #f79530;
-    height: 15px;
-}
-
 [data-delete-span="delete-span"] {
     font-weight: normal;
 }
@@ -274,4 +247,14 @@ tr.otc-company-performance-market-table-tr>td:nth-of-type(4) {
 
 [data-display="display-none"] {
     display: none;
+}
+
+div.otc-company-performance-market-hs {
+    /* box-sizing: border-box;
+    border: 1px solid #4a4c4f; */
+}
+
+div.otc-company-performance-market-hs-container {
+    /* box-sizing: border-box;
+    border: 1px solid #4a4c4f; */
 }

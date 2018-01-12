@@ -134,6 +134,10 @@ tr {
     height: 23px;
 }
 
+[data-float="float-div"]>p::first-line {
+    text-indent: 8px;
+}
+
 
 /* table */
 
