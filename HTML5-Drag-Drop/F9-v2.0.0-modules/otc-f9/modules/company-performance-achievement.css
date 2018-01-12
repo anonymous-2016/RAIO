@@ -29,7 +29,9 @@ p {
 
 [data-hs-title="data-company-performance-achievement-title-uid"] {
     box-sizing: border-box;
-    border: 1px solid #e4e6ea;
+    /* border: 1px solid #e4e6ea; */
+    background: #fffce9;
+    /* padding-left: 8px; */
     height: 100%;
     margin-top: 10px;
 }
@@ -38,7 +40,8 @@ p {
     box-sizing: border-box;
     height: 23px;
     line-height: 23px;
-    background: #fff;
+    border: 1px solid #e4e6ea;
+    padding-left: 8px;
 }
 
 [data-span="company-performance-achievement-span"] {

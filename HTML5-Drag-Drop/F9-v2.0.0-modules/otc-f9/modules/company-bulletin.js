@@ -72,14 +72,19 @@ OTC_F9_FV.Modules.companyBulletin = OTC_F9_FV.Modules.companyBulletin || (
                         }else{
                             let thead = document.querySelector(`.otc-company-bulletin-table-thead`);
                             thead.style.display = "none";
+                            // tbody = `
+                            //     <tr class="otc-company-bulletin-table-tr">
+                            //         <td colspan="3">
+                            //             <p data-none="no-data-p">
+                            //                 <span data-none="no-data-span"></span>
+                            //             </p>
+                            //         </td>
+                            //     </tr>
+                            // `;
                             tbody = `
-                                <tr class="otc-company-bulletin-table-tr">
-                                    <td colspan="3">
-                                        <p data-none="no-data-p">
-                                            <span data-none="no-data-span"></span>
-                                        </p>
-                                    </td>
-                                </tr>
+                                <p data-none="no-data-p">
+                                    <span data-none="no-data-span"></span>
+                                </p>
                             `;
                         }
                         tbody_dom.insertAdjacentHTML(`beforeend`, tbody);
@@ -184,7 +189,8 @@ OTC_F9_FV.Modules.companyBulletin.init = OTC_F9_FV.Modules.companyBulletin.init 
 
 var OTC_IP = window.OTC_IP || `http://10.1.5.202`,
     OTC_PATH = window.OTC_PATH || `/webservice/fastview/otcper`,
-    OTC_GILCODE = window.OTC_GILCODE || `430002.OC`;
+    OTC_GILCODE = window.OTC_GILCODE || `430007.OC`;
+    // OTC_GILCODE = window.OTC_GILCODE || `430002.OC`;
 
 
 OTC_F9_FV.Modules.companyBulletin.init({

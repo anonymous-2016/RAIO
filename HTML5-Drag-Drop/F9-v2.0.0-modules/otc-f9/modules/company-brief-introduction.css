@@ -112,12 +112,16 @@ tr {
     /* color: red; */
 }
 
+
+/* overflow-y: auto; & auto show/hide scrollbar */
+
 [data-float="float-div"] {
     box-sizing: border-box;
     /* width: 242px; */
     width: 234px;
     /* max-height: 450px; */
-    overflow-y: scroll;
+    /* overflow-y: scroll; */
+    overflow-y: auto;
     border-top: 1px solid #d7e0eb;
     border-right: 1px solid #d7e0eb;
     border-bottom: 1px solid #d7e0eb;

@@ -305,7 +305,7 @@ table[data-css3-table-bug="otc-management-layer-profiles-table1"]>tbody.otc-mana
 }
 
 div[data-table="otc-management-layer-profiles-table-box"]:nth-of-type(1)>table.otc-management-layer-profiles-table>tbody.otc-management-layer-profiles-table-tbody {
-    color: red;
+    /* color: red; */
 }
 
 div[data-div="tbody-div"]>p[data-p="data-otc-MLP-title"] {
@@ -314,9 +314,13 @@ div[data-div="tbody-div"]>p[data-p="data-otc-MLP-title"] {
     font-weight: normal;
 }
 
-[data-no-table="otc-management-layer-profiles-table-box"] {
+
+/* no data */
+
+div[data-no-table="otc-management-layer-profiles-table-box"] {
     display: none;
     border: 0;
+    padding: 0;
 }
 
 [data-no-div="otc-management-layer-profiles-div-box"] {

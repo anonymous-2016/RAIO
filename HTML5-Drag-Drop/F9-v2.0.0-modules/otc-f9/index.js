@@ -883,48 +883,30 @@ const HTML_Template = (uid = ``, loadModule = function(){}, debug = false) => {
                             </span>
                         </p>
                     </div>
-                    <div data-div="tbody-div" data-titles="data-otc-MLP-title">
-                        <!-- <p data-p="data-otc-MLP-title">
-                            报告期内公司在职董事会人数
-                            <span data-span="data-otc-MLP-title">9</span>人，监事会
-                            <span data-span="data-otc-MLP-title">3</span>人，高级管理人员
-                            <span data-span="data-otc-MLP-title">8</span>人，核心员工
-                            <span data-span="data-otc-MLP-title">6</span>人。
-                        </p> -->
+                    <div data-div="tbody-div" data-titles="data-otc-MLP-title"></div>
+                    <div data-table="otc-management-layer-profiles-table-box">
+                        <table class="otc-management-layer-profiles-table" data-css3-table-bug="otc-management-layer-profiles-table1">
+                            <thead class="otc-management-layer-profiles-table-thead">
+                                <tr class="otc-management-layer-profiles-table-tr">
+                                    <td class="otc-management-layer-profiles-table-td-title">姓名</td>
+                                    <td class="otc-management-layer-profiles-table-td-title">性别</td>
+                                    <td class="otc-management-layer-profiles-table-td-title">年龄</td>
+                                    <td class="otc-management-layer-profiles-table-td-title">学历</td>
+                                    <td class="otc-management-layer-profiles-table-td-title">职务</td>
+                                    <!-- <td class="otc-management-layer-profiles-table-td-title">是否在公司领薪</td> -->
+                                    <td class="otc-management-layer-profiles-table-td-title">持股数量(股)</td>
+                                    <td class="otc-management-layer-profiles-table-td-title">占比(%)</td>
+                                    <td class="otc-management-layer-profiles-table-td-title">增减变动(股)</td>
+                                </tr>
+                            </thead>
+                            <tbody class="otc-management-layer-profiles-table-tbody" data-tbody="otc-management-layer-profiles-table-tbody"></tbody>
+                            <tfoot class="otc-management-layer-profiles-table-tfoot">
+                                <tr class="otc-management-layer-profiles-table-tr">
+                                    <td class="otc-management-layer-profiles-table-td-value" data-value="data-otc-MLP"></td>
+                                </tr>
+                            </tfoot>
+                        </table>
                     </div>
-                    <table class="otc-management-layer-profiles-table"  data-css3-table-bug="otc-management-layer-profiles-table1">
-                        <thead class="otc-management-layer-profiles-table-thead">
-                            <tr class="otc-management-layer-profiles-table-tr">
-                                <td class="otc-management-layer-profiles-table-td-title">姓名</td>
-                                <td class="otc-management-layer-profiles-table-td-title">性别</td>
-                                <td class="otc-management-layer-profiles-table-td-title">年龄</td>
-                                <td class="otc-management-layer-profiles-table-td-title">学历</td>
-                                <td class="otc-management-layer-profiles-table-td-title">职务</td>
-                                <!-- <td class="otc-management-layer-profiles-table-td-title">是否在公司领薪</td> -->
-                                <td class="otc-management-layer-profiles-table-td-title">持股数量(股)</td>
-                                <td class="otc-management-layer-profiles-table-td-title">占比(%)</td>
-                                <td class="otc-management-layer-profiles-table-td-title">增减变动(股)</td>
-                            </tr>
-                        </thead>
-                        <tbody class="otc-management-layer-profiles-table-tbody" data-tbody="otc-management-layer-profiles-table-tbody">
-                            <!-- <tr class="otc-management-layer-profiles-table-tr">
-                                <td class="otc-management-layer-profiles-table-td-value" data-value="data-otc-MLP">张志华</td>
-                                <td class="otc-management-layer-profiles-table-td-value" data-value="data-otc-MLP">男</td>
-                                <td class="otc-management-layer-profiles-table-td-value" data-value="data-otc-MLP">53</td>
-                                <td class="otc-management-layer-profiles-table-td-value" data-value="data-otc-MLP">大学本科</td>
-                                <td class="otc-management-layer-profiles-table-td-value" data-value="data-otc-MLP">财务总监,副总经理</td>
-                                <td class="otc-management-layer-profiles-table-td-value" data-value="data-otc-MLP"></td>
-                                <td class="otc-management-layer-profiles-table-td-value" data-value="data-otc-MLP">3258064.00</td>
-                                <td class="otc-management-layer-profiles-table-td-value" data-value="data-otc-MLP">0.85</td>
-                                <td class="otc-management-layer-profiles-table-td-value" data-value="data-otc-MLP">0.00</td>
-                            </tr> -->
-                        </tbody>
-                        <tfoot class="otc-management-layer-profiles-table-tfoot">
-                            <tr class="otc-management-layer-profiles-table-tr">
-                                <td class="otc-management-layer-profiles-table-td-value" data-value="data-otc-MLP"></td>
-                            </tr>
-                        </tfoot>
-                    </table>
                 </section>
             `;
             break;

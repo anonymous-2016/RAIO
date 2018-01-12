@@ -101,15 +101,15 @@ td.otc-big-event-reminder-table-td-value {
 [data-tbody="otc-big-event-reminder-table-tbody"]>tr.otc-big-event-reminder-table-tr:nth-of-type(2)>td.otc-big-event-reminder-table-td-value,
 [data-tbody="otc-big-event-reminder-table-tbody"]>tr.otc-big-event-reminder-table-tr:nth-of-type(3)>td.otc-big-event-reminder-table-td-value {
     box-sizing: border-box;
-    height: 46px;
+    /* height: 46px; */
     line-height: 23px;
-    overflow: hidden;
+    /* overflow: hidden;
     word-wrap: break-word;
     text-overflow: ellipsis;
     display: -webkit-box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
-    border: none;
+    border: none; */
 }
 
 [data-tbody="otc-big-event-reminder-table-tbody"]>tr.otc-big-event-reminder-table-tr:nth-of-type(2)>td.otc-big-event-reminder-table-td-value {

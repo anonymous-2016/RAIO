@@ -14,7 +14,7 @@ p {
 
 [data-hs-container="data-company-performance-achievement-container-uid"] {
     box-sizing: border-box;
-    border: 1px solid #e4e6ea;
+    /* border: 1px solid #e4e6ea; */
     min-height: 300px;
     height: 100%;
     margin-top: 10px;

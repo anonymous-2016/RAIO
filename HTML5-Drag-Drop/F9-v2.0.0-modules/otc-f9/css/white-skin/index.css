@@ -843,3 +843,14 @@ div.otc-h5dnd-modules-title-box {
 [data-link*="otc-"]>a:hover {
     color: #f50;
 }
+
+[data-div="tbody-div"] {
+    box-sizing: border-box;
+    /* background: #fffce9; */
+    border: 0;
+    line-height: 23px;
+    font-size: 12px;
+    width: 100%;
+    margin-bottom: 10px;
+    padding-left: 0;
+}
