@@ -52,14 +52,12 @@ p {
     /* color: red; */
 }
 
-section.otc-module-box-5 {
+
+/* section.otc-module-box-5 {
     box-sizing: border-box;
     float: left;
-    /* margin-top: 6px;
-    margin-bottom: 6px; */
     width: 530px;
-    /* min-height: 127px; */
-}
+} */
 
 table.otc-company-performance-market-table {
     box-sizing: border-box;

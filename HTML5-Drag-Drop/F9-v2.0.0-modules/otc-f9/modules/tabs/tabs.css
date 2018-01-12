@@ -26,7 +26,7 @@ a {
     box-sizing: border-box;
     width: 540px;
     border: 1px solid #bacadb;
-    height: 23px;
+    height: 25px;
     line-height: 23px;
     font-size: 12px;
     /* font-weight: bold; */
@@ -52,8 +52,8 @@ a {
 }
 
 .default-link-color {
-    color: #4d4d4d;
-    background: #e8eefa;
+    color: #75757c;
+    background: #edf2f8;
 }
 
 .hover-link-color {
@@ -84,6 +84,10 @@ a {
 }
 
 [data-tab="tab-title"]:nth-of-type(2) {
+    border-right: 1px solid #bacadb;
+}
+
+[data-tab="tab-title"]:nth-of-type(3) {
     border-right: 1px solid #bacadb;
 }
 

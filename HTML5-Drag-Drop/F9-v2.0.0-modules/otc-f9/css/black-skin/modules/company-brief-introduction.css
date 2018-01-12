@@ -133,7 +133,8 @@ tr {
     box-sizing: border-box;
     width: 234px;
     overflow-y: auto;
-    border-bottom: 1px solid #4a4c4f;
+    border: 1px solid #4a4c4f;
+    border-left: 0;
     font-size: 12px;
     padding: 4px;
     color: #bbc1c7;
@@ -144,6 +145,19 @@ tr {
 [data-float="float-div"]>p {
     line-height: 23px;
     height: 23px;
+}
+
+
+/* clreafix css */
+
+[data-float="float-section"]::after {
+    box-sizing: border-box;
+    display: table;
+    clear: both;
+    height: 0;
+    overflow: hidden;
+    visibility: hidden;
+    content: "";
 }
 
 
@@ -174,12 +188,7 @@ td.otc-company-brief-introduction-table-td-key {
 
 td.otc-company-brief-introduction-table-td-value {
     box-sizing: border-box;
-    line-height: 23px;
-    height: 23px;
     width: 203px;
-    /* width: 438px; */
-    /* min-width: 438px; */
-    /* max-width: 438px; */
     height: 23px;
     line-height: 23px;
     font-size: 12px;
