@@ -1,6 +1,7 @@
+@charset "UTF-8";
+
 /* dividend-matters-preplan */
 
-@charset "UTF-8";
 
 /* commons-title */
 
@@ -73,6 +74,36 @@
     border-right: 1px solid #ccc;
 }
 
+tr[data-table-tr="ntb-table-tr-dividend-matters-preplan"]>td[data-td-key="ntb-td-no-key"]:nth-of-type(1),
+tr[data-table-tr="ntb-table-tr-dividend-matters-preplan"]>td[data-td-key="ntb-td-no-key"]:nth-of-type(2) {
+    box-sizing: border-box;
+    border-right: 1px solid #ccc;
+    font-weight: bold;
+    text-align: center;
+    /* width: calc(1*100px); */
+    width: 100px;
+    max-width: 100px;
+    min-width: 100px;
+    line-height: 23px;
+    height: 23px;
+}
+
+tr[data-table-tbody-tr="ntb-table-tbody-tr-dividend-matters-preplan"]>td[data-td-value="ntb-td-value"]:nth-of-type(1),
+tr[data-table-tbody-tr="ntb-table-tbody-tr-dividend-matters-preplan"]>td[data-td-value="ntb-td-value"]:nth-of-type(2) {
+    /* color: red; */
+    font-size: 13px;
+    box-sizing: border-box;
+    border-right: 1px solid #ccc;
+    width: 100px;
+    max-width: 100px;
+    min-width: 100px;
+    line-height: 23px;
+    height: 23px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
 
 /* th a link */
 
@@ -124,8 +155,8 @@
     font-weight: bold;
     text-align: center;
     /* width: calc(1*100px); */
-    width: 150px;
-    max-width: 150px;
+    width: 100px;
+    max-width: 100px;
     line-height: 23px;
     height: 23px;
 }
@@ -156,4 +187,31 @@ tr,
 td {
     margin: 0;
     padding: 0;
+}
+
+table>thead>tr[data-table-tr="ntb-table-tr-dividend-matters-preplan"] {
+    background: #e8eefa;
+    color: #4d4d4d;
+    font-size: 12px;
+    font-weight: normal;
+    font-family: SimSun, serif;
+}
+
+table>tbody[data-table-body="ntb-table-body-dividend-matters-preplan"]>tr:nth-of-type(2n+1) {
+    background: #fff;
+}
+
+table>tbody[data-table-body="ntb-table-body-dividend-matters-preplan"]>tr:nth-of-type(2n) {
+    background: #f5f5f5;
+}
+
+table>tbody[data-table-body="ntb-table-body-dividend-matters-preplan"]>tr[data-table-tr="ntb-table-tr-dividend-matters-preplan"]>td:nth-of-type(1),
+table>tbody[data-table-body="ntb-table-body-dividend-matters-preplan"]>tr[data-table-tr="ntb-table-tr-dividend-matters-preplan"]>td:nth-of-type(2) {
+    width: 100px;
+}
+
+table>tbody[data-table-body="ntb-table-body-dividend-matters-preplan"]>tr[data-table-tr="ntb-table-tr-dividend-matters-preplan"]>td:nth-last-of-type(1),
+table>tbody[data-table-body="ntb-table-body-dividend-matters-preplan"]>tr[data-table-tr="ntb-table-tr-dividend-matters-preplan"]>td:nth-last-of-type(2) {
+    text-align: left;
+    text-indent: 4px;
 }

@@ -1,6 +1,7 @@
+@charset "UTF-8";
+
 /* transactions-leaderboard */
 
-@charset "UTF-8";
 
 /* commons-title */
 
@@ -92,7 +93,6 @@
     cursor: pointer;
     color: rgba(2, 175, 255, 0.5);
     text-decoration: none;
-    width: 100px;
     display: inline-block;
     box-sizing: border-box;
 }
@@ -102,7 +102,7 @@
 }
 
 [data-ntb-th-link="ntb-link-detials"]::after {
-    content: ">>"
+    content: ">>";
 }
 
 
@@ -123,25 +123,29 @@
 
 /* td */
 
-[data-td-key="ntb-td-key"] {
+tr[data-table-tr="ntb-table-tr-dividend-matters-preplan"]>td[data-td-key="ntb-td-no-key"]:nth-of-type(1),
+tr[data-table-tr="ntb-table-tr-dividend-matters-preplan"]>td[data-td-key="ntb-td-no-key"]:nth-of-type(2) {
     box-sizing: border-box;
     border-right: 1px solid #ccc;
     font-weight: bold;
     text-align: center;
     /* width: calc(1*100px); */
-    width: 150px;
-    max-width: 150px;
+    width: 100px;
+    max-width: 100px;
+    min-width: 100px;
     line-height: 23px;
     height: 23px;
 }
 
-[data-td-value="ntb-td-value"] {
+tr[data-table-tbody-tr="ntb-table-tbody-tr-dividend-matters-preplan"]>td[data-td-value="ntb-td-value"]:nth-of-type(1),
+tr[data-table-tbody-tr="ntb-table-tbody-tr-dividend-matters-preplan"]>td[data-td-value="ntb-td-value"]:nth-of-type(2) {
     /* color: red; */
     font-size: 13px;
     box-sizing: border-box;
     border-right: 1px solid #ccc;
     width: 100px;
     max-width: 100px;
+    min-width: 100px;
     line-height: 23px;
     height: 23px;
     overflow: hidden;

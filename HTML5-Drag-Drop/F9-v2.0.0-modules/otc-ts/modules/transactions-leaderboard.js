@@ -200,3 +200,6 @@ NSB_TS_FV.Modules.transactionsLeaderboard.Utils.dataHandler = NSB_TS_FV.Modules.
 
 
 */
+
+
+// 备注：在涨跌幅和成交额做个可以自动排序的功能。

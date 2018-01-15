@@ -3,27 +3,27 @@
 "use strict";
 
 /**
- * @namespace NSB_TS_FV : New San Ban Thematic Statistics
+ * @namespace OTC_TS_FV : New San Ban Thematic Statistics
  * @name newly-added-protocol 新增协议
  * @createed 2017.11.11
  * @author xgqfrms
  * @copyright Gildata, Inc 2017-present
- * @license MIT 
+ * @license MIT
  * @version v1.1.1
- * 
- * @param {* String} url 
+ *
+ * @param {* String} url
  * @param {* DOM Element} uid
- * @param {* Boolean} debug 
+ * @param {* Boolean} debug
  */
 
 // namespaces
-var NSB_TS_FV = NSB_TS_FV || {};
+var OTC_TS_FV = OTC_TS_FV || {};
 
 // sub namespaces
-NSB_TS_FV.Modules = NSB_TS_FV.Modules || {};
+OTC_TS_FV.Modules = OTC_TS_FV.Modules || {};
 
 
-NSB_TS_FV.Modules.newlyAddedProtocol = NSB_TS_FV.Modules.newlyAddedProtocol || ((url = ``, debug = false, uid = `default_dom_uid`, ui_arr = ["gpjs", "zqdm", "zqjc", "sshy", "zbqs", "mgsy", "mgjzc", "jlrtbzz", "jzcsyl", "zgb", "ltgb"]) => {
+OTC_TS_FV.Modules.newlyAddedProtocol = OTC_TS_FV.Modules.newlyAddedProtocol || ((url = ``, debug = false, uid = `default_dom_uid`, ui_arr = ["gpjs", "zqdm", "zqjc", "sshy", "zbqs", "mgsy", "mgjzc", "jlrtbzz", "jzcsyl", "zgb", "ltgb"]) => {
     // debug = true;
     let datas = {};
     const ui_keys = ui_arr;
@@ -38,7 +38,7 @@ NSB_TS_FV.Modules.newlyAddedProtocol = NSB_TS_FV.Modules.newlyAddedProtocol || (
                 json_keys = Object.keys(json).sort();
                 json_values = Object.values(json);
                 // show new add num
-                let new_add = document.querySelector(`[data-ntb-new-add-num="ntb-new-add-num-protocol"]`);
+                let new_add = document.querySelector(`[data-otc-new-add-num="otc-new-add-num-protocol"]`);
                 // new_add.innerHTML = json[json_keys[0]]["gpjs"];
                 new_add.innerHTML = json_values[0]["gpjs"];
                 // table
@@ -48,7 +48,7 @@ NSB_TS_FV.Modules.newlyAddedProtocol = NSB_TS_FV.Modules.newlyAddedProtocol || (
                     // "id872356" => "872356"
                     console.log(`json = \n`, json);
                 }
-                NSB_TS_FV.Modules.newlyAddedProtocol.showTable(init_uid, json);
+                OTC_TS_FV.Modules.newlyAddedProtocol.showTable(init_uid, json);
             }
             // async
             if (debug) {
@@ -92,7 +92,7 @@ NSB_TS_FV.Modules.newlyAddedProtocol = NSB_TS_FV.Modules.newlyAddedProtocol || (
             }
             datas = [].concat(new_json_values);
             // array
-            NSB_TS_FV.Modules.newlyAddedProtocol.drawHC(datas, uid, json, false);
+            OTC_TS_FV.Modules.newlyAddedProtocol.drawHC(datas, uid, json, false);
         }
     )
     .catch(error => console.log(`error = \n`, error));
@@ -104,13 +104,13 @@ NSB_TS_FV.Modules.newlyAddedProtocol = NSB_TS_FV.Modules.newlyAddedProtocol || (
 
 /**
  * @author xgqfrms
- * 
- * @param {* Array} datas 
- * @param {* String} container_uid 
+ *
+ * @param {* Array} datas
+ * @param {* String} container_uid
  * @param {* Boolean} debug
  */
 
-NSB_TS_FV.Modules.newlyAddedProtocol.drawHC = NSB_TS_FV.Modules.newlyAddedProtocol.drawHC || ((datas = [], container_uid = `container`, json = {}, debug = false) => {
+OTC_TS_FV.Modules.newlyAddedProtocol.drawHC = OTC_TS_FV.Modules.newlyAddedProtocol.drawHC || ((datas = [], container_uid = `container`, json = {}, debug = false) => {
     let dataLength = datas.length;
     // datas
     const chart_css = {
@@ -127,9 +127,39 @@ NSB_TS_FV.Modules.newlyAddedProtocol.drawHC = NSB_TS_FV.Modules.newlyAddedProtoc
         console.log(`Highcharts datas =\n`, datas);
         console.log(`%c Highcharts container_uid =`, `color: #f0f; font-size: 23px;`, container_uid);
     }
+    Highcharts.setOptions({
+        lang: {
+            rangeSelectorZoom: '缩放',// 放大
+            rangeSelectorFrom: '从',
+            rangeSelectorTo: '到',
+            contextButtonTitle: '图表导出菜单',
+            decimalPoint: '.',
+            downloadJPEG: "下载JPEG图片",
+            downloadPDF: "下载PDF文件",
+            downloadPNG: "下载PNG文件",
+            downloadSVG: "下载SVG文件",
+            drillUpText: "返回 {series.name}",
+            loading: '加载中...',
+            months: ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月'],
+            noData: `
+                <p data-p="no-data-p">
+                    <span data-span="no-data-span">没有数据</span>
+                </p>
+            `,
+            // noData: "没有数据显示!",
+            numericSymbols: ['k', 'M', 'G', 'T', 'P', 'E'],
+            printChart: "打印图表",
+            resetZoom: '重置缩放比例',
+            resetZoomTitle: '重置为原始大小',
+            shortMonths: ['一', '二', '三', '四', '五', '六', '七', '八', '九', '十', '十一', '十二'],
+            thousandsSep: ',',
+            shortWeekdays: ['周天', '周一', '周二', '周三', '周四', '周五', '周六'],
+            weekdays: ['星期天','星期一', '星期二', '星期三', '星期四', '星期五', '星期六']
+        },
+    });
     Highcharts.chart(container_uid, {
         noData: {
-            attr: undefined,
+            // attr: undefined,
             position: {
                 align: "center",
                 verticalAlign: "middle",
@@ -137,7 +167,7 @@ NSB_TS_FV.Modules.newlyAddedProtocol.drawHC = NSB_TS_FV.Modules.newlyAddedProtoc
                 y: 0
             },
             style: { "fontSize": "12px", "fontWeight": "bold", "color": "#777" },
-            useHTML: false
+            useHTML: true,
         },
         credits: {
             enabled: true,// enabled: false,
@@ -147,18 +177,19 @@ NSB_TS_FV.Modules.newlyAddedProtocol.drawHC = NSB_TS_FV.Modules.newlyAddedProtoc
         chart: {
             type: 'bubble',
             plotBorderWidth: 1,
-            zoomType: 'xy',
+            // zoomType: 'xy',
             // ???决定用户可以通过拖动鼠标来缩放的尺寸。可以是x，y或xy中的一个。
             // Can be one of x, y or xy. Defaults to undefined.
         },
         legend: {
-            enabled: false
+            // enabled: false,
+            enabled: true,
         },
         title: {
-            text: ''
+            text: '',
         },
         subtitle: {
-            text: ''
+            text: '',
         },
         xAxis: {
             gridLineWidth: 1,
@@ -184,7 +215,7 @@ NSB_TS_FV.Modules.newlyAddedProtocol.drawHC = NSB_TS_FV.Modules.newlyAddedProtoc
                     },
                     zIndex: 3
                 },
-                // x line 2 
+                // x line 2
             ]
         },
         yAxis: {
@@ -202,7 +233,7 @@ NSB_TS_FV.Modules.newlyAddedProtocol.drawHC = NSB_TS_FV.Modules.newlyAddedProtoc
                     color: 'black',
                     dashStyle: 'dot',
                     width: 2,
-                    value: 3,// 
+                    value: 3,//
                     label: {
                         align: 'right',
                         style: {
@@ -261,7 +292,7 @@ NSB_TS_FV.Modules.newlyAddedProtocol.drawHC = NSB_TS_FV.Modules.newlyAddedProtoc
                             // "id872356" => "872356"
                             console.log(`json = \n`, json);
                         }
-                        NSB_TS_FV.Modules.newlyAddedProtocol.showTable(code_uid, json);
+                        OTC_TS_FV.Modules.newlyAddedProtocol.showTable(code_uid, json);
                     }
                 },
                 point: {
@@ -289,16 +320,16 @@ NSB_TS_FV.Modules.newlyAddedProtocol.drawHC = NSB_TS_FV.Modules.newlyAddedProtoc
 
 /**
  * @author xgqfrms
- * 
+ *
  * @param {* String} code
- * @param {* String} table_dom_uid 
+ * @param {* String} table_dom_uid
  * @param {* Boolean} debug
- * @param {* Object} data 
+ * @param {* Object} data
  */
 
 
 
-NSB_TS_FV.Modules.newlyAddedProtocol.showTable = NSB_TS_FV.Modules.newlyAddedProtocol.showTable || ((uid = `6000570`, datas = {}, debug = false) => {
+OTC_TS_FV.Modules.newlyAddedProtocol.showTable = OTC_TS_FV.Modules.newlyAddedProtocol.showTable || ((uid = `6000570`, datas = {}, debug = false) => {
     let new_uid = `id${uid}`;
     if (debug) {
         console.log(`uid = `, uid);
@@ -310,10 +341,10 @@ NSB_TS_FV.Modules.newlyAddedProtocol.showTable = NSB_TS_FV.Modules.newlyAddedPro
     if (debug) {
         console.log(`table_obj`, JSON.stringify(table_obj, null, 4));
     }
-    let sa = document.querySelector(`[data-ntb-th-title="Securities-Abbreviation-protocol"]`),
-        sc = document.querySelector(`[data-ntb-th-title="Securities-Code-protocol"]`),
-        // new_add = document.querySelector(`[data-ntb-new-add-num="ntb-new-add-num-protocol"]`),
-        tb = document.querySelector(`[data-table-body="ntb-table-body-newly-added-protocol"]`);
+    let sa = document.querySelector(`[data-otc-th-title="Securities-Abbreviation-protocol"]`),
+        sc = document.querySelector(`[data-otc-th-title="Securities-Code-protocol"]`),
+        // new_add = document.querySelector(`[data-otc-new-add-num="otc-new-add-num-protocol"]`),
+        tb = document.querySelector(`[data-table-body="otc-table-body-newly-added-protocol"]`);
     // [tr, tr, tr]
     let trs = tb.children;
     let tds1 = trs[0].children,
@@ -348,17 +379,44 @@ NSB_TS_FV.Modules.newlyAddedProtocol.showTable = NSB_TS_FV.Modules.newlyAddedPro
 
 
 
+OTC_TS_FV.Modules.newlyAddedProtocol.init = OTC_TS_FV.Modules.newlyAddedProtocol.init || (
+    (
+        {
+            ip,
+            path,
+            socket,
+            // gilcode
+        } = {
+            ip: `http://10.1.5.202`,
+            path: `/webservice/fastview/otcper`,
+            socket: `/otcfast02`,
+            // gilcode: `430002.OC`
+        }
+    ) => {
+        // let url = `${ip}${path}${socket}${gilcode}`,
+        // let url = `${ip}${path}${socket}`,
+        let url = `https://cdn.xgqfrms.xyz/json/otc-ts/02.json`,
+            tbody_dom = document.querySelector(`[data-tbody="otc-research-report-table-tbody"]`),
+            more = document.querySelector(`[data-more="otc-research-report-link-more"]`),
+            uid = `newly_added_protocol_hs_container`;
+        OTC_TS_FV.Modules.newlyAddedProtocol(url, false, uid);
+        // OTC_TS_FV.Modules.newlyAddedProtocol(url, tbody_dom, more, false);
+    }
+);
 
-// call fetch json datas
-setTimeout(() => {
-    // async & await
-    // const sf_num= `otcfast02`;
-    const sf_num= `otcfast01`;
-    const url = `http://10.1.5.202/webservice/fastview/otc/${sf_num}/`;
-    let uid = `newly_added_protocol_hs_container`;
-    let hs_datas = NSB_TS_FV.Modules.newlyAddedProtocol(url, false, uid);
-}, 0);
+// OTC_SKIN ???
 
+var OTC_IP = window.OTC_IP || `http://10.1.5.202`,
+    OTC_PATH = window.OTC_PATH || `/webservice/fastview/otc`,
+    OTC_SKIN = window.OTC_SKIN || `black`;
+    // OTC_GILCODE = window.OTC_GILCODE || `430002.OC`;
 
+// console.log(`research & OTC_GILCODE`, OTC_GILCODE);
 
+OTC_TS_FV.Modules.newlyAddedProtocol.init({
+    ip: OTC_IP,
+    path: OTC_PATH,
+    socket: `/otcfast02`,
+    // gilcode: OTC_GILCODE
+});
 

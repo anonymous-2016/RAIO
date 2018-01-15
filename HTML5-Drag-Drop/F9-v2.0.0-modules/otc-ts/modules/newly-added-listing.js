@@ -53,7 +53,7 @@ OTC_TS_FV.Modules.newlyAddedListing = OTC_TS_FV.Modules.newlyAddedListing || ((u
                 json_keys = Object.keys(json).sort();
                 json_values = Object.values(json);
                 // show new add num
-                let new_add = document.querySelector(`[data-ntb-new-add-num="ntb-new-add-num-listing"]`);
+                let new_add = document.querySelector(`[data-otc-new-add-num="otc-new-add-num-listing"]`);
                 // new_add.innerHTML = json[json_keys[0]]["gpjs"];
                 new_add.innerHTML = json_values[0]["gpjs"];
                 // table
@@ -117,7 +117,7 @@ OTC_TS_FV.Modules.newlyAddedListing = OTC_TS_FV.Modules.newlyAddedListing || ((u
         }
     )
     .catch(error => console.log(`error = \n`, error));
-    return datas;
+    // return datas;
 });
 
 
@@ -149,46 +149,48 @@ OTC_TS_FV.Modules.newlyAddedListing.drawHC = OTC_TS_FV.Modules.newlyAddedListing
         console.log(`Highcharts datas =\n`, datas);
         console.log(`%c Highcharts container_uid =`, `color: #f0f; font-size: 23px;`, container_uid);
     }
-    /*
-        Highcharts.setOptions({
-            lang: {
-                rangeSelectorZoom: '缩放',// 放大
-                rangeSelectorFrom: '从',
-                rangeSelectorTo: '到',
-                contextButtonTitle: '图表导出菜单',
-                decimalPoint: '.',
-                downloadJPEG: "下载JPEG图片",
-                downloadPDF: "下载PDF文件",
-                downloadPNG: "下载PNG文件",
-                downloadSVG: "下载SVG文件",
-                drillUpText: "返回 {series.name}",
-                loading: '加载中...',
-                months: ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月'],
-                noData: "没有数据",
-                // noData: "没有数据显示!",
-                numericSymbols: ['k', 'M', 'G', 'T', 'P', 'E'],
-                printChart: "打印图表",
-                resetZoom: '重置缩放比例',
-                resetZoomTitle: '重置为原始大小',
-                shortMonths: ['一', '二', '三', '四', '五', '六', '七', '八', '九', '十', '十一', '十二'],
-                thousandsSep: ',',
-                shortWeekdays: ['周天', '周一', '周二', '周三', '周四', '周五', '周六'],
-                weekdays: ['星期天','星期一', '星期二', '星期三', '星期四', '星期五', '星期六']
-            },
-        });
-    */
+    Highcharts.setOptions({
+        lang: {
+            rangeSelectorZoom: '缩放',// 放大
+            rangeSelectorFrom: '从',
+            rangeSelectorTo: '到',
+            contextButtonTitle: '图表导出菜单',
+            decimalPoint: '.',
+            downloadJPEG: "下载JPEG图片",
+            downloadPDF: "下载PDF文件",
+            downloadPNG: "下载PNG文件",
+            downloadSVG: "下载SVG文件",
+            drillUpText: "返回 {series.name}",
+            loading: '加载中...',
+            months: ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月'],
+            noData: `
+                <p data-p="no-data-p">
+                    <span data-span="no-data-span">没有数据</span>
+                </p>
+            `,
+            // noData: "没有数据显示!",
+            numericSymbols: ['k', 'M', 'G', 'T', 'P', 'E'],
+            printChart: "打印图表",
+            resetZoom: '重置缩放比例',
+            resetZoomTitle: '重置为原始大小',
+            shortMonths: ['一', '二', '三', '四', '五', '六', '七', '八', '九', '十', '十一', '十二'],
+            thousandsSep: ',',
+            shortWeekdays: ['周天', '周一', '周二', '周三', '周四', '周五', '周六'],
+            weekdays: ['星期天','星期一', '星期二', '星期三', '星期四', '星期五', '星期六']
+        },
+    });
     Highcharts.chart(container_uid, {
-        // noData: {
-        //     attr: undefined,
-        //     position: {
-        //         align: "center",
-        //         verticalAlign: "middle",
-        //         x: 0,
-        //         y: 0
-        //     },
-        //     style: { "fontSize": "12px", "fontWeight": "bold", "color": "#777" },
-        //     useHTML: false
-        // },
+        noData: {
+            // attr: undefined,
+            position: {
+                align: "center",
+                verticalAlign: "middle",
+                x: 0,
+                y: 0
+            },
+            style: { "fontSize": "12px", "fontWeight": "bold", "color": "#777" },
+            useHTML: true,
+        },
         credits: {
             enabled: true,
             // enabled: false,
@@ -198,12 +200,13 @@ OTC_TS_FV.Modules.newlyAddedListing.drawHC = OTC_TS_FV.Modules.newlyAddedListing
         chart: {
             type: 'bubble',
             plotBorderWidth: 1,
-            zoomType: 'xy',
+            // zoomType: 'xy',
             // ???决定用户可以通过拖动鼠标来缩放的尺寸。可以是x，y或xy中的一个。
             // Can be one of x, y or xy. Defaults to undefined.
         },
         legend: {
-            enabled: false
+            // enabled: false,
+            enabled: true,
         },
         title: {
             text: ''
@@ -368,10 +371,10 @@ OTC_TS_FV.Modules.newlyAddedListing.showTable = OTC_TS_FV.Modules.newlyAddedList
     if (debug) {
         console.log(`table_obj`, JSON.stringify(table_obj, null, 4));
     }
-    let sa = document.querySelector(`[data-ntb-th-title="Securities-Abbreviation-listing"]`),
-        sc = document.querySelector(`[data-ntb-th-title="Securities-Code-listing"]`),
-        // new_add = document.querySelector(`[data-ntb-new-add-num="ntb-new-add-num-listing"]`),
-        tb = document.querySelector(`[data-table-body="ntb-table-body-newly-added-listing"]`);
+    let sa = document.querySelector(`[data-otc-th-title="Securities-Abbreviation-listing"]`),
+        sc = document.querySelector(`[data-otc-th-title="Securities-Code-listing"]`),
+        // new_add = document.querySelector(`[data-otc-new-add-num="otc-new-add-num-listing"]`),
+        tb = document.querySelector(`[data-table-body="otc-table-body-newly-added-listing"]`);
     // let tr1 = tb.firstElementChild;
     // let tr3 = tb.lastElementChild;
     // [tr, tr, tr]

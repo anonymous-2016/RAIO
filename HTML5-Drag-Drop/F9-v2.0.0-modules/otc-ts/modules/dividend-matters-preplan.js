@@ -98,6 +98,7 @@ NSB_TS_FV.Modules.additionalMattersPreplan.showTable = NSB_TS_FV.Modules.additio
             tds[0].innerHTML = order_arr[0][i];
             tds[1].innerHTML = order_arr[1][i];
             tds[2].innerHTML = order_arr[2][i];
+            tds[2].setAttribute(`title`, order_arr[2][i]);
             // DOM in JS ???
             /*
                 <tr data-table-tr="ntb-table-tr-dividend-matters-preplan" data-table-tbody-tr="ntb-table-tbody-tr-dividend-matters-preplan">
