@@ -1,79 +1,16 @@
-# NTB
-
-> 新三板 F9
-
-
-
-
-## NameSpace
-
-> NTB_F9
-
-NTB_F9.Modules
-NTB_F9.Utils
-NTB_F9.Modal
-
-
-
-
-
-## API
-
-http://10.1.5.202/webservice/fastview/otc/参数
-
-http://10.1.5.202/webservice/fastview/otc/otcfast01
-http://10.1.5.202/webservice/fastview/otc/otcfast10
-
-http://10.1.5.202/webservice/fastview/otc/news
-http://10.1.5.202/webservice/fastview/otc/bulletion
-
-
-
-http://10.1.5.202/webservice/fastview/stock/stockfast01/600570.SH
-
-http://10.1.5.202/information/newsinfo/
-
-
-
-
-mainboard 主板
-
-New Sanbanxi 新三板
-
-全国中小企业股份转让系统(英语：National Equities Exchange and Quotations),
-
-股票/股权 报价
-
-俗称新三板,
-是经中华人民共和国国务院批准设立的中国大陆证券交易场所,
-为非上市股份有限公司的股份公开转让、融资、并购等相关业务提供服务。它是中国大陆除上海证券交易所、深圳证券交易所之外的第三家全国性证券交易场所。
-
-https://zh.wikipedia.org/wiki/%E4%B8%8A%E6%B5%B7%E8%AF%81%E5%88%B8%E4%BA%A4%E6%98%93%E6%89%80
-
-2009年8月10日发布的《上海证券交易所证券代码分配规则》规定，上证所证券代码采用六位阿拉伯数字编码，取值范围为000000-999999。
-六位代码的前三位为证券种类标识区，其中第一位为证券产品标识，第二位至第三位为证券业务标识，六位代码的后三位为顺序编码区。
-首位代码代表的产品定义分别为：0国债／指数、1债券、2回购、3期货、4备用、5基金／权证、6A股、7非交易业务（发行、权益分配）、8备用、9B股
-
-http://www.sse.com.cn/
-
-https://zh.wikipedia.org/wiki/%E6%B7%B1%E5%9C%B3%E8%AF%81%E5%88%B8%E4%BA%A4%E6%98%93%E6%89%80
-
-http://www.szse.cn/
-
-
-
-# 新三板专题统计 New Three Board Thematic Statistics (NTB_TS)
+# 新三板专题统计 New Three Board Thematic Statistics (OTC_TS_FV)
 
 > 新三板专题统计/三板速览
 
 
 ## NameSpace
 
-> NTB_TS
+> OTC_TS_FV
 
-NTB_TS.Modules
-NTB_TS.Utils
-NTB_TS.Modal
+OTC_TS_FV.Modules
+OTC_TS_FV.Utils
+OTC_TS_FV.Modal
+
 
 
 备注：在涨跌幅和成交额做个可以自动排序的功能
@@ -115,6 +52,58 @@ http://q.gxfin.com/oc/836000.html
 
 
 
+
+## API
+
+http://10.1.5.202/webservice/fastview/otc/参数
+
+http://10.1.5.202/webservice/fastview/otc/otcfast01
+http://10.1.5.202/webservice/fastview/otc/otcfast10
+
+http://10.1.5.202/webservice/fastview/otc/news
+http://10.1.5.202/webservice/fastview/otc/bulletion
+
+
+
+http://10.1.5.202/webservice/fastview/stock/stockfast01/600570.SH
+
+http://10.1.5.202/information/newsinfo/
+
+
+
+https://www.zhihu.com/question/34737321?sort=created
+
+
+OTC（Over-The-Counter）场外交易市场，又称柜台交易市场或店头市场是世界上最古老的证券交易场所，源自于当初银行兼营股票买卖业务。因为采取在银行柜台上向客户出售股票的做法，被称为“柜台交易市场”，又因为这种交易不在交易所里进行，又叫做“场外交易市场”。
+
+在OTC市场交易的是未能在证券交易所上市的证券，包括：不符合证券交易所上市标准的股票、符合证券交易所上市标准但不愿在交易所上市的股票、债券等，其一般是通过买卖双方议价的方式实现成交。
+
+
+
+
+mainboard 主板
+
+New Sanbanxi 新三板
+
+全国中小企业股份转让系统(英语：National Equities Exchange and Quotations),
+
+股票/股权 报价
+
+俗称新三板,
+是经中华人民共和国国务院批准设立的中国大陆证券交易场所,
+为非上市股份有限公司的股份公开转让、融资、并购等相关业务提供服务。它是中国大陆除上海证券交易所、深圳证券交易所之外的第三家全国性证券交易场所。
+
+https://zh.wikipedia.org/wiki/%E4%B8%8A%E6%B5%B7%E8%AF%81%E5%88%B8%E4%BA%A4%E6%98%93%E6%89%80
+
+2009年8月10日发布的《上海证券交易所证券代码分配规则》规定，上证所证券代码采用六位阿拉伯数字编码，取值范围为000000-999999。
+六位代码的前三位为证券种类标识区，其中第一位为证券产品标识，第二位至第三位为证券业务标识，六位代码的后三位为顺序编码区。
+首位代码代表的产品定义分别为：0国债／指数、1债券、2回购、3期货、4备用、5基金／权证、6A股、7非交易业务（发行、权益分配）、8备用、9B股
+
+http://www.sse.com.cn/
+
+https://zh.wikipedia.org/wiki/%E6%B7%B1%E5%9C%B3%E8%AF%81%E5%88%B8%E4%BA%A4%E6%98%93%E6%89%80
+
+http://www.szse.cn/
 
 
 ```js
