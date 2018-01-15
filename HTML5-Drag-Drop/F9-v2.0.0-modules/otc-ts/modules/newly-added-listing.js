@@ -91,7 +91,8 @@ OTC_TS_FV.Modules.newlyAddedListing = OTC_TS_FV.Modules.newlyAddedListing || ((u
                         {
                             x,
                             y,
-                            z: 6,// 气泡的大小
+                            //z: 6,// 气泡的大小
+                            z,
                             name,
                             code
                         }
@@ -177,19 +178,20 @@ OTC_TS_FV.Modules.newlyAddedListing.drawHC = OTC_TS_FV.Modules.newlyAddedListing
         });
     */
     Highcharts.chart(container_uid, {
-        noData: {
-            attr: undefined,
-            position: {
-                align: "center",
-                verticalAlign: "middle",
-                x: 0,
-                y: 0
-            },
-            style: { "fontSize": "12px", "fontWeight": "bold", "color": "#777" },
-            useHTML: false
-        },
+        // noData: {
+        //     attr: undefined,
+        //     position: {
+        //         align: "center",
+        //         verticalAlign: "middle",
+        //         x: 0,
+        //         y: 0
+        //     },
+        //     style: { "fontSize": "12px", "fontWeight": "bold", "color": "#777" },
+        //     useHTML: false
+        // },
         credits: {
-            enabled: true,// enabled: false,
+            enabled: true,
+            // enabled: false,
             href: `https://www.gildata.com`,
             text: `gildata`,
         },
@@ -435,7 +437,8 @@ OTC_TS_FV.Modules.newlyAddedListing.init = OTC_TS_FV.Modules.newlyAddedListing.i
         }
     ) => {
         // let url = `${ip}${path}${socket}${gilcode}`,
-        let url = `${ip}${path}${socket}`,
+        // let url = `${ip}${path}${socket}`,
+        let url = `https://cdn.xgqfrms.xyz/json/otc-ts/01.json`,
             tbody_dom = document.querySelector(`[data-tbody="otc-research-report-table-tbody"]`),
             more = document.querySelector(`[data-more="otc-research-report-link-more"]`),
             uid = `newly_added_listing_hs_container`;
