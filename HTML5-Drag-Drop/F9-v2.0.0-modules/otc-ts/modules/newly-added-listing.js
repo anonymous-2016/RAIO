@@ -1,35 +1,35 @@
 "use strict";
 
 /**
- * @namespace NSB_TS_FV : New San Ban Thematic Statistics
+ * @namespace OTC_TS_FV : New San Ban Thematic Statistics
  * @name newly-added-listing 新增挂牌
- * @createed 2017.11.07 
+ * @createed 2017.11.07
  * @author xgqfrms
  * @copyright Gildata, Inc 2017-present
- * @license MIT 
+ * @license MIT
  * @version v1.1.1
- * 
- * @param {* String} url 
+ *
+ * @param {* String} url
  * @param {* DOM Element} uid
- * @param {* Boolean} debug 
+ * @param {* Boolean} debug
  */
 
 // namespaces
-var NSB_TS_FV = NSB_TS_FV || {};
+var OTC_TS_FV = OTC_TS_FV || {};
 
 // sub namespaces
-NSB_TS_FV.Modules = NSB_TS_FV.Modules || {};
+OTC_TS_FV.Modules = OTC_TS_FV.Modules || {};
 
 
-/* 
+/*
 
-NSB_TS_FV.Modules.newlyAddedListing = NSB_TS_FV.Modules.newlyAddedListing || (() => console.log(`module testing!`));
+OTC_TS_FV.Modules.newlyAddedListing = OTC_TS_FV.Modules.newlyAddedListing || (() => console.log(`module testing!`));
 // () => console.log(`module testing!`)
 
-typeof NSB_TS_FV.Modules.newlyAddedListing
+typeof OTC_TS_FV.Modules.newlyAddedListing
 // "function"
 
-NSB_TS_FV.Modules.newlyAddedListing();
+OTC_TS_FV.Modules.newlyAddedListing();
 // module testing!
 
 */
@@ -38,7 +38,7 @@ NSB_TS_FV.Modules.newlyAddedListing();
 
 
 
-NSB_TS_FV.Modules.newlyAddedListing = NSB_TS_FV.Modules.newlyAddedListing || ((url = ``, debug = false, uid = `default_dom_uid`, ui_arr = ["gpjs", "zqdm", "zqjc", "sshy", "zbqs", "mgsy", "mgjzc", "jlrtbzz", "jzcsyl", "zgb", "ltgb"]) => {
+OTC_TS_FV.Modules.newlyAddedListing = OTC_TS_FV.Modules.newlyAddedListing || ((url = ``, debug = false, uid = `default_dom_uid`, ui_arr = ["gpjs", "zqdm", "zqjc", "sshy", "zbqs", "mgsy", "mgjzc", "jlrtbzz", "jzcsyl", "zgb", "ltgb"]) => {
     // debug = true;
     let datas = {};
     const ui_keys = ui_arr;
@@ -63,7 +63,7 @@ NSB_TS_FV.Modules.newlyAddedListing = NSB_TS_FV.Modules.newlyAddedListing || ((u
                     // "id872356" => "872356"
                     console.log(`json = \n`, json);
                 }
-                NSB_TS_FV.Modules.newlyAddedListing.showTable(init_uid, json);
+                OTC_TS_FV.Modules.newlyAddedListing.showTable(init_uid, json);
             }
             // async
             if (debug) {
@@ -112,7 +112,7 @@ NSB_TS_FV.Modules.newlyAddedListing = NSB_TS_FV.Modules.newlyAddedListing || ((u
             }
             datas = [].concat(new_json_values);
             // array
-            NSB_TS_FV.Modules.newlyAddedListing.drawHC(datas, uid, json, false);
+            OTC_TS_FV.Modules.newlyAddedListing.drawHC(datas, uid, json, false);
         }
     )
     .catch(error => console.log(`error = \n`, error));
@@ -124,14 +124,14 @@ NSB_TS_FV.Modules.newlyAddedListing = NSB_TS_FV.Modules.newlyAddedListing || ((u
 
 /**
  * @author xgqfrms
- * 
- * @param {* Array} datas 
- * @param {* String} container_uid 
+ *
+ * @param {* Array} datas
+ * @param {* String} container_uid
  * @param {* Boolean} debug
  */
-// NSB_TS_FV.Modules.newlyAddedListing.drawHC = NSB_TS_FV.Modules.newlyAddedListing.drawHC
+// OTC_TS_FV.Modules.newlyAddedListing.drawHC = OTC_TS_FV.Modules.newlyAddedListing.drawHC
 
-NSB_TS_FV.Modules.newlyAddedListing.drawHC = NSB_TS_FV.Modules.newlyAddedListing.drawHC || ((datas = [], container_uid = `container`, json = {}, debug = false) => {
+OTC_TS_FV.Modules.newlyAddedListing.drawHC = OTC_TS_FV.Modules.newlyAddedListing.drawHC || ((datas = [], container_uid = `container`, json = {}, debug = false) => {
     let dataLength = datas.length;
     // datas
     const chart_css = {
@@ -148,7 +148,7 @@ NSB_TS_FV.Modules.newlyAddedListing.drawHC = NSB_TS_FV.Modules.newlyAddedListing
         console.log(`Highcharts datas =\n`, datas);
         console.log(`%c Highcharts container_uid =`, `color: #f0f; font-size: 23px;`, container_uid);
     }
-    /* 
+    /*
         Highcharts.setOptions({
             lang: {
                 rangeSelectorZoom: '缩放',// 放大
@@ -233,7 +233,7 @@ NSB_TS_FV.Modules.newlyAddedListing.drawHC = NSB_TS_FV.Modules.newlyAddedListing
                     },
                     zIndex: 3
                 },
-                // x line 2 
+                // x line 2
             ]
         },
         yAxis: {
@@ -251,7 +251,7 @@ NSB_TS_FV.Modules.newlyAddedListing.drawHC = NSB_TS_FV.Modules.newlyAddedListing
                     color: 'black',
                     dashStyle: 'dot',
                     width: 2,
-                    value: 3,// 
+                    value: 3,//
                     label: {
                         align: 'right',
                         style: {
@@ -301,9 +301,9 @@ NSB_TS_FV.Modules.newlyAddedListing.drawHC = NSB_TS_FV.Modules.newlyAddedListing
                     click: function (event) {
                         // alert(
                         //     this.name + ' clicked\n' +
-                        //     "\ncode: "+ event.point.code + 
-                        //     "\nX: "+ event.point.x + 
-                        //     "\nY: "+event.point.y + 
+                        //     "\ncode: "+ event.point.code +
+                        //     "\nX: "+ event.point.x +
+                        //     "\nY: "+event.point.y +
                         //     "\nZ: "+event.point.z
                         // );
                         if (debug) {
@@ -317,7 +317,7 @@ NSB_TS_FV.Modules.newlyAddedListing.drawHC = NSB_TS_FV.Modules.newlyAddedListing
                             // "id872356" => "872356"
                             console.log(`json = \n`, json);
                         }
-                        NSB_TS_FV.Modules.newlyAddedListing.showTable(code_uid, json);
+                        OTC_TS_FV.Modules.newlyAddedListing.showTable(code_uid, json);
                     }
                 },
                 point: {
@@ -345,16 +345,16 @@ NSB_TS_FV.Modules.newlyAddedListing.drawHC = NSB_TS_FV.Modules.newlyAddedListing
 
 /**
  * @author xgqfrms
- * 
+ *
  * @param {* String} code
- * @param {* String} table_dom_uid 
+ * @param {* String} table_dom_uid
  * @param {* Boolean} debug
- * @param {* Object} data 
+ * @param {* Object} data
  */
 
 
 
-NSB_TS_FV.Modules.newlyAddedListing.showTable = NSB_TS_FV.Modules.newlyAddedListing.showTable || ((uid = `6000570`, datas = {}, debug = false) => {
+OTC_TS_FV.Modules.newlyAddedListing.showTable = OTC_TS_FV.Modules.newlyAddedListing.showTable || ((uid = `6000570`, datas = {}, debug = false) => {
     let new_uid = `id${uid}`;
     if (debug) {
         console.log(`uid = `, uid);
@@ -410,13 +410,55 @@ NSB_TS_FV.Modules.newlyAddedListing.showTable = NSB_TS_FV.Modules.newlyAddedList
 
 
 // call fetch json datas
-setTimeout(() => {
-    // async & await
-    const sf_num= `otcfast01`;
-    const url = `http://10.1.5.202/webservice/fastview/otc/${sf_num}/`;
-    let uid = `newly_added_listing_hs_container`;
-    let hs_datas = NSB_TS_FV.Modules.newlyAddedListing(url, false, uid);
-}, 0);
+// setTimeout(() => {
+//     // async & await
+//     const sf_num= `otcfast01`;
+//     const url = `http://10.1.5.202/webservice/fastview/otc/${sf_num}`;
+//     let uid = `newly_added_listing_hs_container`;
+//     let hs_datas = OTC_TS_FV.Modules.newlyAddedListing(url, false, uid);
+// }, 0);
 
 
 
+OTC_TS_FV.Modules.newlyAddedListing.init = OTC_TS_FV.Modules.newlyAddedListing.init || (
+    (
+        {
+            ip,
+            path,
+            socket,
+            // gilcode
+        } = {
+            ip: `http://10.1.5.202`,
+            path: `/webservice/fastview/otcper`,
+            socket: `/otcfast01`,
+            // gilcode: `430002.OC`
+        }
+    ) => {
+        // let url = `${ip}${path}${socket}${gilcode}`,
+        let url = `${ip}${path}${socket}`,
+            tbody_dom = document.querySelector(`[data-tbody="otc-research-report-table-tbody"]`),
+            more = document.querySelector(`[data-more="otc-research-report-link-more"]`),
+            uid = `newly_added_listing_hs_container`;
+        OTC_TS_FV.Modules.newlyAddedListing(url, false, uid);
+        // OTC_TS_FV.Modules.newlyAddedListing(url, tbody_dom, more, false);
+    }
+);
+
+// OTC_SKIN ???
+
+var OTC_IP = window.OTC_IP || `http://10.1.5.202`,
+    OTC_PATH = window.OTC_PATH || `/webservice/fastview/otc`,
+    OTC_SKIN = window.OTC_SKIN || `black`;
+    // OTC_GILCODE = window.OTC_GILCODE || `430002.OC`;
+
+// console.log(`research & OTC_GILCODE`, OTC_GILCODE);
+
+OTC_TS_FV.Modules.newlyAddedListing.init({
+    ip: OTC_IP,
+    path: OTC_PATH,
+    socket: `/otcfast01`,
+    // gilcode: OTC_GILCODE
+});
+
+// OTC_TS_FV.Modules.newlyAddedListing.init();
+// const url = `http://10.1.5.202/webservice/fastview/otc/otcfast01`;

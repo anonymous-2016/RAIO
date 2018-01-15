@@ -397,6 +397,25 @@ tbody.otc-company-news-table-tbody>tr.otc-company-news-table-tr>td:nth-of-type(1
 
 // display: table-header-group;
 
+
+
+tr[data-space="tr-space"] {
+    box-sizing: border-box;
+    background: #000;
+    width: 100%;
+    height: 10px;
+}
+
+td[data-title="td-colspan"] {
+    box-sizing: border-box;
+    background: #000;
+    color: #616a87;
+    font-weight: bold;
+    width: 100%;
+    line-height: 23px;
+}
+
+
 /usr/local/apache2/webapps/otc/f9
 E:\github\RAIO\HTML5-Drag-Drop\F9-v2.0.0-modules\otc-f9
 

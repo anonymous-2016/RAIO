@@ -486,7 +486,31 @@ otcfast11:
 
 
 
+    otcfast01	新增挂牌 newly-added-listing
+    otcfast02	新增协议 newly-added-protoco
+    otcfast03	交易排行榜 transactions-leaderboard /trading-rankings (交易排行榜-做市/ 交易排行榜-协议)
+    otcfast04	增发事项-预案 additional-issues-preplan
+    otcfast05	增发事项-实施 additional-issues-implementation
+    otcfast06	分红事项-预案 dividend-matters-preplan
+    otcfast07	分红事项-实施 dividend-matters-implementation
+    otcfast08	挂牌情况 listing-situation
+    otcfast09	成交概况 transaction-overview
+    otcfast10	成交走势-做市图 turnover-trend-make-market-diagram
+    otcfast11	成交走势-协议图 turnover-trend-protocol-diagram
+    news	    公司新闻 otc-thematic-statistics-news
+    bulletion	公司公告 otc-thematic-statistics-bulletin
 
-
-
+    "newly-added-listing",
+    "newly-added-protoco",
+    "transactions-leaderboard",
+    "additional-issues-preplan",
+    "additional-issues-implementation",
+    "dividend-matters-preplan",
+    "dividend-matters-implementation",
+    "listing-situation",
+    "transaction-overview",
+    "turnover-trend-make-market-diagram",
+    "turnover-trend-protocol-diagram",
+    "otc-thematic-statistics-news",
+    "otc-thematic-statistics-bulletin",
 

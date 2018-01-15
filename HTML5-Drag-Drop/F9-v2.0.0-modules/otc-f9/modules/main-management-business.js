@@ -161,7 +161,7 @@ OTC_F9_FV.Modules.mainManagementBusiness = OTC_F9_FV.Modules.mainManagementBusin
                                     for (let i = 0; i < arr.length; i++) {
                                         trs += `
                                             <tr class="otc-main-management-business-table-tr">
-                                                <td class="otc-main-management-business-table-td-value" data-value="data-otc-MMB">
+                                                <td class="otc-main-management-business-table-td-value" data-value="data-otc-MMB" title="${arr[i].xm}">
                                                     ${arr[i].xm}
                                                 </td>
                                                 <td class="otc-main-management-business-table-td-value" data-value="data-otc-MMB">

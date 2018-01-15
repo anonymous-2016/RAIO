@@ -188,9 +188,11 @@ const initTabs = () => {
     btn_universal.onclick = (e) => {
         sortable_module_containers[0].innerHTML = "";
         sortable_module_containers[1].innerHTML = "";
-        // 最新交易数据 latest-transaction-data
-        let left_uids = ["otcperfast01", "otcperfast02", "news", "research", "company-all", "otcperfast09", "otcperfast11"];
-        let right_uids = ["otcperfast03", "bulletin", "otcperfast04", "otcperfast10"];
+        // init modules
+        let left_uids = ["otcperfast01", "otcperfast02", "news", "bulletin", "research", "company-all", "otcperfast10"];
+        let right_uids = ["otcperfast03", "otcperfast04", "otcperfast09", "otcperfast11"];
+        // let left_uids = ["otcperfast01", "otcperfast02", "news", "research", "company-all", "otcperfast09", "otcperfast11"];
+        // let right_uids = ["otcperfast03", "bulletin", "otcperfast04", "otcperfast10"];
         OTC_F9_FV.Modules.loadAllModules.init(sortable_module_containers[0], left_uids);
         OTC_F9_FV.Modules.loadAllModules.init(sortable_module_containers[1], right_uids);
     }
@@ -568,7 +570,7 @@ const HTML_Template = (uid = ``, loadModule = function(){}, debug = false) => {
                                 <td class="otc-latest-financial-data-table-td-value" data-value="data-otc-LFD"></td>
                             </tr>
                             <tr class="otc-latest-financial-data-table-tr">
-                                <td class="otc-latest-financial-data-table-td-key" data-alias="每股经营活动产生的现金流量净额(元">每股经营活动产生的现金流量净额(元</td>
+                                <td class="otc-latest-financial-data-table-td-key" data-alias="每股经营活动产生的现金流量净额(元)">每股经营活动产生的现金流量净额(元)</td>
                                 <td class="otc-latest-financial-data-table-td-value" data-value="data-otc-LFD"></td>
                             </tr>
                             <tr class="otc-latest-financial-data-table-tr">
@@ -696,49 +698,6 @@ const HTML_Template = (uid = ``, loadModule = function(){}, debug = false) => {
                     </section>
                 </section>
                 <section data-scripts="all-scripts" class="otc-company-performance-all-container"></section>
-            `;
-            break;
-        case "otcperfast07":
-            delete_uid = `top-ten-shareholders`;
-            loadModule(uid, `top-ten-shareholders`, true);// table
-            htmlstr += `
-                <section class="fv-module-box-5">
-                    <div class="fv-h5dnd-modules-title-box">
-                        <p class="fv-h5dnd-modules-title" data-title="fv-top-ten-shareholders-title" data-more="top-ten-shareholders-title">前十大股东</p>
-                    </div>
-                    <table class="fv-top-ten-shareholders-table">
-                        <thead class="fv-top-ten-shareholders-table-thead">
-                            <tr class="fv-top-ten-shareholders-table-tr">
-                                <td class="fv-top-ten-shareholders-table-td-title fv-top-ten-shareholders-table-td-value" data-value="data-fv-top-ten-shareholders">时间</td>
-                                <td class="fv-top-ten-shareholders-table-td-title">机构或基金名称</td>
-                                <td class="fv-top-ten-shareholders-table-td-title">持有数量</td>
-                                <td class="fv-top-ten-shareholders-table-td-title">占流通股比例(%))</td>
-                                <td class="fv-top-ten-shareholders-table-td-title">股本性质</td>
-                            </tr>
-                        </thead>
-                        <tbody class="fv-top-ten-shareholders-table-tbody" id="fv-top-ten-shareholders-tbody"></tbody>
-                        <tfoot class="fv-top-ten-shareholders-table-tfoot">
-                            <tr class="fv-top-ten-shareholders-table-tr">
-                                <td class="fv-top-ten-shareholders-table-td-value" data-value="data-fv-top-ten-shareholders"></td>
-                            </tr>
-                        </tfoot>
-                    </table>
-                </section>
-            `;
-            break;
-        case "otcperfast08":
-            delete_uid = `financing-and-margin-balance-difference-trend`;
-            loadModule(uid, `financing-and-margin-balance-difference-trend`, false);// container
-            htmlstr += `
-                <section class="fv-module-box-5">
-                    <div class="fv-h5dnd-modules-title-box">
-                        <p class="fv-h5dnd-modules-title" data-title="fv-financing-and-margin-balance-difference-trend-title">融资余额与融券余额差值走势</p>
-                    </div>
-                    <div class="fv-financing-and-margin-balance-difference-trend-container">
-                        <!-- 融资余额与融券余额差值走势 placeholder -->
-                        <div id="financing_and_margin_balance_difference_trend_hs_container" class="fv-financing-and-margin-balance-difference-trend-hs fv-financing-and-margin-balance-difference-trend-hs-container" data-hs-container="data-financing-and-margin-balance-difference-trend-container-uid"></div>
-                    </div>
-                </section>
             `;
             break;
         case "otcperfast09":
@@ -1335,7 +1294,7 @@ OTC_F9_FV.Modules.modulesLoader = OTC_F9_FV.Modules.modulesLoader ||(
 )();
 
 // init
-setTimeout(function() {
+setTimeout(() => {
     OTC_F9_FV.Modules.modulesLoader.init();
 }, 0);
 

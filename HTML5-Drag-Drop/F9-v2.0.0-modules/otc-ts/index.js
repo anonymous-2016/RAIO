@@ -4,11 +4,11 @@ const xyz_debug = window.xyz_debug ? window.xyz_debug : false;
 // var debug = false;
 
 // namespaces
-var OTC_F9_FV = OTC_F9_FV || {};
+var OTC_TS_FV = OTC_TS_FV || {};
 // sub namespaces
-OTC_F9_FV.Utils = OTC_F9_FV.Utils || {};
+OTC_TS_FV.Utils = OTC_TS_FV.Utils || {};
 
-OTC_F9_FV.Utils.getParam = OTC_F9_FV.Utils.getParam || ((key, debug = false) => {
+OTC_TS_FV.Utils.getParam = OTC_TS_FV.Utils.getParam || ((key, debug = false) => {
     let search = decodeURIComponent(window.location.search),
         start = search.indexOf("?") + 1,
         value = ``;
@@ -32,7 +32,7 @@ OTC_F9_FV.Utils.getParam = OTC_F9_FV.Utils.getParam || ((key, debug = false) => 
     }
 });
 
-OTC_F9_FV.Utils.DOM_queryAll = OTC_F9_FV.Utils.DOM_queryAll || ((str = `[data-sortable-box*="sortable-box"]`, debug = false) => {
+OTC_TS_FV.Utils.DOM_queryAll = OTC_TS_FV.Utils.DOM_queryAll || ((str = `[data-sortable-box*="sortable-box"]`, debug = false) => {
     let results = document.querySelectorAll(str);
     if (debug) {
         if (results) {
@@ -45,7 +45,7 @@ OTC_F9_FV.Utils.DOM_queryAll = OTC_F9_FV.Utils.DOM_queryAll || ((str = `[data-so
     return results ? results : ``;
 });
 
-OTC_F9_FV.Utils.DOM_query = OTC_F9_FV.Utils.DOM_query || ((str = `[data-sortable-box*="sortable-box"]`, debug = false) => {
+OTC_TS_FV.Utils.DOM_query = OTC_TS_FV.Utils.DOM_query || ((str = `[data-sortable-box*="sortable-box"]`, debug = false) => {
     let result = document.querySelector(str);
     if (debug) {
         if (result) {
@@ -66,12 +66,17 @@ var OTC_GILCODE = OTC_GILCODE || ``;
 
 
 // sub namespaces
-OTC_F9_FV.Modules = OTC_F9_FV.Modules || {};
+OTC_TS_FV.Modules = OTC_TS_FV.Modules || {};
 
 // sidebar
 const initSidebar = () => {
-    let lis = OTC_F9_FV.Utils.DOM_queryAll(`[data-nav-li="nav-li"]`);
-    let divs = OTC_F9_FV.Utils.DOM_queryAll(`[data-nav-box="nav-box"]`);
+    let lis = OTC_TS_FV.Utils.DOM_queryAll(`[data-nav-li="nav-li"]`);
+    let divs = OTC_TS_FV.Utils.DOM_queryAll(`[data-nav-box="nav-box"]`);
+    // let arr = [0,1,2];
+    let arr = [];
+    for (let i = 0; i < lis.length; i++) {
+        arr.push(i);
+    }
     for (let i = 0; i < lis.length; i++) {
         lis[i].addEventListener(`click`, (e) => {
             if (lis[i].classList.contains("h5-dnd-nav-li-active")) {
@@ -80,7 +85,6 @@ const initSidebar = () => {
                 lis[i].classList.remove("h5-dnd-nav-li-hidden");
                 lis[i].classList.remove("add-bottom-margin");
                 lis[i].classList.add("no-bottom-margin");
-                let arr = [0,1,2];
                 arr.map(
                     (item, index) =>{
                         if(item !== i){
@@ -98,7 +102,7 @@ const initSidebar = () => {
             }else{
                 divs[i].classList.add("h5-dnd-nav-box-active");
                 divs[i].classList.remove("h5-dnd-nav-box-hidden");
-                let arr = [0,1,2];
+                // let arr = [0,1,2];
                 arr.map(
                     (item, index) =>{
                         if(item !== i){
@@ -113,11 +117,11 @@ const initSidebar = () => {
         });
     }
     // btns
-    let btn = OTC_F9_FV.Utils.DOM_query(`[data-nav-btn="nav-btn"]`),
-        small_btn = OTC_F9_FV.Utils.DOM_query(`[data-nav-small-btn="nav-small-btn"]`),
-        container = OTC_F9_FV.Utils.DOM_query(`[data-nav-container="nav-container"]`),
-        small_container = OTC_F9_FV.Utils.DOM_query(`[data-nav-small-container="nav-small-container"]`),
-        body_container = OTC_F9_FV.Utils.DOM_query(`[data-body-container="data-body-container"]`);
+    let btn = OTC_TS_FV.Utils.DOM_query(`[data-nav-btn="nav-btn"]`),
+        small_btn = OTC_TS_FV.Utils.DOM_query(`[data-nav-small-btn="nav-small-btn"]`),
+        container = OTC_TS_FV.Utils.DOM_query(`[data-nav-container="nav-container"]`),
+        small_container = OTC_TS_FV.Utils.DOM_query(`[data-nav-small-container="nav-small-container"]`),
+        body_container = OTC_TS_FV.Utils.DOM_query(`[data-body-container="data-body-container"]`);
 
     btn.onclick = () => {
         if (container.classList.contains("h5-dnd-nav-container-normal")) {
@@ -163,8 +167,8 @@ const initSidebar = () => {
 // tabs
 const initTabs = () => {
     let btn_universal = document.querySelector(`[data-uid="universal"]`),
-        btn_customize = document.querySelector(`[data-uid="customize"]`),
-        btn_module_setting = document.querySelector(`[data-uid="module-setting"]`);
+        btn_customize = document.querySelector(`[data-uid="customize"]`);
+        // btn_module_setting = document.querySelector(`[data-uid="module-setting"]`);
     let a_modules = document.querySelector(`[data-uid="modules-a-link"]`);
     const sortable_module_containers = document.querySelectorAll(`[data-sortable-box*="sortable-box"]`);
     btn_universal.onclick = (e) => {
@@ -173,18 +177,18 @@ const initTabs = () => {
         // 最新交易数据 latest-transaction-data
         let left_uids = ["otcperfast01", "otcperfast02", "news", "research", "otcperfast07", "otcperfast08","otcperfast09","otcperfast11"];
         let right_uids = ["otcperfast03", "bulletin", "otcperfast04", "otcperfast05","otcperfast06", "otcperfast10","otcperfast12","otcperfast13",];
-        OTC_F9_FV.Modules.loadAllModules.init(sortable_module_containers[0], left_uids);
-        OTC_F9_FV.Modules.loadAllModules.init(sortable_module_containers[1], right_uids);
+        OTC_TS_FV.Modules.loadAllModules.init(sortable_module_containers[0], left_uids);
+        OTC_TS_FV.Modules.loadAllModules.init(sortable_module_containers[1], right_uids);
     }
     btn_customize.onclick = (e) => {
         sortable_module_containers[0].innerHTML = "";
         sortable_module_containers[1].innerHTML = "";
         a_modules.click();
     }
-    btn_module_setting.addEventListener(`click`, (e) => {
-        const title = `Sorry for that, it still in developing!`;
-        alert(`😃😃😃Coming soon ... 😧😒😟\n ${title}`);
-    });
+    // btn_module_setting.addEventListener(`click`, (e) => {
+    //     const title = `Sorry for that, it still in developing!`;
+    //     alert(`😃😃😃Coming soon ... 😧😒😟\n ${title}`);
+    // });
 };
 
 
@@ -194,10 +198,10 @@ window.onload = () => {
     initTabs();
     OTC_IP = `${window.parent.location.origin}`;
     OTC_PATH = `/webservice/fastview/otcper`;
-    OTC_GILCODE = OTC_F9_FV.Utils.getParam(`gilcode`) ? OTC_F9_FV.Utils.getParam(`gilcode`) : `430002.OC`;
+    OTC_GILCODE = OTC_TS_FV.Utils.getParam(`gilcode`) ? OTC_TS_FV.Utils.getParam(`gilcode`) : `430002.OC`;
     // OTC_SOCKET = ``;
     console.log(`OTC_GILCODE `, OTC_GILCODE, typeof OTC_GILCODE);
-    // OTC_GILCODE = OTC_F9_FV.Utils.getParam(`gilcode`);
+    // OTC_GILCODE = OTC_TS_FV.Utils.getParam(`gilcode`);
     // OTC_IP = `${window.parent.location.protocol}//${window.parent.location.host}`;
     // OTC_IP = `http://${window.parent.location.origin}`;
     // OTC_Paths = `/webservice/fastview/otcper`;
@@ -934,7 +938,7 @@ const deleteModule = () => {
  * @param {* Boolean} debug
  */
 
-OTC_F9_FV.Modules.loadAllModules = OTC_F9_FV.Modules.loadAllModules || (
+OTC_TS_FV.Modules.loadAllModules = OTC_TS_FV.Modules.loadAllModules || (
     (sortable_container = `sortable_container`,debug = false) => {
         /**
          *
@@ -960,7 +964,7 @@ OTC_F9_FV.Modules.loadAllModules = OTC_F9_FV.Modules.loadAllModules || (
                     sub_div.firstChild.addEventListener(`click`, (e) => {
                         let uid = e.target.dataset.deleteModuleUid;
                         // OK
-                        OTC_F9_FV.Modules.modulesLoader.deleteModule(uid);
+                        OTC_TS_FV.Modules.modulesLoader.deleteModule(uid);
                         // call delete
                     });
                     div.dataset.divModuleUid = `div-module-${uid}`;
@@ -1000,7 +1004,7 @@ OTC_F9_FV.Modules.loadAllModules = OTC_F9_FV.Modules.loadAllModules || (
 
 
 // IIFE === Closure!
-OTC_F9_FV.Modules.modulesLoader = OTC_F9_FV.Modules.modulesLoader ||(
+OTC_TS_FV.Modules.modulesLoader = OTC_TS_FV.Modules.modulesLoader ||(
     (debug = false) => {
         let module_datas = document.querySelectorAll(`[data-icon-uid*="module-data"]`),
             module_container = document.querySelector(`[data-div-inner-box="data-div-inner-box"]`),
@@ -1134,7 +1138,7 @@ OTC_F9_FV.Modules.modulesLoader = OTC_F9_FV.Modules.modulesLoader ||(
                 // sub img
                 sub_div.firstChild.addEventListener(`click`, (e) => {
                     let uid = e.target.dataset.deleteModuleUid;
-                    OTC_F9_FV.Modules.modulesLoader.deleteModule(uid);
+                    OTC_TS_FV.Modules.modulesLoader.deleteModule(uid);
                 });
                 // icons
                 div.dataset.divModuleUid = `div-module-${uid}`;
@@ -1199,14 +1203,14 @@ OTC_F9_FV.Modules.modulesLoader = OTC_F9_FV.Modules.modulesLoader ||(
             },
             init: function() {
                 for (let index = 0; index < module_datas.length; index++) {
-                    module_datas[index].addEventListener(`dragstart`, OTC_F9_FV.Modules.modulesLoader.dragstart);
+                    module_datas[index].addEventListener(`dragstart`, OTC_TS_FV.Modules.modulesLoader.dragstart);
                 }
                 for (let i = 0; i < module_containers.length; i++) {
-                    module_containers[i].addEventListener(`dragenter`, OTC_F9_FV.Modules.modulesLoader.dragenter);
-                    module_containers[i].addEventListener(`dragover`, OTC_F9_FV.Modules.modulesLoader.dragover);
-                    module_containers[i].addEventListener(`dragleave`, OTC_F9_FV.Modules.modulesLoader.dragleave);
+                    module_containers[i].addEventListener(`dragenter`, OTC_TS_FV.Modules.modulesLoader.dragenter);
+                    module_containers[i].addEventListener(`dragover`, OTC_TS_FV.Modules.modulesLoader.dragover);
+                    module_containers[i].addEventListener(`dragleave`, OTC_TS_FV.Modules.modulesLoader.dragleave);
                     // dragleave
-                    module_containers[i].addEventListener(`drop`, OTC_F9_FV.Modules.modulesLoader.drop);
+                    module_containers[i].addEventListener(`drop`, OTC_TS_FV.Modules.modulesLoader.drop);
                 }
             }
         };
@@ -1215,6 +1219,6 @@ OTC_F9_FV.Modules.modulesLoader = OTC_F9_FV.Modules.modulesLoader ||(
 
 // init
 setTimeout(function() {
-    OTC_F9_FV.Modules.modulesLoader.init();
+    OTC_TS_FV.Modules.modulesLoader.init();
 }, 0);
 

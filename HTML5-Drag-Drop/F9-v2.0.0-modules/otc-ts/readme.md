@@ -1,35 +1,19 @@
-# New Three Boards
+# namespaces
 
-E:\github\RAIO\HTML5-Drag-Drop\新三板F9\readme.md
+> OTC_TS_FV
 
+OTC_TS_FV.Modules
 
+OTC_TS_FV.Utils
 
-
-> 新三板速览web
-
-http://jira.gildata.com:8888/browse/GFT-393
-
-file:///E:/github/projects/D2Designs/%E6%96%B0%E4%B8%89%E6%9D%BF/%E6%96%B0%E4%B8%89%E6%9D%BFF9/F9%E5%8E%9F%E5%9E%8B%EF%BC%882016-11-02%EF%BC%89/index.html#g=1&p=f9栏目&c=1
-
-http://10.1.64.125/otc/sulan/otcsulan.html
-
-
-## namespaces
-
-> NTB_F9
-
-NTB_F9.Modules
-
-NTB_F9.Utils
-
-NTB_F9.Helper
+OTC_TS_FV.Helper
 
 
 # 新三板专题统计
 
 > namespaces
 
-file:///E:/github/projects/D2Designs/%E6%96%B0%E4%B8%89%E6%9D%BF/%E6%96%B0%E4%B8%89%E6%9D%BF%E4%B8%93%E9%A2%98%E7%BB%9F%E8%AE%A1/%E5%8E%9F%E5%9E%8B%E7%BD%91%E9%A1%B5/index.html#g=1&p=三板速览
+
 
 http://jira.gildata.com:8888/browse/GFT-430
 
@@ -48,7 +32,7 @@ http://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/sample
 "use strict";
 
 /**
- * @namespace NSB_TS_FV : New San Ban Thematic Statistics
+ * @namespace OTC_TS_FV : New San Ban Thematic Statistics
  * @name newly-added-listing 新增挂牌
  * @createed 2017.11.07
  * @author xgqfrms
@@ -62,22 +46,22 @@ http://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/sample
  */
 
 // namespaces
-var NSB_TS_FV = NSB_TS_FV || {};
+var OTC_TS_FV = OTC_TS_FV || {};
 
 // sub namespaces
-NSB_TS_FV.Modules = NSB_TS_FV.Modules || {};
-NSB_TS_FV.Utils = NSB_TS_FV.Utils || {};
-NSB_TS_FV.Helper = NSB_TS_FV.Helper || {};
+OTC_TS_FV.Modules = OTC_TS_FV.Modules || {};
+OTC_TS_FV.Utils = OTC_TS_FV.Utils || {};
+OTC_TS_FV.Helper = OTC_TS_FV.Helper || {};
 
 /*
 
-NSB_TS_FV.Modules.newlyAddedListing = NSB_TS_FV.Modules.newlyAddedListing || (() => console.log(`module testing!`));
+OTC_TS_FV.Modules.newlyAddedListing = OTC_TS_FV.Modules.newlyAddedListing || (() => console.log(`module testing!`));
 // () => console.log(`module testing!`)
 
-typeof NSB_TS_FV.Modules.newlyAddedListing
+typeof OTC_TS_FV.Modules.newlyAddedListing
 // "function"
 
-NSB_TS_FV.Modules.newlyAddedListing();
+OTC_TS_FV.Modules.newlyAddedListing();
 // module testing!
 
 */
@@ -103,7 +87,7 @@ NSB_TS_FV.Modules.newlyAddedListing();
 
 ## fast-preview & path
 
-http://localhost:3000/fast-preview/sidebar.html#模块选择
+http://localhost:3000/fast-preview/index.html#模块选择
 
 ```sh
 
@@ -112,7 +96,7 @@ http://localhost:3000/fast-preview/sidebar.html#模块选择
 
 $ browser-sync start --server --files "./fast-preview/*.*"
 
-# http://localhost:3000/fast-preview/sidebar.html#模块选择
+# http://localhost:3000/fast-preview/index.html#模块选择
 
 ```
 

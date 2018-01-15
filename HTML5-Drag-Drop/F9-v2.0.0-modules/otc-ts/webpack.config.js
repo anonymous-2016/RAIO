@@ -36,30 +36,28 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 const OTC_F9 = [
-    // "latest-transaction-data",
-    // "big-event-reminder",
-    // "company-brief-introduction",
-    // "latest-financial-data",
-    // "company-performance-all",//all
-    // "company-performance-market",
-    // "company-performance-scale",
-    // "company-performance-achievement",
-    // "company-performance-valuation",
-    // "main-management-business",
-    // "equity-shareholder",
-    // "management-layer-profiles",
-    // "company-news",
-    // "company-bulletin",
-    // "research-report"
+    "newly-added-listing",
+    "newly-added-protocol",
+    "transactions-leaderboard",
+    "additional-issues-preplan",
+    "additional-issues-implementation",
+    "dividend-matters-preplan",
+    "dividend-matters-implementation",
+    "listing-situation",
+    "transaction-overview",
+    "turnover-trend-make-market-diagram",
+    // "turnover-trend-protocol-diagram",
+    // "otc-thematic-statistics-news",
+    // "otc-thematic-statistics-bulletin",
 ];
 
 let entry_obj = {};
 
-// OTC_F9.forEach(
-//     (item, i) => {
-//         entry_obj[item] = `${BASE_URI.MODULES}/${item}`;
-//     }
-// );
+OTC_F9.forEach(
+    (item, i) => {
+        entry_obj[item] = `${BASE_URI.MODULES}/${item}`;
+    }
+);
 // index
 entry_obj[BASE_URI.index] = `${BASE_URI.index}`;
 // entry_obj[BASE_URI.test] = `${BASE_URI.test}`;
