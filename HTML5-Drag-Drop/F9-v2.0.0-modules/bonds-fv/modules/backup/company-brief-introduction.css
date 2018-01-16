@@ -1,0 +1,38 @@
+[data-div="div"] {
+    box-sizing: border-box;
+    width: 320px;
+    max-height: 399px;
+    overflow-y: scroll;
+}
+
+[data-rowspan="rowspan0"] {
+    height: 0;
+}
+
+thead,
+tfoot {
+    display: none;
+}
+
+[data-title="p"] {
+    text-align: center;
+    background: #ccc;
+}
+
+tr {
+    background: #f0f;
+    height: 23px;
+    line-height: 23px;
+}
+
+[data-rowspan="otc-CBI-rowspan"] {
+    box-sizing: border-box;
+    width: 320px;
+    /* height: 399px; */
+    /* overflow-y: scroll; */
+    /* float: right; */
+}
+
+[data-table="float-table"] {
+    float: left;
+}

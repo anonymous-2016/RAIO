@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>每股指标</title>
+    <link rel="stylesheet" href="./indicators-per-share.css">
+</head>
+
+<body>
+    <section class="fv-module-box-3">
+        <div class="fv-indicators-per-share-title-box">
+            <p class="fv-indicators-per-share-title">每股指标</p>
+            <!-- <fieldset disabled="disabled"></fieldset> -->
+        </div>
+        <table class="fv-indicators-per-share-table">
+            <thead class="fv-indicators-per-share-table-thead">
+                <tr class="fv-indicators-per-share-table-tr">
+                    <td class="fv-indicators-per-share-table-td-title">每股指标</td>
+                </tr>
+            </thead>
+            <tbody class="fv-indicators-per-share-table-tbody">
+                <!-- 上市公司公告 -->
+                <tr class="fv-indicators-per-share-table-tr" data-tr="tr-background">
+                    <td class="fv-indicators-per-share-table-td-key" title="fbrq 发布日期">上市公司公告</td>
+                    <td class="fv-indicators-per-share-table-td-value" data-value="data-fv-indicators-per-share"></td>
+                </tr>
+                <tr class="fv-indicators-per-share-table-tr">
+                    <td class="fv-indicators-per-share-table-td-key">每股收益-基本(元)</td>
+                    <td class="fv-indicators-per-share-table-td-value" data-value="data-fv-indicators-per-share"></td>
+                </tr>
+                <tr class="fv-indicators-per-share-table-tr">
+                    <td class="fv-indicators-per-share-table-td-key">每股收益-稀释(元)</td>
+                    <td class="fv-indicators-per-share-table-td-value" data-value="data-fv-indicators-per-share"></td>
+                </tr>
+                <tr class="fv-indicators-per-share-table-tr">
+                    <td class="fv-indicators-per-share-table-td-key">每股收益-扣除／基本(元)</td>
+                    <td class="fv-indicators-per-share-table-td-value" data-value="data-fv-indicators-per-share"></td>
+                </tr>
+                <tr class="fv-indicators-per-share-table-tr">
+                    <td class="fv-indicators-per-share-table-td-key" data-alias="每股收益-扣除／稀释(元)">每股收益-扣除／稀释(元)</td>
+                    <td class="fv-indicators-per-share-table-td-value" data-value="data-fv-indicators-per-share"></td>
+                </tr>
+                <tr class="fv-indicators-per-share-table-tr">
+                    <td class="fv-indicators-per-share-table-td-key" data-alias="每股净资产(元)">每股净资产(元)</td>
+                    <td class="fv-indicators-per-share-table-td-value" data-value="data-fv-indicators-per-share"></td>
+                </tr>
+                <tr class="fv-indicators-per-share-table-tr">
+                    <td class="fv-indicators-per-share-table-td-key">每股经营活动产生的现金流量净额(元)</td>
+                    <td class="fv-indicators-per-share-table-td-value" data-value="data-fv-indicators-per-share"></td>
+                </tr>
+                <!-- class="fv-indicators-per-share-table-tr-spaces"  -->
+                <tr data-tr="tr-spaces">
+                    <!-- <td></td>
+                    <td></td> -->
+                </tr>
+                <!-- 聚源计算 -->
+                <tr class="fv-indicators-per-share-table-tr" data-tr="tr-background">
+                    <td class="fv-indicators-per-share-table-td-key">聚源计算</td>
+                    <td class="fv-indicators-per-share-table-td-value" data-value="data-fv-indicators-per-share"></td>
+                </tr>
+                <tr class="fv-indicators-per-share-table-tr">
+                    <td class="fv-indicators-per-share-table-td-key">每股收益-期末股本摊薄(元)</td>
+                    <td class="fv-indicators-per-share-table-td-value" data-value="data-fv-indicators-per-share"></td>
+                </tr>
+                <tr class="fv-indicators-per-share-table-tr">
+                    <td class="fv-indicators-per-share-table-td-key">每股收益-扣除/期末股本摊薄(元)</td>
+                    <td class="fv-indicators-per-share-table-td-value" data-value="data-fv-indicators-per-share"></td>
+                </tr>
+                <tr class="fv-indicators-per-share-table-tr">
+                    <td class="fv-indicators-per-share-table-td-key">每股营业总收入(元)</td>
+                    <td class="fv-indicators-per-share-table-td-value" data-value="data-fv-indicators-per-share"></td>
+                </tr>
+                <tr class="fv-indicators-per-share-table-tr">
+                    <td class="fv-indicators-per-share-table-td-key">每股营业收入(元)</td>
+                    <td class="fv-indicators-per-share-table-td-value" data-value="data-fv-indicators-per-share"></td>
+                </tr>
+                <tr class="fv-indicators-per-share-table-tr">
+                    <td class="fv-indicators-per-share-table-td-key">每股息税前利润(元)</td>
+                    <td class="fv-indicators-per-share-table-td-value" data-value="data-fv-indicators-per-share"></td>
+                </tr>
+                <tr class="fv-indicators-per-share-table-tr">
+                    <td class="fv-indicators-per-share-table-td-key" data-alias="每股资本公积">每股资本公积(元)</td>
+                    <td class="fv-indicators-per-share-table-td-value" data-value="data-fv-indicators-per-share"></td>
+                </tr>
+                <tr class="fv-indicators-per-share-table-tr">
+                    <td class="fv-indicators-per-share-table-td-key">每股盈余公积(元)</td>
+                    <td class="fv-indicators-per-share-table-td-value" data-value="data-fv-indicators-per-share"></td>
+                </tr>
+                <tr class="fv-indicators-per-share-table-tr">
+                    <td class="fv-indicators-per-share-table-td-key">每股未分配利润(元)</td>
+                    <td class="fv-indicators-per-share-table-td-value" data-value="data-fv-indicators-per-share"></td>
+                </tr>
+                <tr class="fv-indicators-per-share-table-tr">
+                    <td class="fv-indicators-per-share-table-td-key">每股留存收益(元)</td>
+                    <td class="fv-indicators-per-share-table-td-value" data-value="data-fv-indicators-per-share"></td>
+                </tr>
+                <tr class="fv-indicators-per-share-table-tr">
+                    <td class="fv-indicators-per-share-table-td-key">每股现金流量净额(元)</td>
+                    <td class="fv-indicators-per-share-table-td-value" data-value="data-fv-indicators-per-share"></td>
+                </tr>
+                <tr class="fv-indicators-per-share-table-tr">
+                    <td class="fv-indicators-per-share-table-td-key">每股企业自由现金流量(元)</td>
+                    <td class="fv-indicators-per-share-table-td-value" data-value="data-fv-indicators-per-share"></td>
+                </tr>
+                <tr class="fv-indicators-per-share-table-tr">
+                    <td class="fv-indicators-per-share-table-td-key">每股股东自由现金流量(元)</td>
+                    <td class="fv-indicators-per-share-table-td-value" data-value="data-fv-indicators-per-share"></td>
+                </tr>
+                <!--
+                    <tr class="fv-indicators-per-share-table-tr">
+                        <td class="fv-indicators-per-share-table-td-key">
+                            ["每股指标", "报表格式", "报表类型", "报告期", "发布日期", "上市前后" ]
+                        </td>
+                        <td class="fv-indicators-per-share-table-td-value" data-value="data-fv-indicators-per-share"></td>
+                    </tr>
+                 -->
+            </tbody>
+            <tfoot class="fv-indicators-per-share-table-tfoot">
+                <tr class="fv-indicators-per-share-table-tr">
+                    <td class="fv-indicators-per-share-table-td-value" data-value="data-fv-indicators-per-share"></td>
+                </tr>
+            </tfoot>
+        </table>
+    </section>
+    <script src="./indicators-per-share.js"></script>
+</body>
+
+</html>
