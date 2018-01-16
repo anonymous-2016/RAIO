@@ -175,8 +175,8 @@ const initTabs = () => {
         sortable_module_containers[0].innerHTML = "";
         sortable_module_containers[1].innerHTML = "";
         // 最新交易数据 latest-transaction-data
-        let left_uids = ["otcperfast01", "otcperfast02", "news", "research", "otcperfast07", "otcperfast08","otcperfast09","otcperfast11"];
-        let right_uids = ["otcperfast03", "bulletin", "otcperfast04", "otcperfast05","otcperfast06", "otcperfast10","otcperfast12","otcperfast13",];
+        let left_uids = [ "news", "research"];
+        let right_uids = ["bulletin", "otcperfast06", "otcperfast10"];
         OTC_TS_FV.Modules.loadAllModules.init(sortable_module_containers[0], left_uids);
         OTC_TS_FV.Modules.loadAllModules.init(sortable_module_containers[1], right_uids);
     }

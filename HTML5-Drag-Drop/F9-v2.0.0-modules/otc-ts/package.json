@@ -7,7 +7,7 @@
     "scripts": {
         "app": "npm run rmrf && webpack -p",
         "prod": "webpack -p",
-        "dev": "webpack -p -w",
+        "dev": "npm run rmrf && webpack -p -w",
         "page": "cd modules && browser-sync start --server --files './*.html'",
         "index": "browser-sync start --server --files './index.html'",
         "dev & prod": "??? webpack --config webpack.prod.js ???",
