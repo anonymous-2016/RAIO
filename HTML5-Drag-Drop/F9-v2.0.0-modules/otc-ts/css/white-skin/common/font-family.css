@@ -1,0 +1,28 @@
+@charset "UTF-8";
+
+/* @import url("./common/font-family.css"); */
+
+* {
+    font-family: "Microsoft YaHei", sans-serif;
+}
+
+
+/* json-viewer */
+
+.CodeMirror {
+    font-family: monaco, Consolas, Menlo, Courier, monospace;
+    font-size: 16px;
+    line-height: 1.5em;
+}
+
+
+/*
+
+body {
+    background: #ffffff none repeat scroll 0 0;
+    color: #484848;
+    font-family: "宋体", Arial;
+    font-size: 12px;
+}
+
+*/

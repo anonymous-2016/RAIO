@@ -34,6 +34,41 @@ OTC_TS_FV.Modal
     bulletion	公司公告 otc-thematic-statistics-bulletin
 
 
+
+big-event-reminder.png
+company-brief-introduction.png
+company-bulletin.png
+company-news.png
+company-performance.png
+equity-shareholder.png
+latest-financial-data.png
+latest-transaction-data.png
+main-management-business.png
+management-layer-profiles.png
+research-report.png
+
+btn-icon.png
+customize.png
+universal.png
+delete-icon.png
+
+additional-issues.png
+dividend-matters.png
+listing-situation.png
+
+newly-added-listing.png
+newly-added-protocol.png
+transaction-overview.png
+transactions-leaderboard.png
+turnover-trend.png
+
+otc-ts-news.png
+otc-ts-bulletin.png
+
+otc-thematic-statistics-bulletin.png
+
+
+
 ## API
 
 http://10.1.5.202/webservice/fastview/otc/参数
@@ -229,19 +264,19 @@ Object.values(obj).slice(1);
         "xwsj": "新闻时间",
         "newid": "564580757615"
     },
-    "bulletion": {
+    "bulletin": {
         name: "公告",
         "gsggtitle": "公告标题",
         "gsggsj": "公告时间",
         "id": "1000000099090907",
         "fileType": "pdf"
     }
-    // bulletin 公告
 }
 
+    // bulletin 公告
 
 Object.keys(obj);
-// ["otcfast01", "otcfast02", "otcfast03", "otcfast04", "otcfast05", "otcfast06", "otcfast07", "otcfast08", "otcfast09", "otcfast10", "otcfast11", "news", "bulletion"]
+// ["otcfast01", "otcfast02", "otcfast03", "otcfast04", "otcfast05", "otcfast06", "otcfast07", "otcfast08", "otcfast09", "otcfast10", "otcfast11", "news", "bulletin"]
 
 
 ```

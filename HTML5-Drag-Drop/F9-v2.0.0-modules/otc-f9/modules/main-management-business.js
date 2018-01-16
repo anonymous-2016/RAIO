@@ -336,11 +336,11 @@ OTC_F9_FV.Modules.mainManagementBusiness.drawHS = OTC_F9_FV.Modules.mainManageme
                 // min: 0,
                 // max: 8,
                 // xAxis datas
-                labels: {
-                    autoRotation: [0],// autoRotation:'false',
-                    // step: 2,
-                    step: 1
-                },
+                // labels: {
+                //     autoRotation: [0],// autoRotation:'false',
+                //     // step: 2,
+                //     step: 1
+                // },
                 // plotLines: [{
                 //     color: 'black',
                 //     dashStyle: 'dot',
@@ -647,11 +647,11 @@ OTC_F9_FV.Modules.mainManagementBusiness.drawHS2 = OTC_F9_FV.Modules.mainManagem
                 // min: 0,
                 // max: 8,
                 // xAxis datas
-                labels: {
-                    autoRotation: [0],// autoRotation:'false',
-                    // step: 2,
-                    step: 1
-                },
+                // labels: {
+                //     autoRotation: [0],// autoRotation:'false',
+                //     // step: 2,
+                //     step: 1
+                // },
                 // plotLines: [{
                 //     color: 'black',
                 //     dashStyle: 'dot',
@@ -904,7 +904,9 @@ var OTC_IP = window.OTC_IP || `http://10.1.5.202`,
     OTC_SKIN = window.OTC_SKIN || `black`,
     // OTC_GILCODE = window.OTC_GILCODE || `834380.OC`;
     // OTC_GILCODE = window.OTC_GILCODE || `430009.OC`;
-    OTC_GILCODE = window.OTC_GILCODE || `430002.OC`;
+    // OTC_GILCODE = window.OTC_GILCODE || `430002.OC`;
+    // OTC_GILCODE = window.OTC_GILCODE || `832745.OC`;
+    OTC_GILCODE = window.OTC_GILCODE || `833979.OC`;
 
 
 OTC_F9_FV.Modules.mainManagementBusiness.init({

@@ -1,0 +1,45 @@
+@charset "UFT-8";
+
+/* company-performance-all */
+
+
+/* commons */
+
+
+/* @import url("./tabs/tabs.css");
+@import url("../css/common/no-data.css"); */
+
+
+/* css */
+
+@import url("./company-performance-market.css");
+@import url("./company-performance-scale.css");
+@import url("./company-performance-achievement.css");
+@import url("./company-performance-valuation.css");
+
+/* title */
+
+[data-title="otc-company-performance-all-title"] {
+    /*  */
+}
+
+[data-link="otc-company-performance-all-link"]>a {
+    color: #3285ff;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: normal;
+    float: right;
+    margin-top: 3px;
+}
+
+[data-link="otc-company-performance-all-link"]>a:hover {
+    color: #f50;
+}
+
+[data-more="otc-main-management-business-link-more"]>a:hover {
+    color: #f50;
+}
+
+[data-link="otc-main-management-business-link"]>a:hover {
+    color: #f50;
+}

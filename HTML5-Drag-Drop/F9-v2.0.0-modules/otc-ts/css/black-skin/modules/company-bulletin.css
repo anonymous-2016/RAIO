@@ -1,0 +1,212 @@
+@charset "UFT-8";
+
+/* company-bulletin */
+
+
+/* thead, */
+
+thead.otc-company-bulletin-table-thead {
+    display: table-header-group;
+}
+
+tfoot.otc-company-bulletin-table-tfoot {
+    display: none;
+}
+
+html,
+body,
+section,
+div,
+table {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+thead,
+tfoot,
+tr,
+td {
+    padding: 0;
+    margin: 0;
+    border: 0;
+}
+
+section.otc-module-box-5 {
+    box-sizing: border-box;
+    float: left;
+    /* margin-top: 6px;
+    margin-bottom: 6px; */
+    width: 540px;
+    /* min-height: 127px; */
+}
+
+table.otc-company-bulletin-table {
+    box-sizing: border-box;
+    width: 540px;
+    max-width: 540px;
+    min-width: 540px;
+    /* height: 127px; */
+    background: #25292e;
+    border-collapse: collapse;
+    border-spacing: 0;
+    font-size: 12px;
+    font-weight: normal;
+    color: #bbc1c7;
+}
+
+
+/* font height & 0.5px * 2 ??? */
+
+tr.otc-company-bulletin-table-tr {
+    box-sizing: border-box;
+    height: 23px;
+    line-height: 23px;
+}
+
+[data-title-text="otc-company-bulletin-title-text"] {
+    color: #4d4d4d;
+    font-size: 12px;
+    font-weight: normal;
+}
+
+td.otc-company-bulletin-table-td-key {
+    box-sizing: border-box;
+    color: #4d4d4d;
+    /* background: #e8eefa; */
+    font-size: 12px;
+    width: 395px;
+    min-width: 395px;
+    max-width: 395px;
+    height: 23px;
+    line-height: 23px;
+    text-align: left;
+    text-indent: 4px;
+    font-size: 12px;
+    font-family: SimSun, serif, sans-serif;
+}
+
+td.otc-company-bulletin-table-td-value {
+    box-sizing: border-box;
+    width: 70px;
+    min-width: 70px;
+    max-width: 70px;
+    height: 23px;
+    line-height: 23px;
+    text-align: center;
+    font-size: 12px;
+    font-family: SimSun, serif, sans-serif;
+}
+
+tbody.otc-company-bulletin-table-tbody>tr {
+    background: #25292e;
+}
+
+
+/* tbody.otc-company-bulletin-table-tbody>tr.otc-company-bulletin-table-tr>td:nth-of-type(2) {
+    font-size: 12px;
+    font-family: SimSun, serif, sans-serif;
+} */
+
+tbody.otc-company-bulletin-table-tbody>tr:nth-of-type(2n) {
+    background: #25292e;
+    border: 1px solid #4a4c4f;
+}
+
+tbody.otc-company-bulletin-table-tbody>tr:nth-of-type(1) {
+    /* border-top: 1px solid #4a4c4f; */
+}
+
+tbody.otc-company-bulletin-table-tbody>tr:nth-of-type(5) {
+    border-bottom: 1px solid #4a4c4f;
+}
+
+tr.otc-company-bulletin-table-tr>td:nth-of-type(1) {
+    /* border-left: 1px solid #4a4c4f; */
+    /* border-right: 1px solid #e9e9e9; */
+    /* border-bottom: 1px solid #c5d2db; */
+}
+
+tbody.otc-company-bulletin-table-tbody>tr.otc-company-bulletin-table-tr>td:nth-of-type(1) {
+    box-sizing: border-box;
+    overflow: hidden;
+    word-wrap: break-word;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    text-align: left;
+    text-indent: 4px;
+    border: 1px solid #4a4c4f;
+}
+
+tr.otc-company-bulletin-table-tr>td:nth-of-type(3) {
+    border-left: 1px solid #e9e9e9;
+    border-right: 1px solid #c5d2db;
+    /* border-bottom: 1px solid #c5d2db; */
+}
+
+tr.otc-company-bulletin-table-tr>td:nth-last-of-type(1) {
+    border-right: 1px solid #4a4c4f;
+}
+
+tr.otc-company-bulletin-table-tr>td:nth-of-type(4) {
+    border-right: 1px solid #d7dbe0;
+}
+
+[data-more="otc-company-bulletin-link"]>a {
+    color: #3285ff;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: normal;
+    margin-right: 54px;
+    float: right;
+    margin-top: 3px;
+}
+
+[data-more="otc-company-bulletin-link"]>a:hover {
+    color: #f50;
+}
+
+thead.otc-company-bulletin-table-thead>tr.otc-company-bulletin-table-tr {
+    box-sizing: border-box;
+    background: #31373d;
+    border: 1px solid #4a4c4f;
+    text-align: center;
+}
+
+thead.otc-company-bulletin-table-thead>tr.otc-company-bulletin-table-tr>td.otc-company-bulletin-table-td-title:nth-of-type(n) {
+    box-sizing: border-box;
+    font-size: 12px;
+    height: 23px;
+    line-height: 23px;
+    text-align: center;
+    width: 70px;
+    min-width: 70px;
+    max-width: 70px;
+}
+
+thead.otc-company-bulletin-table-thead>tr.otc-company-bulletin-table-tr>td.otc-company-bulletin-table-td-title:nth-of-type(1) {
+    width: 395px;
+    min-width: 395px;
+    max-width: 395px;
+    text-indent: 4px;
+}
+
+thead.otc-company-bulletin-table-thead>tr.otc-company-bulletin-table-tr>td:nth-of-type(1),
+thead.otc-company-bulletin-table-thead>tr.otc-company-bulletin-table-tr>td:nth-of-type(2) {
+    border-right: 1px solid #4a4c4f;
+}
+
+a[data-link="otc-company-bulletin-link"] {
+    color: #3285ff;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: normal;
+    margin-right: 54px;
+}
+
+a[data-link="otc-company-bulletin-link"]:hover {
+    color: #f50;
+}
+
+
+/* document.querySelectorAll(`[data-tbody="otc-equity-shareholder-table-tbody"]`); */

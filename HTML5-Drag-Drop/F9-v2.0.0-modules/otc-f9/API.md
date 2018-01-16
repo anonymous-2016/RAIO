@@ -59,6 +59,28 @@
 
 
 
+[data-layerContianer="layerContianer"] {
+    height: calc(100% - 35px);
+    background: #1c2024;
+    text-align: center;
+    color: #fff;
+}
+
+a:hover{
+    color: #3385ff;
+}
+
+
+span.fontBtn>a:hover{
+    background: #2196F3;
+}
+
+title{
+    color: #616a87;
+}
+
+
+
 ```
 
 
