@@ -1,6 +1,6 @@
 // import {DOM_queryAll, DOM_query} from "./utils/DOM";
 
-const xyz_debug = window.xyz_debug ? window.xyz_debug : false;
+// const xyz_debug = window.xyz_debug ? window.xyz_debug : false;
 // var debug = false;
 
 // namespaces
@@ -63,6 +63,7 @@ var OTC_IP = OTC_IP || ``;
 var OTC_PATH = OTC_PATH || ``;
 // var OTC_SOCKET = OTC_SOCKET || ``;
 var OTC_GILCODE = OTC_GILCODE || ``;
+var OTC_SKIN = OTC_SKIN || ``;
 
 
 // sub namespaces
@@ -74,31 +75,44 @@ const initSidebar = () => {
     let divs = OTC_TS_FV.Utils.DOM_queryAll(`[data-nav-box="nav-box"]`);
     // let arr = [0,1,2];
     let arr = [];
-    for (let i = 0; i < lis.length; i++) {
-        arr.push(i);
+    for (let ii = 0; ii < lis.length; ii++) {
+        arr.push(ii);
     }
+    console.log(`arr = `, arr);
+    // [0, 1, 2]
     for (let i = 0; i < lis.length; i++) {
+        console.log(`i = `, i);
+        // console.log(`lis[i] = `, lis[i]);
         lis[i].addEventListener(`click`, (e) => {
+            console.log(`e.target = `, e.target);// li ? li : a
+            // console.log(`e.target.parent = `, e.target.parent);// undefined
+            // console.log(`e.target.parentNode = `, e.target.parentNode);// li
+            console.log(`lis[i] = `, lis[i], i);// 2 ????
             if (lis[i].classList.contains("h5-dnd-nav-li-active")) {
+                // do nothing
             }else{
                 lis[i].classList.add("h5-dnd-nav-li-active");
                 lis[i].classList.remove("h5-dnd-nav-li-hidden");
-                lis[i].classList.remove("add-bottom-margin");
                 lis[i].classList.add("no-bottom-margin");
+                lis[i].classList.remove("add-bottom-margin");
+                // let arr = [0,1,2];
                 arr.map(
                     (item, index) =>{
+                        console.log(`item = `, item);
+                        console.log(`index = `, index);
                         if(item !== i){
                             if (lis[item].classList.contains(`h5-dnd-nav-li-active`)) {
-                                lis[item].classList.remove("no-bottom-margin");
                                 lis[item].classList.add("add-bottom-margin");
-                                lis[item].classList.remove("h5-dnd-nav-li-active");
+                                lis[item].classList.remove("no-bottom-margin");
                                 lis[item].classList.add("h5-dnd-nav-li-hidden");
+                                lis[item].classList.remove("h5-dnd-nav-li-active");
                             }
                         }
                     }
                 );
             };
             if (divs[i].classList.contains(`h5-dnd-nav-box-active`)) {
+                // do nothing
             }else{
                 divs[i].classList.add("h5-dnd-nav-box-active");
                 divs[i].classList.remove("h5-dnd-nav-box-hidden");
@@ -116,7 +130,7 @@ const initSidebar = () => {
             };
         });
     }
-    // btns
+    // btns & containers
     let btn = OTC_TS_FV.Utils.DOM_query(`[data-nav-btn="nav-btn"]`),
         small_btn = OTC_TS_FV.Utils.DOM_query(`[data-nav-small-btn="nav-small-btn"]`),
         container = OTC_TS_FV.Utils.DOM_query(`[data-nav-container="nav-container"]`),
@@ -124,6 +138,7 @@ const initSidebar = () => {
         body_container = OTC_TS_FV.Utils.DOM_query(`[data-body-container="data-body-container"]`);
 
     btn.onclick = () => {
+        // container
         if (container.classList.contains("h5-dnd-nav-container-normal")) {
             container.classList.add("h5-dnd-nav-container-small");
             container.classList.remove("h5-dnd-nav-container-normal");
@@ -131,6 +146,7 @@ const initSidebar = () => {
             container.classList.remove("h5-dnd-nav-container-small");
             container.classList.add("h5-dnd-nav-container-normal");
         }
+        // small_container
         if (small_container.classList.contains("h5-dnd-nav-small-btn-hidden")) {
             small_container.classList.add("h5-dnd-nav-small-btn-show");
             small_container.classList.remove("h5-dnd-nav-small-btn-hidden");
@@ -138,6 +154,7 @@ const initSidebar = () => {
             small_container.classList.add("h5-dnd-nav-small-btn-hidden");
             small_container.classList.remove("h5-dnd-nav-small-btn-show");
         }
+        // body_container
         if (body_container.classList.contains("h5-dnd-body-container-small")) {
             body_container.classList.remove("h5-dnd-body-container-small");
             body_container.classList.add("h5-dnd-body-container-big");
@@ -164,6 +181,9 @@ const initSidebar = () => {
         }
     };
 };
+
+
+
 // tabs
 const initTabs = () => {
     let btn_universal = document.querySelector(`[data-uid="universal"]`),
@@ -175,7 +195,7 @@ const initTabs = () => {
         sortable_module_containers[0].innerHTML = "";
         sortable_module_containers[1].innerHTML = "";
         // 最新交易数据 latest-transaction-data
-        let left_uids = [ "news", "research"];
+        let left_uids = ["news", "research"];
         let right_uids = ["bulletin", "otcperfast06", "otcperfast10"];
         OTC_TS_FV.Modules.loadAllModules.init(sortable_module_containers[0], left_uids);
         OTC_TS_FV.Modules.loadAllModules.init(sortable_module_containers[1], right_uids);
@@ -191,7 +211,7 @@ const initTabs = () => {
     // });
 };
 
-
+// http://localhost:3000/?gilcode=430002.OC&skin=black
 
 window.onload = () => {
     initSidebar();
@@ -199,12 +219,10 @@ window.onload = () => {
     OTC_IP = `${window.parent.location.origin}`;
     OTC_PATH = `/webservice/fastview/otcper`;
     OTC_GILCODE = OTC_TS_FV.Utils.getParam(`gilcode`) ? OTC_TS_FV.Utils.getParam(`gilcode`) : `430002.OC`;
+    OTC_SKIN = OTC_TS_FV.Utils.getParam(`gilcode`) ? OTC_TS_FV.Utils.getParam(`skin`) : `white`;
     // OTC_SOCKET = ``;
     console.log(`OTC_GILCODE `, OTC_GILCODE, typeof OTC_GILCODE);
-    // OTC_GILCODE = OTC_TS_FV.Utils.getParam(`gilcode`);
-    // OTC_IP = `${window.parent.location.protocol}//${window.parent.location.host}`;
-    // OTC_IP = `http://${window.parent.location.origin}`;
-    // OTC_Paths = `/webservice/fastview/otcper`;
+    console.log(`OTC_SKIN `, OTC_SKIN, typeof OTC_SKIN);
 };
 
 
