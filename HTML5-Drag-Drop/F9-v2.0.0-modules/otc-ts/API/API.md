@@ -98,6 +98,8 @@ http://10.1.5.202/webservice/fastview/otc/otcfast10
 http://10.1.5.202/webservice/fastview/otc/news
 http://10.1.5.202/webservice/fastview/otc/bulletion
 
+http://10.1.5.202/webservice/fastview/otc/bulletin
+
 
 
 http://10.1.5.202/webservice/fastview/stock/stockfast01/600570.SH
@@ -153,7 +155,40 @@ Object.values(obj).slice(1);
 // ["挂牌家数", "证券代码", "证券简称", "所属行业", "主板券商", "每股收益", "每股净资产", "净利润同比增长", "净资产收益率", "总股本", "流通股本"]
 
 
+/* 
+    otcfast01	新增挂牌 newly-added-listing
+    otcfast02	新增协议 newly-added-protocol // No Data
+    otcfast03	交易排行榜 transactions-leaderboard /trading-rankings
+    交易排行榜 transactions-leaderboard-all
+    (交易排行榜-做市/ 交易排行榜-协议)
+    transactions-leaderboard-make-market
+    transactions-leaderboard-protocol
 
+    otcfast04	增发事项-预案 additional-issues-preplan
+    otcfast05	增发事项-实施 additional-issues-implementation
+    增发事项 additional-issues-all
+
+    otcfast06	分红事项-预案 dividend-matters-preplan
+    otcfast07	分红事项-实施 dividend-matters-implementation
+    分红事项 dividend-matters-all
+
+    otcfast08	挂牌情况 listing-situation
+    otcfast09	成交概况 transaction-overview
+
+    otcfast10	成交走势-做市图 turnover-trend-make-market-diagram
+    otcfast11	成交走势-协议图 turnover-trend-protocol-diagram
+    成交走势 turnover-trend-diagram-all
+
+    news	    公司新闻 otc-thematic-statistics-news
+    bulletion	公司公告 otc-thematic-statistics-bulletin 
+*/
+
+
+http://10.1.5.202/webservice/fastview/otc/otcfast03
+
+http://10.1.5.202/webservice/fastview/otc/news
+
+http://10.1.5.202/webservice/fastview/otc/bulletin
 
 {
     "otcfast01": {
@@ -194,6 +229,28 @@ Object.values(obj).slice(1);
                 "cje": "成交额"
             },
         ],
+        "zs": [
+            {
+                "zqdm": "证券代码",
+                "zqjc": "证券简称",
+                "zdf": "涨跌幅",
+                "cje": "成交额"
+            },
+        ]
+    },
+    "otcfast031": {
+        name: "交易排行榜(协议)",
+        "xy": [
+            {
+                "zqdm": "证券代码",
+                "zqjc": "证券简称",
+                "zdf": "涨跌幅",
+                "cje": "成交额"
+            },
+        ]
+    },
+    "otcfast032": {
+        name: "交易排行榜(做市)",
         "zs": [
             {
                 "zqdm": "证券代码",

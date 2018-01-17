@@ -1,14 +1,12 @@
 // import {DOM_queryAll, DOM_query} from "./utils/DOM";
 
-// const xyz_debug = window.xyz_debug ? window.xyz_debug : false;
-// var debug = false;
+// namespaces & global variable
+window.OTC_TS_FV = window.OTC_TS_FV || {};
 
-// namespaces
-var OTC_F9_FV = OTC_F9_FV || {};
 // sub namespaces
-OTC_F9_FV.Utils = OTC_F9_FV.Utils || {};
+OTC_TS_FV.Utils = OTC_TS_FV.Utils || {};
 
-OTC_F9_FV.Utils.getParam = OTC_F9_FV.Utils.getParam || ((key, debug = false) => {
+OTC_TS_FV.Utils.getParam = OTC_TS_FV.Utils.getParam || ((key, debug = false) => {
     let search = decodeURIComponent(window.location.search),
         start = search.indexOf("?") + 1,
         value = ``;
@@ -39,7 +37,7 @@ OTC_F9_FV.Utils.getParam = OTC_F9_FV.Utils.getParam || ((key, debug = false) => 
 // getParam(`gilcode`);
 // "430003.OC"
 
-OTC_F9_FV.Utils.DOM_queryAll = OTC_F9_FV.Utils.DOM_queryAll || ((str = `[data-sortable-box*="sortable-box"]`, debug = false) => {
+OTC_TS_FV.Utils.DOM_queryAll = OTC_TS_FV.Utils.DOM_queryAll || ((str = `[data-sortable-box*="sortable-box"]`, debug = false) => {
     let results = document.querySelectorAll(str);
     if (debug) {
         if (results) {
@@ -52,7 +50,7 @@ OTC_F9_FV.Utils.DOM_queryAll = OTC_F9_FV.Utils.DOM_queryAll || ((str = `[data-so
     return results ? results : ``;
 });
 
-OTC_F9_FV.Utils.DOM_query = OTC_F9_FV.Utils.DOM_query || ((str = `[data-sortable-box*="sortable-box"]`, debug = false) => {
+OTC_TS_FV.Utils.DOM_query = OTC_TS_FV.Utils.DOM_query || ((str = `[data-sortable-box*="sortable-box"]`, debug = false) => {
     let result = document.querySelector(str);
     if (debug) {
         if (result) {
@@ -74,20 +72,22 @@ window.OTC_SKIN = window.OTC_SKIN || ``;
 
 
 // set params before DOM ready!
-window.OTC_GILCODE = OTC_F9_FV.Utils.getParam(`gilcode`);
-window.OTC_SKIN = OTC_F9_FV.Utils.getParam(`skin`) || `white`;
+window.OTC_GILCODE = OTC_TS_FV.Utils.getParam(`gilcode`);
+window.OTC_SKIN = OTC_TS_FV.Utils.getParam(`skin`) || `white`;
 window.OTC_IP = window.parent.location.origin.includes("http") ? window.parent.location.origin : `http://10.1.5.202`;
 window.OTC_PATH = `/webservice/fastview/otcper`;
 
 
 
 // sub namespaces
-OTC_F9_FV.Modules = OTC_F9_FV.Modules || {};
+OTC_TS_FV.Modules = OTC_TS_FV.Modules || {};
 
 // sidebar
 const initSidebar = () => {
-    let lis = OTC_F9_FV.Utils.DOM_queryAll(`[data-nav-li="nav-li"]`);
-    let divs = OTC_F9_FV.Utils.DOM_queryAll(`[data-nav-box="nav-box"]`);
+    let lis = document.querySelectorAll(`[data-nav-li="nav-li"]`);
+    let divs = document.querySelectorAll(`[data-nav-box="nav-box"]`);
+    // let lis = OTC_TS_FV.Utils.DOM_queryAll(`[data-nav-li="nav-li"]`);
+    // let divs = OTC_TS_FV.Utils.DOM_queryAll(`[data-nav-box="nav-box"]`);
     for (let i = 0; i < lis.length; i++) {
         lis[i].addEventListener(`click`, (e) => {
             if (lis[i].classList.contains("h5-dnd-nav-li-active")) {
@@ -129,11 +129,11 @@ const initSidebar = () => {
         });
     }
     // btns
-    let btn = OTC_F9_FV.Utils.DOM_query(`[data-nav-btn="nav-btn"]`),
-        small_btn = OTC_F9_FV.Utils.DOM_query(`[data-nav-small-btn="nav-small-btn"]`),
-        container = OTC_F9_FV.Utils.DOM_query(`[data-nav-container="nav-container"]`),
-        small_container = OTC_F9_FV.Utils.DOM_query(`[data-nav-small-container="nav-small-container"]`),
-        body_container = OTC_F9_FV.Utils.DOM_query(`[data-body-container="data-body-container"]`);
+    let btn = OTC_TS_FV.Utils.DOM_query(`[data-nav-btn="nav-btn"]`),
+        small_btn = OTC_TS_FV.Utils.DOM_query(`[data-nav-small-btn="nav-small-btn"]`),
+        container = OTC_TS_FV.Utils.DOM_query(`[data-nav-container="nav-container"]`),
+        small_container = OTC_TS_FV.Utils.DOM_query(`[data-nav-small-container="nav-small-container"]`),
+        body_container = OTC_TS_FV.Utils.DOM_query(`[data-body-container="data-body-container"]`);
 
     btn.onclick = () => {
         if (container.classList.contains("h5-dnd-nav-container-normal")) {
@@ -178,7 +178,7 @@ const initSidebar = () => {
     // init
     btn.onclick();
 };
-// tabs
+// tabs & load all default modules
 const initTabs = () => {
     let btn_universal = document.querySelector(`[data-uid="universal"]`),
         btn_customize = document.querySelector(`[data-uid="customize"]`);
@@ -189,12 +189,25 @@ const initTabs = () => {
         sortable_module_containers[0].innerHTML = "";
         sortable_module_containers[1].innerHTML = "";
         // init modules
-        let left_uids = ["otcperfast01", "otcperfast02", "news", "bulletin", "research", "company-all", "otcperfast10"];
-        let right_uids = ["otcperfast03", "otcperfast04", "otcperfast09", "otcperfast11"];
-        // let left_uids = ["otcperfast01", "otcperfast02", "news", "research", "company-all", "otcperfast09", "otcperfast11"];
-        // let right_uids = ["otcperfast03", "bulletin", "otcperfast04", "otcperfast10"];
-        OTC_F9_FV.Modules.loadAllModules.init(sortable_module_containers[0], left_uids);
-        OTC_F9_FV.Modules.loadAllModules.init(sortable_module_containers[1], right_uids);
+        let left_uids = [
+            "otcfast01",
+            "otcfast02",
+            // "otcfast03",
+            "otcfast031",
+            "otcfast032",
+            "otcfastAdditional",
+            "otcfastDividends",
+            "otcfast10"
+        ];
+        let right_uids = [
+            "otcfast08",
+            "otcfast09",
+            "otcfastTransaction",
+            "news",
+            "bulletin"
+        ];
+        OTC_TS_FV.Modules.loadAllModules.init(sortable_module_containers[0], left_uids);
+        OTC_TS_FV.Modules.loadAllModules.init(sortable_module_containers[1], right_uids);
     }
     btn_customize.onclick = (e) => {
         sortable_module_containers[0].innerHTML = "";
@@ -310,323 +323,207 @@ const loadModule = (uid =``, module_uid_name=``, isTable=`false`, debug = false)
 const HTML_Template = (uid = ``, loadModule = function(){}, debug = false) => {
     let htmlstr = ``,
         delete_uid = ``;
+    // let uids = ["otcfast01", "otcfast02", "otcfast03", "otcfastAdditional", "otcfastDividends", "otcfast10", "otcfast08", "otcfast09", "otcfastTransaction", "news", "bulletin"];
+    // data-icon-uid="module-data-otcfastAdditional"
+    /*
+        otcfast01	新增挂牌 newly-added-listing
+        otcfast02	新增协议 newly-added-protocol // No Data
+        otcfast03	交易排行榜 transactions-leaderboard /trading-rankings
+        交易排行榜 transactions-leaderboard-all
+        (交易排行榜-做市/ 交易排行榜-协议)
+        transactions-leaderboard-make-market
+        transactions-leaderboard-protocol
+
+        otcfast04	增发事项-预案 additional-issues-preplan
+        otcfast05	增发事项-实施 additional-issues-implementation
+        增发事项 additional-issues-all
+
+        otcfast06	分红事项-预案 dividend-matters-preplan
+        otcfast07	分红事项-实施 dividend-matters-implementation
+        分红事项 dividend-matters-all
+
+        otcfast08	挂牌情况 listing-situation
+        otcfast09	成交概况 transaction-overview
+
+        otcfast10	成交走势-做市图 turnover-trend-make-market-diagram
+        otcfast11	成交走势-协议图 turnover-trend-protocol-diagram
+        成交走势 turnover-trend-diagram-all
+
+        news	    公司新闻 thematic-statistics-news
+        bulletion	公司公告 thematic-statistics-bulletin
+    */
     switch (uid) {
-        case "otcperfast01":
-            delete_uid = `latest-transaction-data`;
-            loadModule(uid, `latest-transaction-data`, true);
+        case "otcfast01":
+            delete_uid = `newly-added-listing`;
+            loadModule(uid, `newly-added-listing`, true);
             htmlstr += `
                 <section class="otc-module-box-5">
                     <div class="otc-h5dnd-modules-title-box">
-                        <p class="otc-h5dnd-modules-title" data-title="otc-latest-transaction-data-title">
-                            最新交易数据
-                            <span data-title-text="otc-latest-transaction-data-title-text">
-                                    (日期: <span data-text="otc-latest-transaction-data-text"></span>)
+                        <p class="otc-h5dnd-modules-title" data-title="otc-newly-added-listing-title">
+                            新增挂牌
+                            <span data-title-text="otc-newly-added-listing-title-text">
+                                今日新增挂牌公司<span data-text="otc-newly-added-listing-text">xxx</span>家
                             </span>
-                            <span data-link="otc-latest-transaction-data-link">
-                                <a href="#每日交易数据" data-uid="1106" data-turn-to-uid="node-uid-latest-transaction-data">每日交易数据</a>
+                            <span data-link="otc-newly-added-listing-link">
+                                <a href="#更多" data-uid="1106" data-turn-to-uid="node-uid-newly-added-listing">更多</a>
                             </span>
                         </p>
                     </div>
-                    <table class="otc-latest-transaction-data-table">
-                        <thead class="otc-latest-transaction-data-table-thead">
-                            <tr class="otc-latest-transaction-data-table-tr">
-                                <td class="otc-latest-transaction-data-table-td-title">最新交易数据</td>
+                    <table class="otc-newly-added-listing-table">
+                        <thead class="otc-newly-added-listing-table-thead">
+                            <tr class="otc-newly-added-listing-table-tr">
+                                <td class="otc-newly-added-listing-table-td-title">新增挂牌</td>
                             </tr>
                         </thead>
-                        <tbody class="otc-latest-transaction-data-table-tbody">
-                            <tr class="otc-latest-transaction-data-table-tr">
-                                <td class="otc-latest-transaction-data-table-td-key" data-alias="收盘价">收盘价</td>
-                                <td class="otc-latest-transaction-data-table-td-value" data-value="data-otc-LTD"></td>
-                                <td class="otc-latest-transaction-data-table-td-key" data-alias="总市值">总市值(万元)</td>
-                                <td class="otc-latest-transaction-data-table-td-value" data-value="data-otc-LTD"></td>
+                        <tbody class="otc-newly-added-listing-table-tbody">
+                            <tr class="otc-newly-added-listing-table-tr">
+                                <td class="otc-newly-added-listing-table-td-key" data-alias="收盘价">收盘价</td>
+                                <td class="otc-newly-added-listing-table-td-value" data-value="data-otc-LTD"></td>
+                                <td class="otc-newly-added-listing-table-td-key" data-alias="总市值">总市值(万元)</td>
+                                <td class="otc-newly-added-listing-table-td-value" data-value="data-otc-LTD"></td>
                             </tr>
-                            <tr class="otc-latest-transaction-data-table-tr">
-                                <td class="otc-latest-transaction-data-table-td-key" data-alias="涨跌幅">涨跌幅(%)</td>
-                                <td class="otc-latest-transaction-data-table-td-value" data-value="data-otc-LTD"></td>
-                                <td class="otc-latest-transaction-data-table-td-key" data-alias="流通市值">流通市值(万元)</td>
-                                <td class="otc-latest-transaction-data-table-td-value" data-value="data-otc-LTD"></td>
+                            <tr class="otc-newly-added-listing-table-tr">
+                                <td class="otc-newly-added-listing-table-td-key" data-alias="涨跌幅">涨跌幅(%)</td>
+                                <td class="otc-newly-added-listing-table-td-value" data-value="data-otc-LTD"></td>
+                                <td class="otc-newly-added-listing-table-td-key" data-alias="流通市值">流通市值(万元)</td>
+                                <td class="otc-newly-added-listing-table-td-value" data-value="data-otc-LTD"></td>
                             </tr>
-                            <tr class="otc-latest-transaction-data-table-tr">
-                                <td class="otc-latest-transaction-data-table-td-key" data-alias="成交量">成交量(股)</td>
-                                <td class="otc-latest-transaction-data-table-td-value" data-value="data-otc-LTD"></td>
-                                <td class="otc-latest-transaction-data-table-td-key" data-alias="市盈率(TTM)">市盈率(TTM)</td>
-                                <td class="otc-latest-transaction-data-table-td-value" data-value="data-otc-LTD"></td>
+                            <tr class="otc-newly-added-listing-table-tr">
+                                <td class="otc-newly-added-listing-table-td-key" data-alias="成交量">成交量(股)</td>
+                                <td class="otc-newly-added-listing-table-td-value" data-value="data-otc-LTD"></td>
+                                <td class="otc-newly-added-listing-table-td-key" data-alias="市盈率(TTM)">市盈率(TTM)</td>
+                                <td class="otc-newly-added-listing-table-td-value" data-value="data-otc-LTD"></td>
                             </tr>
-                            <tr class="otc-latest-transaction-data-table-tr">
-                                <td class="otc-latest-transaction-data-table-td-key" data-alias="换手率">换手率(%)</td>
-                                <td class="otc-latest-transaction-data-table-td-value" data-value="data-otc-LTD"></td>
-                                <td class="otc-latest-transaction-data-table-td-key" data-alias="市盈率(LYR)">市盈率(LYR)</td>
-                                <td class="otc-latest-transaction-data-table-td-value" data-value="data-otc-LTD"></td>
+                            <tr class="otc-newly-added-listing-table-tr">
+                                <td class="otc-newly-added-listing-table-td-key" data-alias="换手率">换手率(%)</td>
+                                <td class="otc-newly-added-listing-table-td-value" data-value="data-otc-LTD"></td>
+                                <td class="otc-newly-added-listing-table-td-key" data-alias="市盈率(LYR)">市盈率(LYR)</td>
+                                <td class="otc-newly-added-listing-table-td-value" data-value="data-otc-LTD"></td>
                             </tr>
-                            <tr class="otc-latest-transaction-data-table-tr">
-                                <td class="otc-latest-transaction-data-table-td-key" data-alias="成交金额">成交额(万元)</td>
-                                <td class="otc-latest-transaction-data-table-td-value" data-value="data-otc-LTD"></td>
-                                <td class="otc-latest-transaction-data-table-td-key" data-alias="市净率">市净率(LYR)</td>
-                                <td class="otc-latest-transaction-data-table-td-value" data-value="data-otc-LTD"></td>
+                            <tr class="otc-newly-added-listing-table-tr">
+                                <td class="otc-newly-added-listing-table-td-key" data-alias="成交金额">成交额(万元)</td>
+                                <td class="otc-newly-added-listing-table-td-value" data-value="data-otc-LTD"></td>
+                                <td class="otc-newly-added-listing-table-td-key" data-alias="市净率">市净率(LYR)</td>
+                                <td class="otc-newly-added-listing-table-td-value" data-value="data-otc-LTD"></td>
                             </tr>
                         </tbody>
-                        <tfoot class="otc-latest-transaction-data-table-tfoot">
-                            <tr class="otc-latest-transaction-data-table-tr">
-                                <td class="otc-latest-transaction-data-table-td-value" data-value="data-otc-LTD"></td>
+                        <tfoot class="otc-newly-added-listing-table-tfoot">
+                            <tr class="otc-newly-added-listing-table-tr">
+                                <td class="otc-newly-added-listing-table-td-value" data-value="data-otc-LTD"></td>
                             </tr>
                         </tfoot>
                     </table>
                 </section>
             `;
             break;
-        case "otcperfast02":
-            delete_uid = `big-event-reminder`;
-            loadModule(uid, `big-event-reminder`, true);
+        case "otcfast02":
+            delete_uid = `newly-added-protocol`;
+            loadModule(uid, `newly-added-protocol`, true);
             htmlstr += `
                 <section class="otc-module-box-5">
                     <div class="otc-h5dnd-modules-title-box">
-                        <p class="otc-h5dnd-modules-title" data-title="otc-big-event-reminder-title">
-                            大事提醒
-                            <span data-link="otc-big-event-reminder-link">
-                                <a href="#分红数据" data-uid="1085" data-turn-to-uid="node-uid-big-event-reminder-data">分红数据</a>
-                                <a href="#增发数据" data-uid="1112" data-turn-to-uid="node-uid-big-event-reminder-data">增发数据</a>
+                        <p class="otc-h5dnd-modules-title" data-title="otc-newly-added-protocol-title">
+                            新增协议
+                            <span data-title-text="otc-newly-added-protocol-title-text">
+                                今日新增协议转做市公司<span data-text="otc-newly-added-protocol-text">xxx</span>家
+                            </span>
+                            <span data-link="otc-newly-added-protocol-link">
+                                <a href="#更多" data-uid="1106" data-turn-to-uid="node-uid-newly-added-protocol">更多</a>
                             </span>
                         </p>
                     </div>
-                    <table class="otc-big-event-reminder-table">
-                        <thead class="otc-big-event-reminder-table-thead">
-                            <tr class="otc-big-event-reminder-table-tr">
-                                <td class="otc-big-event-reminder-table-td-title">大事提醒</td>
+                    <table class="otc-newly-added-protocol-table">
+                        <thead class="otc-newly-added-protocol-table-thead">
+                            <tr class="otc-newly-added-protocol-table-tr">
+                                <td class="otc-newly-added-protocol-table-td-title">大事提醒</td>
                             </tr>
                         </thead>
-                        <tbody class="otc-big-event-reminder-table-tbody" data-tbody="otc-big-event-reminder-table-tbody"></tbody>
-                        <tfoot class="otc-big-event-reminder-table-tfoot">
-                            <tr class="otc-big-event-reminder-table-tr">
-                                <td class="otc-big-event-reminder-table-td-value" data-value="data-otc-BER"></td>
+                        <tbody class="otc-newly-added-protocol-table-tbody" data-tbody="otc-newly-added-protocol-table-tbody"></tbody>
+                        <tfoot class="otc-newly-added-protocol-table-tfoot">
+                            <tr class="otc-newly-added-protocol-table-tr">
+                                <td class="otc-newly-added-protocol-table-td-value" data-value="data-otc-BER"></td>
                             </tr>
                         </tfoot>
                     </table>
                 </section>
             `;
             break;
-        case "otcperfast03":
-            delete_uid = `company-brief-introduction`;
-            loadModule(uid, `company-brief-introduction`, true);
+        case "otcfast03":
+            delete_uid = `transactions-leaderboard-all`;
+            loadModule(uid, `transactions-leaderboard-all`, true);
             htmlstr += `
                 <section class="otc-module-box-5">
                     <div class="otc-h5dnd-modules-title-box">
-                        <p class="otc-h5dnd-modules-title" data-title="otc-company-brief-introduction-title">
-                            公司简介
-                        </p>
-                    </div>
-                    <table class="otc-company-brief-introduction-table" data-float="float-table">
-                        <thead class="otc-company-brief-introduction-table-thead">
-                            <tr class="otc-company-brief-introduction-table-tr">
-                                <td class="otc-company-brief-introduction-table-td-title">公司简介</td>
-                            </tr>
-                        </thead>
-                        <tbody class="otc-company-brief-introduction-table-tbody">
-                            <!-- no data -->
-                        </tbody>
-                        <tfoot class="otc-company-brief-introduction-table-tfoot">
-                            <tr class="otc-company-brief-introduction-table-tr">
-                                <td class="otc-company-brief-introduction-table-td-value" data-value="data-otc-CBI">
-                                    <!-- bug -->
-                                </td>
-                            </tr>
-                        </tfoot>
-                    </table>
-                    <section data-float="float-section">
-                        <div data-float="float-title">公司介绍:</div>
-                        <div data-float="float-div" data-titles="data-otc-CBI-title">
-                            <!-- no data -->
-                        </div>
-                    </section>
-                </section>
-            `;
-            break;
-        case "otcperfast04":
-            delete_uid = `latest-financial-data`;
-            loadModule(uid, `latest-financial-data`, true);
-            htmlstr += `
-                <section class="otc-module-box-5">
-                    <div class="otc-h5dnd-modules-title-box">
-                        <p class="otc-h5dnd-modules-title" data-title="otc-latest-financial-data-title">
-                            最新财务数据
-                            <span data-link="otc-latest-financial-data-link">
-                                <a href="#更多财务数据" data-uid="1115" data-turn-to-uid="node-uid-latest-financial-data">更多财务数据</a>
+                        <p class="otc-h5dnd-modules-title" data-title="otc-transactions-leaderboard-all-title">
+                            交易排行榜
+                            <span data-title-text="otc-transactions-leaderboard-all-title-text">
+                                交易排行榜-(做市/协议) (<span data-text="otc-transactions-leaderboard-all-text">201x-xx-xx</span>)
+                            </span>
+                            <span data-link="otc-transactions-leaderboard-all-link">
+                                <a href="#更多" data-uid="1106" data-turn-to-uid="node-uid-transactions-leaderboard-all">更多</a>
                             </span>
                         </p>
                     </div>
-                    <table class="otc-latest-financial-data-table">
-                        <thead class="otc-latest-financial-data-table-thead">
-                            <tr class="otc-latest-financial-data-table-tr">
-                                <td class="otc-latest-financial-data-table-td-title">最新财务数据</td>
-                            </tr>
-                        </thead>
-                        <tbody class="otc-latest-financial-data-table-tbody">
-                            <tr>
-                                <div data-titles="data-otc-LFD-title"></div>
-                            </tr>
-                            <tr>
-                                <td colspan="3" data-title="td-colspan" data-titles="data-otc-LFD-title"></td>
-                            </tr>
-                            <tr class="otc-latest-financial-data-table-tr">
-                                <td class="otc-latest-financial-data-table-td-key" data-alias="营业收入(元)">营业收入(元)</td>
-                                <td class="otc-latest-financial-data-table-td-value" data-value="data-otc-LFD"></td>
-                            </tr>
-                            <tr class="otc-latest-financial-data-table-tr">
-                                <td class="otc-latest-financial-data-table-td-key" data-alias="营业收入同比增长(%)">营业收入同比增长(%)</td>
-                                <td class="otc-latest-financial-data-table-td-value" data-value="data-otc-LFD"></td>
-                            </tr>
-                            <tr class="otc-latest-financial-data-table-tr">
-                                <td class="otc-latest-financial-data-table-td-key" data-alias="总资产(元)">总资产(元)</td>
-                                <td class="otc-latest-financial-data-table-td-value" data-value="data-otc-LFD"></td>
-                            </tr>
-                            <tr class="otc-latest-financial-data-table-tr">
-                                <td class="otc-latest-financial-data-table-td-key" data-alias="营业利润(元)">营业利润(元)</td>
-                                <td class="otc-latest-financial-data-table-td-value" data-value="data-otc-LFD"></td>
-                            </tr>
-                            <tr class="otc-latest-financial-data-table-tr">
-                                <td class="otc-latest-financial-data-table-td-key" data-alias="基本每股收益">基本每股收益</td>
-                                <td class="otc-latest-financial-data-table-td-value" data-value="data-otc-LFD"></td>
-                            </tr>
-                            <tr class="otc-latest-financial-data-table-tr">
-                                <td class="otc-latest-financial-data-table-td-key" data-alias="净资产(元)">净资产(元)</td>
-                                <td class="otc-latest-financial-data-table-td-value" data-value="data-otc-LFD"></td>
-                            </tr>
-                            <tr class="otc-latest-financial-data-table-tr">
-                                <td class="otc-latest-financial-data-table-td-key" data-alias="利润总额(元)">利润总额(元)</td>
-                                <td class="otc-latest-financial-data-table-td-value" data-value="data-otc-LFD"></td>
-                            </tr>
-                            <tr class="otc-latest-financial-data-table-tr">
-                                <td class="otc-latest-financial-data-table-td-key" data-alias="ROE(%)">ROE(%)</td>
-                                <td class="otc-latest-financial-data-table-td-value" data-value="data-otc-LFD"></td>
-                            </tr>
-                            <tr class="otc-latest-financial-data-table-tr">
-                                <td class="otc-latest-financial-data-table-td-key" data-alias="每股净资产">每股净资产</td>
-                                <td class="otc-latest-financial-data-table-td-value" data-value="data-otc-LFD"></td>
-                            </tr>
-                            <tr class="otc-latest-financial-data-table-tr">
-                                <td class="otc-latest-financial-data-table-td-key" data-alias="归属挂牌公司股东的净利润(元)">归属挂牌公司股东的净利润(元)</td>
-                                <td class="otc-latest-financial-data-table-td-value" data-value="data-otc-LFD"></td>
-                            </tr>
-                            <tr class="otc-latest-financial-data-table-tr">
-                                <td class="otc-latest-financial-data-table-td-key" data-alias="归母净利润同比增长(%)">归母净利润同比增长(%)</td>
-                                <td class="otc-latest-financial-data-table-td-value" data-value="data-otc-LFD"></td>
-                            </tr>
-                            <tr class="otc-latest-financial-data-table-tr">
-                                <td class="otc-latest-financial-data-table-td-key" data-alias="经营活动产生的现金流量净额(元)">经营活动产生的现金流量净额(元)</td>
-                                <td class="otc-latest-financial-data-table-td-value" data-value="data-otc-LFD"></td>
-                            </tr>
-                            <tr>
-                                <td colspan="3" data-space="tr-space"></td>
-                            </tr>
-                            <tr>
-                                <td colspan="3" data-title="td-colspan" data-titles="data-otc-LFD-title"></td>
-                            </tr>
-                            <tr class="otc-latest-financial-data-table-tr">
-                                <td class="otc-latest-financial-data-table-td-key" data-alias="基本每股收益">基本每股收益</td>
-                                <td class="otc-latest-financial-data-table-td-value" data-value="data-otc-LFD"></td>
-                            </tr>
-                            <tr class="otc-latest-financial-data-table-tr">
-                                <td class="otc-latest-financial-data-table-td-key" data-alias="营业收入(元)">营业收入(元)</td>
-                                <td class="otc-latest-financial-data-table-td-value" data-value="data-otc-LFD"></td>
-                            </tr>
-                            <tr class="otc-latest-financial-data-table-tr">
-                                <td class="otc-latest-financial-data-table-td-key" data-alias="资产总计(元)">资产总计(元)</td>
-                                <td class="otc-latest-financial-data-table-td-value" data-value="data-otc-LFD"></td>
-                            </tr>
-                            <tr class="otc-latest-financial-data-table-tr">
-                                <td class="otc-latest-financial-data-table-td-key" data-alias="稀释每股收益">稀释每股收益</td>
-                                <td class="otc-latest-financial-data-table-td-value" data-value="data-otc-LFD"></td>
-                            </tr>
-                            <tr class="otc-latest-financial-data-table-tr">
-                                <td class="otc-latest-financial-data-table-td-key" data-alias="营业利润(元)">营业利润(元)</td>
-                                <td class="otc-latest-financial-data-table-td-value" data-value="data-otc-LFD"></td>
-                            </tr>
-                            <tr class="otc-latest-financial-data-table-tr">
-                                <td class="otc-latest-financial-data-table-td-key" data-alias="负债总计(元)">负债总计(元)</td>
-                                <td class="otc-latest-financial-data-table-td-value" data-value="data-otc-LFD"></td>
-                            </tr>
-                            <tr class="otc-latest-financial-data-table-tr">
-                                <td class="otc-latest-financial-data-table-td-key" data-alias="每股收益-扣除">每股收益-扣除</td>
-                                <td class="otc-latest-financial-data-table-td-value" data-value="data-otc-LFD"></td>
-                            </tr>
-                            <tr class="otc-latest-financial-data-table-tr">
-                                <td class="otc-latest-financial-data-table-td-key" data-alias="利润总额(元)">利润总额(元)</td>
-                                <td class="otc-latest-financial-data-table-td-value" data-value="data-otc-LFD"></td>
-                            </tr>
-                            <tr class="otc-latest-financial-data-table-tr">
-                                <td class="otc-latest-financial-data-table-td-key" data-alias="归属于挂牌公司股东的净资产(元)">归属于挂牌公司股东的净资产(元)</td>
-                                <td class="otc-latest-financial-data-table-td-value" data-value="data-otc-LFD"></td>
-                            </tr>
-                            <tr class="otc-latest-financial-data-table-tr">
-                                <td class="otc-latest-financial-data-table-td-key" data-alias="归属于挂牌公司股东的每股净资产(元)">归属于挂牌公司股东的每股净资产(元)
-                                </td>
-                                <td class="otc-latest-financial-data-table-td-value" data-value="data-otc-LFD"></td>
-                            </tr>
-                            <tr class="otc-latest-financial-data-table-tr">
-                                <td class="otc-latest-financial-data-table-td-key" data-alias="归属挂牌公司股东的净利润(元)">归属挂牌公司股东的净利润(元)</td>
-                                <td class="otc-latest-financial-data-table-td-value" data-value="data-otc-LFD"></td>
-                            </tr>
-                            <tr class="otc-latest-financial-data-table-tr">
-                                <td class="otc-latest-financial-data-table-td-key" data-alias="经营活动产生的现金流量净额(元)">经营活动产生的现金流量净额(元)</td>
-                                <td class="otc-latest-financial-data-table-td-value" data-value="data-otc-LFD"></td>
-                            </tr>
-                            <tr class="otc-latest-financial-data-table-tr">
-                                <td class="otc-latest-financial-data-table-td-key" data-alias="每股经营活动产生的现金流量净额(元)">每股经营活动产生的现金流量净额(元)</td>
-                                <td class="otc-latest-financial-data-table-td-value" data-value="data-otc-LFD"></td>
-                            </tr>
-                            <tr class="otc-latest-financial-data-table-tr">
-                                <td class="otc-latest-financial-data-table-td-key" data-alias="归属挂牌公司股东的净利润-扣除(元)">归属挂牌公司股东的净利润-扣除(元)</td>
-                                <td class="otc-latest-financial-data-table-td-value" data-value="data-otc-LFD"></td>
-                            </tr>
-                            <tr class="otc-latest-financial-data-table-tr">
-                                <td class="otc-latest-financial-data-table-td-key" data-alias="总资产同比增长(%)">总资产同比增长(%)</td>
-                                <td class="otc-latest-financial-data-table-td-value" data-value="data-otc-LFD"></td>
-                            </tr>
-                            <tr class="otc-latest-financial-data-table-tr">
-                                <td class="otc-latest-financial-data-table-td-key" data-alias="净资产收益率-加权(%)">净资产收益率-加权(%)</td>
-                                <td class="otc-latest-financial-data-table-td-value" data-value="data-otc-LFD"></td>
-                            </tr>
-                            <tr class="otc-latest-financial-data-table-tr">
-                                <td class="otc-latest-financial-data-table-td-key" data-alias="营业收入同比增长(%)">营业收入同比增长(%)</td>
-                                <td class="otc-latest-financial-data-table-td-value" data-value="data-otc-LFD"></td>
-                            </tr>
-                            <tr class="otc-latest-financial-data-table-tr">
-                                <td class="otc-latest-financial-data-table-td-key" data-alias="销售毛利率(%)">销售毛利率(%)</td>
-                                <td class="otc-latest-financial-data-table-td-value" data-value="data-otc-LFD"></td>
-                            </tr>
-                            <tr class="otc-latest-financial-data-table-tr">
-                                <td class="otc-latest-financial-data-table-td-key" data-alias="净资产收益率-扣除(%)">净资产收益率-扣除(%)</td>
-                                <td class="otc-latest-financial-data-table-td-value" data-value="data-otc-LFD"></td>
-                            </tr>
-                            <tr class="otc-latest-financial-data-table-tr">
-                                <td class="otc-latest-financial-data-table-td-key" data-alias="净利润同比增长(%)">净利润同比增长(%)</td>
-                                <td class="otc-latest-financial-data-table-td-value" data-value="data-otc-LFD"></td>
-                            </tr>
-                            <tr class="otc-latest-financial-data-table-tr">
-                                <td class="otc-latest-financial-data-table-td-key" data-alias="资产负债率(%)">资产负债率(%)</td>
-                                <td class="otc-latest-financial-data-table-td-value" data-value="data-otc-LFD"></td>
-                            </tr>
-                        </tbody>
-                        <tfoot class="otc-latest-financial-data-table-tfoot">
-                            <tr class="otc-latest-financial-data-table-tr">
-                                <td class="otc-latest-financial-data-table-td-value" data-value="data-otc-LFD">
-                                    <!-- bug -->
-                                </td>
-                            </tr>
-                        </tfoot>
+                    <table class="otc-transactions-leaderboard-all-table">
+                        transactions-leaderboard-all
                     </table>
                 </section>
             `;
             break;
-        case "company-all":
-            delete_uid = `company-performance-all`;
-            loadModule(uid, `company-performance-all`);
+        case "otcfast031":
+            delete_uid = `transactions-leaderboard-make-market`;
+            loadModule(uid, `transactions-leaderboard-make-market`, true);
             htmlstr += `
                 <section class="otc-module-box-5">
                     <div class="otc-h5dnd-modules-title-box">
-                        <p class="otc-h5dnd-modules-title" data-title="otc-company-performance-all-title">
-                            公司表现 (所属三板管理型行业二级)
-                            <span data-link="otc-company-performance-all-link">
-                                <a href="#同业数据" data-uid="1094" data-turn-to-uid="node-uid-company-performance-all-data">同业数据</a>
+                        <p class="otc-h5dnd-modules-title" data-title="otc-transactions-leaderboard-make-market-title">
+                            交易排行榜
+                            <span data-title-text="otc-transactions-leaderboard-make-market-title-text">
+                                交易排行榜-做市 (<span data-text="otc-transactions-leaderboard-make-market-text">201x-xx-xx</span>)
+                            </span>
+                            <span data-link="otc-transactions-leaderboard-make-market-link">
+                                <a href="#更多" data-uid="1106" data-turn-to-uid="node-uid-transactions-leaderboard-make-market">更多</a>
+                            </span>
+                        </p>
+                    </div>
+                    <table class="otc-transactions-leaderboard-make-market-table">
+                        transactions-leaderboard-make-market
+                    </table>
+                </section>
+            `;
+            break;
+        case "otcfast032":
+            delete_uid = `transactions-leaderboard-protocol`;
+            loadModule(uid, `transactions-leaderboard-protocol`, true);
+            htmlstr += `
+                <section class="otc-module-box-5">
+                    <div class="otc-h5dnd-modules-title-box">
+                        <p class="otc-h5dnd-modules-title" data-title="otc-transactions-leaderboard-protocol-title">
+                            交易排行榜
+                            <span data-title-text="otc-transactions-leaderboard-protocol-title-text">
+                                交易排行榜-协议 (<span data-text="otc-transactions-leaderboard-protocol-text">201x-xx-xx</span>)
+                            </span>
+                            <span data-link="otc-transactions-leaderboard-protocol-link">
+                                <a href="#更多" data-uid="1106" data-turn-to-uid="node-uid-transactions-leaderboard-protocol">更多</a>
+                            </span>
+                        </p>
+                    </div>
+                    <table class="otc-transactions-leaderboard-protocol-table">
+                        transactions-leaderboard-protocol
+                    </table>
+                </section>
+            `;
+            break;
+        case "otcfastAdditional":
+            delete_uid = `additional-issues-all`;
+            loadModule(uid, `additional-issues-all`, true);
+            htmlstr += `
+                <section class="otc-module-box-5">
+                    <div class="otc-h5dnd-modules-title-box">
+                        <p class="otc-h5dnd-modules-title" data-title="otc-additional-issues-all-title">
+                            增发事项
+                            <span data-link="otc-additional-issues-all-link">
+                                <a href="#更多" data-uid="1115" data-turn-to-uid="node-uid-additional-issues-all">更多</a>
                             </span>
                         </p>
                     </div>
@@ -634,265 +531,191 @@ const HTML_Template = (uid = ``, loadModule = function(){}, debug = false) => {
                         <div data-tab="tab-title-box">
                             <ul data-tab="tab-title-ul">
                                 <li data-tab="tab-title">
-                                    <a href="#1" data-tab-uid="0" data-tab="tab-link" class="hover-link-color">市场表现</a>
+                                    <a href="#1" data-tab-uid="0" data-tab="tab-link" class="hover-link-color">预案</a>
                                 </li>
                                 <li data-tab="tab-title">
-                                    <a href="#2" data-tab-uid="1" data-tab="tab-link" class="default-link-color">公司规模</a>
-                                </li>
-                                <li data-tab="tab-title">
-                                    <a href="#3" data-tab-uid="2" data-tab="tab-link" class="default-link-color">公司业绩</a>
-                                </li>
-                                <li data-tab="tab-title">
-                                    <a href="#4" data-tab-uid="3" data-tab="tab-link" class="default-link-color">公司估值</a>
+                                    <a href="#2" data-tab-uid="1" data-tab="tab-link" class="default-link-color">实施</a>
                                 </li>
                             </ul>
                         </div>
                         <div data-tab="tab-container-box">
                             <div data-tab="tab-container" class="active-display-block">
                                 <section class="otc-module-box-5">
-                                    <div class="otc-company-performance-market-container">
-                                        <!-- 公司表现 -->
-                                        <div data-hs-title="data-company-performance-market-title-uid"></div>
-                                        <div id="company_performance_market_hs_container" data-hs-container="data-company-performance-market-container-uid" class="otc-company-performance-market-hs otc-company-performance-market-hs-container"></div>
-                                        <div data-hs-title="data-company-performance-market-title-uid"></div>
-                                        <div>
-                                            <div id="company_performance_market_hs_container2" data-hs-container="data-company-performance-market-container-uid" class="otc-company-performance-market-hs otc-company-performance-market-hs-container"></div>
-                                        </div>
+                                    <div class="otc-additional-issues-preplan-container">
+                                        <!-- 分红事项-预案 -->
+                                        <div data-hs-title="data-additional-issues-preplan-title-uid"></div>
+                                        <div id="additional_issues_preplan_hs_container" data-hs-container="data-additional-issues-preplan-container-uid" class="otc-additional-issues-preplan-hs otc-additional-issues-preplan-hs-container"></div>
                                     </div>
                                 </section>
                             </div>
                             <div data-tab="tab-container" class="default-display-block">
                                 <section class="otc-module-box-5">
-                                    <div class="otc-company-performance-scale-container">
-                                        <!-- 公司规模 -->
-                                        <div data-hs-title="data-company-performance-scale-title-uid"></div>
-                                        <div id="company_performance_scale_hs_container" data-hs-container="data-company-performance-scale-container-uid" class="otc-company-performance-scale-hs otc-company-performance-scale-hs-container"></div>
-                                    </div>
-                                </section>
-                            </div>
-                            <div data-tab="tab-container" class="default-display-block">
-                                <section class="otc-module-box-5">
-                                    <div class="otc-company-performance-achievement-container">
-                                        <!-- 公司业绩 placeholder -->
-                                        <div data-hs-title="data-company-performance-achievement-title-uid"></div>
-                                        <div id="company_performance_achievement_hs_container" data-hs-container="data-company-performance-achievement-container-uid" class="otc-company-performance-achievement-hs otc-company-performance-achievement-hs-container"></div>
-                                        <div>
-                                            <div id="company_performance_achievement_hs_container2" data-hs-container="data-company-performance-achievement-container-uid" class="otc-company-performance-achievement-hs otc-company-performance-achievement-hs-container"></div>
-                                        </div>
-                                    </div>
-                                </section>
-                            </div>
-                            <div data-tab="tab-container" class="default-display-block">
-                                <section class="otc-module-box-5">
-                                    <div class="otc-company-performance-valuation-container">
-                                        <!-- 公司估值 -->
-                                        <div data-hs-title="data-company-performance-valuation-title-uid"></div>
-                                        <div id="company_performance_valuation_hs_container" data-hs-container="data-company-performance-valuation-container-uid" class="otc-company-performance-valuation-hs otc-company-performance-valuation-hs-container"></div>
-                                        <div>
-                                            <div id="company_performance_valuation_hs_container2" data-hs-container="data-company-performance-valuation-container-uid" class="otc-company-performance-valuation-hs otc-company-performance-valuation-hs-container"></div>
-                                        </div>
+                                    <div class="otc-additional-issues-implementation-container">
+                                        <!-- 分红事项-实施 -->
+                                        <div data-hs-title="data-additional-issues-implementation-title-uid"></div>
+                                        <div id="additional_issues_implementation_hs_container" data-hs-container="data-additional-issues-implementation-container-uid" class="otc-additional-issues-implementation-hs otc-additional-issues-implementation-hs-container"></div>
                                     </div>
                                 </section>
                             </div>
                         </div>
                     </section>
                 </section>
-                <section data-scripts="all-scripts" class="otc-company-performance-all-container"></section>
+                <section data-scripts="all-scripts" class="otc-additional-issues-all-container"></section>
             `;
             break;
-        case "otcperfast09":
-            delete_uid = `main-management-business`;
-            loadModule(uid, `main-management-business`);// false
+        case "otcfastDividends":
+            delete_uid = `dividend-matters-all`;
+            loadModule(uid, `dividend-matters-all`);
             htmlstr += `
                 <section class="otc-module-box-5">
                     <div class="otc-h5dnd-modules-title-box">
-                        <p class="otc-h5dnd-modules-title" data-title="otc-main-management-business-title">
-                            主营业务
-                            <span data-time="otc-main-management-business-time"></span>
-                            <span data-more="otc-main-management-business-link">
-                                <a href="#更多主营业务数据" data-more="otc-main-management-business-link-more" data-uid="85648" data-turn-to-uid="node-uid-main-management-business-data">更多主营业务数据</a>
+                        <p class="otc-h5dnd-modules-title" data-title="otc-dividend-matters-all-title">
+                            分红事项
+                            <span data-link="otc-dividend-matters-all-link">
+                                <a href="#更多" data-uid="1094" data-turn-to-uid="node-uid-dividend-matters-all-data">更多</a>
                             </span>
                         </p>
                     </div>
-                    <div data-div="tbody-div" data-titles="data-otc-MMB-title">
-                        <!-- no data -->
-                    </div>
-                    <div class="otc-main-management-business-container">
-                        <div id="main_managemen_business_hs_container" data-hs-container="data-main-management-business-container-uid" class="otc-main-management-business-hs otc-main-management-business-hs-container"></div>
-                    </div>
-                    <div class="otc-main-management-business-container">
-                        <div id="main_managemen_business_hs_container2" data-hs-container="data-main-management-business-container-uid" class="otc-main-management-business-hs otc-main-management-business-hs-container"></div>
-                    </div>
-                    <table class="otc-main-management-business-table">
-                        <thead class="otc-main-management-business-table-thead">
-                            <tr class="otc-main-management-business-table-tr">
-                                <td class="otc-main-management-business-table-td-title">产品及服务</td>
-                                <td class="otc-main-management-business-table-td-title">营业收入(万元)</td>
-                                <td class="otc-main-management-business-table-td-title">营业成本(万元)</td>
-                                <td class="otc-main-management-business-table-td-title">营业收入占比(%)</td>
-                            </tr>
-                        </thead>
-                        <tbody class="otc-main-management-business-table-tbody" data-tbody="otc-main-management-business-table-tbody"></tbody>
-                        <tfoot class="otc-main-management-business-table-tfoot">
-                            <tr class="otc-main-management-business-table-tr">
-                                <td class="otc-main-management-business-table-td-value" data-value="data-otc-MMB"></td>
-                            </tr>
-                        </tfoot>
-                    </table>
-                </section>
-            `;
-            break;
-        case "otcperfast10":
-            delete_uid = `equity-shareholder`;
-            loadModule(uid, `equity-shareholder`, true);
-            htmlstr += `
-                <section class="otc-module-box-5">
-                    <div class="otc-h5dnd-modules-title-box">
-                        <p class="otc-h5dnd-modules-title" data-title="otc-equity-shareholder-title">
-                            股本股东
-                            <span data-more="otc-equity-shareholder-link">
-                                <a href="#股东户数" data-uid="1079" data-more="otc-equity-shareholder-link-more" data-turn-to-uid="node-uid-equity-shareholder-data">股东户数</a>
-                            </span>
-                            <span data-more="otc-equity-shareholder-link">
-                                <a href="#股东数据" data-uid="1076" data-more="otc-equity-shareholder-link-more" data-turn-to-uid="node-uid-equity-shareholder-data">股东数据</a>
-                            </span>
-                            <span data-more="otc-equity-shareholder-link">
-                                <a href="#股本数据" data-uid="1058" data-more="otc-equity-shareholder-link-more" data-turn-to-uid="node-uid-equity-shareholder-data">股本数据</a>
-                            </span>
-                        </p>
-                    </div>
-                    <section data-group="mix-hc-table">
-                        <p>
-                            <span data-title="sub-title">股本结构</span>
-                        </p>
-                        <div class="otc-equity-shareholder-container">
-                            <div id="equity_shareholder_hs_container" data-hs-container="data-equity-shareholder-container-uid" class="otc-equity-shareholder-hs otc-equity-shareholder-hs-container"></div>
+                    <section data-tabs="tabs-box">
+                        <div data-tab="tab-title-box">
+                            <ul data-tab="tab-title-ul">
+                                <li data-tab="tab-title">
+                                    <a href="#1" data-tab-uid="0" data-tab="tab-link" class="hover-link-color">预案</a>
+                                </li>
+                                <li data-tab="tab-title">
+                                    <a href="#2" data-tab-uid="1" data-tab="tab-link" class="default-link-color">实施</a>
+                                </li>
+                            </ul>
                         </div>
-                        <table class="otc-equity-shareholder-table" data-tables="otc-equity-shareholder-table1">
-                            <thead class="otc-equity-shareholder-table-thead">
-                                <!--
-                                    <tr class="otc-equity-shareholder-table-tr">
-                                        <td class="otc-equity-shareholder-table-td-title">截止日期</td>
-                                        <td class="otc-equity-shareholder-table-td-title">总股本(股)</td>
-                                        <td class="otc-equity-shareholder-table-td-title">无限售股份总数(股)</td>
-                                        <td class="otc-equity-shareholder-table-td-title">有限售股份总数(股)</td>
-                                        <td class="otc-equity-shareholder-table-td-title">变动原因说明(股)</td>
-                                    </tr>
-                                -->
-                            </thead>
-                            <tbody class="otc-equity-shareholder-table-tbody" data-tbody="otc-equity-shareholder-table-tbody"></tbody>
-                            <tfoot class="otc-equity-shareholder-table-tfoot">
-                                <tr class="otc-equity-shareholder-table-tr">
-                                    <td class="otc-equity-shareholder-table-td-value" data-value="data-otc-ES"></td>
-                                </tr>
-                            </tfoot>
-                        </table>
+                        <div data-tab="tab-container-box">
+                            <div data-tab="tab-container" class="active-display-block">
+                                <section class="otc-module-box-5">
+                                    <div class="otc-dividend-matters-preplan-container">
+                                        <!-- 分红事项-预案 -->
+                                        <div data-hs-title="data-dividend-matters-preplan-title-uid"></div>
+                                        <div id="dividend_matters_preplan_hs_container" data-hs-container="data-dividend-matters-preplan-container-uid" class="otc-dividend-matters-preplan-hs otc-dividend-matters-preplan-hs-container"></div>
+                                    </div>
+                                </section>
+                            </div>
+                            <div data-tab="tab-container" class="default-display-block">
+                                <section class="otc-module-box-5">
+                                    <div class="otc-dividend-matters-implementation-container">
+                                        <!-- 分红事项-实施 -->
+                                        <div data-hs-title="data-dividend-matters-implementation-title-uid"></div>
+                                        <div id="dividend_matters_implementation_hs_container" data-hs-container="data-dividend-matters-implementation-container-uid" class="otc-dividend-matters-implementation-hs otc-dividend-matters-implementation-hs-container"></div>
+                                    </div>
+                                </section>
+                            </div>
+                        </div>
                     </section>
-                    <div data-div="tbody-div" data-titles="data-otc-ES-title"></div>
-                    <table class="otc-equity-shareholder-table" data-tables="otc-equity-shareholder-table2">
-                        <thead class="otc-equity-shareholder-table-thead">
-                            <tr class="otc-equity-shareholder-table-tr">
-                                <td class="otc-equity-shareholder-table-td-title">股东名称</td>
-                                <td class="otc-equity-shareholder-table-td-title">持股数(万股)</td>
-                                <td class="otc-equity-shareholder-table-td-title">占比(%)</td>
-                                <td class="otc-equity-shareholder-table-td-title">增减变动(万股)</td>
-                                <td class="otc-equity-shareholder-table-td-title">机构类型</td>
+                </section>
+                <section data-scripts="all-scripts" class="otc-dividend-matters-all-container"></section>
+            `;
+            break;
+        case "otcfast08":
+            delete_uid = `listing-situation`;
+            loadModule(uid, `listing-situation`);// false
+            htmlstr += `
+                <section class="otc-module-box-5">
+                    <div class="otc-h5dnd-modules-title-box">
+                        <p class="otc-h5dnd-modules-title" data-title="otc-listing-situation-title">
+                            挂牌情况
+                            <span data-time="otc-listing-situation-time"></span>
+                            <span data-link="otc-listing-situation-link">
+                                <a href="#更多" data-uid="85648" data-turn-to-uid="node-uid-listing-situation-data">更多</a>
+                            </span>
+                        </p>
+                    </div>
+                    <table class="otc-listing-situation-table">
+                        <thead class="otc-listing-situation-table-thead">
+                            <tr class="otc-listing-situation-table-tr">
+                                <td class="otc-listing-situation-table-td-title">产品及服务</td>
+                                <td class="otc-listing-situation-table-td-title">营业收入(万元)</td>
+                                <td class="otc-listing-situation-table-td-title">营业成本(万元)</td>
+                                <td class="otc-listing-situation-table-td-title">营业收入占比(%)</td>
                             </tr>
-                            <!-- colspan & rowspan -->
                         </thead>
-                        <tbody class="otc-equity-shareholder-table-tbody" data-tbody="otc-equity-shareholder-table-tbody"> </tbody>
-                        <tfoot class="otc-equity-shareholder-table-tfoot">
-                            <tr class="otc-equity-shareholder-table-tr">
-                                <td class="otc-equity-shareholder-table-td-value" data-value="data-otc-ES"></td>
-                            </tr>
-                        </tfoot>
-                    </table>
-                    <div data-div="tbody-div" data-titles="data-otc-ES-title"></div>
-                    <table class="otc-equity-shareholder-table" data-tables="otc-equity-shareholder-table3">
-                        <thead class="otc-equity-shareholder-table-thead">
-                            <!--
-                            <tr class="otc-equity-shareholder-table-tr">
-                                <td class="otc-equity-shareholder-table-td-title">总户数</td>
-                                <td class="otc-equity-shareholder-table-td-title">环比增长(%)</td>
-                                <td class="otc-equity-shareholder-table-td-title">户均持股数</td>
-                                <td class="otc-equity-shareholder-table-td-title">环比增长(%)</td>
-                            </tr>
-                            -->
-                        </thead>
-                        <tbody class="otc-equity-shareholder-table-tbody" data-tbody="otc-equity-shareholder-table-tbody"></tbody>
-                        <tfoot class="otc-equity-shareholder-table-tfoot">
-                            <tr class="otc-equity-shareholder-table-tr">
-                                <td class="otc-equity-shareholder-table-td-value" data-value="data-otc-ES"></td>
+                        <tbody class="otc-listing-situation-table-tbody" data-tbody="otc-listing-situation-table-tbody"></tbody>
+                        <tfoot class="otc-listing-situation-table-tfoot">
+                            <tr class="otc-listing-situation-table-tr">
+                                <td class="otc-listing-situation-table-td-value" data-value="data-otc-MMB"></td>
                             </tr>
                         </tfoot>
                     </table>
                 </section>
             `;
             break;
-        case "otcperfast11":
-            delete_uid = `management-layer-profiles`;
-            loadModule(uid, `management-layer-profiles`, true);
+        case "otcfast09":
+            delete_uid = `transaction-overview`;
+            loadModule(uid, `transaction-overview`);// false
             htmlstr += `
                 <section class="otc-module-box-5">
                     <div class="otc-h5dnd-modules-title-box">
-                        <p class="otc-h5dnd-modules-title" data-title="otc-management-layer-profiles-title">
-                            管理层概况与持股
-                            <span data-more="otc-management-layer-profiles-link">
-                                <a href="#管理层数据" data-more="otc-management-layer-profiles-link-more" data-uid="1070" data-turn-to-uid="node-uid-management-layer-profiles-data">管理层数据</a>
+                        <p class="otc-h5dnd-modules-title" data-title="otc-transaction-overview-title">
+                            成交概况
+                            <span data-title-text="otc-transaction-overview-title-text">
+                                (<span data-text="otc-transactions-leaderboard-all-text">201x-xx-xx</span>)
+                            </span>
+                            <span data-link="otc-transaction-overview-link">
+                                <a href="#更多" data-uid="85648" data-turn-to-uid="node-uid-transaction-overview-data">更多</a>
                             </span>
                         </p>
                     </div>
-                    <div data-div="tbody-div" data-titles="data-otc-MLP-title"></div>
-                    <div data-table="otc-management-layer-profiles-table-box">
-                        <table class="otc-management-layer-profiles-table" data-css3-table-bug="otc-management-layer-profiles-table1">
-                            <thead class="otc-management-layer-profiles-table-thead">
-                                <tr class="otc-management-layer-profiles-table-tr">
-                                    <td class="otc-management-layer-profiles-table-td-title">姓名</td>
-                                    <td class="otc-management-layer-profiles-table-td-title">性别</td>
-                                    <td class="otc-management-layer-profiles-table-td-title">年龄</td>
-                                    <td class="otc-management-layer-profiles-table-td-title">学历</td>
-                                    <td class="otc-management-layer-profiles-table-td-title">职务</td>
-                                    <!-- <td class="otc-management-layer-profiles-table-td-title">是否在公司领薪</td> -->
-                                    <td class="otc-management-layer-profiles-table-td-title">持股数量(股)</td>
-                                    <td class="otc-management-layer-profiles-table-td-title">占比(%)</td>
-                                    <td class="otc-management-layer-profiles-table-td-title">增减变动(股)</td>
-                                </tr>
-                            </thead>
-                            <tbody class="otc-management-layer-profiles-table-tbody" data-tbody="otc-management-layer-profiles-table-tbody"></tbody>
-                            <tfoot class="otc-management-layer-profiles-table-tfoot">
-                                <tr class="otc-management-layer-profiles-table-tr">
-                                    <td class="otc-management-layer-profiles-table-td-value" data-value="data-otc-MLP"></td>
-                                </tr>
-                            </tfoot>
-                        </table>
+                    <table class="otc-transaction-overview-table">
+                        transaction-overview
+                    </table>
+                </section>
+            `;
+            break;
+        case "otcfastTransaction":
+            delete_uid = `turnover-trend-diagram-all`;
+            loadModule(uid, `turnover-trend-diagram-all`, true);
+            htmlstr += `
+                <section class="otc-module-box-5">
+                    <div class="otc-h5dnd-modules-title-box">
+                        <p class="otc-h5dnd-modules-title" data-title="otc-turnover-trend-diagram-all-title">
+                            成交走势
+                            <span data-link="otc-turnover-trend-diagram-all-link">
+                                <a href="#更多" data-uid="1070" data-turn-to-uid="node-uid-turnover-trend-diagram-all">更多</a>
+                            </span>
+                        </p>
+                    </div>
+                    <div class="otc-turnover-trend-make-market-diagram-container">
+                        <!-- 成交走势-做市图 turnover-trend-make-market-diagram -->
+                        <div id="turnover_trend_make_market_diagram_hs_container" data-hs-container="data-turnover-trend-make-market-diagram-uid" class="otc-turnover-trend-make-market-diagram-hs otc-turnover-trend-make-market-diagram-hs-container"></div>
+                    </div>
+                    <div class="otc-turnover-trend-protocol-diagram-container">
+                        <!-- 成交走势-协议图 turnover-trend-protocol-diagram -->
+                        <div id="turnover_trend_protocol_diagram_hs_container2" data-hs-container="data-turnover-trend-protocol-diagram-container-uid" class="otc-turnover-trend-protocol-diagram-hs otc-turnover-trend-protocol-diagram-hs-container"></div>
                     </div>
                 </section>
+                <section data-scripts="all-scripts" class="otc-dividend-matters-all-container"></section>
             `;
             break;
         case "news":
-            delete_uid = `company-news`;
-            loadModule(uid, `company-news`, true);// data-link="otc-company-news-link"
+            delete_uid = `thematic-statistics-news`;
+            loadModule(uid, `thematic-statistics-news`, true);// data-link="otc-thematic-statistics-news-link"
             htmlstr += `
                 <section class="otc-module-box-5">
                     <div class="otc-h5dnd-modules-title-box">
-                        <p class="otc-h5dnd-modules-title" data-title="otc-company-news-title">
-                            公司新闻
-                            <span data-more="otc-company-news-link">
-                                <a href="#更多新闻" data-more="otc-company-news-link-more" data-uid="82540" data-turn-to-uid="node-uid-company-news-data">更多新闻</a>
+                        <p class="otc-h5dnd-modules-title" data-title="otc-thematic-statistics-news-title">
+                            三板新闻
+                            <span data-more="otc-thematic-statistics-news-link">
+                                <a href="#更多" data-more="otc-thematic-statistics-news-link-more" data-uid="82540" data-turn-to-uid="node-uid-thematic-statistics-news-data">更多</a>
                             </span>
                         </p>
                     </div>
-                    <table class="otc-company-news-table">
-                        <thead class="otc-company-news-table-thead">
-                            <tr class="otc-company-news-table-tr">
-                                <td class="otc-company-news-table-td-title">新闻标题</td>
-                                <td class="otc-company-news-table-td-title">新闻日期</td>
+                    <table class="otc-thematic-statistics-news-table">
+                        <thead class="otc-thematic-statistics-news-table-thead">
+                            <tr class="otc-thematic-statistics-news-table-tr">
+                                <td class="otc-thematic-statistics-news-table-td-title">新闻标题</td>
+                                <td class="otc-thematic-statistics-news-table-td-title">新闻日期</td>
                             </tr>
                         </thead>
-                        <tbody class="otc-company-news-table-tbody" data-tbody="otc-company-news-table-tbody"></tbody>
-                        <tfoot class="otc-company-news-table-tfoot">
-                            <tr class="otc-company-news-table-tr">
-                                <td class="otc-company-news-table-td-value" data-value="data-otc-CN"></td>
+                        <tbody class="otc-thematic-statistics-news-table-tbody" data-tbody="otc-thematic-statistics-news-table-tbody"></tbody>
+                        <tfoot class="otc-thematic-statistics-news-table-tfoot">
+                            <tr class="otc-thematic-statistics-news-table-tr">
+                                <td class="otc-thematic-statistics-news-table-td-value" data-value="data-otc-CN"></td>
                             </tr>
                         </tfoot>
                     </table>
@@ -900,60 +723,29 @@ const HTML_Template = (uid = ``, loadModule = function(){}, debug = false) => {
             `;
             break;
         case "bulletin":
-            delete_uid = `company-bulletin`;
-            loadModule(uid, `company-bulletin`, true);
+            delete_uid = `thematic-statistics-bulletin`;
+            loadModule(uid, `thematic-statistics-bulletin`, true);
             htmlstr += `
                 <section class="otc-module-box-5">
                     <div class="otc-h5dnd-modules-title-box">
-                        <p class="otc-h5dnd-modules-title" data-title="otc-company-bulletin-title">
-                            公司公告
-                            <span data-more="otc-company-bulletin-link">
-                                <a href="#更多公告" data-more="otc-company-bulletin-link-more" data-uid="82542" data-turn-to-uid="node-uid-company-bulletin-data">更多公告</a>
+                        <p class="otc-h5dnd-modules-title" data-title="otc-thematic-statistics-bulletin-title">
+                            三板公告
+                            <span data-more="otc-thematic-statistics-bulletin-link">
+                                <a href="#更多" data-more="otc-thematic-statistics-bulletin-link-more" data-uid="82542" data-turn-to-uid="node-uid-thematic-statistics-bulletin-data">更多</a>
                             </span>
                         </p>
                     </div>
-                    <table class="otc-company-bulletin-table">
-                        <thead class="otc-company-bulletin-table-thead">
-                            <tr class="otc-company-bulletin-table-tr">
-                                <td class="otc-company-bulletin-table-td-title">公告标题</td>
-                                <td class="otc-company-bulletin-table-td-title">公告日期</td>
+                    <table class="otc-thematic-statistics-bulletin-table">
+                        <thead class="otc-thematic-statistics-bulletin-table-thead">
+                            <tr class="otc-thematic-statistics-bulletin-table-tr">
+                                <td class="otc-thematic-statistics-bulletin-table-td-title">公告标题</td>
+                                <td class="otc-thematic-statistics-bulletin-table-td-title">公告日期</td>
                             </tr>
                         </thead>
-                        <tbody class="otc-company-bulletin-table-tbody" data-tbody="otc-company-bulletin-table-tbody"></tbody>
-                        <tfoot class="otc-company-bulletin-table-tfoot">
-                            <tr class="otc-company-bulletin-table-tr">
-                                <td class="otc-company-bulletin-table-td-value" data-value="data-otc-CB"></td>
-                            </tr>
-                        </tfoot>
-                    </table>
-                </section>
-            `;
-            break;
-        case "research":
-            delete_uid = `research-report`;
-            loadModule(uid, `research-report`, true);
-            htmlstr += `
-                <section class="otc-module-box-5">
-                    <div class="otc-h5dnd-modules-title-box">
-                        <p class="otc-h5dnd-modules-title" data-title="otc-research-report-title">
-                            研究报告
-                            <span data-more="otc-research-report-link">
-                                <a href="#更多研报" data-more="otc-research-report-link-more" data-uid="82546" data-turn-to-uid="node-uid-research-report-data">更多研报</a>
-                            </span>
-                        </p>
-                    </div>
-                    <table class="otc-research-report-table">
-                        <thead class="otc-research-report-table-thead">
-                            <tr class="otc-research-report-table-tr">
-                                <td class="otc-research-report-table-td-title">研报标题</td>
-                                <td class="otc-research-report-table-td-title">披露日期</td>
-                                <td class="otc-research-report-table-td-title">发布机构</td>
-                            </tr>
-                        </thead>
-                        <tbody class="otc-research-report-table-tbody" data-tbody="otc-research-report-table-tbody"></tbody>
-                        <tfoot class="otc-research-report-table-tfoot">
-                            <tr class="otc-research-report-table-tr">
-                                <td class="otc-research-report-table-td-value" data-value="data-otc-RR"></td>
+                        <tbody class="otc-thematic-statistics-bulletin-table-tbody" data-tbody="otc-thematic-statistics-bulletin-table-tbody"></tbody>
+                        <tfoot class="otc-thematic-statistics-bulletin-table-tfoot">
+                            <tr class="otc-thematic-statistics-bulletin-table-tr">
+                                <td class="otc-thematic-statistics-bulletin-table-td-value" data-value="data-otc-CB"></td>
                             </tr>
                         </tfoot>
                     </table>
@@ -972,22 +764,20 @@ const HTML_Template = (uid = ``, loadModule = function(){}, debug = false) => {
 const layoutCSS = (uid = ``, div = ``) => {
     // half === 5/5
     // otc-fv-half-box
+    // let uids = ["otcfast01", "otcfast02", "otcfast03", "otcfastAdditional", "otcfastDividends", "otcfast08", "otcfast09", "otcfastTransaction", "news", "bulletin"];
     switch (uid) {
-        case "otcperfast01":
-        case "otcperfast02":
-        case "otcperfast03":
-        case "otcperfast04":
-        case "otcperfast05":
-        case "company-all":
-        case "otcperfast06":
-        case "otcperfast07":
-        case "otcperfast08":
-        case "otcperfast09":
-        case "otcperfast10":
-        case "otcperfast11":
+        case "otcfast01":
+        case "otcfast02":
+        case "otcfast03":
+        case "otcfast031":
+        case "otcfast032":
+        case "otcfastAdditional":
+        case "otcfastDividends":
+        case "otcfast08":
+        case "otcfast09":
+        case "otcfastTransaction":
         case "news":
         case "bulletin":
-        case "research":
             div.classList.add(`otc-center-box`);
             break;
         default:
@@ -1008,7 +798,7 @@ const deleteModule = () => {
  * @param {* Boolean} debug
  */
 
-OTC_F9_FV.Modules.loadAllModules = OTC_F9_FV.Modules.loadAllModules || (
+OTC_TS_FV.Modules.loadAllModules = OTC_TS_FV.Modules.loadAllModules || (
     (sortable_container = `sortable_container`,debug = false) => {
         /**
          *
@@ -1035,13 +825,13 @@ OTC_F9_FV.Modules.loadAllModules = OTC_F9_FV.Modules.loadAllModules || (
                     sub_div.firstChild.addEventListener(`click`, (e) => {
                         let uid = e.target.dataset.deleteModuleUid;
                         // OK
-                        OTC_F9_FV.Modules.modulesLoader.deleteModule(uid);
+                        OTC_TS_FV.Modules.modulesLoader.deleteModule(uid);
                         // call delete
                     });
                     div.dataset.divModuleUid = `div-module-${uid}`;
                     div.dataset.droppedUid=`module-data-${uid}`;
                     layoutCSS(uid, div);
-                    // "otcperfast-all" ???
+                    // "otcfast-all" ???
                     let {htmlstr, delete_uid} = HTML_Template(uid, loadModule);
                     div.insertAdjacentHTML(`beforeend`, `${htmlstr}`);
                     container.insertAdjacentElement(`beforeend`, div);
@@ -1077,7 +867,7 @@ OTC_F9_FV.Modules.loadAllModules = OTC_F9_FV.Modules.loadAllModules || (
 
 
 // IIFE === Closure!
-OTC_F9_FV.Modules.modulesLoader = OTC_F9_FV.Modules.modulesLoader ||(
+OTC_TS_FV.Modules.modulesLoader = OTC_TS_FV.Modules.modulesLoader ||(
     (debug = false) => {
         let module_datas = document.querySelectorAll(`[data-icon-uid*="module-data"]`),
             module_container = document.querySelector(`[data-div-inner-box="data-div-inner-box"]`),
@@ -1214,7 +1004,7 @@ OTC_F9_FV.Modules.modulesLoader = OTC_F9_FV.Modules.modulesLoader ||(
                 // sub img
                 sub_div.firstChild.addEventListener(`click`, (e) => {
                     let uid = e.target.dataset.deleteModuleUid;
-                    OTC_F9_FV.Modules.modulesLoader.deleteModule(uid);
+                    OTC_TS_FV.Modules.modulesLoader.deleteModule(uid);
                 });
                 // icons
                 div.dataset.divModuleUid = `div-module-${uid}`;
@@ -1222,7 +1012,7 @@ OTC_F9_FV.Modules.modulesLoader = OTC_F9_FV.Modules.modulesLoader ||(
                 layoutCSS(uid, div);
                 let module_exist_checker = ``;
                 if (typeof(uid) === "string" && uid.length < 13) {
-                    // "otcperfast13".length; // 12 => 13
+                    // "otcfast13".length; // 12 => 13
                     module_exist_checker = document.querySelector(`[data-div-module-uid="div-module-${uid}"]`)
                 }else{
                     module_exist_checker = null;
@@ -1279,14 +1069,14 @@ OTC_F9_FV.Modules.modulesLoader = OTC_F9_FV.Modules.modulesLoader ||(
             },
             init: function() {
                 for (let index = 0; index < module_datas.length; index++) {
-                    module_datas[index].addEventListener(`dragstart`, OTC_F9_FV.Modules.modulesLoader.dragstart);
+                    module_datas[index].addEventListener(`dragstart`, OTC_TS_FV.Modules.modulesLoader.dragstart);
                 }
                 for (let i = 0; i < module_containers.length; i++) {
-                    module_containers[i].addEventListener(`dragenter`, OTC_F9_FV.Modules.modulesLoader.dragenter);
-                    module_containers[i].addEventListener(`dragover`, OTC_F9_FV.Modules.modulesLoader.dragover);
-                    module_containers[i].addEventListener(`dragleave`, OTC_F9_FV.Modules.modulesLoader.dragleave);
+                    module_containers[i].addEventListener(`dragenter`, OTC_TS_FV.Modules.modulesLoader.dragenter);
+                    module_containers[i].addEventListener(`dragover`, OTC_TS_FV.Modules.modulesLoader.dragover);
+                    module_containers[i].addEventListener(`dragleave`, OTC_TS_FV.Modules.modulesLoader.dragleave);
                     // dragleave
-                    module_containers[i].addEventListener(`drop`, OTC_F9_FV.Modules.modulesLoader.drop);
+                    module_containers[i].addEventListener(`drop`, OTC_TS_FV.Modules.modulesLoader.drop);
                 }
             }
         };
@@ -1295,37 +1085,7 @@ OTC_F9_FV.Modules.modulesLoader = OTC_F9_FV.Modules.modulesLoader ||(
 
 // init
 setTimeout(() => {
-    OTC_F9_FV.Modules.modulesLoader.init();
+    OTC_TS_FV.Modules.modulesLoader.init();
 }, 0);
 
 
-
-/*
-
-<table class="otc-management-layer-profiles-table"  data-css3-table-bug="otc-management-layer-profiles-table2">
-    <thead class="otc-management-layer-profiles-table-thead">
-        <tr class="otc-management-layer-profiles-table-tr">
-            <td class="otc-management-layer-profiles-table-td-title">姓名</td>
-            <td class="otc-management-layer-profiles-table-td-title">职务</td>
-            <td class="otc-management-layer-profiles-table-td-title">任职起始日</td>
-            <td class="otc-management-layer-profiles-table-td-title">离职日期</td>
-            <td class="otc-management-layer-profiles-table-td-title">在任其他职务</td>
-        </tr>
-    </thead>
-    <tbody class="otc-management-layer-profiles-table-tbody" data-tbody="otc-management-layer-profiles-table-tbody">
-        <!-- <tr class="otc-management-layer-profiles-table-tr">
-            <td class="otc-management-layer-profiles-table-td-value" data-value="data-otc-MLP">张玮</td>
-            <td class="otc-management-layer-profiles-table-td-value" data-value="data-otc-MLP">董事会秘书</td>
-            <td class="otc-management-layer-profiles-table-td-value" data-value="data-otc-MLP">2010-05-05</td>
-            <td class="otc-management-layer-profiles-table-td-value" data-value="data-otc-MLP">2017-05-17</td>
-            <td class="otc-management-layer-profiles-table-td-value" data-value="data-otc-MLP">true</td>
-        </tr> -->
-    </tbody>
-    <tfoot class="otc-management-layer-profiles-table-tfoot">
-        <tr class="otc-management-layer-profiles-table-tr">
-            <td class="otc-management-layer-profiles-table-td-value" data-value="data-otc-MLP"></td>
-        </tr>
-    </tfoot>
-</table>
-
-*/

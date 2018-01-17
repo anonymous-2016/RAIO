@@ -1,15 +1,15 @@
-# 新三板 F9 速览 (证券速览)
+# 债券 基准利率速览
 
 
-# OTC
+# BONDS
 
-> OTC（Over-The-Counter）场外交易市场
+bonds-fv
 
 
 ## .SZ & .SH
 
-http://10.1.5.202/stock/f9/fastview/sidebar.html?gilcode=000001.SZ&market=4609&sid=hs
-http://10.1.5.202/stock/f9/fastview/sidebar.html?gilcode=600570.SH&market=4609&sid=hs
+http://10.1.5.202/bonds/bonds-fv/index.html?gilcode=000001.SZ&skin=white
+http://10.1.5.202/bonds/bonds-fv/index.html?gilcode=600570.SH&skin=black
 
 
 新三板 F9 - 速览

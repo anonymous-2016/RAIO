@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>CORS & SRI</title>
+    <!-- css -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+    <link rel="stylesheet" href="./sidebar.css">
+</head>
+
+<body>
+    <!-- data-bt-class="container container-fluid" -->
+    <header>
+        <nav class="h5-dnd-nav-container h5-dnd-nav-container-normal" data-nav-container="nav-container">
+            <ul class="h5-dnd-nav-ul">
+                <li class="h5-dnd-nav-li-active" data-nav-li="nav-li">
+                    <a href="#模块选择" data-uid="uid-a">模块选择</a>
+                </li>
+                <li class="h5-dnd-nav-li-hidden" data-nav-li="nav-li">
+                    <a href="#模板选择">模板选择</a>
+                </li>
+                <li class="h5-dnd-nav-li-hidden" data-nav-li="nav-li">
+                    <a href="#模块设置">模块设置</a>
+                </li>
+            </ul>
+            <div class="h5-dnd-nav-btn" data-nav-btn="nav-btn">
+                <!-- btn -->
+            </div>
+            <div class="h5-dnd-nav-box h5-dnd-nav-box-active" data-nav-box="nav-box">
+                <section class="h5-dnd-icon-container">
+                    <div class="h5-dnd-icon-box" draggable="true">
+                        <!-- <img src="../icons/company-news.png" alt=""> -->
+                        <!-- CSS before -->
+                        <p class="h5-dnd-icon-p">重要信息</p>
+                    </div>
+                    <div class="h5-dnd-icon-box" draggable="true">
+                        <p class="h5-dnd-icon-p">近期重要事项</p>
+                    </div>
+                    <div class="h5-dnd-icon-box" draggable="true">
+                        <p class="h5-dnd-icon-p">盈利预告</p>
+                    </div>
+                    <div class="h5-dnd-icon-box" draggable="true">
+                        <p class="h5-dnd-icon-p">每股指标</p>
+                    </div>
+                    <div class="h5-dnd-icon-box" draggable="true">
+                        <p class="h5-dnd-icon-p">机构评级</p>
+                    </div>
+                    <div class="h5-dnd-icon-box" draggable="true">
+                        <p class="h5-dnd-icon-p">机构持股变动统计</p>
+                    </div>
+                    <div class="h5-dnd-icon-box" draggable="true">
+                        <p class="h5-dnd-icon-p">股价/成交量</p>
+                    </div>
+                    <div class="h5-dnd-icon-box" draggable="true">
+                        <p class="h5-dnd-icon-p">机构调研统计</p>
+                    </div>
+                    <div class="h5-dnd-icon-box" draggable="true">
+                        <p class="h5-dnd-icon-p">前十大股东</p>
+                    </div>
+                    <div class="h5-dnd-icon-box" draggable="true">
+                        <p class="h5-dnd-icon-p">研究报告</p>
+                    </div>
+                    <div class="h5-dnd-icon-box" draggable="true">
+                        <p class="h5-dnd-icon-p">公司公告</p>
+                    </div>
+                    <div class="h5-dnd-icon-box" draggable="true">
+                        <p class="h5-dnd-icon-p">公司新闻</p>
+                    </div>
+                    <!-- 
+                        <div class="h5-dnd-icon-box" draggable="true">
+                            <p class="h5-dnd-icon-p">投资者关系</p>
+                        </div>
+                    -->
+                    <div class="h5-dnd-icon-box" draggable="true">
+                        <p class="h5-dnd-icon-p">融资余额与融券余额差值走势</p>
+                    </div>
+                    <div class="h5-dnd-icon-box" draggable="true">
+                        <p class="h5-dnd-icon-p">近一个月资金流向大单统计</p>
+                    </div>
+                    <div class="h5-dnd-icon-box" draggable="true">
+                        <p class="h5-dnd-icon-p">股权质押</p>
+                    </div>
+                    <div class="h5-dnd-icon-box" draggable="true">
+                        <p class="h5-dnd-icon-p">控股参股情况</p>
+                    </div>
+                    <div class="h5-dnd-icon-box" draggable="true">
+                        <p class="h5-dnd-icon-p">高管持股变动情况</p>
+                    </div>
+                </section>
+            </div>
+            <div class="h5-dnd-nav-box h5-dnd-nav-box-hidden" data-nav-box="nav-box">
+                <section class="h5-dnd-template-container section-display" data-display="false">
+                    <div class="h5-dnd-template-box" draggable="true">
+                        <p class="h5-dnd-template-p">模板选择</p>
+                    </div>
+                </section>
+            </div>
+            <div class="h5-dnd-nav-box h5-dnd-nav-box-hidden" data-nav-box="nav-box">
+                <section class="h5-dnd-module-container section-hidden" data-display="true">
+                    <div class="h5-dnd-module-box" draggable="true">
+                        <p class="h5-dnd-module-p">模块设置</p>
+                    </div>
+                </section>
+            </div>
+        </nav>
+        <!-- show/hidden === display: block/none; -->
+    </header>
+    <!-- js -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+    <script src="./sidebar.js"></script>
+</body>
+
+</html>
+
+<!-- 
+// Extra small devices (portrait phones, less than 576px)
+// No media query since this is the default in Bootstrap
+
+// Small devices (landscape phones, 576px and up)
+@media (min-width: 576px) { ... }
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) { ... }
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) { ... }
+
+// Extra large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) { ... }
+
+
+
+
+// Extra small devices (portrait phones, less than 576px)
+@media (max-width: 575px) { ... }
+
+// Small devices (landscape phones, less than 768px)
+@media (max-width: 767px) { ... }
+
+// Medium devices (tablets, less than 992px)
+@media (max-width: 991px) { ... }
+
+// Large devices (desktops, less than 1200px)
+@media (max-width: 1199px) { ... }
+
+// Extra large devices (large desktops)
+// No media query since the extra-large breakpoint has no upper bound on its width
+ -->
