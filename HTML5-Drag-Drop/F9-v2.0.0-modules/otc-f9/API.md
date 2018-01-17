@@ -1116,3 +1116,24 @@ tbd.insertAdjacentHTML(`beforeend`, no_data);
 
 ```
 
+
+
+"fundcompare06": {
+    "datas": [
+        {
+            "jjmc": "工银全球",
+            "byhbl": 1.82,
+            "jnhbl": 9.71
+        },
+        {
+            "jjmc": "华夏成长",
+            "byhbl": 2.69,
+            "jnhbl": 6.65
+        }
+    ],
+    "index": {
+        "jjmc": "上证指数",
+        "byhbl": -0.59,
+        "jnhbl": 3.83
+    }
+},

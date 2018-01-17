@@ -75,7 +75,7 @@ window.OTC_SKIN = window.OTC_SKIN || ``;
 window.OTC_GILCODE = OTC_TS_FV.Utils.getParam(`gilcode`);
 window.OTC_SKIN = OTC_TS_FV.Utils.getParam(`skin`) || `white`;
 window.OTC_IP = window.parent.location.origin.includes("http") ? window.parent.location.origin : `http://10.1.5.202`;
-window.OTC_PATH = `/webservice/fastview/otcper`;
+window.OTC_PATH = `/webservice/fastview/otc`;
 
 
 
@@ -192,9 +192,10 @@ const initTabs = () => {
         let left_uids = [
             "otcfast01",
             "otcfast02",
-            // "otcfast03",
-            "otcfast031",
-            "otcfast032",
+            "otcfast03",
+            "otcfast13",
+            // "otcfast031",
+            // "otcfast032",
             "otcfastAdditional",
             "otcfastDividends",
             "otcfast10"
@@ -323,35 +324,6 @@ const loadModule = (uid =``, module_uid_name=``, isTable=`false`, debug = false)
 const HTML_Template = (uid = ``, loadModule = function(){}, debug = false) => {
     let htmlstr = ``,
         delete_uid = ``;
-    // let uids = ["otcfast01", "otcfast02", "otcfast03", "otcfastAdditional", "otcfastDividends", "otcfast10", "otcfast08", "otcfast09", "otcfastTransaction", "news", "bulletin"];
-    // data-icon-uid="module-data-otcfastAdditional"
-    /*
-        otcfast01	新增挂牌 newly-added-listing
-        otcfast02	新增协议 newly-added-protocol // No Data
-        otcfast03	交易排行榜 transactions-leaderboard /trading-rankings
-        交易排行榜 transactions-leaderboard-all
-        (交易排行榜-做市/ 交易排行榜-协议)
-        transactions-leaderboard-make-market
-        transactions-leaderboard-protocol
-
-        otcfast04	增发事项-预案 additional-issues-preplan
-        otcfast05	增发事项-实施 additional-issues-implementation
-        增发事项 additional-issues-all
-
-        otcfast06	分红事项-预案 dividend-matters-preplan
-        otcfast07	分红事项-实施 dividend-matters-implementation
-        分红事项 dividend-matters-all
-
-        otcfast08	挂牌情况 listing-situation
-        otcfast09	成交概况 transaction-overview
-
-        otcfast10	成交走势-做市图 turnover-trend-make-market-diagram
-        otcfast11	成交走势-协议图 turnover-trend-protocol-diagram
-        成交走势 turnover-trend-diagram-all
-
-        news	    公司新闻 thematic-statistics-news
-        bulletion	公司公告 thematic-statistics-bulletin
-    */
     switch (uid) {
         case "otcfast01":
             delete_uid = `newly-added-listing`;
@@ -448,7 +420,7 @@ const HTML_Template = (uid = ``, loadModule = function(){}, debug = false) => {
                 </section>
             `;
             break;
-        case "otcfast03":
+        case "otcfast03-old":
             delete_uid = `transactions-leaderboard-all`;
             loadModule(uid, `transactions-leaderboard-all`, true);
             htmlstr += `
@@ -470,7 +442,7 @@ const HTML_Template = (uid = ``, loadModule = function(){}, debug = false) => {
                 </section>
             `;
             break;
-        case "otcfast031":
+        case "otcfast03":
             delete_uid = `transactions-leaderboard-make-market`;
             loadModule(uid, `transactions-leaderboard-make-market`, true);
             htmlstr += `
@@ -492,7 +464,7 @@ const HTML_Template = (uid = ``, loadModule = function(){}, debug = false) => {
                 </section>
             `;
             break;
-        case "otcfast032":
+        case "otcfast13":
             delete_uid = `transactions-leaderboard-protocol`;
             loadModule(uid, `transactions-leaderboard-protocol`, true);
             htmlstr += `
@@ -572,7 +544,7 @@ const HTML_Template = (uid = ``, loadModule = function(){}, debug = false) => {
                         <p class="otc-h5dnd-modules-title" data-title="otc-dividend-matters-all-title">
                             分红事项
                             <span data-link="otc-dividend-matters-all-link">
-                                <a href="#更多" data-uid="1094" data-turn-to-uid="node-uid-dividend-matters-all-data">更多</a>
+                                <a href="#更多" data-uid="1094" data-turn-to-uid="node-uid-dividend-matters-all">更多</a>
                             </span>
                         </p>
                     </div>
@@ -622,7 +594,7 @@ const HTML_Template = (uid = ``, loadModule = function(){}, debug = false) => {
                             挂牌情况
                             <span data-time="otc-listing-situation-time"></span>
                             <span data-link="otc-listing-situation-link">
-                                <a href="#更多" data-uid="85648" data-turn-to-uid="node-uid-listing-situation-data">更多</a>
+                                <a href="#更多" data-uid="85648" data-turn-to-uid="node-uid-listing-situation">更多</a>
                             </span>
                         </p>
                     </div>
@@ -657,7 +629,7 @@ const HTML_Template = (uid = ``, loadModule = function(){}, debug = false) => {
                                 (<span data-text="otc-transactions-leaderboard-all-text">201x-xx-xx</span>)
                             </span>
                             <span data-link="otc-transaction-overview-link">
-                                <a href="#更多" data-uid="85648" data-turn-to-uid="node-uid-transaction-overview-data">更多</a>
+                                <a href="#更多" data-uid="85648" data-turn-to-uid="node-uid-transaction-overview">更多</a>
                             </span>
                         </p>
                     </div>
@@ -700,8 +672,8 @@ const HTML_Template = (uid = ``, loadModule = function(){}, debug = false) => {
                     <div class="otc-h5dnd-modules-title-box">
                         <p class="otc-h5dnd-modules-title" data-title="otc-thematic-statistics-news-title">
                             三板新闻
-                            <span data-more="otc-thematic-statistics-news-link">
-                                <a href="#更多" data-more="otc-thematic-statistics-news-link-more" data-uid="82540" data-turn-to-uid="node-uid-thematic-statistics-news-data">更多</a>
+                            <span data-link="otc-thematic-statistics-news-link">
+                                <a href="#更多" data-uid="82540" data-turn-to-uid="node-uid-thematic-statistics-news-data">更多</a>
                             </span>
                         </p>
                     </div>
@@ -730,8 +702,8 @@ const HTML_Template = (uid = ``, loadModule = function(){}, debug = false) => {
                     <div class="otc-h5dnd-modules-title-box">
                         <p class="otc-h5dnd-modules-title" data-title="otc-thematic-statistics-bulletin-title">
                             三板公告
-                            <span data-more="otc-thematic-statistics-bulletin-link">
-                                <a href="#更多" data-more="otc-thematic-statistics-bulletin-link-more" data-uid="82542" data-turn-to-uid="node-uid-thematic-statistics-bulletin-data">更多</a>
+                            <span data-link="otc-thematic-statistics-bulletin-link">
+                                <a href="#更多" data-uid="82542" data-turn-to-uid="node-uid-thematic-statistics-bulletin-data">更多</a>
                             </span>
                         </p>
                     </div>
@@ -745,7 +717,7 @@ const HTML_Template = (uid = ``, loadModule = function(){}, debug = false) => {
                         <tbody class="otc-thematic-statistics-bulletin-table-tbody" data-tbody="otc-thematic-statistics-bulletin-table-tbody"></tbody>
                         <tfoot class="otc-thematic-statistics-bulletin-table-tfoot">
                             <tr class="otc-thematic-statistics-bulletin-table-tr">
-                                <td class="otc-thematic-statistics-bulletin-table-td-value" data-value="data-otc-CB"></td>
+                                <td class="otc-thematic-statistics-bulletin-table-td-value" data-value="data-otc-TSB"></td>
                             </tr>
                         </tfoot>
                     </table>

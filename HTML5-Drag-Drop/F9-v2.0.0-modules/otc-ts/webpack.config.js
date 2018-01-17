@@ -47,8 +47,8 @@ const OTC_F9 = [
     // "transaction-overview",
     // "turnover-trend-make-market-diagram",
     // "turnover-trend-protocol-diagram",
-    // "otc-thematic-statistics-news",
-    // "otc-thematic-statistics-bulletin",
+    "thematic-statistics-news",
+    "thematic-statistics-bulletin",
 ];
 
 let entry_obj = {};

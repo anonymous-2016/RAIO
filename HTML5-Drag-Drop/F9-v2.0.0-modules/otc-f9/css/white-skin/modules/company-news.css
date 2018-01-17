@@ -215,3 +215,10 @@ a[data-link="otc-company-news-link"] {
 a[data-link="otc-company-news-link"]:hover {
     color: #f50;
 }
+
+
+/* new */
+
+tbody.otc-company-news-table-tbody>tr.otc-company-news-table-tr:nth-last-of-type(1) {
+    border-bottom: 1px solid #c5d2db;
+}

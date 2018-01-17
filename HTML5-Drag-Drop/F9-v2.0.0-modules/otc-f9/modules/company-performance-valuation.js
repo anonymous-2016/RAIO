@@ -620,11 +620,17 @@ OTC_F9_FV.Modules.companyPerformanceValuation.drawHS2 = OTC_F9_FV.Modules.compan
             },
             series: [
                 {
-                    type:'column',
-                    name: '市盈率(TTM)',
+                    type:'column',// items[0].type
+                    name: '市盈率(TTM)',// items[0].name
                     // color: "#f04949",
                     color: '#41aae2',
-                    data: ttm,
+                    data: ttm, // items[0].data
+                    // data: [{
+                    //     x: 0.2,// x position
+                    //     y: 100,
+                    //     // name: "Point2",
+                    //     color: "#FF00FF"
+                    // }, null, null, null, null], // only show one data
                     zIndex: 1,
                     tooltip: {
                         // headerFormat: `
@@ -640,6 +646,60 @@ OTC_F9_FV.Modules.companyPerformanceValuation.drawHS2 = OTC_F9_FV.Modules.compan
                         // 点 <span style="color:{point.color}">\u25CF</span> 百分比 :{point.percentage:.0f}%
                     },
                 },
+                // {
+                //     type:'column',// items[0].type
+                //     name: 'xxxxxxxxxx市盈率(TTM)',// items[0].name
+                //     // color: "#f04949",
+                //     color: '#41aae2',
+                //     // data: ttm, // items[0].data
+                //     data: [null, {
+                //         x: 1,// x position
+                //         y: 100,
+                //         // name: "Point2",
+                //         color: "#FF0000"
+                //     }, null, null, null], // only show one data
+                //     zIndex: 1,
+                //     tooltip: {
+                //         // headerFormat: `
+                //         //     <strong>
+                //         //         {point.x}
+                //         //     </strong>
+                //         //     <br/>
+                //         // `,
+                //         pointFormat: `
+                //             <span style="color:{point.color}">\u25CF</span>
+                //             {series.name}: <b>{point.y} </b><br/>
+                //         `,
+                //         // 点 <span style="color:{point.color}">\u25CF</span> 百分比 :{point.percentage:.0f}%
+                //     },
+                // },
+                // {
+                //     type:'column',// items[0].type
+                //     name: 'yyyyyyyyyyyyy市盈率(TTM)',// items[0].name
+                //     // color: "#f04949",
+                //     color: '#41aae2',
+                //     // data: ttm, // items[0].data
+                //     data: [null, null, {
+                //         x: 2,// x position
+                //         y: 100,
+                //         // name: "Point2",
+                //         color: "#00FF00"
+                //     }, null, null], // only show one data
+                //     zIndex: 1,
+                //     tooltip: {
+                //         // headerFormat: `
+                //         //     <strong>
+                //         //         {point.x}
+                //         //     </strong>
+                //         //     <br/>
+                //         // `,
+                //         pointFormat: `
+                //             <span style="color:{point.color}">\u25CF</span>
+                //             {series.name}: <b>{point.y} </b><br/>
+                //         `,
+                //         // 点 <span style="color:{point.color}">\u25CF</span> 百分比 :{point.percentage:.0f}%
+                //     },
+                // },
                 {
                     type: 'spline',
                     // yAxis: 1,

@@ -311,7 +311,7 @@ BouncedModal.prototype = {
         win["UDP"].BouncedModal = BouncedModal();
         // BouncedModal && Constructorle ???
     }else{
-        win.UDP = {
+        window.UDP = {
             Public: STOCK_F9_FV.Modal.Public(),
             getClientWidthHeight: STOCK_F9_FV.Modal.getClientWidthHeight(),
             BouncedModal: BouncedModal()
