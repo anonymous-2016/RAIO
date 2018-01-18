@@ -454,51 +454,49 @@ div.h5-dnd-icon-box:nth-of-type(0) {
 /* background */
 
 .h5-dnd-icon-container>div.h5-dnd-icon-box:nth-child(1)>p.h5-dnd-icon-p::before {
-    content: url("../img/icons/latest-transaction-data.png");
+    content: url("../img/icons/newly-added-listing.png");
 }
 
 .h5-dnd-icon-container>div.h5-dnd-icon-box:nth-child(2)>p.h5-dnd-icon-p::before {
-    content: url("../img/icons/big-event-reminder.png");
+    content: url("../img/icons/newly-added-protocol.png");
 }
 
 .h5-dnd-icon-container>div.h5-dnd-icon-box:nth-child(3)>p.h5-dnd-icon-p::before {
-    content: url("../img/icons/company-news.png");
+    content: url("../img/icons/transactions-leaderboard.png");
+    /* content: url("../img/icons/company-news.png"); */
 }
 
 .h5-dnd-icon-container>div.h5-dnd-icon-box:nth-child(4)>p.h5-dnd-icon-p::before {
-    content: url("../img/icons/company-bulletin.png");
+    content: url("../img/icons/transactions-leaderboard.png");
+    /* content: url("../img/icons/company-bulletin.png"); */
 }
 
 .h5-dnd-icon-container>div.h5-dnd-icon-box:nth-child(5)>p.h5-dnd-icon-p::before {
-    content: url("../img/icons/company-performance.png");
+    content: url("../img/icons/additional-issues.png");
 }
 
 .h5-dnd-icon-container>div.h5-dnd-icon-box:nth-child(6)>p.h5-dnd-icon-p::before {
-    content: url("../img/icons/equity-shareholder.png");
+    content: url("../img/icons/dividend-matters.png");
 }
 
 .h5-dnd-icon-container>div.h5-dnd-icon-box:nth-child(7)>p.h5-dnd-icon-p::before {
-    content: url("../img/icons/company-brief-introduction.png");
+    content: url("../img/icons/listing-situation.png");
 }
 
 .h5-dnd-icon-container>div.h5-dnd-icon-box:nth-child(8)>p.h5-dnd-icon-p::before {
-    content: url("../img/icons/research-report.png");
+    content: url("../img/icons/transaction-overview.png");
 }
 
 .h5-dnd-icon-container>div.h5-dnd-icon-box:nth-child(9)>p.h5-dnd-icon-p::before {
-    content: url("../img/icons/latest-financial-data.png");
+    content: url("../img/icons/turnover-trend.png");
 }
 
 .h5-dnd-icon-container>div.h5-dnd-icon-box:nth-child(10)>p.h5-dnd-icon-p::before {
-    content: url("../img/icons/main-management-business.png");
+    content: url("../img/icons/otc-ts-news.png");
 }
 
 .h5-dnd-icon-container>div.h5-dnd-icon-box:nth-child(11)>p.h5-dnd-icon-p::before {
-    content: url("../img/icons/management-layer-profiles.png");
-}
-
-.h5-dnd-icon-container>div.h5-dnd-icon-box:nth-child(12)>p.h5-dnd-icon-p::before {
-    content: url("../img/icons/company-news.png");
+    content: url("../img/icons/otc-ts-bulletin.png");
 }
 
 

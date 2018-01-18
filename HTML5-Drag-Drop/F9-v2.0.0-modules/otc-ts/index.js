@@ -74,7 +74,12 @@ window.OTC_SKIN = window.OTC_SKIN || ``;
 // set params before DOM ready!
 window.OTC_GILCODE = OTC_TS_FV.Utils.getParam(`gilcode`);
 window.OTC_SKIN = OTC_TS_FV.Utils.getParam(`skin`) || `white`;
-window.OTC_IP = window.parent.location.origin.includes("http") ? window.parent.location.origin : `http://10.1.5.202`;
+let UIP =  window.parent.location.origin,
+    UHTTP = UIP.includes("http"),
+    ULOCALHOST = window.parent.location.origin.includes("http://localhost");
+window.OTC_IP = (UHTTP && !ULOCALHOST) ? UIP : `http://10.1.5.202`;
+// IP only for prod & not for http://localhost:3000/
+// window.OTC_IP = window.parent.location.origin.includes("http") ? window.parent.location.origin : `http://10.1.5.202`;
 window.OTC_PATH = `/webservice/fastview/otc`;
 
 
@@ -673,7 +678,7 @@ const HTML_Template = (uid = ``, loadModule = function(){}, debug = false) => {
                         <p class="otc-h5dnd-modules-title" data-title="otc-thematic-statistics-news-title">
                             三板新闻
                             <span data-link="otc-thematic-statistics-news-link">
-                                <a href="#更多" data-uid="82540" data-turn-to-uid="node-uid-thematic-statistics-news-data">更多</a>
+                                <a href="#更多" data-uid="82540" data-turn-to-uid="node-uid-thematic-statistics-news">更多</a>
                             </span>
                         </p>
                     </div>
@@ -687,7 +692,7 @@ const HTML_Template = (uid = ``, loadModule = function(){}, debug = false) => {
                         <tbody class="otc-thematic-statistics-news-table-tbody" data-tbody="otc-thematic-statistics-news-table-tbody"></tbody>
                         <tfoot class="otc-thematic-statistics-news-table-tfoot">
                             <tr class="otc-thematic-statistics-news-table-tr">
-                                <td class="otc-thematic-statistics-news-table-td-value" data-value="data-otc-CN"></td>
+                                <td class="otc-thematic-statistics-news-table-td-value" data-value="data-otc-TSN"></td>
                             </tr>
                         </tfoot>
                     </table>

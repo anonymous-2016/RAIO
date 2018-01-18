@@ -1,0 +1,160 @@
+@charset "UTF-8";
+
+/* additional-issues-preplan */
+
+
+/* commons-title */
+
+.ntb-additional-issues-preplan-title {
+    position: relative;
+    color: #000;
+    text-indent: 15px;
+    margin-left: 3px;
+    font-weight: 600;
+    font-size: 14px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.ntb-additional-issues-preplan-title::before {
+    position: absolute;
+    top: 0px;
+    left: 5px;
+    content: "";
+    display: inline-block;
+    border: 2px solid #f79530;
+    width: 0;
+    height: 16px;
+    /* line-height: 22px; */
+}
+
+#newly_added_listing_hs_container {
+    /* min-height: 100px; */
+    height: 100%;
+    width: 100%;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+
+/* table */
+
+[data-table="ntb-table-additional-issues-preplan"] {
+    /* width: 542px; */
+    /* width: 100%; */
+    box-sizing: border-box;
+    border-collapse: collapse;
+    border-spacing: 0;
+    font-size: 13px;
+    font-weight: normal;
+    /* overflow: hidden; */
+}
+
+
+/* th */
+
+[data-table-th="ntb-table-th-additional-issues-preplan"] {
+    font-size: 18px;
+    /* text-align: left; */
+    /* background-color: #666; */
+    box-sizing: border-box;
+}
+
+
+/* table head */
+
+.ntb-td-key::after {
+    content: ":";
+}
+
+[data-td-key="ntb-td-no-key"] {
+    content: "";
+    border-right: 1px solid #ccc;
+}
+
+
+/* th a link */
+
+[data-table-th-link="ntb-table-th-link-additional-issues-preplan"] {
+    box-sizing: border-box;
+    /* text-align: right; */
+    font-size: 13px;
+    padding: 0;
+}
+
+.ntb-th-more>a[data-ntb-th-link="ntb-link-detials"] {
+    cursor: pointer;
+    color: rgba(2, 175, 255, 0.5);
+    text-decoration: none;
+    width: 100px;
+    display: inline-block;
+    box-sizing: border-box;
+}
+
+.ntb-th-more>a[data-ntb-th-link="ntb-link-detials"]:hover {
+    color: rgba(2, 175, 255, 1);
+}
+
+[data-ntb-th-link="ntb-link-detials"]::after {
+    content: ">>"
+}
+
+
+/* tr */
+
+[data-table-tr="ntb-table-tr-additional-issues-preplan"] {
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    /* text-align: right; */
+    text-align: center;
+}
+
+[data-table-body="ntb-table-body-additional-issues-preplan"]>tr:nth-of-type(1) {
+    /* text-align: left; */
+    text-align: center;
+}
+
+
+/* td */
+
+[data-td-key="ntb-td-key"] {
+    box-sizing: border-box;
+    border-right: 1px solid #ccc;
+    font-weight: bold;
+    text-align: center;
+    /* width: calc(1*100px); */
+    width: 150px;
+    max-width: 150px;
+    line-height: 23px;
+    height: 23px;
+}
+
+[data-td-value="ntb-td-value"] {
+    /* color: red; */
+    font-size: 13px;
+    box-sizing: border-box;
+    border-right: 1px solid #ccc;
+    width: 100px;
+    max-width: 100px;
+    line-height: 23px;
+    height: 23px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+[data-td="ntb-cols-span"] {
+    width: calc(2*100px);
+}
+
+
+/* data-td-value="ntb-td-value" */
+
+table,
+tr,
+td {
+    margin: 0;
+    padding: 0;
+}

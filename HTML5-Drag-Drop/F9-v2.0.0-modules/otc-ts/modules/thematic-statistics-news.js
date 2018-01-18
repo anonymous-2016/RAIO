@@ -173,7 +173,8 @@ OTC_TS_FV.Modules.thematicStatisticsNews = OTC_TS_FV.Modules.thematicStatisticsN
                         node_path = `12\\${uid}`;
                     try {
                         if (uid !== "null") {
-                            ChromeExternal.Execute("ExecuteCommand", `12\\${gilcode}\\${uid}`);
+                            // ChromeExternal.Execute("ExecuteCommand", `12\\${gilcode}\\${uid}`);
+                            ChromeExternal.Execute("ExecuteCommand", `12\\${uid}`);
                         }else{
                             console.log(`ChromeExternal & ${uid} === null\n`);
                         }
@@ -225,7 +226,8 @@ var OTC_IP = window.OTC_IP || `http://10.1.5.202`,
 OTC_TS_FV.Modules.thematicStatisticsNews.init({
     ip: OTC_IP,
     path: OTC_PATH,
-    socket: `/news/`,
+    socket: `/news`,
+    // socket: `/news/`,
     // gilcode: OTC_GILCODE,
 });
 

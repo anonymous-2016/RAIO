@@ -1,0 +1,198 @@
+@charset "UTF-8";
+
+/* newly-added-listing */
+
+.otc-newly-added-listing-hs {
+    margin: 0 auto;
+    box-sizing: border-box;
+    border: 1px solid #d7dbe0;
+}
+
+
+/*
+    width: 100%;
+    height: 275px;
+*/
+
+.otc-newly-added-listing-hs-container {
+    /* max-width: 540px; */
+    /* height: 275px; */
+    /* overflow-x: scroll; */
+    height: 100%;
+    /* min-height: 275px; */
+    /* height: 500px; */
+}
+
+
+/* commons-title */
+
+.otc-newly-added-listing-title {
+    position: relative;
+    color: #000;
+    text-indent: 15px;
+    margin-left: 3px;
+    font-weight: 600;
+    font-size: 14px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.otc-newly-added-listing-title::before {
+    position: absolute;
+    top: 0px;
+    left: 5px;
+    content: "";
+    display: inline-block;
+    border: 2px solid #f79530;
+    width: 0;
+    height: 16px;
+    /* line-height: 22px; */
+}
+
+#newly_added_listing_hs_container {
+    /* min-height: 100px; */
+    height: 100%;
+    width: 100%;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+
+/* table */
+
+[data-table="otc-table-newly-added-listing"] {
+    /* width: 542px; */
+    /* width: 100%; */
+    box-sizing: border-box;
+    border-collapse: collapse;
+    border-spacing: 0;
+    font-size: 13px;
+    font-weight: normal;
+    /* overflow: hidden; */
+}
+
+
+/* th */
+
+[data-table-th="otc-table-th-newly-added-listing"] {
+    font-size: 18px;
+    text-align: left;
+    /* background-color: #666; */
+    box-sizing: border-box;
+}
+
+
+/* table head */
+
+.otc-td-key::after {
+    content: ":"
+}
+
+.otc-th-fire::after {
+    content: "🔥"
+}
+
+.otc-th-more {
+    padding-left: 100px;
+    text-align: right;
+}
+
+[data-otc-th-title="Securities-Code"]::before {
+    content: "("
+}
+
+[data-otc-th-title="Securities-Code"]::after {
+    content: ")"
+}
+
+
+/* th a link */
+
+[data-table-th-link="otc-table-th-link-newly-added-listing"] {
+    box-sizing: border-box;
+    text-align: right;
+    font-size: 13px;
+    padding: 0;
+}
+
+.otc-th-more>a[data-otc-th-link="otc-link-detials"] {
+    cursor: pointer;
+    color: rgba(2, 175, 255, 0.5);
+    text-decoration: none;
+    width: 100px;
+    display: inline-block;
+    box-sizing: border-box;
+}
+
+.otc-th-more>a[data-otc-th-link="otc-link-detials"]:hover {
+    color: rgba(2, 175, 255, 1);
+}
+
+[data-otc-th-link="otc-link-detials"]::after {
+    content: ">>"
+}
+
+
+/* tr */
+
+[data-table-tr="otc-table-tr-newly-added-listing"] {
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    text-align: right;
+}
+
+[data-table-body="otc-table-body-newly-added-listing"]>tr:nth-of-type(1) {
+    /* text-align: left; */
+    text-align: center;
+}
+
+
+/* td */
+
+[data-td-key="otc-td-key"] {
+    box-sizing: border-box;
+    border-right: 1px solid #ccc;
+    font-weight: bold;
+    text-align: center;
+    /* width: calc(1*100px); */
+    width: 100px;
+    max-width: 100px;
+    line-height: 23px;
+    height: 23px;
+}
+
+[data-td-value="otc-td-value"] {
+    color: red;
+    font-size: 13px;
+    box-sizing: border-box;
+    border-right: 1px solid #ccc;
+    width: 100px;
+    max-width: 100px;
+    line-height: 23px;
+    height: 23px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+[data-td="otc-cols-span"] {
+    width: calc(2*100px);
+}
+
+
+/* data-td-value="otc-td-value" */
+
+table,
+tr,
+td {
+    margin: 0;
+    padding: 0;
+}
+
+[data-more="newly-added-listing-more"] {
+    color: red;
+    float: right;
+    margin-right: 54px;
+}
