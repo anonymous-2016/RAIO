@@ -93,3 +93,8 @@ p {
 
 
 */
+
+[data-margin="no-data-margin-top"] {
+    margin-top: 10px;
+    width: 540px;
+}

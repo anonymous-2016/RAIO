@@ -13,6 +13,9 @@
  * @param {* DOM Element} uid
  * @param {* Boolean} debug
  */
+import {UserException} from "../utils/throw_error";
+import {UserConsoleError as ConsoleError} from "../utils/console_error";
+
 
 // namespaces
 var OTC_TS_FV = OTC_TS_FV || {};
@@ -21,99 +24,138 @@ var OTC_TS_FV = OTC_TS_FV || {};
 OTC_TS_FV.Modules = OTC_TS_FV.Modules || {};
 
 
-/*
-
-OTC_TS_FV.Modules.newlyAddedListing = OTC_TS_FV.Modules.newlyAddedListing || (() => console.log(`module testing!`));
-// () => console.log(`module testing!`)
-
-typeof OTC_TS_FV.Modules.newlyAddedListing
-// "function"
-
-OTC_TS_FV.Modules.newlyAddedListing();
-// module testing!
-
-*/
-
-
-
-
-
-OTC_TS_FV.Modules.newlyAddedListing = OTC_TS_FV.Modules.newlyAddedListing || ((url = ``, debug = false, uid = `default_dom_uid`, ui_arr = ["gpjs", "zqdm", "zqjc", "sshy", "zbqs", "mgsy", "mgjzc", "jlrtbzz", "jzcsyl", "zgb", "ltgb"]) => {
+OTC_TS_FV.Modules.newlyAddedListing = OTC_TS_FV.Modules.newlyAddedListing || ((url = ``, debug = false, uid = `default_dom_uid`) => {
     // debug = true;
     let datas = {};
-    const ui_keys = ui_arr;
+    // , ui_arr = ["gpjs", "zqdm", "zqjc", "sshy", "zbqs", "mgsy", "mgjzc", "jlrtbzz", "jzcsyl", "zgb", "ltgb"]
+    // const ui_keys = ui_arr;
     fetch(url)
     .then(res => res.json())
     .then(
         (json) => {
-            let json_keys = [],
-                json_values = [];
-            if (json !== undefined && typeof json === "object") {
-                // json_keys = Object.keys(json);
-                json_keys = Object.keys(json).sort();
-                json_values = Object.values(json);
-                // show new add num
-                let new_add = document.querySelector(`[data-otc-new-add-num="otc-new-add-num-listing"]`);
-                // new_add.innerHTML = json[json_keys[0]]["gpjs"];
-                new_add.innerHTML = json_values[0]["gpjs"];
-                // table
-                let init_uid = json_keys[0].replace(/(id)/i, ``);
-                if (debug) {
-                    console.log(`init_uid = \n`, init_uid);
-                    // "id872356" => "872356"
-                    console.log(`json = \n`, json);
+            // global function
+            const emptyChecker = (key = ``) => {
+                // arr.map() ???
+                let result = true;
+                switch (key) {
+                    case undefined:
+                        result = false;
+                        break;
+                    case null:
+                        result = false;
+                        break;
+                    // case "--":
+                    //     result = false;
+                    //     break;
+                    default:
+                        break;
                 }
-                OTC_TS_FV.Modules.newlyAddedListing.showTable(init_uid, json);
-            }
-            // async
+                return result;
+            };
             if (debug) {
                 console.log(`json = \n`, json);
-                // new_add.innerHTML = json[0]["gpjs"];
-                // console.log(`json[0] = \n`, json[0]);
-                // undefined
-                console.log(`json.keys = \n`, json_keys);
-                console.log(`json.values = \n`, json_values);
             }
-            // sort json
-            let new_json_values =[];
-            // json_keys = json_keys.sort();
-            json_keys.map(
-                (key, i) => {
-                    const {
-                        mgsy: x,
-                        mgjzc: y,
-                        zgb: z,
-                        zqjc: name,
-                        zqdm: code
-                    } = {...json[key]};
-                    const new_obj = Object.assign(
-                        {},
-                        {
-                            x,
-                            y,
-                            //z: 6,// 气泡的大小
-                            z,
-                            name,
-                            code
+            try {
+                let json_keys = [],
+                    json_values = [];
+                // show new add num
+                let new_add = document.querySelector(`[data-text="otc-newly-added-listing-text"]`),
+                    no_data_dom = document.querySelector(`.otc-newly-added-listing-title-box`),
+                    hs_container = document.querySelector(`#newly_added_listing_hs_container`),
+                    // table_body = document.querySelector(`[data-table-body="otc-table-body-newly-added-listing"]`),
+                    table_container = document.querySelector(`[data-table="otc-table-newly-added-listing"]`);
+                // no data
+                let no_data_p = `
+                    <div data-margin="no-data-margin-top">
+                        <p data-none="no-data-p">
+                            <span data-none="no-data-span"></span>
+                        </p>
+                    </div>
+                `;
+                if (emptyChecker(json) && Object.keys(json).length > 0) {
+                    // auto sort
+                    json_keys = Object.keys(json).sort();
+                    // json_keys = Object.keys(json);
+                    json_values = Object.values(json);
+                    if (emptyChecker(json[json_keys[0]].gpjs)) {
+                        // all same & no need sort
+                        // new_add.innerHTML = json[json_keys[0]]["gpjs"];
+                        // new_add.innerHTML = json_values[0].gpjs;
+                        new_add.insertAdjacentHTML(`beforeend`, `今日新增挂牌公司${json_values[0].gpjs}家`);
+                        // new_add.innerHTML = json_values[0]["gpjs"];
+                        // init table & mini gilcode
+                        let init_uid = json_keys[0].replace(/(id)/i, ``);
+                        if (debug) {
+                            console.log(`init_uid = \n`, init_uid);
+                            // "id872356" => "872356"
+                        }
+                        OTC_TS_FV.Modules.newlyAddedListing.showTable(init_uid, json);// isNoData
+                    }else{
+                        // no data
+                        // new_add.innerHTML = ``;
+                        // new_add.innerHTML = `0`;
+                        // no need do anything / do nothing & default ``
+                    }
+                    // sort json
+                    let new_json_values =[];
+                    // json_keys = json_keys.sort();
+                    json_keys.map(
+                        (key, i) => {
+                            const {
+                                mgsy: x,
+                                mgjzc: y,
+                                zgb: z,
+                                zqjc: name,
+                                zqdm: code
+                            } = {...json[key]};
+                            const new_obj = Object.assign(
+                                {},
+                                {
+                                    x,
+                                    y,
+                                    //z: 6,// 气泡的大小
+                                    z,
+                                    name,
+                                    code
+                                }
+                            );
+                            if (debug) {
+                                // console.log(`key = \n`, key);
+                                console.log(`json[key] = \n`, json[key]);
+                                // {gpjs: 12, zqdm: "872352", zqjc: "开元新材", sshy: "非金属矿物制品业", zbqs: "长江证券", …}
+                                console.log(`new_obj =\n`, new_obj);
+                                // {x: -0.21, y: 0.87, z: 20000000, name: "思源软件", code: "872343"}
+                            }
+                            new_json_values.push(new_obj);
                         }
                     );
                     if (debug) {
-                        // console.log(`key = \n`, key);
-                        console.log(`json[key] = \n`, json[key]);
-                        // {gpjs: 12, zqdm: "872352", zqjc: "开元新材", sshy: "非金属矿物制品业", zbqs: "长江证券", …}
-                        console.log(`new_obj =\n`, new_obj);
-                        // {x: -0.21, y: 0.87, z: 20000000, name: "思源软件", code: "872343"}
+                        console.log(`json_keys = \n`, json_keys);
+                        console.log(`new_json_values = \n`, new_json_values);
                     }
-                    new_json_values.push(new_obj);
+                    // HC & datas
+                    datas = [].concat(new_json_values);
+                    // array
+                    // OTC_TS_FV.Modules.newlyAddedListing.drawHC(datas, uid, json, false);
+                    if (datas.length > 0) {
+                        // ok
+                        OTC_TS_FV.Modules.newlyAddedListing.drawHC(datas, uid, json, false);
+                    } else {
+                        // no data
+                    }
+                } else {
+                    // no data
+                    hs_container.style.display = "none";// OK
+                    // "none" !== "none;" && string value
+                    // hs_container.style.display = "none;";// BAD
+                    table_container.style.display = "none";
+                    no_data_dom.insertAdjacentHTML(`afterend`, no_data_p);
                 }
-            );
-            if (debug) {
-                console.log(`json_keys = \n`, json_keys);
-                console.log(`new_json_values = \n`, new_json_values);
+            } catch (err) {
+                let url =`file:///E:/otc-ts/modules/newly-added-listing.js`;
+                ConsoleError(err, url);
+                // no data & fallback
             }
-            datas = [].concat(new_json_values);
-            // array
-            OTC_TS_FV.Modules.newlyAddedListing.drawHC(datas, uid, json, false);
         }
     )
     .catch(error => console.log(`error = \n`, error));
@@ -147,6 +189,15 @@ OTC_TS_FV.Modules.newlyAddedListing.drawHC = OTC_TS_FV.Modules.newlyAddedListing
     // webpack / rollup
     if (debug) {
         console.log(`Highcharts datas =\n`, datas);
+        // [
+        //     {
+        //     code : "300725",
+        //     name : "Ｎ 药 石",
+        //     x : 0.69 ,
+        //     y : 4.62 ,
+        //     z : 55000000
+        //     }
+        // ]
         console.log(`%c Highcharts container_uid =`, `color: #f0f; font-size: 23px;`, container_uid);
     }
     Highcharts.setOptions({
@@ -164,8 +215,8 @@ OTC_TS_FV.Modules.newlyAddedListing.drawHC = OTC_TS_FV.Modules.newlyAddedListing
             loading: '加载中...',
             months: ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月'],
             noData: `
-                <p data-p="no-data-p">
-                    <span data-span="no-data-span">没有数据</span>
+                <p data-none="no-data-hc">
+                    <span data-none="no-data-span"></span>
                 </p>
             `,
             // noData: "没有数据显示!",
@@ -182,13 +233,13 @@ OTC_TS_FV.Modules.newlyAddedListing.drawHC = OTC_TS_FV.Modules.newlyAddedListing
     Highcharts.chart(container_uid, {
         noData: {
             // attr: undefined,
-            position: {
-                align: "center",
-                verticalAlign: "middle",
-                x: 0,
-                y: 0
-            },
-            style: { "fontSize": "12px", "fontWeight": "bold", "color": "#777" },
+            // position: {
+            //     align: "center",
+            //     verticalAlign: "middle",
+            //     x: 0,
+            //     y: 0
+            // },
+            // style: { "fontSize": "12px", "fontWeight": "bold", "color": "#777" },
             useHTML: true,
         },
         credits: {
@@ -200,7 +251,7 @@ OTC_TS_FV.Modules.newlyAddedListing.drawHC = OTC_TS_FV.Modules.newlyAddedListing
         chart: {
             type: 'bubble',
             plotBorderWidth: 1,
-            // zoomType: 'xy',
+            zoomType: 'xy',
             // ???决定用户可以通过拖动鼠标来缩放的尺寸。可以是x，y或xy中的一个。
             // Can be one of x, y or xy. Defaults to undefined.
         },
@@ -251,24 +302,24 @@ OTC_TS_FV.Modules.newlyAddedListing.drawHC = OTC_TS_FV.Modules.newlyAddedListing
                 format: '{value}'
             },
             maxPadding: 0.2,
-            plotLines: [
-                {
-                    color: 'black',
-                    dashStyle: 'dot',
-                    width: 2,
-                    value: 3,//
-                    label: {
-                        align: 'right',
-                        style: {
-                            fontStyle: 'italic'
-                        },
-                        text: '正常 ??? 天',// 50
-                        x: -10
-                    },
-                    zIndex: 3
-                },
-                // y line no
-            ]
+            // plotLines: [
+            //     {
+            //         color: 'black',
+            //         dashStyle: 'dot',
+            //         width: 2,
+            //         value: 3,//
+            //         label: {
+            //             align: 'right',
+            //             style: {
+            //                 fontStyle: 'italic'
+            //             },
+            //             text: '正常 ??? 天',// 50
+            //             x: -10
+            //         },
+            //         zIndex: 3
+            //     },
+            //     // y line no
+            // ]
         },
         tooltip: {
             useHTML: true,
@@ -341,10 +392,41 @@ OTC_TS_FV.Modules.newlyAddedListing.drawHC = OTC_TS_FV.Modules.newlyAddedListing
         series: [
             {
                 data: [...datas],
+                name: `今日新增挂牌公司`,
+                // color: `#f0f`,
+                // data: [
+                //     {
+                //         name: '有限售股份总数',
+                //         // y: 7.91,
+                //         y: limite,// Array
+                //         drilldown: 'Limited',
+                //         color: "#9bbb59",
+                //         // color: "#0f0"
+                //     },
+                //     {
+                //         name: '有限售股份总数',
+                //         // y: 7.91,
+                //         y: limite,// Array
+                //         drilldown: 'Limited',
+                //         color: "#9bbb59",
+                //         // color: "#0f0"
+                //     },
+                // ],
+                // data: [
+                //     {
+                //         code : "300725",
+                //         name : "Ｎ 药 石",
+                //         x : 0.69 ,
+                //         y : 4.62 ,
+                //         z : 55000000,
+                //         color: "#9bbb59",//new add & rainbow colors array ???
+                //     },
+                // ]
             }
         ],
     });
 });
+
 
 
 
@@ -371,8 +453,8 @@ OTC_TS_FV.Modules.newlyAddedListing.showTable = OTC_TS_FV.Modules.newlyAddedList
     if (debug) {
         console.log(`table_obj`, JSON.stringify(table_obj, null, 4));
     }
-    let sa = document.querySelector(`[data-otc-th-title="Securities-Abbreviation-listing"]`),
-        sc = document.querySelector(`[data-otc-th-title="Securities-Code-listing"]`),
+    let sa = document.querySelector(`[data-otc-th-title="securities-abbreviation-newly-added-listing"]`),
+        sc = document.querySelector(`[data-otc-th-title="securities-code-newly-added-listing"]`),
         // new_add = document.querySelector(`[data-otc-new-add-num="otc-new-add-num-listing"]`),
         tb = document.querySelector(`[data-table-body="otc-table-body-newly-added-listing"]`);
     // let tr1 = tb.firstElementChild;
@@ -410,21 +492,6 @@ OTC_TS_FV.Modules.newlyAddedListing.showTable = OTC_TS_FV.Modules.newlyAddedList
 });
 
 
-
-
-
-
-// call fetch json datas
-// setTimeout(() => {
-//     // async & await
-//     const sf_num= `otcfast01`;
-//     const url = `http://10.1.5.202/webservice/fastview/otc/${sf_num}`;
-//     let uid = `newly_added_listing_hs_container`;
-//     let hs_datas = OTC_TS_FV.Modules.newlyAddedListing(url, false, uid);
-// }, 0);
-
-
-
 OTC_TS_FV.Modules.newlyAddedListing.init = OTC_TS_FV.Modules.newlyAddedListing.init || (
     (
         {
@@ -441,7 +508,7 @@ OTC_TS_FV.Modules.newlyAddedListing.init = OTC_TS_FV.Modules.newlyAddedListing.i
     ) => {
         // let url = `${ip}${path}${socket}${gilcode}`,
         // let url = `${ip}${path}${socket}`,
-        let url = `https://cdn.xgqfrms.xyz/json/otc-ts/01.json`,
+        let url = `https://cdn.xgqfrms.xyz/json/otc-ts/01.json`,// no data?
             tbody_dom = document.querySelector(`[data-tbody="otc-research-report-table-tbody"]`),
             more = document.querySelector(`[data-more="otc-research-report-link-more"]`),
             uid = `newly_added_listing_hs_container`;

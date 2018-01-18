@@ -242,7 +242,7 @@ OTC_F9_FV.Modules.companyPerformanceMarket = OTC_F9_FV.Modules.companyPerformanc
             }
         )
         .catch(err => console.log(`fetch error = \n`, err));
-        return datas;
+        // return datas;
     }
 );
 
