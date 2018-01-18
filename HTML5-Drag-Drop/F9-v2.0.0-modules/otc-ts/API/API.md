@@ -603,3 +603,40 @@ otcfast11:
     "otc-thematic-statistics-news",
     "otc-thematic-statistics-bulletin",
 
+
+# more
+
+```js
+
+// more
+        setTimeout((debug = false) => {
+            let turn_to_uids = document.querySelectorAll(`[data-turn-to-uid="node-uid-equity-shareholder-data"]`);
+            if (debug) {
+                console.log(`turn_to_uids = \n`, turn_to_uids);
+            }
+            if (turn_to_uids.length > 0) {
+                for (let i = 0; i < turn_to_uids.length; i++) {
+                    turn_to_uids[i].addEventListener(`click`, (e) => {
+                        let uid = e.target.dataset.uid,
+                            gilcode = OTC_GILCODE ? OTC_GILCODE : window.OTC_GILCODE,
+                            node_path = `12\\${gilcode}\\${uid}`;
+                        try {
+                            if (uid !== "null") {
+                                ChromeExternal.Execute("ExecuteCommand", `12\\${gilcode}\\${uid}`);
+                            }else{
+                                console.log(`ChromeExternal & ${uid} === null\n`);
+                            }
+                        } catch (error) {
+                            console.log(`%c ChromeExternal & caught error = \n`, `color: red; font-size: 23px;`, error);
+                            console.log(`node uid = `, uid);
+                        }
+                    });
+                }
+            }else{
+                throw new Error(`turn_to_uids is `, turn_to_uids);
+            }
+        }, 0);
+
+```
+
+

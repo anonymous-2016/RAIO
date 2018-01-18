@@ -457,6 +457,13 @@ OTC_TS_FV.Modules.newlyAddedListing.showTable = OTC_TS_FV.Modules.newlyAddedList
         sc = document.querySelector(`[data-otc-th-title="securities-code-newly-added-listing"]`),
         // new_add = document.querySelector(`[data-otc-new-add-num="otc-new-add-num-listing"]`),
         tb = document.querySelector(`[data-table-body="otc-table-body-newly-added-listing"]`);
+    // more
+    let more = document.querySelector(`[data-more="otc-newly-added-listing-more"]`);
+    if (debug) {
+        console.log(`more.dataset.moreUid = `, more.dataset.moreUid);
+    }
+    more.dataset.moreUid = `${table_obj.zqdm}.OC`;
+    // console.log(`more.dataset.moreUid new = `, more.dataset.moreUid);
     // let tr1 = tb.firstElementChild;
     // let tr3 = tb.lastElementChild;
     // [tr, tr, tr]
@@ -535,3 +542,18 @@ OTC_TS_FV.Modules.newlyAddedListing.init({
 
 // OTC_TS_FV.Modules.newlyAddedListing.init();
 // const url = `http://10.1.5.202/webservice/fastview/otc/otcfast01`;
+
+
+
+
+/*
+
+let more = document.querySelector(`[data-more="otc-newly-added-listing-more"]`);
+
+more.dataset.moreUid;
+// "300725.OC"
+
+more.dataset.moreUid = `666666`;
+// "666666"
+
+*/

@@ -99,6 +99,7 @@ STOCK_F9_FV.Modules.recentImportantEvents = STOCK_F9_FV.Modules.recentImportantE
                                         //     console.log(`12\\600570.SH\\${new_uid}`, (typeof new_uid));
                                         // }
                                         ChromeExternal.Execute("ExecuteCommand", `12\\${gilcode}\\${uid}`);
+                                        // 分隔符
                                     }else{
                                         console.log(`ChromeExternal & ${uid} === null\n`);
                                     }
