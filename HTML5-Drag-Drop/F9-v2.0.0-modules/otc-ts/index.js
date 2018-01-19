@@ -199,8 +199,8 @@ const initTabs = () => {
             "otcfast02",
             "otcfast03",
             "otcfast13",
-            // "otcfast031",
-            // "otcfast032",
+            "otcfast031",
+            "otcfast032",
             "otcfastAdditional",
             "otcfastDividends",
             "otcfast10"
@@ -349,7 +349,7 @@ const HTML_Template = (uid = ``, loadModule = function(){}, debug = false) => {
                                 <span data-text="otc-newly-added-listing-text"></span>
                             </span>
                             <span data-link="otc-newly-added-listing-link">
-                                <a href="#更多" data-uid="1106" data-turn-to-uid="node-uid-newly-added-listing">更多</a>
+                                <a href="#更多" data-uid="342064" data-topic-category="NQTOPIC" data-turn-to-uid="node-uid-newly-added-listing">更多</a>
                             </span>
                         </p>
                     </div>
@@ -401,31 +401,62 @@ const HTML_Template = (uid = ``, loadModule = function(){}, debug = false) => {
             delete_uid = `newly-added-protocol`;
             loadModule(uid, `newly-added-protocol`, true);
             htmlstr += `
-                <section class="otc-module-box-5">
-                    <div class="otc-h5dnd-modules-title-box">
+                <section class="otc-module-box-5" data-uid="newly-added-protocol">
+                    <div class="otc-h5dnd-modules-title-box otc-newly-added-protocol-title-box">
                         <p class="otc-h5dnd-modules-title" data-title="otc-newly-added-protocol-title">
                             新增协议
                             <span data-title-text="otc-newly-added-protocol-title-text">
-                                今日新增协议转做市公司<span data-text="otc-newly-added-protocol-text">xxx</span>家
+                                <!-- 今日新增协议转做市公司 -->
+                                <span data-text="otc-newly-added-protocol-text"></span>
                             </span>
                             <span data-link="otc-newly-added-protocol-link">
-                                <a href="#更多" data-uid="1106" data-turn-to-uid="node-uid-newly-added-protocol">更多</a>
+                                <a href="#更多" data-uid="342066" data-topic-category="NQTOPIC" data-turn-to-uid="node-uid-newly-added-protocol">更多</a>
                             </span>
                         </p>
                     </div>
-                    <table class="otc-newly-added-protocol-table">
-                        <thead class="otc-newly-added-protocol-table-thead">
-                            <tr class="otc-newly-added-protocol-table-tr">
-                                <td class="otc-newly-added-protocol-table-td-title">大事提醒</td>
-                            </tr>
-                        </thead>
-                        <tbody class="otc-newly-added-protocol-table-tbody" data-tbody="otc-newly-added-protocol-table-tbody"></tbody>
-                        <tfoot class="otc-newly-added-protocol-table-tfoot">
-                            <tr class="otc-newly-added-protocol-table-tr">
-                                <td class="otc-newly-added-protocol-table-td-value" data-value="data-otc-BER"></td>
-                            </tr>
-                        </tfoot>
-                    </table>
+                    <div class="otc-newly-added-protocol-container">
+                        <!-- HC placeholder -->
+                        <div id="newly_added_protocol_hs_container" class="otc-newly-added-protocol-hs otc-newly-added-protocol-hs-container" data-hs-container="data-newly-added-protocol-container-uid"></div>
+                    </div>
+                    <div class="otc-newly-added-protocol-table-box otc-newly-added-protocol-table">
+                        <table data-table="otc-newly-added-protocol-table">
+                            <!-- <caption>证券简称: 松华新材 & 证券代码: 6000570.SH</caption> -->
+                            <thead data-table-thead="otc-table-thead-newly-added-protocol">
+                                <th data-table-th="otc-table-th-newly-added-protocol" colspan="5">
+                                    <span class="otc-th-fire" title="证券简称" data-otc-th-title="securities-abbreviation-newly-added-protocol" data-demo="轩慧科技"></span>
+                                    <span title="证券代码" data-otc-th-title="securities-code-newly-added-protocol" data-demo="872358.OC"></span>
+                                </th>
+                                <th class="otc-th-more" data-table-th-link="otc-table-th-link-newly-added-protocol">
+                                    <a href="#公司详情" data-otc-th-link="otc-link-detials" data-more="otc-newly-added-protocol-more" data-more-uid="300725.OC">公司详情</a>
+                                </th>
+                            </thead>
+                            <tbody data-table-body="otc-table-body-newly-added-protocol">
+                                <tr data-table-tr="otc-table-tr-newly-added-protocol">
+                                    <td class="otc-td-key" data-td-key="otc-td-key-NAP">所属行业</td>
+                                    <td data-td-value="otc-td-value-NAP" data-td="otc-cols-span-NAP" colspan="3"></td>
+                                    <td class="otc-td-key" data-td-key="otc-td-key-NAP">主板券商</td>
+                                    <td data-td-value="otc-td-value-NAP"></td>
+                                </tr>
+                                <tr data-table-tr="otc-table-tr-newly-added-protocol">
+                                    <td class="otc-td-key" data-td-key="otc-td-key-NAP">每股收益</td>
+                                    <td data-td-value="otc-td-value-NAP"></td>
+                                    <td class="otc-td-key" data-td-key="otc-td-key-NAP">净利润同比增长</td>
+                                    <td data-td-value="otc-td-value-NAP"></td>
+                                    <td class="otc-td-key" data-td-key="otc-td-key-NAP">总股本</td>
+                                    <td data-td-value="otc-td-value-NAP"></td>
+                                </tr>
+                                <tr data-table-tr="otc-table-tr-newly-added-protocol">
+                                    <td class="otc-td-key" data-td-key="otc-td-key-NAP">每股净资产</td>
+                                    <td data-td-value="otc-td-value-NAP"></td>
+                                    <td class="otc-td-key" data-td-key="otc-td-key-NAP">净资产收益率</td>
+                                    <td data-td-value="otc-td-value-NAP"></td>
+                                    <td class="otc-td-key" data-td-key="otc-td-key-NAP">流通股本</td>
+                                    <td data-td-value="otc-td-value-NAP"></td>
+                                </tr>
+                            </tbody>
+                            <tfoot></tfoot>
+                        </table>
+                    </div>
                 </section>
             `;
             break;
@@ -682,7 +713,7 @@ const HTML_Template = (uid = ``, loadModule = function(){}, debug = false) => {
                         <p class="otc-h5dnd-modules-title" data-title="otc-thematic-statistics-news-title">
                             三板新闻
                             <span data-link="otc-thematic-statistics-news-link">
-                                <a href="#更多" data-uid="82540" data-turn-to-uid="node-uid-thematic-statistics-news">更多</a>
+                                <a href="#更多" data-uid="xxxxxx" data-topic-category="NQTOPIC" data-turn-to-uid="node-uid-thematic-statistics-news"><!-- 更多 --></a>
                             </span>
                         </p>
                     </div>
@@ -712,7 +743,7 @@ const HTML_Template = (uid = ``, loadModule = function(){}, debug = false) => {
                         <p class="otc-h5dnd-modules-title" data-title="otc-thematic-statistics-bulletin-title">
                             三板公告
                             <span data-link="otc-thematic-statistics-bulletin-link">
-                                <a href="#更多" data-uid="82542" data-turn-to-uid="node-uid-thematic-statistics-bulletin-data">更多</a>
+                                <a href="#更多" data-uid="xxxxxx" data-topic-category="NQTOPIC" data-turn-to-uid="node-uid-thematic-statistics-bulletin-data"><!-- 更多 --></a>
                             </span>
                         </p>
                     </div>
@@ -789,10 +820,10 @@ OTC_TS_FV.Modules.loadAllModules = OTC_TS_FV.Modules.loadAllModules || (
          */
         const dropAll = (container, uids) => {
             // module_container
-            console.log(`uids =\n`, uids);
+            // console.log(`uids =\n`, uids);
             uids.forEach(
                 (uid, i) => {
-                    console.log(`delete ? uid = `, uid, i);
+                    // console.log(`delete ? uid = `, uid, i);
                     let div = document.createElement(`div`),
                         sub_div = document.createElement(`div`);
                     sub_div.dataset.deleteModuleUid = `delete-module-${uid}`;
@@ -820,12 +851,12 @@ OTC_TS_FV.Modules.loadAllModules = OTC_TS_FV.Modules.loadAllModules || (
                         delete_uid
                     } = HTML_Template(uid, loadModule);
                     // console.log(`htmlstr = `, htmlstr);
-                    console.log(`delete_uid = `, delete_uid);
+                    // console.log(`delete_uid = `, delete_uid);
                     div.insertAdjacentHTML(`beforeend`, `${htmlstr}`);
                     container.insertAdjacentElement(`beforeend`, div);
                     setTimeout(function() {
                         let delete_box = document.querySelector(`[data-title="otc-${delete_uid}-title"]`);
-                        console.log(`delete_box = `, delete_box);
+                        // console.log(`delete_box = `, delete_box);
                         delete_box.appendChild(sub_div);
                         if (delete_box !== null) {
                             delete_box.appendChild(sub_div);

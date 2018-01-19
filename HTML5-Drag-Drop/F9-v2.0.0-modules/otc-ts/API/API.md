@@ -607,35 +607,94 @@ otcfast11:
 # more
 
 ```js
+// <a href="#更多" data-uid="342064" data-topic-category="NQTOPIC" data-turn-to-uid="node-uid-newly-added-listing">更多</a>
 
 // more
-        setTimeout((debug = false) => {
-            let turn_to_uids = document.querySelectorAll(`[data-turn-to-uid="node-uid-equity-shareholder-data"]`);
-            if (debug) {
-                console.log(`turn_to_uids = \n`, turn_to_uids);
-            }
-            if (turn_to_uids.length > 0) {
-                for (let i = 0; i < turn_to_uids.length; i++) {
-                    turn_to_uids[i].addEventListener(`click`, (e) => {
-                        let uid = e.target.dataset.uid,
-                            gilcode = OTC_GILCODE ? OTC_GILCODE : window.OTC_GILCODE,
-                            node_path = `12\\${gilcode}\\${uid}`;
-                        try {
-                            if (uid !== "null") {
-                                ChromeExternal.Execute("ExecuteCommand", `12\\${gilcode}\\${uid}`);
-                            }else{
-                                console.log(`ChromeExternal & ${uid} === null\n`);
-                            }
-                        } catch (error) {
-                            console.log(`%c ChromeExternal & caught error = \n`, `color: red; font-size: 23px;`, error);
-                            console.log(`node uid = `, uid);
-                        }
-                    });
+setTimeout((debug = false) => {
+    let turn_to_uid = document.querySelector(`[data-turn-to-uid="node-uid-newly-added-listing"]`);
+    if (debug) {
+        console.log(`turn_to_uid dom = \n`, turn_to_uid);
+    }
+    if (turn_to_uid !== null) {
+        turn_to_uid.addEventListener(`click`, (e) => {
+                // 今日新增挂牌公司	More 13	NQTOPIC	342064 
+                // more.dataset.moreUid = `${table_obj.zqdm}.OC`;
+                let uid = e.target.dataset.uid,
+                    topic_category  = e.target.dataset.topicCategory,// 专题分类名称常量
+                    node_path = `13\\${topic_category}\\${uid}`;
+                try {
+                    if (uid !== undefined && topic_category !== undefined) {
+                        ChromeExternal.Execute("ExecuteCommand", node_path);
+                        // ChromeExternal.Execute("ExecuteCommand", `13\\${topic_category}\\${uid}`);
+                    }else{
+                        console.log(`ChromeExternal \nuid === ${uid} & topic_category === ${topic_category}`);
+                    }
+                } catch (error) {
+                    console.log(`%c ChromeExternal & caught error = \n`, `color: red; font-size: 23px;`, error);
+                    console.log(`node uid = `, uid);
+                    console.log(`node topic_category = `, topic_category);
+                    console.log(`node node_path = `, node_path);
                 }
-            }else{
-                throw new Error(`turn_to_uids is `, turn_to_uids);
-            }
-        }, 0);
+            });
+    }else{
+        // null 
+        throw new Error(`turn_to_uid dom is `, turn_to_uid);
+    }
+}, 0);
+
+
+
+// 其中交易排行榜协议对应otcfast03 ，交易排行榜做市对应otcfast13
+
+
+// more
+setTimeout((debug = false) => {
+    let turn_to_uids = document.querySelectorAll(`[data-turn-to-uid="node-uid-equity-shareholder-data"]`);
+    if (debug) {
+        console.log(`turn_to_uids = \n`, turn_to_uids);
+    }
+    if (turn_to_uids.length > 0) {
+        for (let i = 0; i < turn_to_uids.length; i++) {
+            turn_to_uids[i].addEventListener(`click`, (e) => {
+                let uid = e.target.dataset.uid,
+                    gilcode = OTC_GILCODE ? OTC_GILCODE : window.OTC_GILCODE,
+                    node_path = `12\\${gilcode}\\${uid}`;
+                try {
+                    if (uid !== "null") {
+                        ChromeExternal.Execute("ExecuteCommand", `12\\${gilcode}\\${uid}`);
+                    }else{
+                        console.log(`ChromeExternal & ${uid} === null\n`);
+                    }
+                } catch (error) {
+                    console.log(`%c ChromeExternal & caught error = \n`, `color: red; font-size: 23px;`, error);
+                    console.log(`node uid = `, uid);
+                }
+            });
+        }
+    }else{
+        throw new Error(`turn_to_uids is `, turn_to_uids);
+    }
+}, 0);
+
+```
+
+# string to number
+
+```json
+
+    "id872379": {
+        "gpjs": "12",
+        "zqdm": "872379",
+        "zqjc": "网域科技",
+        "sshy": "软件和信息技术服务业",
+        "zbqs": "开源证券",
+        "mgsy": "--",
+        "mgjzc": "--",
+        "jlrtbzz": "--",
+        "jzcsyl": "--",
+        "zgb": "--",
+        "ltgb": "--"
+    }
 
 ```
 

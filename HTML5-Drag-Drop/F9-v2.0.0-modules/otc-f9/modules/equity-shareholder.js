@@ -677,18 +677,4 @@ tbodys_dom[1].setAttribute(`data-hide-table`, `no-data-hide-table`);
 
 */
 
-/**
- *
- * @param {*String} a
- * @param {*String} b
- * @param {*String} c
- * @param {*String} d
- */
-const Test = (a = ``, b = ``, c = ``, d = ``) => {
-    let result = ``;
-    result = a + b + c + d;
-    console.log(`result = `, result);
-    return result;
-};
 
-Test(`1`, ``, `3`, `4`);

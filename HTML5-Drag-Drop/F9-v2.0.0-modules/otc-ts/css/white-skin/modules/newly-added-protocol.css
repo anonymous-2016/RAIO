@@ -23,7 +23,7 @@
     /* height: 500px; */
 }
 
-#newly_added_listing_hs_container {
+#newly_added_protocol_hs_container {
     /* min-height: 100px; */
     height: 100%;
     width: 100%;
@@ -41,7 +41,7 @@
 
 [data-table="otc-newly-added-protocol-table"] {
     /* width: 542px; */
-    max-width: 540px;
+    /* max-width: 540px; */
     width: 538px;
     /* width: 100%; */
     box-sizing: border-box;
@@ -93,12 +93,6 @@ thead[data-table-thead="otc-table-thead-newly-added-protocol"] {
     /* content: "🔥"; */
     content: "";
 }
-
-
-/* .otc-th-more {
-    padding-left: 100px;
-    text-align: right;
-} */
 
 
 /* securities-abbreviation-newly-added-protocol */
@@ -176,8 +170,9 @@ span[data-otc-th-title="securities-code-newly-added-protocol"]::after {
     text-align: left;
     padding-left: 4px;
     /* width: calc(1*100px); */
-    /* width: 100px; */
-    /* max-width: 100px; */
+    width: 100px;
+    /* min-width: 100px;
+    max-width: 100px; */
     font-weight: bold;
     line-height: 23px;
     height: 23px;
@@ -188,8 +183,9 @@ span[data-otc-th-title="securities-code-newly-added-protocol"]::after {
     font-size: 12px;
     box-sizing: border-box;
     border-right: 1px solid #ccc;
-    width: 100px;
-    max-width: 100px;
+    width: 70px;
+    min-width: 70px;
+    max-width: 70px;
     line-height: 23px;
     height: 23px;
     overflow: hidden;
@@ -197,8 +193,14 @@ span[data-otc-th-title="securities-code-newly-added-protocol"]::after {
     white-space: nowrap;
 }
 
-[data-td="otc-cols-span"] {
-    width: calc(2*100px);
+td[data-td="otc-cols-span-NAP"] {
+    /* width: calc(2*100px); */
+    max-width: 100px;
+}
+
+[data-table-body="otc-table-body-newly-added-protocol"]>tr {
+    max-width: 540px;
+    overflow-x: hidden;
 }
 
 
@@ -282,4 +284,8 @@ section.otc-module-box-5 {
     width: 4px;
     background: #f79530;
     height: 15px;
+}
+
+[data-text="otc-newly-added-protocol-text"] {
+    font-weight: normal;
 }

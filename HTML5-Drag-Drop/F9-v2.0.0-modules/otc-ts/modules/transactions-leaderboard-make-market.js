@@ -1,8 +1,8 @@
 "use strict";
 
 /**
- * @namespace NSB_TS_FV : New San Ban Thematic Statistics
- * @name transactions-leaderboard 交易排行榜-做市 & 交易排行榜-协议
+ * @namespace OTC_TS_FV : OTC Thematic Statistics
+ * @name transactions-leaderboard-make-market 交易排行榜-做市
  * @createed 2017.11.21
  * @author xgqfrms
  * @copyright Gildata, Inc 2017-present
@@ -10,20 +10,46 @@
  * @version v1.1.1
  *
  * @param {* String} url
+ * @param {* String} uid
  * @param {* Boolean} debug
  */
 
+
+import {UserException} from "../utils/throw_error";
+import {UserConsoleError as ConsoleError} from "../utils/console_error";
+
+
 // namespaces
-var NSB_TS_FV = NSB_TS_FV || {};
+var OTC_TS_FV = OTC_TS_FV || {};
 // sub namespaces
-NSB_TS_FV.Modules = NSB_TS_FV.Modules || {};
-// transactionsLeaderboard
-NSB_TS_FV.Modules.transactionsLeaderboard = NSB_TS_FV.Modules.transactionsLeaderboard || ((url = ``, uids = {}, debug = false) => {
+OTC_TS_FV.Modules = OTC_TS_FV.Modules || {};
+
+// transactionsLeaderboardMakeMarket
+OTC_TS_FV.Modules.transactionsLeaderboardMakeMarket = OTC_TS_FV.Modules.transactionsLeaderboardMakeMarket || ((url = ``, uid = ``, debug = false) => {
     let result_obj = {};
     fetch(url)
     .then(res => res.json())
     .then(
         (json) => {
+            // emptyChecker
+            const emptyChecker = (key = ``) => {
+                // arr.map() ???
+                let result = true;
+                switch (key) {
+                    case undefined:
+                        result = false;
+                        break;
+                    case null:
+                        result = false;
+                        break;
+                    // case "--":
+                    //     result = false;
+                    //     break;
+                    default:
+                        break;
+                }
+                return result;
+            };
             if (json !== undefined && typeof(json) === "object") {
                 if (debug) {
                     console.log(`json = \n`, json);
@@ -89,8 +115,8 @@ NSB_TS_FV.Modules.transactionsLeaderboard = NSB_TS_FV.Modules.transactionsLeader
                 let market_uid = uids.market_uid,
                     protocol_uid = uids.protocol_uid;
                 // result_obj ??? no need
-                NSB_TS_FV.Modules.transactionsLeaderboard.showTable(obj_market, market_uid, false);
-                NSB_TS_FV.Modules.transactionsLeaderboard.showTable(obj_protocol, protocol_uid, false);
+                OTC_TS_FV.Modules.transactionsLeaderboardMakeMarket.showTable(obj_market, market_uid, false);
+                OTC_TS_FV.Modules.transactionsLeaderboardMakeMarket.showTable(obj_protocol, protocol_uid, false);
             }
         }
     )
@@ -98,8 +124,8 @@ NSB_TS_FV.Modules.transactionsLeaderboard = NSB_TS_FV.Modules.transactionsLeader
     // return result_obj;
 });
 
-// transactionsLeaderboard.showTable
-NSB_TS_FV.Modules.transactionsLeaderboard.showTable = NSB_TS_FV.Modules.transactionsLeaderboard.showTable || (
+// transactionsLeaderboardMakeMarket.showTable
+OTC_TS_FV.Modules.transactionsLeaderboardMakeMarket.showTable = OTC_TS_FV.Modules.transactionsLeaderboardMakeMarket.showTable || (
     (datas = {}, uid = ``, debug = false) => {
         if (debug) {
             console.log(`datas = \n`, JSON.stringify(datas, null, 4));
@@ -141,65 +167,46 @@ NSB_TS_FV.Modules.transactionsLeaderboard.showTable = NSB_TS_FV.Modules.transact
     }
 );
 
+
+
 // init
-NSB_TS_FV.Modules.transactionsLeaderboard.init = NSB_TS_FV.Modules.transactionsLeaderboard.init || (
-    (url = `http://10.1.5.202/webservice/fastview/otc/otcfast03/`) => {
-        // uids
-        const uids = {
-            "market_uid": `[data-table-market="ntb-table-body-transactions-leaderboard"]`,
-            "protocol_uid": `[data-table-protocol="ntb-table-body-transactions-leaderboard"]`
-        };
-        // let hs_datas = NSB_TS_FV.Modules.transactionsLeaderboard(url, false);
-        let hs_datas = NSB_TS_FV.Modules.transactionsLeaderboard(url, uids, false);
+OTC_TS_FV.Modules.transactionsLeaderboardMakeMarket.init = OTC_TS_FV.Modules.transactionsLeaderboardMakeMarket.init || (
+    (
+        {
+            ip,
+            path,
+            socket,
+            skin,
+            // gilcode
+        } = {
+            ip: `http://10.1.5.202`,
+            path: `/webservice/fastview/otc`,
+            socket: `/otcfast13`,
+            skin: `white`,
+            // gilcode: `430002.OC`
+        }
+    ) => {
+        let url = `${ip}${path}${socket}`,
+        // let url = `http://10.1.5.202/otc/ts/json/13.json`,// no data?
+        // let url = `http://10.1.5.202/otc/ts/json/03-old.json`,
+            uid = `[data-table-market="ntb-table-body-transactions-leaderboard"]`;
+        // url = `http://10.1.5.202/webservice/fastview/otc/otcfast13/`;
+        OTC_TS_FV.Modules.transactionsLeaderboardMakeMarket(url, uid, false);
+        // 备注：在涨跌幅和成交额做个可以自动排序的功能。
+        // 排行榜做市 otcfast13
     }
 );
 
-// call init
-NSB_TS_FV.Modules.transactionsLeaderboard.init(`http://10.1.5.202/webservice/fastview/otc/otcfast03/`);
+// OTC_SKIN ???
+var OTC_IP = window.OTC_IP || `http://10.1.5.202`,
+    OTC_PATH = window.OTC_PATH || `/webservice/fastview/otc`,
+    OTC_SKIN = window.OTC_SKIN || `black`;
+    // OTC_GILCODE = window.OTC_GILCODE || `430002.OC`;
 
-
-/*
-
-// Utils
-NSB_TS_FV.Modules.transactionsLeaderboard.Utils = NSB_TS_FV.Modules.transactionsLeaderboard.Utils || {};
-// Utils & reusable dataHandler
-NSB_TS_FV.Modules.transactionsLeaderboard.Utils.dataHandler = NSB_TS_FV.Modules.transactionsLeaderboard.Utils.dataHandler || (
-    (arr = []) => {
-        if (debug) {
-            console.log(`arr = \n`, arr);
-            console.log(`arr keys = \n`, Object.keys(arr[0]));
-        }
-        let ranking_code = [],
-            ranking_brief = [],
-            ranking_amplitude = [],
-            ranking_amount = [];
-        arr.map(
-            (obj, i) => {
-                if (debug && (i === 0)) {
-                    console.log(`obj = \n`, JSON.stringify(obj, null, 4));
-                }
-                // ["zqdm", "zqjc", "zdf", "cje"]
-                ranking_code.push(obj["zqdm"]);
-                ranking_brief.push(obj["zqjc"]);
-                ranking_amplitude.push(obj["zdf"]);
-                ranking_amount.push(obj["cje"]);
-            }
-        );
-        const new_obj = {
-            ranking_code,
-            ranking_brief,
-            ranking_amplitude,
-            ranking_amount
-        };
-        if (debug) {
-            console.log(`new_obj = \n`, JSON.stringify(new_obj, null, 4));
-        }
-        return new_obj;
-    }
-);
-
-
-*/
-
-
-// 备注：在涨跌幅和成交额做个可以自动排序的功能。
+OTC_TS_FV.Modules.transactionsLeaderboardMakeMarket.init({
+    ip: OTC_IP,
+    path: OTC_PATH,
+    socket: `/otcfast13`,
+    skin: OTC_SKIN,
+    // gilcode: OTC_GILCODE
+});

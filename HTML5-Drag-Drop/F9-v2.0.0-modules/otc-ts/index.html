@@ -18,6 +18,8 @@
     <!--[if lt IE 9]>
         <script src="./libs/html5shiv.min.js"></script>
     <![endif]-->
+    <!-- Uncaught Error: only one instance of babel-polyfill is allowed -->
+    <!-- <script src="./build/js/babel-polyfill.min.js"></script> -->
 </head>
 
 <body>
@@ -141,11 +143,12 @@
     </div>
     <!-- <script src="./modules/tabs/tabs.js"></script> -->
     <script src="./libs/highstock.min.js"></script>
+    <!-- <script src="./libs/highcharts.js"></script> -->
     <script src="./libs/data.min.js"></script>
     <script src="./libs/drilldown.min.js"></script>
     <!-- more & bubble -->
+    <script src=".//libs/no-data-to-display.min.js"></script>
     <script src="./libs/highcharts-more.js"></script>
-    <script src="./libs/no-data-to-display.min.js"></script>
     <script src="./libs/sortable.min.js"></script>
     <script src="./libs/sweetalert.min.js"></script>
     <!-- modal libs -->
@@ -156,6 +159,8 @@
     <script src="./index.js"></script>
     <!-- <script src="./build/js/index.min.js"></script> -->
     <script src="./build/js/init.min.js"></script>
+    <!-- babel-polyfill & js order -->
+    <script src="./build/js/babel-polyfill.min.js"></script>
 </body>
 
 </html>

@@ -159,32 +159,37 @@ OTC_TS_FV.Modules.thematicStatisticsNews = OTC_TS_FV.Modules.thematicStatisticsN
         )
         .catch(err => console.log(`fetch error = \n`, err));
         // return datas;
+        // <a href="#更多" data-uid="xxxxxx" data-topic-category="NQTOPIC" data-turn-to-uid="node-uid-thematic-statistics-news>更多</a>
         // more
         setTimeout((debug = false) => {
             let turn_to_uid = document.querySelector(`[data-turn-to-uid="node-uid-thematic-statistics-news"]`);
             if (debug) {
-                console.log(`turn_to_uids = \n`, turn_to_uid);
+                console.log(`turn_to_uid dom = \n`, turn_to_uid);
             }
             if (turn_to_uid !== null) {
                 turn_to_uid.addEventListener(`click`, (e) => {
-                    let uid = e.target.dataset.uid,
-                        // gilcode = OTC_GILCODE ? OTC_GILCODE : window.OTC_GILCODE,
-                        // node_path = `12\\${gilcode}\\${uid}`;
-                        node_path = `12\\${uid}`;
-                    try {
-                        if (uid !== "null") {
-                            // ChromeExternal.Execute("ExecuteCommand", `12\\${gilcode}\\${uid}`);
-                            ChromeExternal.Execute("ExecuteCommand", `12\\${uid}`);
-                        }else{
-                            console.log(`ChromeExternal & ${uid} === null\n`);
+                        // 今日新增挂牌公司	More 13	NQTOPIC	342064
+                        // more.dataset.moreUid = `${table_obj.zqdm}.OC`;
+                        let uid = e.target.dataset.uid,
+                            topic_category  = e.target.dataset.topicCategory,// 专题分类名称常量
+                            node_path = `13\\${topic_category}\\${uid}`;
+                        try {
+                            if (uid !== undefined && topic_category !== undefined) {
+                                ChromeExternal.Execute("ExecuteCommand", node_path);
+                                // ChromeExternal.Execute("ExecuteCommand", `13\\${topic_category}\\${uid}`);
+                            }else{
+                                console.log(`ChromeExternal \nuid === ${uid} & topic_category === ${topic_category}`);
+                            }
+                        } catch (error) {
+                            console.log(`%c ChromeExternal & caught error = \n`, `color: red; font-size: 23px;`, error);
+                            console.log(`node uid = `, uid);
+                            console.log(`node topic_category = `, topic_category);
+                            console.log(`node node_path = `, node_path);
                         }
-                    } catch (error) {
-                        console.log(`%c ChromeExternal & caught error = \n`, `color: red; font-size: 23px;`, error);
-                        console.log(`node uid = `, uid);
-                    }
-                });
+                    });
             }else{
-                throw new Error(`turn_to_uid is `, turn_to_uid);
+                // null
+                throw new Error(`turn_to_uid dom is null!\n`, turn_to_uid);
             }
         }, 0);
     }
@@ -213,14 +218,10 @@ OTC_TS_FV.Modules.thematicStatisticsNews.init = OTC_TS_FV.Modules.thematicStatis
     }
 );
 
-// OTC_SKIN ???
+// OTC_SKIN ??? no need ???
 
 var OTC_IP = window.OTC_IP || `http://10.1.5.202`,
     OTC_PATH = window.OTC_PATH || `/webservice/fastview/otc`;
-    // OTC_PATH = window.OTC_PATH || `/webservice/fastview/otc`,
-    // OTC_GILCODE = window.OTC_GILCODE || `430007.OC`;
-    // OTC_GILCODE = window.OTC_GILCODE || `839032.OC`;
-    // OTC_GILCODE = window.OTC_GILCODE || `430002.OC`;
 
 
 OTC_TS_FV.Modules.thematicStatisticsNews.init({

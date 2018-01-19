@@ -1,9 +1,7 @@
-// newly-added-protocol
-
 "use strict";
 
 /**
- * @namespace OTC_TS_FV : New San Ban Thematic Statistics
+ * @namespace OTC_TS_FV : OTC Thematic Statistics
  * @name newly-added-protocol 新增协议
  * @createed 2017.11.11
  * @author xgqfrms
@@ -16,6 +14,13 @@
  * @param {* Boolean} debug
  */
 
+// require("babel-polyfill");
+// import "babel-polyfill";
+
+import {UserException} from "../utils/throw_error";
+import {UserConsoleError as ConsoleError} from "../utils/console_error";
+
+
 // namespaces
 var OTC_TS_FV = OTC_TS_FV || {};
 
@@ -23,80 +28,177 @@ var OTC_TS_FV = OTC_TS_FV || {};
 OTC_TS_FV.Modules = OTC_TS_FV.Modules || {};
 
 
-OTC_TS_FV.Modules.newlyAddedProtocol = OTC_TS_FV.Modules.newlyAddedProtocol || ((url = ``, debug = false, uid = `default_dom_uid`, ui_arr = ["gpjs", "zqdm", "zqjc", "sshy", "zbqs", "mgsy", "mgjzc", "jlrtbzz", "jzcsyl", "zgb", "ltgb"]) => {
+OTC_TS_FV.Modules.newlyAddedProtocol = OTC_TS_FV.Modules.newlyAddedProtocol || ((url = ``, debug = false, uid = `default_dom_uid`) => {
     // debug = true;
     let datas = {};
-    const ui_keys = ui_arr;
+    // , ui_arr = ["gpjs", "zqdm", "zqjc", "sshy", "zbqs", "mgsy", "mgjzc", "jlrtbzz", "jzcsyl", "zgb", "ltgb"]
+    // const ui_keys = ui_arr;
     fetch(url)
     .then(res => res.json())
     .then(
         (json) => {
-            let json_keys = [],
-                json_values = [];
-            if (json !== undefined && typeof json === "object") {
-                // json_keys = Object.keys(json);
-                json_keys = Object.keys(json).sort();
-                json_values = Object.values(json);
-                // show new add num
-                let new_add = document.querySelector(`[data-otc-new-add-num="otc-new-add-num-protocol"]`);
-                // new_add.innerHTML = json[json_keys[0]]["gpjs"];
-                new_add.innerHTML = json_values[0]["gpjs"];
-                // table
-                let init_uid = json_keys[0].replace(/(id)/i, ``);
-                if (debug) {
-                    console.log(`init_uid = \n`, init_uid);
-                    // "id872356" => "872356"
-                    console.log(`json = \n`, json);
+            // global function
+            const emptyChecker = (key = ``) => {
+                // arr.map() ???
+                let result = true;
+                switch (key) {
+                    case undefined:
+                        result = false;
+                        break;
+                    case null:
+                        result = false;
+                        break;
+                    // case "--":
+                    //     result = false;
+                    //     break;
+                    default:
+                        break;
                 }
-                OTC_TS_FV.Modules.newlyAddedProtocol.showTable(init_uid, json);
-            }
-            // async
+                return result;
+            };
             if (debug) {
                 console.log(`json = \n`, json);
-                console.log(`json.keys = \n`, json_keys);
-                console.log(`json.values = \n`, json_values);
             }
-            // sort json
-            let new_json_values =[];
-            // json_keys = json_keys.sort();
-            json_keys.map(
-                (key, i) => {
-                    const {
-                        mgsy: x,
-                        mgjzc: y,
-                        zgb: z,
-                        zqjc: name,
-                        zqdm: code
-                    } = {...json[key]};
-                    const new_obj = Object.assign(
-                        {},
-                        {
-                            x,
-                            y,
-                            z: 6,// 气泡的大小
-                            name,
-                            code
+            try {
+                let json_keys = [],
+                    json_values = [];
+                // show new add num
+                let new_add = document.querySelector(`[data-text="otc-newly-added-protocol-text"]`),
+                    no_data_dom = document.querySelector(`.otc-newly-added-protocol-title-box`),
+                    hs_container = document.querySelector(`#newly_added_protocol_hs_container`),
+                    table_container = document.querySelector(`[data-table="otc-newly-added-protocol-table"]`);
+                // no data
+                let no_data_p = `
+                    <div data-margin="no-data-margin-top">
+                        <p data-none="no-data-p">
+                            <span data-none="no-data-span"></span>
+                        </p>
+                    </div>
+                `;
+                if (emptyChecker(json) && Object.keys(json).length > 0) {
+                    // auto sort
+                    json_keys = Object.keys(json).sort();
+                    // json_keys = Object.keys(json);
+                    json_values = Object.values(json);
+                    if (emptyChecker(json[json_keys[0]].gpjs)) {
+                        // all same & no need sort
+                        // new_add.innerHTML = json[json_keys[0]]["gpjs"];
+                        // new_add.innerHTML = json_values[0].gpjs;
+                        new_add.insertAdjacentHTML(`beforeend`, `今日新增协议转做市公司${json_values[0].gpjs}家`);
+                        // new_add.innerHTML = json_values[0]["gpjs"];
+                        // init table & mini gilcode
+                        let init_uid = json_keys[0].replace(/(id)/i, ``);
+                        if (debug) {
+                            console.log(`init_uid = \n`, init_uid);
+                            // "id872356" => "872356"
+                        }
+                        // init table?
+                        OTC_TS_FV.Modules.newlyAddedProtocol.showTable(init_uid, json);// isNoData
+                    }else{
+                        // no data
+                        // new_add.innerHTML = ``;
+                        // new_add.innerHTML = `0`;
+                        // no need do anything / do nothing & default ``
+                    }
+                    // sort json
+                    let new_json_values =[];
+                    // json_keys = json_keys.sort();
+                    json_keys.map(
+                        (key, i) => {
+                            let {
+                                mgsy: x,
+                                mgjzc: y,
+                                zgb: z,
+                                zqjc: name,
+                                zqdm: code
+                            } = {...json[key]};
+                            // "--" & null
+                            x = parseFloat(x);
+                            y = parseFloat(y);
+                            z = parseFloat(z);
+                            const new_obj = Object.assign(
+                                {},
+                                {
+                                    x,
+                                    y,
+                                    //z: 6,// 气泡的大小
+                                    z,
+                                    name,
+                                    code
+                                }
+                            );
+                            if (debug) {
+                                // console.log(`key = \n`, key);
+                                console.log(`json[key] = \n`, json[key]);
+                                // {gpjs: 12, zqdm: "872352", zqjc: "开元新材", sshy: "非金属矿物制品业", zbqs: "长江证券", …}
+                                console.log(`new_obj =\n`, new_obj);
+                                // {x: -0.21, y: 0.87, z: 20000000, name: "思源软件", code: "872343"}
+                            }
+                            new_json_values.push(new_obj);
                         }
                     );
                     if (debug) {
-                        console.log(`key = \n`, key);
-                        console.log(`json[key] = \n`, json[key]);
-                        console.log(`new_obj =\n`, new_obj);
+                        console.log(`json_keys = \n`, json_keys);
+                        console.log(`new_json_values = \n`, new_json_values);
                     }
-                    new_json_values.push(new_obj);
+                    // HC & datas
+                    datas = [].concat(new_json_values);
+                    // array
+                    if (datas.length > 0) {
+                        // ok
+                        OTC_TS_FV.Modules.newlyAddedProtocol.drawHC(datas, uid, json, false);
+                    } else {
+                        // no data
+                    }
+                } else {
+                    // no data
+                    hs_container.style.display = "none";// OK
+                    // "none" !== "none;" && string value
+                    // hs_container.style.display = "none;";// BAD
+                    table_container.style.display = "none";
+                    no_data_dom.insertAdjacentHTML(`afterend`, no_data_p);
                 }
-            );
-            if (debug) {
-                console.log(`json_keys = \n`, json_keys);
-                console.log(`new_json_values = \n`, new_json_values);
+            } catch (err) {
+                let url =`file:///E:/otc-ts/modules/newly-added-protocol.js`;
+                ConsoleError(err, url);
+                // no data & fallback
             }
-            datas = [].concat(new_json_values);
-            // array
-            OTC_TS_FV.Modules.newlyAddedProtocol.drawHC(datas, uid, json, false);
         }
     )
     .catch(error => console.log(`error = \n`, error));
-    return datas;
+    // return datas;
+    // <a href="#更多" data-uid="342066" data-topic-category="NQTOPIC" data-turn-to-uid="node-uid-newly-added-protocol">更多</a>
+    // more
+    setTimeout((debug = false) => {
+        let turn_to_uid = document.querySelector(`[data-turn-to-uid="node-uid-newly-added-protocol"]`);
+        if (debug) {
+            console.log(`turn_to_uid dom = \n`, turn_to_uid);
+        }
+        if (turn_to_uid !== null) {
+            turn_to_uid.addEventListener(`click`, (e) => {
+                    let uid = e.target.dataset.uid,
+                        topic_category  = e.target.dataset.topicCategory,// 专题分类名称常量
+                        // command_code  = e.target.dataset.commandCode,// command code
+                        node_path = `13\\${topic_category}\\${uid}`;
+                    try {
+                        if (uid !== undefined && topic_category !== undefined) {
+                            ChromeExternal.Execute("ExecuteCommand", node_path);
+                            // ChromeExternal.Execute("ExecuteCommand", `13\\${topic_category}\\${uid}`);
+                        }else{
+                            console.log(`ChromeExternal \nuid === ${uid} & topic_category === ${topic_category}`);
+                        }
+                    } catch (error) {
+                        console.log(`%c ChromeExternal & caught error = \n`, `color: red; font-size: 23px;`, error);
+                        console.log(`node uid = `, uid);
+                        console.log(`node topic_category = `, topic_category);
+                        console.log(`node node_path = `, node_path);
+                    }
+                });
+        }else{
+            // null
+            throw new Error(`turn_to_uid dom is `, turn_to_uid);
+        }
+    }, 0);
 });
 
 
@@ -109,6 +211,7 @@ OTC_TS_FV.Modules.newlyAddedProtocol = OTC_TS_FV.Modules.newlyAddedProtocol || (
  * @param {* String} container_uid
  * @param {* Boolean} debug
  */
+// OTC_TS_FV.Modules.newlyAddedProtocol.drawHC = OTC_TS_FV.Modules.newlyAddedProtocol.drawHC
 
 OTC_TS_FV.Modules.newlyAddedProtocol.drawHC = OTC_TS_FV.Modules.newlyAddedProtocol.drawHC || ((datas = [], container_uid = `container`, json = {}, debug = false) => {
     let dataLength = datas.length;
@@ -125,6 +228,15 @@ OTC_TS_FV.Modules.newlyAddedProtocol.drawHC = OTC_TS_FV.Modules.newlyAddedProtoc
     // webpack / rollup
     if (debug) {
         console.log(`Highcharts datas =\n`, datas);
+        // [
+        //     {
+        //     code : "300725",
+        //     name : "Ｎ 药 石",
+        //     x : 0.69 ,
+        //     y : 4.62 ,
+        //     z : 55000000
+        //     }
+        // ]
         console.log(`%c Highcharts container_uid =`, `color: #f0f; font-size: 23px;`, container_uid);
     }
     Highcharts.setOptions({
@@ -142,8 +254,8 @@ OTC_TS_FV.Modules.newlyAddedProtocol.drawHC = OTC_TS_FV.Modules.newlyAddedProtoc
             loading: '加载中...',
             months: ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月'],
             noData: `
-                <p data-p="no-data-p">
-                    <span data-span="no-data-span">没有数据</span>
+                <p data-none="no-data-hc">
+                    <span data-none="no-data-span"></span>
                 </p>
             `,
             // noData: "没有数据显示!",
@@ -160,24 +272,25 @@ OTC_TS_FV.Modules.newlyAddedProtocol.drawHC = OTC_TS_FV.Modules.newlyAddedProtoc
     Highcharts.chart(container_uid, {
         noData: {
             // attr: undefined,
-            position: {
-                align: "center",
-                verticalAlign: "middle",
-                x: 0,
-                y: 0
-            },
-            style: { "fontSize": "12px", "fontWeight": "bold", "color": "#777" },
+            // position: {
+            //     align: "center",
+            //     verticalAlign: "middle",
+            //     x: 0,
+            //     y: 0
+            // },
+            // style: { "fontSize": "12px", "fontWeight": "bold", "color": "#777" },
             useHTML: true,
         },
         credits: {
-            enabled: true,// enabled: false,
+            enabled: true,
+            // enabled: false,
             href: `https://www.gildata.com`,
             text: `gildata`,
         },
         chart: {
             type: 'bubble',
             plotBorderWidth: 1,
-            // zoomType: 'xy',
+            zoomType: 'xy',
             // ???决定用户可以通过拖动鼠标来缩放的尺寸。可以是x，y或xy中的一个。
             // Can be one of x, y or xy. Defaults to undefined.
         },
@@ -186,10 +299,10 @@ OTC_TS_FV.Modules.newlyAddedProtocol.drawHC = OTC_TS_FV.Modules.newlyAddedProtoc
             enabled: true,
         },
         title: {
-            text: '',
+            text: ''
         },
         subtitle: {
-            text: '',
+            text: ''
         },
         xAxis: {
             gridLineWidth: 1,
@@ -199,24 +312,24 @@ OTC_TS_FV.Modules.newlyAddedProtocol.drawHC = OTC_TS_FV.Modules.newlyAddedProtoc
             labels: {
                 format: '{value}'
             },
-            plotLines: [
-                {
-                    color: 'black',
-                    dashStyle: 'dot',
-                    width: 2,
-                    value: 65,
-                    label: {
-                        rotation: 0,
-                        y: 15,
-                        style: {
-                            fontStyle: 'italic'
-                        },
-                        text: '正常脂肪摄入量65g/天'
-                    },
-                    zIndex: 3
-                },
-                // x line 2
-            ]
+            // plotLines: [
+            //     {
+            //         color: 'black',
+            //         dashStyle: 'dot',
+            //         width: 2,
+            //         value: 65,
+            //         label: {
+            //             rotation: 0,
+            //             y: 15,
+            //             style: {
+            //                 fontStyle: 'italic'
+            //             },
+            //             text: '正常脂肪摄入量65g/天'
+            //         },
+            //         zIndex: 3
+            //     },
+            //     // x line 2
+            // ]
         },
         yAxis: {
             startOnTick: false,
@@ -228,24 +341,24 @@ OTC_TS_FV.Modules.newlyAddedProtocol.drawHC = OTC_TS_FV.Modules.newlyAddedProtoc
                 format: '{value}'
             },
             maxPadding: 0.2,
-            plotLines: [
-                {
-                    color: 'black',
-                    dashStyle: 'dot',
-                    width: 2,
-                    value: 3,//
-                    label: {
-                        align: 'right',
-                        style: {
-                            fontStyle: 'italic'
-                        },
-                        text: '正常 ??? 天',// 50
-                        x: -10
-                    },
-                    zIndex: 3
-                },
-                // y line no
-            ]
+            // plotLines: [
+            //     {
+            //         color: 'black',
+            //         dashStyle: 'dot',
+            //         width: 2,
+            //         value: 3,//
+            //         label: {
+            //             align: 'right',
+            //             style: {
+            //                 fontStyle: 'italic'
+            //             },
+            //             text: '正常 ??? 天',// 50
+            //             x: -10
+            //         },
+            //         zIndex: 3
+            //     },
+            //     // y line no
+            // ]
         },
         tooltip: {
             useHTML: true,
@@ -281,6 +394,13 @@ OTC_TS_FV.Modules.newlyAddedProtocol.drawHC = OTC_TS_FV.Modules.newlyAddedProtoc
                 cursor: 'pointer',
                 events: {
                     click: function (event) {
+                        // alert(
+                        //     this.name + ' clicked\n' +
+                        //     "\ncode: "+ event.point.code +
+                        //     "\nX: "+ event.point.x +
+                        //     "\nY: "+event.point.y +
+                        //     "\nZ: "+event.point.z
+                        // );
                         if (debug) {
                             console.log(`event = \n`, event);
                             console.log(`event.point.code= \n`, event.point.code, typeof(event.point.code));
@@ -311,10 +431,41 @@ OTC_TS_FV.Modules.newlyAddedProtocol.drawHC = OTC_TS_FV.Modules.newlyAddedProtoc
         series: [
             {
                 data: [...datas],
+                name: `今日新增协议转做市公司`,
+                // color: `#f0f`,
+                // data: [
+                //     {
+                //         name: '有限售股份总数',
+                //         // y: 7.91,
+                //         y: limite,// Array
+                //         drilldown: 'Limited',
+                //         color: "#9bbb59",
+                //         // color: "#0f0"
+                //     },
+                //     {
+                //         name: '有限售股份总数',
+                //         // y: 7.91,
+                //         y: limite,// Array
+                //         drilldown: 'Limited',
+                //         color: "#9bbb59",
+                //         // color: "#0f0"
+                //     },
+                // ],
+                // data: [
+                //     {
+                //         code : "300725",
+                //         name : "Ｎ 药 石",
+                //         x : 0.69 ,
+                //         y : 4.62 ,
+                //         z : 55000000,
+                //         color: "#9bbb59",//new add & rainbow colors array ???
+                //     },
+                // ]
             }
         ],
     });
 });
+
 
 
 
@@ -341,42 +492,75 @@ OTC_TS_FV.Modules.newlyAddedProtocol.showTable = OTC_TS_FV.Modules.newlyAddedPro
     if (debug) {
         console.log(`table_obj`, JSON.stringify(table_obj, null, 4));
     }
-    let sa = document.querySelector(`[data-otc-th-title="Securities-Abbreviation-protocol"]`),
-        sc = document.querySelector(`[data-otc-th-title="Securities-Code-protocol"]`),
-        // new_add = document.querySelector(`[data-otc-new-add-num="otc-new-add-num-protocol"]`),
+    let sa = document.querySelector(`[data-otc-th-title="securities-abbreviation-newly-added-protocol"]`),
+        sc = document.querySelector(`[data-otc-th-title="securities-code-newly-added-protocol"]`),
         tb = document.querySelector(`[data-table-body="otc-table-body-newly-added-protocol"]`);
+    // more
+    let more = document.querySelector(`[data-more="otc-newly-added-protocol-more"]`);
+    if (debug) {
+        console.log(`more.dataset.moreUid = `, more.dataset.moreUid);
+    }
+    // hash & anchor
+    more.setAttribute(`href`, `#${table_obj.zqdm}.OC`);
+    more.dataset.moreUid = `${table_obj.zqdm}.OC`;
+    // console.log(`more.dataset.moreUid new = `, more.dataset.moreUid);
+    // more
+    setTimeout((debug = false) => {
+        more.addEventListener(`click`, (e) => {
+            let gilcode = e.target.dataset.moreUid,
+                // gilcode = OTC_GILCODE ? OTC_GILCODE : window.OTC_GILCODE,
+                more_node_path = `12\\${gilcode}\\${uid}`;
+            if (debug) {
+                // console.log(`more = \n`, more);
+                console.log(`more gilcode = \n`, gilcode);
+                console.log(`more_node_path = \n`, more_node_path);
+            }
+            try {
+                if (gilcode !== null) {
+                    ChromeExternal.Execute("ExecuteCommand", `12\\${gilcode}\\`);
+                    // ChromeExternal.Execute("ExecuteCommand", `12\\${gilcode}\\${uid}`);
+                }else{
+                    console.log(`ChromeExternal & ${gilcode} === null\n`);
+                }
+            } catch (error) {
+                console.log(`%c ChromeExternal & caught error = \n`, `color: red; font-size: 23px;`, error);
+                console.log(`more node gilcode = `, gilcode);
+            }
+        });
+    }, 0);
+    // let tr1 = tb.firstElementChild;
+    // let tr3 = tb.lastElementChild;
     // [tr, tr, tr]
     let trs = tb.children;
     let tds1 = trs[0].children,
         tds2 = trs[1].children,
         tds3 = trs[2].children;
-    const {gpjs, zqdm, zqjc, sshy, zbqs, mgsy, jlrtbzz, zgb, mgjzc, jzcsyl, ltgb} = table_obj;
+    // const {zqjc, gpjs, zqdm, zqjc, sshy, zbqs} = table_obj;
     // ES6 => ES5
     // header
-    sa.innerHTML = `${zqjc}`;
-    sc.innerHTML = `${zqdm}.OC`;
+    sa.innerHTML = `${table_obj.zqjc}`;
+    sc.innerHTML = `${table_obj.zqdm}.OC`;
     // 博商管理(836000.OC) - 新三板
-    tds1[1].innerHTML = `${sshy}`;
-    tds1[3].innerHTML = `${zbqs}`;
-    tds1[1].setAttribute(`title`, `${sshy}`);
-    tds1[3].setAttribute(`title`, `${zbqs}`);
+    tds1[1].innerHTML = `${table_obj.sshy}`;
+    tds1[3].innerHTML = `${table_obj.zbqs}`;
+    tds1[1].setAttribute(`title`, `${table_obj.sshy}`);
+    tds1[3].setAttribute(`title`, `${table_obj.zbqs}`);
     // tr1
-    tds2[1].innerHTML = `${mgsy}`;
-    tds2[3].innerHTML = `${jlrtbzz}`;
-    tds2[5].innerHTML = `${zgb}`;
-    tds2[1].setAttribute(`title`, `${mgsy}`);
-    tds2[3].setAttribute(`title`, `${jlrtbzz}`);
-    tds2[5].setAttribute(`title`, `${zgb}`);
+    tds2[1].innerHTML = `${table_obj.mgsy}`;
+    tds2[3].innerHTML = `${table_obj.jlrtbzz}`;
+    tds2[5].innerHTML = `${table_obj.zgb}`;
+    tds2[1].setAttribute(`title`, `${table_obj.mgsy}`);
+    tds2[3].setAttribute(`title`, `${table_obj.jlrtbzz}`);
+    tds2[5].setAttribute(`title`, `${table_obj.zgb}`);
     // tr2
-    tds3[1].innerHTML = `${mgjzc}`;
-    tds3[3].innerHTML = `${jzcsyl}`;
-    tds3[5].innerHTML = `${ltgb}`;
-    tds3[1].setAttribute(`title`, `${mgjzc}`);
-    tds3[3].setAttribute(`title`, `${jzcsyl}`);
-    tds3[5].setAttribute(`title`, `${ltgb}`);
+    tds3[1].innerHTML = `${table_obj.mgjzc}`;
+    tds3[3].innerHTML = `${table_obj.jzcsyl}`;
+    tds3[5].innerHTML = `${table_obj.ltgb}`;
+    tds3[1].setAttribute(`title`, `${table_obj.mgjzc}`);
+    tds3[3].setAttribute(`title`, `${table_obj.jzcsyl}`);
+    tds3[5].setAttribute(`title`, `${table_obj.ltgb}`);
     //tr3
 });
-
 
 
 OTC_TS_FV.Modules.newlyAddedProtocol.init = OTC_TS_FV.Modules.newlyAddedProtocol.init || (
@@ -385,22 +569,21 @@ OTC_TS_FV.Modules.newlyAddedProtocol.init = OTC_TS_FV.Modules.newlyAddedProtocol
             ip,
             path,
             socket,
+            skin,
             // gilcode
         } = {
             ip: `http://10.1.5.202`,
-            path: `/webservice/fastview/otcper`,
+            path: `/webservice/fastview/otc`,
             socket: `/otcfast02`,
+            skin: `white`,
             // gilcode: `430002.OC`
         }
     ) => {
-        // let url = `${ip}${path}${socket}${gilcode}`,
-        // let url = `${ip}${path}${socket}`,
-        let url = `https://cdn.xgqfrms.xyz/json/otc-ts/02.json`,
-            tbody_dom = document.querySelector(`[data-tbody="otc-research-report-table-tbody"]`),
-            more = document.querySelector(`[data-more="otc-research-report-link-more"]`),
+        let url = `${ip}${path}${socket}`,
+        // let url = `http://10.1.5.202/otc/ts/json/new-02.json`,// no data?
+        // let url = `http://10.1.5.202/otc/ts/json/02.json`,// no data?
             uid = `newly_added_protocol_hs_container`;
         OTC_TS_FV.Modules.newlyAddedProtocol(url, false, uid);
-        // OTC_TS_FV.Modules.newlyAddedProtocol(url, tbody_dom, more, false);
     }
 );
 
@@ -417,6 +600,11 @@ OTC_TS_FV.Modules.newlyAddedProtocol.init({
     ip: OTC_IP,
     path: OTC_PATH,
     socket: `/otcfast02`,
+    skin: OTC_SKIN,
     // gilcode: OTC_GILCODE
 });
+
+// OTC_TS_FV.Modules.newlyAddedProtocol.init();
+// const url = `http://10.1.5.202/webservice/fastview/otc/otcfast02`;
+
 

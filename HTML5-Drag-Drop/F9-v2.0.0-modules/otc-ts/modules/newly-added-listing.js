@@ -1,7 +1,7 @@
 "use strict";
 
 /**
- * @namespace OTC_TS_FV : New San Ban Thematic Statistics
+ * @namespace OTC_TS_FV : OTC Thematic Statistics
  * @name newly-added-listing 新增挂牌
  * @createed 2017.11.07
  * @author xgqfrms
@@ -13,13 +13,15 @@
  * @param {* DOM Element} uid
  * @param {* Boolean} debug
  */
+
+// require("babel-polyfill");
+// import "babel-polyfill";
+
 import {UserException} from "../utils/throw_error";
 import {UserConsoleError as ConsoleError} from "../utils/console_error";
 
-
 // namespaces
 var OTC_TS_FV = OTC_TS_FV || {};
-
 // sub namespaces
 OTC_TS_FV.Modules = OTC_TS_FV.Modules || {};
 
@@ -63,7 +65,7 @@ OTC_TS_FV.Modules.newlyAddedListing = OTC_TS_FV.Modules.newlyAddedListing || ((u
                     no_data_dom = document.querySelector(`.otc-newly-added-listing-title-box`),
                     hs_container = document.querySelector(`#newly_added_listing_hs_container`),
                     // table_body = document.querySelector(`[data-table-body="otc-table-body-newly-added-listing"]`),
-                    table_container = document.querySelector(`[data-table="otc-table-newly-added-listing"]`);
+                    table_container = document.querySelector(`[data-table="otc-newly-added-listing-table"]`);
                 // no data
                 let no_data_p = `
                     <div data-margin="no-data-margin-top">
@@ -72,11 +74,13 @@ OTC_TS_FV.Modules.newlyAddedListing = OTC_TS_FV.Modules.newlyAddedListing || ((u
                         </p>
                     </div>
                 `;
+                // alert("json test");
                 if (emptyChecker(json) && Object.keys(json).length > 0) {
                     // auto sort
                     json_keys = Object.keys(json).sort();
                     // json_keys = Object.keys(json);
                     json_values = Object.values(json);
+                    // alert("json test");// ES6 & polyfill
                     if (emptyChecker(json[json_keys[0]].gpjs)) {
                         // all same & no need sort
                         // new_add.innerHTML = json[json_keys[0]]["gpjs"];
@@ -89,6 +93,10 @@ OTC_TS_FV.Modules.newlyAddedListing = OTC_TS_FV.Modules.newlyAddedListing || ((u
                             console.log(`init_uid = \n`, init_uid);
                             // "id872356" => "872356"
                         }
+                        // let jd = JSON.stringify(json, null, 4);
+                        // alert("json =" + jd);
+                        // alert(`json = ${jd}`);
+                        // alert(`json`, json);
                         OTC_TS_FV.Modules.newlyAddedListing.showTable(init_uid, json);// isNoData
                     }else{
                         // no data
@@ -101,13 +109,17 @@ OTC_TS_FV.Modules.newlyAddedListing = OTC_TS_FV.Modules.newlyAddedListing || ((u
                     // json_keys = json_keys.sort();
                     json_keys.map(
                         (key, i) => {
-                            const {
+                            let {
                                 mgsy: x,
                                 mgjzc: y,
                                 zgb: z,
                                 zqjc: name,
                                 zqdm: code
                             } = {...json[key]};
+                            // "--" & null
+                            x = parseFloat(x);
+                            y = parseFloat(y);
+                            z = parseFloat(z);
                             const new_obj = Object.assign(
                                 {},
                                 {
@@ -160,6 +172,39 @@ OTC_TS_FV.Modules.newlyAddedListing = OTC_TS_FV.Modules.newlyAddedListing || ((u
     )
     .catch(error => console.log(`error = \n`, error));
     // return datas;
+    // <a href="#更多" data-uid="342064" data-topic-category="NQTOPIC" data-turn-to-uid="node-uid-newly-added-listing">更多</a>
+    // <a href="#更多" data-uid="342066" data-topic-category="NQTOPIC" data-turn-to-uid="node-uid-newly-added-protocol">更多</a>
+    // 今日新增挂牌公司 More 13 NQTOPIC 342064
+    // more
+    setTimeout((debug = false) => {
+        let turn_to_uid = document.querySelector(`[data-turn-to-uid="node-uid-newly-added-listing"]`);
+        if (debug) {
+            console.log(`turn_to_uid dom = \n`, turn_to_uid);
+        }
+        if (turn_to_uid !== null) {
+            turn_to_uid.addEventListener(`click`, (e) => {
+                    let uid = e.target.dataset.uid,
+                        topic_category  = e.target.dataset.topicCategory,// 专题分类名称常量
+                        node_path = `13\\${topic_category}\\${uid}`;
+                    try {
+                        if (uid !== undefined && topic_category !== undefined) {
+                            ChromeExternal.Execute("ExecuteCommand", node_path);
+                            // ChromeExternal.Execute("ExecuteCommand", `13\\${topic_category}\\${uid}`);
+                        }else{
+                            console.log(`ChromeExternal \nuid === ${uid} & topic_category === ${topic_category}`);
+                        }
+                    } catch (error) {
+                        console.log(`%c ChromeExternal & caught error = \n`, `color: red; font-size: 23px;`, error);
+                        console.log(`node uid = `, uid);
+                        console.log(`node topic_category = `, topic_category);
+                        console.log(`node node_path = `, node_path);
+                    }
+                });
+        }else{
+            // null
+            throw new Error(`turn_to_uid dom is `, turn_to_uid);
+        }
+    }, 0);
 });
 
 
@@ -273,24 +318,24 @@ OTC_TS_FV.Modules.newlyAddedListing.drawHC = OTC_TS_FV.Modules.newlyAddedListing
             labels: {
                 format: '{value}'
             },
-            plotLines: [
-                {
-                    color: 'black',
-                    dashStyle: 'dot',
-                    width: 2,
-                    value: 65,
-                    label: {
-                        rotation: 0,
-                        y: 15,
-                        style: {
-                            fontStyle: 'italic'
-                        },
-                        text: '正常脂肪摄入量65g/天'
-                    },
-                    zIndex: 3
-                },
-                // x line 2
-            ]
+            // plotLines: [
+            //     {
+            //         color: 'black',
+            //         dashStyle: 'dot',
+            //         width: 2,
+            //         value: 65,
+            //         label: {
+            //             rotation: 0,
+            //             y: 15,
+            //             style: {
+            //                 fontStyle: 'italic'
+            //             },
+            //             text: '正常脂肪摄入量65g/天'
+            //         },
+            //         zIndex: 3
+            //     },
+            //     // x line 2
+            // ]
         },
         yAxis: {
             startOnTick: false,
@@ -462,8 +507,34 @@ OTC_TS_FV.Modules.newlyAddedListing.showTable = OTC_TS_FV.Modules.newlyAddedList
     if (debug) {
         console.log(`more.dataset.moreUid = `, more.dataset.moreUid);
     }
+    // hash & anchor
+    more.setAttribute(`href`, `#${table_obj.zqdm}.OC`);
     more.dataset.moreUid = `${table_obj.zqdm}.OC`;
     // console.log(`more.dataset.moreUid new = `, more.dataset.moreUid);
+    // more
+    setTimeout((debug = false) => {
+        more.addEventListener(`click`, (e) => {
+            let gilcode = e.target.dataset.moreUid,
+                // gilcode = OTC_GILCODE ? OTC_GILCODE : window.OTC_GILCODE,
+                more_node_path = `12\\${gilcode}\\${uid}`;
+            if (debug) {
+                // console.log(`more = \n`, more);
+                console.log(`more gilcode = \n`, gilcode);
+                console.log(`more_node_path = \n`, more_node_path);
+            }
+            try {
+                if (gilcode !== null) {
+                    ChromeExternal.Execute("ExecuteCommand", `12\\${gilcode}\\`);
+                    // ChromeExternal.Execute("ExecuteCommand", `12\\${gilcode}\\${uid}`);
+                }else{
+                    console.log(`ChromeExternal & ${gilcode} === null\n`);
+                }
+            } catch (error) {
+                console.log(`%c ChromeExternal & caught error = \n`, `color: red; font-size: 23px;`, error);
+                console.log(`more node gilcode = `, gilcode);
+            }
+        });
+    }, 0);
     // let tr1 = tb.firstElementChild;
     // let tr3 = tb.lastElementChild;
     // [tr, tr, tr]
@@ -474,8 +545,10 @@ OTC_TS_FV.Modules.newlyAddedListing.showTable = OTC_TS_FV.Modules.newlyAddedList
     // const {zqjc, gpjs, zqdm, zqjc, sshy, zbqs} = table_obj;
     // ES6 => ES5
     // header
-    sa.innerHTML = `${table_obj.zqjc}`;
-    sc.innerHTML = `${table_obj.zqdm}.OC`;
+    sa.innerHTML = (table_obj.zqjc !== null) ? `${table_obj.zqjc}` : `--`;// null & --
+    sc.innerHTML = (table_obj.zqdm !== null) ? `${table_obj.zqdm}` : `--`;// null & --
+    // sa.innerHTML = `${table_obj.zqjc}`;
+    // sc.innerHTML = `${table_obj.zqdm}.OC`;
     // 博商管理(836000.OC) - 新三板
     tds1[1].innerHTML = `${table_obj.sshy}`;
     tds1[3].innerHTML = `${table_obj.zbqs}`;
@@ -505,22 +578,22 @@ OTC_TS_FV.Modules.newlyAddedListing.init = OTC_TS_FV.Modules.newlyAddedListing.i
             ip,
             path,
             socket,
+            skin,
             // gilcode
         } = {
             ip: `http://10.1.5.202`,
-            path: `/webservice/fastview/otcper`,
+            path: `/webservice/fastview/otc`,
             socket: `/otcfast01`,
+            skin: `white`,
             // gilcode: `430002.OC`
         }
     ) => {
-        // let url = `${ip}${path}${socket}${gilcode}`,
-        // let url = `${ip}${path}${socket}`,
-        let url = `https://cdn.xgqfrms.xyz/json/otc-ts/01.json`,// no data?
-            tbody_dom = document.querySelector(`[data-tbody="otc-research-report-table-tbody"]`),
-            more = document.querySelector(`[data-more="otc-research-report-link-more"]`),
+        let url = `${ip}${path}${socket}`,
+        // let url = `${ip}${path}${socket}?${skin}`,// http://10.1.5.202/otc/ts/json/02.json?skin=white
+        // let url = `http://10.1.5.202/otc/ts/json/01.json`,// no data?
+        // let url = `http://10.1.5.202/otc/ts/json/new-01.json`,// no data?
             uid = `newly_added_listing_hs_container`;
         OTC_TS_FV.Modules.newlyAddedListing(url, false, uid);
-        // OTC_TS_FV.Modules.newlyAddedListing(url, tbody_dom, more, false);
     }
 );
 
@@ -537,23 +610,10 @@ OTC_TS_FV.Modules.newlyAddedListing.init({
     ip: OTC_IP,
     path: OTC_PATH,
     socket: `/otcfast01`,
+    skin: OTC_SKIN,
     // gilcode: OTC_GILCODE
 });
 
 // OTC_TS_FV.Modules.newlyAddedListing.init();
 // const url = `http://10.1.5.202/webservice/fastview/otc/otcfast01`;
 
-
-
-
-/*
-
-let more = document.querySelector(`[data-more="otc-newly-added-listing-more"]`);
-
-more.dataset.moreUid;
-// "300725.OC"
-
-more.dataset.moreUid = `666666`;
-// "666666"
-
-*/

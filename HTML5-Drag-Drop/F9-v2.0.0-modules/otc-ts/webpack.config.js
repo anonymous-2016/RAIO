@@ -18,10 +18,14 @@ const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 
+require("babel-polyfill");
+// import "babel-polyfill";
+
 const BASE_URI = {
     MODULES: './modules',
     index: `./index`,
     init: `./init`,
+    test: `./test`,
     // modal: `./modal`,
     // libs: `./libs`,
 };
@@ -39,6 +43,8 @@ const OTC_F9 = [
     "newly-added-listing",
     "newly-added-protocol",
     // "transactions-leaderboard",
+    "transactions-leaderboard-protocol",
+    "transactions-leaderboard-make-market",
     // "additional-issues-preplan",
     // "additional-issues-implementation",
     // "dividend-matters-preplan",
@@ -53,6 +59,9 @@ const OTC_F9 = [
 
 let entry_obj = {};
 
+//"babel-polyfill"
+entry_obj["babel-polyfill"] = "babel-polyfill";
+
 OTC_F9.forEach(
     (item, i) => {
         entry_obj[item] = `${BASE_URI.MODULES}/${item}`;
@@ -61,6 +70,9 @@ OTC_F9.forEach(
 // index
 entry_obj[BASE_URI.index] = `${BASE_URI.index}`;
 entry_obj[BASE_URI.init] = `${BASE_URI.init}`;
+// ES6 test & polyfill
+entry_obj[BASE_URI.test] = `${BASE_URI.test}`;
+
 // BouncedModal
 // entry_obj[BASE_URI.modal] = `${BASE_URI.libs}/BouncedModal`;
 // entry_obj[BASE_URI.modal] = `${BASE_URI.libs}/modal`;

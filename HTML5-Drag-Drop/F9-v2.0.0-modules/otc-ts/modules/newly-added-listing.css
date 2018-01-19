@@ -94,11 +94,6 @@ thead[data-table-thead="otc-table-thead-newly-added-listing"] {
     content: "";
 }
 
-.otc-th-more {
-    /* padding-left: 100px;
-    text-align: right; */
-}
-
 
 /* securities-abbreviation-newly-added-listing */
 
@@ -289,4 +284,8 @@ section.otc-module-box-5 {
     width: 4px;
     background: #f79530;
     height: 15px;
+}
+
+[data-text="otc-newly-added-listing-text"] {
+    font-weight: normal;
 }
