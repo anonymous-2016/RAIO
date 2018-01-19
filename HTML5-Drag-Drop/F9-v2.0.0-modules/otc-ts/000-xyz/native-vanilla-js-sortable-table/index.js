@@ -4,7 +4,7 @@
 
 
 
-// data-sort="sort-th-Test" data-uid="test-uid-01"
+
 
 
 // sortable function
@@ -35,8 +35,8 @@ const sortTable = (uid = 0, table_uid = `#myTable`) => {
             shouldSwitch = false;
             /*Get the two elements you want to compare,
             one from current row and one from the next:*/
-            x = rows[i].getElementsByTagName("TD")[n];
-            y = rows[i + 1].getElementsByTagName("TD")[n];
+            x = rows[i].getElementsByTagName("TD")[uid];
+            y = rows[i + 1].getElementsByTagName("TD")[uid];
             /*check if the two rows should switch place, based on the direction, asc or desc:*/
             if (dir == "asc") {
                 if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
@@ -69,3 +69,28 @@ const sortTable = (uid = 0, table_uid = `#myTable`) => {
     }
 };
 
+
+const NJS_SORTABLE_TABLE = (table_th_uid = `[data-sort="sort-th-Test"]`, table_uid = `#myTable`, debug = false) => {
+    let uids = document.querySelectorAll(table_th_uid);
+    for (let i = 0; i < uids.length; i++) {
+        uids[i].addEventListener(`click`, (e) => {
+            if (debug) {
+                console.log(`e.target.dataset = `, e.target.dataset);
+            }
+            let uid = parseInt(e.target.dataset.uid.substr(9));
+            // bug & 01 === 1
+            if (debug) {
+                console.log(`e.target.dataset.uid = `, e.target.dataset.uid);
+                console.log(`uid = `, uid);
+            }
+            sortTable(uid - 1, table_uid);// 0
+        });
+    }
+};
+
+setTimeout(() => {
+    NJS_SORTABLE_TABLE();
+}, 0);
+
+
+// data-sort="sort-th-Test" data-uid="test-uid-01"

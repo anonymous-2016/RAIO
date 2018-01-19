@@ -15,6 +15,7 @@
  */
 
 
+
 import {UserException} from "../utils/throw_error";
 import {UserConsoleError as ConsoleError} from "../utils/console_error";
 
@@ -26,7 +27,7 @@ OTC_TS_FV.Modules = OTC_TS_FV.Modules || {};
 
 // transactionsLeaderboardMakeMarket
 OTC_TS_FV.Modules.transactionsLeaderboardMakeMarket = OTC_TS_FV.Modules.transactionsLeaderboardMakeMarket || ((url = ``, uid = ``, debug = false) => {
-    let result_obj = {};
+    let result = {};
     fetch(url)
     .then(res => res.json())
     .then(
@@ -50,77 +51,66 @@ OTC_TS_FV.Modules.transactionsLeaderboardMakeMarket = OTC_TS_FV.Modules.transact
                 }
                 return result;
             };
-            if (json !== undefined && typeof(json) === "object") {
-                if (debug) {
-                    console.log(`json = \n`, json);
-                    console.log(`keys = \n`, Object.keys(json));
-                }
-                let data_market = json["zs"] || [],
-                    data_protocol = json["xy"] || [];
-                // reusable dataHandler
-                const dataHandler = (arr = []) => {
-                    if (debug) {
-                        console.log(`arr = \n`, arr);
-                        console.log(`arr keys = \n`, Object.keys(arr[0]));
-                    }
-                    let ranking_code = [],
-                        ranking_brief = [],
-                        ranking_amplitude = [],
-                        ranking_amount = [];
-                    arr.map(
-                        (obj, i) => {
-                            if (debug && (i === 0)) {
-                                console.log(`obj = \n`, JSON.stringify(obj, null, 4));
-                            }
-                            // ["zqdm", "zqjc", "zdf", "cje"]
-                            ranking_code.push(obj["zqdm"]);
-                            ranking_brief.push(obj["zqjc"]);
-                            ranking_amplitude.push(obj["zdf"]);
-                            ranking_amount.push(obj["cje"]);
+            if (debug) {
+                console.log(`json = \n`, json);
+                console.log(`keys = \n`, Object.keys(json));
+            }
+            try {
+                if (emptyChecker(json) & Object.keys(json).length > 0) {
+                    let data_protocol = json || [];
+                    // reusable dataHandler
+                    const dataHandler = (arr = []) => {
+                        if (debug) {
+                            console.log(`arr = \n`, arr);
+                            console.log(`arr keys = \n`, Object.keys(arr[0]));
                         }
-                    );
-                    const new_obj = {
-                        ranking_code,
-                        ranking_brief,
-                        ranking_amplitude,
-                        ranking_amount
+                        let ranking_code = [],
+                            ranking_brief = [],
+                            ranking_amplitude = [],
+                            ranking_amount = [];
+                        // sort ???
+                        arr.map(
+                            (obj, i) => {
+                                if (debug && (i === 0)) {
+                                    console.log(`obj = \n`, JSON.stringify(obj, null, 4));
+                                }
+                                // ["zqdm", "zqjc", "zdf", "cje"]
+                                ranking_code.push(obj["zqdm"]);
+                                ranking_brief.push(obj["zqjc"]);
+                                ranking_amplitude.push(obj["zdf"]);
+                                ranking_amount.push(obj["cje"]);
+                            }
+                        );
+                        const new_obj = {
+                            ranking_code,
+                            ranking_brief,
+                            ranking_amplitude,
+                            ranking_amount
+                        };
+                        if (debug) {
+                            console.log(`new_obj = \n`, JSON.stringify(new_obj, null, 4));
+                        }
+                        return new_obj;
                     };
+                    let obj_protocol = dataHandler(data_protocol) || {};
                     if (debug) {
-                        console.log(`new_obj = \n`, JSON.stringify(new_obj, null, 4));
+                        // console.log(`obj_protocol = \n`, obj_protocol);
+                        console.log(`obj_protocol = \n`, JSON.stringify(obj_protocol, null, 4));
                     }
-                    return new_obj;
-                };
-                let obj_market = dataHandler(data_market) || {},
-                    obj_protocol = dataHandler(data_protocol) || {};
-                if (debug) {
-                    console.log(`obj_market = \n`, obj_market);
-                    console.log(`obj_protocol = \n`, obj_protocol);
-                    // console.log(`obj_market = \n`, JSON.stringify(obj_market, null, 4));
-                    // console.log(`obj_protocol = \n`, JSON.stringify(obj_protocol, null, 4));
+                    // Object.assign(result, obj_protocol);
+                    // if (debug) {
+                    //     console.log(`result_obj = \n`, JSON.stringify(result, null, 4));
+                    // }
+                    OTC_TS_FV.Modules.transactionsLeaderboardMakeMarket.showTable(obj_protocol, uid, false);
+                }else{
+                    // no data
                 }
-                Object.assign(result_obj, {obj_market, obj_protocol});
-                if (debug) {
-                    console.log(`result_obj = \n`, JSON.stringify(result_obj, null, 4));
-                }
-                /*
-                    const uids = {
-                        "market_uid": `[data-table-market="ntb-table-body-transactions-leaderboard"]`,
-                        "protocol_uid": `[data-table-protocol="ntb-table-body-transactions-leaderboard"]`
-                    };
-                    let market_tbody = document.querySelector(uids.market_uid);
-                    let protocol_tbody = document.querySelector(uids.protocol_uid);
-                    let xxx_tbody = document.querySelector(uids.xxx_uid);
-                */
-                // ??? this.uids ???
-                let market_uid = uids.market_uid,
-                    protocol_uid = uids.protocol_uid;
-                // result_obj ??? no need
-                OTC_TS_FV.Modules.transactionsLeaderboardMakeMarket.showTable(obj_market, market_uid, false);
-                OTC_TS_FV.Modules.transactionsLeaderboardMakeMarket.showTable(obj_protocol, protocol_uid, false);
+            } catch (error) {
+                console.log(`json error = \n`, error);
             }
         }
     )
-    .catch(error => console.log(`error = \n`, error));
+    .catch(error => console.log(`fetch error = \n`, error));
     // return result_obj;
 });
 
@@ -138,20 +128,20 @@ OTC_TS_FV.Modules.transactionsLeaderboardMakeMarket.showTable = OTC_TS_FV.Module
             ranking_amplitude,
             ranking_amount
         } = datas;
-        // re-order
+        // re-order & sort ???
         let order_arr = [
             ranking_code,
             ranking_brief,
             ranking_amplitude,
             ranking_amount
         ];
-        let trs = xyz_tbody.querySelectorAll(`[data-table-tbody-tr="ntb-table-tbody-tr-transactions-leaderboard"]`);
+        let trs = xyz_tbody.querySelectorAll(`[data-table-tbody-tr="otc-table-tbody-tr-transactions-leaderboard-make-market"]`);
         if (debug) {
             console.log(`trs = \n`, trs);
             console.log(`trs[0] = \n`, trs[0]);
         }
         for (let i = 0; i < trs.length; i++) {
-            let tds = trs[i].querySelectorAll(`[data-td-value="ntb-td-value"]`);
+            let tds = trs[i].querySelectorAll(`[data-td-value="otc-td-value"]`);
             if (debug) {
                 console.log(`tds = \n`, tds);
                 console.log(`tds[0] = \n`, tds[0]);
@@ -163,11 +153,94 @@ OTC_TS_FV.Modules.transactionsLeaderboardMakeMarket.showTable = OTC_TS_FV.Module
             tds[1].innerHTML = order_arr[1][i];
             tds[2].innerHTML = order_arr[2][i];
             tds[3].innerHTML = order_arr[3][i];
+            // tds[x].insertAdjacentElemenHTML(`beforeend`, `html string`);
         }
+        setTimeout(() => {
+            let table_th_uid = `[data-sort="sort-th-transactions-leaderboard-make-market"]`,
+                table_uid = `#otc-sortable-table-transactions-leaderboard-make-market`;
+            OTC_TS_FV.Modules.transactionsLeaderboardMakeMarket.sortTable(table_th_uid, table_uid);
+            // ignore [1, 2] ?
+        }, 0);
     }
 );
 
-
+OTC_TS_FV.Modules.transactionsLeaderboardMakeMarket.sortTable = OTC_TS_FV.Modules.transactionsLeaderboardMakeMarket.sortTable || ((table_th_uid = `[data-sort="sort-th-Test"]`, table_uid = `#myTable`, debug = false, ignore = []) => {
+    const sortTable = (uid = 0, table_uid = `#myTable`) => {
+        let table = document.querySelector(table_uid),
+            rows,
+            switching = true,
+            i,
+            x,
+            y,
+            shouldSwitch,
+            dir = "asc",
+            switchcount = 0;
+        /*Make a loop that will continue until no switching has been done:*/
+        while (switching) {
+            //start by saying: no switching is done:
+            switching = false;
+            rows = table.getElementsByTagName("TR");
+            /*Loop through all table rows (except the
+            first, which contains table headers):*/
+            for (i = 1; i < (rows.length - 1); i++) {
+                //start by saying there should be no switching:
+                shouldSwitch = false;
+                /*Get the two elements you want to compare,
+                one from current row and one from the next:*/
+                x = rows[i].getElementsByTagName("TD")[uid];
+                y = rows[i + 1].getElementsByTagName("TD")[uid];
+                /*check if the two rows should switch place, based on the direction, asc or desc:*/
+                if (dir == "asc") {
+                    if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+                        //if so, mark as a switch and break the loop:
+                        shouldSwitch= true;
+                        break;
+                    }
+                } else if (dir == "desc") {
+                    if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+                        //if so, mark as a switch and break the loop:
+                        shouldSwitch= true;
+                        break;
+                    }
+                }
+            }
+            if (shouldSwitch) {
+                /*If a switch has been marked, make the switch
+                and mark that a switch has been done:*/
+                rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+                switching = true;
+                //Each time a switch is done, increase this count by 1:
+                switchcount ++;
+            } else {
+                /*If no switching has been done AND the direction is "asc", set the direction to "desc" and run the while loop again.*/
+                if (switchcount == 0 && dir == "asc") {
+                    dir = "desc";
+                    switching = true;
+                }
+            }
+        }
+    };
+    let uids = document.querySelectorAll(table_th_uid);
+    for (let i = 0; i < uids.length; i++) {
+        uids[i].addEventListener(`click`, (e) => {
+            if (debug) {
+                console.log(`e.target.dataset = `, e.target.dataset);
+            }
+            let uid = parseInt(e.target.dataset.uid.substr(4));
+            // let uid = parseInt(e.target.dataset.uid.substr(9));
+            // bug & 01 === 1
+            if (debug) {
+                console.log(`e.target.dataset.uid = `, e.target.dataset.uid);
+                console.log(`uid = `, uid);
+            }
+            if(uid !== 1 & uid !== 2){
+                sortTable(uid - 1, table_uid);// 0
+            }else{
+                console.log(`ignore uid = `, uid);
+            }
+        });
+    }
+});
 
 // init
 OTC_TS_FV.Modules.transactionsLeaderboardMakeMarket.init = OTC_TS_FV.Modules.transactionsLeaderboardMakeMarket.init || (
@@ -189,8 +262,8 @@ OTC_TS_FV.Modules.transactionsLeaderboardMakeMarket.init = OTC_TS_FV.Modules.tra
         let url = `${ip}${path}${socket}`,
         // let url = `http://10.1.5.202/otc/ts/json/13.json`,// no data?
         // let url = `http://10.1.5.202/otc/ts/json/03-old.json`,
-            uid = `[data-table-market="ntb-table-body-transactions-leaderboard"]`;
-        // url = `http://10.1.5.202/webservice/fastview/otc/otcfast13/`;
+            uid = `[data-table-make-market="otc-table-body-transactions-leaderboard-make-market"]`;
+        // url = `http://10.1.5.202/webservice/fastview/otc/otcfast03/`;
         OTC_TS_FV.Modules.transactionsLeaderboardMakeMarket(url, uid, false);
         // 备注：在涨跌幅和成交额做个可以自动排序的功能。
         // 排行榜做市 otcfast13

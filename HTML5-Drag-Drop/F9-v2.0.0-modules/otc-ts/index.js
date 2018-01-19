@@ -482,12 +482,12 @@ const HTML_Template = (uid = ``, loadModule = function(){}, debug = false) => {
                 </section>
             `;
             break;
-        case "otcfast03":
+        case "otcfast13":
             delete_uid = `transactions-leaderboard-make-market`;
             loadModule(uid, `transactions-leaderboard-make-market`, true);
             htmlstr += `
-                <section class="otc-module-box-5">
-                    <div class="otc-h5dnd-modules-title-box">
+                <section class="otc-module-box-5" data-uid="transactions-leaderboard-make-market">
+                    <div class="otc-h5dnd-modules-title-box otc-transactions-leaderboard-make-market-title-box">
                         <p class="otc-h5dnd-modules-title" data-title="otc-transactions-leaderboard-make-market-title">
                             交易排行榜
                             <span data-title-text="otc-transactions-leaderboard-make-market-title-text">
@@ -498,31 +498,179 @@ const HTML_Template = (uid = ``, loadModule = function(){}, debug = false) => {
                             </span>
                         </p>
                     </div>
-                    <table class="otc-transactions-leaderboard-make-market-table">
-                        transactions-leaderboard-make-market
-                    </table>
+                    <div class="otc-transactions-leaderboard-make-market-table-box otc-transactions-leaderboard-make-market-table">
+                        <table data-table="otc-table-transactions-leaderboard-make-market" id="otc-sortable-table-transactions-leaderboard-make-market">
+                            <thead>
+                                <tr data-table-tr="otc-table-tr-transactions-leaderboard-make-market">
+                                    <th class="otc-td-key" data-td-key="otc-td-key" data-sort="sort-th-transactions-leaderboard-make-market" data-uid="uid-1">代码</th>
+                                    <th class="otc-td-key" data-td-key="otc-td-key" data-sort="sort-th-transactions-leaderboard-make-market" data-uid="uid-2">简称</th>
+                                    <th class="otc-td-key" data-td-key="otc-td-key" data-sort="sort-th-transactions-leaderboard-make-market" data-uid="uid-3">涨跌幅(%)</th>
+                                    <th class="otc-td-key" data-td-key="otc-td-key" data-sort="sort-th-transactions-leaderboard-make-market" data-uid="uid-4">成交额(万元)</th>
+                                </tr>
+                            </thead>
+                            <tbody data-table-body="otc-table-body-transactions-leaderboard-make-market" data-table-make-market="otc-table-body-transactions-leaderboard-make-market">
+                                <tr data-table-tr="otc-table-tr-transactions-leaderboard-make-market" data-table-tbody-tr="otc-table-tbody-tr-transactions-leaderboard-make-market">
+                                    <td data-td-value="otc-td-value"></td>
+                                    <td data-td-value="otc-td-value"></td>
+                                    <td data-td-value="otc-td-value"></td>
+                                    <td data-td-value="otc-td-value"></td>
+                                </tr>
+                                <tr data-table-tr="otc-table-tr-transactions-leaderboard-make-market" data-table-tbody-tr="otc-table-tbody-tr-transactions-leaderboard-make-market">
+                                    <td data-td-value="otc-td-value"></td>
+                                    <td data-td-value="otc-td-value"></td>
+                                    <td data-td-value="otc-td-value"></td>
+                                    <td data-td-value="otc-td-value"></td>
+                                </tr>
+                                <tr data-table-tr="otc-table-tr-transactions-leaderboard-make-market" data-table-tbody-tr="otc-table-tbody-tr-transactions-leaderboard-make-market">
+                                    <td data-td-value="otc-td-value"></td>
+                                    <td data-td-value="otc-td-value"></td>
+                                    <td data-td-value="otc-td-value"></td>
+                                    <td data-td-value="otc-td-value"></td>
+                                </tr>
+                                <tr data-table-tr="otc-table-tr-transactions-leaderboard-make-market" data-table-tbody-tr="otc-table-tbody-tr-transactions-leaderboard-make-market">
+                                    <td data-td-value="otc-td-value"></td>
+                                    <td data-td-value="otc-td-value"></td>
+                                    <td data-td-value="otc-td-value"></td>
+                                    <td data-td-value="otc-td-value"></td>
+                                </tr>
+                                <tr data-table-tr="otc-table-tr-transactions-leaderboard-make-market" data-table-tbody-tr="otc-table-tbody-tr-transactions-leaderboard-make-market">
+                                    <td data-td-value="otc-td-value"></td>
+                                    <td data-td-value="otc-td-value"></td>
+                                    <td data-td-value="otc-td-value"></td>
+                                    <td data-td-value="otc-td-value"></td>
+                                </tr>
+                                <tr data-table-tr="otc-table-tr-transactions-leaderboard-make-market" data-table-tbody-tr="otc-table-tbody-tr-transactions-leaderboard-make-market">
+                                    <td data-td-value="otc-td-value"></td>
+                                    <td data-td-value="otc-td-value"></td>
+                                    <td data-td-value="otc-td-value"></td>
+                                    <td data-td-value="otc-td-value"></td>
+                                </tr>
+                                <tr data-table-tr="otc-table-tr-transactions-leaderboard-make-market" data-table-tbody-tr="otc-table-tbody-tr-transactions-leaderboard-make-market">
+                                    <td data-td-value="otc-td-value"></td>
+                                    <td data-td-value="otc-td-value"></td>
+                                    <td data-td-value="otc-td-value"></td>
+                                    <td data-td-value="otc-td-value"></td>
+                                </tr>
+                                <tr data-table-tr="otc-table-tr-transactions-leaderboard-make-market" data-table-tbody-tr="otc-table-tbody-tr-transactions-leaderboard-make-market">
+                                    <td data-td-value="otc-td-value"></td>
+                                    <td data-td-value="otc-td-value"></td>
+                                    <td data-td-value="otc-td-value"></td>
+                                    <td data-td-value="otc-td-value"></td>
+                                </tr>
+                                <tr data-table-tr="otc-table-tr-transactions-leaderboard-make-market" data-table-tbody-tr="otc-table-tbody-tr-transactions-leaderboard-make-market">
+                                    <td data-td-value="otc-td-value"></td>
+                                    <td data-td-value="otc-td-value"></td>
+                                    <td data-td-value="otc-td-value"></td>
+                                    <td data-td-value="otc-td-value"></td>
+                                </tr>
+                                <tr data-table-tr="otc-table-tr-transactions-leaderboard-make-market" data-table-tbody-tr="otc-table-tbody-tr-transactions-leaderboard-make-market">
+                                    <td data-td-value="otc-td-value"></td>
+                                    <td data-td-value="otc-td-value"></td>
+                                    <td data-td-value="otc-td-value"></td>
+                                    <td data-td-value="otc-td-value"></td>
+                                </tr>
+                            </tbody>
+                            <tfoot></tfoot>
+                        </table>
+                    </div>
                 </section>
             `;
             break;
-        case "otcfast13":
+        case "otcfast03":
             delete_uid = `transactions-leaderboard-protocol`;
             loadModule(uid, `transactions-leaderboard-protocol`, true);
             htmlstr += `
-                <section class="otc-module-box-5">
-                    <div class="otc-h5dnd-modules-title-box">
+                <section class="otc-module-box-5" data-uid="transactions-leaderboard-protocol">
+                    <div class="otc-h5dnd-modules-title-box otc-transactions-leaderboard-protocol-title-box">
                         <p class="otc-h5dnd-modules-title" data-title="otc-transactions-leaderboard-protocol-title">
                             交易排行榜
                             <span data-title-text="otc-transactions-leaderboard-protocol-title-text">
-                                交易排行榜-协议 (<span data-text="otc-transactions-leaderboard-protocol-text">201x-xx-xx</span>)
+                                    交易排行榜-协议 (<span data-text="otc-transactions-leaderboard-protocol-text">201x-xx-xx</span>)
                             </span>
                             <span data-link="otc-transactions-leaderboard-protocol-link">
                                 <a href="#更多" data-uid="1106" data-turn-to-uid="node-uid-transactions-leaderboard-protocol">更多</a>
                             </span>
                         </p>
                     </div>
-                    <table class="otc-transactions-leaderboard-protocol-table">
-                        transactions-leaderboard-protocol
-                    </table>
+                    <div class="otc-transactions-leaderboard-protocol-table-box otc-transactions-leaderboard-protocol-table">
+                        <table data-table="otc-table-transactions-leaderboard-protocol" id="otc-sortable-table-transactions-leaderboard-protocol">
+                            <thead>
+                                <tr data-table-tr="otc-table-tr-transactions-leaderboard-protocol">
+                                    <th class="otc-td-key" data-td-key="otc-td-key" data-sort="sort-th-transactions-leaderboard-protocol" data-uid="uid-1">代码</th>
+                                    <th class="otc-td-key" data-td-key="otc-td-key" data-sort="sort-th-transactions-leaderboard-protocol" data-uid="uid-2">简称</th>
+                                    <th class="otc-td-key" data-td-key="otc-td-key" data-sort="sort-th-transactions-leaderboard-protocol" data-uid="uid-3">涨跌幅(%)</th>
+                                    <th class="otc-td-key" data-td-key="otc-td-key" data-sort="sort-th-transactions-leaderboard-protocol" data-uid="uid-4">成交额(万元)</th>
+                                    <!-- <td class="otc-td-key" data-td-key="otc-td-key">代码</td>
+                                    <td class="otc-td-key" data-td-key="otc-td-key">简称</td>
+                                    <td class="otc-td-key" data-td-key="otc-td-key">涨跌幅(%)</td>
+                                    <td class="otc-td-key" data-td-key="otc-td-key">成交额(万元)</td> -->
+                                </tr>
+                            </thead>
+                            <tbody data-table-body="otc-table-body-transactions-leaderboard-protocol" data-table-protocol="otc-table-body-transactions-leaderboard-protocol">
+                                <tr data-table-tr="otc-table-tr-transactions-leaderboard-protocol" data-table-tbody-tr="otc-table-tbody-tr-transactions-leaderboard-protocol">
+                                    <td data-td-value="otc-td-value"></td>
+                                    <td data-td-value="otc-td-value"></td>
+                                    <td data-td-value="otc-td-value"></td>
+                                    <td data-td-value="otc-td-value"></td>
+                                </tr>
+                                <tr data-table-tr="otc-table-tr-transactions-leaderboard-protocol" data-table-tbody-tr="otc-table-tbody-tr-transactions-leaderboard-protocol">
+                                    <td data-td-value="otc-td-value"></td>
+                                    <td data-td-value="otc-td-value"></td>
+                                    <td data-td-value="otc-td-value"></td>
+                                    <td data-td-value="otc-td-value"></td>
+                                </tr>
+                                <tr data-table-tr="otc-table-tr-transactions-leaderboard-protocol" data-table-tbody-tr="otc-table-tbody-tr-transactions-leaderboard-protocol">
+                                    <td data-td-value="otc-td-value"></td>
+                                    <td data-td-value="otc-td-value"></td>
+                                    <td data-td-value="otc-td-value"></td>
+                                    <td data-td-value="otc-td-value"></td>
+                                </tr>
+                                <tr data-table-tr="otc-table-tr-transactions-leaderboard-protocol" data-table-tbody-tr="otc-table-tbody-tr-transactions-leaderboard-protocol">
+                                    <td data-td-value="otc-td-value"></td>
+                                    <td data-td-value="otc-td-value"></td>
+                                    <td data-td-value="otc-td-value"></td>
+                                    <td data-td-value="otc-td-value"></td>
+                                </tr>
+                                <tr data-table-tr="otc-table-tr-transactions-leaderboard-protocol" data-table-tbody-tr="otc-table-tbody-tr-transactions-leaderboard-protocol">
+                                    <td data-td-value="otc-td-value"></td>
+                                    <td data-td-value="otc-td-value"></td>
+                                    <td data-td-value="otc-td-value"></td>
+                                    <td data-td-value="otc-td-value"></td>
+                                </tr>
+                                <tr data-table-tr="otc-table-tr-transactions-leaderboard-protocol" data-table-tbody-tr="otc-table-tbody-tr-transactions-leaderboard-protocol">
+                                    <td data-td-value="otc-td-value"></td>
+                                    <td data-td-value="otc-td-value"></td>
+                                    <td data-td-value="otc-td-value"></td>
+                                    <td data-td-value="otc-td-value"></td>
+                                </tr>
+                                <tr data-table-tr="otc-table-tr-transactions-leaderboard-protocol" data-table-tbody-tr="otc-table-tbody-tr-transactions-leaderboard-protocol">
+                                    <td data-td-value="otc-td-value"></td>
+                                    <td data-td-value="otc-td-value"></td>
+                                    <td data-td-value="otc-td-value"></td>
+                                    <td data-td-value="otc-td-value"></td>
+                                </tr>
+                                <tr data-table-tr="otc-table-tr-transactions-leaderboard-protocol" data-table-tbody-tr="otc-table-tbody-tr-transactions-leaderboard-protocol">
+                                    <td data-td-value="otc-td-value"></td>
+                                    <td data-td-value="otc-td-value"></td>
+                                    <td data-td-value="otc-td-value"></td>
+                                    <td data-td-value="otc-td-value"></td>
+                                </tr>
+                                <tr data-table-tr="otc-table-tr-transactions-leaderboard-protocol" data-table-tbody-tr="otc-table-tbody-tr-transactions-leaderboard-protocol">
+                                    <td data-td-value="otc-td-value"></td>
+                                    <td data-td-value="otc-td-value"></td>
+                                    <td data-td-value="otc-td-value"></td>
+                                    <td data-td-value="otc-td-value"></td>
+                                </tr>
+                                <tr data-table-tr="otc-table-tr-transactions-leaderboard-protocol" data-table-tbody-tr="otc-table-tbody-tr-transactions-leaderboard-protocol">
+                                    <td data-td-value="otc-td-value"></td>
+                                    <td data-td-value="otc-td-value"></td>
+                                    <td data-td-value="otc-td-value"></td>
+                                    <td data-td-value="otc-td-value"></td>
+                                </tr>
+                            </tbody>
+                            <tfoot></tfoot>
+                        </table>
+                    </div>
                 </section>
             `;
             break;

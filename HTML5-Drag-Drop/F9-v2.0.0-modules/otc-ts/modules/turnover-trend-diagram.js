@@ -65,8 +65,8 @@ NSB_TS_FV.Modules.turnoverTrendMakeMarketDiagram = NSB_TS_FV.Modules.turnoverTre
                                         console.log(`temp_sort_arr[i] = \n`, temp_sort_arr[i], i);
                                     }
                                     turnover_time.push(obj["rq"]);
-                                    turnover_number.push(obj["cjl"]);
-                                    turnover_amount.push(obj["cje"]);
+                                    turnover_number.push(parseFloat(obj["cjl"]));
+                                    turnover_amount.push(parseFloat(obj["cje"]));
                                 }else{
                                     // break
                                 }
@@ -182,8 +182,8 @@ NSB_TS_FV.Modules.turnoverTrendProtocolDiagram = NSB_TS_FV.Modules.turnoverTrend
                                         console.log(`temp_sort_arr[i] = \n`, temp_sort_arr[i], i);
                                     }
                                     turnover_time.push(obj["rq"]);
-                                    turnover_number.push(obj["cjl"]);
-                                    turnover_amount.push(obj["cje"]);
+                                    turnover_number.push(parseFloat(obj["cjl"]));
+                                    turnover_amount.push(parseFloat(obj["cje"]));
                                 }else{
                                     // break
                                 }
