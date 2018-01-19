@@ -62,7 +62,7 @@ NSB_TS_FV.Modules.transactionOverview = NSB_TS_FV.Modules.transactionOverview ||
                             default:
                                 break;
                         }
-                        if (!debug) {
+                        if (debug) {
                             console.log(`new_obj = \n`, JSON.stringify(new_obj, null, 4));
                         }
                     }
@@ -73,16 +73,25 @@ NSB_TS_FV.Modules.transactionOverview = NSB_TS_FV.Modules.transactionOverview ||
                 }
                 keys.map(
                     (key, i) => {
-                        if (!debug) {
+                        if (debug) {
                             console.log(`key, i =`, key, i);
                         }
-                        // key in data ???
-                        transactions_number.push();
-                        rising_number.push(new_obj[key]["szjs"]);
-                        fell_number.push(new_obj[key]["xdjs"]);
-                        trading_volume.push(new_obj[key]["cjl"]);
-                        turnover_volume.push(new_obj[key]["cje"]);
-                        deals_number.push(new_obj[key]["cjbs"]);
+                        // key in data ??? undefined
+                        if (new_obj[key] !== undefined) {
+                            (new_obj[key]["cjjs"] !== undefined) ? transactions_number.push(new_obj[key]["cjjs"]) : transactions_number.push(`--`);
+                            (new_obj[key]["szjs"] !== undefined) ? rising_number.push(new_obj[key]["szjs"]) : rising_number.push(`--`);
+                            (new_obj[key]["xdjs"] !== undefined) ? fell_number.push(new_obj[key]["xdjs"]) : fell_number.push(`--`);
+                            (new_obj[key]["cjl"] !== undefined) ? trading_volume.push(new_obj[key]["cjl"]) : trading_volume.push(`--`);
+                            (new_obj[key]["cje"] !== undefined) ? turnover_volume.push(new_obj[key]["cje"]) : turnover_volume.push(`--`);
+                            (new_obj[key]["cjbs"] !== undefined) ? deals_number.push(new_obj[key]["cjbs"]) : deals_number.push(`--`);
+                        } else {
+                            transactions_number.push(`--`);
+                            rising_number.push(`--`);
+                            fell_number.push(`--`);
+                            trading_volume.push(`--`);
+                            turnover_volume.push(`--`);
+                            deals_number.push(`--`);
+                        }
                     }
                 );
                 result_obj = {
