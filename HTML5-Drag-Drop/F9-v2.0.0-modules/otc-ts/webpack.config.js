@@ -53,6 +53,7 @@ const OTC_F9 = [
     // "transaction-overview",
     // "turnover-trend-make-market-diagram",
     // "turnover-trend-protocol-diagram",
+    "turnover-trend-diagram",
     "thematic-statistics-news",
     "thematic-statistics-bulletin",
 ];

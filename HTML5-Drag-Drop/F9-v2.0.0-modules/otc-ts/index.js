@@ -199,15 +199,15 @@ const initTabs = () => {
             "otcfast02",
             "otcfast03",
             "otcfast13",
-            "otcfast031",
-            "otcfast032",
-            "otcfastAdditional",
-            "otcfastDividends",
-            "otcfast10"
+            // "otcfast031",
+            // "otcfast032",
+            // "otcfastAdditional",
+            // "otcfastDividends",
+            // "otcfast10"
         ];
         let right_uids = [
-            "otcfast08",
-            "otcfast09",
+            // "otcfast08",
+            // "otcfast09",
             "otcfastTransaction",
             "news",
             "bulletin"
@@ -305,13 +305,17 @@ const loadModule = (uid =``, module_uid_name=``, isTable=`false`, debug = false)
                 : document.querySelector(`.otc-${module_uid_name}-container`),
                 link_css = document.createElement(`link`),
                 script_dom = document.createElement(`script`);
-            // console.log(`module_uid_name = `, module_uid_name);
-            // console.log(`isTable = `, isTable);
-            // console.log(`box = `, box);
+            if (debug) {
+                console.log(`module_uid_name = `, module_uid_name);
+                console.log(`isTable = `, isTable);
+                let s = `.otc-${module_uid_name}-container`;
+                console.log(`box = `, box, s);
+            }
             /*
                 // bug
                 document.querySelector(`.otc-newly-added-listing-table`);
                 document.querySelector(`[data-table="otc-newly-added-listing-table"]`);
+                document.querySelector(`.otc-turnover-trend-diagram-container`);
             */
             // box =  null
             link_css.setAttribute(`rel`, `stylesheet`);
@@ -828,15 +832,15 @@ const HTML_Template = (uid = ``, loadModule = function(){}, debug = false) => {
             `;
             break;
         case "otcfastTransaction":
-            delete_uid = `turnover-trend-diagram-all`;
-            loadModule(uid, `turnover-trend-diagram-all`, true);
+            delete_uid = `turnover-trend-diagram`;
+            loadModule(uid, `turnover-trend-diagram`, false);
             htmlstr += `
                 <section class="otc-module-box-5">
                     <div class="otc-h5dnd-modules-title-box">
-                        <p class="otc-h5dnd-modules-title" data-title="otc-turnover-trend-diagram-all-title">
+                        <p class="otc-h5dnd-modules-title otc-turnover-trend-diagram-title" data-title="otc-turnover-trend-diagram-title">
                             成交走势
-                            <span data-link="otc-turnover-trend-diagram-all-link">
-                                <a href="#更多" data-uid="1070" data-turn-to-uid="node-uid-turnover-trend-diagram-all">更多</a>
+                            <span data-link="otc-turnover-trend-diagram-link">
+                                <a href="#更多" data-uid="1070" data-turn-to-uid="node-uid-turnover-trend-diagram">更多</a>
                             </span>
                         </p>
                     </div>
@@ -846,10 +850,10 @@ const HTML_Template = (uid = ``, loadModule = function(){}, debug = false) => {
                     </div>
                     <div class="otc-turnover-trend-protocol-diagram-container">
                         <!-- 成交走势-协议图 turnover-trend-protocol-diagram -->
-                        <div id="turnover_trend_protocol_diagram_hs_container2" data-hs-container="data-turnover-trend-protocol-diagram-container-uid" class="otc-turnover-trend-protocol-diagram-hs otc-turnover-trend-protocol-diagram-hs-container"></div>
+                        <div id="turnover_trend_protocol_diagram_hs_container" data-hs-container="data-turnover-trend-protocol-diagram-uid" class="otc-turnover-trend-protocol-diagram-hs otc-turnover-trend-protocol-diagram-hs-container"></div>
                     </div>
+                    <section data-scripts="all-scripts" class="otc-turnover-trend-diagram-container"></section>
                 </section>
-                <section data-scripts="all-scripts" class="otc-dividend-matters-all-container"></section>
             `;
             break;
         case "news":

@@ -31,7 +31,8 @@ NSB_TS_FV.Modules.transactionOverview = NSB_TS_FV.Modules.transactionOverview ||
                 let data = json || [];
                 const new_obj = {};
                 // fixed order!
-                const keys = ["total", "protocol", "market"];
+                const keys = ["total", "market", "protocol"];
+                // let keys = Object.keys(data);
                 // let transactions_number, rising_number, fell_number, trading_volume, turnover_volume, deals_number = [],
                 let transactions_number = [],
                     rising_number = [],
@@ -39,6 +40,8 @@ NSB_TS_FV.Modules.transactionOverview = NSB_TS_FV.Modules.transactionOverview ||
                     trading_volume = [],
                     turnover_volume = [],
                     deals_number = [];
+                // string bug ???
+                // console.log(`data`, JSON.stringify(data, null, 4));
                 data.map(
                     (obj, i) => {
                         let temp_obj = {};
@@ -59,17 +62,22 @@ NSB_TS_FV.Modules.transactionOverview = NSB_TS_FV.Modules.transactionOverview ||
                             default:
                                 break;
                         }
-                        if (debug) {
+                        if (!debug) {
                             console.log(`new_obj = \n`, JSON.stringify(new_obj, null, 4));
                         }
                     }
                 );
                 if (debug) {
                     console.log(`new_obj = \n`, JSON.stringify(new_obj, null, 4));
+                    console.log(`keys`, JSON.stringify(keys, null, 4));
                 }
                 keys.map(
                     (key, i) => {
-                        transactions_number.push(new_obj[key]["cjjs"]);
+                        if (!debug) {
+                            console.log(`key, i =`, key, i);
+                        }
+                        // key in data ???
+                        transactions_number.push();
                         rising_number.push(new_obj[key]["szjs"]);
                         fell_number.push(new_obj[key]["xdjs"]);
                         trading_volume.push(new_obj[key]["cjl"]);
