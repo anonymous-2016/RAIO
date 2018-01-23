@@ -206,7 +206,7 @@ OTC_TS_FV.Modules.transactionsLeaderboardProtocol.sortTable = OTC_TS_FV.Modules.
         while (switching) {
             //start by saying: no switching is done:
             switching = false;
-            rows = table.getElementsByTagName("TR");
+            rows = table.getElementsByTagName("tr");
             /*Loop through all table rows (except the
             first, which contains table headers):*/
             for (i = 1; i < (rows.length - 1); i++) {
@@ -214,17 +214,29 @@ OTC_TS_FV.Modules.transactionsLeaderboardProtocol.sortTable = OTC_TS_FV.Modules.
                 shouldSwitch = false;
                 /*Get the two elements you want to compare,
                 one from current row and one from the next:*/
-                x = rows[i].getElementsByTagName("TD")[uid];
-                y = rows[i + 1].getElementsByTagName("TD")[uid];
+                x = rows[i].getElementsByTagName("td")[uid];
+                y = rows[i + 1].getElementsByTagName("td")[uid];
                 /*check if the two rows should switch place, based on the direction, asc or desc:*/
                 if (dir == "asc") {
-                    if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+                    // string compare & bug!
+                    // parseFloat(x.innerHTML) > parseFloat(y.innerHTML)
+                    // if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+                    //     //if so, mark as a switch and break the loop:
+                    //     shouldSwitch= true;
+                    //     break;
+                    // }
+                    if (parseFloat(x.innerHTML) > parseFloat(y.innerHTML)) {
                         //if so, mark as a switch and break the loop:
                         shouldSwitch= true;
                         break;
                     }
                 } else if (dir == "desc") {
-                    if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+                    // if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+                    //     //if so, mark as a switch and break the loop:
+                    //     shouldSwitch= true;
+                    //     break;
+                    // }
+                    if (parseFloat(x.innerHTML) < parseFloat(y.innerHTML)) {
                         //if so, mark as a switch and break the loop:
                         shouldSwitch= true;
                         break;
@@ -232,9 +244,10 @@ OTC_TS_FV.Modules.transactionsLeaderboardProtocol.sortTable = OTC_TS_FV.Modules.
                 }
             }
             if (shouldSwitch) {
-                /*If a switch has been marked, make the switch
-                and mark that a switch has been done:*/
+                /*If a switch has been marked, make the switch and mark that a switch has been done:*/
                 rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+                // var insertedElement = parentElement.insertBefore(newElement, referenceElement);
+                // insert & exchange position
                 switching = true;
                 //Each time a switch is done, increase this count by 1:
                 switchcount ++;

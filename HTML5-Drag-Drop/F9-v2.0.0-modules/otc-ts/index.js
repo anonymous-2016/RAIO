@@ -490,7 +490,7 @@ const HTML_Template = (uid = ``, loadModule = function(){}, debug = false) => {
             delete_uid = `transactions-leaderboard-make-market`;
             loadModule(uid, `transactions-leaderboard-make-market`, true);
             htmlstr += `
-                <section class="otc-module-box-5" data-uid="transactions-leaderboard-make-market">
+                section class="otc-module-box-5" data-uid="transactions-leaderboard-make-market">
                     <div class="otc-h5dnd-modules-title-box otc-transactions-leaderboard-make-market-title-box">
                         <p class="otc-h5dnd-modules-title" data-title="otc-transactions-leaderboard-make-market-title">
                             交易排行榜
@@ -506,72 +506,72 @@ const HTML_Template = (uid = ``, loadModule = function(){}, debug = false) => {
                         <table data-table="otc-table-transactions-leaderboard-make-market" id="otc-sortable-table-transactions-leaderboard-make-market">
                             <thead>
                                 <tr data-table-tr="otc-table-tr-transactions-leaderboard-make-market">
-                                    <th class="otc-td-key" data-td-key="otc-td-key" data-sort="sort-th-transactions-leaderboard-make-market" data-uid="uid-1">代码</th>
-                                    <th class="otc-td-key" data-td-key="otc-td-key" data-sort="sort-th-transactions-leaderboard-make-market" data-uid="uid-2">简称</th>
-                                    <th class="otc-td-key" data-td-key="otc-td-key" data-sort="sort-th-transactions-leaderboard-make-market" data-uid="uid-3">涨跌幅(%)</th>
-                                    <th class="otc-td-key" data-td-key="otc-td-key" data-sort="sort-th-transactions-leaderboard-make-market" data-uid="uid-4">成交额(万元)</th>
+                                    <th class="otc-td-key" data-td-key="otc-td-key-TLMM" data-sort="sort-th-transactions-leaderboard-make-market" data-uid="uid-1">代码</th>
+                                    <th class="otc-td-key" data-td-key="otc-td-key-TLMM" data-sort="sort-th-transactions-leaderboard-make-market" data-uid="uid-2">简称</th>
+                                    <th class="otc-td-key" data-td-key="otc-td-key-TLMM" data-sort="sort-th-transactions-leaderboard-make-market" data-uid="uid-3">涨跌幅(%)</th>
+                                    <th class="otc-td-key" data-td-key="otc-td-key-TLMM" data-sort="sort-th-transactions-leaderboard-make-market" data-uid="uid-4">成交额(万元)</th>
                                 </tr>
                             </thead>
                             <tbody data-table-body="otc-table-body-transactions-leaderboard-make-market" data-table-make-market="otc-table-body-transactions-leaderboard-make-market">
                                 <tr data-table-tr="otc-table-tr-transactions-leaderboard-make-market" data-table-tbody-tr="otc-table-tbody-tr-transactions-leaderboard-make-market">
-                                    <td data-td-value="otc-td-value"></td>
-                                    <td data-td-value="otc-td-value"></td>
-                                    <td data-td-value="otc-td-value"></td>
-                                    <td data-td-value="otc-td-value"></td>
+                                    <td data-td-value="otc-td-value-TLMM"></td>
+                                    <td data-td-value="otc-td-value-TLMM"></td>
+                                    <td data-td-value="otc-td-value-TLMM"></td>
+                                    <td data-td-value="otc-td-value-TLMM"></td>
                                 </tr>
                                 <tr data-table-tr="otc-table-tr-transactions-leaderboard-make-market" data-table-tbody-tr="otc-table-tbody-tr-transactions-leaderboard-make-market">
-                                    <td data-td-value="otc-td-value"></td>
-                                    <td data-td-value="otc-td-value"></td>
-                                    <td data-td-value="otc-td-value"></td>
-                                    <td data-td-value="otc-td-value"></td>
+                                    <td data-td-value="otc-td-value-TLMM"></td>
+                                    <td data-td-value="otc-td-value-TLMM"></td>
+                                    <td data-td-value="otc-td-value-TLMM"></td>
+                                    <td data-td-value="otc-td-value-TLMM"></td>
                                 </tr>
                                 <tr data-table-tr="otc-table-tr-transactions-leaderboard-make-market" data-table-tbody-tr="otc-table-tbody-tr-transactions-leaderboard-make-market">
-                                    <td data-td-value="otc-td-value"></td>
-                                    <td data-td-value="otc-td-value"></td>
-                                    <td data-td-value="otc-td-value"></td>
-                                    <td data-td-value="otc-td-value"></td>
+                                    <td data-td-value="otc-td-value-TLMM"></td>
+                                    <td data-td-value="otc-td-value-TLMM"></td>
+                                    <td data-td-value="otc-td-value-TLMM"></td>
+                                    <td data-td-value="otc-td-value-TLMM"></td>
                                 </tr>
                                 <tr data-table-tr="otc-table-tr-transactions-leaderboard-make-market" data-table-tbody-tr="otc-table-tbody-tr-transactions-leaderboard-make-market">
-                                    <td data-td-value="otc-td-value"></td>
-                                    <td data-td-value="otc-td-value"></td>
-                                    <td data-td-value="otc-td-value"></td>
-                                    <td data-td-value="otc-td-value"></td>
+                                    <td data-td-value="otc-td-value-TLMM"></td>
+                                    <td data-td-value="otc-td-value-TLMM"></td>
+                                    <td data-td-value="otc-td-value-TLMM"></td>
+                                    <td data-td-value="otc-td-value-TLMM"></td>
                                 </tr>
                                 <tr data-table-tr="otc-table-tr-transactions-leaderboard-make-market" data-table-tbody-tr="otc-table-tbody-tr-transactions-leaderboard-make-market">
-                                    <td data-td-value="otc-td-value"></td>
-                                    <td data-td-value="otc-td-value"></td>
-                                    <td data-td-value="otc-td-value"></td>
-                                    <td data-td-value="otc-td-value"></td>
+                                    <td data-td-value="otc-td-value-TLMM"></td>
+                                    <td data-td-value="otc-td-value-TLMM"></td>
+                                    <td data-td-value="otc-td-value-TLMM"></td>
+                                    <td data-td-value="otc-td-value-TLMM"></td>
                                 </tr>
                                 <tr data-table-tr="otc-table-tr-transactions-leaderboard-make-market" data-table-tbody-tr="otc-table-tbody-tr-transactions-leaderboard-make-market">
-                                    <td data-td-value="otc-td-value"></td>
-                                    <td data-td-value="otc-td-value"></td>
-                                    <td data-td-value="otc-td-value"></td>
-                                    <td data-td-value="otc-td-value"></td>
+                                    <td data-td-value="otc-td-value-TLMM"></td>
+                                    <td data-td-value="otc-td-value-TLMM"></td>
+                                    <td data-td-value="otc-td-value-TLMM"></td>
+                                    <td data-td-value="otc-td-value-TLMM"></td>
                                 </tr>
                                 <tr data-table-tr="otc-table-tr-transactions-leaderboard-make-market" data-table-tbody-tr="otc-table-tbody-tr-transactions-leaderboard-make-market">
-                                    <td data-td-value="otc-td-value"></td>
-                                    <td data-td-value="otc-td-value"></td>
-                                    <td data-td-value="otc-td-value"></td>
-                                    <td data-td-value="otc-td-value"></td>
+                                    <td data-td-value="otc-td-value-TLMM"></td>
+                                    <td data-td-value="otc-td-value-TLMM"></td>
+                                    <td data-td-value="otc-td-value-TLMM"></td>
+                                    <td data-td-value="otc-td-value-TLMM"></td>
                                 </tr>
                                 <tr data-table-tr="otc-table-tr-transactions-leaderboard-make-market" data-table-tbody-tr="otc-table-tbody-tr-transactions-leaderboard-make-market">
-                                    <td data-td-value="otc-td-value"></td>
-                                    <td data-td-value="otc-td-value"></td>
-                                    <td data-td-value="otc-td-value"></td>
-                                    <td data-td-value="otc-td-value"></td>
+                                    <td data-td-value="otc-td-value-TLMM"></td>
+                                    <td data-td-value="otc-td-value-TLMM"></td>
+                                    <td data-td-value="otc-td-value-TLMM"></td>
+                                    <td data-td-value="otc-td-value-TLMM"></td>
                                 </tr>
                                 <tr data-table-tr="otc-table-tr-transactions-leaderboard-make-market" data-table-tbody-tr="otc-table-tbody-tr-transactions-leaderboard-make-market">
-                                    <td data-td-value="otc-td-value"></td>
-                                    <td data-td-value="otc-td-value"></td>
-                                    <td data-td-value="otc-td-value"></td>
-                                    <td data-td-value="otc-td-value"></td>
+                                    <td data-td-value="otc-td-value-TLMM"></td>
+                                    <td data-td-value="otc-td-value-TLMM"></td>
+                                    <td data-td-value="otc-td-value-TLMM"></td>
+                                    <td data-td-value="otc-td-value-TLMM"></td>
                                 </tr>
                                 <tr data-table-tr="otc-table-tr-transactions-leaderboard-make-market" data-table-tbody-tr="otc-table-tbody-tr-transactions-leaderboard-make-market">
-                                    <td data-td-value="otc-td-value"></td>
-                                    <td data-td-value="otc-td-value"></td>
-                                    <td data-td-value="otc-td-value"></td>
-                                    <td data-td-value="otc-td-value"></td>
+                                    <td data-td-value="otc-td-value-TLMM"></td>
+                                    <td data-td-value="otc-td-value-TLMM"></td>
+                                    <td data-td-value="otc-td-value-TLMM"></td>
+                                    <td data-td-value="otc-td-value-TLMM"></td>
                                 </tr>
                             </tbody>
                             <tfoot></tfoot>

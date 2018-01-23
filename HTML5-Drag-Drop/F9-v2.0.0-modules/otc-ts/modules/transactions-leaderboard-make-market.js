@@ -204,13 +204,24 @@ OTC_TS_FV.Modules.transactionsLeaderboardMakeMarket.sortTable = OTC_TS_FV.Module
                 y = rows[i + 1].getElementsByTagName("TD")[uid];
                 /*check if the two rows should switch place, based on the direction, asc or desc:*/
                 if (dir == "asc") {
-                    if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+                    // string compare & bug!
+                    // if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+                    //     //if so, mark as a switch and break the loop:
+                    //     shouldSwitch= true;
+                    //     break;
+                    // }
+                    if (parseFloat(x.innerHTML) > parseFloat(y.innerHTML)) {
                         //if so, mark as a switch and break the loop:
                         shouldSwitch= true;
                         break;
                     }
                 } else if (dir == "desc") {
-                    if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+                    // if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+                    //     //if so, mark as a switch and break the loop:
+                    //     shouldSwitch= true;
+                    //     break;
+                    // }
+                    if (parseFloat(x.innerHTML) < parseFloat(y.innerHTML)) {
                         //if so, mark as a switch and break the loop:
                         shouldSwitch= true;
                         break;
@@ -218,9 +229,10 @@ OTC_TS_FV.Modules.transactionsLeaderboardMakeMarket.sortTable = OTC_TS_FV.Module
                 }
             }
             if (shouldSwitch) {
-                /*If a switch has been marked, make the switch
-                and mark that a switch has been done:*/
+                /*If a switch has been marked, make the switch  and mark that a switch has been done:*/
                 rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+                // var insertedElement = parentElement.insertBefore(newElement, referenceElement);
+                // insert & exchange position
                 switching = true;
                 //Each time a switch is done, increase this count by 1:
                 switchcount ++;
