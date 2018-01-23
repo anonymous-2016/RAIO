@@ -86,7 +86,7 @@ thead[data-table-thead="otc-table-thead-newly-added-listing"] {
 /* table head */
 
 .otc-td-key::after {
-    content: ":";
+    /* content: ":"; */
 }
 
 .otc-th-fire::after {
@@ -257,7 +257,8 @@ section.otc-module-box-5 {
 
 /* commons-title */
 
-.otc-h5dnd-modules-title-box {
+
+/* .otc-h5dnd-modules-title-box {
     box-sizing: border-box;
     width: 100%;
     max-width: 540px;
@@ -284,7 +285,7 @@ section.otc-module-box-5 {
     width: 4px;
     background: #f79530;
     height: 15px;
-}
+} */
 
 [data-text="otc-newly-added-listing-text"] {
     font-weight: normal;

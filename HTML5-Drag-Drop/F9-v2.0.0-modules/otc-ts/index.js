@@ -206,8 +206,8 @@ const initTabs = () => {
             // "otcfast10"
         ];
         let right_uids = [
-            // "otcfast08",
-            // "otcfast09",
+            "otcfast08",
+            "otcfast09",
             "otcfastTransaction",
             "news",
             "bulletin"
@@ -778,9 +778,9 @@ const HTML_Template = (uid = ``, loadModule = function(){}, debug = false) => {
             break;
         case "otcfast08":
             delete_uid = `listing-situation`;
-            loadModule(uid, `listing-situation`);// false
+            loadModule(uid, `listing-situation`, true);// false
             htmlstr += `
-                <section class="otc-module-box-5">
+                <section class="otc-module-box-5" data-uid="listing-situation">
                     <div class="otc-h5dnd-modules-title-box">
                         <p class="otc-h5dnd-modules-title" data-title="otc-listing-situation-title">
                             挂牌情况
@@ -790,30 +790,55 @@ const HTML_Template = (uid = ``, loadModule = function(){}, debug = false) => {
                             </span>
                         </p>
                     </div>
-                    <table class="otc-listing-situation-table">
-                        <thead class="otc-listing-situation-table-thead">
-                            <tr class="otc-listing-situation-table-tr">
-                                <td class="otc-listing-situation-table-td-title">产品及服务</td>
-                                <td class="otc-listing-situation-table-td-title">营业收入(万元)</td>
-                                <td class="otc-listing-situation-table-td-title">营业成本(万元)</td>
-                                <td class="otc-listing-situation-table-td-title">营业收入占比(%)</td>
-                            </tr>
-                        </thead>
-                        <tbody class="otc-listing-situation-table-tbody" data-tbody="otc-listing-situation-table-tbody"></tbody>
-                        <tfoot class="otc-listing-situation-table-tfoot">
-                            <tr class="otc-listing-situation-table-tr">
-                                <td class="otc-listing-situation-table-td-value" data-value="data-otc-MMB"></td>
-                            </tr>
-                        </tfoot>
-                    </table>
+                    <div class="otc-listing-situation-table-box">
+                        <table data-table="otc-table-listing-situation" class="otc-listing-situation-table">
+                            <thead>
+                                <tr data-table-tr="otc-table-tr-listing-situation">
+                                    <td class="otc-td-no-key" data-td-key="otc-td-no-key">
+                                        <!-- div & roate ??? -->
+                                    </td>
+                                    <td class="otc-td-key" data-td-key="otc-td-key-LS">合计</td>
+                                    <td class="otc-td-key" data-td-key="otc-td-key-LS">做市</td>
+                                    <td class="otc-td-key" data-td-key="otc-td-key-LS">协议</td>
+                                </tr>
+                            </thead>
+                            <tbody data-table-body="otc-table-body-listing-situation">
+                                <tr data-table-tr="otc-table-tr-listing-situation" data-table-tbody-tr="otc-table-tbody-tr-listing-situation">
+                                    <td class="otc-td-key" data-td-key="otc-td-key-LS">挂牌家数</td>
+                                    <td data-td-value="otc-td-value-LS"></td>
+                                    <td data-td-value="otc-td-value-LS"></td>
+                                    <td data-td-value="otc-td-value-LS"></td>
+                                </tr>
+                                <tr data-table-tr="otc-table-tr-listing-situation" data-table-tbody-tr="otc-table-tbody-tr-listing-situation">
+                                    <td class="otc-td-key" data-td-key="otc-td-key-LS">今日新增挂牌家数</td>
+                                    <td data-td-value="otc-td-value-LS"></td>
+                                    <td data-td-value="otc-td-value-LS"></td>
+                                    <td data-td-value="otc-td-value-LS"></td>
+                                </tr>
+                                <tr data-table-tr="otc-table-tr-listing-situation" data-table-tbody-tr="otc-table-tbody-tr-listing-situation">
+                                    <td class="otc-td-key" data-td-key="otc-td-key-LS">待挂牌家数</td>
+                                    <td data-td-value="otc-td-value-LS"></td>
+                                    <td data-td-value="otc-td-value-LS"></td>
+                                    <td data-td-value="otc-td-value-LS"></td>
+                                </tr>
+                                <tr data-table-tr="otc-table-tr-listing-situation" data-table-tbody-tr="otc-table-tbody-tr-listing-situation">
+                                    <td class="otc-td-key" data-td-key="otc-td-key-LS">申报中家数</td>
+                                    <td data-td-value="otc-td-value-LS"></td>
+                                    <td data-td-value="otc-td-value-LS"></td>
+                                    <td data-td-value="otc-td-value-LS"></td>
+                                </tr>
+                            </tbody>
+                            <tfoot></tfoot>
+                        </table>
+                    </div>
                 </section>
             `;
             break;
         case "otcfast09":
             delete_uid = `transaction-overview`;
-            loadModule(uid, `transaction-overview`);// false
+            loadModule(uid, `transaction-overview`, true);// false
             htmlstr += `
-                <section class="otc-module-box-5">
+                <section class="otc-module-box-5" data-uid="transaction-overview">
                     <div class="otc-h5dnd-modules-title-box">
                         <p class="otc-h5dnd-modules-title" data-title="otc-transaction-overview-title">
                             成交概况
@@ -825,8 +850,56 @@ const HTML_Template = (uid = ``, loadModule = function(){}, debug = false) => {
                             </span>
                         </p>
                     </div>
-                    <table class="otc-transaction-overview-table">
-                        transaction-overview
+                    <table class="otc-transaction-overview-table" data-table="otc-table-transaction-overview">
+                        <thead>
+                            <tr data-table-tr="otc-table-tr-transaction-overview">
+                                <td class="otc-td-no-key" data-td-key="otc-td-no-key">
+                                    <!-- div & roate ??? -->
+                                </td>
+                                <td class="otc-td-key-TO" data-td-key="otc-td-key-TO">合计</td>
+                                <td class="otc-td-key-TO" data-td-key="otc-td-key-TO">做市</td>
+                                <td class="otc-td-key-TO" data-td-key="otc-td-key-TO">协议</td>
+                            </tr>
+                        </thead>
+                        <tbody data-table-body="otc-table-body-transaction-overview">
+                            <tr data-table-tr="otc-table-tr-transaction-overview" data-table-tbody-tr="otc-table-tbody-tr-transaction-overview">
+                                <td class="otc-td-key-TO" data-td-key="otc-td-key-TO">成交家数</td>
+                                <td data-td-value="otc-td-value-TO"></td>
+                                <td data-td-value="otc-td-value-TO"></td>
+                                <td data-td-value="otc-td-value-TO"></td>
+                            </tr>
+                            <tr data-table-tr="otc-table-tr-transaction-overview" data-table-tbody-tr="otc-table-tbody-tr-transaction-overview">
+                                <td class="otc-td-key-TO" data-td-key="otc-td-key-TO">上涨家数</td>
+                                <td data-td-value="otc-td-value-TO"></td>
+                                <td data-td-value="otc-td-value-TO"></td>
+                                <td data-td-value="otc-td-value-TO"></td>
+                            </tr>
+                            <tr data-table-tr="otc-table-tr-transaction-overview" data-table-tbody-tr="otc-table-tbody-tr-transaction-overview">
+                                <td class="otc-td-key-TO" data-td-key="otc-td-key-TO">下跌家数</td>
+                                <td data-td-value="otc-td-value-TO"></td>
+                                <td data-td-value="otc-td-value-TO"></td>
+                                <td data-td-value="otc-td-value-TO"></td>
+                            </tr>
+                            <tr data-table-tr="otc-table-tr-transaction-overview" data-table-tbody-tr="otc-table-tbody-tr-transaction-overview">
+                                <td class="otc-td-key-TO" data-td-key="otc-td-key-TO">成交量(亿股)</td>
+                                <td data-td-value="otc-td-value-TO"></td>
+                                <td data-td-value="otc-td-value-TO"></td>
+                                <td data-td-value="otc-td-value-TO"></td>
+                            </tr>
+                            <tr data-table-tr="otc-table-tr-transaction-overview" data-table-tbody-tr="otc-table-tbody-tr-transaction-overview">
+                                <td class="otc-td-key-TO" data-td-key="otc-td-key-TO">成交额(亿元)</td>
+                                <td data-td-value="otc-td-value-TO"></td>
+                                <td data-td-value="otc-td-value-TO"></td>
+                                <td data-td-value="otc-td-value-TO"></td>
+                            </tr>
+                            <tr data-table-tr="otc-table-tr-transaction-overview" data-table-tbody-tr="otc-table-tbody-tr-transaction-overview">
+                                <td class="otc-td-key-TO" data-td-key="otc-td-key-TO">成交笔数</td>
+                                <td data-td-value="otc-td-value-TO"></td>
+                                <td data-td-value="otc-td-value-TO"></td>
+                                <td data-td-value="otc-td-value-TO"></td>
+                            </tr>
+                        </tbody>
+                        <tfoot></tfoot>
                     </table>
                 </section>
             `;

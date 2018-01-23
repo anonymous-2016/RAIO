@@ -8,11 +8,20 @@
 
 /* commons-title */
 
+
+/*
+
+.otc-h5dnd-modules-title-box {
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 540px;
+}
+
 .otc-h5dnd-modules-title {
     position: relative;
     color: #000;
     text-indent: 15px;
-    margin-left: 3px;
+    margin-left: 0;
     font-weight: 600;
     font-size: 14px;
     margin-top: 5px;
@@ -22,28 +31,28 @@
 .otc-h5dnd-modules-title::before {
     position: absolute;
     top: 0px;
-    left: 5px;
+    left: 0;
     content: "";
     display: inline-block;
     border: 2px solid #f79530;
     width: 0;
     height: 16px;
-    /* line-height: 22px; */
-}
+} */
 
 [data-uid="transactions-leaderboard-make-market"] {
     float: left;
     margin: 5px;
 }
 
-#newly_added_listing_hs_container {
-    /* min-height: 100px; */
-    height: 100%;
-    width: 100%;
-}
-
 * {
     box-sizing: border-box;
+}
+
+.otc-transactions-leaderboard-make-market-table-box {
+    box-sizing: border-box;
+    width: 540px;
+    height: auto;
+    /* background: #ccc; */
 }
 
 
@@ -80,22 +89,6 @@
     padding: 0;
 }
 
-.otc-th-more>a[data-otc-th-link="otc-link-detials"] {
-    cursor: pointer;
-    color: rgba(2, 175, 255, 0.5);
-    text-decoration: none;
-    display: inline-block;
-    box-sizing: border-box;
-}
-
-.otc-th-more>a[data-otc-th-link="otc-link-detials"]:hover {
-    color: rgba(2, 175, 255, 1);
-}
-
-[data-otc-th-link="otc-link-detials"]::after {
-    content: ">>";
-}
-
 
 /* tr */
 
@@ -121,28 +114,38 @@ tr[data-table-tr="otc-table-tr-transactions-leaderboard-make-market"]>td[data-td
     font-weight: bold;
     text-align: center;
     /* width: calc(1*100px); */
-    width: 100px;
-    max-width: 100px;
-    min-width: 100px;
+    width: 130px;
+    max-width: 130px;
+    min-width: 130px;
     line-height: 23px;
     height: 23px;
 }
 
-tr[data-table-tbody-tr="otc-table-tbody-tr-transactions-leaderboard-make-market"]>td[data-td-value="otc-td-value"]:nth-of-type(1),
-tr[data-table-tbody-tr="otc-table-tbody-tr-transactions-leaderboard-make-market"]>td[data-td-value="otc-td-value"]:nth-of-type(2),
-tr[data-table-tbody-tr="otc-table-tbody-tr-transactions-leaderboard-make-market"]>td[data-td-value="otc-td-value"]:nth-of-type(3) {
+tr[data-table-tbody-tr="otc-table-tbody-tr-transactions-leaderboard-make-market"]>td[data-td-value="otc-td-value-TLMM"]:nth-of-type(1),
+tr[data-table-tbody-tr="otc-table-tbody-tr-transactions-leaderboard-make-market"]>td[data-td-value="otc-td-value-TLMM"]:nth-of-type(2),
+tr[data-table-tbody-tr="otc-table-tbody-tr-transactions-leaderboard-make-market"]>td[data-td-value="otc-td-value-TLMM"]:nth-of-type(3) {
     /* color: red; */
     font-size: 13px;
     box-sizing: border-box;
     border-right: 1px solid #ccc;
-    width: 100px;
-    max-width: 100px;
-    min-width: 100px;
+    width: 130px;
+    max-width: 130px;
+    min-width: 130px;
     line-height: 23px;
     height: 23px;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+}
+
+tr[data-table-tbody-tr="otc-table-tbody-tr-transactions-leaderboard-make-market"]>td[data-td-value="otc-td-value-TLMM"]:nth-of-type(4) {
+    width: 150px;
+}
+
+tr[data-table-tbody-tr="otc-table-tbody-tr-transactions-leaderboard-make-market"]>td[data-td-value="otc-td-value-TLMM"]:nth-last-of-type(1),
+tr[data-table-tbody-tr="otc-table-tbody-tr-transactions-leaderboard-make-market"]>td[data-td-value="otc-td-value-TLMM"]:nth-last-of-type(2) {
+    text-align: right;
+    padding-right: 4px;
 }
 
 [data-table-body="otc-table-body-transactions-leaderboard-make-market"]>tr[data-table-tbody-tr="otc-table-tbody-tr-transactions-leaderboard-make-market"]:nth-of-type(2n) {
@@ -154,7 +157,7 @@ tr[data-table-tbody-tr="otc-table-tbody-tr-transactions-leaderboard-make-market"
 }
 
 
-/* data-td-value="otc-td-value" */
+/* data-td-value="otc-td-value-TLMM" */
 
 table,
 tr,
@@ -172,24 +175,39 @@ td {
     border-right: 1px solid #ccc;
 }
 
-th[data-sort="sort-th-transactions-leaderboard-make-market"] {
-    cursor: pointer;
+[data-table-tr="otc-table-tr-transactions-leaderboard-make-market"]>th:nth-of-type(n) {
     text-align: center;
-    padding: 16px;
+    /* padding: 16px; */
 }
 
-th[data-sort="sort-th-transactions-leaderboard-make-market"]::after {
+[data-table-tr="otc-table-tr-transactions-leaderboard-make-market"]>th:nth-last-of-type(1),
+[data-table-tr="otc-table-tr-transactions-leaderboard-make-market"]>th:nth-last-of-type(2) {
+    cursor: pointer;
+}
+
+[data-table-tr="otc-table-tr-transactions-leaderboard-make-market"]>th:nth-last-of-type(1)::after,
+[data-table-tr="otc-table-tr-transactions-leaderboard-make-market"]>th:nth-last-of-type(2)::after {
     box-sizing: border-box;
     display: inline-block;
     width: 30px;
     height: 17px;
-    content: ": ↕️";
+    content: url("../img/arrow-white.png");
+    /* content: ": ↕️"; */
     /* content: "↕ U+2195"; */
     /* ↕ U+2195 */
     /* color: #fff; */
     /* background: red; */
     margin-left: 10px;
 }
+
+
+/* [data-table-tr="otc-table-tr-transactions-leaderboard-make-market"]>th:nth-last-of-type(1) {
+    background: 110px 25px url("../img/arrow-white.png") no-repeat;
+}
+
+[data-table-tr="otc-table-tr-transactions-leaderboard-make-market"]>th:nth-last-of-type(2) {
+    background: 70px 25px url("../img/arrow-white.png") no-repeat;
+} */
 
 
 /* table head */

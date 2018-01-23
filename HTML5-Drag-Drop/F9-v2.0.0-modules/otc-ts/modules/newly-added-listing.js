@@ -301,8 +301,8 @@ OTC_TS_FV.Modules.newlyAddedListing.drawHC = OTC_TS_FV.Modules.newlyAddedListing
             // Can be one of x, y or xy. Defaults to undefined.
         },
         legend: {
-            // enabled: false,
-            enabled: true,
+            enabled: false,// hide series name
+            // enabled: true,
         },
         title: {
             text: ''
@@ -313,7 +313,7 @@ OTC_TS_FV.Modules.newlyAddedListing.drawHC = OTC_TS_FV.Modules.newlyAddedListing
         xAxis: {
             gridLineWidth: 1,
             title: {
-                text: '每股收益'
+                text: '每股收益(元)'
             },
             labels: {
                 format: '{value}'
@@ -341,7 +341,7 @@ OTC_TS_FV.Modules.newlyAddedListing.drawHC = OTC_TS_FV.Modules.newlyAddedListing
             startOnTick: false,
             endOnTick: false,
             title: {
-                text: '每股净资产'
+                text: '每股净资产(元)'
             },
             labels: {
                 format: '{value}'
@@ -377,17 +377,17 @@ OTC_TS_FV.Modules.newlyAddedListing.drawHC = OTC_TS_FV.Modules.newlyAddedListing
                 </tr>
                 <tr>
                     <th>每股收益:</th>
-                    <td>{point.x}元</td>
+                    <td>{point.x} 元</td>
                 </tr>
                 <tr>
                     <th>每股净资产:</th>
-                    <td>{point.y}万元</td>
+                    <td>{point.y} 元</td>
                 </tr>
                 <tr>
                     <th>总股本:</th>
-                    <td>{point.z}万股</td>
+                    <td>{point.z} 股</td>
                 </tr>
-            `,// point.???
+            `,// point.??? 万
             footerFormat: '</table>',
             followPointer: true
         },
@@ -437,7 +437,8 @@ OTC_TS_FV.Modules.newlyAddedListing.drawHC = OTC_TS_FV.Modules.newlyAddedListing
         series: [
             {
                 data: [...datas],
-                name: `今日新增挂牌公司`,
+                name: `今日新增挂牌公司`,// legend & enabled: false
+                // name: "",
                 // color: `#f0f`,
                 // data: [
                 //     {
@@ -557,17 +558,19 @@ OTC_TS_FV.Modules.newlyAddedListing.showTable = OTC_TS_FV.Modules.newlyAddedList
     // tr1
     tds2[1].innerHTML = `${table_obj.mgsy}`;
     tds2[3].innerHTML = `${table_obj.jlrtbzz}`;
-    tds2[5].innerHTML = `${table_obj.zgb}`;
+    let zgb = parseInt(table_obj.zgb);
+    tds2[5].innerHTML = `${zgb}`;// 保留整数
     tds2[1].setAttribute(`title`, `${table_obj.mgsy}`);
     tds2[3].setAttribute(`title`, `${table_obj.jlrtbzz}`);
-    tds2[5].setAttribute(`title`, `${table_obj.zgb}`);
+    tds2[5].setAttribute(`title`, `${zgb}`);
     // tr2
     tds3[1].innerHTML = `${table_obj.mgjzc}`;
     tds3[3].innerHTML = `${table_obj.jzcsyl}`;
-    tds3[5].innerHTML = `${table_obj.ltgb}`;
+    let ltgb = parseInt(table_obj.ltgb);
+    tds3[5].innerHTML = `${ltgb}`;// 保留整数
     tds3[1].setAttribute(`title`, `${table_obj.mgjzc}`);
     tds3[3].setAttribute(`title`, `${table_obj.jzcsyl}`);
-    tds3[5].setAttribute(`title`, `${table_obj.ltgb}`);
+    tds3[5].setAttribute(`title`, `${ltgb}`);
     //tr3
 });
 

@@ -57,7 +57,8 @@ OTC_TS_FV.Modules.thematicStatisticsBulletin = OTC_TS_FV.Modules.thematicStatist
                                 // td_keys[i].insertAdjacentHTML(`beforeend`, html);
                                 // tds[2*i].innerText = time;
                                 // tds[2*i+1].innerText = type;
-                                if (i < 5) {
+                                // if (i < 5) {
+                                if (i < datas.length) {
                                     tbody += `
                                         <tr class="otc-thematic-statistics-bulletin-table-tr">
                                             <td class="otc-thematic-statistics-bulletin-table-td-value" data-value="data-otc-CB">${html}</td>

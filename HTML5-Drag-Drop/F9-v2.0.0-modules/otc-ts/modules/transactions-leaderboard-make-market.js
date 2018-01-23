@@ -64,6 +64,7 @@ OTC_TS_FV.Modules.transactionsLeaderboardMakeMarket = OTC_TS_FV.Modules.transact
                             console.log(`arr = \n`, arr);
                             console.log(`arr keys = \n`, Object.keys(arr[0]));
                         }
+                        // sj ???
                         let ranking_code = [],
                             ranking_brief = [],
                             ranking_amplitude = [],
@@ -104,6 +105,17 @@ OTC_TS_FV.Modules.transactionsLeaderboardMakeMarket = OTC_TS_FV.Modules.transact
                     OTC_TS_FV.Modules.transactionsLeaderboardMakeMarket.showTable(obj_protocol, uid, false);
                 }else{
                     // no data
+                    let uid = "#otc-sortable-table-transactions-leaderboard-make-market";
+                    let table = document.querySelector(uid);
+                    table.style.display = 'none';
+                    let no_data = `
+                        <div data-margin="no-data-margin-top">
+                            <p data-none="no-data-p">
+                                <span data-none="no-data-span"></span>
+                            </p>
+                        </div>
+                    `;
+                    table.parentElement.insertAdjacentHTML(`beforeend`, no_data);
                 }
             } catch (error) {
                 console.log(`json error = \n`, error);
@@ -141,7 +153,7 @@ OTC_TS_FV.Modules.transactionsLeaderboardMakeMarket.showTable = OTC_TS_FV.Module
             console.log(`trs[0] = \n`, trs[0]);
         }
         for (let i = 0; i < trs.length; i++) {
-            let tds = trs[i].querySelectorAll(`[data-td-value="otc-td-value"]`);
+            let tds = trs[i].querySelectorAll(`[data-td-value="otc-td-value-TLMM"]`);
             if (debug) {
                 console.log(`tds = \n`, tds);
                 console.log(`tds[0] = \n`, tds[0]);
@@ -166,6 +178,7 @@ OTC_TS_FV.Modules.transactionsLeaderboardMakeMarket.showTable = OTC_TS_FV.Module
 
 OTC_TS_FV.Modules.transactionsLeaderboardMakeMarket.sortTable = OTC_TS_FV.Modules.transactionsLeaderboardMakeMarket.sortTable || ((table_th_uid = `[data-sort="sort-th-Test"]`, table_uid = `#myTable`, debug = false, ignore = []) => {
     const sortTable = (uid = 0, table_uid = `#myTable`) => {
+        console.log(`uid = `, uid);
         let table = document.querySelector(table_uid),
             rows,
             switching = true,
@@ -187,7 +200,7 @@ OTC_TS_FV.Modules.transactionsLeaderboardMakeMarket.sortTable = OTC_TS_FV.Module
                 shouldSwitch = false;
                 /*Get the two elements you want to compare,
                 one from current row and one from the next:*/
-                x = rows[i].getElementsByTagName("TD")[uid];
+                x = rows[i].getElementsByTagName("td")[uid];
                 y = rows[i + 1].getElementsByTagName("TD")[uid];
                 /*check if the two rows should switch place, based on the direction, asc or desc:*/
                 if (dir == "asc") {

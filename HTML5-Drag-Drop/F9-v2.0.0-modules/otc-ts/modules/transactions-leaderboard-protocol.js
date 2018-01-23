@@ -103,6 +103,18 @@ OTC_TS_FV.Modules.transactionsLeaderboardProtocol = OTC_TS_FV.Modules.transactio
                     OTC_TS_FV.Modules.transactionsLeaderboardProtocol.showTable(obj_protocol, uid, false);
                 }else{
                     // no data
+                    // console.log(`transactions Leaderboard Protocol & no data!`);
+                    let uid = "#otc-sortable-table-transactions-leaderboard-protocol";
+                    let table = document.querySelector(uid);
+                    table.style.display = 'none';
+                    let no_data = `
+                        <div data-margin="no-data-margin-top">
+                            <p data-none="no-data-p">
+                                <span data-none="no-data-span"></span>
+                            </p>
+                        </div>
+                    `;
+                    table.parentElement.insertAdjacentHTML(`beforeend`, no_data);
                 }
             } catch (error) {
                 console.log(`json error = \n`, error);
@@ -116,50 +128,66 @@ OTC_TS_FV.Modules.transactionsLeaderboardProtocol = OTC_TS_FV.Modules.transactio
 // transactionsLeaderboardProtocol.showTable
 OTC_TS_FV.Modules.transactionsLeaderboardProtocol.showTable = OTC_TS_FV.Modules.transactionsLeaderboardProtocol.showTable || (
     (datas = {}, uid = ``, debug = false) => {
-        if (debug) {
+        if (!debug) {
             console.log(`datas = \n`, JSON.stringify(datas, null, 4));
             console.log(`uid = \n`, uid);
         }
-        let xyz_tbody = document.querySelector(uid);
-        const {
-            ranking_code,
-            ranking_brief,
-            ranking_amplitude,
-            ranking_amount
-        } = datas;
-        // re-order & sort ???
-        let order_arr = [
-            ranking_code,
-            ranking_brief,
-            ranking_amplitude,
-            ranking_amount
-        ];
-        let trs = xyz_tbody.querySelectorAll(`[data-table-tbody-tr="otc-table-tbody-tr-transactions-leaderboard-protocol"]`);
-        if (debug) {
-            console.log(`trs = \n`, trs);
-            console.log(`trs[0] = \n`, trs[0]);
-        }
-        for (let i = 0; i < trs.length; i++) {
-            let tds = trs[i].querySelectorAll(`[data-td-value="otc-td-value"]`);
+        if (Object.keys(datas).length > 0) {
+            let xyz_tbody = document.querySelector(uid);
+            const {
+                ranking_code,
+                ranking_brief,
+                ranking_amplitude,
+                ranking_amount
+            } = datas;
+            // re-order & sort ???
+            let order_arr = [
+                ranking_code,
+                ranking_brief,
+                ranking_amplitude,
+                ranking_amount
+            ];
+            let trs = xyz_tbody.querySelectorAll(`[data-table-tbody-tr="otc-table-tbody-tr-transactions-leaderboard-protocol"]`);
             if (debug) {
-                console.log(`tds = \n`, tds);
-                console.log(`tds[0] = \n`, tds[0]);
-                console.log(`tds[1] = \n`, tds[1]);
-                console.log(`tds[2] = \n`, tds[2]);
-                console.log(`tds[3] = \n`, tds[3]);
+                console.log(`trs = \n`, trs);
+                console.log(`trs[0] = \n`, trs[0]);
             }
-            tds[0].innerHTML = order_arr[0][i];
-            tds[1].innerHTML = order_arr[1][i];
-            tds[2].innerHTML = order_arr[2][i];
-            tds[3].innerHTML = order_arr[3][i];
-            // tds[x].insertAdjacentElemenHTML(`beforeend`, `html string`);
+            for (let i = 0; i < trs.length; i++) {
+                let tds = trs[i].querySelectorAll(`[data-td-value="otc-td-value"]`);
+                if (debug) {
+                    console.log(`tds = \n`, tds);
+                    console.log(`tds[0] = \n`, tds[0]);
+                    console.log(`tds[1] = \n`, tds[1]);
+                    console.log(`tds[2] = \n`, tds[2]);
+                    console.log(`tds[3] = \n`, tds[3]);
+                }
+                tds[0].innerHTML = order_arr[0][i];
+                tds[1].innerHTML = order_arr[1][i];
+                tds[2].innerHTML = order_arr[2][i];
+                tds[3].innerHTML = order_arr[3][i];
+                // tds[x].insertAdjacentElemenHTML(`beforeend`, `html string`);
+            }
+            setTimeout(() => {
+                let table_th_uid = `[data-sort="sort-th-transactions-leaderboard-protocol"]`,
+                    table_uid = `#otc-sortable-table-transactions-leaderboard-protocol`;
+                OTC_TS_FV.Modules.transactionsLeaderboardProtocol.sortTable(table_th_uid, table_uid);
+                // ignore [1, 2] ?
+            }, 0);
+        } else {
+            // no data
+            console.log(`transactions Leaderboard Protocol & no data!`);
+            // let uid = "#otc-sortable-table-transactions-leaderboard-protocol";
+            // let table = document.querySelector(uid);
+            // table.style.display = 'none';
+            // let no_data = `
+            //     <div data-margin="no-data-margin-top">
+            //         <p data-none="no-data-p">
+            //             <span data-none="no-data-span"></span>
+            //         </p>
+            //     </div>
+            // `;
+            // table.parentElement.insertAdjacentHTML(`beforeend`, no_data);
         }
-        setTimeout(() => {
-            let table_th_uid = `[data-sort="sort-th-transactions-leaderboard-protocol"]`,
-                table_uid = `#otc-sortable-table-transactions-leaderboard-protocol`;
-            OTC_TS_FV.Modules.transactionsLeaderboardProtocol.sortTable(table_th_uid, table_uid);
-            // ignore [1, 2] ?
-        }, 0);
     }
 );
 
@@ -224,13 +252,50 @@ OTC_TS_FV.Modules.transactionsLeaderboardProtocol.sortTable = OTC_TS_FV.Modules.
         uids[i].addEventListener(`click`, (e) => {
             if (debug) {
                 console.log(`e.target.dataset = `, e.target.dataset);
+                let img = getComputedStyle(e.target, `::after`).getPropertyValue(`content`);
+                console.log(`e.target img = `, img);
+                //  url("http://10.1.5.202/otc/ts/img/white/up.png");
+                //  url("http://10.1.5.202/otc/ts/img/white/down.png");
+                // content: url("../img/white/up.png");
+                // content: url("../img/white/down.png");
+                // if (img.includes(`up.png`)) {
+                //     getComputedStyle(e.target, `::after`).setProperty(`content`, `url("../img/white/down.png")`);
+                // }
+                // if (img.includes(`down.png`)) {
+                //     getComputedStyle(e.target, `::after`).setProperty(`content`, `url("../img/white/default.png")`);
+                // }
+                // if (img.includes(`default.png`)) {
+                //     getComputedStyle(e.target, `::after`).setProperty(`content`, `url("../img/white/up.png")`);
+                // }
+                //  data-url & ::after {content: (data-url);}
             }
-            let uid = parseInt(e.target.dataset.uid.substr(4));
-            // let uid = parseInt(e.target.dataset.uid.substr(9));
+            let uid = parseInt(e.target.dataset.uid.substr(4)),
+                state = e.target.dataset.state;
+            if (state.includes(`up`)) {
+                e.target.dataset.state = `down`;
+                e.target.dataset.imgUrl =  "../img/white/up.png";
+                // e.target.dataset.imgUrl = url("../img/white/up.png");
+                // e.target.dataset.imgUrl = `url("../img/white/up.png")`;
+                // document.styleSheets[0].addRule('p.special::before','content: "888;');
+                // data-img-url=""
+                // data-imgUrl
+                // getComputedStyle(e.target, `::after`).setProperty(`content`, `url("../img/white/down.png")`);
+            }else if (state.includes(`down`)) {
+                e.target.dataset.state = `default`;
+                e.target.dataset.imgUrl =  "../img/white/down.png";
+                // e.target.dataset.imgUrl =  'url("../img/white/down.png")';
+                // e.target.dataset.imgUrl = `url("../img/white/down.png")`;
+                // getComputedStyle(e.target, `::after`).setProperty(`content`, `url("../img/white/default.png")`);
+            }else if (state.includes(`default`)) {
+                e.target.dataset.state = `up`;
+                e.target.dataset.imgUrl = ``;
+                // getComputedStyle(e.target, `::after`).setProperty(`content`, `url("../img/white/up.png")`);
+            }
             // bug & 01 === 1
-            if (debug) {
+            if (!debug) {
                 console.log(`e.target.dataset.uid = `, e.target.dataset.uid);
                 console.log(`uid = `, uid);
+                console.log(`state = `, state);
             }
             if(uid !== 1 & uid !== 2){
                 sortTable(uid - 1, table_uid);// 0
@@ -258,8 +323,8 @@ OTC_TS_FV.Modules.transactionsLeaderboardProtocol.init = OTC_TS_FV.Modules.trans
             // gilcode: `430002.OC`
         }
     ) => {
-        // let url = `${ip}${path}${socket}`,
-        let url = `http://10.1.5.202/otc/ts/json/03.json`,// no data?
+        let url = `${ip}${path}${socket}`,
+        // let url = `http://10.1.5.202/otc/ts/json/03.json`,// no data?
         // let url = `http://10.1.5.202/otc/ts/json/03-old.json`,
             uid = `[data-table-protocol="otc-table-body-transactions-leaderboard-protocol"]`;
         // url = `http://10.1.5.202/webservice/fastview/otc/otcfast03/`;

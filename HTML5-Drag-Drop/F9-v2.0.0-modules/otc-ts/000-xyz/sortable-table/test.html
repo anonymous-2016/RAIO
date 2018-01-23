@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>sortable table</title>
+    <link rel="stylesheet" href="./test.css">
+</head>
+
+<body>
+    <section>
+        <table id="myTable">
+            <thead>
+                <tr>
+                    <!--When a header is clicked, run the sortTable function, with a parameter, 0 for sorting by names, 1 for sorting by country:-->
+                    <th>Name</th>
+                    <th onclick="sortTable('myTable', 1)">Country</th>
+                    <th onclick="sortTable('myTable', 2)">Number</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Berglunds snabbkop</td>
+                    <td>Sweden</td>
+                    <td>111</td>
+                </tr>
+                <tr>
+                    <td>North/South</td>
+                    <td>UK</td>
+                    <td>777</td>
+                </tr>
+                <tr>
+                    <td>Alfreds Futterkiste</td>
+                    <td>Germany</td>
+                    <td>333</td>
+                </tr>
+                <tr>
+                    <td>Koniglich Essen</td>
+                    <td>Germany</td>
+                    <td>444</td>
+                </tr>
+                <tr>
+                    <td>Magazzini Alimentari Riuniti</td>
+                    <td>Italy</td>
+                    <td>555</td>
+                </tr>
+                <tr>
+                    <td>Paris specialites</td>
+                    <td>France</td>
+                    <td>666</td>
+                </tr>
+                <tr>
+                    <td>Island Trading</td>
+                    <td>UK</td>
+                    <td>222</td>
+                </tr>
+                <tr>
+                    <td>Laughing Bacchus Winecellars</td>
+                    <td>Canada</td>
+                    <td>888</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+    <section>
+        <table id="test_table">
+            <thead>
+                <tr data-tr="thead-tr">
+                    <th data-th="th-key"></th>
+                    <th data-th="th-key"></th>
+                    <!-- <th data-th="th-key" onclick="sortTable('test_table', 0)"></th>
+                    <th data-th="th-key" onclick="sortTable('test_table', 1)"></th> -->
+                    <th data-th="th-key" onclick="sortTable('test_table', 2)"></th>
+                    <th data-th="th-key" onclick="sortTable('test_table', 3)"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr data-tr="tbody-tr">
+                    <td data-td="td-value"></td>
+                    <td data-td="td-value"></td>
+                    <td data-td="td-value"></td>
+                    <td data-td="td-value"></td>
+                </tr>
+                <tr data-tr="tbody-tr">
+                    <td data-td="td-value"></td>
+                    <td data-td="td-value"></td>
+                    <td data-td="td-value"></td>
+                    <td data-td="td-value"></td>
+                </tr>
+                <tr data-tr="tbody-tr">
+                    <td data-td="td-value"></td>
+                    <td data-td="td-value"></td>
+                    <td data-td="td-value"></td>
+                    <td data-td="td-value"></td>
+                </tr>
+                <tr data-tr="tbody-tr">
+                    <td data-td="td-value"></td>
+                    <td data-td="td-value"></td>
+                    <td data-td="td-value"></td>
+                    <td data-td="td-value"></td>
+                </tr>
+                <tr data-tr="tbody-tr">
+                    <td data-td="td-value"></td>
+                    <td data-td="td-value"></td>
+                    <td data-td="td-value"></td>
+                    <td data-td="td-value"></td>
+                </tr>
+                <tr data-tr="tbody-tr">
+                    <td data-td="td-value"></td>
+                    <td data-td="td-value"></td>
+                    <td data-td="td-value"></td>
+                    <td data-td="td-value"></td>
+                </tr>
+                <tr data-tr="tbody-tr">
+                    <td data-td="td-value"></td>
+                    <td data-td="td-value"></td>
+                    <td data-td="td-value"></td>
+                    <td data-td="td-value"></td>
+                </tr>
+                <tr data-tr="tbody-tr">
+                    <td data-td="td-value"></td>
+                    <td data-td="td-value"></td>
+                    <td data-td="td-value"></td>
+                    <td data-td="td-value"></td>
+                </tr>
+                <tr data-tr="tbody-tr">
+                    <td data-td="td-value"></td>
+                    <td data-td="td-value"></td>
+                    <td data-td="td-value"></td>
+                    <td data-td="td-value"></td>
+                </tr>
+                <tr data-tr="tbody-tr">
+                    <td data-td="td-value"></td>
+                    <td data-td="td-value"></td>
+                    <td data-td="td-value"></td>
+                    <td data-td="td-value"></td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+    <!-- js -->
+    <script src="./test.js"></script>
+</body>
+
+</html>

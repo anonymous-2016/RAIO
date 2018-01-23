@@ -29,12 +29,15 @@ STOCK_F9_FV.Modules.indicatorsPerShare = STOCK_F9_FV.Modules.indicatorsPerShare 
                 data = json;
                 if (typeof(data) === "object" && Object.keys(json).length > 0) {
                     let tds = document.querySelectorAll(uid);
+                    /// bug & ui_arr = [];
+                    // let ui_arr = [];
                     for (let i = 0; i < tds.length; i++) {
                         let key = ui_arr[i],
                             value = data[key] ? data[key] : `--`;
                         if (Number.isNaN(parseFloat(value)) === true) {
                             // isNaN(NaN); // true
                             tds[i].innerText = value;
+                            console.log(`value = \n`, value)
                         }else{
                             if (value !== `--` && value[0] === "-") {
                                 tds[i].dataset.color = "red";

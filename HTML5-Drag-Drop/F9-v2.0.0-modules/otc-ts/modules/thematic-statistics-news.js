@@ -50,7 +50,8 @@ OTC_TS_FV.Modules.thematicStatisticsNews = OTC_TS_FV.Modules.thematicStatisticsN
                                         ${title}
                                     </a>
                                 `;
-                                if (i < 5) {
+                                // if (i < 5) {
+                                if (i < datas.length) {
                                     tbody += `
                                         <tr class="otc-thematic-statistics-news-table-tr">
                                             <td class="otc-thematic-statistics-news-table-td-key" data-key="data-otc-TSN">${html}</td>

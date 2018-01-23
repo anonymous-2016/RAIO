@@ -31,7 +31,6 @@ NSB_TS_FV.Modules.turnoverTrendMakeMarketDiagram = NSB_TS_FV.Modules.turnoverTre
     .then(res => res.json())
     .then(
         (json) => {
-            // empty checker
             if (json !== undefined && typeof(json) === "object") {
                 if (debug) {
                     console.log(`json = \n`, json);
@@ -208,7 +207,6 @@ NSB_TS_FV.Modules.turnoverTrendProtocolDiagram = NSB_TS_FV.Modules.turnoverTrend
                     }
                     return new_obj;
                 };
-                // let obj_protocol = {};
                 let obj_protocol = sortArrayObjectsHandler(arr, temp_sort_arr) || {};
                 if (debug) {
                     console.log(`obj_protocol = \n`, obj_protocol);
@@ -343,19 +341,13 @@ NSB_TS_FV.Modules.turnoverTrendMakeMarketDiagram.drawHC = NSB_TS_FV.Modules.turn
             xAxis: {
                 // categories: ['2017-02', '2017-02', '2017-02', '2017-02', '2017-02'],
                 categories: turnover_time,
-                // min: 0,
-                // max: 8,
+                min: 0,
+                max: 8,
                 // xAxis datas
-                // labels: {
-                //     // autoRotation:'false',
-                //     autoRotation: [0],
-                //     step: 2
-                // },
                 labels: {
                     // autoRotation:'false',
                     autoRotation: [0],
-                    step: 20,
-                    // step: 18,
+                    step: 2
                 }
             },
             credits: {
@@ -519,9 +511,9 @@ NSB_TS_FV.Modules.turnoverTrendMakeMarketDiagram.drawHC = NSB_TS_FV.Modules.turn
                     },
                 }
             ],
-            // scrollbar: {
-            //     enabled: true
-            // }
+            scrollbar: {
+                enabled: true
+            }
         });
     }
 );
@@ -641,14 +633,13 @@ NSB_TS_FV.Modules.turnoverTrendProtocolDiagram.drawHC = NSB_TS_FV.Modules.turnov
             xAxis: {
                 // categories: ['2017-02', '2017-02', '2017-02', '2017-02', '2017-02'],
                 categories: turnover_time,
-                // min: 0,
-                // max: 8,
-                // max: turnover_max_time,
+                min: 0,
+                max: 8,
                 // xAxis datas
                 labels: {
                     // autoRotation:'false',
                     autoRotation: [0],
-                    step: 20
+                    step: 2
                 }
             },
             credits: {
@@ -812,9 +803,9 @@ NSB_TS_FV.Modules.turnoverTrendProtocolDiagram.drawHC = NSB_TS_FV.Modules.turnov
                     },
                 }
             ],
-            // scrollbar: {
-            //     enabled: true
-            // }
+            scrollbar: {
+                enabled: true
+            }
         });
     }
 );

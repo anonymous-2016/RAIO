@@ -1,7 +1,7 @@
 "use strict";
 
 /**
- * @namespace NSB_TS_FV : New San Ban Thematic Statistics
+ * @namespace OTC_TS_FV : New San Ban Thematic Statistics
  * @name transaction-overview 成交概况
  * @createed 2017.11.21
  * @author xgqfrms
@@ -14,11 +14,11 @@
  */
 
 // namespaces
-var NSB_TS_FV = NSB_TS_FV || {};
+var OTC_TS_FV = OTC_TS_FV || {};
 // sub namespaces
-NSB_TS_FV.Modules = NSB_TS_FV.Modules || {};
+OTC_TS_FV.Modules = OTC_TS_FV.Modules || {};
 // transactionOverview
-NSB_TS_FV.Modules.transactionOverview = NSB_TS_FV.Modules.transactionOverview || ((url = ``, debug = false) => {
+OTC_TS_FV.Modules.transactionOverview = OTC_TS_FV.Modules.transactionOverview || ((url = ``, debug = false) => {
     let result_obj = {};
     fetch(url)
     .then(res => res.json())
@@ -107,7 +107,7 @@ NSB_TS_FV.Modules.transactionOverview = NSB_TS_FV.Modules.transactionOverview ||
                 }
             }
             // array
-            NSB_TS_FV.Modules.transactionOverview.showTable(result_obj, false);
+            OTC_TS_FV.Modules.transactionOverview.showTable(result_obj, false);
         }
     )
     .catch(error => console.log(`error = \n`, error));
@@ -115,7 +115,7 @@ NSB_TS_FV.Modules.transactionOverview = NSB_TS_FV.Modules.transactionOverview ||
 });
 
 // transactionOverview.showTable
-NSB_TS_FV.Modules.transactionOverview.showTable = NSB_TS_FV.Modules.transactionOverview.showTable || (
+OTC_TS_FV.Modules.transactionOverview.showTable = OTC_TS_FV.Modules.transactionOverview.showTable || (
     (datas = {}, debug = false) => {
         if (debug) {
             console.log(`datas = \n`, JSON.stringify(datas, null, 4));
@@ -137,14 +137,14 @@ NSB_TS_FV.Modules.transactionOverview.showTable = NSB_TS_FV.Modules.transactionO
             turnover_volume,
             deals_number
         ];
-        let trs = document.querySelectorAll(`[data-table-tbody-tr="ntb-table-tbody-tr-transaction-overview"]`);
+        let trs = document.querySelectorAll(`[data-table-tbody-tr="otc-table-tbody-tr-transaction-overview"]`);
         if (debug) {
             console.log(`trs = \n`, trs);
             console.log(`trs[0] = \n`, trs[0]);
         }
         for (let i = 0; i < trs.length; i++) {
             let tds = ``;
-            tds = trs[i].querySelectorAll(`[data-td-value="ntb-td-value"]`);
+            tds = trs[i].querySelectorAll(`[data-td-value="otc-td-value-TO"]`);
             for (let ii = 0; ii < tds.length; ii++) {
                 tds[ii].innerHTML = order_arr[i][ii];
             }
@@ -152,24 +152,48 @@ NSB_TS_FV.Modules.transactionOverview.showTable = NSB_TS_FV.Modules.transactionO
     }
 );
 
-// init
-NSB_TS_FV.Modules.transactionOverview.init = NSB_TS_FV.Modules.transactionOverview.init || (
-    /*
-        // IIFE
-        (() => {
-            const sf_num= `otcfast09`;
-            const url = `http://10.1.5.202/webservice/fastview/otc/${sf_num}/`;
-            let hs_datas = NSB_TS_FV.Modules.transactionOverview(url, false);
-        })()
-    */
-    (url = `http://10.1.5.202/webservice/fastview/otc/otcfast09/`) => {
-        let hs_datas = NSB_TS_FV.Modules.transactionOverview(url, false);
+
+
+OTC_TS_FV.Modules.transactionOverview.init = OTC_TS_FV.Modules.transactionOverview.init || (
+    (
+        {
+            ip,
+            path,
+            socket,
+            skin,
+            // gilcode
+        } = {
+            ip: `http://10.1.5.202`,
+            path: `/webservice/fastview/otc`,
+            socket: `/otcfast09`,
+            skin: `white`,
+            // gilcode: `430002.OC`
+        }
+    ) => {
+        let url = `${ip}${path}${socket}`,
+        // let url = `${ip}${path}${socket}?${skin}`,
+        // let url = `http://10.1.5.202/otc/ts/json/09.json`,// no data?
+            uid = `newly_added_listing_hs_container`;
+        // OTC_TS_FV.Modules.transactionOverview(url, false, uid);
+        OTC_TS_FV.Modules.transactionOverview(url, false);
     }
 );
 
-// call init
-NSB_TS_FV.Modules.transactionOverview.init(`http://10.1.5.202/webservice/fastview/otc/otcfast09/`);
+// OTC_SKIN ???
 
+var OTC_IP = window.OTC_IP || `http://10.1.5.202`,
+    OTC_PATH = window.OTC_PATH || `/webservice/fastview/otc`,
+    OTC_SKIN = window.OTC_SKIN || `black`;
+    // OTC_GILCODE = window.OTC_GILCODE || `430002.OC`;
 
+// console.log(`research & OTC_GILCODE`, OTC_GILCODE);
+
+OTC_TS_FV.Modules.transactionOverview.init({
+    ip: OTC_IP,
+    path: OTC_PATH,
+    socket: `/otcfast09`,
+    skin: OTC_SKIN,
+    // gilcode: OTC_GILCODE
+});
 
 

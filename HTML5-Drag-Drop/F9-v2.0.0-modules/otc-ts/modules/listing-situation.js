@@ -1,7 +1,7 @@
 "use strict";
 
 /**
- * @namespace NSB_TS_FV : New San Ban Thematic Statistics
+ * @namespace OTC_TS_FV : OTC Thematic Statistics
  * @name listing-situation 挂牌情况
  * @createed 2017.11.21
  * @author xgqfrms
@@ -15,21 +15,14 @@
  */
 
 // namespaces
-var NSB_TS_FV = NSB_TS_FV || {};
+var OTC_TS_FV = OTC_TS_FV || {};
 // sub namespaces
-NSB_TS_FV.Modules = NSB_TS_FV.Modules || {};
+OTC_TS_FV.Modules = OTC_TS_FV.Modules || {};
 
 
-/*
-
-NSB_TS_FV.Modules.listingSituation = NSB_TS_FV.Modules.listingSituation || (() => console.log(`module testing!`));
-// () => console.log(`module testing!`)
 
 
-*/
-
-
-NSB_TS_FV.Modules.listingSituation = NSB_TS_FV.Modules.listingSituation || ((url = ``, debug = false, uid = `default_dom_uid`) => {
+OTC_TS_FV.Modules.listingSituation = OTC_TS_FV.Modules.listingSituation || ((url = ``, debug = false, uid = `default_dom_uid`) => {
     let result_obj = {};
     fetch(url)
     .then(res => res.json())
@@ -92,7 +85,7 @@ NSB_TS_FV.Modules.listingSituation = NSB_TS_FV.Modules.listingSituation || ((url
                 };
             }
             // array
-            NSB_TS_FV.Modules.listingSituation.showTable(result_obj, uid, false);
+            OTC_TS_FV.Modules.listingSituation.showTable(result_obj, uid, false);
         }
     )
     .catch(error => console.log(`error = \n`, error));
@@ -100,28 +93,30 @@ NSB_TS_FV.Modules.listingSituation = NSB_TS_FV.Modules.listingSituation || ((url
 });
 
 
-NSB_TS_FV.Modules.listingSituation.showTable = NSB_TS_FV.Modules.listingSituation.showTable || (
+OTC_TS_FV.Modules.listingSituation.showTable = OTC_TS_FV.Modules.listingSituation.showTable || (
     (datas = {}, uid = ``, debug = false) => {
-        console.log(`datas = \n`, JSON.stringify(datas, null, 4));
+        if (debug) {
+            console.log(`datas = \n`, JSON.stringify(datas, null, 4));
+        }
         const {
             listed_number,
             new_add_listed_number,
             waiting_number,
             reporting_number
-        } = datas;
+        } = {...datas};
         let order_arr = [listed_number, new_add_listed_number, waiting_number, reporting_number];
-        let trs = document.querySelectorAll(`[data-table-tbody-tr="ntb-table-tbody-tr-listing-situation"]`);
+        let trs = document.querySelectorAll(`[data-table-tbody-tr="otc-table-tbody-tr-listing-situation"]`);
         /*
             // data-table-tr & data-table-tbody-tr ??? can not duplication ??? data-*-name
-            let trs = document.querySelectorAll(`[data-table-tr="ntb-table-tbody-tr-listing-situation"]`);
+            let trs = document.querySelectorAll(`[data-table-tr="otc-table-tbody-tr-listing-situation"]`);
             // []
-            let trs = document.querySelectorAll(`[data-table-tbody-tr="ntb-table-tbody-tr-listing-situation"]`);
+            let trs = document.querySelectorAll(`[data-table-tbody-tr="otc-table-tbody-tr-listing-situation"]`);
             // (3) [tr, tr, tr]
         */
         for (let i = 0; i < trs.length; i++) {
             // const tr1_tds = trs[i].children;
             let tds = ``;
-            tds = trs[i].querySelectorAll(`[data-td-value="ntb-td-value"]`);
+            tds = trs[i].querySelectorAll(`[data-td-value="otc-td-value-LS"]`);
             for (let ii = 0; ii < tds.length; ii++) {
                 tds[ii].innerHTML = order_arr[i][ii];
             }
@@ -131,14 +126,47 @@ NSB_TS_FV.Modules.listingSituation.showTable = NSB_TS_FV.Modules.listingSituatio
 
 
 
-// call fetch json datas
-setTimeout(() => {
-    // async & await
-    const sf_num= `otcfast08`;
-    const url = `http://10.1.5.202/webservice/fastview/otc/${sf_num}/`;
-    let uid = `newly_added_listing_hs_container`;
-    let hs_datas = NSB_TS_FV.Modules.listingSituation(url, false, uid);
-}, 0);
+OTC_TS_FV.Modules.listingSituation.init = OTC_TS_FV.Modules.listingSituation.init || (
+    (
+        {
+            ip,
+            path,
+            socket,
+            skin,
+            // gilcode
+        } = {
+            ip: `http://10.1.5.202`,
+            path: `/webservice/fastview/otc`,
+            socket: `/otcfast08`,
+            skin: `white`,
+            // gilcode: `430002.OC`
+        }
+    ) => {
+        let url = `${ip}${path}${socket}`,
+        // let url = `${ip}${path}${socket}?${skin}`,// http://10.1.5.202/otc/ts/json/02.json?skin=white
+        // let url = `http://10.1.5.202/otc/ts/json/01.json`,// no data?
+        // let url = `http://10.1.5.202/otc/ts/json/new-01.json`,// no data?
+            uid = `newly_added_listing_hs_container`;
+        OTC_TS_FV.Modules.listingSituation(url, false, uid);
+    }
+);
+
+// OTC_SKIN ???
+
+var OTC_IP = window.OTC_IP || `http://10.1.5.202`,
+    OTC_PATH = window.OTC_PATH || `/webservice/fastview/otc`,
+    OTC_SKIN = window.OTC_SKIN || `black`;
+    // OTC_GILCODE = window.OTC_GILCODE || `430002.OC`;
+
+// console.log(`research & OTC_GILCODE`, OTC_GILCODE);
+
+OTC_TS_FV.Modules.listingSituation.init({
+    ip: OTC_IP,
+    path: OTC_PATH,
+    socket: `/otcfast08`,
+    skin: OTC_SKIN,
+    // gilcode: OTC_GILCODE
+});
 
 
 

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>CSS3 attr() & string type bug!</title>
+    <style>
+        p::before {
+            content: attr(data-foo) " ";
+        }
+        
+        div {
+            width: 400px;
+            height: 300px;
+        }
+        
+        div::after {
+            content: attr(data-url url);
+        }
+    </style>
+</head>
+
+<body>
+    <p data-foo="hello">world</p>
+    <div data-src="hello" data-url="./css3-attr()-string-bug.png">content: attr(data-url url);</div>
+</body>
+
+</html>

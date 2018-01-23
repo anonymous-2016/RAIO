@@ -1,5 +1,5 @@
 {
-    "name": "stock-f9-fv",
+    "name": "otc-ts-fv",
     "version": "1.1.1",
     "description": "ES6/7/8 to ES5",
     "module": "webpack.config.mjs",
@@ -22,7 +22,7 @@
         "test": "cd modules && browser-sync start --server --files './*.*'"
     },
     "bin": {
-        "f9-fv": "f9-fv",
+        "otc-ts-fv": "otc-ts-fv",
         "bin": "./bin.js"
     },
     "keywords": [

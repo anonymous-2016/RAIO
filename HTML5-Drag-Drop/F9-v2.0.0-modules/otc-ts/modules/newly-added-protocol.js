@@ -295,8 +295,8 @@ OTC_TS_FV.Modules.newlyAddedProtocol.drawHC = OTC_TS_FV.Modules.newlyAddedProtoc
             // Can be one of x, y or xy. Defaults to undefined.
         },
         legend: {
-            // enabled: false,
-            enabled: true,
+            enabled: false,// hide seires name
+            // enabled: true,
         },
         title: {
             text: ''
@@ -307,7 +307,7 @@ OTC_TS_FV.Modules.newlyAddedProtocol.drawHC = OTC_TS_FV.Modules.newlyAddedProtoc
         xAxis: {
             gridLineWidth: 1,
             title: {
-                text: '每股收益'
+                text: '每股收益(元)'
             },
             labels: {
                 format: '{value}'
@@ -335,7 +335,7 @@ OTC_TS_FV.Modules.newlyAddedProtocol.drawHC = OTC_TS_FV.Modules.newlyAddedProtoc
             startOnTick: false,
             endOnTick: false,
             title: {
-                text: '每股净资产'
+                text: '每股净资产(元)'
             },
             labels: {
                 format: '{value}'
@@ -371,17 +371,17 @@ OTC_TS_FV.Modules.newlyAddedProtocol.drawHC = OTC_TS_FV.Modules.newlyAddedProtoc
                 </tr>
                 <tr>
                     <th>每股收益:</th>
-                    <td>{point.x}元</td>
+                    <td>{point.x} 元</td>
                 </tr>
                 <tr>
                     <th>每股净资产:</th>
-                    <td>{point.y}万元</td>
+                    <td>{point.y} 元</td>
                 </tr>
                 <tr>
                     <th>总股本:</th>
-                    <td>{point.z}万股</td>
+                    <td>{point.z} 股</td>
                 </tr>
-            `,// point.???
+            `,// point.??? 万
             footerFormat: '</table>',
             followPointer: true
         },
@@ -431,7 +431,7 @@ OTC_TS_FV.Modules.newlyAddedProtocol.drawHC = OTC_TS_FV.Modules.newlyAddedProtoc
         series: [
             {
                 data: [...datas],
-                name: `今日新增协议转做市公司`,
+                name: `今日新增协议转做市公司`,// legned & enabled: false
                 // color: `#f0f`,
                 // data: [
                 //     {
@@ -581,7 +581,7 @@ OTC_TS_FV.Modules.newlyAddedProtocol.init = OTC_TS_FV.Modules.newlyAddedProtocol
     ) => {
         let url = `${ip}${path}${socket}`,
         // let url = `http://10.1.5.202/otc/ts/json/new-02.json`,// no data?
-        // let url = `http://10.1.5.202/otc/ts/json/02.json`,// no data?
+        // let url = `http://10.1.5.202/otc/ts/json/02.json`,
             uid = `newly_added_protocol_hs_container`;
         OTC_TS_FV.Modules.newlyAddedProtocol(url, false, uid);
     }

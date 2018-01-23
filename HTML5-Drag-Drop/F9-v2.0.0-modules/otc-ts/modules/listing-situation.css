@@ -5,43 +5,45 @@
 
 /* commons-title */
 
-.ntb-listing-situation-title {
-    position: relative;
-    color: #000;
-    text-indent: 15px;
-    margin-left: 3px;
-    font-weight: 600;
-    font-size: 14px;
-    margin-top: 5px;
-    margin-bottom: 5px;
+section.otc-module-box-5 {
+    box-sizing: border-box;
+    float: left;
+    width: 540px;
 }
 
-.ntb-listing-situation-title::before {
+.otc-h5dnd-modules-title-box {
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 540px;
+}
+
+.otc-h5dnd-modules-title {
+    position: relative;
+    color: #2e2f33;
+    text-indent: 14px;
+    margin-left: 0;
+    font-weight: 600;
+    font-size: 15px;
+    font-family: "MicroSoft YaHei", sans-serif, serif;
+    margin-LSp: 6px;
+    margin-botLSm: 5px;
+}
+
+.otc-h5dnd-modules-title::before {
     position: absolute;
-    top: 0px;
-    left: 5px;
+    LSp: 3px;
+    left: 0px;
     content: "";
     display: inline-block;
-    border: 2px solid #f79530;
-    width: 0;
-    height: 16px;
-    /* line-height: 22px; */
-}
-
-#newly_added_listing_hs_container {
-    /* min-height: 100px; */
-    height: 100%;
-    width: 100%;
-}
-
-* {
-    box-sizing: border-box;
+    width: 4px;
+    background: #f79530;
+    height: 15px;
 }
 
 
 /* table */
 
-[data-table="ntb-table-listing-situation"] {
+[data-table="otc-table-listing-situation"] {
     /* width: 542px; */
     /* width: 100%; */
     box-sizing: border-box;
@@ -52,10 +54,20 @@
     /* overflow: hidden; */
 }
 
+[data-table-tr="otc-table-tr-listing-situation"] {
+    box-sizing: border-box;
+    width: 540px;
+}
+
+[data-table-tr="otc-table-tr-listing-situation"]>td:nth-of-type(1) {
+    width: 150px;
+    max-width: 150px;
+}
+
 
 /* th */
 
-[data-table-th="ntb-table-th-listing-situation"] {
+[data-table-th="otc-table-th-listing-situation"] {
     font-size: 18px;
     text-align: left;
     /* background-color: #666; */
@@ -65,11 +77,11 @@
 
 /* table head */
 
-.ntb-td-key::after {
+.otc-td-key-LS::after {
     content: ":";
 }
 
-[data-td-key="ntb-td-no-key"] {
+[data-td-key="otc-td-no-key"] {
     content: "";
     border-right: 1px solid #ccc;
 }
@@ -77,66 +89,56 @@
 
 /* th a link */
 
-[data-table-th-link="ntb-table-th-link-listing-situation"] {
+[data-table-th-link="otc-table-th-link-listing-situation"] {
     box-sizing: border-box;
     text-align: right;
     font-size: 13px;
     padding: 0;
 }
 
-.ntb-th-more>a[data-ntb-th-link="ntb-link-detials"] {
-    cursor: pointer;
-    color: rgba(2, 175, 255, 0.5);
-    text-decoration: none;
-    width: 100px;
-    display: inline-block;
-    box-sizing: border-box;
-}
-
-.ntb-th-more>a[data-ntb-th-link="ntb-link-detials"]:hover {
-    color: rgba(2, 175, 255, 1);
-}
-
-[data-ntb-th-link="ntb-link-detials"]::after {
-    content: ">>"
-}
-
 
 /* tr */
 
-[data-table-tr="ntb-table-tr-listing-situation"] {
+[data-table-tr="otc-table-tr-listing-situation"] {
     border: 1px solid #ccc;
     box-sizing: border-box;
     text-align: right;
 }
 
-[data-table-body="ntb-table-body-listing-situation"]>tr:nth-of-type(1) {
+[data-table-body="otc-table-body-listing-situation"]>tr:nth-of-type(1) {
     /* text-align: left; */
-    text-align: center;
+    /* text-align: center; */
+}
+
+[data-table-body="otc-table-body-listing-situation"]>tr>td:nth-of-type(n+2) {
+    /* text-align: left; */
+    /* text-align: center; */
+    /* color: red; */
+    padding-right: 4px;
 }
 
 
 /* td */
 
-[data-td-key="ntb-td-key"] {
+[data-td-key="otc-td-key-LS"] {
     box-sizing: border-box;
     border-right: 1px solid #ccc;
     font-weight: bold;
     text-align: center;
     /* width: calc(1*100px); */
-    width: 100px;
-    max-width: 100px;
+    width: 130px;
+    max-width: 130px;
     line-height: 23px;
     height: 23px;
 }
 
-[data-td-value="ntb-td-value"] {
+[data-td-value="otc-td-value-LS"] {
     /* color: red; */
     font-size: 13px;
     box-sizing: border-box;
     border-right: 1px solid #ccc;
-    width: 100px;
-    max-width: 100px;
+    width: 130px;
+    max-width: 130px;
     line-height: 23px;
     height: 23px;
     overflow: hidden;
@@ -144,12 +146,12 @@
     white-space: nowrap;
 }
 
-[data-td="ntb-cols-span"] {
+[data-td="otc-cols-span"] {
     width: calc(2*100px);
 }
 
 
-/* data-td-value="ntb-td-value" */
+/* data-td-value="otc-td-value" */
 
 table,
 tr,
