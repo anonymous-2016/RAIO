@@ -132,6 +132,11 @@ section.otc-module-box-5 {
     height: 23px;
 }
 
+tbody[data-table-body="otc-table-body-listing-situation"]>tr>td[data-td-key="otc-td-key-LS"] {
+    text-align: left;
+    padding-left: 4px;
+}
+
 [data-td-value="otc-td-value-LS"] {
     /* color: red; */
     font-size: 13px;

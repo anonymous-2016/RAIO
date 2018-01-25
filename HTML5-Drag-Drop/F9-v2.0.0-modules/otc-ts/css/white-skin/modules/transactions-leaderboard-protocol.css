@@ -137,6 +137,12 @@ tr[data-table-tbody-tr="otc-table-tbody-tr-transactions-leaderboard-protocol"]>t
     width: auto;
 }
 
+tr[data-table-tbody-tr="otc-table-tbody-tr-transactions-leaderboard-protocol"]>td[data-td-value="otc-td-value-TLP"]:nth-of-type(1),
+tr[data-table-tbody-tr="otc-table-tbody-tr-transactions-leaderboard-protocol"]>td[data-td-value="otc-td-value-TLP"]:nth-of-type(2) {
+    text-align: left;
+    padding-left: 4px;
+}
+
 tr[data-table-tbody-tr="otc-table-tbody-tr-transactions-leaderboard-protocol"]>td[data-td-value="otc-td-value-TLP"]:nth-last-of-type(1),
 tr[data-table-tbody-tr="otc-table-tbody-tr-transactions-leaderboard-protocol"]>td[data-td-value="otc-td-value-TLP"]:nth-last-of-type(2) {
     text-align: right;
@@ -207,3 +213,8 @@ th[data-sort="sort-th-transactions-leaderboard-protocol"] {
     content: "";
     border-right: 1px solid #ccc;
 } */
+
+th[data-td-key="otc-td-key-TLP"] {
+    /* color: #bbc1c7; */
+    background: #e8eefa;
+}

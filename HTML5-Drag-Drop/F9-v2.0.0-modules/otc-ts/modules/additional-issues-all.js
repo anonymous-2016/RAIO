@@ -83,10 +83,10 @@ setTimeout(() => {
     ShowTabs();
     let scripts_container = document.querySelector(`[data-scripts="all-scripts-additional-issues-all"]`);
     const arr = [
-        "../build/js/additional-issues-preplan.min.js",
-        "../build/js/additional-issues-implementation.min.js",
-        // "./build/js/additional-issues-preplan.min.js",
-        // "./build/js/additional-issues-implementation.min.js",
+        // "../build/js/additional-issues-preplan.min.js",
+        // "../build/js/additional-issues-implementation.min.js",
+        "./build/js/additional-issues-preplan.min.js",
+        "./build/js/additional-issues-implementation.min.js",
     ];
     // console.log(`arr = \n`, arr);
     arr.map(

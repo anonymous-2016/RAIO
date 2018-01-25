@@ -239,6 +239,11 @@ OTC_TS_FV.Modules.newlyAddedProtocol.drawHC = OTC_TS_FV.Modules.newlyAddedProtoc
         // ]
         console.log(`%c Highcharts container_uid =`, `color: #f0f; font-size: 23px;`, container_uid);
     }
+    let skin_color = (OTC_SKIN === "black") ? `#0b1016` : `#fff`,
+        legend_item_color = (OTC_SKIN === "black") ? `#fff` : `#0b1016`,
+        legend_item_hover_color = (OTC_SKIN === "black") ? `#f79530` : `#000`,
+        legend_label_color = (OTC_SKIN === "black") ? `#fff` : `#000`,
+        legend_bg_color = (OTC_SKIN === "black") ? `#0b1016` : `#ff00ff`;
     Highcharts.setOptions({
         lang: {
             rangeSelectorZoom: '缩放',// 放大
@@ -289,6 +294,7 @@ OTC_TS_FV.Modules.newlyAddedProtocol.drawHC = OTC_TS_FV.Modules.newlyAddedProtoc
         },
         chart: {
             type: 'bubble',
+            backgroundColor: skin_color,
             plotBorderWidth: 1,
             zoomType: 'xy',
             // ???决定用户可以通过拖动鼠标来缩放的尺寸。可以是x，y或xy中的一个。
@@ -389,7 +395,18 @@ OTC_TS_FV.Modules.newlyAddedProtocol.drawHC = OTC_TS_FV.Modules.newlyAddedProtoc
             series: {
                 dataLabels: {
                     enabled: true,// counter name
-                    format: '{point.name}'
+                    format: '{point.name}',
+                    // backgroundColor: 'rgba(0, 255, 0, 0.7)',
+                    // color: "#fff",// "#000",
+                    color: legend_label_color,
+                    // borderColor: '#f0f',
+                    // borderWidth: 1,
+                    // borderRadius: 5,
+                    shadow: false,
+                    style: {
+                        // fontWeight: 'bold',
+                        textShadow: false,
+                    },
                 },
                 cursor: 'pointer',
                 events: {
@@ -432,7 +449,7 @@ OTC_TS_FV.Modules.newlyAddedProtocol.drawHC = OTC_TS_FV.Modules.newlyAddedProtoc
             {
                 data: [...datas],
                 name: `今日新增协议转做市公司`,// legned & enabled: false
-                // color: `#f0f`,
+                color: `#3285ff`,// ???
                 // data: [
                 //     {
                 //         name: '有限售股份总数',
@@ -501,8 +518,10 @@ OTC_TS_FV.Modules.newlyAddedProtocol.showTable = OTC_TS_FV.Modules.newlyAddedPro
         console.log(`more.dataset.moreUid = `, more.dataset.moreUid);
     }
     // hash & anchor
-    more.setAttribute(`href`, `#${table_obj.zqdm}.OC`);
-    more.dataset.moreUid = `${table_obj.zqdm}.OC`;
+    more.setAttribute(`href`, `#${table_obj.zqdm}`);
+    more.dataset.moreUid = `${table_obj.zqdm}`;
+    // more.setAttribute(`href`, `#${table_obj.zqdm}.OC`);
+    // more.dataset.moreUid = `${table_obj.zqdm}.OC`;
     // console.log(`more.dataset.moreUid new = `, more.dataset.moreUid);
     // more
     setTimeout((debug = false) => {
@@ -599,6 +618,7 @@ var OTC_IP = window.OTC_IP || `http://10.1.5.202`,
 OTC_TS_FV.Modules.newlyAddedProtocol.init({
     ip: OTC_IP,
     path: OTC_PATH,
+    // socket: `/otcfast01`,// test
     socket: `/otcfast02`,
     skin: OTC_SKIN,
     // gilcode: OTC_GILCODE

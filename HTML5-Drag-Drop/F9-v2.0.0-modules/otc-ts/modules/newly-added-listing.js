@@ -245,6 +245,11 @@ OTC_TS_FV.Modules.newlyAddedListing.drawHC = OTC_TS_FV.Modules.newlyAddedListing
         // ]
         console.log(`%c Highcharts container_uid =`, `color: #f0f; font-size: 23px;`, container_uid);
     }
+    let skin_color = (OTC_SKIN === "black") ? `#0b1016` : `#fff`,
+        legend_item_color = (OTC_SKIN === "black") ? `#fff` : `#0b1016`,
+        legend_item_hover_color = (OTC_SKIN === "black") ? `#f79530` : `#000`,
+        legend_label_color = (OTC_SKIN === "black") ? `#fff` : `#000`,
+        legend_bg_color = (OTC_SKIN === "black") ? `#0b1016` : `#ff00ff`;
     Highcharts.setOptions({
         lang: {
             rangeSelectorZoom: '缩放',// 放大
@@ -296,6 +301,7 @@ OTC_TS_FV.Modules.newlyAddedListing.drawHC = OTC_TS_FV.Modules.newlyAddedListing
         chart: {
             type: 'bubble',
             plotBorderWidth: 1,
+            backgroundColor: skin_color,
             zoomType: 'xy',
             // ???决定用户可以通过拖动鼠标来缩放的尺寸。可以是x，y或xy中的一个。
             // Can be one of x, y or xy. Defaults to undefined.
@@ -303,6 +309,24 @@ OTC_TS_FV.Modules.newlyAddedListing.drawHC = OTC_TS_FV.Modules.newlyAddedListing
         legend: {
             enabled: false,// hide series name
             // enabled: true,
+            // itemStyle: {
+            //     color: legend_item_color,
+            //     // fontWeight: 'bold'
+            // },
+            // itemHoverStyle: {
+            //     color: legend_item_hover_color,
+            // },
+            // align: 'center',
+            // symbolRadius: 0,
+            // x: 0,
+            // y: 0,
+            // verticalAlign: "bottom",
+            // floating: false,
+            // shadow: false,
+            // no need below!
+            // backgroundColor: (Highcharts.theme && Highcharts.theme.background2) || 'white',
+            // borderColor: '#CCC',
+            // borderWidth: 1,
         },
         title: {
             text: ''
@@ -392,10 +416,32 @@ OTC_TS_FV.Modules.newlyAddedListing.drawHC = OTC_TS_FV.Modules.newlyAddedListing
             followPointer: true
         },
         plotOptions: {
+            // bubble: {
+            //     dataLabels: {
+            //         enabled: true,
+            //         color: "#f00",
+            //         shadow: false,
+            //         style: {
+            //             // fontWeight: 'bold',
+            //             textShadow: false,
+            //         },
+            //     }
+            // },
             series: {
                 dataLabels: {
                     enabled: true,// counter name
-                    format: '{point.name}'
+                    format: '{point.name}',
+                    // backgroundColor: 'rgba(0, 255, 0, 0.7)',
+                    // color: "#fff",// "#000",
+                    color: legend_label_color,
+                    // borderColor: '#f0f',
+                    // borderWidth: 1,
+                    // borderRadius: 5,
+                    shadow: false,
+                    style: {
+                        // fontWeight: 'bold',
+                        textShadow: false,
+                    },
                 },
                 cursor: 'pointer',
                 events: {
@@ -421,25 +467,25 @@ OTC_TS_FV.Modules.newlyAddedListing.drawHC = OTC_TS_FV.Modules.newlyAddedListing
                         OTC_TS_FV.Modules.newlyAddedListing.showTable(code_uid, json);
                     }
                 },
-                point: {
-                    events: {
-                        click: function (event) {
-                            if (debug) {
-                                console.log(`event.point = \n ${event.point}`);
-                                console.log(`event.point.code = \n ${event.point.code}`);
-                                // 300725
-                            }
-                        }
-                    }
-                }
+                // point: {
+                //     events: {
+                //         click: function (event) {
+                //             if (debug) {
+                //                 console.log(`event.point = \n ${event.point}`);
+                //                 console.log(`event.point.code = \n ${event.point.code}`);
+                //                 // 300725
+                //             }
+                //         }
+                //     }
+                // }
             },
         },// ponit data
         series: [
             {
                 data: [...datas],
                 name: `今日新增挂牌公司`,// legend & enabled: false
+                color: `#3285ff`,// ???
                 // name: "",
-                // color: `#f0f`,
                 // data: [
                 //     {
                 //         name: '有限售股份总数',
@@ -509,8 +555,10 @@ OTC_TS_FV.Modules.newlyAddedListing.showTable = OTC_TS_FV.Modules.newlyAddedList
         console.log(`more.dataset.moreUid = `, more.dataset.moreUid);
     }
     // hash & anchor
-    more.setAttribute(`href`, `#${table_obj.zqdm}.OC`);
-    more.dataset.moreUid = `${table_obj.zqdm}.OC`;
+    more.setAttribute(`href`, `#${table_obj.zqdm}`);
+    more.dataset.moreUid = `${table_obj.zqdm}`;
+    // more.setAttribute(`href`, `#${table_obj.zqdm}.OC`);
+    // more.dataset.moreUid = `${table_obj.zqdm}.OC`;
     // console.log(`more.dataset.moreUid new = `, more.dataset.moreUid);
     // more
     setTimeout((debug = false) => {
@@ -619,4 +667,7 @@ OTC_TS_FV.Modules.newlyAddedListing.init({
 
 // OTC_TS_FV.Modules.newlyAddedListing.init();
 // const url = `http://10.1.5.202/webservice/fastview/otc/otcfast01`;
+
+
+
 

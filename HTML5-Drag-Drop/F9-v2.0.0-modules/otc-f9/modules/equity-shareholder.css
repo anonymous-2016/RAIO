@@ -507,3 +507,10 @@ table[data-tables="otc-equity-shareholder-table2"]>tbody.otc-equity-shareholder-
 
 
 /* data-right-tr="otc-equity-shareholder-tr-right"  */
+
+
+/* HC & no text-outline */
+
+.highcharts-text-outline {
+    display: none !important;
+}

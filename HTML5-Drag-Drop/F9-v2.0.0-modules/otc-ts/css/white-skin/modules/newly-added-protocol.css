@@ -290,3 +290,10 @@ section.otc-module-box-5 {
 [data-text="otc-newly-added-protocol-text"] {
     font-weight: normal;
 }
+
+
+/* HC & no text-outline */
+
+.highcharts-text-outline {
+    display: none !important;
+}

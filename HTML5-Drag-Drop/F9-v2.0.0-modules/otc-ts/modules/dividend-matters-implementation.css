@@ -117,12 +117,8 @@ tr[data-table-tbody-tr="otc-table-tbody-tr-dividend-matters-implementation"]>td[
     border: 1px solid #ccc;
     box-sizing: border-box;
     /* text-align: right; */
-    text-align: center;
-}
-
-[data-table-body="otc-table-body-dividend-matters-implementation"]>tr:nth-of-type(1) {
-    /* text-align: left; */
-    text-align: center;
+    /* text-align: center; */
+    text-align: left;
 }
 
 
@@ -190,7 +186,8 @@ table>tbody[data-table-body="otc-table-body-dividend-matters-implementation"]>tr
 }
 
 table>tbody[data-table-body="otc-table-body-dividend-matters-implementation"]>tr[data-table-tr="otc-table-tr-dividend-matters-implementation"]>td:nth-last-of-type(1),
-table>tbody[data-table-body="otc-table-body-dividend-matters-implementation"]>tr[data-table-tr="otc-table-tr-dividend-matters-implementation"]>td:nth-last-of-type(2) {
+table>tbody[data-table-body="otc-table-body-dividend-matters-implementation"]>tr[data-table-tr="otc-table-tr-dividend-matters-implementation"]>td:nth-last-of-type(2),
+table>tbody[data-table-body="otc-table-body-dividend-matters-implementation"]>tr[data-table-tr="otc-table-tr-dividend-matters-implementation"]>td:nth-last-of-type(3) {
     text-align: left;
     text-indent: 4px;
 }

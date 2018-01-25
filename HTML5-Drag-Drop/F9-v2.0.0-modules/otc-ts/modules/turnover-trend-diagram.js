@@ -1,7 +1,7 @@
 "use strict";
 
 /**
- * @namespace NSB_TS_FV : New San Ban Thematic Statistics
+ * @namespace OTC_TS_FV : OTC Thematic Statistics
  * @name turnover-trend-make-market-diagram 成交走势-做市
  * @createed 2017.11.21
  * @author xgqfrms
@@ -14,9 +14,9 @@
  */
 
 // namespaces
-var NSB_TS_FV = NSB_TS_FV || {};
+var OTC_TS_FV = OTC_TS_FV || {};
 // sub namespaces
-NSB_TS_FV.Modules = NSB_TS_FV.Modules || {};
+OTC_TS_FV.Modules = OTC_TS_FV.Modules || {};
 
 /*
 
@@ -24,7 +24,7 @@ turnoverTrendDiagrams
 
 */
 // turnoverTrendMakeMarketDiagram
-NSB_TS_FV.Modules.turnoverTrendMakeMarketDiagram = NSB_TS_FV.Modules.turnoverTrendMakeMarketDiagram || ((url = ``, uid = ``, debug = false) => {
+OTC_TS_FV.Modules.turnoverTrendMakeMarketDiagram = OTC_TS_FV.Modules.turnoverTrendMakeMarketDiagram || ((url = ``, uid = ``, debug = false) => {
     let result_obj = {};
     // urls ???
     fetch(url)
@@ -110,8 +110,8 @@ NSB_TS_FV.Modules.turnoverTrendMakeMarketDiagram = NSB_TS_FV.Modules.turnoverTre
                 // let market_uid = uids.market_uid,
                 //     protocol_uid = uids.protocol_uid;
                 // result_obj ??? no need
-                NSB_TS_FV.Modules.turnoverTrendMakeMarketDiagram.drawHC(obj_market, market_uid, false);
-                // NSB_TS_FV.Modules.turnoverTrendProtocolDiagram.drawHC(obj_protocol, protocol_uid, false);
+                OTC_TS_FV.Modules.turnoverTrendMakeMarketDiagram.drawHC(obj_market, market_uid, false);
+                // OTC_TS_FV.Modules.turnoverTrendProtocolDiagram.drawHC(obj_protocol, protocol_uid, false);
             }
         }
     )
@@ -121,12 +121,12 @@ NSB_TS_FV.Modules.turnoverTrendMakeMarketDiagram = NSB_TS_FV.Modules.turnoverTre
 
 
 
-// NSB_TS_FV.Modules.turnoverTrendMakeMarketDiagram(`http://10.1.5.202/webservice/fastview/otc/otcfast10`, `#turnover_trend_make_market_diagram_hs_container`, false);
+// OTC_TS_FV.Modules.turnoverTrendMakeMarketDiagram(`http://10.1.5.202/webservice/fastview/otc/otcfast10`, `#turnover_trend_make_market_diagram_hs_container`, false);
 
 
 
 /**
- * @namespace NSB_TS_FV : New San Ban Thematic Statistics
+ * @namespace OTC_TS_FV : OTC Thematic Statistics
  * @name turnover-trend-protocol-diagram 成交走势-协议
  * @createed 2017.11.21
  * @author xgqfrms
@@ -139,12 +139,12 @@ NSB_TS_FV.Modules.turnoverTrendMakeMarketDiagram = NSB_TS_FV.Modules.turnoverTre
  */
 
 // namespaces
-var NSB_TS_FV = NSB_TS_FV || {};
+var OTC_TS_FV = OTC_TS_FV || {};
 // sub namespaces
-NSB_TS_FV.Modules = NSB_TS_FV.Modules || {};
+OTC_TS_FV.Modules = OTC_TS_FV.Modules || {};
 
 // turnoverTrendProtocolDiagram
-NSB_TS_FV.Modules.turnoverTrendProtocolDiagram = NSB_TS_FV.Modules.turnoverTrendProtocolDiagram || ((url = ``, uid = ``, debug = false) => {
+OTC_TS_FV.Modules.turnoverTrendProtocolDiagram = OTC_TS_FV.Modules.turnoverTrendProtocolDiagram || ((url = ``, uid = ``, debug = false) => {
     let result_obj = {};
     // urls ???
     fetch(url)
@@ -216,7 +216,7 @@ NSB_TS_FV.Modules.turnoverTrendProtocolDiagram = NSB_TS_FV.Modules.turnoverTrend
                 }
                 let protocol_uid = uid;
                 // result_obj ??? no need
-                NSB_TS_FV.Modules.turnoverTrendProtocolDiagram.drawHC(obj_protocol, protocol_uid, false);
+                OTC_TS_FV.Modules.turnoverTrendProtocolDiagram.drawHC(obj_protocol, protocol_uid, false);
             }
         }
     )
@@ -255,11 +255,11 @@ NSB_TS_FV.Modules.turnoverTrendProtocolDiagram = NSB_TS_FV.Modules.turnoverTrend
 });
 
 
-// NSB_TS_FV.Modules.turnoverTrendProtocolDiagram(`http://10.1.5.202/webservice/fastview/otc/otcfast11`, `#turnover_trend_protocol_diagram_hs_container`, false);
+// OTC_TS_FV.Modules.turnoverTrendProtocolDiagram(`http://10.1.5.202/webservice/fastview/otc/otcfast11`, `#turnover_trend_protocol_diagram_hs_container`, false);
 
 
 
-NSB_TS_FV.Modules.turnoverTrendMakeMarketDiagram.drawHC = NSB_TS_FV.Modules.turnoverTrendMakeMarketDiagram.drawHC || (
+OTC_TS_FV.Modules.turnoverTrendMakeMarketDiagram.drawHC = OTC_TS_FV.Modules.turnoverTrendMakeMarketDiagram.drawHC || (
     (obj = {}, uid = ``, debug = false) => {
         if (debug) {
             console.log(`HC obj = \n`, obj);
@@ -303,6 +303,12 @@ NSB_TS_FV.Modules.turnoverTrendMakeMarketDiagram.drawHC = NSB_TS_FV.Modules.turn
             console.log(`HC turnover_number = \n`, turnover_number);
             console.log(`HC turnover_amount = \n`, turnover_amount);
         }
+        let skin_color = (OTC_SKIN === "black") ? `#0b1016` : `#fff`,
+            legend_item_color = (OTC_SKIN === "black") ? `#fff` : `#0b1016`,
+            legend_item_hover_color = (OTC_SKIN === "black") ? `#f79530` : `#000`,
+            legend_label_color = (OTC_SKIN === "black") ? `#fff` : `#000`,
+            title_color = (OTC_SKIN === "black") ? `#fff` : `#000`,
+            legend_bg_color = (OTC_SKIN === "black") ? `#0b1016` : `#fff`;
         Highcharts.setOptions({
             lang: {
                 rangeSelectorZoom: '缩放',// 放大
@@ -356,7 +362,8 @@ NSB_TS_FV.Modules.turnoverTrendMakeMarketDiagram.drawHC = NSB_TS_FV.Modules.turn
             chart: {
                 type: 'column',
                 // backgroundColor: chart_css.color
-                // backgroundColor: color
+                backgroundColor: skin_color,
+                // plotBorderWidth: 1,
                 // height: (9 / 16 * 100) + '%',
                 height: 272,// 275px;
                 // 16:9 ratio
@@ -365,7 +372,7 @@ NSB_TS_FV.Modules.turnoverTrendMakeMarketDiagram.drawHC = NSB_TS_FV.Modules.turn
                 text: '做市',// 协议
                 // text: 'Stacked column chart'
                 style: {
-                    "color": "#000",
+                    "color": title_color,
                     "fontSize": "13px",
                     "fontWeight": "bold"
                 }
@@ -458,7 +465,7 @@ NSB_TS_FV.Modules.turnoverTrendMakeMarketDiagram.drawHC = NSB_TS_FV.Modules.turn
             ],
             legend: {
                 align: 'center',// left, center and right. (Defaults to center.)
-                backgroundColor: `#ff00ff`, //Color,
+                backgroundColor: legend_bg_color, // black ???
                 // x: 0,
                 // y: 340,
                 // verticalAlign: 'top',
@@ -467,10 +474,17 @@ NSB_TS_FV.Modules.turnoverTrendMakeMarketDiagram.drawHC = NSB_TS_FV.Modules.turn
                 verticalAlign: "bottom",
                 // floating: true,
                 floating: false,
-                backgroundColor: (Highcharts.theme && Highcharts.theme.background2) || 'white',
-                borderColor: '#CCC',
-                borderWidth: 1,
-                shadow: false
+                // backgroundColor: (Highcharts.theme && Highcharts.theme.background2) || 'white',
+                // borderColor: '#CCC',
+                // borderWidth: 1,
+                shadow: false,
+                itemStyle: {
+                    color: legend_item_color,
+                    // fontWeight: 'bold'
+                },
+                itemHoverStyle: {
+                    color: legend_item_hover_color,
+                },
             },
             // tooltip ??? array
             tooltip: {
@@ -558,7 +572,7 @@ NSB_TS_FV.Modules.turnoverTrendMakeMarketDiagram.drawHC = NSB_TS_FV.Modules.turn
 
 
 
-NSB_TS_FV.Modules.turnoverTrendProtocolDiagram.drawHC = NSB_TS_FV.Modules.turnoverTrendProtocolDiagram.drawHC || (
+OTC_TS_FV.Modules.turnoverTrendProtocolDiagram.drawHC = OTC_TS_FV.Modules.turnoverTrendProtocolDiagram.drawHC || (
     (obj = {}, uid = ``, debug = false) => {
         if (debug) {
             console.log(`HC obj = \n`, obj);
@@ -602,6 +616,12 @@ NSB_TS_FV.Modules.turnoverTrendProtocolDiagram.drawHC = NSB_TS_FV.Modules.turnov
             console.log(`HC turnover_number = \n`, turnover_number);
             console.log(`HC turnover_amount = \n`, turnover_amount);
         }
+        let skin_color = (OTC_SKIN === "black") ? `#0b1016` : `#fff`,
+            legend_item_color = (OTC_SKIN === "black") ? `#fff` : `#0b1016`,
+            legend_item_hover_color = (OTC_SKIN === "black") ? `#f79530` : `#000`,
+            legend_label_color = (OTC_SKIN === "black") ? `#fff` : `#000`,
+            title_color = (OTC_SKIN === "black") ? `#fff` : `#000`,
+            legend_bg_color = (OTC_SKIN === "black") ? `#0b1016` : `#fff`;
         Highcharts.setOptions({
             lang: {
                 rangeSelectorZoom: '缩放',// 放大
@@ -655,7 +675,8 @@ NSB_TS_FV.Modules.turnoverTrendProtocolDiagram.drawHC = NSB_TS_FV.Modules.turnov
             chart: {
                 type: "column",
                 // backgroundColor: chart_css.color
-                // backgroundColor: color
+                backgroundColor: skin_color,
+                // plotBorderWidth: 1,
                 // height: (9 / 16 * 100) + '%',
                 height: 272,// 275px;
                 // 16:9 ratio
@@ -663,7 +684,7 @@ NSB_TS_FV.Modules.turnoverTrendProtocolDiagram.drawHC = NSB_TS_FV.Modules.turnov
             title: {
                 text: "协议",
                 style: {
-                    "color": "#000",
+                    "color": title_color,
                     "fontSize": "13px",
                     "fontWeight": "bold"
                 }
@@ -751,7 +772,7 @@ NSB_TS_FV.Modules.turnoverTrendProtocolDiagram.drawHC = NSB_TS_FV.Modules.turnov
             ],
             legend: {
                 align: 'center',// left, center and right. (Defaults to center.)
-                backgroundColor: `#ff00ff`, //Color,
+                backgroundColor: legend_bg_color,
                 // x: 0,
                 // y: 340,
                 // verticalAlign: 'top',
@@ -760,10 +781,17 @@ NSB_TS_FV.Modules.turnoverTrendProtocolDiagram.drawHC = NSB_TS_FV.Modules.turnov
                 verticalAlign: "bottom",
                 // floating: true,
                 floating: false,
-                backgroundColor: (Highcharts.theme && Highcharts.theme.background2) || 'white',
-                borderColor: '#CCC',
-                borderWidth: 1,
-                shadow: false
+                // backgroundColor: (Highcharts.theme && Highcharts.theme.background2) || 'white',
+                // borderColor: '#CCC',
+                // borderWidth: 1,
+                shadow: false,
+                itemStyle: {
+                    color: legend_item_color,
+                    // fontWeight: 'bold'
+                },
+                itemHoverStyle: {
+                    color: legend_item_hover_color,
+                },
             },
             // tooltip ??? array
             tooltip: {
@@ -851,38 +879,76 @@ NSB_TS_FV.Modules.turnoverTrendProtocolDiagram.drawHC = NSB_TS_FV.Modules.turnov
 
 
 
-
-
-
-
-
-
 // init
-NSB_TS_FV.Modules.turnoverTrendMakeMarketDiagram.init = NSB_TS_FV.Modules.turnoverTrendMakeMarketDiagram.init || (
-    (url = `http://10.1.5.202/webservice/fastview/otc/otcfast10`) => {
-        // const url = `http://10.1.5.202/webservice/fastview/otc/otcfast10`;
-        const uid = `turnover_trend_make_market_diagram_hs_container`;
+OTC_TS_FV.Modules.turnoverTrendMakeMarketDiagram.init = OTC_TS_FV.Modules.turnoverTrendMakeMarketDiagram.init || (
+    (
+        {
+            ip,
+            path,
+            socket,
+            skin,
+            // gilcode
+        } = {
+            ip: `http://10.1.5.202`,
+            path: `/webservice/fastview/otc`,
+            socket: `/otcfast10`,
+            skin: `black`,
+            // gilcode: `430002.OC`
+        }
+    ) => {
+        let url = `${ip}${path}${socket}`,
+        // let url = `http://10.1.5.202/webservice/fastview/otc/otcfast10`,
+            uid = `turnover_trend_make_market_diagram_hs_container`;
         // HC, no need #
-        NSB_TS_FV.Modules.turnoverTrendMakeMarketDiagram(url, uid, false);
-        // let hs_datas = NSB_TS_FV.Modules.turnoverTrendMakeMarketDiagram(url, uid, false);
+        OTC_TS_FV.Modules.turnoverTrendMakeMarketDiagram(url, uid, false);
     }
 );
 
-
-// init
-NSB_TS_FV.Modules.turnoverTrendProtocolDiagram.init = NSB_TS_FV.Modules.turnoverTrendProtocolDiagram.init || (
-    (url = `http://10.1.5.202/webservice/fastview/otc/otcfast11`) => {
-        // const url = `http://10.1.5.202/webservice/fastview/otc/otcfast11`;
-        const uid = `turnover_trend_protocol_diagram_hs_container`;
-        NSB_TS_FV.Modules.turnoverTrendProtocolDiagram(url, uid, false);
-        // HC, no need #
-        // let hs_datas = NSB_TS_FV.Modules.turnoverTrendProtocolDiagram(url, uid, false);
+OTC_TS_FV.Modules.turnoverTrendProtocolDiagram.init = OTC_TS_FV.Modules.turnoverTrendProtocolDiagram.init || (
+    (
+        {
+            ip,
+            path,
+            socket,
+            skin,
+            // gilcode
+        } = {
+            ip: `http://10.1.5.202`,
+            path: `/webservice/fastview/otc`,
+            socket: `/otcfast11`,
+            skin: `black`,
+            // gilcode: `430002.OC`
+        }
+    ) => {
+        let url = `${ip}${path}${socket}`,
+        // let url = `http://10.1.5.202/webservice/fastview/otc/otcfast11`,
+            uid = `turnover_trend_protocol_diagram_hs_container`;
+        OTC_TS_FV.Modules.turnoverTrendProtocolDiagram(url, uid, false);
     }
 );
 
-// call init
-NSB_TS_FV.Modules.turnoverTrendMakeMarketDiagram.init();
-NSB_TS_FV.Modules.turnoverTrendProtocolDiagram.init();
+// OTC_SKIN ???
+
+var OTC_IP = window.OTC_IP || `http://10.1.5.202`,
+    OTC_PATH = window.OTC_PATH || `/webservice/fastview/otc`,
+    OTC_SKIN = window.OTC_SKIN || `black`;
+    // OTC_GILCODE = window.OTC_GILCODE || `430002.OC`;
+
+OTC_TS_FV.Modules.turnoverTrendMakeMarketDiagram.init({
+    ip: OTC_IP,
+    path: OTC_PATH,
+    socket: `/otcfast10`,
+    skin: OTC_SKIN,
+    // gilcode: OTC_GILCODE
+});
+
+OTC_TS_FV.Modules.turnoverTrendProtocolDiagram.init({
+    ip: OTC_IP,
+    path: OTC_PATH,
+    socket: `/otcfast11`,
+    skin: OTC_SKIN,
+    // gilcode: OTC_GILCODE
+});
 
 
 // HC & no scrollbar & one year data
