@@ -54,6 +54,7 @@ OTC_TS_FV.Modules.transactionsLeaderboardProtocol = OTC_TS_FV.Modules.transactio
                 console.log(`json = \n`, json);
                 console.log(`keys = \n`, Object.keys(json));
             }
+            let date_title = document.querySelector(`[data-text="otc-transactions-leaderboard-protocol-text"]`);
             try {
                 if (emptyChecker(json) & Object.keys(json).length > 0) {
                     let data_protocol = json || [];
@@ -63,6 +64,12 @@ OTC_TS_FV.Modules.transactionsLeaderboardProtocol = OTC_TS_FV.Modules.transactio
                             console.log(`arr = \n`, arr);
                             console.log(`arr keys = \n`, Object.keys(arr[0]));
                         }
+                        // console.log(`arr[0].sj = `, arr[0].sj);
+                        if (emptyChecker(arr[0].sj)) {
+                            date_title.innerHTML = `${arr[0].sj}`;
+                            date_title.setAttribute(`title`, `${arr[0].sj}`);
+                        }
+                        // sj ???
                         let ranking_code = [],
                             ranking_brief = [],
                             ranking_amplitude = [],
@@ -103,6 +110,7 @@ OTC_TS_FV.Modules.transactionsLeaderboardProtocol = OTC_TS_FV.Modules.transactio
                     OTC_TS_FV.Modules.transactionsLeaderboardProtocol.showTable(obj_protocol, uid, false);
                 }else{
                     // no data
+                    date_title.innerHTML = `--`;
                     // console.log(`transactions Leaderboard Protocol & no data!`);
                     let uid = "#otc-sortable-table-transactions-leaderboard-protocol";
                     let table = document.querySelector(uid);
@@ -123,12 +131,42 @@ OTC_TS_FV.Modules.transactionsLeaderboardProtocol = OTC_TS_FV.Modules.transactio
     )
     .catch(error => console.log(`fetch error = \n`, error));
     // return result_obj;
+    // more
+    setTimeout((debug = false) => {
+        let turn_to_uid = document.querySelector(`[data-turn-to-uid="node-uid-transactions-leaderboard-protocol"]`);
+        if (debug) {
+            console.log(`turn_to_uid dom = \n`, turn_to_uid);
+        }
+        if (turn_to_uid !== null) {
+            turn_to_uid.addEventListener(`click`, (e) => {
+                    let uid = e.target.dataset.uid,
+                        topic_category  = e.target.dataset.topicCategory,// 专题分类名称常量
+                        node_path = `13\\${topic_category}\\${uid}`;
+                    try {
+                        if (uid !== undefined && topic_category !== undefined) {
+                            ChromeExternal.Execute("ExecuteCommand", node_path);
+                            // ChromeExternal.Execute("ExecuteCommand", `13\\${topic_category}\\${uid}`);
+                        }else{
+                            console.log(`ChromeExternal \nuid === ${uid} & topic_category === ${topic_category}`);
+                        }
+                    } catch (error) {
+                        console.log(`%c ChromeExternal & caught error = \n`, `color: red; font-size: 23px;`, error);
+                        console.log(`node uid = `, uid);
+                        console.log(`node topic_category = `, topic_category);
+                        console.log(`node node_path = `, node_path);
+                    }
+                });
+        }else{
+            // null
+            throw new Error(`turn_to_uid dom is `, turn_to_uid);
+        }
+    }, 0);
 });
 
 // transactionsLeaderboardProtocol.showTable
 OTC_TS_FV.Modules.transactionsLeaderboardProtocol.showTable = OTC_TS_FV.Modules.transactionsLeaderboardProtocol.showTable || (
     (datas = {}, uid = ``, debug = false) => {
-        if (!debug) {
+        if (debug) {
             console.log(`datas = \n`, JSON.stringify(datas, null, 4));
             console.log(`uid = \n`, uid);
         }
@@ -153,7 +191,7 @@ OTC_TS_FV.Modules.transactionsLeaderboardProtocol.showTable = OTC_TS_FV.Modules.
                 console.log(`trs[0] = \n`, trs[0]);
             }
             for (let i = 0; i < trs.length; i++) {
-                let tds = trs[i].querySelectorAll(`[data-td-value="otc-td-value"]`);
+                let tds = trs[i].querySelectorAll(`[data-td-value="otc-td-value-TLP"]`);
                 if (debug) {
                     console.log(`tds = \n`, tds);
                     console.log(`tds[0] = \n`, tds[0]);
@@ -265,8 +303,8 @@ OTC_TS_FV.Modules.transactionsLeaderboardProtocol.sortTable = OTC_TS_FV.Modules.
         uids[i].addEventListener(`click`, (e) => {
             if (debug) {
                 console.log(`e.target.dataset = `, e.target.dataset);
-                let img = getComputedStyle(e.target, `::after`).getPropertyValue(`content`);
                 console.log(`e.target img = `, img);
+                let img = getComputedStyle(e.target, `::after`).getPropertyValue(`content`);
                 //  url("http://10.1.5.202/otc/ts/img/white/up.png");
                 //  url("http://10.1.5.202/otc/ts/img/white/down.png");
                 // content: url("../img/white/up.png");
@@ -305,7 +343,7 @@ OTC_TS_FV.Modules.transactionsLeaderboardProtocol.sortTable = OTC_TS_FV.Modules.
                 // getComputedStyle(e.target, `::after`).setProperty(`content`, `url("../img/white/up.png")`);
             }
             // bug & 01 === 1
-            if (!debug) {
+            if (debug) {
                 console.log(`e.target.dataset.uid = `, e.target.dataset.uid);
                 console.log(`uid = `, uid);
                 console.log(`state = `, state);
@@ -337,6 +375,7 @@ OTC_TS_FV.Modules.transactionsLeaderboardProtocol.init = OTC_TS_FV.Modules.trans
         }
     ) => {
         let url = `${ip}${path}${socket}`,
+        // let url = `http://10.1.5.202/webservice/fastview/otc/otcfast13`,
         // let url = `http://10.1.5.202/otc/ts/json/03.json`,// no data?
         // let url = `http://10.1.5.202/otc/ts/json/03-old.json`,
             uid = `[data-table-protocol="otc-table-body-transactions-leaderboard-protocol"]`;

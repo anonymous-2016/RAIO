@@ -55,6 +55,7 @@ OTC_TS_FV.Modules.transactionsLeaderboardMakeMarket = OTC_TS_FV.Modules.transact
                 console.log(`json = \n`, json);
                 console.log(`keys = \n`, Object.keys(json));
             }
+            let date_title = document.querySelector(`[data-text="otc-transactions-leaderboard-make-market-text"]`);
             try {
                 if (emptyChecker(json) & Object.keys(json).length > 0) {
                     let data_protocol = json || [];
@@ -63,6 +64,11 @@ OTC_TS_FV.Modules.transactionsLeaderboardMakeMarket = OTC_TS_FV.Modules.transact
                         if (debug) {
                             console.log(`arr = \n`, arr);
                             console.log(`arr keys = \n`, Object.keys(arr[0]));
+                        }
+                        // console.log(`arr[0].sj = `, arr[0].sj);
+                        if (emptyChecker(arr[0].sj)) {
+                            date_title.innerHTML = `${arr[0].sj}`;
+                            date_title.setAttribute(`title`, `${arr[0].sj}`);
                         }
                         // sj ???
                         let ranking_code = [],
@@ -105,6 +111,7 @@ OTC_TS_FV.Modules.transactionsLeaderboardMakeMarket = OTC_TS_FV.Modules.transact
                     OTC_TS_FV.Modules.transactionsLeaderboardMakeMarket.showTable(obj_protocol, uid, false);
                 }else{
                     // no data
+                    date_title.innerHTML = `--`;
                     let uid = "#otc-sortable-table-transactions-leaderboard-make-market";
                     let table = document.querySelector(uid);
                     table.style.display = 'none';
@@ -124,6 +131,36 @@ OTC_TS_FV.Modules.transactionsLeaderboardMakeMarket = OTC_TS_FV.Modules.transact
     )
     .catch(error => console.log(`fetch error = \n`, error));
     // return result_obj;
+    // more
+    setTimeout((debug = false) => {
+        let turn_to_uid = document.querySelector(`[data-turn-to-uid="node-uid-transactions-leaderboard-make-market"]`);
+        if (debug) {
+            console.log(`turn_to_uid dom = \n`, turn_to_uid);
+        }
+        if (turn_to_uid !== null) {
+            turn_to_uid.addEventListener(`click`, (e) => {
+                    let uid = e.target.dataset.uid,
+                        topic_category  = e.target.dataset.topicCategory,// 专题分类名称常量
+                        node_path = `13\\${topic_category}\\${uid}`;
+                    try {
+                        if (uid !== undefined && topic_category !== undefined) {
+                            ChromeExternal.Execute("ExecuteCommand", node_path);
+                            // ChromeExternal.Execute("ExecuteCommand", `13\\${topic_category}\\${uid}`);
+                        }else{
+                            console.log(`ChromeExternal \nuid === ${uid} & topic_category === ${topic_category}`);
+                        }
+                    } catch (error) {
+                        console.log(`%c ChromeExternal & caught error = \n`, `color: red; font-size: 23px;`, error);
+                        console.log(`node uid = `, uid);
+                        console.log(`node topic_category = `, topic_category);
+                        console.log(`node node_path = `, node_path);
+                    }
+                });
+        }else{
+            // null
+            throw new Error(`turn_to_uid dom is `, turn_to_uid);
+        }
+    }, 0);
 });
 
 // transactionsLeaderboardMakeMarket.showTable
@@ -178,7 +215,7 @@ OTC_TS_FV.Modules.transactionsLeaderboardMakeMarket.showTable = OTC_TS_FV.Module
 
 OTC_TS_FV.Modules.transactionsLeaderboardMakeMarket.sortTable = OTC_TS_FV.Modules.transactionsLeaderboardMakeMarket.sortTable || ((table_th_uid = `[data-sort="sort-th-Test"]`, table_uid = `#myTable`, debug = false, ignore = []) => {
     const sortTable = (uid = 0, table_uid = `#myTable`) => {
-        console.log(`uid = `, uid);
+        // console.log(`uid = `, uid);
         let table = document.querySelector(table_uid),
             rows,
             switching = true,
@@ -192,7 +229,7 @@ OTC_TS_FV.Modules.transactionsLeaderboardMakeMarket.sortTable = OTC_TS_FV.Module
         while (switching) {
             //start by saying: no switching is done:
             switching = false;
-            rows = table.getElementsByTagName("TR");
+            rows = table.getElementsByTagName("tr");
             /*Loop through all table rows (except the
             first, which contains table headers):*/
             for (i = 1; i < (rows.length - 1); i++) {
@@ -201,7 +238,7 @@ OTC_TS_FV.Modules.transactionsLeaderboardMakeMarket.sortTable = OTC_TS_FV.Module
                 /*Get the two elements you want to compare,
                 one from current row and one from the next:*/
                 x = rows[i].getElementsByTagName("td")[uid];
-                y = rows[i + 1].getElementsByTagName("TD")[uid];
+                y = rows[i + 1].getElementsByTagName("td")[uid];
                 /*check if the two rows should switch place, based on the direction, asc or desc:*/
                 if (dir == "asc") {
                     // string compare & bug!

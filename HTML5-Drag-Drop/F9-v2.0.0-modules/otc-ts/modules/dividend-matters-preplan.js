@@ -82,13 +82,13 @@ NSB_TS_FV.Modules.additionalMattersPreplan.showTable = NSB_TS_FV.Modules.additio
             preplan_brief,
             preplan_amount
         ];
-        let trs = document.querySelectorAll(`[data-table-tbody-tr="ntb-table-tbody-tr-dividend-matters-preplan"]`);
+        let trs = document.querySelectorAll(`[data-table-tbody-tr="otc-table-tbody-tr-dividend-matters-preplan"]`);
         if (debug) {
             console.log(`trs = \n`, trs);
             console.log(`trs[0] = \n`, trs[0]);
         }
         for (let i = 0; i < trs.length; i++) {
-            let tds = trs[i].querySelectorAll(`[data-td-value="ntb-td-value"]`);
+            let tds = trs[i].querySelectorAll(`[data-td-value="otc-td-value-DMP"]`);
             if (debug) {
                 console.log(`tds = \n`, tds);
                 console.log(`tds[0] = \n`, tds[0]);
@@ -101,10 +101,10 @@ NSB_TS_FV.Modules.additionalMattersPreplan.showTable = NSB_TS_FV.Modules.additio
             tds[2].setAttribute(`title`, order_arr[2][i]);
             // DOM in JS ???
             /*
-                <tr data-table-tr="ntb-table-tr-dividend-matters-preplan" data-table-tbody-tr="ntb-table-tbody-tr-dividend-matters-preplan">
-                    <td data-td-value="ntb-td-value"></td>
-                    <td data-td-value="ntb-td-value"></td>
-                    <td data-td-value="ntb-td-value"></td>
+                <tr data-table-tr="otc-table-tr-dividend-matters-preplan" data-table-tbody-tr="otc-table-tbody-tr-dividend-matters-preplan">
+                    <td data-td-value="otc-td-value-DMP"></td>
+                    <td data-td-value="otc-td-value-DMP"></td>
+                    <td data-td-value="otc-td-value-DMP"></td>
                 </tr>
             */
         }

@@ -41,7 +41,7 @@
 
 [data-uid="transactions-leaderboard-make-market"] {
     float: left;
-    margin: 5px;
+    /* margin: 5px; */
 }
 
 * {
@@ -139,7 +139,9 @@ tr[data-table-tbody-tr="otc-table-tbody-tr-transactions-leaderboard-make-market"
 }
 
 tr[data-table-tbody-tr="otc-table-tbody-tr-transactions-leaderboard-make-market"]>td[data-td-value="otc-td-value-TLMM"]:nth-of-type(4) {
-    width: 150px;
+    max-width: 150px;
+    min-width: 148px;
+    width: auto;
 }
 
 tr[data-table-tbody-tr="otc-table-tbody-tr-transactions-leaderboard-make-market"]>td[data-td-value="otc-td-value-TLMM"]:nth-last-of-type(1),
@@ -177,7 +179,7 @@ td {
 
 [data-table-tr="otc-table-tr-transactions-leaderboard-make-market"]>th:nth-of-type(n) {
     text-align: center;
-    /* padding: 16px; */
+    padding: 6px;
 }
 
 [data-table-tr="otc-table-tr-transactions-leaderboard-make-market"]>th:nth-last-of-type(1),

@@ -219,16 +219,7 @@ OTC_F9_FV.Modules.equityShareholder = OTC_F9_FV.Modules.equityShareholder || (
                                         十大股东 (<span>${json.sdgd.sj}</span>)
                                     </p>
                                     <p data-p="data-otc-ES-title">
-                                        报告期内十大股东合计持股
-                                        <span>${json.sdgd.hj}</span> 万股,
-                                        <span>${json.sdgd.bh}</span>
-                                        ${
-                                            (json.sdgd.gds !== 0 && json.sdgd.gds !== undefined)
-                                            ?
-                                            `,报告期内有<span>${json.sdgd.gds}</span> 位股东有减持行为`
-                                            :
-                                            `<span></span>`
-                                        }.
+                                        报告期内十大股东合计持股<span>${json.sdgd.hj}</span> 万股, <span>${json.sdgd.bh}</span>${(json.sdgd.gds !== 0 && json.sdgd.gds !== undefined)?`,报告期内有<span>${json.sdgd.gds}</span> 位股东有减持行为.`:`<span></span>.`}
                                     </p>
                                 `;
                                 // 万股
@@ -306,22 +297,15 @@ OTC_F9_FV.Modules.equityShareholder = OTC_F9_FV.Modules.equityShareholder || (
                                         股东户数 (<span>${json.gdhs[0].sj}</span>)
                                     </p>
                                     <p data-p="data-otc-ES-title">
-                                        报告期内公司股东比上期
-                                        ${json.gdhs[0].hsjsq.includes(`-`) ? "减少" : "增加"}
-                                        <span>
-                                            ${emptyChecker(json.gdhs[0].hsjsq) ? json.gdhs[0].hsjsq.replace(/-/ig, ``) : "--"}
-                                        </span>户,
+                                        报告期内公司股东比上期${json.gdhs[0].hsjsq.includes(`-`) ? "减少" : "增加"}
+                                        <span>${emptyChecker(json.gdhs[0].hsjsq) ? json.gdhs[0].hsjsq.replace(/-/ig, ``) : "--"}</span>户,
                                         ${json.gdhs[0].zhszz.includes(`-`) ? "减少" : "增加"}
-                                        <span>
-                                            ${emptyChecker(json.gdhs[0].zhszz) ? json.gdhs[0].zhszz.replace(/-/ig, ``) : "--"}
-                                        </span>%, 户均持股数
+                                        <span>${emptyChecker(json.gdhs[0].zhszz) ? json.gdhs[0].zhszz.replace(/-/ig, ``) : "--"}</span>%, 户均持股数
                                         <span>
                                             ${emptyChecker(json.gdhs[0].hjcgs) ? json.gdhs[0].hjcgs : "--"}
                                         </span>股,
                                         ${json.gdhs[0].hjzz.includes(`-`) ? "减少" : "增加"}
-                                        <span>
-                                            ${emptyChecker(json.gdhs[0].hjzz) ? json.gdhs[0].hjzz.replace(/-/ig, ``) : "--"}
-                                        </span>%.
+                                        <span>${emptyChecker(json.gdhs[0].hjzz) ? json.gdhs[0].hjzz.replace(/-/ig, ``) : "--"}</span>%.
                                     </p>
                                 `;
                             }else{

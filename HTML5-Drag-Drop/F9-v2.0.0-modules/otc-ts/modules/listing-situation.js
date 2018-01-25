@@ -90,6 +90,36 @@ OTC_TS_FV.Modules.listingSituation = OTC_TS_FV.Modules.listingSituation || ((url
     )
     .catch(error => console.log(`error = \n`, error));
     // return result_obj;
+    // more
+    setTimeout((debug = false) => {
+        let turn_to_uid = document.querySelector(`[data-turn-to-uid="node-uid-listing-situation"]`);
+        if (debug) {
+            console.log(`turn_to_uid dom = \n`, turn_to_uid);
+        }
+        if (turn_to_uid !== null) {
+            turn_to_uid.addEventListener(`click`, (e) => {
+                    let uid = e.target.dataset.uid,
+                        topic_category  = e.target.dataset.topicCategory,// 专题分类名称常量
+                        node_path = `13\\${topic_category}\\${uid}`;
+                    try {
+                        if (uid !== undefined && topic_category !== undefined) {
+                            ChromeExternal.Execute("ExecuteCommand", node_path);
+                            // ChromeExternal.Execute("ExecuteCommand", `13\\${topic_category}\\${uid}`);
+                        }else{
+                            console.log(`ChromeExternal \nuid === ${uid} & topic_category === ${topic_category}`);
+                        }
+                    } catch (error) {
+                        console.log(`%c ChromeExternal & caught error = \n`, `color: red; font-size: 23px;`, error);
+                        console.log(`node uid = `, uid);
+                        console.log(`node topic_category = `, topic_category);
+                        console.log(`node node_path = `, node_path);
+                    }
+                });
+        }else{
+            // null
+            throw new Error(`turn_to_uid dom is `, turn_to_uid);
+        }
+    }, 0);
 });
 
 

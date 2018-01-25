@@ -136,7 +136,7 @@ OTC_TS_FV.Modules.thematicStatisticsBulletin = OTC_TS_FV.Modules.thematicStatist
         // a href="#更多" data-uid="xxxxxx" data-topic-category="NQTOPIC" data-turn-to-uid="node-uid-thematic-statistics-bulletin-data">更多</a>
         // more
         setTimeout((debug = false) => {
-            let turn_to_uid = document.querySelector(`[data-turn-to-uid="node-uid-thematic-statistics-bulletin-data"]`);
+            let turn_to_uid = document.querySelector(`[data-turn-to-uid="node-uid-thematic-statistics-bulletin"]`);
             if (debug) {
                 console.log(`turn_to_uid dom = \n`, turn_to_uid);
             }

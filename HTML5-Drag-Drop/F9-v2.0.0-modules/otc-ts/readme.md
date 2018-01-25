@@ -14,6 +14,110 @@ OTC_TS_FV.Helper
 > namespaces
 
 
+# disable table draggable
+
+```css
+
+table{
+    pointer-events: none;
+}
+
+
+table {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-user-drag: none;
+    user-drag: none;
+    -webkit-touch-callout: none;
+}
+
+```
+
+```js
+
+document.querySelector(`.fv-indicators-per-share-table`).ondragstart = function() {
+    return false;
+};
+
+
+let tables = document.querySelectorAll(`[data-table*="table"]`);
+
+for (let i = 0; i < tables.length; i++) {
+    tables[i].addEventListener(`dragstart`, (e) => {
+        console.log(`\ntables[i] = `, tables[i]);
+        console.log(`\ne.target = `, e.target);
+        e.target.setAttributes(`draggable`, `false`);
+        // date_title.setAttribute(`title`, `${arr[0].sj}`);
+    });
+}
+
+$("table").mousedown(function(e){
+    e.preventDefault()
+});
+
+
+
+
+```
+
+
+
+```js
+
+// init
+OTC_TS_FV.Modules.transactionsLeaderboardProtocol.init = OTC_TS_FV.Modules.transactionsLeaderboardProtocol.init || (
+    (
+        {
+            ip,
+            path,
+            socket,
+            skin,
+            // gilcode
+        } = {
+            ip: `http://10.1.5.202`,
+            path: `/webservice/fastview/otc`,
+            socket: `/otcfast03`,
+            skin: `white`,
+            // gilcode: `430002.OC`
+        }
+    ) => {
+        let url = `${ip}${path}${socket}`,
+        // let url = `http://10.1.5.202/webservice/fastview/otc/otcfast13`,
+        // let url = `http://10.1.5.202/otc/ts/json/03.json`,// no data?
+        // let url = `http://10.1.5.202/otc/ts/json/03-old.json`,
+            uid = `[data-table-protocol="otc-table-body-transactions-leaderboard-protocol"]`;
+        // url = `http://10.1.5.202/webservice/fastview/otc/otcfast03/`;
+        OTC_TS_FV.Modules.transactionsLeaderboardProtocol(url, uid, false);
+        // 备注：在涨跌幅和成交额做个可以自动排序的功能。
+        // 排行榜协议 otcfast03
+    }
+);
+
+// OTC_SKIN ???
+var OTC_IP = window.OTC_IP || `http://10.1.5.202`,
+    OTC_PATH = window.OTC_PATH || `/webservice/fastview/otc`,
+    OTC_SKIN = window.OTC_SKIN || `black`;
+    // OTC_GILCODE = window.OTC_GILCODE || `430002.OC`;
+
+OTC_TS_FV.Modules.transactionsLeaderboardProtocol.init({
+    ip: OTC_IP,
+    path: OTC_PATH,
+    socket: `/otcfast03`,
+    skin: OTC_SKIN,
+    // gilcode: OTC_GILCODE
+});
+
+
+// OTC_TIME
+// bonds
+
+
+```
+
+
+
 
 http://jira.gildata.com:8888/browse/GFT-430
 

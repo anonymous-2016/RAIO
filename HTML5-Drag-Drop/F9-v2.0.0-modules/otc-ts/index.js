@@ -199,10 +199,10 @@ const initTabs = () => {
             "otcfast02",
             "otcfast03",
             "otcfast13",
-            // "otcfast031",
-            // "otcfast032",
-            // "otcfastAdditional",
+            "dividend-matters-all",
             // "otcfastDividends",
+            "additional-issues-all",
+            // "otcfastAdditional",
             // "otcfast10"
         ];
         let right_uids = [
@@ -490,15 +490,15 @@ const HTML_Template = (uid = ``, loadModule = function(){}, debug = false) => {
             delete_uid = `transactions-leaderboard-make-market`;
             loadModule(uid, `transactions-leaderboard-make-market`, true);
             htmlstr += `
-                section class="otc-module-box-5" data-uid="transactions-leaderboard-make-market">
+                <section class="otc-module-box-5" data-uid="transactions-leaderboard-make-market">
                     <div class="otc-h5dnd-modules-title-box otc-transactions-leaderboard-make-market-title-box">
                         <p class="otc-h5dnd-modules-title" data-title="otc-transactions-leaderboard-make-market-title">
                             交易排行榜
                             <span data-title-text="otc-transactions-leaderboard-make-market-title-text">
-                                交易排行榜-做市 (<span data-text="otc-transactions-leaderboard-make-market-text">201x-xx-xx</span>)
+                                交易排行榜-做市 (<span data-text="otc-transactions-leaderboard-make-market-text"></span>)
                             </span>
                             <span data-link="otc-transactions-leaderboard-make-market-link">
-                                <a href="#更多" data-uid="1106" data-turn-to-uid="node-uid-transactions-leaderboard-make-market">更多</a>
+                                <a href="#more" data-uid="342082" data-topic-category="NQTOPIC" data-turn-to-uid="node-uid-transactions-leaderboard-make-market">更多</a>
                             </span>
                         </p>
                     </div>
@@ -589,10 +589,10 @@ const HTML_Template = (uid = ``, loadModule = function(){}, debug = false) => {
                         <p class="otc-h5dnd-modules-title" data-title="otc-transactions-leaderboard-protocol-title">
                             交易排行榜
                             <span data-title-text="otc-transactions-leaderboard-protocol-title-text">
-                                    交易排行榜-协议 (<span data-text="otc-transactions-leaderboard-protocol-text">201x-xx-xx</span>)
+                                    交易排行榜-协议 (<span data-text="otc-transactions-leaderboard-protocol-text"></span>)
                             </span>
                             <span data-link="otc-transactions-leaderboard-protocol-link">
-                                <a href="#更多" data-uid="1106" data-turn-to-uid="node-uid-transactions-leaderboard-protocol">更多</a>
+                                <a href="#more" data-uid="342081" data-topic-category="NQTOPIC" data-turn-to-uid="node-uid-transactions-leaderboard-protocol">更多</a>
                             </span>
                         </p>
                     </div>
@@ -600,76 +600,72 @@ const HTML_Template = (uid = ``, loadModule = function(){}, debug = false) => {
                         <table data-table="otc-table-transactions-leaderboard-protocol" id="otc-sortable-table-transactions-leaderboard-protocol">
                             <thead>
                                 <tr data-table-tr="otc-table-tr-transactions-leaderboard-protocol">
-                                    <th class="otc-td-key" data-td-key="otc-td-key" data-sort="sort-th-transactions-leaderboard-protocol" data-uid="uid-1">代码</th>
-                                    <th class="otc-td-key" data-td-key="otc-td-key" data-sort="sort-th-transactions-leaderboard-protocol" data-uid="uid-2">简称</th>
-                                    <th class="otc-td-key" data-td-key="otc-td-key" data-sort="sort-th-transactions-leaderboard-protocol" data-uid="uid-3">涨跌幅(%)</th>
-                                    <th class="otc-td-key" data-td-key="otc-td-key" data-sort="sort-th-transactions-leaderboard-protocol" data-uid="uid-4">成交额(万元)</th>
-                                    <!-- <td class="otc-td-key" data-td-key="otc-td-key">代码</td>
-                                    <td class="otc-td-key" data-td-key="otc-td-key">简称</td>
-                                    <td class="otc-td-key" data-td-key="otc-td-key">涨跌幅(%)</td>
-                                    <td class="otc-td-key" data-td-key="otc-td-key">成交额(万元)</td> -->
+                                    <th class="otc-td-key" data-td-key="otc-td-key-TLP" data-sort="sort-th-transactions-leaderboard-protocol" data-uid="uid-1">代码</th>
+                                    <th class="otc-td-key" data-td-key="otc-td-key-TLP" data-sort="sort-th-transactions-leaderboard-protocol" data-uid="uid-2">简称</th>
+                                    <th class="otc-td-key" data-td-key="otc-td-key-TLP" data-sort="sort-th-transactions-leaderboard-protocol" data-uid="uid-3" data-state="default" data-img-url="">涨跌幅(%)</th>
+                                    <th class="otc-td-key" data-td-key="otc-td-key-TLP" data-sort="sort-th-transactions-leaderboard-protocol" data-uid="uid-4" data-state="default" data-img-url="">成交额(万元)</th>
                                 </tr>
                             </thead>
                             <tbody data-table-body="otc-table-body-transactions-leaderboard-protocol" data-table-protocol="otc-table-body-transactions-leaderboard-protocol">
                                 <tr data-table-tr="otc-table-tr-transactions-leaderboard-protocol" data-table-tbody-tr="otc-table-tbody-tr-transactions-leaderboard-protocol">
-                                    <td data-td-value="otc-td-value"></td>
-                                    <td data-td-value="otc-td-value"></td>
-                                    <td data-td-value="otc-td-value"></td>
-                                    <td data-td-value="otc-td-value"></td>
+                                    <td data-td-value="otc-td-value-TLP"></td>
+                                    <td data-td-value="otc-td-value-TLP"></td>
+                                    <td data-td-value="otc-td-value-TLP"></td>
+                                    <td data-td-value="otc-td-value-TLP"></td>
                                 </tr>
                                 <tr data-table-tr="otc-table-tr-transactions-leaderboard-protocol" data-table-tbody-tr="otc-table-tbody-tr-transactions-leaderboard-protocol">
-                                    <td data-td-value="otc-td-value"></td>
-                                    <td data-td-value="otc-td-value"></td>
-                                    <td data-td-value="otc-td-value"></td>
-                                    <td data-td-value="otc-td-value"></td>
+                                    <td data-td-value="otc-td-value-TLP"></td>
+                                    <td data-td-value="otc-td-value-TLP"></td>
+                                    <td data-td-value="otc-td-value-TLP"></td>
+                                    <td data-td-value="otc-td-value-TLP"></td>
                                 </tr>
                                 <tr data-table-tr="otc-table-tr-transactions-leaderboard-protocol" data-table-tbody-tr="otc-table-tbody-tr-transactions-leaderboard-protocol">
-                                    <td data-td-value="otc-td-value"></td>
-                                    <td data-td-value="otc-td-value"></td>
-                                    <td data-td-value="otc-td-value"></td>
-                                    <td data-td-value="otc-td-value"></td>
+                                    <td data-td-value="otc-td-value-TLP"></td>
+                                    <td data-td-value="otc-td-value-TLP"></td>
+                                    <td data-td-value="otc-td-value-TLP"></td>
+                                    <td data-td-value="otc-td-value-TLP"></td>
                                 </tr>
                                 <tr data-table-tr="otc-table-tr-transactions-leaderboard-protocol" data-table-tbody-tr="otc-table-tbody-tr-transactions-leaderboard-protocol">
-                                    <td data-td-value="otc-td-value"></td>
-                                    <td data-td-value="otc-td-value"></td>
-                                    <td data-td-value="otc-td-value"></td>
-                                    <td data-td-value="otc-td-value"></td>
+                                    <td data-td-value="otc-td-value-TLP"></td>
+                                    <td data-td-value="otc-td-value-TLP"></td>
+                                    <td data-td-value="otc-td-value-TLP"></td>
+                                    <td data-td-value="otc-td-value-TLP"></td>
                                 </tr>
                                 <tr data-table-tr="otc-table-tr-transactions-leaderboard-protocol" data-table-tbody-tr="otc-table-tbody-tr-transactions-leaderboard-protocol">
-                                    <td data-td-value="otc-td-value"></td>
-                                    <td data-td-value="otc-td-value"></td>
-                                    <td data-td-value="otc-td-value"></td>
-                                    <td data-td-value="otc-td-value"></td>
+                                    <td data-td-value="otc-td-value-TLP"></td>
+                                    <td data-td-value="otc-td-value-TLP"></td>
+                                    <td data-td-value="otc-td-value-TLP"></td>
+                                    <td data-td-value="otc-td-value-TLP"></td>
                                 </tr>
                                 <tr data-table-tr="otc-table-tr-transactions-leaderboard-protocol" data-table-tbody-tr="otc-table-tbody-tr-transactions-leaderboard-protocol">
-                                    <td data-td-value="otc-td-value"></td>
-                                    <td data-td-value="otc-td-value"></td>
-                                    <td data-td-value="otc-td-value"></td>
-                                    <td data-td-value="otc-td-value"></td>
+                                    <td data-td-value="otc-td-value-TLP"></td>
+                                    <td data-td-value="otc-td-value-TLP"></td>
+                                    <td data-td-value="otc-td-value-TLP"></td>
+                                    <td data-td-value="otc-td-value-TLP"></td>
                                 </tr>
                                 <tr data-table-tr="otc-table-tr-transactions-leaderboard-protocol" data-table-tbody-tr="otc-table-tbody-tr-transactions-leaderboard-protocol">
-                                    <td data-td-value="otc-td-value"></td>
-                                    <td data-td-value="otc-td-value"></td>
-                                    <td data-td-value="otc-td-value"></td>
-                                    <td data-td-value="otc-td-value"></td>
+                                    <td data-td-value="otc-td-value-TLP"></td>
+                                    <td data-td-value="otc-td-value-TLP"></td>
+                                    <td data-td-value="otc-td-value-TLP"></td>
+                                    <td data-td-value="otc-td-value-TLP"></td>
                                 </tr>
                                 <tr data-table-tr="otc-table-tr-transactions-leaderboard-protocol" data-table-tbody-tr="otc-table-tbody-tr-transactions-leaderboard-protocol">
-                                    <td data-td-value="otc-td-value"></td>
-                                    <td data-td-value="otc-td-value"></td>
-                                    <td data-td-value="otc-td-value"></td>
-                                    <td data-td-value="otc-td-value"></td>
+                                    <td data-td-value="otc-td-value-TLP"></td>
+                                    <td data-td-value="otc-td-value-TLP"></td>
+                                    <td data-td-value="otc-td-value-TLP"></td>
+                                    <td data-td-value="otc-td-value-TLP"></td>
                                 </tr>
                                 <tr data-table-tr="otc-table-tr-transactions-leaderboard-protocol" data-table-tbody-tr="otc-table-tbody-tr-transactions-leaderboard-protocol">
-                                    <td data-td-value="otc-td-value"></td>
-                                    <td data-td-value="otc-td-value"></td>
-                                    <td data-td-value="otc-td-value"></td>
-                                    <td data-td-value="otc-td-value"></td>
+                                    <td data-td-value="otc-td-value-TLP"></td>
+                                    <td data-td-value="otc-td-value-TLP"></td>
+                                    <td data-td-value="otc-td-value-TLP"></td>
+                                    <td data-td-value="otc-td-value-TLP"></td>
                                 </tr>
                                 <tr data-table-tr="otc-table-tr-transactions-leaderboard-protocol" data-table-tbody-tr="otc-table-tbody-tr-transactions-leaderboard-protocol">
-                                    <td data-td-value="otc-td-value"></td>
-                                    <td data-td-value="otc-td-value"></td>
-                                    <td data-td-value="otc-td-value"></td>
-                                    <td data-td-value="otc-td-value"></td>
+                                    <td data-td-value="otc-td-value-TLP"></td>
+                                    <td data-td-value="otc-td-value-TLP"></td>
+                                    <td data-td-value="otc-td-value-TLP"></td>
+                                    <td data-td-value="otc-td-value-TLP"></td>
                                 </tr>
                             </tbody>
                             <tfoot></tfoot>
@@ -678,16 +674,16 @@ const HTML_Template = (uid = ``, loadModule = function(){}, debug = false) => {
                 </section>
             `;
             break;
-        case "otcfastAdditional":
+        case "additional-issues-all":
             delete_uid = `additional-issues-all`;
             loadModule(uid, `additional-issues-all`, true);
             htmlstr += `
                 <section class="otc-module-box-5">
                     <div class="otc-h5dnd-modules-title-box">
                         <p class="otc-h5dnd-modules-title" data-title="otc-additional-issues-all-title">
-                            增发事项
+                            今日定增
                             <span data-link="otc-additional-issues-all-link">
-                                <a href="#更多" data-uid="1115" data-turn-to-uid="node-uid-additional-issues-all">更多</a>
+                                <a href="#more" data-uid="342097" data-topic-category="NQTOPIC" data-turn-to-uid="node-uid-additional-issues-all">更多</a>
                             </span>
                         </p>
                     </div>
@@ -695,48 +691,162 @@ const HTML_Template = (uid = ``, loadModule = function(){}, debug = false) => {
                         <div data-tab="tab-title-box">
                             <ul data-tab="tab-title-ul">
                                 <li data-tab="tab-title">
-                                    <a href="#1" data-tab-uid="0" data-tab="tab-link" class="hover-link-color">预案</a>
+                                    <a href="#1" data-tab-uid="0" data-tab="tab-link-AI" class="hover-link-color">今日定增-预案</a>
                                 </li>
                                 <li data-tab="tab-title">
-                                    <a href="#2" data-tab-uid="1" data-tab="tab-link" class="default-link-color">实施</a>
+                                    <a href="#2" data-tab-uid="1" data-tab="tab-link-AI" class="default-link-color">今日定增-实施</a>
                                 </li>
                             </ul>
                         </div>
                         <div data-tab="tab-container-box">
-                            <div data-tab="tab-container" class="active-display-block">
-                                <section class="otc-module-box-5">
-                                    <div class="otc-additional-issues-preplan-container">
-                                        <!-- 分红事项-预案 -->
-                                        <div data-hs-title="data-additional-issues-preplan-title-uid"></div>
-                                        <div id="additional_issues_preplan_hs_container" data-hs-container="data-additional-issues-preplan-container-uid" class="otc-additional-issues-preplan-hs otc-additional-issues-preplan-hs-container"></div>
-                                    </div>
-                                </section>
+                            <div data-tab="tab-container-AI" class="active-display-block">
+                                <div class="otc-additional-issues-preplan-table-box">
+                                    <table data-table="otc-table-additional-issues-preplan">
+                                        <thead>
+                                            <tr data-table-tr="otc-table-tr-additional-issues-preplan">
+                                                <td class="otc-td-key" data-td-key="otc-td-key-AIP">代码</td>
+                                                <td class="otc-td-key" data-td-key="otc-td-key-AIP">简称</td>
+                                                <td class="otc-td-key" data-td-key="otc-td-key-AIP">预计募集金额(万元)</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody data-table-body="otc-table-body-additional-issues-preplan">
+                                            <tr data-table-tr="otc-table-tr-additional-issues-preplan" data-table-tbody-tr="otc-table-tbody-tr-additional-issues-preplan">
+                                                <td data-td-value="otc-td-value-AIP"></td>
+                                                <td data-td-value="otc-td-value-AIP"></td>
+                                                <td data-td-value="otc-td-value-AIP"></td>
+                                            </tr>
+                                            <tr data-table-tr="otc-table-tr-additional-issues-preplan" data-table-tbody-tr="otc-table-tbody-tr-additional-issues-preplan">
+                                                <td data-td-value="otc-td-value-AIP"></td>
+                                                <td data-td-value="otc-td-value-AIP"></td>
+                                                <td data-td-value="otc-td-value-AIP"></td>
+                                            </tr>
+                                            <tr data-table-tr="otc-table-tr-additional-issues-preplan" data-table-tbody-tr="otc-table-tbody-tr-additional-issues-preplan">
+                                                <td data-td-value="otc-td-value-AIP"></td>
+                                                <td data-td-value="otc-td-value-AIP"></td>
+                                                <td data-td-value="otc-td-value-AIP"></td>
+                                            </tr>
+                                            <tr data-table-tr="otc-table-tr-additional-issues-preplan" data-table-tbody-tr="otc-table-tbody-tr-additional-issues-preplan">
+                                                <td data-td-value="otc-td-value-AIP"></td>
+                                                <td data-td-value="otc-td-value-AIP"></td>
+                                                <td data-td-value="otc-td-value-AIP"></td>
+                                            </tr>
+                                            <tr data-table-tr="otc-table-tr-additional-issues-preplan" data-table-tbody-tr="otc-table-tbody-tr-additional-issues-preplan">
+                                                <td data-td-value="otc-td-value-AIP"></td>
+                                                <td data-td-value="otc-td-value-AIP"></td>
+                                                <td data-td-value="otc-td-value-AIP"></td>
+                                            </tr>
+                                            <tr data-table-tr="otc-table-tr-additional-issues-preplan" data-table-tbody-tr="otc-table-tbody-tr-additional-issues-preplan">
+                                                <td data-td-value="otc-td-value-AIP"></td>
+                                                <td data-td-value="otc-td-value-AIP"></td>
+                                                <td data-td-value="otc-td-value-AIP"></td>
+                                            </tr>
+                                            <tr data-table-tr="otc-table-tr-additional-issues-preplan" data-table-tbody-tr="otc-table-tbody-tr-additional-issues-preplan">
+                                                <td data-td-value="otc-td-value-AIP"></td>
+                                                <td data-td-value="otc-td-value-AIP"></td>
+                                                <td data-td-value="otc-td-value-AIP"></td>
+                                            </tr>
+                                            <tr data-table-tr="otc-table-tr-additional-issues-preplan" data-table-tbody-tr="otc-table-tbody-tr-additional-issues-preplan">
+                                                <td data-td-value="otc-td-value-AIP"></td>
+                                                <td data-td-value="otc-td-value-AIP"></td>
+                                                <td data-td-value="otc-td-value-AIP"></td>
+                                            </tr>
+                                            <tr data-table-tr="otc-table-tr-additional-issues-preplan" data-table-tbody-tr="otc-table-tbody-tr-additional-issues-preplan">
+                                                <td data-td-value="otc-td-value-AIP"></td>
+                                                <td data-td-value="otc-td-value-AIP"></td>
+                                                <td data-td-value="otc-td-value-AIP"></td>
+                                            </tr>
+                                            <tr data-table-tr="otc-table-tr-additional-issues-preplan" data-table-tbody-tr="otc-table-tbody-tr-additional-issues-preplan">
+                                                <td data-td-value="otc-td-value-AIP"></td>
+                                                <td data-td-value="otc-td-value-AIP"></td>
+                                                <td data-td-value="otc-td-value-AIP"></td>
+                                            </tr>
+                                        </tbody>
+                                        <tfoot></tfoot>
+                                    </table>
+                                </div>
                             </div>
-                            <div data-tab="tab-container" class="default-display-block">
-                                <section class="otc-module-box-5">
-                                    <div class="otc-additional-issues-implementation-container">
-                                        <!-- 分红事项-实施 -->
-                                        <div data-hs-title="data-additional-issues-implementation-title-uid"></div>
-                                        <div id="additional_issues_implementation_hs_container" data-hs-container="data-additional-issues-implementation-container-uid" class="otc-additional-issues-implementation-hs otc-additional-issues-implementation-hs-container"></div>
-                                    </div>
-                                </section>
+                            <div data-tab="tab-container-AI" class="default-display-block">
+                                <div class="otc-additional-issues-implementation-table-box">
+                                    <table data-table="otc-table-additional-issues-implementation">
+                                        <thead>
+                                            <tr data-table-tr="otc-table-tr-additional-issues-implementation">
+                                                <td class="otc-td-key" data-td-key="otc-td-key-AII">代码</td>
+                                                <td class="otc-td-key" data-td-key="otc-td-key-AII">简称</td>
+                                                <td class="otc-td-key" data-td-key="otc-td-key-AII">实际募集金额(万元)</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody data-table-body="otc-table-body-additional-issues-implementation">
+                                            <tr data-table-tr="otc-table-tr-additional-issues-implementation" data-table-tbody-tr="otc-table-tbody-tr-additional-issues-implementation">
+                                                <td data-td-value="otc-td-value-AII"></td>
+                                                <td data-td-value="otc-td-value-AII"></td>
+                                                <td data-td-value="otc-td-value-AII"></td>
+                                            </tr>
+                                            <tr data-table-tr="otc-table-tr-additional-issues-implementation" data-table-tbody-tr="otc-table-tbody-tr-additional-issues-implementation">
+                                                <td data-td-value="otc-td-value-AII"></td>
+                                                <td data-td-value="otc-td-value-AII"></td>
+                                                <td data-td-value="otc-td-value-AII"></td>
+                                            </tr>
+                                            <tr data-table-tr="otc-table-tr-additional-issues-implementation" data-table-tbody-tr="otc-table-tbody-tr-additional-issues-implementation">
+                                                <td data-td-value="otc-td-value-AII"></td>
+                                                <td data-td-value="otc-td-value-AII"></td>
+                                                <td data-td-value="otc-td-value-AII"></td>
+                                            </tr>
+                                            <tr data-table-tr="otc-table-tr-additional-issues-implementation" data-table-tbody-tr="otc-table-tbody-tr-additional-issues-implementation">
+                                                <td data-td-value="otc-td-value-AII"></td>
+                                                <td data-td-value="otc-td-value-AII"></td>
+                                                <td data-td-value="otc-td-value-AII"></td>
+                                            </tr>
+                                            <tr data-table-tr="otc-table-tr-additional-issues-implementation" data-table-tbody-tr="otc-table-tbody-tr-additional-issues-implementation">
+                                                <td data-td-value="otc-td-value-AII"></td>
+                                                <td data-td-value="otc-td-value-AII"></td>
+                                                <td data-td-value="otc-td-value-AII"></td>
+                                            </tr>
+                                            <tr data-table-tr="otc-table-tr-additional-issues-implementation" data-table-tbody-tr="otc-table-tbody-tr-additional-issues-implementation">
+                                                <td data-td-value="otc-td-value-AII"></td>
+                                                <td data-td-value="otc-td-value-AII"></td>
+                                                <td data-td-value="otc-td-value-AII"></td>
+                                            </tr>
+                                            <tr data-table-tr="otc-table-tr-additional-issues-implementation" data-table-tbody-tr="otc-table-tbody-tr-additional-issues-implementation">
+                                                <td data-td-value="otc-td-value-AII"></td>
+                                                <td data-td-value="otc-td-value-AII"></td>
+                                                <td data-td-value="otc-td-value-AII"></td>
+                                            </tr>
+                                            <tr data-table-tr="otc-table-tr-additional-issues-implementation" data-table-tbody-tr="otc-table-tbody-tr-additional-issues-implementation">
+                                                <td data-td-value="otc-td-value-AII"></td>
+                                                <td data-td-value="otc-td-value-AII"></td>
+                                                <td data-td-value="otc-td-value-AII"></td>
+                                            </tr>
+                                            <tr data-table-tr="otc-table-tr-additional-issues-implementation" data-table-tbody-tr="otc-table-tbody-tr-additional-issues-implementation">
+                                                <td data-td-value="otc-td-value-AII"></td>
+                                                <td data-td-value="otc-td-value-AII"></td>
+                                                <td data-td-value="otc-td-value-AII"></td>
+                                            </tr>
+                                            <tr data-table-tr="otc-table-tr-additional-issues-implementation" data-table-tbody-tr="otc-table-tbody-tr-additional-issues-implementation">
+                                                <td data-td-value="otc-td-value-AII"></td>
+                                                <td data-td-value="otc-td-value-AII"></td>
+                                                <td data-td-value="otc-td-value-AII"></td>
+                                            </tr>
+                                        </tbody>
+                                        <tfoot></tfoot>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     </section>
                 </section>
-                <section data-scripts="all-scripts" class="otc-additional-issues-all-container"></section>
+                <section data-scripts="all-scripts-additional-issues-all" class="otc-additional-issues-all-table"></section>
             `;
             break;
-        case "otcfastDividends":
+        case "dividend-matters-all":
             delete_uid = `dividend-matters-all`;
-            loadModule(uid, `dividend-matters-all`);
+            loadModule(uid, `dividend-matters-all`, true);
             htmlstr += `
                 <section class="otc-module-box-5">
                     <div class="otc-h5dnd-modules-title-box">
                         <p class="otc-h5dnd-modules-title" data-title="otc-dividend-matters-all-title">
-                            分红事项
+                            今日分红
                             <span data-link="otc-dividend-matters-all-link">
-                                <a href="#更多" data-uid="1094" data-turn-to-uid="node-uid-dividend-matters-all">更多</a>
+                                <a href="#more" data-uid="342096" data-topic-category="NQTOPIC" data-turn-to-uid="node-uid-dividend-matters-all">更多</a>
                             </span>
                         </p>
                     </div>
@@ -744,36 +854,150 @@ const HTML_Template = (uid = ``, loadModule = function(){}, debug = false) => {
                         <div data-tab="tab-title-box">
                             <ul data-tab="tab-title-ul">
                                 <li data-tab="tab-title">
-                                    <a href="#1" data-tab-uid="0" data-tab="tab-link" class="hover-link-color">预案</a>
+                                    <a href="#1" data-tab-uid="0" data-tab="tab-link-DM" class="hover-link-color">今日分红-预案</a>
                                 </li>
                                 <li data-tab="tab-title">
-                                    <a href="#2" data-tab-uid="1" data-tab="tab-link" class="default-link-color">实施</a>
+                                    <a href="#2" data-tab-uid="1" data-tab="tab-link-DM" class="default-link-color">今日分红-实施</a>
                                 </li>
                             </ul>
                         </div>
                         <div data-tab="tab-container-box">
-                            <div data-tab="tab-container" class="active-display-block">
-                                <section class="otc-module-box-5">
-                                    <div class="otc-dividend-matters-preplan-container">
-                                        <!-- 分红事项-预案 -->
-                                        <div data-hs-title="data-dividend-matters-preplan-title-uid"></div>
-                                        <div id="dividend_matters_preplan_hs_container" data-hs-container="data-dividend-matters-preplan-container-uid" class="otc-dividend-matters-preplan-hs otc-dividend-matters-preplan-hs-container"></div>
-                                    </div>
-                                </section>
+                            <div data-tab="tab-container-DM" class="active-display-block">
+                                <div class="otc-dividend-matters-preplan-table-box">
+                                    <table data-table="otc-table-dividend-matters-preplan">
+                                        <thead>
+                                            <tr data-table-tr="otc-table-tr-dividend-matters-preplan">
+                                                <td class="otc-td-key" data-td-key="otc-td-key-DMP">代码</td>
+                                                <td class="otc-td-key" data-td-key="otc-td-key-DMP">简称</td>
+                                                <td class="otc-td-key" data-td-key="otc-td-key-DMP">方案说明</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody data-table-body="otc-table-body-dividend-matters-preplan">
+                                            <tr data-table-tr="otc-table-tr-dividend-matters-preplan" data-table-tbody-tr="otc-table-tbody-tr-dividend-matters-preplan">
+                                                <td data-td-value="otc-td-value-DMP"></td>
+                                                <td data-td-value="otc-td-value-DMP"></td>
+                                                <td data-td-value="otc-td-value-DMP"></td>
+                                            </tr>
+                                            <tr data-table-tr="otc-table-tr-dividend-matters-preplan" data-table-tbody-tr="otc-table-tbody-tr-dividend-matters-preplan">
+                                                <td data-td-value="otc-td-value-DMP"></td>
+                                                <td data-td-value="otc-td-value-DMP"></td>
+                                                <td data-td-value="otc-td-value-DMP"></td>
+                                            </tr>
+                                            <tr data-table-tr="otc-table-tr-dividend-matters-preplan" data-table-tbody-tr="otc-table-tbody-tr-dividend-matters-preplan">
+                                                <td data-td-value="otc-td-value-DMP"></td>
+                                                <td data-td-value="otc-td-value-DMP"></td>
+                                                <td data-td-value="otc-td-value-DMP"></td>
+                                            </tr>
+                                            <tr data-table-tr="otc-table-tr-dividend-matters-preplan" data-table-tbody-tr="otc-table-tbody-tr-dividend-matters-preplan">
+                                                <td data-td-value="otc-td-value-DMP"></td>
+                                                <td data-td-value="otc-td-value-DMP"></td>
+                                                <td data-td-value="otc-td-value-DMP"></td>
+                                            </tr>
+                                            <tr data-table-tr="otc-table-tr-dividend-matters-preplan" data-table-tbody-tr="otc-table-tbody-tr-dividend-matters-preplan">
+                                                <td data-td-value="otc-td-value-DMP"></td>
+                                                <td data-td-value="otc-td-value-DMP"></td>
+                                                <td data-td-value="otc-td-value-DMP"></td>
+                                            </tr>
+                                            <tr data-table-tr="otc-table-tr-dividend-matters-preplan" data-table-tbody-tr="otc-table-tbody-tr-dividend-matters-preplan">
+                                                <td data-td-value="otc-td-value-DMP"></td>
+                                                <td data-td-value="otc-td-value-DMP"></td>
+                                                <td data-td-value="otc-td-value-DMP"></td>
+                                            </tr>
+                                            <tr data-table-tr="otc-table-tr-dividend-matters-preplan" data-table-tbody-tr="otc-table-tbody-tr-dividend-matters-preplan">
+                                                <td data-td-value="otc-td-value-DMP"></td>
+                                                <td data-td-value="otc-td-value-DMP"></td>
+                                                <td data-td-value="otc-td-value-DMP"></td>
+                                            </tr>
+                                            <tr data-table-tr="otc-table-tr-dividend-matters-preplan" data-table-tbody-tr="otc-table-tbody-tr-dividend-matters-preplan">
+                                                <td data-td-value="otc-td-value-DMP"></td>
+                                                <td data-td-value="otc-td-value-DMP"></td>
+                                                <td data-td-value="otc-td-value-DMP"></td>
+                                            </tr>
+                                            <tr data-table-tr="otc-table-tr-dividend-matters-preplan" data-table-tbody-tr="otc-table-tbody-tr-dividend-matters-preplan">
+                                                <td data-td-value="otc-td-value-DMP"></td>
+                                                <td data-td-value="otc-td-value-DMP"></td>
+                                                <td data-td-value="otc-td-value-DMP"></td>
+                                            </tr>
+                                            <tr data-table-tr="otc-table-tr-dividend-matters-preplan" data-table-tbody-tr="otc-table-tbody-tr-dividend-matters-preplan">
+                                                <td data-td-value="otc-td-value-DMP"></td>
+                                                <td data-td-value="otc-td-value-DMP"></td>
+                                                <td data-td-value="otc-td-value-DMP"></td>
+                                            </tr>
+                                        </tbody>
+                                        <tfoot></tfoot>
+                                    </table>
+                                </div>
                             </div>
-                            <div data-tab="tab-container" class="default-display-block">
-                                <section class="otc-module-box-5">
-                                    <div class="otc-dividend-matters-implementation-container">
-                                        <!-- 分红事项-实施 -->
-                                        <div data-hs-title="data-dividend-matters-implementation-title-uid"></div>
-                                        <div id="dividend_matters_implementation_hs_container" data-hs-container="data-dividend-matters-implementation-container-uid" class="otc-dividend-matters-implementation-hs otc-dividend-matters-implementation-hs-container"></div>
-                                    </div>
-                                </section>
+                            <div data-tab="tab-container-DM" class="default-display-block">
+                                <div class="otc-dividend-matters-implementation-table-box">
+                                    <table data-table="otc-table-dividend-matters-implementation">
+                                        <thead>
+                                            <tr data-table-tr="otc-table-tr-dividend-matters-implementation">
+                                                <td class="otc-td-key" data-td-key="otc-td-key-DMI">代码</td>
+                                                <td class="otc-td-key" data-td-key="otc-td-key-DMI">简称</td>
+                                                <td class="otc-td-key" data-td-key="otc-td-key-DMI">方案说明</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody data-table-body="otc-table-body-dividend-matters-implementation">
+                                            <tr data-table-tr="otc-table-tr-dividend-matters-implementation" data-table-tbody-tr="otc-table-tbody-tr-dividend-matters-implementation">
+                                                <td data-td-value="otc-td-value-DMI"></td>
+                                                <td data-td-value="otc-td-value-DMI"></td>
+                                                <td data-td-value="otc-td-value-DMI"></td>
+                                            </tr>
+                                            <tr data-table-tr="otc-table-tr-dividend-matters-implementation" data-table-tbody-tr="otc-table-tbody-tr-dividend-matters-implementation">
+                                                <td data-td-value="otc-td-value-DMI"></td>
+                                                <td data-td-value="otc-td-value-DMI"></td>
+                                                <td data-td-value="otc-td-value-DMI"></td>
+                                            </tr>
+                                            <tr data-table-tr="otc-table-tr-dividend-matters-implementation" data-table-tbody-tr="otc-table-tbody-tr-dividend-matters-implementation">
+                                                <td data-td-value="otc-td-value-DMI"></td>
+                                                <td data-td-value="otc-td-value-DMI"></td>
+                                                <td data-td-value="otc-td-value-DMI"></td>
+                                            </tr>
+                                            <tr data-table-tr="otc-table-tr-dividend-matters-implementation" data-table-tbody-tr="otc-table-tbody-tr-dividend-matters-implementation">
+                                                <td data-td-value="otc-td-value-DMI"></td>
+                                                <td data-td-value="otc-td-value-DMI"></td>
+                                                <td data-td-value="otc-td-value-DMI"></td>
+                                            </tr>
+                                            <tr data-table-tr="otc-table-tr-dividend-matters-implementation" data-table-tbody-tr="otc-table-tbody-tr-dividend-matters-implementation">
+                                                <td data-td-value="otc-td-value-DMI"></td>
+                                                <td data-td-value="otc-td-value-DMI"></td>
+                                                <td data-td-value="otc-td-value-DMI"></td>
+                                            </tr>
+                                            <tr data-table-tr="otc-table-tr-dividend-matters-implementation" data-table-tbody-tr="otc-table-tbody-tr-dividend-matters-implementation">
+                                                <td data-td-value="otc-td-value-DMI"></td>
+                                                <td data-td-value="otc-td-value-DMI"></td>
+                                                <td data-td-value="otc-td-value-DMI"></td>
+                                            </tr>
+                                            <tr data-table-tr="otc-table-tr-dividend-matters-implementation" data-table-tbody-tr="otc-table-tbody-tr-dividend-matters-implementation">
+                                                <td data-td-value="otc-td-value-DMI"></td>
+                                                <td data-td-value="otc-td-value-DMI"></td>
+                                                <td data-td-value="otc-td-value-DMI"></td>
+                                            </tr>
+                                            <tr data-table-tr="otc-table-tr-dividend-matters-implementation" data-table-tbody-tr="otc-table-tbody-tr-dividend-matters-implementation">
+                                                <td data-td-value="otc-td-value-DMI"></td>
+                                                <td data-td-value="otc-td-value-DMI"></td>
+                                                <td data-td-value="otc-td-value-DMI"></td>
+                                            </tr>
+                                            <tr data-table-tr="otc-table-tr-dividend-matters-implementation" data-table-tbody-tr="otc-table-tbody-tr-dividend-matters-implementation">
+                                                <td data-td-value="otc-td-value-DMI"></td>
+                                                <td data-td-value="otc-td-value-DMI"></td>
+                                                <td data-td-value="otc-td-value-DMI"></td>
+                                            </tr>
+                                            <tr data-table-tr="otc-table-tr-dividend-matters-implementation" data-table-tbody-tr="otc-table-tbody-tr-dividend-matters-implementation">
+                                                <td data-td-value="otc-td-value-DMI"></td>
+                                                <td data-td-value="otc-td-value-DMI"></td>
+                                                <td data-td-value="otc-td-value-DMI"></td>
+                                            </tr>
+                                        </tbody>
+                                        <tfoot></tfoot>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     </section>
                 </section>
-                <section data-scripts="all-scripts" class="otc-dividend-matters-all-container"></section>
+                <section data-scripts="all-scripts-dividend-matters-all" class="otc-dividend-matters-all-table"></section>
             `;
             break;
         case "otcfast08":
@@ -786,7 +1010,7 @@ const HTML_Template = (uid = ``, loadModule = function(){}, debug = false) => {
                             挂牌情况
                             <span data-time="otc-listing-situation-time"></span>
                             <span data-link="otc-listing-situation-link">
-                                <a href="#更多" data-uid="85648" data-turn-to-uid="node-uid-listing-situation">更多</a>
+                                <a href="#more" data-uid="342069" data-topic-category="NQTOPIC" data-turn-to-uid="node-uid-listing-situation">更多</a>
                             </span>
                         </p>
                     </div>
@@ -843,10 +1067,10 @@ const HTML_Template = (uid = ``, loadModule = function(){}, debug = false) => {
                         <p class="otc-h5dnd-modules-title" data-title="otc-transaction-overview-title">
                             成交概况
                             <span data-title-text="otc-transaction-overview-title-text">
-                                (<span data-text="otc-transactions-leaderboard-all-text">201x-xx-xx</span>)
+                                (<span data-text="otc-transactions-leaderboard-all-text"></span>)
                             </span>
                             <span data-link="otc-transaction-overview-link">
-                                <a href="#更多" data-uid="85648" data-turn-to-uid="node-uid-transaction-overview">更多</a>
+                                <a href="#more" data-uid="342079" data-topic-category="NQTOPIC" data-turn-to-uid="node-uid-transaction-overview">更多</a>
                             </span>
                         </p>
                     </div>
@@ -913,7 +1137,7 @@ const HTML_Template = (uid = ``, loadModule = function(){}, debug = false) => {
                         <p class="otc-h5dnd-modules-title otc-turnover-trend-diagram-title" data-title="otc-turnover-trend-diagram-title">
                             成交走势
                             <span data-link="otc-turnover-trend-diagram-link">
-                                <a href="#更多" data-uid="1070" data-turn-to-uid="node-uid-turnover-trend-diagram">更多</a>
+                                <a href="#more" data-uid="79075" data-topic-category="NQTOPIC" data-turn-to-uid="node-uid-turnover-trend-diagram">更多</a>
                             </span>
                         </p>
                     </div>
@@ -938,7 +1162,7 @@ const HTML_Template = (uid = ``, loadModule = function(){}, debug = false) => {
                         <p class="otc-h5dnd-modules-title" data-title="otc-thematic-statistics-news-title">
                             三板新闻
                             <span data-link="otc-thematic-statistics-news-link">
-                                <a href="#更多" data-uid="xxxxxx" data-topic-category="NQTOPIC" data-turn-to-uid="node-uid-thematic-statistics-news"><!-- 更多 --></a>
+                                <a href="#news" data-uid="100238" data-topic-category="NQTOPIC" data-turn-to-uid="node-uid-thematic-statistics-news">更多</a>
                             </span>
                         </p>
                     </div>
@@ -968,7 +1192,7 @@ const HTML_Template = (uid = ``, loadModule = function(){}, debug = false) => {
                         <p class="otc-h5dnd-modules-title" data-title="otc-thematic-statistics-bulletin-title">
                             三板公告
                             <span data-link="otc-thematic-statistics-bulletin-link">
-                                <a href="#更多" data-uid="xxxxxx" data-topic-category="NQTOPIC" data-turn-to-uid="node-uid-thematic-statistics-bulletin-data"><!-- 更多 --></a>
+                                <a href="#bulletin" data-uid="100235" data-topic-category="NQTOPIC" data-turn-to-uid="node-uid-thematic-statistics-bulletin">更多</a>
                             </span>
                         </p>
                     </div>
@@ -1009,8 +1233,10 @@ const layoutCSS = (uid = ``, div = ``) => {
         case "otcfast13":
         // case "otcfast031":
         // case "otcfast032":
-        case "otcfastAdditional":
-        case "otcfastDividends":
+        case "additional-issues-all":
+        // case "otcfastAdditional":
+        case "dividend-matters-all":
+        // case "otcfastDividends":
         case "otcfast08":
         case "otcfast09":
         case "otcfastTransaction":

@@ -113,7 +113,8 @@ STOCK_F9_FV.Modules.indicatorsPerShare.init = STOCK_F9_FV.Modules.indicatorsPerS
     ) => {
         let uid = `[data-value="data-fv-indicators-per-share"]`,
             url = `${ip}${path}${gilcode}`;
-        const ui_arr = ["fbrq", "syjb", "syxs", "sykcjb", "sykcxs", "jzc", "jycsxjllje", "jyjs", "qbtb", "kcqbtb", "yyzsr", "yysr", "sqlr", "zbgj", "yygj", "wfplr", "lcsy", "xjllje", "qyzyxjll", "gdzyxjll"];
+        // fixed table order
+        const ui_arr = ["bgq", "syjb", "syxs", "sykcjb", "sykcxs", "jzc", "jycsxjllje", "jyjs", "qbtb", "kcqbtb", "yyzsr", "yysr", "sqlr", "zbgj", "yygj", "wfplr", "lcsy", "xjllje", "qyzyxjll", "gdzyxjll"];
         STOCK_F9_FV.Modules.indicatorsPerShare(url, uid, ui_arr, false);
         // STOCK_F9_FV.Modules.indicatorsPerShare(url, uid, ui_arr, true);
     }

@@ -1,7 +1,7 @@
 "use strict";
 
 /**
- * @namespace NSB_TS_FV : New San Ban Thematic Statistics
+ * @namespace OTC_TS_FV : New San Ban Thematic Statistics
  * @name additional-issues-implementation 今日定增-实施
  * @createed 2017.11.21
  * @author xgqfrms
@@ -14,11 +14,11 @@
  */
 
 // namespaces
-var NSB_TS_FV = NSB_TS_FV || {};
+var OTC_TS_FV = OTC_TS_FV || {};
 // sub namespaces
-NSB_TS_FV.Modules = NSB_TS_FV.Modules || {};
+OTC_TS_FV.Modules = OTC_TS_FV.Modules || {};
 // additionalIssuesImplementation
-NSB_TS_FV.Modules.additionalIssuesImplementation = NSB_TS_FV.Modules.additionalIssuesImplementation || ((url = ``, debug = false) => {
+OTC_TS_FV.Modules.additionalIssuesImplementation = OTC_TS_FV.Modules.additionalIssuesImplementation || ((url = ``, debug = false) => {
     let result_obj = {};
     fetch(url)
     .then(res => res.json())
@@ -58,7 +58,7 @@ NSB_TS_FV.Modules.additionalIssuesImplementation = NSB_TS_FV.Modules.additionalI
                 }
             }
             // array
-            NSB_TS_FV.Modules.additionalIssuesImplementation.showTable(result_obj, false);
+            OTC_TS_FV.Modules.additionalIssuesImplementation.showTable(result_obj, false);
         }
     )
     .catch(error => console.log(`error = \n`, error));
@@ -66,7 +66,7 @@ NSB_TS_FV.Modules.additionalIssuesImplementation = NSB_TS_FV.Modules.additionalI
 });
 
 // additionalIssuesImplementation.showTable
-NSB_TS_FV.Modules.additionalIssuesImplementation.showTable = NSB_TS_FV.Modules.additionalIssuesImplementation.showTable || (
+OTC_TS_FV.Modules.additionalIssuesImplementation.showTable = OTC_TS_FV.Modules.additionalIssuesImplementation.showTable || (
     (datas = {}, debug = false) => {
         if (debug) {
             console.log(`datas = \n`, JSON.stringify(datas, null, 4));
@@ -82,13 +82,13 @@ NSB_TS_FV.Modules.additionalIssuesImplementation.showTable = NSB_TS_FV.Modules.a
             preplan_brief,
             preplan_amount
         ];
-        let trs = document.querySelectorAll(`[data-table-tbody-tr="ntb-table-tbody-tr-additional-issues-implementation"]`);
+        let trs = document.querySelectorAll(`[data-table-tbody-tr="otc-table-tbody-tr-additional-issues-implementation"]`);
         if (debug) {
             console.log(`trs = \n`, trs);
             console.log(`trs[0] = \n`, trs[0]);
         }
         for (let i = 0; i < trs.length; i++) {
-            let tds = trs[i].querySelectorAll(`[data-td-value="ntb-td-value"]`);
+            let tds = trs[i].querySelectorAll(`[data-td-value="otc-td-value-AII"]`);
             if (debug) {
                 console.log(`tds = \n`, tds);
                 console.log(`tds[0] = \n`, tds[0]);
@@ -100,10 +100,10 @@ NSB_TS_FV.Modules.additionalIssuesImplementation.showTable = NSB_TS_FV.Modules.a
             tds[2].innerHTML = order_arr[2][i];
             // DOM in JS ???
             /*
-                <tr data-table-tr="ntb-table-tr-additional-issues-implementation" data-table-tbody-tr="ntb-table-tbody-tr-additional-issues-implementation">
-                    <td data-td-value="ntb-td-value"></td>
-                    <td data-td-value="ntb-td-value"></td>
-                    <td data-td-value="ntb-td-value"></td>
+                <tr data-table-tr="otc-table-tr-additional-issues-implementation" data-table-tbody-tr="otc-table-tbody-tr-additional-issues-implementation">
+                    <td data-td-value="otc-td-value-AII"></td>
+                    <td data-td-value="otc-td-value-AII"></td>
+                    <td data-td-value="otc-td-value-AII"></td>
                 </tr>
             */
         }
@@ -111,12 +111,12 @@ NSB_TS_FV.Modules.additionalIssuesImplementation.showTable = NSB_TS_FV.Modules.a
 );
 
 // init
-NSB_TS_FV.Modules.additionalIssuesImplementation.init = NSB_TS_FV.Modules.additionalIssuesImplementation.init || (
+OTC_TS_FV.Modules.additionalIssuesImplementation.init = OTC_TS_FV.Modules.additionalIssuesImplementation.init || (
     (url = `http://10.1.5.202/webservice/fastview/otc/otcfast05/`) => {
-        let hs_datas = NSB_TS_FV.Modules.additionalIssuesImplementation(url, false);
+        let hs_datas = OTC_TS_FV.Modules.additionalIssuesImplementation(url, false);
     }
 );
 
 // call init
-NSB_TS_FV.Modules.additionalIssuesImplementation.init(`http://10.1.5.202/webservice/fastview/otc/otcfast05/`);
+OTC_TS_FV.Modules.additionalIssuesImplementation.init(`http://10.1.5.202/webservice/fastview/otc/otcfast05/`);
 

@@ -24,7 +24,40 @@ OTC_TS_FV.Modules.transactionOverview = OTC_TS_FV.Modules.transactionOverview ||
     .then(res => res.json())
     .then(
         (json) => {
-            if (json !== undefined && typeof(json) === "object") {
+            // emptyChecker
+            const emptyChecker = (key = ``) => {
+                // arr.map() ???
+                let result = true;
+                switch (key) {
+                    case undefined:
+                        result = false;
+                        break;
+                    case null:
+                        result = false;
+                        break;
+                    // case "--":
+                    //     result = false;
+                    //     break;
+                    default:
+                        break;
+                }
+                return result;
+            };
+            let date_title = document.querySelector(`[data-text="otc-transactions-leaderboard-all-text"]`);
+            if (emptyChecker(json) & Object.keys(json).length > 0) {
+                // ok
+                // sj ???
+                if (emptyChecker(json[0].sj)) {
+                    date_title.innerHTML = `${json[0].sj}`;
+                }else {
+                    // no data
+                    date_title.innerHTML = `--`;
+                }
+            } else {
+                // no data
+                date_title.innerHTML = `--`;
+            }
+            if (emptyChecker(json) & Object.keys(json).length > 0) {
                 if (debug) {
                     console.log(`json = \n`, json);
                 }
@@ -105,6 +138,8 @@ OTC_TS_FV.Modules.transactionOverview = OTC_TS_FV.Modules.transactionOverview ||
                 if (debug) {
                     console.log(`result_obj = \n`, JSON.stringify(result_obj, null, 4));
                 }
+            }else{
+                // no data
             }
             // array
             OTC_TS_FV.Modules.transactionOverview.showTable(result_obj, false);
@@ -112,6 +147,36 @@ OTC_TS_FV.Modules.transactionOverview = OTC_TS_FV.Modules.transactionOverview ||
     )
     .catch(error => console.log(`error = \n`, error));
     // return result_obj;
+    // more
+    setTimeout((debug = false) => {
+        let turn_to_uid = document.querySelector(`[data-turn-to-uid="node-uid-transaction-overview"]`);
+        if (debug) {
+            console.log(`turn_to_uid dom = \n`, turn_to_uid);
+        }
+        if (turn_to_uid !== null) {
+            turn_to_uid.addEventListener(`click`, (e) => {
+                    let uid = e.target.dataset.uid,
+                        topic_category  = e.target.dataset.topicCategory,// 专题分类名称常量
+                        node_path = `13\\${topic_category}\\${uid}`;
+                    try {
+                        if (uid !== undefined && topic_category !== undefined) {
+                            ChromeExternal.Execute("ExecuteCommand", node_path);
+                            // ChromeExternal.Execute("ExecuteCommand", `13\\${topic_category}\\${uid}`);
+                        }else{
+                            console.log(`ChromeExternal \nuid === ${uid} & topic_category === ${topic_category}`);
+                        }
+                    } catch (error) {
+                        console.log(`%c ChromeExternal & caught error = \n`, `color: red; font-size: 23px;`, error);
+                        console.log(`node uid = `, uid);
+                        console.log(`node topic_category = `, topic_category);
+                        console.log(`node node_path = `, node_path);
+                    }
+                });
+        }else{
+            // null
+            throw new Error(`turn_to_uid dom is `, turn_to_uid);
+        }
+    }, 0);
 });
 
 // transactionOverview.showTable

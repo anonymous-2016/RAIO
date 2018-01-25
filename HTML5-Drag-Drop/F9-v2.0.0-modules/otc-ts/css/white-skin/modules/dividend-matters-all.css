@@ -1,0 +1,36 @@
+@charset "UFT-8";
+
+/* dividend-matters-all */
+
+
+/* commons */
+
+@import url("./tabs/tabs.css");
+
+/* @import url("./no-data.css"); */
+
+
+/* css */
+
+@import url("./dividend-matters-preplan.css");
+@import url("./dividend-matters-implementation.css");
+
+/* title */
+
+[data-title="otc-dividend-matters-all-title"] {
+    /*  */
+}
+
+[data-link="otc-dividend-matters-all-link"]>a {
+    color: #3285ff;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: normal;
+    margin-right: 54px;
+    float: right;
+    margin-top: 3px;
+}
+
+[data-link="otc-dividend-matters-all-link"]>a:hover {
+    color: #f50;
+}

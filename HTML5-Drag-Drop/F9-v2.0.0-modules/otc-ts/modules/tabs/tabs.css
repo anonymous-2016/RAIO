@@ -144,7 +144,6 @@ a[data-tab="tab-link"]:hover {
     /* min-height: 100px; */
     overflow: hidden;
     /* border: 1px solid #ccc; */
-    border: 0;
     margin-top: 5px;
 }
 

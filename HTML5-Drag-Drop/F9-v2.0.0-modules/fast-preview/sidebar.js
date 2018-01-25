@@ -281,11 +281,55 @@ window.onload = () => {
     print_btn.addEventListener(`click`, () => {
         btn.onclick();
         // not show sidebar
-        window.print();
-        setTimeout(() => {
-            // show sidebar
-            small_btn.onclick();
-        }, 0);
+        // window.print();
+        const getNowTimeStamps = (filename = `速览`, extension = `pdf`, debug = false) => {
+            let result = ``,
+                date = new Date(),
+                name = filename,// "stock 速览" => "stock_速览" ??? Regex
+                yyyy = ``,
+                MM = ``,
+                dd = ``,
+                hh = ``,
+                mm = ``,
+                ss = ``;
+            yyyy = date.getFullYear();
+            MM = date.getMonth() + 1;// 1 => 01 (zero padding)???
+            dd = date.getDate();
+            hh = date.getHours();
+            mm = date.getMinutes();// 1 => 01 (zero padding)???
+            ss = date.getSeconds();
+            result = `${name}_${yyyy}${MM}${dd}${hh}${mm}${ss}.${extension}`;
+            return result;
+        };
+        try {
+            if (true) {
+                ChromeExternal.Execute("ChromeCommand", "PrintToPdf");
+                let timestamps = getNowTimeStamps(`stock速览`, `pdf`);
+                let url = window.parent.location.origin ? window.parent.location.origin : window.location.origin;
+                console.log(`URL `, url);
+                // ChromeExternal.Execute("ChromeCommand", "PrintToPdf");
+                // chrominum
+                // ChromeExternal.Execute("ChromeCommand", "PrintToPdf\文件名\Url")
+                // 备注：\文件名\Url 可选参数。
+                /// demo: ABC_2018010901011
+            }else{
+                console.log(`your are not run it in a terminal!`);
+            }
+            setTimeout(() => {
+                // show sidebar
+                small_btn.onclick();
+            }, 0);
+        } catch (error) {
+            console.log(`%c ChromeExternal & caught error = \n`, `color: red; font-size: 23px;`, error);
+            setTimeout(() => {
+                // show sidebar
+                small_btn.onclick();
+            }, 0);
+        }
+        // setTimeout(() => {
+        //     // show sidebar
+        //     small_btn.onclick();
+        // }, 3000);
     });
 };
 
