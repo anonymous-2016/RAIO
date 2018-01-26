@@ -77,7 +77,8 @@ window.OTC_SKIN = window.OTC_SKIN || ``;
 window.OTC_GILCODE = OTC_F9_FV.Utils.getParam(`gilcode`);
 window.OTC_SKIN = OTC_F9_FV.Utils.getParam(`skin`) || `white`;
 window.OTC_IP = window.parent.location.origin.includes("http") ? window.parent.location.origin : `http://10.1.5.202`;
-window.OTC_PATH = `/webservice/fastview/otcper`;
+window.OTC_PATH = `/webservice/fastview/bond/rate`;
+// http://10.1.5.202/webservice/fastview/bond/rate?{"ModelId":"bondratefast07","Compare":"","CompareDate":""}
 
 
 
@@ -189,10 +190,8 @@ const initTabs = () => {
         sortable_module_containers[0].innerHTML = "";
         sortable_module_containers[1].innerHTML = "";
         // init modules
-        let left_uids = ["otcperfast01", "otcperfast02", "news", "bulletin", "research", "company-all", "otcperfast10"];
-        let right_uids = ["otcperfast03", "otcperfast04", "otcperfast09", "otcperfast11"];
-        // let left_uids = ["otcperfast01", "otcperfast02", "news", "research", "company-all", "otcperfast09", "otcperfast11"];
-        // let right_uids = ["otcperfast03", "bulletin", "otcperfast04", "otcperfast10"];
+        let left_uids = ["bondratefast01", "bondratefast02", "bondratefast03", "bondratefast04", "bondratefast05", "bondratefast06", "bondratefast07", "bondratefast08"];
+        let right_uids = ["bondratefast09", "bondratefast10", "bondratefast11", "bondratefast12", "bondratefast13", "bondratefast14", "bondratefast15", "bondratefast16"];
         OTC_F9_FV.Modules.loadAllModules.init(sortable_module_containers[0], left_uids);
         OTC_F9_FV.Modules.loadAllModules.init(sortable_module_containers[1], right_uids);
     }
@@ -311,7 +310,7 @@ const HTML_Template = (uid = ``, loadModule = function(){}, debug = false) => {
     let htmlstr = ``,
         delete_uid = ``;
     switch (uid) {
-        case "otcperfast01":
+        case "bondratefast01":
             delete_uid = `latest-transaction-data`;
             loadModule(uid, `latest-transaction-data`, true);
             htmlstr += `
@@ -374,7 +373,7 @@ const HTML_Template = (uid = ``, loadModule = function(){}, debug = false) => {
                 </section>
             `;
             break;
-        case "otcperfast02":
+        case "bondratefast02":
             delete_uid = `big-event-reminder`;
             loadModule(uid, `big-event-reminder`, true);
             htmlstr += `
@@ -404,7 +403,7 @@ const HTML_Template = (uid = ``, loadModule = function(){}, debug = false) => {
                 </section>
             `;
             break;
-        case "otcperfast03":
+        case "bondratefast03":
             delete_uid = `company-brief-introduction`;
             loadModule(uid, `company-brief-introduction`, true);
             htmlstr += `
@@ -440,7 +439,7 @@ const HTML_Template = (uid = ``, loadModule = function(){}, debug = false) => {
                 </section>
             `;
             break;
-        case "otcperfast04":
+        case "bondratefast04":
             delete_uid = `latest-financial-data`;
             loadModule(uid, `latest-financial-data`, true);
             htmlstr += `
@@ -617,7 +616,7 @@ const HTML_Template = (uid = ``, loadModule = function(){}, debug = false) => {
                 </section>
             `;
             break;
-        case "company-all":
+        case "bondratefast07":
             delete_uid = `company-performance-all`;
             loadModule(uid, `company-performance-all`);
             htmlstr += `
@@ -700,7 +699,7 @@ const HTML_Template = (uid = ``, loadModule = function(){}, debug = false) => {
                 <section data-scripts="all-scripts" class="otc-company-performance-all-container"></section>
             `;
             break;
-        case "otcperfast09":
+        case "bondratefast09":
             delete_uid = `main-management-business`;
             loadModule(uid, `main-management-business`);// false
             htmlstr += `
@@ -742,7 +741,7 @@ const HTML_Template = (uid = ``, loadModule = function(){}, debug = false) => {
                 </section>
             `;
             break;
-        case "otcperfast10":
+        case "bondratefast10":
             delete_uid = `equity-shareholder`;
             loadModule(uid, `equity-shareholder`, true);
             htmlstr += `
@@ -829,7 +828,7 @@ const HTML_Template = (uid = ``, loadModule = function(){}, debug = false) => {
                 </section>
             `;
             break;
-        case "otcperfast11":
+        case "bondratefast11":
             delete_uid = `management-layer-profiles`;
             loadModule(uid, `management-layer-profiles`, true);
             htmlstr += `
@@ -869,7 +868,7 @@ const HTML_Template = (uid = ``, loadModule = function(){}, debug = false) => {
                 </section>
             `;
             break;
-        case "news":
+        case "bondratefast12":
             delete_uid = `company-news`;
             loadModule(uid, `company-news`, true);// data-link="otc-company-news-link"
             htmlstr += `
@@ -899,7 +898,7 @@ const HTML_Template = (uid = ``, loadModule = function(){}, debug = false) => {
                 </section>
             `;
             break;
-        case "bulletin":
+        case "bondratefast13":
             delete_uid = `company-bulletin`;
             loadModule(uid, `company-bulletin`, true);
             htmlstr += `
@@ -929,7 +928,7 @@ const HTML_Template = (uid = ``, loadModule = function(){}, debug = false) => {
                 </section>
             `;
             break;
-        case "research":
+        case "bondratefast14":
             delete_uid = `research-report`;
             loadModule(uid, `research-report`, true);
             htmlstr += `
@@ -973,21 +972,22 @@ const layoutCSS = (uid = ``, div = ``) => {
     // half === 5/5
     // otc-fv-half-box
     switch (uid) {
-        case "otcperfast01":
-        case "otcperfast02":
-        case "otcperfast03":
-        case "otcperfast04":
-        case "otcperfast05":
-        case "company-all":
-        case "otcperfast06":
-        case "otcperfast07":
-        case "otcperfast08":
-        case "otcperfast09":
-        case "otcperfast10":
-        case "otcperfast11":
-        case "news":
-        case "bulletin":
-        case "research":
+        case "bondratefast01":
+        case "bondratefast02":
+        case "bondratefast03":
+        case "bondratefast04":
+        case "bondratefast05":
+        case "bondratefast06":
+        case "bondratefast07":
+        case "bondratefast08":
+        case "bondratefast09":
+        case "bondratefast10":
+        case "bondratefast11":
+        case "bondratefast12":
+        case "bondratefast13":
+        case "bondratefast14":
+        case "bondratefast15":
+        case "bondratefast16":
             div.classList.add(`otc-center-box`);
             break;
         default:
@@ -1041,7 +1041,7 @@ OTC_F9_FV.Modules.loadAllModules = OTC_F9_FV.Modules.loadAllModules || (
                     div.dataset.divModuleUid = `div-module-${uid}`;
                     div.dataset.droppedUid=`module-data-${uid}`;
                     layoutCSS(uid, div);
-                    // "otcperfast-all" ???
+                    // "bondratefast-all" ???
                     let {htmlstr, delete_uid} = HTML_Template(uid, loadModule);
                     div.insertAdjacentHTML(`beforeend`, `${htmlstr}`);
                     container.insertAdjacentElement(`beforeend`, div);
@@ -1160,12 +1160,14 @@ OTC_F9_FV.Modules.modulesLoader = OTC_F9_FV.Modules.modulesLoader ||(
             dragstart: function(e) {
                 // e.preventDefault();
                 // iconUid
-                let iconUid = e.target.dataset.iconUid.substr(12),
+                let iconUid = e.target.dataset.iconUid.substr(12),// data-icon-uid="module-data-bondratefast01"
                     droppedUid = e.target.dataset.droppedUid ? e.target.dataset.droppedUid.substr(12) : ``;
                 let uid = iconUid ? iconUid : droppedUid;
-                // console.log(`iconUid = `, uid);
-                // console.log(`droppedUid = `, uid);
-                // console.log(`uid = `, uid);
+                if (debug) {
+                    console.log(`iconUid = `, uid);
+                    console.log(`droppedUid = `, uid);
+                    console.log(`uid = `, uid);
+                }
                 e.effectAllowed = `move`;
                 e.dataTransfer.setData("text/plain", uid);
             },
@@ -1222,7 +1224,7 @@ OTC_F9_FV.Modules.modulesLoader = OTC_F9_FV.Modules.modulesLoader ||(
                 layoutCSS(uid, div);
                 let module_exist_checker = ``;
                 if (typeof(uid) === "string" && uid.length < 13) {
-                    // "otcperfast13".length; // 12 => 13
+                    // "bondratefast13".length; // 12 => 13
                     module_exist_checker = document.querySelector(`[data-div-module-uid="div-module-${uid}"]`)
                 }else{
                     module_exist_checker = null;

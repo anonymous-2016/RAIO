@@ -42,48 +42,92 @@ npm run page
 
 
 
-## API
+
+http://10.1.5.202/bonds/index.html?skin=white#2018-01-25
+
+write & read hash
+
+listener hash ???
+
+# hashchange
 
 
-最新交易数据
-公司简介
+listener javascript hash change
 
-大事提醒
-公司新闻
-研究报告
-公司公告
+https://stackoverflow.com/questions/680785/on-window-location-hash-change
 
-最新财务数据
-
-    业绩预告（报告期2015-12-31，披露日期2016-02-22）
-    业绩快报（报告期2015-12-31，披露日期2016-02-22）
-    财务数据摘要（报告期2015-06-30）
-
-公司表现（所属三板管理型行业二级：） 同业数据
-
-市场表现 公司规模 公司业绩 公司估值
-
-主营业务（截止2015-06-30）
-
-按产品 按项目
-
-产品及服务营业收入(元)营业成本(元)营业收入占比(%)
+https://html.spec.whatwg.org/multipage/history.html#history-traversal
 
 
-管理层概况与持股(截止2015-06-30)
 
-高管离职信息
+> session history & hashchange event
 
-股本结构
-
-股本股东
-
-限售解禁安排
-
-十大股东（截止2015-06-30）
+https://html.spec.whatwg.org/multipage/indices.html#event-hashchange
 
 
-股东户数（截止2015-06-30）
+
+https://stackoverflow.com/questions/6390341/how-to-detect-url-change-in-javascript
+
+https://stackoverflow.com/questions/680785/on-window-location-hash-change
+
+https://github.com/mtrpcic/pathjs
+
+```js
+
+// store url on load
+var currentPage = window.location.href;
+
+// listen for changes
+setInterval(function()
+{
+    if (currentPage != window.location.href)
+    {
+        // page has changed, set new page as 'current'
+        currentPage = window.location.href;
+
+        // do your thing...
+    }
+}, 500);
+
+```
+
+https://stackoverflow.com/questions/34999976/detect-changes-on-the-url
+
+https://www.w3schools.com/js/js_htmldom_eventlistener.asp
+
+https://www.w3schools.com/jsref/event_onhashchange.asp
+
+# History API 
+
+https://stackoverflow.com/questions/3870057/how-can-i-update-window-location-hash-without-jumping-the-document
+
+http://lea.verou.me/2011/05/change-url-hash-without-page-jump/
+
+https://www.w3.org/TR/html5/browsers.html#session-history-and-navigation
+
+https://html.spec.whatwg.org/multipage/history.html#the-history-interface:event-hashchange
+
+
+
+```js
+
+if(history.pushState) {
+    history.pushState(null, null, '#myhash');
+}
+else {
+    location.hash = '#myhash';
+}
+
+```
+
+https://css-tricks.com/hash-tag-links-padding/
+http://nicolasgallagher.com/jump-links-and-viewport-positioning/
+
+
+
+
+write global hash
+
 
 
 # modal
@@ -580,7 +624,6 @@ $ browser-sync start --server --files "./*.*"
 
 ```
 
-# https://cdn.xgqfrms.xyz/index.html?gilcode=000001.SZ&market=4609&sid=hs
 
 
 

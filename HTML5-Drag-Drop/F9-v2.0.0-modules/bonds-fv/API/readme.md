@@ -36,7 +36,8 @@ Shibor shibor-interbank-dismantle-borrowing-interest-rates
 
 地方政府债AAA收益率(中债) local-governments-debt-aaa-profitability(chinese-debt)
 
-央票收益率(中债) central-bills--profitability(chinese-debt)
+央票收益率(中债) central-bills-profitability(chinese-debt)
+
 
 
 

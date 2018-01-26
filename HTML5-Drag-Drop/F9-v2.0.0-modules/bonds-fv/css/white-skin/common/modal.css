@@ -1041,3 +1041,8 @@ button.close {
 #rdxwTable {
     overflow-y: scroll;
 }
+
+.active {
+    color: #fff;
+    background: #3385ff;
+}

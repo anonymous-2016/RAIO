@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>onhashchange()</title>
+</head>
+
+<body onhashchange="myFunction()">
+    <section>
+        <p>This example demonstrates how to assign an "onhashchange" event to a body element.</p>
+        <p>Click the button to change the anchor part of the current URL to #part5</p>
+        <button onclick="changePart()">Try it</button>
+        <p id="demo"></p>
+    </section>
+    <!-- js -->
+    <script>
+        // Using the location.hash property to change the anchor part
+        function changePart() {
+            location.hash = "part5";
+            var x = location.hash;
+            document.getElementById("demo").innerHTML = "The anchor part is now: " + x;
+        }
+        // Alert some text if there has been changes to the anchor part
+        function myFunction() {
+            alert("The anchor part has changed!");
+        }
+    </script>
+</body>
+
+</html>
