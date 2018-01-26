@@ -90,6 +90,7 @@
     box-sizing: border-box;
     /* text-align: right; */
     text-align: center;
+    background: #25292e;
 }
 
 [data-table-body="otc-table-body-transactions-leaderboard-protocol"]>tr:nth-of-type(1) {

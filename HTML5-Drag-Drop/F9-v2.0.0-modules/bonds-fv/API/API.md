@@ -37,13 +37,61 @@ http://222.73.146.143/stock/f9/fastview/index.html?gilcode=600000.SH&skin=black
 
 
 
+Compare：--比较日标志
+"0:前一交易日",
+"1:上周",
+"2:自定义"
+CompareDate：--比较日，（比较日标志=2时有效，不为2的时候可传可不传）
+
+
+http://10.1.5.202/webservice/fastview/bond/rate?{}
+// {}
+
+http://10.1.5.202/webservice/fastview/bond/rate?{"modelid":"bondratefast01"}
+// {}
+
+
+
+
+http://10.1.5.202/webservice/fastview/bond/rate?{"ModelId":"bondratefast01"}
+
+http://10.1.5.202/webservice/fastview/bond/rate?{"ModelId":"bondratefast01","Compare":""}
+http://10.1.5.202/webservice/fastview/bond/rate?{"ModelId":"bondratefast01", "CompareDate":""}
+http://10.1.5.202/webservice/fastview/bond/rate?{"ModelId":"bondratefast01","Compare":"","CompareDate":""}
+
+
+http://10.1.5.202/webservice/fastview/bond/rate?{"ModelId":"bondratefast01","Compare":"0","CompareDate":""}
+http://10.1.5.202/webservice/fastview/bond/rate?{"ModelId":"bondratefast01","Compare":"1","CompareDate":""}
+http://10.1.5.202/webservice/fastview/bond/rate?{"ModelId":"bondratefast01","Compare":"2","CompareDate":"2018-01-25"}
+
+
+
+
+
+
+
 # emmet
+
+
+```sh
 
 div.0$*16
 
 $touch 01.json 02.json 03.json 04.json 05.json 06.json 07.json 08.json 09.json
 $touch 10.json 11.json 12.json 13.json 14.json 15.json 16.json
 
+
+
+$touch repurchase-interest-rates.js repurchase-interest-rates.html repurchase-interest-rates.css
+$touch .html .css .js
+$touch .html .css .js
+$touch .html .css .js
+$touch .html .css .js
+$touch .html .css .js
+
+
+
+```
 
 # API
 
@@ -121,405 +169,312 @@ DCM debt-capital-market-pricing-central-hub
     bondratefast15  七日回购移动平均利率
     bondratefast16  票据直贴/转贴利率
 
-  Compare：--比较日标志
-    "0:前一交易日",
-    "1:上周",
-    "2:自定义"
-  CompareDate：--比较日，（比较日标志=2时有效，不为2的时候可传可不传）
+Compare：--比较日标志
+"0:前一交易日",
+"1:上周",
+"2:自定义"
+CompareDate：--比较日，（比较日标志=2时有效，不为2的时候可传可不传）
+
+
+```js
+
+json = {
+    "bondratefast01": {
+        "name": "回购利率",
+        "date": "时间",
+        "yzy": {
+            // "银质押"
+            "pz": "品种",
+            "jqsp": "加权/收盘",
+            "bjr": "比较日",
+            "bp": "BP",
+            "cjl": "成交量(亿)",
+            "lz": "量增",
+        },
+        "hzy": {
+            // "沪质押"
+            "pz": "品种",
+            "jqsp": "加权/收盘",
+            "bjr": "比较日",
+            "bp": "BP",
+            "cjl": "成交量(亿)",
+            "lz": "量增",
+        },
+    },
+    "bondratefast02": {
+        "name": "拆借利率(Chibor & Shibor),
+        "date": "时间",
+        "yzy": {
+            // "中拆借"
+            "pz": "品种",
+            "jqsp": "加权/收盘",
+            "bjr": "比较日",
+            "bp": "BP",
+            "cjl": "成交量(亿)",
+            "lz": "量增",
+        },
+        "hzy": {
+            // "沪拆借"
+            "pz": "品种",
+            "jqsp": "加权/收盘",
+            "bjr": "比较日",
+            "bp": "BP",
+            "cjl": "成交量(亿)",
+            "lz": "量增",
+        },
+    },
+    "bondratefast11": {
+        "name": "DCM定价中枢",
+        "zxr": "最新日",
+        "bjr": "比较日",
+        "datas": [
+            {
+                "title": "标题",
+                "y1zx": "Y1最新",
+                "y1bjr": "Y1比较日",
+                "y1zd": "Y1涨跌",
+                "y3zx": "Y3最新",
+                "y3bjr": "Y3比较日",
+                "y3zd": "Y3涨跌",
+                "y5zx": "Y5最新",
+                "y5bjr": "Y5比较日",
+                "y5zd": "Y5涨跌",
+                "y7zx": "Y7最新",
+                "y7bjr": "Y7比较日",
+                "y7zd": "Y7涨跌"
+            }
+        ],
+    },
+    "bondratefast12": {
+        "name": "Shibor",
+        // "": "日期",
+        "Array": [
+            {
+                "pz": "品种",
+                "rq": "日期",
+                "zx": "最新",
+                "rjz5": "5日均值",
+                "rjz10": "10日均值",
+                "rjz20": "20日均值"
+            },
+        ],
+    },
+    "bondratefast13": {
+        "name": "央行基准利率",
+        // "没有日期": "日期",
+        "hq": "活期",// 存款利率
+        "m3": "3M",
+        "m6": "6M",
+        "y1": "1Y",
+        "y2": "2Y",
+        "y3": "3Y",
+        "y5": "5Y",
+        "y5ysG": "5Y以上(公积金)",// 贷款利率
+        "y5yxG": "5Y以下(公积金)",
+        "m6yn": "6M以内",
+        "m6y1": "6M-1Y",
+        "y1y3": "1Y-3Y",
+        "y3y5": "3Y-5Y",
+        "y5ys": "5Y以上",
+        "ztxll": "再贴现利率",// 再贷款利率
+        "d20": "20D",
+        "m3Z": "3M",
+        "m6Z": "6M",
+        "y1Z": "1Y",
+    },
+    "bondratefast14": {
+        "name": "回购定盘利率",
+        "rq": "日期",
+        "fr1": "FR001",
+        "fr7": "FR007",
+        "fr14": "FR014",
+        "fdr1": "FDR001",
+        "fdr7": "FDR007",
+        "fdr14": "FDR014",
+    },
+    "bondratefast15": {
+        "name": "七日回购移动平均利率",
+        "rq": "日期",
+        "b0": "B0",
+        "b1w": "指数平均值-B1W",// 指数平均值
+        "b2w": "3.3518",
+        "b3w": "3.2722",
+        "b1m": "3.4107",
+        "b2m": "3.4284",
+        "b3m": "3.4452",
+        "b4m": "3.4564",
+        "b5m": "3.4660",
+        "b6m": "3.4729",
+        "b7m": "3.4747",
+        "b8m": "3.4702",
+        "b9m": "3.4484",
+        "b10m": "3.4207",
+        "b11m": "3.4301",
+        "b12m": "3.4072",
+        "b_1w": "算术平均值-B1W",// 算数平均值
+        "b_2w": "3.3861",
+        "b_3w": "3.2301",
+        "b_1m": "3.6010",
+        "b_2m": "3.4883",
+        "b_3m": "3.4710",
+        "b_4m": "3.4509",
+        "b_5m": "3.4524",
+        "b_6m": "3.4615",
+        "b_7m": "3.4480",
+        "b_8m": "3.4430",
+        "b_9m": "3.4162",
+        "b_10m": "3.4207",
+        "b_11m": "3.4301",
+        "b_12m": "3.4072",
+    },
+    "bondratefast16": {
+        "name": "票据直贴/转贴利率",
+        // "": "日期",
+        "Array": [
+            {
+                "rq": "日期",
+                "llmc": "利率名称",
+                "ll": "利率(月息)(‰)",
+            }
+        ]
+    },
+}
+
+
+```
+
+
+
+```js
+
+
+{
+    "bondratefast03": {
+        "name": "国债收益率",
+        //  "rq": "日期",
+        "Array": [
+            {
+                "name": "标题",
+                "y1": "1Y",
+                "y3": "3Y",
+                "y5": "5Y",
+                "y7": "7Y",
+                "y10": "10Y",
+                "rq": "日期"
+            },
+        ],
+    },
+    "bondratefast04": {
+        "name": "企债AAA收益率",
+        //  "rq": "日期",
+        "Array": [
+            {
+                "name": "标题",
+                "y1": "1Y",
+                "y3": "3Y",
+                "y5": "5Y",
+                "y7": "7Y",
+                "y10": "10Y",
+                "rq": "日期"
+            },
+        ],
+    },
+    "bondratefast05": {
+        "name": "国开政策性金融债收益率",
+        //  "rq": "日期",
+        "Array": [
+            {
+                "name": "标题",
+                "y1": "1Y",
+                "y3": "3Y",
+                "y5": "5Y",
+                "y7": "7Y",
+                "y10": "10Y",
+                "rq": "日期"
+            },
+        ],
+    },
+    "bondratefast06": {
+        "name": "商业银行AAA收益率",
+        //  "rq": "日期",
+        "Array": [
+            {
+                "name": "标题",
+                "y1": "1Y",
+                "y3": "3Y",
+                "y5": "5Y",
+                "y7": "7Y",
+                "y10": "10Y",
+                "rq": "日期"
+            },
+        ],
+    },
+    "bondratefast07": {
+        "name": "城投债AAA收益率",
+        //  "rq": "日期",
+        "Array": [
+            {
+                "name": "标题",
+                "y1": "1Y",
+                "y3": "3Y",
+                "y5": "5Y",
+                "y7": "7Y",
+                "y10": "10Y",
+                "rq": "日期"
+            },
+        ],
+    },
+    "bondratefast08": {
+        "name": "地方政府债AAA收益率",
+        //  "rq": "日期",
+        "Array": [
+            {
+                "name": "标题",
+                "y1": "1Y",
+                "y3": "3Y",
+                "y5": "5Y",
+                "y7": "7Y",
+                "y10": "10Y",
+                "rq": "日期"
+            },
+        ],
+    },
+    "bondratefast09": {
+        "name": "中短期票据AAA收益率",
+        //  "rq": "日期",
+        "Array": [
+            {
+                "name": "标题",
+                "m3": "3M",
+                "m6": "6M",
+                "y1": "1Y",
+                "y3": "3Y",
+                "y5": "5Y",
+                "y7": "7Y",
+                "rq": "日期",
+            },
+        ],
+    },
+    "bondratefast10": {
+        "name": "央票收益率",
+        //  "rq": "日期",
+        "Array": [
+            {
+                "name": "标题",
+                "m3": "3M",
+                "m6": "6M",
+                "y1": "1Y",
+                "y3": "3Y",
+                "y5": "5Y",
+                "y7": "7Y",
+                "rq": "日期"
+            },
+        ],
+    },
+}
+
+```
 
 
-关于节点模块：->
-bondratefast01：
-	/**
-	 * 右上角时间
-	 */
-	private String date;
-	/**
-	 * 银质押
-	 */
-	private List<BuyBackRateDetail> yzy;
-	/**
-	 * 沪质押
-	 */
-	private List<BuyBackRateDetail> hzy;
-bondratefast01的yzy和hzy结构:
-    @JsonPropertyDescription("品种")
-    private String pz;
 
-    @JsonPropertyDescription("加权收盘")
-    private double jqsp ;
 
-    @JsonPropertyDescription("比较日")
-    private double bjr ;
-
-    @JsonPropertyDescription("BP")
-    private double bp ;
-
-    @JsonPropertyDescription("成交量")
-    private String cjl ;
-
-    @JsonPropertyDescription("量增")
-    private String lz ;
-
-
-bondratefast02：
-	/**
-	 * 右上角时间
-	 */
-	private String date;
-	/**
-	 * 银质押
-	 */
-	private List<BuyBackRateDetail> ZCJ;
-	/**
-	 * 沪质押
-	 */
-	private List<BuyBackRateDetail> hCJ;
-bondratefast02的ZCJ和hCJ结构:
-    @JsonPropertyDescription("品种")
-    private String pz;
-
-    @JsonPropertyDescription("加权收盘")
-    private double jqsp ;
-
-    @JsonPropertyDescription("比较日")
-    private double bjr ;
-
-    @JsonPropertyDescription("BP")
-    private double bp ;
-
-    @JsonPropertyDescription("成交量")
-    private String cjl ;
-
-    @JsonPropertyDescription("量增")
-    private String lz ;
-
-bondratefast03：
-    @JsonPropertyDescription("利率项")
-    private String name;
-
-    @JsonPropertyDescription("y1")
-    private double y1 ;
-
-    @JsonPropertyDescription("y3")
-    private double y3 ;
-
-    @JsonPropertyDescription("y5")
-    private double y5 ;
-
-    @JsonPropertyDescription("y7")
-    private double y7 ;
-
-    @JsonPropertyDescription("y10")
-    private double y10 ;
-
-    @JsonPropertyDescription("日期")
-    private String rq ;
-
-bondratefast04：
-    与bondratefast03一样;
-
-
-bondratefast05：
-    与bondratefast03一样;
-
-
-bondratefast06：
-    与bondratefast03一样;
-
-
-bondratefast07：
-    与bondratefast03一样;
-
-
-bondratefast08：
-    与bondratefast03一样;
-
-bondratefast09：
-    @JsonPropertyDescription("利率项")
-    private String name;
-
-    @JsonPropertyDescription("M3")
-    private double m3 ;
-
-    @JsonPropertyDescription("M6")
-    private double m6 ;
-
-    @JsonPropertyDescription("y1")
-    private double y1 ;
-
-    @JsonPropertyDescription("y3")
-    private double y3 ;
-
-    @JsonPropertyDescription("y5")
-    private double y5 ;
-
-    @JsonPropertyDescription("y7")
-    private double y7 ;
-
-    @JsonPropertyDescription("日期")
-    private String rq ;
-
-bondratefast10：
-    与bondratefast09一样;
-
-bondratefast11：
-	/**
-	 * 最新日
-	 */
-	private String zxr;
-	
-	/**
-	 * 比较日
-	 */
-	private String bjr;
-	
-	/**
-	 * 表格数据
-	 */
-	private List<DCMPriceCenterData> datas;
-bondratefast11的datas的结构：
-    @JsonPropertyDescription("title")
-    private String title;
-
-    @JsonPropertyDescription("Y1最新")
-    private double y1zx ;
-
-    @JsonPropertyDescription("Y1比较日")
-    private double y1bjr ;
-
-    @JsonPropertyDescription("Y1涨跌")
-    private double y1zd ;
-
-    @JsonPropertyDescription("Y3最新")
-    private double y3zx ;
-
-    @JsonPropertyDescription("Y3比较日")
-    private double y3bjr ;
-
-    @JsonPropertyDescription("Y3涨跌")
-    private double y3zd ;
-
-    @JsonPropertyDescription("Y5最新")
-    private double y5zx ;
-
-    @JsonPropertyDescription("Y5比较日")
-    private double y5bjr ;
-
-    @JsonPropertyDescription("Y5涨跌")
-    private double y5zd ;
-
-    @JsonPropertyDescription("Y7最新")
-    private double y7zx ;
-
-    @JsonPropertyDescription("Y7比较日")
-    private double y7bjr ;
-
-    @JsonPropertyDescription("Y7涨跌")
-    private double y7zd ;
-
-bondratefast12：
-    @JsonPropertyDescription("品种")
-    private String pz;
-
-    @JsonPropertyDescription("日期")
-    private String rq ;
-
-    @JsonPropertyDescription("最新")
-    private String zx ;
-
-    @JsonPropertyDescription("五日均值")
-    private String rjz5 ;
-
-    @JsonPropertyDescription("十日均值")
-    private String rjz10 ;
-
-    @JsonPropertyDescription("二十日均值")
-    private String rjz20 ;
-
-bondratefast13：
-    @JsonPropertyDescription("活期")
-    private String hq;
-
-    @JsonPropertyDescription("3M")
-    private String m3;
-
-    @JsonPropertyDescription("6M")
-    private String m6;
-
-    @JsonPropertyDescription("1Y")
-    private String y1;
-
-    @JsonPropertyDescription("2Y")
-    private String y2;
-
-    @JsonPropertyDescription("3Y")
-    private String y3;
-
-    @JsonPropertyDescription("5Y")
-    private String y5;
-
-    @JsonPropertyDescription("5Y以上(公积金)")
-    private String y5ysG;
-
-    @JsonPropertyDescription("5Y以下(公积金)")
-    private String y5yxG;
-
-    @JsonPropertyDescription("6M以内")
-    private String m6yn;
-
-    @JsonPropertyDescription("6M-1Y")
-    private String m6y1;
-
-    @JsonPropertyDescription("1Y-3Y")
-    private String y1y3;
-
-    @JsonPropertyDescription("3Y-5Y")
-    private String y3y5;
-
-    @JsonPropertyDescription("5Y以上")
-    private String y5ys;
-
-    @JsonPropertyDescription("再贴现利率")
-    private String ztxll;
-
-    @JsonPropertyDescription("20D")
-    private String d20;
-
-    @JsonPropertyDescription("3M1")
-    private String m3Z;
-
-    @JsonPropertyDescription("6M1")
-    private String m6Z;
-
-    @JsonPropertyDescription("1Y1")
-    private String y1Z;
-
-bondratefast14：
-    @JsonPropertyDescription("日期")
-    private String rq;
-
-    @JsonPropertyDescription("FR001")
-    private String fr1;
-
-    @JsonPropertyDescription("FR007")
-    private String fr7;
-
-    @JsonPropertyDescription("FR014")
-    private String fr14;
-
-    @JsonPropertyDescription("FDR001")
-    private String fdr1="--";
-
-    @JsonPropertyDescription("FDR007")
-    private String fdr7="--";
-
-    @JsonPropertyDescription("FDR014")
-    private String fdr14="--";
-
-bondratefast15：
-    @JsonPropertyDescription("日期")
-    private String rq;
-
-    @JsonPropertyDescription("B0")
-    private String b0;
-
-    @JsonPropertyDescription("指数平均值-B1W")
-    private String b1w;
-
-    @JsonPropertyDescription("指数平均值-B2W")
-    private String b2w;
-
-    @JsonPropertyDescription("指数平均值-B3W")
-    private String b3w;
-
-    @JsonPropertyDescription("指数平均值-B1M")
-    private String b1m;
-
-    @JsonPropertyDescription("指数平均值-B2M")
-    private String b2m;
-
-    @JsonPropertyDescription("指数平均值-B3M")
-    private String b3m;
-
-    @JsonPropertyDescription("指数平均值-B4M")
-    private String b4m;
-
-    @JsonPropertyDescription("指数平均值-B5M")
-    private String b5m;
-
-    @JsonPropertyDescription("指数平均值-B6M")
-    private String b6m;
-
-    @JsonPropertyDescription("指数平均值-B7M")
-    private String b7m;
-
-    @JsonPropertyDescription("指数平均值-B8M")
-    private String b8m;
-
-    @JsonPropertyDescription("指数平均值-B9M")
-    private String b9m;
-
-    @JsonPropertyDescription("指数平均值-B10M")
-    private String b10m;
-
-    @JsonPropertyDescription("指数平均值-B11M")
-    private String b11m;
-
-    @JsonPropertyDescription("指数平均值-B12M")
-    private String b12m;
-
-    @JsonPropertyDescription("算术平均值-B1W")
-    private String b_1w;
-
-    @JsonPropertyDescription("算术平均值-B2W")
-    private String b_2w;
-
-    @JsonPropertyDescription("算术平均值-B3W")
-    private String b_3w;
-
-    @JsonPropertyDescription("算术平均值-B1M")
-    private String b_1m;
-
-    @JsonPropertyDescription("算术平均值-B2M")
-    private String b_2m;
-
-    @JsonPropertyDescription("算术平均值-B3M")
-    private String b_3m;
-
-    @JsonPropertyDescription("算术平均值-B4M")
-    private String b_4m;
-
-    @JsonPropertyDescription("算术平均值-B5M")
-    private String b_5m;
-
-    @JsonPropertyDescription("算术平均值-B6M")
-    private String b_6m;
-
-    @JsonPropertyDescription("算术平均值-B7M")
-    private String b_7m;
-
-    @JsonPropertyDescription("算术平均值-B8M")
-    private String b_8m;
-
-    @JsonPropertyDescription("算术平均值-B9M")
-    private String b_9m;
-
-    @JsonPropertyDescription("算术平均值-B10M")
-    private String b_10m;
-
-    @JsonPropertyDescription("算术平均值-B11M")
-    private String b_11m;
-
-    @JsonPropertyDescription("算术平均值-B12M")
-    private String b_12m;
-
-bondratefast16：
-    @JsonPropertyDescription("日期")
-    private String rq ;
-
-    @JsonPropertyDescription("利率名称")
-    private String llmc;
-
-    @JsonPropertyDescription("利率")
-    private String ll;

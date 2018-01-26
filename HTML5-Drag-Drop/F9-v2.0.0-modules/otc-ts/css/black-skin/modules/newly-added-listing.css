@@ -152,6 +152,7 @@ span[data-otc-th-title="securities-code-newly-added-listing"]::after {
 [data-table-body="otc-table-body-newly-added-listing"]>tr:nth-of-type(1) {
     /* text-align: left; */
     text-align: center;
+    background: #25292e;
 }
 
 
@@ -201,6 +202,7 @@ td[data-td="otc-cols-span-NAL"] {
 [data-table-body="otc-table-body-newly-added-listing"]>tr {
     max-width: 540px;
     overflow-x: hidden;
+    background: #25292e;
 }
 
 

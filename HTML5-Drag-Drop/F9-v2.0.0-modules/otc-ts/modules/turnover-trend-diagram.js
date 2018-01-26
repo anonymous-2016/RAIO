@@ -403,8 +403,7 @@ OTC_TS_FV.Modules.turnoverTrendMakeMarketDiagram.drawHC = OTC_TS_FV.Modules.turn
                 // position: https://api.highcharts.com/highstock/credits.style,
                 // style: https://api.highcharts.com/highstock/credits.style
             },
-            colors: ['#ff1919', '#ffff66', '#92d050'],
-            // colors: ['#ff1919', '#ffff66', '#92d050'],
+            colors: ['#ff1919', '#33ff77', '#92d050'],// series color ???
             // colors: [...colors],
             yAxis: [
                 // yAxis 0
@@ -544,7 +543,7 @@ OTC_TS_FV.Modules.turnoverTrendMakeMarketDiagram.drawHC = OTC_TS_FV.Modules.turn
                     type: "area",//"spline"
                     yAxis: 1,
                     // color: "grey",
-                    color: "#777",
+                    color: "#3f3",
                     name: "成交量(亿股)",
                     data: turnover_number,
                     connectNulls: true,// OK
@@ -710,7 +709,7 @@ OTC_TS_FV.Modules.turnoverTrendProtocolDiagram.drawHC = OTC_TS_FV.Modules.turnov
                 // position: https://api.highcharts.com/highstock/credits.style,
                 // style: https://api.highcharts.com/highstock/credits.style
             },
-            colors: ['#ff1919', '#ffff66', '#92d050'],
+            colors: ['#ff1919', '#33ff66', '#92d050'],
             // colors: ['#ff1919', '#ffff66', '#92d050'],
             // colors: [...colors],
             yAxis: [
@@ -851,7 +850,9 @@ OTC_TS_FV.Modules.turnoverTrendProtocolDiagram.drawHC = OTC_TS_FV.Modules.turnov
                     type: "area",
                     yAxis: 1,
                     // color: "grey",//skyblue
-                    color: "#777",
+                    // color: "#3f3",
+                    color: "rgb(25, 255, 25)",
+                    // color: "rgba(25, 255, 25, 0.5)",
                     name: "成交量(亿股)",
                     data: turnover_number,
                     connectNulls: true,// OK

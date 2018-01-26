@@ -185,6 +185,7 @@ span[data-otc-th-title="securities-code-newly-added-protocol"]::after {
 [data-table-body="otc-table-body-newly-added-protocol"]>tr:nth-of-type(1) {
     /* text-align: left; */
     text-align: center;
+    background: #25292e;
 }
 
 
@@ -234,6 +235,7 @@ td[data-td="otc-cols-span-NAP"] {
 [data-table-body="otc-table-body-newly-added-protocol"]>tr {
     max-width: 540px;
     overflow-x: hidden;
+    background: #25292e;
 }
 
 
