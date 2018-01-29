@@ -200,6 +200,6 @@ https://davidwalsh.name/node-environment-variables
 
 ![image](https://user-images.githubusercontent.com/29531779/35491863-2fcc796c-04e4-11e8-997f-dbb56bb2f37d.png)
 
-
+process.env.NODE_ENV
 
 */

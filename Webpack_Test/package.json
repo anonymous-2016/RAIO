@@ -8,6 +8,7 @@
         "app": "webpack -p",
         "dev & prod": "??? webpack --config webpack.prod.js ???",
         "hot_modules_loader": "??? webpack hot HMR ???",
+        "prod": "webpack -p",
         "dev": "webpack -w",
         "test": "echo \"Error: no test specified\" && exit 1",
         "linux-bash-shell": "rm -f ??? webpack & clear all dist ???",

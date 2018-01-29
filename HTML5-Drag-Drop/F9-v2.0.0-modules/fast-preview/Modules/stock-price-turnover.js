@@ -461,10 +461,12 @@ STOCK_F9_FV.Modules.SPTurnover.SPTdrawHS = STOCK_F9_FV.Modules.SPTurnover.SPTdra
                     },
                     // height: '60%',
                     height: '70%',
-                    lineWidth: 2,
+                    // lineWidth: 2,
+                    lineWidth: 1,
                     plotLines: [{
                         value: 0,
-                        width: 2,
+                        width: 1,
+                        // width: 2,
                         color: 'silver'
                     }],
                     // min: 0,
@@ -482,7 +484,8 @@ STOCK_F9_FV.Modules.SPTurnover.SPTdrawHS = STOCK_F9_FV.Modules.SPTurnover.SPTdra
                     // height: '60%',
                     height: '70%',
                     offset: 0,
-                    lineWidth: 2,
+                    lineWidth: 1,
+                    // lineWidth: 2,
                     // min: 0,
                 },
                 {
@@ -498,7 +501,8 @@ STOCK_F9_FV.Modules.SPTurnover.SPTdrawHS = STOCK_F9_FV.Modules.SPTurnover.SPTdra
                     top: '72.5%',
                     height: '27.5%',
                     offset: 0,
-                    lineWidth: 2,
+                    // lineWidth: 2,
+                    lineWidth: 1,
                     // opposite: false,// default true
                 },
                 // {
@@ -771,7 +775,8 @@ STOCK_F9_FV.Modules.SPTurnover.init = STOCK_F9_FV.Modules.SPTurnover.init || (
 var STOCK_IP = window.STOCK_IP || `http://10.1.5.202`,
     STOCK_Paths = window.STOCK_Paths || `/webservice/fastview/stock`,
     STOCK_SecCode = window.STOCK_SecCode || `600570.SH`,
-    STOCK_Skin = window.STOCK_Skin || `white`;
+    STOCK_Skin = window.STOCK_Skin || `black`;
+    // STOCK_Skin = window.STOCK_Skin || `white`;
 
 
 STOCK_F9_FV.Modules.SPTurnover.init({
