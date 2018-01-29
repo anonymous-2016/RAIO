@@ -3,15 +3,17 @@
 /**
  * @Created by xgqfrms on 2016/1/26.
  * @version 1.0.0 created
- * @description F9-v2.0.0-modules\webpack-es6-to-es5.js
+ * @description Using Next Generation Vanilla JS & JS Modules today with Webpack 3 & Babel!
  *
  * @license MIT
- * @copyright xgqfrms 2016-forever || 2017-present
+ * @copyright xgqfrms 2016-forever || 2018-present
+ * @update 2018.1.29
  *
  */
 
 // import { export } from "module-name";
 
+/* "module": "webpack.config.mjs", ??? */
 // import path from "path";
 // import webpack from "webpack";
 // import UglifyJSPlugin from "uglifyjs-webpack-plugin";
@@ -21,68 +23,65 @@
 const path = require('path');
 const webpack = require('webpack'); //to access built-in plugins
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');// template
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+const ExtractTextPlugin = require("extract-text-webpack-plugin");// extract css files
 
-const BASE_URI = {
-    WEB: './src/modules/',
-    ES5: './src/es5/',
-    F9FV: `./src/F9_FV`,
-    // NTB: `./F9-three-board/NewThreeBoardThematicStatistics`
-};
-
-
+// set process.env.NODE_ENV && npm run dev
 if (process.env.NODE_ENV !== 'production') {
     console.log('😃, Looks like we are in development mode!');
 }else{
     console.log('Tada, 🎉, we are in production mode!');
 }
 
-const NTB_ZT = [
-    "newly-added-listing",
-    "newly-added-protocol",
-    "transactions-leaderboard",
-    "additional-issues-preplan",
-    "additional-issues-implementation",
-    "dividend-matters-preplan",
-    "dividend-matters-implementation",
-    "listing-situation",
-    "transaction-overview",
-    "turnover-trend-make-market-diagram",
-    // "turnover-trend-protocol-diagram",
-    // "new-sb-thematic-statistics-news",
-    // "new-sb-thematic-statistics-bulletin",
+// const extractSCSS = new ExtractTextPlugin('stylesheets/[name]-one.scss');
+const extractSCSS = new ExtractTextPlugin({
+    filename: (getPath) => {
+        // relative path
+        return getPath('css/[name].[hash:16].css');
+        // js/../css & bug ???
+        // return getPath('../css/[name].css');
+        // return getPath('../css/[name].[hash:16].css').replace('js/../css', './css');
+        // return getPath('/css/[name].[hash:16].css').replace('/css', '/css');
+        // return getPath('../css/[name].css').replace('js/css', 'css');// relative path
+    },
+    // allChunks: true,
+});
+const extractSASS = new ExtractTextPlugin('css/[name].css');
+
+const BASE_URI = {
+    MODULES: './src/modules/',
+    ES5: './src/es5/',
+    APP: './src/index.js',
+    NIM: './src/modules/no-import-module',
+};
+
+
+
+const MODULES_OBJ = [
+    "module01",
+    "module02",
+    // "module03",
 ];
 
 let entry_obj = {};
-NTB_ZT.forEach(
+MODULES_OBJ.forEach(
     (item, i) => {
-        entry_obj[item] = `${BASE_URI.NTB}/${item}`;
+        entry_obj[item] = `${BASE_URI.MODULES}/${item}`;
     }
 );
-// no return
+
+entry_obj["index"] = `${BASE_URI.APP}`;
+entry_obj["no-import-module"] = `${BASE_URI.NIM}`;
 
 
 module.exports = {
-    // entry: Object.assign({},entry_obj),
-    // js map name & push to entry ???
-    // node read files name & /**/*.js
-    entry: {
-        // 输入文件 public/src && no import in app, need to add as an entry
-        app: './src/index.js',
-        // module1: BASE_URI.WEB + '/module1',
-        // module2: BASE_URI.WEB + '/module2',
-        nim: BASE_URI.WEB + '/no-import-module',
-        // stock_f9: BASE_URI.WEB + '/es5-global-function',
-        news: `${BASE_URI.ES5}/company-news`,
-        // f9fv: `${BASE_URI.F9FV}/turnover-trend-make-market-diagram`,
-        "turnover-trend-make-market-diagram": `${BASE_URI.F9FV}/turnover-trend-make-market-diagram`,
-    },
+    entry: Object.assign({}, entry_obj),
     output: {
-        // 输出文件 public/build
-        path: path.resolve(__dirname, "build/public/"),//主目录
-        filename: '[name].min.js',// ??? hash version
-        // filename: '[name].[hash:16].min.js',// hash version
+        path: path.resolve(__dirname, "build/"),
+        // path: path.resolve(__dirname, "build/js/"),
+        // filename: '[name].min.js',
+        filename: 'js/[name].[hash:16].min.js',// hash version
         // [hash] 和 [chunkhash] 的长度可以使用 [hash:16]（默认为20）来指定。
         // filename: "[chunkhash].bundle.js",
         // publicPath: '/'
@@ -91,62 +90,66 @@ module.exports = {
     },
     resolve: {
         // 自动识别的扩展名
-        extensions: ['.js']
+        extensions: ['.js', '.jsx','.scss', '.sass', '.css'],
     },
     module: {
         // 引用的 loader
         rules: [
             {
-                test: /\.js$/,// test: /\.(js|jsx)$/,
-                exclude: /node_modules/,// exclude: /(node_modules|bower_components)/,
-                // use: 'babel-loader',
-                loader: "babel-loader",
+                test: /\.js$/,
+                // test: /\.(js|jsx)$/,
+                exclude: /node_modules/,
+                // exclude: /(node_modules|bower_components)/,
+                // loader: "babel-loader",
                 // options: {
-                //     // presets: ['@babel/preset-env'],
-                //     // presets: ["es2015"],
-                //     presets: ['preset-env']
-                // }
-                // .babelrc
-                // use: {
-                //     loader: 'babel-loader',
-                //     options: {
-                //         // presets: ['es2015'],
-                //         // presets: ['preset-env'],
-                //         presets: ['env'],
-                //         // plugins: [require('babel-plugin-transform-object-rest-spread')]
-                //     }
-                // }
-            },
-            {
-                test: /\.css$/,// test: /\.(css|scss|sass)$/,
+                //     presets: ['env'],
+                // },
+                // use: 'babel-loader',
                 use: [
                     {
-                        loader: 'style-loader'
-                    },
-                    {
-                        loader: 'css-loader',
+                        loader: "babel-loader",
                         options: {
-                            modules: true,
-                            // localIdentName: '[path][name]__[local]--[hash:base64:5]',
-                            // sourceMap: true,
-                            // minimize: true || {/* CSSNano Options */},
-                            // camelCase: true,
-                            // importLoaders: 1,
-                            // 0 => 无 loader(默认); 1 => postcss-loader; 2 => postcss-loader, sass-loader
-                            // alias: {
-                            //     "../fonts/bootstrap": "bootstrap-sass/assets/fonts/bootstrap"
-                            // },
-                        }
-                    },
-                    {
-                        loader: 'sass-loader',
-                        // options: {
-                        //     includePaths: [
-                        //         path.resolve("./node_modules/bootstrap-sass/assets/stylesheets")
-                        //     ]
-                        // }
+                            presets: ['env'],
+                        },
                     }
-                ]
+                ],
+            },
+            {
+                // test: /\.scss$/,
+                test: /\.(scss|sass)$/,
+                // test: /\.(css|scss|sass)$/,
+                use: ExtractTextPlugin.extract({
+                    fallback: "style-loader",
+                    use: [
+                        {
+                            loader: 'css-loader',
+                            options: {
+                                url: false,
+                                minimize: true,
+                                sourceMap: true,
+                                modules: true,
+                                localIdentName: '[path][name]__[local]--[hash:base64:5]',
+                                // camelCase: true,
+                                // importLoaders: 1,
+                                // // 0 => 无 loader(默认); 1 => postcss-loader; 2 => postcss-loader, sass-loader
+                                // alias: {
+                                //     "../fonts/bootstrap": "bootstrap-sass/assets/fonts/bootstrap"
+                                // },
+                            }
+                        },
+                        {
+                            loader: 'sass-loader',
+                            options: {
+                                sourceMap: true,
+                                // includePaths: [
+                                //     path.resolve("./node_modules/bootstrap-sass/assets/stylesheets")
+                                // ],
+                            }
+                        }
+                    ],
+                    // allChunks: true,
+                    publicPath: "./dist",
+                })
             },
             {
                 test: /\.(png|jpg|gif|svg|eot|ttf|woff|woff2)$/,
@@ -155,23 +158,9 @@ module.exports = {
                     limit: 10000
                 }
             },
-            // {
-            //     test: /\.css$/,
-            //     use: [ 'style-loader', 'css-loader' ],
-            //     // use: [
-            //     //     'to-string-loader',
-            //     //     'css-loader'
-            //     // ],
-            //     // use: [
-            //     //     'handlebars-loader', // handlebars loader expects raw resource string
-            //     //     'extract-loader',
-            //     //     'css-loader'
-            //     // ]
-            // }
-        ]
+        ],
     },
     devtool: 'source-map',
-    // 避免在生产中使用 inline-*** 和 eval-***，因为它们可以增加 bundle 大小，并降低整体性能。
     plugins: [
         new UglifyJSPlugin({
             sourceMap: true,
@@ -204,23 +193,29 @@ module.exports = {
             // },
             // warningsFilter: (src) => true
         }),
-        // new HtmlWebpackPlugin({
-        //     title: 'using ES6 today with webpack3',
-        //     template: './src/index.html'
-        // }),
-        // new CleanWebpackPlugin(['dist']),
-        // new webpack.SourceMapDevToolPlugin({
-        //     filename: '[name].js.map',
-        //     exclude: ['vendor.js']
-        // }),
-        // new webpack.DefinePlugin({
-        //     'process.env': {
-        //         'NODE_ENV': JSON.stringify('production')
-        //         // ??? config('production')/config('development')
-        //     }
-        // }),
-        // new webpack.NamedModulesPlugin(),
-        // new webpack.HotModuleReplacementPlugin(),
-        // new WebpackDevServer(compiler, options)
-    ]
+        extractSCSS,
+        extractSASS,
+        new HtmlWebpackPlugin({
+            title: 'using ES6 today with webpack3 & babel!',
+            // filename: '../index.html',// relative path
+            filename: './index.html',
+            template: './src/index.html',
+            // favicon: "",
+            minify: {
+                // https://github.com/kangax/html-minifier#options-quick-reference
+                minifyCSS: true,
+                minifyJS: true,
+                html5: true,
+                collapseWhitespace: true,
+                removeComments: true,
+                removeEmptyAttributes: true,
+                removeEmptyElements: true,
+                quoteCharacter: true,
+                // useShortDoctype: true,
+                // removeTagWhitespace: true,
+            },
+            hash: true,// all files & path hash
+        }),
+        // new CleanWebpackPlugin(['build']),// rm-rf
+    ],
 };
