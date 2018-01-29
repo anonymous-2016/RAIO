@@ -17,6 +17,18 @@ const webpack = require('webpack'); //to access built-in plugins
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+const ExtractTextPlugin = require("extract-text-webpack-plugin");// extract css files
+
+
+// process.env.NODE_ENV = `production`;
+process.env.NODE_ENV = `development`;
+
+if (process.env.NODE_ENV !== 'production') {
+    console.log('😃, Looks like we are in development mode!');
+}else{
+    console.log('Tada, 🎉, we are in production mode!');
+}
+
 
 require("babel-polyfill");
 // import "babel-polyfill";
@@ -29,15 +41,6 @@ const BASE_URI = {
     // modal: `./modal`,
     // libs: `./libs`,
 };
-
-// process.env.NODE_ENV = `production`;
-process.env.NODE_ENV = `development`;
-
-if (process.env.NODE_ENV !== 'production') {
-    console.log('😃, Looks like we are in development mode!');
-}else{
-    console.log('Tada, 🎉, we are in production mode!');
-}
 
 const OTC_F9 = [
     "newly-added-listing",
