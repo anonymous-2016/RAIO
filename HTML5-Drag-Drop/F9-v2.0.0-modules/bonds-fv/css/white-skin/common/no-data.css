@@ -5,6 +5,24 @@
 
 /* font-family: Simsun, serif; */
 
+[data-none*="no-data-div"] {
+    box-sizing: border-box;
+    width: 100%;
+    background: #4d4d4d;
+}
+
+[data-none="no-data-div-hidden"] {
+    display: none;
+}
+
+[data-none="no-data-div-visible"] {
+    display: block;
+}
+
+[data-none="no-data-p"] {
+    /* no data */
+}
+
 
 /* font-family: "Microsoft YaHei", sans-serif, serif; */
 
