@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>国债收益率(中债)</title>
+    <!-- <link rel="stylesheet" href="../css/white-skin/modules/treasury-bonds-profitability.min.css"> -->
+    <link rel="stylesheet" href="../css/white-skin/common/module.css">
+    <link rel="stylesheet" href="../css/white-skin/common/no-data.css">
+    <link rel="stylesheet" href="./treasury-bonds-profitability.css">
+</head>
+
+<body>
+    <section class="otc-module-box-5">
+        <div class="otc-h5dnd-modules-title-box">
+            <p class="otc-h5dnd-modules-title" data-title="otc-treasury-bonds-profitability-title">
+                主要品种的关键年期利率 (到期)
+                <!-- <span data-link="otc-treasury-bonds-profitability-link">
+                    <a href="#more" data-uid="1112" data-turn-to-uid="node-uid-treasury-bonds-profitability-data">more</a>
+                    <a href="#more" data-uid="1085" data-turn-to-uid="node-uid-treasury-bonds-profitability-data">more</a>
+                </span> -->
+            </p>
+        </div>
+        <!-- table -->
+        <table class="otc-treasury-bonds-profitability-table">
+            <thead class="otc-treasury-bonds-profitability-table-thead">
+                <tr class="otc-treasury-bonds-profitability-table-tr">
+                    <th class="otc-treasury-bonds-profitability-table-th-title" colspan="3">国债收益率(中债)</th>
+                    <th class="otc-treasury-bonds-profitability-table-th-value" colspan="3" data-time="data-otc-TBP"></th>
+                </tr>
+            </thead>
+            <tbody class="otc-treasury-bonds-profitability-table-tbody" data-tbody="otc-treasury-bonds-profitability-table-tbody">
+                <tr class="otc-treasury-bonds-profitability-table-tr">
+                    <td class="otc-treasury-bonds-profitability-table-td-key" data-alias="#TBP"></td>
+                    <td class="otc-treasury-bonds-profitability-table-td-key" data-alias="#TBP">1Y</td>
+                    <td class="otc-treasury-bonds-profitability-table-td-key" data-alias="#TBP">3Y</td>
+                    <td class="otc-treasury-bonds-profitability-table-td-key" data-alias="#TBP">5Y</td>
+                    <td class="otc-treasury-bonds-profitability-table-td-key" data-alias="#TBP">7Y</td>
+                    <td class="otc-treasury-bonds-profitability-table-td-key" data-alias="#TBP">10Y</td>
+                </tr>
+                <tr class="otc-treasury-bonds-profitability-table-tr">
+                    <td class="otc-treasury-bonds-profitability-table-td-key" data-alias="收益率">收益率</td>
+                    <td class="otc-treasury-bonds-profitability-table-td-value" data-value="data-otc-TBP"></td>
+                    <td class="otc-treasury-bonds-profitability-table-td-value" data-value="data-otc-TBP"></td>
+                    <td class="otc-treasury-bonds-profitability-table-td-value" data-value="data-otc-TBP"></td>
+                    <td class="otc-treasury-bonds-profitability-table-td-value" data-value="data-otc-TBP"></td>
+                    <td class="otc-treasury-bonds-profitability-table-td-value" data-value="data-otc-TBP"></td>
+                </tr>
+                <tr class="otc-treasury-bonds-profitability-table-tr">
+                    <td class="otc-treasury-bonds-profitability-table-td-key" data-alias="比较日">比较日</td>
+                    <td class="otc-treasury-bonds-profitability-table-td-value" data-value="data-otc-TBP"></td>
+                    <td class="otc-treasury-bonds-profitability-table-td-value" data-value="data-otc-TBP"></td>
+                    <td class="otc-treasury-bonds-profitability-table-td-value" data-value="data-otc-TBP"></td>
+                    <td class="otc-treasury-bonds-profitability-table-td-value" data-value="data-otc-TBP"></td>
+                    <td class="otc-treasury-bonds-profitability-table-td-value" data-value="data-otc-TBP"></td>
+                </tr>
+                <tr class="otc-treasury-bonds-profitability-table-tr">
+                    <td class="otc-treasury-bonds-profitability-table-td-key" data-alias="BP差值">BP差值</td>
+                    <td class="otc-treasury-bonds-profitability-table-td-value" data-value="data-otc-TBP"></td>
+                    <td class="otc-treasury-bonds-profitability-table-td-value" data-value="data-otc-TBP"></td>
+                    <td class="otc-treasury-bonds-profitability-table-td-value" data-value="data-otc-TBP"></td>
+                    <td class="otc-treasury-bonds-profitability-table-td-value" data-value="data-otc-TBP"></td>
+                    <td class="otc-treasury-bonds-profitability-table-td-value" data-value="data-otc-TBP"></td>
+                </tr>
+            </tbody>
+            <tfoot class="otc-treasury-bonds-profitability-table-tfoot">
+                <tr class="otc-treasury-bonds-profitability-table-tr">
+                    <td class="otc-treasury-bonds-profitability-table-td-value" data-value="data-otc-TBP"></td>
+                </tr>
+            </tfoot>
+        </table>
+        <!-- hc -->
+        <div id="treasury-bonds-profitability-hs-container" data-hs-container="data-treasury-bonds-profitability-container-uid" class="otc-treasury-bonds-profitability-hs otc-treasury-bonds-profitability-hs-container"></div>
+        <!-- no data -->
+        <div data-none="no-data-div-hidden" data-none-uid="otc-treasury-bonds-profitability">
+            <!-- <p data-none="no-data-p">国债收益率(中债)</p> -->
+            <p data-none="no-data-p">
+                <span data-none="no-data-span"></span>
+            </p>
+        </div>
+    </section>
+    <!-- libs -->
+    <script src="../libs/highstock.min.js"></script>
+    <script src="../libs/no-data-to-display.js"></script>
+    <!-- js -->
+    <!-- <script src="../build/js/treasury-bonds-profitability.min.js"></script> -->
+    <script src="./treasury-bonds-profitability.js"></script>
+</body>
+
+</html>

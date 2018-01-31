@@ -100,6 +100,8 @@ STOCK_F9_FV.Modules.SPTurnover = STOCK_F9_FV.Modules.SPTurnover || (
                                 }
                             }
                         }
+                        // not show & 52周Beta
+                        // for (let i = 0; i < small_spans.length -1; i++) {
                         for (let i = 0; i < small_spans.length; i++) {
                             if (isUpTest(small_arr[i]) === true) {
                                 small_spans[i].innerHTML = small_arr[i];
@@ -774,6 +776,7 @@ STOCK_F9_FV.Modules.SPTurnover.init = STOCK_F9_FV.Modules.SPTurnover.init || (
 
 var STOCK_IP = window.STOCK_IP || `http://10.1.5.202`,
     STOCK_Paths = window.STOCK_Paths || `/webservice/fastview/stock`,
+    // STOCK_SecCode = window.STOCK_SecCode || `600590.SH`,
     STOCK_SecCode = window.STOCK_SecCode || `600570.SH`,
     STOCK_Skin = window.STOCK_Skin || `black`;
     // STOCK_Skin = window.STOCK_Skin || `white`;

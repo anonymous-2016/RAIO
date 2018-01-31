@@ -19,8 +19,8 @@ var OTC_F9_FV = OTC_F9_FV || {};
 // sub namespaces
 OTC_F9_FV.Modules = OTC_F9_FV.Modules || {};
 
-// cityInvestmentDebt3AP
-OTC_F9_FV.Modules.cityInvestmentDebt3AP = OTC_F9_FV.Modules.cityInvestmentDebt3AP || (
+// corporateDebt3AP
+OTC_F9_FV.Modules.corporateDebt3AP = OTC_F9_FV.Modules.corporateDebt3AP || (
     (url = ``, tbody_uid = ``, hc_uid = ``, debug = false) => {
         let datas = {};
         fetch(url)
@@ -59,31 +59,26 @@ OTC_F9_FV.Modules.cityInvestmentDebt3AP = OTC_F9_FV.Modules.cityInvestmentDebt3A
                                     values.push(y10);
                                     switch (json[i].name) {
                                         case "收益率":
-                                            yields.push(parseFloat(json[i].y1));
-                                            yields.push(parseFloat(y3));
-                                            yields.push(parseFloat(y5));
-                                            yields.push(parseFloat(y7));
-                                            yields.push(parseFloat(y10));
                                             /* string to number! */
-                                            // yields.push(y1);
-                                            // yields.push(y3);
-                                            // yields.push(y5);
-                                            // yields.push(y7);
-                                            // yields.push(y10);
+                                            yields.push(y1 !== `--` ? parseFloat(y1) : null);
+                                            yields.push(y3 !== `--` ? parseFloat(y3) : null);
+                                            yields.push(y5 !== `--` ? parseFloat(y5) : null);
+                                            yields.push(y7 !== `--` ? parseFloat(y7) : null);
+                                            yields.push(y10 !== `--` ? parseFloat(y10) : null);
                                             break;
                                         case "比较日":
-                                            compare.push(parseFloat(y1));
-                                            compare.push(parseFloat(y3));
-                                            compare.push(parseFloat(y5));
-                                            compare.push(parseFloat(y7));
-                                            compare.push(parseFloat(y10));
+                                            compare.push(y1 !== `--` ? parseFloat(y1) : null);
+                                            compare.push(y3 !== `--` ? parseFloat(y3) : null);
+                                            compare.push(y5 !== `--` ? parseFloat(y5) : null);
+                                            compare.push(y7 !== `--` ? parseFloat(y7) : null);
+                                            compare.push(y10 !== `--` ? parseFloat(y10) : null);
                                             break;
                                         case "BP":
-                                            difference.push(parseFloat(y1));
-                                            difference.push(parseFloat(y3));
-                                            difference.push(parseFloat(y5));
-                                            difference.push(parseFloat(y7));
-                                            difference.push(parseFloat(y10));
+                                            difference.push(y1 !== `--` ? parseFloat(y1) : null);
+                                            difference.push(y3 !== `--` ? parseFloat(y3) : null);
+                                            difference.push(y5 !== `--` ? parseFloat(y5) : null);
+                                            difference.push(y7 !== `--` ? parseFloat(y7) : null);
+                                            difference.push(y10 !== `--` ? parseFloat(y10) : null);
                                             break;
                                         default:
                                             break;
@@ -95,7 +90,7 @@ OTC_F9_FV.Modules.cityInvestmentDebt3AP = OTC_F9_FV.Modules.cityInvestmentDebt3A
                                     tds[i].insertAdjacentHTML(`beforeend`, values[i]);
                                 }
                                 // drawHC
-                                OTC_F9_FV.Modules.cityInvestmentDebt3AP.drawHS(datas, hc_uid, false);
+                                OTC_F9_FV.Modules.corporateDebt3AP.drawHS(datas, hc_uid, false);
                             }else{
                                 // no data
                                 let uid = `[data-none-uid="otc-corporate-debt-aaa-profitability"]`;
@@ -168,7 +163,7 @@ OTC_F9_FV.Modules.cityInvestmentDebt3AP = OTC_F9_FV.Modules.cityInvestmentDebt3A
 );
 
 
-OTC_F9_FV.Modules.cityInvestmentDebt3AP.drawHS = OTC_F9_FV.Modules.cityInvestmentDebt3AP.drawHS || (
+OTC_F9_FV.Modules.corporateDebt3AP.drawHS = OTC_F9_FV.Modules.corporateDebt3AP.drawHS || (
     (
         datas = {},
         container_uid = ``,
@@ -531,6 +526,7 @@ OTC_F9_FV.Modules.cityInvestmentDebt3AP.drawHS = OTC_F9_FV.Modules.cityInvestmen
                     yAxis: 1,
                     // color: "#fadc9e",
                     color: "#ff9800",
+                    negativeColor: '#7cb5ec',
                     name: 'BP差值',
                     data: difference,
                     zIndex: 1,
@@ -540,10 +536,10 @@ OTC_F9_FV.Modules.cityInvestmentDebt3AP.drawHS = OTC_F9_FV.Modules.cityInvestmen
                         //     <span style="color:{point.color}">\u25CF</span>
                         //     {series.name}: <b><span style="color: #0f0">{point.y}</span> BP</b><br/>
                         // `,// ( point.y > 0 ) `color: #0f0` : `color: #f00`;
-                        // pointFormat: `
-                        //     <span style="color:{point.color}">\u25CF</span>
-                        //     {series.name}: <b>{point.y} BP</b><br/>
-                        // `,
+                        pointFormat: `
+                            <span style="color:{point.color}">\u25CF</span>
+                            {series.name}: <b>{point.y} BP</b><br/>
+                        `,
                     },
                 },
             ],
@@ -554,7 +550,7 @@ OTC_F9_FV.Modules.cityInvestmentDebt3AP.drawHS = OTC_F9_FV.Modules.cityInvestmen
     }
 );
 
-OTC_F9_FV.Modules.cityInvestmentDebt3AP.init = OTC_F9_FV.Modules.cityInvestmentDebt3AP.init || (
+OTC_F9_FV.Modules.corporateDebt3AP.init = OTC_F9_FV.Modules.corporateDebt3AP.init || (
     (
         {
             ip,
@@ -575,8 +571,8 @@ OTC_F9_FV.Modules.cityInvestmentDebt3AP.init = OTC_F9_FV.Modules.cityInvestmentD
         // let url = `http://10.1.5.202/json/bonds/04.json`,
         let url = `${ip}${path}?{"ModelId":"${uid}","Compare":"${compare}","CompareDate":"${date}"}`,
             tbody_uid = `[data-tbody="otc-corporate-debt-aaa-profitability-table-tbody"]`,
-            hc_uid = `corporate_debt_aaa_profitability_hs_container`;
-        OTC_F9_FV.Modules.cityInvestmentDebt3AP(url, tbody_uid, hc_uid, false);
+            hc_uid = `corporate-debt-aaa-profitability-hs-container`;
+        OTC_F9_FV.Modules.corporateDebt3AP(url, tbody_uid, hc_uid, false);
     }
 );
 
@@ -588,7 +584,7 @@ var OTC_IP = window.OTC_IP || `http://10.1.5.202`,
     OTC_SKIN = window.OTC_SKIN || `white`;
     // OTC_SKIN = window.OTC_SKIN || `black`;
 
-OTC_F9_FV.Modules.cityInvestmentDebt3AP.init({
+OTC_F9_FV.Modules.corporateDebt3AP.init({
     ip: OTC_IP,
     path: OTC_PATH,
     uid: `bondratefast04`,
@@ -597,6 +593,6 @@ OTC_F9_FV.Modules.cityInvestmentDebt3AP.init({
     skin: OTC_SKIN,
 });
 
-// OTC_F9_FV.Modules.cityInvestmentDebt3AP.init();
+// OTC_F9_FV.Modules.corporateDebt3AP.init();
 // const url = `http://10.1.5.202/webservice/fastview/bond/rate?{"ModelId":"bondratefast03","Compare":"","CompareDate":""}`;
 

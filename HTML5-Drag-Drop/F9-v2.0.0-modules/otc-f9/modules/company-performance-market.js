@@ -202,7 +202,7 @@ OTC_F9_FV.Modules.companyPerformanceMarket = OTC_F9_FV.Modules.companyPerformanc
                             if (emptyChecker(datas.zdfpm) && emptyChecker(datas.zdfbj) && emptyChecker(datas.secuName)) {
                                 html1 = `
                                     <p data-p="company-performance-market-p">
-                                        <span data-span="company-performance-market-span">${datas.secuName}</span>近一个年涨跌幅市场排名
+                                        <span data-span="company-performance-market-span">${datas.secuName}</span> 近一个年涨跌幅市场排名
                                         <span data-span="company-performance-market-span">${datas.zdfpm}</span> 名,
                                         <span data-span="company-performance-market-span">${datas.zdfbj}</span>三板成指.
                                     </p>
@@ -236,7 +236,7 @@ OTC_F9_FV.Modules.companyPerformanceMarket = OTC_F9_FV.Modules.companyPerformanc
                         throw new UserException(message, fileName, lineNumber);
                     }
                 } catch (err) {
-                    let url =`file:///E:/github/RAIO/HTML5-Drag-Drop/F9-v2.0.0-modules/otc-f9/modules/company-performance-market.js`;
+                    let url =`file:///E:/**/otc-f9/modules/company-performance-market.js`;
                     ConsoleError(err, url);
                 }
             }

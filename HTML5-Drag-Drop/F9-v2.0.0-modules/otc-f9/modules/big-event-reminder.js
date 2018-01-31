@@ -89,7 +89,7 @@ OTC_F9_FV.Modules.bigEventReminder = OTC_F9_FV.Modules.bigEventReminder || (
                         tbd.insertAdjacentHTML(`beforeend`, no_data);
                     }
                 } catch (err) {
-                    let url =`file:///E:/github/RAIO/HTML5-Drag-Drop/F9-v2.0.0-modules/otc-f9/modules/big-event-reminder.js`;
+                    let url =`file:///E:/**/otc-f9/modules/big-event-reminder.js`;
                     ConsoleError(err, url);
                 }
             }

@@ -138,9 +138,9 @@ process keys
 /*
 
 
-e:\github\RAIO\HTML5-Drag-Drop\F9-v2.0.0-modules\fast-preview>npm start
+e:\**\fast-preview>npm start
 
-> stock-f9-fv@1.1.1 start e:\github\RAIO\HTML5-Drag-Drop\F9-v2.0.0-modules\fast-preview
+> stock-f9-fv@1.1.1 start e:\**\fast-preview
 > node ./env-app.js
 
 process.env
@@ -159,7 +159,7 @@ process.env
     "HOME": "C:\\Users\\xiagq",
     "HOMEDRIVE": "C:",
     "HOMEPATH": "\\Users\\xiagq",
-    "INIT_CWD": "e:\\github\\RAIO\\HTML5-Drag-Drop\\F9-v2.0.0-modules\\fast-preview",
+    "INIT_CWD": "e:\\**\\fast-preview",
     "LANG": "en_US.UTF-8",
     "LOCALAPPDATA": "C:\\Users\\xiagq\\AppData\\Local",
     "LOGONSERVER": "\\\\AD",
@@ -343,7 +343,7 @@ process.env
     "NUMBER_OF_PROCESSORS": "4",
     "OneDrive": "C:\\Users\\xiagq\\OneDrive",
     "OS": "Windows_NT",
-    "Path": "C:\\Users\\xiagq\\AppData\\Roaming\\npm\\node_modules\\npm\\bin\\node-gyp-bin;e:\\github\\RAIO\\HTML5-Drag-Drop\\F9-v2.0.0-modules\\fast-preview\\node_modules\\.bin;C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;H:\\Program Files\\TortoiseSVN\\bin;H:\\Program Files\\nodejs\\;H:\\Microsoft VS Code\\bin;H:\\Program Files\\Sublime Text 3\\;C:\\Users\\xiagq\\AppData\\Local\\Microsoft\\WindowsApps;H:\\Microsoft VS Code\\bin;C:\\Users\\xiagq\\AppData\\Local\\GitHubDesktop\\bin;C:\\Users\\xiagq\\AppData\\Roaming\\npm;H:\\Program Files (x86)\\Nmap",
+    "Path": "C:\\Users\\xiagq\\AppData\\Roaming\\npm\\node_modules\\npm\\bin\\node-gyp-bin;e:\\**\\fast-preview\\node_modules\\.bin;C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;H:\\Program Files\\TortoiseSVN\\bin;H:\\Program Files\\nodejs\\;H:\\Microsoft VS Code\\bin;H:\\Program Files\\Sublime Text 3\\;C:\\Users\\xiagq\\AppData\\Local\\Microsoft\\WindowsApps;H:\\Microsoft VS Code\\bin;C:\\Users\\xiagq\\AppData\\Local\\GitHubDesktop\\bin;C:\\Users\\xiagq\\AppData\\Roaming\\npm;H:\\Program Files (x86)\\Nmap",
     "PATHEXT": ".COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC",
     "PROCESSOR_ARCHITECTURE": "AMD64",
     "PROCESSOR_IDENTIFIER": "Intel64 Family 6 Model 61 Stepping 4, GenuineIntel",

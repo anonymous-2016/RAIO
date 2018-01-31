@@ -115,7 +115,7 @@ OTC_F9_FV.Modules.companyPerformanceAchievement = OTC_F9_FV.Modules.companyPerfo
                                         <span data-span="company-performance-achievement-span">${datas.stock.zqdm}</span> 每股收益(TTM)为
                                         <span data-span="company-performance-achievement-span">${datas.stock.mgsy}</span>,
                                         <span data-span="company-performance-achievement-span">${text}</span>行业均值, 行业排名第
-                                        <span data-span="company-performance-achievement-span">${datas.stock.pm}</span> 位。
+                                        <span data-span="company-performance-achievement-span">${datas.stock.pm}</span> 位.
                                     </p>
                                 `;
                             }else{
@@ -149,7 +149,7 @@ OTC_F9_FV.Modules.companyPerformanceAchievement = OTC_F9_FV.Modules.companyPerfo
                         throw new UserException(message, fileName, lineNumber);
                     }
                 } catch (err) {
-                    let url =`file:///E:/github/RAIO/HTML5-Drag-Drop/F9-v2.0.0-modules/otc-f9/modules/company-performance-achievement.js`;
+                    let url =`file:///E:/**/otc-f9/modules/company-performance-achievement.js`;
                     ConsoleError(err, url);
                 }
             }

@@ -116,7 +116,7 @@ OTC_F9_FV.Modules.companyPerformanceValuation = OTC_F9_FV.Modules.companyPerform
                                         <span data-span="company-performance-valuation-span">${datas.stock.zqdm}</span> 最新市盈率(TTM)为
                                         <span data-span="company-performance-valuation-span">${datas.stock.ttm}</span>,
                                         <span data-span="company-performance-valuation-span">${text}</span>行业均值, 行业排名第
-                                        <span data-span="company-performance-valuation-span">${datas.stock.pm}</span> 位。
+                                        <span data-span="company-performance-valuation-span">${datas.stock.pm}</span> 位.
                                     </p>
                                 `;
                             }else{
@@ -148,7 +148,7 @@ OTC_F9_FV.Modules.companyPerformanceValuation = OTC_F9_FV.Modules.companyPerform
                         throw new UserException(message, fileName, lineNumber);
                     }
                 } catch (err) {
-                    let url =`file:///E:/github/RAIO/HTML5-Drag-Drop/F9-v2.0.0-modules/otc-f9/modules/company-performance-valuation.js`;
+                    let url =`file:///E:/**/otc-f9/modules/company-performance-valuation.js`;
                     ConsoleError(err, url);
                 }
             }

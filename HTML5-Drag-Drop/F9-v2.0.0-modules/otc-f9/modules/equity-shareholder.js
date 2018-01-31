@@ -145,7 +145,7 @@ OTC_F9_FV.Modules.equityShareholder = OTC_F9_FV.Modules.equityShareholder || (
                                     value = (unarr[i]/unlimite_total)*100;
                                 switch (i) {
                                     case 0:
-                                    key = '控股股东和实际制人数量占比';
+                                    key = '控股股东和实际控制人数量占比';
                                         break;
                                     case 1:
                                     key = '董事监事高管数量占比';
@@ -332,7 +332,7 @@ OTC_F9_FV.Modules.equityShareholder = OTC_F9_FV.Modules.equityShareholder || (
                         throw new UserException(message, fileName, lineNumber);
                     }
                 } catch (err) {
-                    let url =`file:///E:/github/RAIO/HTML5-Drag-Drop/F9-v2.0.0-modules/otc-f9/modules/equity-shareholder.js`;
+                    let url =`file:///E:/**/otc-f9/modules/equity-shareholder.js`;
                     ConsoleError(err, url);
                 }
             }
@@ -458,8 +458,12 @@ OTC_F9_FV.Modules.equityShareholder.drawHS = OTC_F9_FV.Modules.equityShareholder
                 }
             },
             tooltip: {
-                headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
-                pointFormat: '<span style="color:{point.color}">{point.name}占比</span>: <b>{point.y:.2f}%</b><br/>'
+                headerFormat: `
+                    <span style="font-size:11px">{series.name}</span><br>
+                `,
+                pointFormat: `
+                    <span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}%</b><br/>
+                `,// 占比
             },
             series: [{
                 name: '股本结构比例',
@@ -604,7 +608,8 @@ var OTC_IP = window.OTC_IP || `http://10.1.5.202`,
     OTC_SKIN = window.OTC_SKIN || `black`,
     // OTC_GILCODE = window.OTC_GILCODE || `430007.OC`;
     // OTC_GILCODE = window.OTC_GILCODE || `834380.OC`;
-    OTC_GILCODE = window.OTC_GILCODE || `430002.OC`;
+    OTC_GILCODE = window.OTC_GILCODE || `430005.OC`;
+    // OTC_GILCODE = window.OTC_GILCODE || `430002.OC`;
 
 
 OTC_F9_FV.Modules.equityShareholder.init({

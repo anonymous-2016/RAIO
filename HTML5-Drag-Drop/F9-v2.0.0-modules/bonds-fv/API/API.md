@@ -84,6 +84,8 @@ $touch 10.json 11.json 12.json 13.json 14.json 15.json 16.json
 
 $touch repurchase-interest-rates.js repurchase-interest-rates.html repurchase-interest-rates.css
 $touch treasury-bonds-profitability.html treasury-bonds-profitability.css treasury-bonds-profitability.js
+
+
 $touch corporate-debt-aaa-profitability.html corporate-debt-aaa-profitability.css corporate-debt-aaa-profitability.js
 $touch national-policy-driven-financial-debt-profitability.html national-policy-driven-financial-debt-profitability.css national-policy-driven-financial-debt-profitability.js
 $touch commercial-banks-aaa-profitability.html commercial-banks-aaa-profitability.css commercial-banks-aaa-profitability.js

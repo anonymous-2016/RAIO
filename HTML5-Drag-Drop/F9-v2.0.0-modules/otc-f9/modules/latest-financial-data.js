@@ -114,7 +114,7 @@ OTC_F9_FV.Modules.latestFinancialData = OTC_F9_FV.Modules.latestFinancialData ||
                         throw new UserException(message, fileName, lineNumber);
                     }
                 } catch (err) {
-                    let url =`file:///E:/github/RAIO/HTML5-Drag-Drop/F9-v2.0.0-modules/otc-f9/modules/latest-financial-data.js`;
+                    let url =`file:///E:/**/otc-f9/modules/latest-financial-data.js`;
                     ConsoleError(err, url);
                 }
             }

@@ -804,7 +804,6 @@ STOCK_F9_FV.Modules.loadAllModules = STOCK_F9_FV.Modules.loadAllModules || (
                                                     <span data-title-span="small-span"></span> 3个月涨跌幅
                                                     <span data-title-span="small-span"></span>
                                                     <br> 52周涨跌幅
-                                                    <span data-title-span="small-span"></span> 52周Beta
                                                     <span data-title-span="small-span"></span>
                                                 </p>
                                             </div>
@@ -1893,7 +1892,6 @@ STOCK_F9_FV.Modules.modulesLoader = STOCK_F9_FV.Modules.modulesLoader ||(
                                                     <span data-title-span="small-span"></span> 3个月涨跌幅
                                                     <span data-title-span="small-span"></span>
                                                     <br> 52周涨跌幅
-                                                    <span data-title-span="small-span"></span> 52周Beta
                                                     <span data-title-span="small-span"></span>
                                                 </p>
                                             </div>

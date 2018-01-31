@@ -51,7 +51,7 @@ OTC_F9_FV.Modules.latestTransactionData = OTC_F9_FV.Modules.latestTransactionDat
                         throw new UserException(message, fileName, lineNumber);
                     }
                 } catch (err) {
-                    let url =`file:///E:/github/RAIO/HTML5-Drag-Drop/F9-v2.0.0-modules/otc-f9/modules/latest-transaction-data.js`;
+                    let url =`file:///E:/**/otc-f9/modules/latest-transaction-data.js`;
                     ConsoleError(err, url);
                 }
             }

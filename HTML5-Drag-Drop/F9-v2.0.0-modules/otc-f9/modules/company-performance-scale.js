@@ -107,9 +107,9 @@ OTC_F9_FV.Modules.companyPerformanceScale = OTC_F9_FV.Modules.companyPerformance
                             if (datas.data !== undefined && typeof(datas.data) === "object") {
                                 html = `
                                     <p data-p="company-performance-scale-p">
-                                        <span data-span="company-performance-scale-span">${datas.data.zqdm}</span>总市值为
-                                        <span data-span="company-performance-scale-span">${datas.data.zsz}</span> 万元，高于行业均值，行业排名第
-                                        <span data-span="company-performance-scale-span">${datas.data.pm}</span>。
+                                        <span data-span="company-performance-scale-span">${datas.data.zqdm}</span> 总市值为
+                                        <span data-span="company-performance-scale-span">${datas.data.zsz}</span> 万元, 高于行业均值, 行业排名第
+                                        <span data-span="company-performance-scale-span">${datas.data.pm}</span>.
                                     </p>
                                 `;
                             }else{
@@ -142,7 +142,7 @@ OTC_F9_FV.Modules.companyPerformanceScale = OTC_F9_FV.Modules.companyPerformance
                         throw new UserException(message, fileName, lineNumber);
                     }
                 } catch (err) {
-                    let url =`file:///E:/github/RAIO/HTML5-Drag-Drop/F9-v2.0.0-modules/otc-f9/modules/company-performance-scale.js`;
+                    let url =`file:///E:/**/otc-f9/modules/company-performance-scale.js`;
                     ConsoleError(err, url);
                 }
             }

@@ -108,7 +108,7 @@ OTC_F9_FV.Modules.researchReport = OTC_F9_FV.Modules.researchReport || (
                         throw new UserException(message, fileName, lineNumber);
                     }
                 } catch (err) {
-                    let url =`file:///E:/github/RAIO/HTML5-Drag-Drop/F9-v2.0.0-modules/otc-f9/modules/research-report.js`;
+                    let url =`file:///E:/**/otc-f9/modules/research-report.js`;
                     ConsoleError(err, url);
                 }
             }
@@ -170,7 +170,8 @@ OTC_F9_FV.Modules.researchReport.init = OTC_F9_FV.Modules.researchReport.init ||
 
 var OTC_IP = window.OTC_IP || `http://10.1.5.202`,
     OTC_PATH = window.OTC_PATH || `/webservice/fastview/otcper`,
-    OTC_GILCODE = window.OTC_GILCODE || `430002.OC`;
+    OTC_GILCODE = window.OTC_GILCODE || `430005.OC`;
+    // OTC_GILCODE = window.OTC_GILCODE || `430002.OC`;
 
 // console.log(`research & OTC_GILCODE`, OTC_GILCODE);
 
