@@ -37,7 +37,7 @@ STOCK_F9_FV.Modules.indicatorsPerShare = STOCK_F9_FV.Modules.indicatorsPerShare 
                         if (Number.isNaN(parseFloat(value)) === true) {
                             // isNaN(NaN); // true
                             tds[i].innerText = value;
-                            console.log(`value = \n`, value)
+                            // console.log(`value = \n`, value);
                         }else{
                             if (value !== `--` && value[0] === "-") {
                                 tds[i].dataset.color = "red";
@@ -114,8 +114,9 @@ STOCK_F9_FV.Modules.indicatorsPerShare.init = STOCK_F9_FV.Modules.indicatorsPerS
         let uid = `[data-value="data-fv-indicators-per-share"]`,
             url = `${ip}${path}${gilcode}`;
         // fixed table order
-        const ui_arr = ["bgq", "syjb", "syxs", "sykcjb", "sykcxs", "jzc", "jycsxjllje", "jyjs", "qbtb", "kcqbtb", "yyzsr", "yysr", "sqlr", "zbgj", "yygj", "wfplr", "lcsy", "xjllje", "qyzyxjll", "gdzyxjll"];
-        STOCK_F9_FV.Modules.indicatorsPerShare(url, uid, ui_arr, false);
+        // const ui_arr = ["bgq", "syjb", "syxs", "sykcjb", "sykcxs", "jzc", "jycsxjllje", "jyjs", "qbtb", "kcqbtb", "yyzsr", "yysr", "sqlr", "zbgj", "yygj", "wfplr", "lcsy", "xjllje", "qyzyxjll", "gdzyxjll"];
+        const UI_Array = ["bgq", "syjb", "syxs", "sykcjb", "sykcxs", "jzc", "jyjs", "qbtb", "kcqbtb", "mgeps", "mgjzc", "jycsxjllje", "mgjyhdttm", "yyzsr", "yysr", "mgyysrttm", "sqlr", "zbgj", "yygj", "wfplr", "lcsy", "xjllje", "mgxjllttm", "qyzyxjll", "gdzyxjll"]
+        STOCK_F9_FV.Modules.indicatorsPerShare(url, uid, UI_Array, false);
         // STOCK_F9_FV.Modules.indicatorsPerShare(url, uid, ui_arr, true);
     }
 );
@@ -139,3 +140,18 @@ STOCK_F9_FV.Modules.indicatorsPerShare.init({
 
 // const url = `http://10.1.5.202/webservice/fastview/stock/stockfast04/600570.SH`;
 
+
+
+/*
+
+{
+    "mgeps": "每股收益EPS(TTM)",
+    "mgjzc": "每股净资产(最新股本摊薄)",
+    "mgjyhdttm": "每股经营活动产生的现金流量净额(TTM)",
+    "mgyysrttm": "每股营业收入(TTM)",
+    "mgxjllttm": "每股现金流量净额(TTM)",
+}
+
+const UI_Array = ["bgq", "syjb", "syxs", "sykcjb", "sykcxs", "jzc", "jyjs", "qbtb", "kcqbtb", "mgeps", "mgjzc", "jycsxjllje", "mgjyhdttm", "yyzsr", "yysr", "mgyysrttm", "sqlr", "zbgj", "yygj", "wfplr", "lcsy", "xjllje", "mgxjllttm", "qyzyxjll", "gdzyxjll"]
+
+*/

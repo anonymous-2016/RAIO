@@ -173,9 +173,8 @@
 /* CSS3 :nth-of-type & nth-type & nth-child & :first-child & last-child*/
 
 .fv-important-infos-table-tbody>tr:nth-of-type(n)>td:last-child {
-    /* text-align: right; */
-    /* padding-right: 6px; */
-    padding-left: 6px;
+    text-align: right;
+    padding-right: 8px;
 }
 
 .fv-important-infos-table-tbody>tr:nth-of-type(2n)>td:last-child {

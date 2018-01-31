@@ -184,14 +184,15 @@ tr[data-tr="tr-background"] {
     /* color: red; */
     border-left: 1px solid #d7dbe0;
     box-sizing: border-box;
-    text-align: center;
+    text-align: right;
+    padding-right: 8px;
 }
 
 
 /* https://css-tricks.com/almanac/properties/t/text-overflow/ */
 
 .fv-indicators-per-share-table-tbody>tr:nth-of-type(n)>td:first-child {
-    width: 236px;
+    width: 276px;
     text-align: left;
     padding-left: 6px;
 }

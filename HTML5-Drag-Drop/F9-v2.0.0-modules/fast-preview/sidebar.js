@@ -683,15 +683,7 @@ STOCK_F9_FV.Modules.loadAllModules = STOCK_F9_FV.Modules.loadAllModules || (
                                                 <td class="fv-indicators-per-share-table-td-key" data-alias="每股净资产(元)">每股净资产(元)</td>
                                                 <td class="fv-indicators-per-share-table-td-value" data-value="data-fv-indicators-per-share"></td>
                                             </tr>
-                                            <tr class="fv-indicators-per-share-table-tr">
-                                                <td class="fv-indicators-per-share-table-td-key">每股经营活动产生的现金流量净额(元)</td>
-                                                <td class="fv-indicators-per-share-table-td-value" data-value="data-fv-indicators-per-share"></td>
-                                            </tr>
-                                            <!-- class="fv-indicators-per-share-table-tr-spaces"  -->
-                                            <tr data-tr="tr-spaces">
-                                                <!-- <td></td>
-                                                <td></td> -->
-                                            </tr>
+                                            <tr data-tr="tr-spaces"></tr>
                                             <!-- 聚源计算 -->
                                             <tr class="fv-indicators-per-share-table-tr" data-tr="tr-background">
                                                 <td class="fv-indicators-per-share-table-td-key">聚源计算</td>
@@ -706,11 +698,31 @@ STOCK_F9_FV.Modules.loadAllModules = STOCK_F9_FV.Modules.loadAllModules || (
                                                 <td class="fv-indicators-per-share-table-td-value" data-value="data-fv-indicators-per-share"></td>
                                             </tr>
                                             <tr class="fv-indicators-per-share-table-tr">
+                                                <td class="fv-indicators-per-share-table-td-key">每股收益 EPS(元)</td>
+                                                <td class="fv-indicators-per-share-table-td-value" data-value="data-fv-indicators-per-share"></td>
+                                            </tr>
+                                            <tr class="fv-indicators-per-share-table-tr">
+                                                <td class="fv-indicators-per-share-table-td-key">每股净资产(最新股本摊薄) (元)</td>
+                                                <td class="fv-indicators-per-share-table-td-value" data-value="data-fv-indicators-per-share"></td>
+                                            </tr>
+                                            <tr class="fv-indicators-per-share-table-tr">
+                                                <td class="fv-indicators-per-share-table-td-key">每股经营活动产生的现金流量净额(元)</td>
+                                                <td class="fv-indicators-per-share-table-td-value" data-value="data-fv-indicators-per-share"></td>
+                                            </tr>
+                                            <tr class="fv-indicators-per-share-table-tr">
+                                                <td class="fv-indicators-per-share-table-td-key">每股经营活动产生的现金流量净额 TTM(元)</td>
+                                                <td class="fv-indicators-per-share-table-td-value" data-value="data-fv-indicators-per-share"></td>
+                                            </tr>
+                                            <tr class="fv-indicators-per-share-table-tr">
                                                 <td class="fv-indicators-per-share-table-td-key">每股营业总收入(元)</td>
                                                 <td class="fv-indicators-per-share-table-td-value" data-value="data-fv-indicators-per-share"></td>
                                             </tr>
                                             <tr class="fv-indicators-per-share-table-tr">
                                                 <td class="fv-indicators-per-share-table-td-key">每股营业收入(元)</td>
+                                                <td class="fv-indicators-per-share-table-td-value" data-value="data-fv-indicators-per-share"></td>
+                                            </tr>
+                                            <tr class="fv-indicators-per-share-table-tr">
+                                                <td class="fv-indicators-per-share-table-td-key">每股营业收入 TTM(元)</td>
                                                 <td class="fv-indicators-per-share-table-td-value" data-value="data-fv-indicators-per-share"></td>
                                             </tr>
                                             <tr class="fv-indicators-per-share-table-tr">
@@ -738,6 +750,10 @@ STOCK_F9_FV.Modules.loadAllModules = STOCK_F9_FV.Modules.loadAllModules || (
                                                 <td class="fv-indicators-per-share-table-td-value" data-value="data-fv-indicators-per-share"></td>
                                             </tr>
                                             <tr class="fv-indicators-per-share-table-tr">
+                                                <td class="fv-indicators-per-share-table-td-key">每股现金流量净额 TTM(元)</td>
+                                                <td class="fv-indicators-per-share-table-td-value" data-value="data-fv-indicators-per-share"></td>
+                                            </tr>
+                                            <tr class="fv-indicators-per-share-table-tr">
                                                 <td class="fv-indicators-per-share-table-td-key">每股企业自由现金流量(元)</td>
                                                 <td class="fv-indicators-per-share-table-td-value" data-value="data-fv-indicators-per-share"></td>
                                             </tr>
@@ -745,14 +761,6 @@ STOCK_F9_FV.Modules.loadAllModules = STOCK_F9_FV.Modules.loadAllModules || (
                                                 <td class="fv-indicators-per-share-table-td-key">每股股东自由现金流量(元)</td>
                                                 <td class="fv-indicators-per-share-table-td-value" data-value="data-fv-indicators-per-share"></td>
                                             </tr>
-                                            <!--
-                                                <tr class="fv-indicators-per-share-table-tr">
-                                                    <td class="fv-indicators-per-share-table-td-key">
-                                                        ["每股指标", "报表格式", "报表类型", "报告期", "发布日期", "上市前后" ]
-                                                    </td>
-                                                    <td class="fv-indicators-per-share-table-td-value" data-value="data-fv-indicators-per-share"></td>
-                                                </tr>
-                                            -->
                                         </tbody>
                                         <tfoot class="fv-indicators-per-share-table-tfoot">
                                             <tr class="fv-indicators-per-share-table-tr">
@@ -1771,15 +1779,7 @@ STOCK_F9_FV.Modules.modulesLoader = STOCK_F9_FV.Modules.modulesLoader ||(
                                                 <td class="fv-indicators-per-share-table-td-key" data-alias="每股净资产(元)">每股净资产(元)</td>
                                                 <td class="fv-indicators-per-share-table-td-value" data-value="data-fv-indicators-per-share"></td>
                                             </tr>
-                                            <tr class="fv-indicators-per-share-table-tr">
-                                                <td class="fv-indicators-per-share-table-td-key">每股经营活动产生的现金流量净额(元)</td>
-                                                <td class="fv-indicators-per-share-table-td-value" data-value="data-fv-indicators-per-share"></td>
-                                            </tr>
-                                            <!-- class="fv-indicators-per-share-table-tr-spaces"  -->
-                                            <tr data-tr="tr-spaces">
-                                                <!-- <td></td>
-                                                <td></td> -->
-                                            </tr>
+                                            <tr data-tr="tr-spaces"></tr>
                                             <!-- 聚源计算 -->
                                             <tr class="fv-indicators-per-share-table-tr" data-tr="tr-background">
                                                 <td class="fv-indicators-per-share-table-td-key">聚源计算</td>
@@ -1794,11 +1794,31 @@ STOCK_F9_FV.Modules.modulesLoader = STOCK_F9_FV.Modules.modulesLoader ||(
                                                 <td class="fv-indicators-per-share-table-td-value" data-value="data-fv-indicators-per-share"></td>
                                             </tr>
                                             <tr class="fv-indicators-per-share-table-tr">
+                                                <td class="fv-indicators-per-share-table-td-key">每股收益 EPS(元)</td>
+                                                <td class="fv-indicators-per-share-table-td-value" data-value="data-fv-indicators-per-share"></td>
+                                            </tr>
+                                            <tr class="fv-indicators-per-share-table-tr">
+                                                <td class="fv-indicators-per-share-table-td-key">每股净资产(最新股本摊薄) (元)</td>
+                                                <td class="fv-indicators-per-share-table-td-value" data-value="data-fv-indicators-per-share"></td>
+                                            </tr>
+                                            <tr class="fv-indicators-per-share-table-tr">
+                                                <td class="fv-indicators-per-share-table-td-key">每股经营活动产生的现金流量净额(元)</td>
+                                                <td class="fv-indicators-per-share-table-td-value" data-value="data-fv-indicators-per-share"></td>
+                                            </tr>
+                                            <tr class="fv-indicators-per-share-table-tr">
+                                                <td class="fv-indicators-per-share-table-td-key">每股经营活动产生的现金流量净额 TTM(元)</td>
+                                                <td class="fv-indicators-per-share-table-td-value" data-value="data-fv-indicators-per-share"></td>
+                                            </tr>
+                                            <tr class="fv-indicators-per-share-table-tr">
                                                 <td class="fv-indicators-per-share-table-td-key">每股营业总收入(元)</td>
                                                 <td class="fv-indicators-per-share-table-td-value" data-value="data-fv-indicators-per-share"></td>
                                             </tr>
                                             <tr class="fv-indicators-per-share-table-tr">
                                                 <td class="fv-indicators-per-share-table-td-key">每股营业收入(元)</td>
+                                                <td class="fv-indicators-per-share-table-td-value" data-value="data-fv-indicators-per-share"></td>
+                                            </tr>
+                                            <tr class="fv-indicators-per-share-table-tr">
+                                                <td class="fv-indicators-per-share-table-td-key">每股营业收入 TTM(元)</td>
                                                 <td class="fv-indicators-per-share-table-td-value" data-value="data-fv-indicators-per-share"></td>
                                             </tr>
                                             <tr class="fv-indicators-per-share-table-tr">
@@ -1826,6 +1846,10 @@ STOCK_F9_FV.Modules.modulesLoader = STOCK_F9_FV.Modules.modulesLoader ||(
                                                 <td class="fv-indicators-per-share-table-td-value" data-value="data-fv-indicators-per-share"></td>
                                             </tr>
                                             <tr class="fv-indicators-per-share-table-tr">
+                                                <td class="fv-indicators-per-share-table-td-key">每股现金流量净额 TTM(元)</td>
+                                                <td class="fv-indicators-per-share-table-td-value" data-value="data-fv-indicators-per-share"></td>
+                                            </tr>
+                                            <tr class="fv-indicators-per-share-table-tr">
                                                 <td class="fv-indicators-per-share-table-td-key">每股企业自由现金流量(元)</td>
                                                 <td class="fv-indicators-per-share-table-td-value" data-value="data-fv-indicators-per-share"></td>
                                             </tr>
@@ -1833,14 +1857,6 @@ STOCK_F9_FV.Modules.modulesLoader = STOCK_F9_FV.Modules.modulesLoader ||(
                                                 <td class="fv-indicators-per-share-table-td-key">每股股东自由现金流量(元)</td>
                                                 <td class="fv-indicators-per-share-table-td-value" data-value="data-fv-indicators-per-share"></td>
                                             </tr>
-                                            <!--
-                                                <tr class="fv-indicators-per-share-table-tr">
-                                                    <td class="fv-indicators-per-share-table-td-key">
-                                                        ["每股指标", "报表格式", "报表类型", "报告期", "发布日期", "上市前后" ]
-                                                    </td>
-                                                    <td class="fv-indicators-per-share-table-td-value" data-value="data-fv-indicators-per-share"></td>
-                                                </tr>
-                                            -->
                                         </tbody>
                                         <tfoot class="fv-indicators-per-share-table-tfoot">
                                             <tr class="fv-indicators-per-share-table-tr">
