@@ -200,9 +200,12 @@ OTC_F9_FV.Modules.companyPerformanceMarket = OTC_F9_FV.Modules.companyPerformanc
                                 shitAPI();
                             }
                             if (emptyChecker(datas.zdfpm) && emptyChecker(datas.zdfbj) && emptyChecker(datas.secuName)) {
+                                // let a = parseFloat(datas.zdfbj),// ???
+                                //     b = parseFloat(datas.zdfbj);
+                                // let compare =  (a === b) ? `等于` : ((a > b) ? `高于` : `低于`);
                                 html1 = `
                                     <p data-p="company-performance-market-p">
-                                        <span data-span="company-performance-market-span">${datas.secuName}</span> 近一个年涨跌幅市场排名
+                                        <span data-span="company-performance-market-span">${datas.secuName}</span> 近一年涨跌幅市场排名
                                         <span data-span="company-performance-market-span">${datas.zdfpm}</span> 名,
                                         <span data-span="company-performance-market-span">${datas.zdfbj}</span>三板成指.
                                     </p>

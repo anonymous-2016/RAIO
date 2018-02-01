@@ -97,10 +97,18 @@ $touch local-governments-debt-aaa-profitability.html local-governments-debt-aaa-
 $touch central-bills-profitability.html central-bills-profitability.css central-bills-profitability.js
 
 
-$touch .html .css .js
-$touch .html .css .js
-$touch .html .css .js
-$touch .html .css .js
+$touch cs-interbank-dismantle-borrowing-interest-rates.html cs-interbank-dismantle-borrowing-interest-rates.css cs-interbank-dismantle-borrowing-interest-rates.js
+
+
+$touch dcm-pricing-central-hub.html dcm-pricing-central-hub.css dcm-pricing-central-hub.js
+$touch shibor-interbank-dismantle-borrowing-interest-rates.html shibor-interbank-dismantle-borrowing-interest-rates.css shibor-interbank-dismantle-borrowing-interest-rates.js
+
+$touch central-bank-benchmark-interest-rates.html central-bank-benchmark-interest-rates.css central-bank-benchmark-interest-rates.js
+$touch repurchase-set-interest-rates.html repurchase-set-interest-rates.css repurchase-set-interest-rates.js
+$touch seven-days-repurchase-moving-average-interest-rates.html seven-days-repurchase-moving-average-interest-rates.css seven-days-repurchase-moving-average-interest-rates.js
+$touch bills-directly-indirect-subsidy-interest-rates.html bills-directly-indirect-subsidy-interest-rates.css bills-directly-indirect-subsidy-interest-rates.js
+
+
 $touch .html .css .js
 $touch .html .css .js
 
@@ -110,6 +118,20 @@ $touch .html .css .js
 ```
 
 # API
+
+```js
+
+// import {getFullTodayDate as fullToday} from "./full-today";
+
+var OTC_IP = window.OTC_IP || `http://10.1.5.202`,
+    OTC_PATH = window.OTC_PATH || `/webservice/fastview/bond/rate`,
+    OTC_COMPARE = window.OTC_COMPARE || ``,
+    OTC_DATE = window.OTC_DATE || ``,
+    // OTC_DATE = window.OTC_DATE || fullToday(),// default today!
+    OTC_SKIN = window.OTC_SKIN || `white`;
+    // OTC_SKIN = window.OTC_SKIN || `black`;
+
+```
 
 
 回购利率 repurchase-interest-rates
@@ -186,10 +208,31 @@ DCM debt-capital-market-pricing-central-hub
     bondratefast16  票据直贴/转贴利率
 
 Compare：--比较日标志
-"0:前一交易日",
-"1:上周",
-"2:自定义"
+"0: 前一交易日",
+"1: 上周",
+"2: 自定义"
 CompareDate：--比较日，（比较日标志=2时有效，不为2的时候可传可不传）
+
+// 是你描述不清楚: 应该说清楚，比较日标志为2时，CompareDate 必传; 比较日标志不为2的时候, CompareDate可传/可不传。
+
+
+// 分析日===今天
+
+
+// 比较日===前一交易日
+http://10.1.5.202/webservice/fastview/bond/rate?{"ModelId":"bondratefast01"}
+http://10.1.5.202/webservice/fastview/bond/rate?{"ModelId":"bondratefast01","Compare":"0","CompareDate":""}
+// 比较日===上周
+http://10.1.5.202/webservice/fastview/bond/rate?{"ModelId":"bondratefast01","Compare":"1","CompareDate":""}
+// 比较日===用户指定的
+http://10.1.5.202/webservice/fastview/bond/rate?{"ModelId":"bondratefast01","Compare":"2","CompareDate":"2018-01-01"}
+
+http://10.1.5.202/webservice/fastview/bond/rate?{"ModelId":"bondratefast01","Compare":"2","CompareDate":""}
+// 如果没有指定比较日，比较日默认值是什么？
+// 比较日===前一交易日 ???
+
+
+
 
 
 ```js

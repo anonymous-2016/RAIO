@@ -1301,33 +1301,3 @@ setTimeout(() => {
 }, 0);
 
 
-
-/*
-
-<table class="otc-management-layer-profiles-table"  data-css3-table-bug="otc-management-layer-profiles-table2">
-    <thead class="otc-management-layer-profiles-table-thead">
-        <tr class="otc-management-layer-profiles-table-tr">
-            <td class="otc-management-layer-profiles-table-td-title">姓名</td>
-            <td class="otc-management-layer-profiles-table-td-title">职务</td>
-            <td class="otc-management-layer-profiles-table-td-title">任职起始日</td>
-            <td class="otc-management-layer-profiles-table-td-title">离职日期</td>
-            <td class="otc-management-layer-profiles-table-td-title">在任其他职务</td>
-        </tr>
-    </thead>
-    <tbody class="otc-management-layer-profiles-table-tbody" data-tbody="otc-management-layer-profiles-table-tbody">
-        <!-- <tr class="otc-management-layer-profiles-table-tr">
-            <td class="otc-management-layer-profiles-table-td-value" data-value="data-otc-MLP">张玮</td>
-            <td class="otc-management-layer-profiles-table-td-value" data-value="data-otc-MLP">董事会秘书</td>
-            <td class="otc-management-layer-profiles-table-td-value" data-value="data-otc-MLP">2010-05-05</td>
-            <td class="otc-management-layer-profiles-table-td-value" data-value="data-otc-MLP">2017-05-17</td>
-            <td class="otc-management-layer-profiles-table-td-value" data-value="data-otc-MLP">true</td>
-        </tr> -->
-    </tbody>
-    <tfoot class="otc-management-layer-profiles-table-tfoot">
-        <tr class="otc-management-layer-profiles-table-tr">
-            <td class="otc-management-layer-profiles-table-td-value" data-value="data-otc-MLP"></td>
-        </tr>
-    </tfoot>
-</table>
-
-*/

@@ -70,7 +70,7 @@ entry_obj[BASE_URI.init] = `${BASE_URI.init}`;
 // entry_obj[BASE_URI.modal] = `${BASE_URI.libs}/modal`;
 
 
-
+// ES6 & polyfill ??? link / module
 
 // "app": "npm run rmrf & webpack -p",
 

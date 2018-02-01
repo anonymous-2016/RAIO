@@ -1,7 +1,7 @@
 "use strict";
 
 /**
- * @name repurchase-interest-rates 回购利率
+ * @name cs-interbank-dismantle-borrowing-interest-rates 拆借利率 (Chibor & Shibor)
  * @author xgqfrms
  * creadted 2018.01.23
  * @param {* String} url
@@ -21,8 +21,8 @@ var OTC_F9_FV = OTC_F9_FV || {};
 // sub namespaces
 OTC_F9_FV.Modules = OTC_F9_FV.Modules || {};
 
-// repurchaseInterestRates
-OTC_F9_FV.Modules.repurchaseInterestRates = OTC_F9_FV.Modules.repurchaseInterestRates || (
+// csInterbankDismantleBorrowingIR
+OTC_F9_FV.Modules.csInterbankDismantleBorrowingIR = OTC_F9_FV.Modules.csInterbankDismantleBorrowingIR || (
     (url = ``, tbody_uid = ``, hc_uids = {}, debug = false) => {
         let datas = {};
         let {
@@ -59,9 +59,9 @@ OTC_F9_FV.Modules.repurchaseInterestRates = OTC_F9_FV.Modules.repurchaseInterest
                 try {
                     // ignore Array/Object
                     if (Object.keys(json).length > 0) {
-                        const yzy = json.yzy;
-                        const hzy = json.hzy;
-                        const time_title = document.querySelector(`[data-time="otc-repurchase-interest-rates-time"]`);
+                        const zcj = json.zcj;
+                        const hcj = json.hcj;
+                        const time_title = document.querySelector(`[data-time="otc-cs-interbank-dismantle-borrowing-interest-rates-time"]`);
                         if (emptyChecker(json.date)) {
                             // (2018-01-01)
                             time_title.insertAdjacentHTML(`beforeend`, `(${json.date})`);
@@ -73,10 +73,10 @@ OTC_F9_FV.Modules.repurchaseInterestRates = OTC_F9_FV.Modules.repurchaseInterest
                             hc_obj1 = {},
                             hc_obj2 = {};
                         // Array
-                        if (Array.isArray(hzy) && Array.isArray(yzy)) {
+                        if (Array.isArray(hcj) && Array.isArray(zcj)) {
                             // Object
-                            if (Object.keys(yzy).length > 0 && Object.keys(hzy).length > 0 ) {
-                                let tds = document.querySelectorAll(`[data-value="data-otc-RIR"]`),
+                            if (Object.keys(zcj).length > 0 && Object.keys(hcj).length > 0 ) {
+                                let tds = document.querySelectorAll(`[data-value="data-otc-CSIDBIR"]`),
                                     values = [];
                                 let weighting_closing1 = [],
                                     weighting_closing2 = [],
@@ -86,12 +86,12 @@ OTC_F9_FV.Modules.repurchaseInterestRates = OTC_F9_FV.Modules.repurchaseInterest
                                     bp_difference2 = [];
                                     // turnover = [],
                                     // increase = [];
-                                for (let i = 0; i < yzy.length; i++) {
-                                    let jqsp = (yzy[i].jqsp !== undefined) ? yzy[i].jqsp : `--`,
-                                        bjr = (yzy[i].bjr !== undefined) ? yzy[i].bjr : `--`,
-                                        bp = (yzy[i].bp !== undefined) ? yzy[i].bp : `--`,
-                                        cjl = (yzy[i].cjl !== undefined) ? yzy[i].cjl : `--`,
-                                        lz = (yzy[i].lz !== undefined) ? yzy[i].lz : `--`;
+                                for (let i = 0; i < zcj.length; i++) {
+                                    let jqsp = (zcj[i].jqsp !== undefined) ? zcj[i].jqsp : `--`,
+                                        bjr = (zcj[i].bjr !== undefined) ? zcj[i].bjr : `--`,
+                                        bp = (zcj[i].bp !== undefined) ? zcj[i].bp : `--`,
+                                        cjl = (zcj[i].cjl !== undefined) ? zcj[i].cjl : `--`,
+                                        lz = (zcj[i].lz !== undefined) ? zcj[i].lz : `--`;
                                     values.push(jqsp);
                                     values.push(bjr);
                                     values.push(bp);
@@ -104,12 +104,12 @@ OTC_F9_FV.Modules.repurchaseInterestRates = OTC_F9_FV.Modules.repurchaseInterest
                                     // "BP"
                                     bp_difference1.push(bp !== `--` ? parseFloat(bp) : null);
                                 }
-                                for (let i = 0; i < hzy.length; i++) {
-                                    let jqsp = (hzy[i].jqsp !== undefined) ? hzy[i].jqsp : `--`,
-                                        bjr = (hzy[i].bjr !== undefined) ? hzy[i].bjr : `--`,
-                                        bp = (hzy[i].bp !== undefined) ? hzy[i].bp : `--`,
-                                        cjl = (hzy[i].cjl !== undefined) ? hzy[i].cjl : `--`,
-                                        lz = (hzy[i].lz !== undefined) ? hzy[i].lz : `--`;
+                                for (let i = 0; i < hcj.length; i++) {
+                                    let jqsp = (hcj[i].jqsp !== undefined) ? hcj[i].jqsp : `--`,
+                                        bjr = (hcj[i].bjr !== undefined) ? hcj[i].bjr : `--`,
+                                        bp = (hcj[i].bp !== undefined) ? hcj[i].bp : `--`,
+                                        cjl = (hcj[i].cjl !== undefined) ? hcj[i].cjl : `--`,
+                                        lz = (hcj[i].lz !== undefined) ? hcj[i].lz : `--`;
                                     values.push(jqsp);
                                     values.push(bjr);
                                     values.push(bp);
@@ -126,31 +126,31 @@ OTC_F9_FV.Modules.repurchaseInterestRates = OTC_F9_FV.Modules.repurchaseInterest
                                 // ES6 polyfill ???
                                 Object.assign(hc_obj1, {code: code1, weighting_closing: weighting_closing1, compare: compare1, bp_difference: bp_difference1});
                                 Object.assign(hc_obj2, {code: code2, weighting_closing: weighting_closing2, compare: compare2, bp_difference: bp_difference2});
-                                OTC_F9_FV.Modules.repurchaseInterestRates.drawHS(hc_obj1, hc_uid1, false);
-                                OTC_F9_FV.Modules.repurchaseInterestRates.drawHS(hc_obj2, hc_uid2, false);
-                                // OTC_F9_FV.Modules.repurchaseInterestRates.drawHS2(datas, hc_uid2, false);
+                                OTC_F9_FV.Modules.csInterbankDismantleBorrowingIR.drawHS(hc_obj1, hc_uid1, false);
+                                OTC_F9_FV.Modules.csInterbankDismantleBorrowingIR.drawHS(hc_obj2, hc_uid2, false);
+                                // OTC_F9_FV.Modules.csInterbankDismantleBorrowingIR.drawHS2(datas, hc_uid2, false);
                             }else{
                                 // no data
-                                let uid = `[data-none-uid="otc-repurchase-interest-rates"]`;
+                                let uid = `[data-none-uid="otc-cs-interbank-dismantle-borrowing-interest-rates"]`;
                                 const none_div = document.querySelector(uid);
-                                // const none_div = document.querySelector(`[data-none-uid="otc-repurchase-interest-rates"]`);
+                                // const none_div = document.querySelector(`[data-none-uid="otc-cs-interbank-dismantle-borrowing-interest-rates"]`);
                                 none_div.dataset.none = "no-data-div-visible";
                                 // table
-                                // const table = document.querySelector(`.otc-repurchase-interest-rates-table`);
+                                // const table = document.querySelector(`.otc-cs-interbank-dismantle-borrowing-interest-rates-table`);
                                 // table.dataset.none = "no-data-div-hidden";
-                                // const tbody = document.querySelector(`.otc-repurchase-interest-rates-table-tbody`);
+                                // const tbody = document.querySelector(`.otc-cs-interbank-dismantle-borrowing-interest-rates-table-tbody`);
                                 const tbody = document.querySelector(tbody_uid);
                                 tbody.dataset.none = "no-data-div-hidden";
                             }
                         }else{
                             let message = `handle json error!`,
-                                fileName = `repurchase-interest-rates.js`,
+                                fileName = `cs-interbank-dismantle-borrowing-interest-rates.js`,
                                 lineNumber = 29;
                             // throw new UserException(message, fileName, lineNumber);
                         }
                     } else {
                         // no data
-                        let uid = `[data-none-uid="otc-repurchase-interest-rates"]`;
+                        let uid = `[data-none-uid="otc-cs-interbank-dismantle-borrowing-interest-rates"]`;
                         const none_div = document.querySelector(uid);
                         none_div.dataset.none = "no-data-div-visible";
                         // no data
@@ -160,7 +160,7 @@ OTC_F9_FV.Modules.repurchaseInterestRates = OTC_F9_FV.Modules.repurchaseInterest
                         hc_div.dataset.none = "no-data-div-hidden";
                     }
                 } catch (err) {
-                    let url =`file:///E:/**/bonds-fv/modules/repurchase-interest-rates.js`;
+                    let url =`file:///E:/**/bonds-fv/modules/cs-interbank-dismantle-borrowing-interest-rates.js`;
                     // ConsoleError(err, url);
                 }
             }
@@ -170,7 +170,7 @@ OTC_F9_FV.Modules.repurchaseInterestRates = OTC_F9_FV.Modules.repurchaseInterest
         // more
         /*
         setTimeout((debug = false) => {
-            let turn_to_uids = document.querySelectorAll(`[data-turn-to-uid="node-uid-repurchase-interest-rates-data"]`);
+            let turn_to_uids = document.querySelectorAll(`[data-turn-to-uid="node-uid-cs-interbank-dismantle-borrowing-interest-rates-data"]`);
             if (debug) {
                 console.log(`turn_to_uids = \n`, turn_to_uids);
             }
@@ -201,7 +201,7 @@ OTC_F9_FV.Modules.repurchaseInterestRates = OTC_F9_FV.Modules.repurchaseInterest
 );
 
 
-OTC_F9_FV.Modules.repurchaseInterestRates.drawHS = OTC_F9_FV.Modules.repurchaseInterestRates.drawHS || (
+OTC_F9_FV.Modules.csInterbankDismantleBorrowingIR.drawHS = OTC_F9_FV.Modules.csInterbankDismantleBorrowingIR.drawHS || (
     (
         datas = {},
         container_uid = ``,
@@ -211,9 +211,7 @@ OTC_F9_FV.Modules.repurchaseInterestRates.drawHS = OTC_F9_FV.Modules.repurchaseI
             console.log(`HC datas = \n`, datas);
             console.log(`HC containe uid = \n`, container_uid);
         }
-        const hc_title = container_uid.includes(1) ? `银质押` : `沪质押`;
-        // code1, weighting_closing1, compare1, bp_difference1
-        // code2, weighting_closing2, compare2, bp_difference2
+        const hc_title = container_uid.includes(1) ? `中拆借` : `沪拆借`;
         // rename
         let {
             code,
@@ -593,7 +591,7 @@ OTC_F9_FV.Modules.repurchaseInterestRates.drawHS = OTC_F9_FV.Modules.repurchaseI
     }
 );
 
-OTC_F9_FV.Modules.repurchaseInterestRates.init = OTC_F9_FV.Modules.repurchaseInterestRates.init || (
+OTC_F9_FV.Modules.csInterbankDismantleBorrowingIR.init = OTC_F9_FV.Modules.csInterbankDismantleBorrowingIR.init || (
     (
         {
             ip,
@@ -605,7 +603,7 @@ OTC_F9_FV.Modules.repurchaseInterestRates.init = OTC_F9_FV.Modules.repurchaseInt
         } = {
             ip: `http://10.1.5.202`,
             path: `/webservice/fastview/bond/rate`,
-            uid: `bondratefast01`,
+            uid: `bondratefast02`,
             compare: OTC_COMPARE,
             date: OTC_DATE,
             skin: OTC_SKIN,
@@ -613,11 +611,11 @@ OTC_F9_FV.Modules.repurchaseInterestRates.init = OTC_F9_FV.Modules.repurchaseInt
     ) => {
         // let url = `http://10.1.5.202/json/bonds/04.json`,
         let url = `${ip}${path}?{"ModelId":"${uid}","Compare":"${compare}","CompareDate":"${date}"}`,
-            tbody_uid = `[data-tbody="otc-repurchase-interest-rates-table-tbody"]`,
-            hc_uid1 = `repurchase-interest-rates-hs-container1`,
-            hc_uid2 = `repurchase-interest-rates-hs-container2`,
+            tbody_uid = `[data-tbody="otc-cs-interbank-dismantle-borrowing-interest-rates-table-tbody"]`,
+            hc_uid1 = `cs-interbank-dismantle-borrowing-interest-rates-hs-container1`,
+            hc_uid2 = `cs-interbank-dismantle-borrowing-interest-rates-hs-container2`,
             hc_uids = {hc_uid1, hc_uid2};
-        OTC_F9_FV.Modules.repurchaseInterestRates(url, tbody_uid, hc_uids, false);
+        OTC_F9_FV.Modules.csInterbankDismantleBorrowingIR(url, tbody_uid, hc_uids, false);
     }
 );
 
@@ -630,48 +628,19 @@ var OTC_IP = window.OTC_IP || `http://10.1.5.202`,
     OTC_SKIN = window.OTC_SKIN || `white`;
     // OTC_SKIN = window.OTC_SKIN || `black`;
 
-OTC_F9_FV.Modules.repurchaseInterestRates.init({
+OTC_F9_FV.Modules.csInterbankDismantleBorrowingIR.init({
     ip: OTC_IP,
     path: OTC_PATH,
-    uid: `bondratefast01`,
+    uid: `bondratefast02`,
     compare: OTC_COMPARE,
     date: OTC_DATE,
     skin: OTC_SKIN,
 });
 
-// OTC_F9_FV.Modules.repurchaseInterestRates.init();
-// const url = `http://10.1.5.202/webservice/fastview/bond/rate?{"ModelId":"bondratefast01","Compare":"","CompareDate":""}`;
+// OTC_F9_FV.Modules.csInterbankDismantleBorrowingIR.init();
+// const url = `http://10.1.5.202/webservice/fastview/bond/rate?{"ModelId":"bondratefast02","Compare":"","CompareDate":""}`;
 
 
 
 
-/*
 
-switch (json.yzy[i].name) {
-    case "加权/收盘":
-        // string to number!
-        yields.push(y1 !== `--` ? parseFloat(y1) : null);
-        yields.push(y3 !== `--` ? parseFloat(y3) : null);
-        yields.push(y5 !== `--` ? parseFloat(y5) : null);
-        yields.push(y7 !== `--` ? parseFloat(y7) : null);
-        yields.push(y10 !== `--` ? parseFloat(y10) : null);
-        break;
-    case "比较日":
-        compare.push(y1 !== `--` ? parseFloat(y1) : null);
-        compare.push(y3 !== `--` ? parseFloat(y3) : null);
-        compare.push(y5 !== `--` ? parseFloat(y5) : null);
-        compare.push(y7 !== `--` ? parseFloat(y7) : null);
-        compare.push(y10 !== `--` ? parseFloat(y10) : null);
-        break;
-    case "BP":
-        difference.push(y1 !== `--` ? parseFloat(y1) : null);
-        difference.push(y3 !== `--` ? parseFloat(y3) : null);
-        difference.push(y5 !== `--` ? parseFloat(y5) : null);
-        difference.push(y7 !== `--` ? parseFloat(y7) : null);
-        difference.push(y10 !== `--` ? parseFloat(y10) : null);
-        break;
-    default:
-        break;
-}
-
-*/
