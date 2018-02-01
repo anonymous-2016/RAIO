@@ -1,4 +1,7 @@
+# webkit scrollbar
 
+
+## `::-webkit-scrollbar:horizontal` & `::-webkit-scrollbar-thumb:vertical`
 
 
 
