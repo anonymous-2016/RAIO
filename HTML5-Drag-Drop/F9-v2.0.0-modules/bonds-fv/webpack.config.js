@@ -36,22 +36,24 @@ if (process.env.NODE_ENV !== 'production') {
     console.log('Tada, 🎉, we are in production mode!');
 }
 
+
 const OTC_F9 = [
-    "latest-transaction-data",
-    "big-event-reminder",
-    "company-brief-introduction",
-    "latest-financial-data",
-    "company-performance-all",//company-all
-    "company-performance-market",
-    "company-performance-scale",
-    "company-performance-achievement",
-    "company-performance-valuation",
-    "main-management-business",
-    "equity-shareholder",
-    "management-layer-profiles",
-    "company-news",
-    "company-bulletin",
-    "research-report"
+    "repurchase-interest-rates",
+    "repurchase-set-interest-rates",
+    "cs-interbank-dismantle-borrowing-interest-rates",
+    "shibor-interbank-dismantle-borrowing-interest-rates",
+    "central-bank-benchmark-interest-rates",
+    "seven-days-repurchase-moving-average-interest-rates",
+    "bills-directly-indirect-subsidy-interest-rates",
+    "dcm-pricing-central-hub",
+    "treasury-bonds-profitability",// x8
+    "corporate-debt-aaa-profitability",
+    "national-policy-driven-financial-debt-profitability",
+    "commercial-banks-aaa-profitability",
+    "medium-short-term-bills-aaa-profitability",
+    "city-investment-debt-aaa-profitability",
+    "local-governments-debt-aaa-profitability",
+    "central-bills-profitability",
 ];
 
 let entry_obj = {};

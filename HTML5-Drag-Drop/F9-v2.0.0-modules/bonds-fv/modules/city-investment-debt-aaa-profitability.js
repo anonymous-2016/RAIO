@@ -27,7 +27,7 @@ OTC_F9_FV.Modules.cityInvestmentDebt3AP = OTC_F9_FV.Modules.cityInvestmentDebt3A
         .then(res => res.json())
         .then(
             (json) => {
-                if (!debug) {
+                if (debug) {
                     console.log(`fetched json =\n`, json);
                 }
                 try {

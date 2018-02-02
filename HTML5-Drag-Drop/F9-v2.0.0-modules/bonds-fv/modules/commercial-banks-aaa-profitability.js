@@ -27,7 +27,7 @@ OTC_F9_FV.Modules.commercialBanks3AP = OTC_F9_FV.Modules.commercialBanks3AP || (
         .then(res => res.json())
         .then(
             (json) => {
-                if (!debug) {
+                if (debug) {
                     console.log(`fetched json =\n`, json);
                 }
                 try {

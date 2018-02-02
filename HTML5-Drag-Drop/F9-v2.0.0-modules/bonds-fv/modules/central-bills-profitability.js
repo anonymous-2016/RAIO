@@ -27,7 +27,7 @@ OTC_F9_FV.Modules.centralBillsProfitability = OTC_F9_FV.Modules.centralBillsProf
         .then(res => res.json())
         .then(
             (json) => {
-                if (!debug) {
+                if (debug) {
                     console.log(`fetched json =\n`, json);
                 }
                 try {
@@ -174,7 +174,7 @@ OTC_F9_FV.Modules.centralBillsProfitability.drawHS = OTC_F9_FV.Modules.centralBi
         container_uid = ``,
         debug = false
     ) => {
-        if (!debug) {
+        if (debug) {
             console.log(`HC datas = \n`, datas);
             console.log(`HC containe uid = \n`, container_uid);
         }

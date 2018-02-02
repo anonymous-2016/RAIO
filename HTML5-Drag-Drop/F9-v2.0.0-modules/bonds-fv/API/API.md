@@ -134,6 +134,29 @@ var OTC_IP = window.OTC_IP || `http://10.1.5.202`,
 ```
 
 
+    bondratefast01  回购利率
+    bondratefast03  国债收益率(中债)
+    bondratefast04  企债AAA收益率(中债)
+    bondratefast05  国开政策性金融债收益率(中债)
+    bondratefast06  商业银行AAA收益率(中债)
+
+    bondratefast07  城投债AAA收益率(中债)
+    bondratefast08  地方政府债AAA收益率(中债)
+    bondratefast09  中短期票据AAA收益率(中债)
+    bondratefast10  央票收益率(中债)
+
+
+
+    bondratefast02  拆借利率
+    bondratefast12  shibor
+    bondratefast13  央行基准利率
+    
+    bondratefast14  回购定盘利率
+    bondratefast15  七日回购移动平均利率
+    bondratefast16  票据直贴/转贴利率
+    bondratefast11  DCM定价中枢
+
+
 回购利率 repurchase-interest-rates
 
 拆借利率 (Chibor & Shibor)  cs-interbank-dismantle-borrowing-interest-rates

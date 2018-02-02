@@ -190,8 +190,8 @@ const initTabs = () => {
         sortable_module_containers[0].innerHTML = "";
         sortable_module_containers[1].innerHTML = "";
         // init modules
-        let left_uids = ["bondratefast01", "bondratefast02", "bondratefast03", "bondratefast04", "bondratefast05", "bondratefast06", "bondratefast07", "bondratefast08"];
-        let right_uids = ["bondratefast09", "bondratefast10", "bondratefast11", "bondratefast12", "bondratefast13", "bondratefast14", "bondratefast15", "bondratefast16"];
+        let left_uids = ["bondratefast01", "bondratefast03", "bondratefast04", "bondratefast05", "bondratefast06", "bondratefast07", "bondratefast08", "bondratefast09", "bondratefast10"];
+        let right_uids = ["bondratefast02", "bondratefast12", "bondratefast13", "bondratefast14", "bondratefast15", "bondratefast16", "bondratefast11"];
         OTC_F9_FV.Modules.loadAllModules.init(sortable_module_containers[0], left_uids);
         OTC_F9_FV.Modules.loadAllModules.init(sortable_module_containers[1], right_uids);
     }
@@ -311,651 +311,1610 @@ const HTML_Template = (uid = ``, loadModule = function(){}, debug = false) => {
         delete_uid = ``;
     switch (uid) {
         case "bondratefast01":
-            delete_uid = `latest-transaction-data`;
-            loadModule(uid, `latest-transaction-data`, true);
+            delete_uid = `repurchase-interest-rates`;
+            loadModule(uid, `repurchase-interest-rates`, true);
             htmlstr += `
                 <section class="otc-module-box-5">
                     <div class="otc-h5dnd-modules-title-box">
-                        <p class="otc-h5dnd-modules-title" data-title="otc-latest-transaction-data-title">
-                            最新交易数据
-                            <span data-title-text="otc-latest-transaction-data-title-text">
-                                    (日期: <span data-text="otc-latest-transaction-data-text"></span>)
+                        <p class="otc-h5dnd-modules-title" data-title="otc-repurchase-interest-rates-title">
+                            回购利率
+                            <span data-time="otc-repurchase-interest-rates-time">
+                                <!-- (2018-01-01) -->
                             </span>
-                            <span data-link="otc-latest-transaction-data-link">
-                                <a href="#每日交易数据" data-uid="1106" data-turn-to-uid="node-uid-latest-transaction-data">每日交易数据</a>
-                            </span>
+                            <!-- <span data-link="otc-repurchase-interest-rates-link">
+                                <a href="#more" data-uid="1112" data-turn-to-uid="node-uid-repurchase-interest-rates-data">more</a>
+                                <a href="#more" data-uid="1085" data-turn-to-uid="node-uid-repurchase-interest-rates-data">more</a>
+                            </span> -->
                         </p>
                     </div>
-                    <table class="otc-latest-transaction-data-table">
-                        <thead class="otc-latest-transaction-data-table-thead">
-                            <tr class="otc-latest-transaction-data-table-tr">
-                                <td class="otc-latest-transaction-data-table-td-title">最新交易数据</td>
+                    <!-- table -->
+                    <table class="otc-repurchase-interest-rates-table">
+                        <thead class="otc-repurchase-interest-rates-table-thead">
+                            <!-- <tr class="otc-repurchase-interest-rates-table-tr">
+                                <th class="otc-repurchase-interest-rates-table-th-title" colspan="3">回购利率</th>
+                                <th class="otc-repurchase-interest-rates-table-th-value" colspan="4" data-time="data-otc-RIR"></th>
+                            </tr> -->
+                            <tr class="otc-repurchase-interest-rates-table-tr">
+                                <td class="otc-repurchase-interest-rates-table-td-key" data-alias="#RIR"></td>
+                                <td class="otc-repurchase-interest-rates-table-td-key" data-alias="#RIR">品种</td>
+                                <td class="otc-repurchase-interest-rates-table-td-key" data-alias="#RIR">加权/收盘</td>
+                                <td class="otc-repurchase-interest-rates-table-td-key" data-alias="#RIR">比较日</td>
+                                <td class="otc-repurchase-interest-rates-table-td-key" data-alias="#RIR">BP</td>
+                                <td class="otc-repurchase-interest-rates-table-td-key" data-alias="#RIR">成交量(亿)</td>
+                                <td class="otc-repurchase-interest-rates-table-td-key" data-alias="#RIR">量增</td>
                             </tr>
                         </thead>
-                        <tbody class="otc-latest-transaction-data-table-tbody">
-                            <tr class="otc-latest-transaction-data-table-tr">
-                                <td class="otc-latest-transaction-data-table-td-key" data-alias="收盘价">收盘价</td>
-                                <td class="otc-latest-transaction-data-table-td-value" data-value="data-otc-LTD"></td>
-                                <td class="otc-latest-transaction-data-table-td-key" data-alias="总市值">总市值(万元)</td>
-                                <td class="otc-latest-transaction-data-table-td-value" data-value="data-otc-LTD"></td>
+                        <tbody class="otc-repurchase-interest-rates-table-tbody" data-tbody="otc-repurchase-interest-rates-table-tbody">
+                            <!-- 银质押 -->
+                            <tr class="otc-repurchase-interest-rates-table-tr">
+                                <td class="otc-repurchase-interest-rates-table-td-title" data-alias="银质押" rowspan="8">
+                                    <div class="vertical-text">银</div>
+                                    <div class="vertical-text">质</div>
+                                    <div class="vertical-text">押</div>
+                                </td>
+                                <td class="otc-repurchase-interest-rates-table-td-key" data-key="data-otc-RIR">1D</td>
+                                <td class="otc-repurchase-interest-rates-table-td-value" data-value="data-otc-RIR"></td>
+                                <td class="otc-repurchase-interest-rates-table-td-value" data-value="data-otc-RIR"></td>
+                                <td class="otc-repurchase-interest-rates-table-td-value" data-value="data-otc-RIR"></td>
+                                <td class="otc-repurchase-interest-rates-table-td-value" data-value="data-otc-RIR"></td>
+                                <td class="otc-repurchase-interest-rates-table-td-value" data-value="data-otc-RIR"></td>
                             </tr>
-                            <tr class="otc-latest-transaction-data-table-tr">
-                                <td class="otc-latest-transaction-data-table-td-key" data-alias="涨跌幅">涨跌幅(%)</td>
-                                <td class="otc-latest-transaction-data-table-td-value" data-value="data-otc-LTD"></td>
-                                <td class="otc-latest-transaction-data-table-td-key" data-alias="流通市值">流通市值(万元)</td>
-                                <td class="otc-latest-transaction-data-table-td-value" data-value="data-otc-LTD"></td>
+                            <tr class="otc-repurchase-interest-rates-table-tr">
+                                <td class="otc-repurchase-interest-rates-table-td-key" data-key="data-otc-RIR">7D</td>
+                                <td class="otc-repurchase-interest-rates-table-td-value" data-value="data-otc-RIR"></td>
+                                <td class="otc-repurchase-interest-rates-table-td-value" data-value="data-otc-RIR"></td>
+                                <td class="otc-repurchase-interest-rates-table-td-value" data-value="data-otc-RIR"></td>
+                                <td class="otc-repurchase-interest-rates-table-td-value" data-value="data-otc-RIR"></td>
+                                <td class="otc-repurchase-interest-rates-table-td-value" data-value="data-otc-RIR"></td>
                             </tr>
-                            <tr class="otc-latest-transaction-data-table-tr">
-                                <td class="otc-latest-transaction-data-table-td-key" data-alias="成交量">成交量(股)</td>
-                                <td class="otc-latest-transaction-data-table-td-value" data-value="data-otc-LTD"></td>
-                                <td class="otc-latest-transaction-data-table-td-key" data-alias="市盈率(TTM)">市盈率(TTM)</td>
-                                <td class="otc-latest-transaction-data-table-td-value" data-value="data-otc-LTD"></td>
+                            <tr class="otc-repurchase-interest-rates-table-tr">
+                                <td class="otc-repurchase-interest-rates-table-td-key" data-key="data-otc-RIR">14D</td>
+                                <td class="otc-repurchase-interest-rates-table-td-value" data-value="data-otc-RIR"></td>
+                                <td class="otc-repurchase-interest-rates-table-td-value" data-value="data-otc-RIR"></td>
+                                <td class="otc-repurchase-interest-rates-table-td-value" data-value="data-otc-RIR"></td>
+                                <td class="otc-repurchase-interest-rates-table-td-value" data-value="data-otc-RIR"></td>
+                                <td class="otc-repurchase-interest-rates-table-td-value" data-value="data-otc-RIR"></td>
                             </tr>
-                            <tr class="otc-latest-transaction-data-table-tr">
-                                <td class="otc-latest-transaction-data-table-td-key" data-alias="换手率">换手率(%)</td>
-                                <td class="otc-latest-transaction-data-table-td-value" data-value="data-otc-LTD"></td>
-                                <td class="otc-latest-transaction-data-table-td-key" data-alias="市盈率(LYR)">市盈率(LYR)</td>
-                                <td class="otc-latest-transaction-data-table-td-value" data-value="data-otc-LTD"></td>
+                            <tr class="otc-repurchase-interest-rates-table-tr">
+                                <td class="otc-repurchase-interest-rates-table-td-key" data-key="data-otc-RIR">21D</td>
+                                <td class="otc-repurchase-interest-rates-table-td-value" data-value="data-otc-RIR"></td>
+                                <td class="otc-repurchase-interest-rates-table-td-value" data-value="data-otc-RIR"></td>
+                                <td class="otc-repurchase-interest-rates-table-td-value" data-value="data-otc-RIR"></td>
+                                <td class="otc-repurchase-interest-rates-table-td-value" data-value="data-otc-RIR"></td>
+                                <td class="otc-repurchase-interest-rates-table-td-value" data-value="data-otc-RIR"></td>
                             </tr>
-                            <tr class="otc-latest-transaction-data-table-tr">
-                                <td class="otc-latest-transaction-data-table-td-key" data-alias="成交金额">成交额(万元)</td>
-                                <td class="otc-latest-transaction-data-table-td-value" data-value="data-otc-LTD"></td>
-                                <td class="otc-latest-transaction-data-table-td-key" data-alias="市净率">市净率(LYR)</td>
-                                <td class="otc-latest-transaction-data-table-td-value" data-value="data-otc-LTD"></td>
+                            <tr class="otc-repurchase-interest-rates-table-tr">
+                                <td class="otc-repurchase-interest-rates-table-td-key" data-key="data-otc-RIR">1M</td>
+                                <td class="otc-repurchase-interest-rates-table-td-value" data-value="data-otc-RIR"></td>
+                                <td class="otc-repurchase-interest-rates-table-td-value" data-value="data-otc-RIR"></td>
+                                <td class="otc-repurchase-interest-rates-table-td-value" data-value="data-otc-RIR"></td>
+                                <td class="otc-repurchase-interest-rates-table-td-value" data-value="data-otc-RIR"></td>
+                                <td class="otc-repurchase-interest-rates-table-td-value" data-value="data-otc-RIR"></td>
+                            </tr>
+                            <tr class="otc-repurchase-interest-rates-table-tr">
+                                <td class="otc-repurchase-interest-rates-table-td-key" data-key="data-otc-RIR">2M</td>
+                                <td class="otc-repurchase-interest-rates-table-td-value" data-value="data-otc-RIR"></td>
+                                <td class="otc-repurchase-interest-rates-table-td-value" data-value="data-otc-RIR"></td>
+                                <td class="otc-repurchase-interest-rates-table-td-value" data-value="data-otc-RIR"></td>
+                                <td class="otc-repurchase-interest-rates-table-td-value" data-value="data-otc-RIR"></td>
+                                <td class="otc-repurchase-interest-rates-table-td-value" data-value="data-otc-RIR"></td>
+                            </tr>
+                            <tr class="otc-repurchase-interest-rates-table-tr">
+                                <td class="otc-repurchase-interest-rates-table-td-key" data-key="data-otc-RIR">3M</td>
+                                <td class="otc-repurchase-interest-rates-table-td-value" data-value="data-otc-RIR"></td>
+                                <td class="otc-repurchase-interest-rates-table-td-value" data-value="data-otc-RIR"></td>
+                                <td class="otc-repurchase-interest-rates-table-td-value" data-value="data-otc-RIR"></td>
+                                <td class="otc-repurchase-interest-rates-table-td-value" data-value="data-otc-RIR"></td>
+                                <td class="otc-repurchase-interest-rates-table-td-value" data-value="data-otc-RIR"></td>
+                            </tr>
+                            <tr class="otc-repurchase-interest-rates-table-tr">
+                                <td class="otc-repurchase-interest-rates-table-td-key" data-key="data-otc-RIR">6M</td>
+                                <td class="otc-repurchase-interest-rates-table-td-value" data-value="data-otc-RIR"></td>
+                                <td class="otc-repurchase-interest-rates-table-td-value" data-value="data-otc-RIR"></td>
+                                <td class="otc-repurchase-interest-rates-table-td-value" data-value="data-otc-RIR"></td>
+                                <td class="otc-repurchase-interest-rates-table-td-value" data-value="data-otc-RIR"></td>
+                                <td class="otc-repurchase-interest-rates-table-td-value" data-value="data-otc-RIR"></td>
+                            </tr>
+                            <!-- 沪质押 -->
+                            <tr class="otc-repurchase-interest-rates-table-tr">
+                                <td class="otc-repurchase-interest-rates-table-td-title" data-alias="沪质押" rowspan="9">
+                                    <div class="vertical-text">沪</div>
+                                    <div class="vertical-text">质</div>
+                                    <div class="vertical-text">押</div>
+                                </td>
+                                <td class="otc-repurchase-interest-rates-table-td-key" data-key="data-otc-RIR">1D</td>
+                                <td class="otc-repurchase-interest-rates-table-td-value" data-value="data-otc-RIR"></td>
+                                <td class="otc-repurchase-interest-rates-table-td-value" data-value="data-otc-RIR"></td>
+                                <td class="otc-repurchase-interest-rates-table-td-value" data-value="data-otc-RIR"></td>
+                                <td class="otc-repurchase-interest-rates-table-td-value" data-value="data-otc-RIR"></td>
+                                <td class="otc-repurchase-interest-rates-table-td-value" data-value="data-otc-RIR"></td>
+                            </tr>
+                            <tr class="otc-repurchase-interest-rates-table-tr">
+                                <td class="otc-repurchase-interest-rates-table-td-key" data-key="data-otc-RIR">2D</td>
+                                <td class="otc-repurchase-interest-rates-table-td-value" data-value="data-otc-RIR"></td>
+                                <td class="otc-repurchase-interest-rates-table-td-value" data-value="data-otc-RIR"></td>
+                                <td class="otc-repurchase-interest-rates-table-td-value" data-value="data-otc-RIR"></td>
+                                <td class="otc-repurchase-interest-rates-table-td-value" data-value="data-otc-RIR"></td>
+                                <td class="otc-repurchase-interest-rates-table-td-value" data-value="data-otc-RIR"></td>
+                            </tr>
+                            <tr class="otc-repurchase-interest-rates-table-tr">
+                                <td class="otc-repurchase-interest-rates-table-td-key" data-key="data-otc-RIR">3D</td>
+                                <td class="otc-repurchase-interest-rates-table-td-value" data-value="data-otc-RIR"></td>
+                                <td class="otc-repurchase-interest-rates-table-td-value" data-value="data-otc-RIR"></td>
+                                <td class="otc-repurchase-interest-rates-table-td-value" data-value="data-otc-RIR"></td>
+                                <td class="otc-repurchase-interest-rates-table-td-value" data-value="data-otc-RIR"></td>
+                                <td class="otc-repurchase-interest-rates-table-td-value" data-value="data-otc-RIR"></td>
+                            </tr>
+                            <tr class="otc-repurchase-interest-rates-table-tr">
+                                <td class="otc-repurchase-interest-rates-table-td-key" data-key="data-otc-RIR">4D</td>
+                                <td class="otc-repurchase-interest-rates-table-td-value" data-value="data-otc-RIR"></td>
+                                <td class="otc-repurchase-interest-rates-table-td-value" data-value="data-otc-RIR"></td>
+                                <td class="otc-repurchase-interest-rates-table-td-value" data-value="data-otc-RIR"></td>
+                                <td class="otc-repurchase-interest-rates-table-td-value" data-value="data-otc-RIR"></td>
+                                <td class="otc-repurchase-interest-rates-table-td-value" data-value="data-otc-RIR"></td>
+                            </tr>
+                            <tr class="otc-repurchase-interest-rates-table-tr">
+                                <td class="otc-repurchase-interest-rates-table-td-key" data-key="data-otc-RIR">7D</td>
+                                <td class="otc-repurchase-interest-rates-table-td-value" data-value="data-otc-RIR"></td>
+                                <td class="otc-repurchase-interest-rates-table-td-value" data-value="data-otc-RIR"></td>
+                                <td class="otc-repurchase-interest-rates-table-td-value" data-value="data-otc-RIR"></td>
+                                <td class="otc-repurchase-interest-rates-table-td-value" data-value="data-otc-RIR"></td>
+                                <td class="otc-repurchase-interest-rates-table-td-value" data-value="data-otc-RIR"></td>
+                            </tr>
+                            <tr class="otc-repurchase-interest-rates-table-tr">
+                                <td class="otc-repurchase-interest-rates-table-td-key" data-key="data-otc-RIR">14D</td>
+                                <td class="otc-repurchase-interest-rates-table-td-value" data-value="data-otc-RIR"></td>
+                                <td class="otc-repurchase-interest-rates-table-td-value" data-value="data-otc-RIR"></td>
+                                <td class="otc-repurchase-interest-rates-table-td-value" data-value="data-otc-RIR"></td>
+                                <td class="otc-repurchase-interest-rates-table-td-value" data-value="data-otc-RIR"></td>
+                                <td class="otc-repurchase-interest-rates-table-td-value" data-value="data-otc-RIR"></td>
+                            </tr>
+                            <tr class="otc-repurchase-interest-rates-table-tr">
+                                <td class="otc-repurchase-interest-rates-table-td-key" data-key="data-otc-RIR">1M</td>
+                                <td class="otc-repurchase-interest-rates-table-td-value" data-value="data-otc-RIR"></td>
+                                <td class="otc-repurchase-interest-rates-table-td-value" data-value="data-otc-RIR"></td>
+                                <td class="otc-repurchase-interest-rates-table-td-value" data-value="data-otc-RIR"></td>
+                                <td class="otc-repurchase-interest-rates-table-td-value" data-value="data-otc-RIR"></td>
+                                <td class="otc-repurchase-interest-rates-table-td-value" data-value="data-otc-RIR"></td>
+                            </tr>
+                            <tr class="otc-repurchase-interest-rates-table-tr">
+                                <td class="otc-repurchase-interest-rates-table-td-key" data-key="data-otc-RIR">3M</td>
+                                <td class="otc-repurchase-interest-rates-table-td-value" data-value="data-otc-RIR"></td>
+                                <td class="otc-repurchase-interest-rates-table-td-value" data-value="data-otc-RIR"></td>
+                                <td class="otc-repurchase-interest-rates-table-td-value" data-value="data-otc-RIR"></td>
+                                <td class="otc-repurchase-interest-rates-table-td-value" data-value="data-otc-RIR"></td>
+                                <td class="otc-repurchase-interest-rates-table-td-value" data-value="data-otc-RIR"></td>
+                            </tr>
+                            <tr class="otc-repurchase-interest-rates-table-tr">
+                                <td class="otc-repurchase-interest-rates-table-td-key" data-key="data-otc-RIR">6M</td>
+                                <td class="otc-repurchase-interest-rates-table-td-value" data-value="data-otc-RIR"></td>
+                                <td class="otc-repurchase-interest-rates-table-td-value" data-value="data-otc-RIR"></td>
+                                <td class="otc-repurchase-interest-rates-table-td-value" data-value="data-otc-RIR"></td>
+                                <td class="otc-repurchase-interest-rates-table-td-value" data-value="data-otc-RIR"></td>
+                                <td class="otc-repurchase-interest-rates-table-td-value" data-value="data-otc-RIR"></td>
                             </tr>
                         </tbody>
-                        <tfoot class="otc-latest-transaction-data-table-tfoot">
-                            <tr class="otc-latest-transaction-data-table-tr">
-                                <td class="otc-latest-transaction-data-table-td-value" data-value="data-otc-LTD"></td>
+                        <tfoot class="otc-repurchase-interest-rates-table-tfoot">
+                            <tr class="otc-repurchase-interest-rates-table-tr">
+                                <td class="otc-repurchase-interest-rates-table-td-value" data-value="data-otc-RIR"></td>
                             </tr>
                         </tfoot>
                     </table>
+                    <!-- hc -->
+                    <div id="repurchase-interest-rates-hs-container1" data-hs-container="data-repurchase-interest-rates-container-uid" class="otc-repurchase-interest-rates-hs otc-repurchase-interest-rates-hs-container"></div>
+                    <div id="repurchase-interest-rates-hs-container2" data-hs-container="data-repurchase-interest-rates-container-uid" class="otc-repurchase-interest-rates-hs otc-repurchase-interest-rates-hs-container"></div>
+                    <!-- no data -->
+                    <div data-none="no-data-div-hidden" data-none-uid="otc-repurchase-interest-rates">
+                        <p data-none="no-data-p">
+                            <span data-none="no-data-span"></span>
+                        </p>
+                    </div>
                 </section>
             `;
             break;
         case "bondratefast02":
-            delete_uid = `big-event-reminder`;
-            loadModule(uid, `big-event-reminder`, true);
+            delete_uid = `cs-interbank-dismantle-borrowing-interest-rates`;
+            loadModule(uid, `cs-interbank-dismantle-borrowing-interest-rates`, true);
             htmlstr += `
                 <section class="otc-module-box-5">
                     <div class="otc-h5dnd-modules-title-box">
-                        <p class="otc-h5dnd-modules-title" data-title="otc-big-event-reminder-title">
-                            大事提醒
-                            <span data-link="otc-big-event-reminder-link">
-                                <a href="#分红数据" data-uid="1085" data-turn-to-uid="node-uid-big-event-reminder-data">分红数据</a>
-                                <a href="#增发数据" data-uid="1112" data-turn-to-uid="node-uid-big-event-reminder-data">增发数据</a>
+                        <p class="otc-h5dnd-modules-title" data-title="otc-cs-interbank-dismantle-borrowing-interest-rates-title">
+                            拆借利率(Chibor & Shibor)
+                            <span data-time="otc-cs-interbank-dismantle-borrowing-interest-rates-time">
+                                <!-- (2018-01-01) -->
                             </span>
+                            <!-- <span data-link="otc-cs-interbank-dismantle-borrowing-interest-rates-link">
+                                <a href="#more" data-uid="1112" data-turn-to-uid="node-uid-cs-interbank-dismantle-borrowing-interest-rates-data">more</a>
+                                <a href="#more" data-uid="1085" data-turn-to-uid="node-uid-cs-interbank-dismantle-borrowing-interest-rates-data">more</a>
+                            </span> -->
                         </p>
                     </div>
-                    <table class="otc-big-event-reminder-table">
-                        <thead class="otc-big-event-reminder-table-thead">
-                            <tr class="otc-big-event-reminder-table-tr">
-                                <td class="otc-big-event-reminder-table-td-title">大事提醒</td>
+                    <!-- table -->
+                    <table class="otc-cs-interbank-dismantle-borrowing-interest-rates-table">
+                        <thead class="otc-cs-interbank-dismantle-borrowing-interest-rates-table-thead">
+                            <!-- <tr class="otc-cs-interbank-dismantle-borrowing-interest-rates-table-tr">
+                                <th class="otc-cs-interbank-dismantle-borrowing-interest-rates-table-th-title" colspan="3">拆借利率(Chibor & Shibor)</th>
+                                <th class="otc-cs-interbank-dismantle-borrowing-interest-rates-table-th-value" colspan="4" data-time="data-otc-CSIDBIR"></th>
+                            </tr> -->
+                            <tr class="otc-cs-interbank-dismantle-borrowing-interest-rates-table-tr">
+                                <td class="otc-cs-interbank-dismantle-borrowing-interest-rates-table-td-key" data-alias="#CSIDBIR"></td>
+                                <td class="otc-cs-interbank-dismantle-borrowing-interest-rates-table-td-key" data-alias="#CSIDBIR">品种</td>
+                                <td class="otc-cs-interbank-dismantle-borrowing-interest-rates-table-td-key" data-alias="#CSIDBIR">加权/收盘</td>
+                                <td class="otc-cs-interbank-dismantle-borrowing-interest-rates-table-td-key" data-alias="#CSIDBIR">比较日</td>
+                                <td class="otc-cs-interbank-dismantle-borrowing-interest-rates-table-td-key" data-alias="#CSIDBIR">BP</td>
+                                <td class="otc-cs-interbank-dismantle-borrowing-interest-rates-table-td-key" data-alias="#CSIDBIR">成交量(亿)</td>
+                                <td class="otc-cs-interbank-dismantle-borrowing-interest-rates-table-td-key" data-alias="#CSIDBIR">量增</td>
                             </tr>
                         </thead>
-                        <tbody class="otc-big-event-reminder-table-tbody" data-tbody="otc-big-event-reminder-table-tbody"></tbody>
-                        <tfoot class="otc-big-event-reminder-table-tfoot">
-                            <tr class="otc-big-event-reminder-table-tr">
-                                <td class="otc-big-event-reminder-table-td-value" data-value="data-otc-BER"></td>
+                        <tbody class="otc-cs-interbank-dismantle-borrowing-interest-rates-table-tbody" data-tbody="otc-cs-interbank-dismantle-borrowing-interest-rates-table-tbody">
+                            <!-- 中拆借 -->
+                            <tr class="otc-cs-interbank-dismantle-borrowing-interest-rates-table-tr">
+                                <td class="otc-cs-interbank-dismantle-borrowing-interest-rates-table-td-title" data-alias="中拆借" rowspan="8">
+                                    <div class="vertical-text">中</div>
+                                    <div class="vertical-text">拆</div>
+                                    <div class="vertical-text">借</div>
+                                </td>
+                                <td class="otc-cs-interbank-dismantle-borrowing-interest-rates-table-td-key" data-key="data-otc-CSIDBIR">1D</td>
+                                <td class="otc-cs-interbank-dismantle-borrowing-interest-rates-table-td-value" data-value="data-otc-CSIDBIR"></td>
+                                <td class="otc-cs-interbank-dismantle-borrowing-interest-rates-table-td-value" data-value="data-otc-CSIDBIR"></td>
+                                <td class="otc-cs-interbank-dismantle-borrowing-interest-rates-table-td-value" data-value="data-otc-CSIDBIR"></td>
+                                <td class="otc-cs-interbank-dismantle-borrowing-interest-rates-table-td-value" data-value="data-otc-CSIDBIR"></td>
+                                <td class="otc-cs-interbank-dismantle-borrowing-interest-rates-table-td-value" data-value="data-otc-CSIDBIR"></td>
+                            </tr>
+                            <tr class="otc-cs-interbank-dismantle-borrowing-interest-rates-table-tr">
+                                <td class="otc-cs-interbank-dismantle-borrowing-interest-rates-table-td-key" data-key="data-otc-CSIDBIR">7D</td>
+                                <td class="otc-cs-interbank-dismantle-borrowing-interest-rates-table-td-value" data-value="data-otc-CSIDBIR"></td>
+                                <td class="otc-cs-interbank-dismantle-borrowing-interest-rates-table-td-value" data-value="data-otc-CSIDBIR"></td>
+                                <td class="otc-cs-interbank-dismantle-borrowing-interest-rates-table-td-value" data-value="data-otc-CSIDBIR"></td>
+                                <td class="otc-cs-interbank-dismantle-borrowing-interest-rates-table-td-value" data-value="data-otc-CSIDBIR"></td>
+                                <td class="otc-cs-interbank-dismantle-borrowing-interest-rates-table-td-value" data-value="data-otc-CSIDBIR"></td>
+                            </tr>
+                            <tr class="otc-cs-interbank-dismantle-borrowing-interest-rates-table-tr">
+                                <td class="otc-cs-interbank-dismantle-borrowing-interest-rates-table-td-key" data-key="data-otc-CSIDBIR">14D</td>
+                                <td class="otc-cs-interbank-dismantle-borrowing-interest-rates-table-td-value" data-value="data-otc-CSIDBIR"></td>
+                                <td class="otc-cs-interbank-dismantle-borrowing-interest-rates-table-td-value" data-value="data-otc-CSIDBIR"></td>
+                                <td class="otc-cs-interbank-dismantle-borrowing-interest-rates-table-td-value" data-value="data-otc-CSIDBIR"></td>
+                                <td class="otc-cs-interbank-dismantle-borrowing-interest-rates-table-td-value" data-value="data-otc-CSIDBIR"></td>
+                                <td class="otc-cs-interbank-dismantle-borrowing-interest-rates-table-td-value" data-value="data-otc-CSIDBIR"></td>
+                            </tr>
+                            <tr class="otc-cs-interbank-dismantle-borrowing-interest-rates-table-tr">
+                                <td class="otc-cs-interbank-dismantle-borrowing-interest-rates-table-td-key" data-key="data-otc-CSIDBIR">21D</td>
+                                <td class="otc-cs-interbank-dismantle-borrowing-interest-rates-table-td-value" data-value="data-otc-CSIDBIR"></td>
+                                <td class="otc-cs-interbank-dismantle-borrowing-interest-rates-table-td-value" data-value="data-otc-CSIDBIR"></td>
+                                <td class="otc-cs-interbank-dismantle-borrowing-interest-rates-table-td-value" data-value="data-otc-CSIDBIR"></td>
+                                <td class="otc-cs-interbank-dismantle-borrowing-interest-rates-table-td-value" data-value="data-otc-CSIDBIR"></td>
+                                <td class="otc-cs-interbank-dismantle-borrowing-interest-rates-table-td-value" data-value="data-otc-CSIDBIR"></td>
+                            </tr>
+                            <tr class="otc-cs-interbank-dismantle-borrowing-interest-rates-table-tr">
+                                <td class="otc-cs-interbank-dismantle-borrowing-interest-rates-table-td-key" data-key="data-otc-CSIDBIR">1M</td>
+                                <td class="otc-cs-interbank-dismantle-borrowing-interest-rates-table-td-value" data-value="data-otc-CSIDBIR"></td>
+                                <td class="otc-cs-interbank-dismantle-borrowing-interest-rates-table-td-value" data-value="data-otc-CSIDBIR"></td>
+                                <td class="otc-cs-interbank-dismantle-borrowing-interest-rates-table-td-value" data-value="data-otc-CSIDBIR"></td>
+                                <td class="otc-cs-interbank-dismantle-borrowing-interest-rates-table-td-value" data-value="data-otc-CSIDBIR"></td>
+                                <td class="otc-cs-interbank-dismantle-borrowing-interest-rates-table-td-value" data-value="data-otc-CSIDBIR"></td>
+                            </tr>
+                            <tr class="otc-cs-interbank-dismantle-borrowing-interest-rates-table-tr">
+                                <td class="otc-cs-interbank-dismantle-borrowing-interest-rates-table-td-key" data-key="data-otc-CSIDBIR">2M</td>
+                                <td class="otc-cs-interbank-dismantle-borrowing-interest-rates-table-td-value" data-value="data-otc-CSIDBIR"></td>
+                                <td class="otc-cs-interbank-dismantle-borrowing-interest-rates-table-td-value" data-value="data-otc-CSIDBIR"></td>
+                                <td class="otc-cs-interbank-dismantle-borrowing-interest-rates-table-td-value" data-value="data-otc-CSIDBIR"></td>
+                                <td class="otc-cs-interbank-dismantle-borrowing-interest-rates-table-td-value" data-value="data-otc-CSIDBIR"></td>
+                                <td class="otc-cs-interbank-dismantle-borrowing-interest-rates-table-td-value" data-value="data-otc-CSIDBIR"></td>
+                            </tr>
+                            <tr class="otc-cs-interbank-dismantle-borrowing-interest-rates-table-tr">
+                                <td class="otc-cs-interbank-dismantle-borrowing-interest-rates-table-td-key" data-key="data-otc-CSIDBIR">3M</td>
+                                <td class="otc-cs-interbank-dismantle-borrowing-interest-rates-table-td-value" data-value="data-otc-CSIDBIR"></td>
+                                <td class="otc-cs-interbank-dismantle-borrowing-interest-rates-table-td-value" data-value="data-otc-CSIDBIR"></td>
+                                <td class="otc-cs-interbank-dismantle-borrowing-interest-rates-table-td-value" data-value="data-otc-CSIDBIR"></td>
+                                <td class="otc-cs-interbank-dismantle-borrowing-interest-rates-table-td-value" data-value="data-otc-CSIDBIR"></td>
+                                <td class="otc-cs-interbank-dismantle-borrowing-interest-rates-table-td-value" data-value="data-otc-CSIDBIR"></td>
+                            </tr>
+                            <tr class="otc-cs-interbank-dismantle-borrowing-interest-rates-table-tr">
+                                <td class="otc-cs-interbank-dismantle-borrowing-interest-rates-table-td-key" data-key="data-otc-CSIDBIR">4M</td>
+                                <td class="otc-cs-interbank-dismantle-borrowing-interest-rates-table-td-value" data-value="data-otc-CSIDBIR"></td>
+                                <td class="otc-cs-interbank-dismantle-borrowing-interest-rates-table-td-value" data-value="data-otc-CSIDBIR"></td>
+                                <td class="otc-cs-interbank-dismantle-borrowing-interest-rates-table-td-value" data-value="data-otc-CSIDBIR"></td>
+                                <td class="otc-cs-interbank-dismantle-borrowing-interest-rates-table-td-value" data-value="data-otc-CSIDBIR"></td>
+                                <td class="otc-cs-interbank-dismantle-borrowing-interest-rates-table-td-value" data-value="data-otc-CSIDBIR"></td>
+                            </tr>
+                            <!-- 沪拆借 -->
+                            <tr class="otc-cs-interbank-dismantle-borrowing-interest-rates-table-tr">
+                                <td class="otc-cs-interbank-dismantle-borrowing-interest-rates-table-td-title" data-alias="沪拆借" rowspan="9">
+                                    <div class="vertical-text">沪</div>
+                                    <div class="vertical-text">拆</div>
+                                    <div class="vertical-text">借</div>
+                                </td>
+                                <td class="otc-cs-interbank-dismantle-borrowing-interest-rates-table-td-key" data-key="data-otc-CSIDBIR">1D</td>
+                                <td class="otc-cs-interbank-dismantle-borrowing-interest-rates-table-td-value" data-value="data-otc-CSIDBIR"></td>
+                                <td class="otc-cs-interbank-dismantle-borrowing-interest-rates-table-td-value" data-value="data-otc-CSIDBIR"></td>
+                                <td class="otc-cs-interbank-dismantle-borrowing-interest-rates-table-td-value" data-value="data-otc-CSIDBIR"></td>
+                                <td class="otc-cs-interbank-dismantle-borrowing-interest-rates-table-td-value" data-value="data-otc-CSIDBIR"></td>
+                                <td class="otc-cs-interbank-dismantle-borrowing-interest-rates-table-td-value" data-value="data-otc-CSIDBIR"></td>
+                            </tr>
+                            <tr class="otc-cs-interbank-dismantle-borrowing-interest-rates-table-tr">
+                                <td class="otc-cs-interbank-dismantle-borrowing-interest-rates-table-td-key" data-key="data-otc-CSIDBIR">1W</td>
+                                <td class="otc-cs-interbank-dismantle-borrowing-interest-rates-table-td-value" data-value="data-otc-CSIDBIR"></td>
+                                <td class="otc-cs-interbank-dismantle-borrowing-interest-rates-table-td-value" data-value="data-otc-CSIDBIR"></td>
+                                <td class="otc-cs-interbank-dismantle-borrowing-interest-rates-table-td-value" data-value="data-otc-CSIDBIR"></td>
+                                <td class="otc-cs-interbank-dismantle-borrowing-interest-rates-table-td-value" data-value="data-otc-CSIDBIR"></td>
+                                <td class="otc-cs-interbank-dismantle-borrowing-interest-rates-table-td-value" data-value="data-otc-CSIDBIR"></td>
+                            </tr>
+                            <tr class="otc-cs-interbank-dismantle-borrowing-interest-rates-table-tr">
+                                <td class="otc-cs-interbank-dismantle-borrowing-interest-rates-table-td-key" data-key="data-otc-CSIDBIR">2W</td>
+                                <td class="otc-cs-interbank-dismantle-borrowing-interest-rates-table-td-value" data-value="data-otc-CSIDBIR"></td>
+                                <td class="otc-cs-interbank-dismantle-borrowing-interest-rates-table-td-value" data-value="data-otc-CSIDBIR"></td>
+                                <td class="otc-cs-interbank-dismantle-borrowing-interest-rates-table-td-value" data-value="data-otc-CSIDBIR"></td>
+                                <td class="otc-cs-interbank-dismantle-borrowing-interest-rates-table-td-value" data-value="data-otc-CSIDBIR"></td>
+                                <td class="otc-cs-interbank-dismantle-borrowing-interest-rates-table-td-value" data-value="data-otc-CSIDBIR"></td>
+                            </tr>
+                            <tr class="otc-cs-interbank-dismantle-borrowing-interest-rates-table-tr">
+                                <td class="otc-cs-interbank-dismantle-borrowing-interest-rates-table-td-key" data-key="data-otc-CSIDBIR">1M</td>
+                                <td class="otc-cs-interbank-dismantle-borrowing-interest-rates-table-td-value" data-value="data-otc-CSIDBIR"></td>
+                                <td class="otc-cs-interbank-dismantle-borrowing-interest-rates-table-td-value" data-value="data-otc-CSIDBIR"></td>
+                                <td class="otc-cs-interbank-dismantle-borrowing-interest-rates-table-td-value" data-value="data-otc-CSIDBIR"></td>
+                                <td class="otc-cs-interbank-dismantle-borrowing-interest-rates-table-td-value" data-value="data-otc-CSIDBIR"></td>
+                                <td class="otc-cs-interbank-dismantle-borrowing-interest-rates-table-td-value" data-value="data-otc-CSIDBIR"></td>
+                            </tr>
+                            <tr class="otc-cs-interbank-dismantle-borrowing-interest-rates-table-tr">
+                                <td class="otc-cs-interbank-dismantle-borrowing-interest-rates-table-td-key" data-key="data-otc-CSIDBIR">3M</td>
+                                <td class="otc-cs-interbank-dismantle-borrowing-interest-rates-table-td-value" data-value="data-otc-CSIDBIR"></td>
+                                <td class="otc-cs-interbank-dismantle-borrowing-interest-rates-table-td-value" data-value="data-otc-CSIDBIR"></td>
+                                <td class="otc-cs-interbank-dismantle-borrowing-interest-rates-table-td-value" data-value="data-otc-CSIDBIR"></td>
+                                <td class="otc-cs-interbank-dismantle-borrowing-interest-rates-table-td-value" data-value="data-otc-CSIDBIR"></td>
+                                <td class="otc-cs-interbank-dismantle-borrowing-interest-rates-table-td-value" data-value="data-otc-CSIDBIR"></td>
+                            </tr>
+                            <tr class="otc-cs-interbank-dismantle-borrowing-interest-rates-table-tr">
+                                <td class="otc-cs-interbank-dismantle-borrowing-interest-rates-table-td-key" data-key="data-otc-CSIDBIR">6M</td>
+                                <td class="otc-cs-interbank-dismantle-borrowing-interest-rates-table-td-value" data-value="data-otc-CSIDBIR"></td>
+                                <td class="otc-cs-interbank-dismantle-borrowing-interest-rates-table-td-value" data-value="data-otc-CSIDBIR"></td>
+                                <td class="otc-cs-interbank-dismantle-borrowing-interest-rates-table-td-value" data-value="data-otc-CSIDBIR"></td>
+                                <td class="otc-cs-interbank-dismantle-borrowing-interest-rates-table-td-value" data-value="data-otc-CSIDBIR"></td>
+                                <td class="otc-cs-interbank-dismantle-borrowing-interest-rates-table-td-value" data-value="data-otc-CSIDBIR"></td>
+                            </tr>
+                            <tr class="otc-cs-interbank-dismantle-borrowing-interest-rates-table-tr">
+                                <td class="otc-cs-interbank-dismantle-borrowing-interest-rates-table-td-key" data-key="data-otc-CSIDBIR">9M</td>
+                                <td class="otc-cs-interbank-dismantle-borrowing-interest-rates-table-td-value" data-value="data-otc-CSIDBIR"></td>
+                                <td class="otc-cs-interbank-dismantle-borrowing-interest-rates-table-td-value" data-value="data-otc-CSIDBIR"></td>
+                                <td class="otc-cs-interbank-dismantle-borrowing-interest-rates-table-td-value" data-value="data-otc-CSIDBIR"></td>
+                                <td class="otc-cs-interbank-dismantle-borrowing-interest-rates-table-td-value" data-value="data-otc-CSIDBIR"></td>
+                                <td class="otc-cs-interbank-dismantle-borrowing-interest-rates-table-td-value" data-value="data-otc-CSIDBIR"></td>
+                            </tr>
+                            <tr class="otc-cs-interbank-dismantle-borrowing-interest-rates-table-tr">
+                                <td class="otc-cs-interbank-dismantle-borrowing-interest-rates-table-td-key" data-key="data-otc-CSIDBIR">1Y</td>
+                                <td class="otc-cs-interbank-dismantle-borrowing-interest-rates-table-td-value" data-value="data-otc-CSIDBIR"></td>
+                                <td class="otc-cs-interbank-dismantle-borrowing-interest-rates-table-td-value" data-value="data-otc-CSIDBIR"></td>
+                                <td class="otc-cs-interbank-dismantle-borrowing-interest-rates-table-td-value" data-value="data-otc-CSIDBIR"></td>
+                                <td class="otc-cs-interbank-dismantle-borrowing-interest-rates-table-td-value" data-value="data-otc-CSIDBIR"></td>
+                                <td class="otc-cs-interbank-dismantle-borrowing-interest-rates-table-td-value" data-value="data-otc-CSIDBIR"></td>
+                            </tr>
+                        </tbody>
+                        <tfoot class="otc-cs-interbank-dismantle-borrowing-interest-rates-table-tfoot">
+                            <tr class="otc-cs-interbank-dismantle-borrowing-interest-rates-table-tr">
+                                <td class="otc-cs-interbank-dismantle-borrowing-interest-rates-table-td-value" data-value="data-otc-CSIDBIR"></td>
                             </tr>
                         </tfoot>
                     </table>
+                    <!-- hc -->
+                    <div id="cs-interbank-dismantle-borrowing-interest-rates-hs-container1" data-hs-container="data-cs-interbank-dismantle-borrowing-interest-rates-container-uid" class="otc-cs-interbank-dismantle-borrowing-interest-rates-hs otc-cs-interbank-dismantle-borrowing-interest-rates-hs-container"></div>
+                    <div id="cs-interbank-dismantle-borrowing-interest-rates-hs-container2" data-hs-container="data-cs-interbank-dismantle-borrowing-interest-rates-container-uid" class="otc-cs-interbank-dismantle-borrowing-interest-rates-hs otc-cs-interbank-dismantle-borrowing-interest-rates-hs-container"></div>
+                    <!-- no data -->
+                    <div data-none="no-data-div-hidden" data-none-uid="otc-cs-interbank-dismantle-borrowing-interest-rates">
+                        <p data-none="no-data-p">
+                            <span data-none="no-data-span"></span>
+                        </p>
+                    </div>
                 </section>
             `;
             break;
         case "bondratefast03":
-            delete_uid = `company-brief-introduction`;
-            loadModule(uid, `company-brief-introduction`, true);
+            delete_uid = `treasury-bonds-profitability`;
+            loadModule(uid, `treasury-bonds-profitability`, true);
             htmlstr += `
                 <section class="otc-module-box-5">
                     <div class="otc-h5dnd-modules-title-box">
-                        <p class="otc-h5dnd-modules-title" data-title="otc-company-brief-introduction-title">
-                            公司简介
+                        <p class="otc-h5dnd-modules-title" data-title="otc-treasury-bonds-profitability-title">
+                            主要品种的关键年期利率 (到期)
+                            <!-- <span data-link="otc-treasury-bonds-profitability-link">
+                                <a href="#more" data-uid="1112" data-turn-to-uid="node-uid-treasury-bonds-profitability-data">more</a>
+                                <a href="#more" data-uid="1085" data-turn-to-uid="node-uid-treasury-bonds-profitability-data">more</a>
+                            </span> -->
                         </p>
                     </div>
-                    <table class="otc-company-brief-introduction-table" data-float="float-table">
-                        <thead class="otc-company-brief-introduction-table-thead">
-                            <tr class="otc-company-brief-introduction-table-tr">
-                                <td class="otc-company-brief-introduction-table-td-title">公司简介</td>
+                    <!-- table -->
+                    <table class="otc-treasury-bonds-profitability-table">
+                        <thead class="otc-treasury-bonds-profitability-table-thead">
+                            <tr class="otc-treasury-bonds-profitability-table-tr">
+                                <th class="otc-treasury-bonds-profitability-table-th-title" colspan="3">国债收益率(中债)</th>
+                                <th class="otc-treasury-bonds-profitability-table-th-value" colspan="3" data-time="data-otc-TBP"></th>
                             </tr>
                         </thead>
-                        <tbody class="otc-company-brief-introduction-table-tbody">
-                            <!-- no data -->
+                        <tbody class="otc-treasury-bonds-profitability-table-tbody" data-tbody="otc-treasury-bonds-profitability-table-tbody">
+                            <tr class="otc-treasury-bonds-profitability-table-tr">
+                                <td class="otc-treasury-bonds-profitability-table-td-key" data-alias="#TBP"></td>
+                                <td class="otc-treasury-bonds-profitability-table-td-key" data-alias="#TBP">1Y</td>
+                                <td class="otc-treasury-bonds-profitability-table-td-key" data-alias="#TBP">3Y</td>
+                                <td class="otc-treasury-bonds-profitability-table-td-key" data-alias="#TBP">5Y</td>
+                                <td class="otc-treasury-bonds-profitability-table-td-key" data-alias="#TBP">7Y</td>
+                                <td class="otc-treasury-bonds-profitability-table-td-key" data-alias="#TBP">10Y</td>
+                            </tr>
+                            <tr class="otc-treasury-bonds-profitability-table-tr">
+                                <td class="otc-treasury-bonds-profitability-table-td-key" data-alias="收益率">收益率</td>
+                                <td class="otc-treasury-bonds-profitability-table-td-value" data-value="data-otc-TBP"></td>
+                                <td class="otc-treasury-bonds-profitability-table-td-value" data-value="data-otc-TBP"></td>
+                                <td class="otc-treasury-bonds-profitability-table-td-value" data-value="data-otc-TBP"></td>
+                                <td class="otc-treasury-bonds-profitability-table-td-value" data-value="data-otc-TBP"></td>
+                                <td class="otc-treasury-bonds-profitability-table-td-value" data-value="data-otc-TBP"></td>
+                            </tr>
+                            <tr class="otc-treasury-bonds-profitability-table-tr">
+                                <td class="otc-treasury-bonds-profitability-table-td-key" data-alias="比较日">比较日</td>
+                                <td class="otc-treasury-bonds-profitability-table-td-value" data-value="data-otc-TBP"></td>
+                                <td class="otc-treasury-bonds-profitability-table-td-value" data-value="data-otc-TBP"></td>
+                                <td class="otc-treasury-bonds-profitability-table-td-value" data-value="data-otc-TBP"></td>
+                                <td class="otc-treasury-bonds-profitability-table-td-value" data-value="data-otc-TBP"></td>
+                                <td class="otc-treasury-bonds-profitability-table-td-value" data-value="data-otc-TBP"></td>
+                            </tr>
+                            <tr class="otc-treasury-bonds-profitability-table-tr">
+                                <td class="otc-treasury-bonds-profitability-table-td-key" data-alias="BP差值">BP差值</td>
+                                <td class="otc-treasury-bonds-profitability-table-td-value" data-value="data-otc-TBP"></td>
+                                <td class="otc-treasury-bonds-profitability-table-td-value" data-value="data-otc-TBP"></td>
+                                <td class="otc-treasury-bonds-profitability-table-td-value" data-value="data-otc-TBP"></td>
+                                <td class="otc-treasury-bonds-profitability-table-td-value" data-value="data-otc-TBP"></td>
+                                <td class="otc-treasury-bonds-profitability-table-td-value" data-value="data-otc-TBP"></td>
+                            </tr>
                         </tbody>
-                        <tfoot class="otc-company-brief-introduction-table-tfoot">
-                            <tr class="otc-company-brief-introduction-table-tr">
-                                <td class="otc-company-brief-introduction-table-td-value" data-value="data-otc-CBI">
-                                    <!-- bug -->
-                                </td>
+                        <tfoot class="otc-treasury-bonds-profitability-table-tfoot">
+                            <tr class="otc-treasury-bonds-profitability-table-tr">
+                                <td class="otc-treasury-bonds-profitability-table-td-value" data-value="data-otc-TBP"></td>
                             </tr>
                         </tfoot>
                     </table>
-                    <section data-float="float-section">
-                        <div data-float="float-title">公司介绍:</div>
-                        <div data-float="float-div" data-titles="data-otc-CBI-title">
-                            <!-- no data -->
-                        </div>
-                    </section>
+                    <!-- hc -->
+                    <div id="treasury-bonds-profitability-hs-container" data-hs-container="data-treasury-bonds-profitability-container-uid" class="otc-treasury-bonds-profitability-hs otc-treasury-bonds-profitability-hs-container"></div>
+                    <!-- no data -->
+                    <div data-none="no-data-div-hidden" data-none-uid="otc-treasury-bonds-profitability">
+                        <!-- <p data-none="no-data-p">国债收益率(中债)</p> -->
+                        <p data-none="no-data-p">
+                            <span data-none="no-data-span"></span>
+                        </p>
+                    </div>
                 </section>
             `;
             break;
         case "bondratefast04":
-            delete_uid = `latest-financial-data`;
-            loadModule(uid, `latest-financial-data`, true);
+            delete_uid = `corporate-debt-aaa-profitability`;
+            loadModule(uid, `corporate-debt-aaa-profitability`, true);
             htmlstr += `
                 <section class="otc-module-box-5">
                     <div class="otc-h5dnd-modules-title-box">
-                        <p class="otc-h5dnd-modules-title" data-title="otc-latest-financial-data-title">
-                            最新财务数据
-                            <span data-link="otc-latest-financial-data-link">
-                                <a href="#更多财务数据" data-uid="1115" data-turn-to-uid="node-uid-latest-financial-data">更多财务数据</a>
-                            </span>
+                        <p class="otc-h5dnd-modules-title" data-title="otc-corporate-debt-aaa-profitability-title">
+                            主要品种的关键年期利率 (到期)
+                            <!-- <span data-link="otc-corporate-debt-aaa-profitability-link">
+                                <a href="#more" data-uid="1112" data-turn-to-uid="node-uid-corporate-debt-aaa-profitability-data">more</a>
+                                <a href="#more" data-uid="1085" data-turn-to-uid="node-uid-corporate-debt-aaa-profitability-data">more</a>
+                            </span> -->
                         </p>
                     </div>
-                    <table class="otc-latest-financial-data-table">
-                        <thead class="otc-latest-financial-data-table-thead">
-                            <tr class="otc-latest-financial-data-table-tr">
-                                <td class="otc-latest-financial-data-table-td-title">最新财务数据</td>
+                    <!-- table -->
+                    <table class="otc-corporate-debt-aaa-profitability-table">
+                        <thead class="otc-corporate-debt-aaa-profitability-table-thead">
+                            <tr class="otc-corporate-debt-aaa-profitability-table-tr">
+                                <th class="otc-corporate-debt-aaa-profitability-table-th-title" colspan="3">企债AAA收益率(中债)</th>
+                                <th class="otc-corporate-debt-aaa-profitability-table-th-value" colspan="3" data-time="data-otc-CDA3P"></th>
                             </tr>
                         </thead>
-                        <tbody class="otc-latest-financial-data-table-tbody">
-                            <tr>
-                                <div data-titles="data-otc-LFD-title"></div>
+                        <tbody class="otc-corporate-debt-aaa-profitability-table-tbody" data-tbody="otc-corporate-debt-aaa-profitability-table-tbody">
+                            <tr class="otc-corporate-debt-aaa-profitability-table-tr">
+                                <td class="otc-corporate-debt-aaa-profitability-table-td-key" data-alias="#CDA3P"></td>
+                                <td class="otc-corporate-debt-aaa-profitability-table-td-key" data-alias="#CDA3P">1Y</td>
+                                <td class="otc-corporate-debt-aaa-profitability-table-td-key" data-alias="#CDA3P">3Y</td>
+                                <td class="otc-corporate-debt-aaa-profitability-table-td-key" data-alias="#CDA3P">5Y</td>
+                                <td class="otc-corporate-debt-aaa-profitability-table-td-key" data-alias="#CDA3P">7Y</td>
+                                <td class="otc-corporate-debt-aaa-profitability-table-td-key" data-alias="#CDA3P">10Y</td>
                             </tr>
-                            <tr>
-                                <td colspan="3" data-title="td-colspan" data-titles="data-otc-LFD-title"></td>
+                            <tr class="otc-corporate-debt-aaa-profitability-table-tr">
+                                <td class="otc-corporate-debt-aaa-profitability-table-td-key" data-alias="收益率">收益率</td>
+                                <td class="otc-corporate-debt-aaa-profitability-table-td-value" data-value="data-otc-CDA3P"></td>
+                                <td class="otc-corporate-debt-aaa-profitability-table-td-value" data-value="data-otc-CDA3P"></td>
+                                <td class="otc-corporate-debt-aaa-profitability-table-td-value" data-value="data-otc-CDA3P"></td>
+                                <td class="otc-corporate-debt-aaa-profitability-table-td-value" data-value="data-otc-CDA3P"></td>
+                                <td class="otc-corporate-debt-aaa-profitability-table-td-value" data-value="data-otc-CDA3P"></td>
                             </tr>
-                            <tr class="otc-latest-financial-data-table-tr">
-                                <td class="otc-latest-financial-data-table-td-key" data-alias="营业收入(元)">营业收入(元)</td>
-                                <td class="otc-latest-financial-data-table-td-value" data-value="data-otc-LFD"></td>
+                            <tr class="otc-corporate-debt-aaa-profitability-table-tr">
+                                <td class="otc-corporate-debt-aaa-profitability-table-td-key" data-alias="比较日">比较日</td>
+                                <td class="otc-corporate-debt-aaa-profitability-table-td-value" data-value="data-otc-CDA3P"></td>
+                                <td class="otc-corporate-debt-aaa-profitability-table-td-value" data-value="data-otc-CDA3P"></td>
+                                <td class="otc-corporate-debt-aaa-profitability-table-td-value" data-value="data-otc-CDA3P"></td>
+                                <td class="otc-corporate-debt-aaa-profitability-table-td-value" data-value="data-otc-CDA3P"></td>
+                                <td class="otc-corporate-debt-aaa-profitability-table-td-value" data-value="data-otc-CDA3P"></td>
                             </tr>
-                            <tr class="otc-latest-financial-data-table-tr">
-                                <td class="otc-latest-financial-data-table-td-key" data-alias="营业收入同比增长(%)">营业收入同比增长(%)</td>
-                                <td class="otc-latest-financial-data-table-td-value" data-value="data-otc-LFD"></td>
-                            </tr>
-                            <tr class="otc-latest-financial-data-table-tr">
-                                <td class="otc-latest-financial-data-table-td-key" data-alias="总资产(元)">总资产(元)</td>
-                                <td class="otc-latest-financial-data-table-td-value" data-value="data-otc-LFD"></td>
-                            </tr>
-                            <tr class="otc-latest-financial-data-table-tr">
-                                <td class="otc-latest-financial-data-table-td-key" data-alias="营业利润(元)">营业利润(元)</td>
-                                <td class="otc-latest-financial-data-table-td-value" data-value="data-otc-LFD"></td>
-                            </tr>
-                            <tr class="otc-latest-financial-data-table-tr">
-                                <td class="otc-latest-financial-data-table-td-key" data-alias="基本每股收益">基本每股收益</td>
-                                <td class="otc-latest-financial-data-table-td-value" data-value="data-otc-LFD"></td>
-                            </tr>
-                            <tr class="otc-latest-financial-data-table-tr">
-                                <td class="otc-latest-financial-data-table-td-key" data-alias="净资产(元)">净资产(元)</td>
-                                <td class="otc-latest-financial-data-table-td-value" data-value="data-otc-LFD"></td>
-                            </tr>
-                            <tr class="otc-latest-financial-data-table-tr">
-                                <td class="otc-latest-financial-data-table-td-key" data-alias="利润总额(元)">利润总额(元)</td>
-                                <td class="otc-latest-financial-data-table-td-value" data-value="data-otc-LFD"></td>
-                            </tr>
-                            <tr class="otc-latest-financial-data-table-tr">
-                                <td class="otc-latest-financial-data-table-td-key" data-alias="ROE(%)">ROE(%)</td>
-                                <td class="otc-latest-financial-data-table-td-value" data-value="data-otc-LFD"></td>
-                            </tr>
-                            <tr class="otc-latest-financial-data-table-tr">
-                                <td class="otc-latest-financial-data-table-td-key" data-alias="每股净资产">每股净资产</td>
-                                <td class="otc-latest-financial-data-table-td-value" data-value="data-otc-LFD"></td>
-                            </tr>
-                            <tr class="otc-latest-financial-data-table-tr">
-                                <td class="otc-latest-financial-data-table-td-key" data-alias="归属挂牌公司股东的净利润(元)">归属挂牌公司股东的净利润(元)</td>
-                                <td class="otc-latest-financial-data-table-td-value" data-value="data-otc-LFD"></td>
-                            </tr>
-                            <tr class="otc-latest-financial-data-table-tr">
-                                <td class="otc-latest-financial-data-table-td-key" data-alias="归母净利润同比增长(%)">归母净利润同比增长(%)</td>
-                                <td class="otc-latest-financial-data-table-td-value" data-value="data-otc-LFD"></td>
-                            </tr>
-                            <tr class="otc-latest-financial-data-table-tr">
-                                <td class="otc-latest-financial-data-table-td-key" data-alias="经营活动产生的现金流量净额(元)">经营活动产生的现金流量净额(元)</td>
-                                <td class="otc-latest-financial-data-table-td-value" data-value="data-otc-LFD"></td>
-                            </tr>
-                            <tr>
-                                <td colspan="3" data-space="tr-space"></td>
-                            </tr>
-                            <tr>
-                                <td colspan="3" data-title="td-colspan" data-titles="data-otc-LFD-title"></td>
-                            </tr>
-                            <tr class="otc-latest-financial-data-table-tr">
-                                <td class="otc-latest-financial-data-table-td-key" data-alias="基本每股收益">基本每股收益</td>
-                                <td class="otc-latest-financial-data-table-td-value" data-value="data-otc-LFD"></td>
-                            </tr>
-                            <tr class="otc-latest-financial-data-table-tr">
-                                <td class="otc-latest-financial-data-table-td-key" data-alias="营业收入(元)">营业收入(元)</td>
-                                <td class="otc-latest-financial-data-table-td-value" data-value="data-otc-LFD"></td>
-                            </tr>
-                            <tr class="otc-latest-financial-data-table-tr">
-                                <td class="otc-latest-financial-data-table-td-key" data-alias="资产总计(元)">资产总计(元)</td>
-                                <td class="otc-latest-financial-data-table-td-value" data-value="data-otc-LFD"></td>
-                            </tr>
-                            <tr class="otc-latest-financial-data-table-tr">
-                                <td class="otc-latest-financial-data-table-td-key" data-alias="稀释每股收益">稀释每股收益</td>
-                                <td class="otc-latest-financial-data-table-td-value" data-value="data-otc-LFD"></td>
-                            </tr>
-                            <tr class="otc-latest-financial-data-table-tr">
-                                <td class="otc-latest-financial-data-table-td-key" data-alias="营业利润(元)">营业利润(元)</td>
-                                <td class="otc-latest-financial-data-table-td-value" data-value="data-otc-LFD"></td>
-                            </tr>
-                            <tr class="otc-latest-financial-data-table-tr">
-                                <td class="otc-latest-financial-data-table-td-key" data-alias="负债总计(元)">负债总计(元)</td>
-                                <td class="otc-latest-financial-data-table-td-value" data-value="data-otc-LFD"></td>
-                            </tr>
-                            <tr class="otc-latest-financial-data-table-tr">
-                                <td class="otc-latest-financial-data-table-td-key" data-alias="每股收益-扣除">每股收益-扣除</td>
-                                <td class="otc-latest-financial-data-table-td-value" data-value="data-otc-LFD"></td>
-                            </tr>
-                            <tr class="otc-latest-financial-data-table-tr">
-                                <td class="otc-latest-financial-data-table-td-key" data-alias="利润总额(元)">利润总额(元)</td>
-                                <td class="otc-latest-financial-data-table-td-value" data-value="data-otc-LFD"></td>
-                            </tr>
-                            <tr class="otc-latest-financial-data-table-tr">
-                                <td class="otc-latest-financial-data-table-td-key" data-alias="归属于挂牌公司股东的净资产(元)">归属于挂牌公司股东的净资产(元)</td>
-                                <td class="otc-latest-financial-data-table-td-value" data-value="data-otc-LFD"></td>
-                            </tr>
-                            <tr class="otc-latest-financial-data-table-tr">
-                                <td class="otc-latest-financial-data-table-td-key" data-alias="归属于挂牌公司股东的每股净资产(元)">归属于挂牌公司股东的每股净资产(元)
-                                </td>
-                                <td class="otc-latest-financial-data-table-td-value" data-value="data-otc-LFD"></td>
-                            </tr>
-                            <tr class="otc-latest-financial-data-table-tr">
-                                <td class="otc-latest-financial-data-table-td-key" data-alias="归属挂牌公司股东的净利润(元)">归属挂牌公司股东的净利润(元)</td>
-                                <td class="otc-latest-financial-data-table-td-value" data-value="data-otc-LFD"></td>
-                            </tr>
-                            <tr class="otc-latest-financial-data-table-tr">
-                                <td class="otc-latest-financial-data-table-td-key" data-alias="经营活动产生的现金流量净额(元)">经营活动产生的现金流量净额(元)</td>
-                                <td class="otc-latest-financial-data-table-td-value" data-value="data-otc-LFD"></td>
-                            </tr>
-                            <tr class="otc-latest-financial-data-table-tr">
-                                <td class="otc-latest-financial-data-table-td-key" data-alias="每股经营活动产生的现金流量净额(元)">每股经营活动产生的现金流量净额(元)</td>
-                                <td class="otc-latest-financial-data-table-td-value" data-value="data-otc-LFD"></td>
-                            </tr>
-                            <tr class="otc-latest-financial-data-table-tr">
-                                <td class="otc-latest-financial-data-table-td-key" data-alias="归属挂牌公司股东的净利润-扣除(元)">归属挂牌公司股东的净利润-扣除(元)</td>
-                                <td class="otc-latest-financial-data-table-td-value" data-value="data-otc-LFD"></td>
-                            </tr>
-                            <tr class="otc-latest-financial-data-table-tr">
-                                <td class="otc-latest-financial-data-table-td-key" data-alias="总资产同比增长(%)">总资产同比增长(%)</td>
-                                <td class="otc-latest-financial-data-table-td-value" data-value="data-otc-LFD"></td>
-                            </tr>
-                            <tr class="otc-latest-financial-data-table-tr">
-                                <td class="otc-latest-financial-data-table-td-key" data-alias="净资产收益率-加权(%)">净资产收益率-加权(%)</td>
-                                <td class="otc-latest-financial-data-table-td-value" data-value="data-otc-LFD"></td>
-                            </tr>
-                            <tr class="otc-latest-financial-data-table-tr">
-                                <td class="otc-latest-financial-data-table-td-key" data-alias="营业收入同比增长(%)">营业收入同比增长(%)</td>
-                                <td class="otc-latest-financial-data-table-td-value" data-value="data-otc-LFD"></td>
-                            </tr>
-                            <tr class="otc-latest-financial-data-table-tr">
-                                <td class="otc-latest-financial-data-table-td-key" data-alias="销售毛利率(%)">销售毛利率(%)</td>
-                                <td class="otc-latest-financial-data-table-td-value" data-value="data-otc-LFD"></td>
-                            </tr>
-                            <tr class="otc-latest-financial-data-table-tr">
-                                <td class="otc-latest-financial-data-table-td-key" data-alias="净资产收益率-扣除(%)">净资产收益率-扣除(%)</td>
-                                <td class="otc-latest-financial-data-table-td-value" data-value="data-otc-LFD"></td>
-                            </tr>
-                            <tr class="otc-latest-financial-data-table-tr">
-                                <td class="otc-latest-financial-data-table-td-key" data-alias="净利润同比增长(%)">净利润同比增长(%)</td>
-                                <td class="otc-latest-financial-data-table-td-value" data-value="data-otc-LFD"></td>
-                            </tr>
-                            <tr class="otc-latest-financial-data-table-tr">
-                                <td class="otc-latest-financial-data-table-td-key" data-alias="资产负债率(%)">资产负债率(%)</td>
-                                <td class="otc-latest-financial-data-table-td-value" data-value="data-otc-LFD"></td>
+                            <tr class="otc-corporate-debt-aaa-profitability-table-tr">
+                                <td class="otc-corporate-debt-aaa-profitability-table-td-key" data-alias="BP差值">BP差值</td>
+                                <td class="otc-corporate-debt-aaa-profitability-table-td-value" data-value="data-otc-CDA3P"></td>
+                                <td class="otc-corporate-debt-aaa-profitability-table-td-value" data-value="data-otc-CDA3P"></td>
+                                <td class="otc-corporate-debt-aaa-profitability-table-td-value" data-value="data-otc-CDA3P"></td>
+                                <td class="otc-corporate-debt-aaa-profitability-table-td-value" data-value="data-otc-CDA3P"></td>
+                                <td class="otc-corporate-debt-aaa-profitability-table-td-value" data-value="data-otc-CDA3P"></td>
                             </tr>
                         </tbody>
-                        <tfoot class="otc-latest-financial-data-table-tfoot">
-                            <tr class="otc-latest-financial-data-table-tr">
-                                <td class="otc-latest-financial-data-table-td-value" data-value="data-otc-LFD">
-                                    <!-- bug -->
-                                </td>
+                        <tfoot class="otc-corporate-debt-aaa-profitability-table-tfoot">
+                            <tr class="otc-corporate-debt-aaa-profitability-table-tr">
+                                <td class="otc-corporate-debt-aaa-profitability-table-td-value" data-value="data-otc-CDA3P"></td>
                             </tr>
                         </tfoot>
                     </table>
+                    <!-- hc -->
+                    <div id="corporate-debt-aaa-profitability-hs-container" data-hs-container="data-corporate-debt-aaa-profitability-container-uid" class="otc-corporate-debt-aaa-profitability-hs otc-corporate-debt-aaa-profitability-hs-container"></div>
+                    <!-- no data -->
+                    <div data-none="no-data-div-hidden" data-none-uid="otc-corporate-debt-aaa-profitability">
+                        <p data-none="no-data-p">
+                            <span data-none="no-data-span"></span>
+                        </p>
+                    </div>
+                </section>
+            `;
+            break;
+        case "bondratefast05":
+            delete_uid = `national-policy-driven-financial-debt-profitability`;
+            loadModule(uid, `national-policy-driven-financial-debt-profitability`, true);
+            htmlstr += `
+                <section class="otc-module-box-5">
+                    <div class="otc-h5dnd-modules-title-box">
+                        <p class="otc-h5dnd-modules-title" data-title="otc-national-policy-driven-financial-debt-profitability-title">
+                            主要品种的关键年期利率 (到期)
+                            <!-- <span data-link="otc-national-policy-driven-financial-debt-profitability-link">
+                                <a href="#more" data-uid="1112" data-turn-to-uid="node-uid-national-policy-driven-financial-debt-profitability-data">more</a>
+                                <a href="#more" data-uid="1085" data-turn-to-uid="node-uid-national-policy-driven-financial-debt-profitability-data">more</a>
+                            </span> -->
+                        </p>
+                    </div>
+                    <!-- table -->
+                    <table class="otc-national-policy-driven-financial-debt-profitability-table">
+                        <thead class="otc-national-policy-driven-financial-debt-profitability-table-thead">
+                            <tr class="otc-national-policy-driven-financial-debt-profitability-table-tr">
+                                <th class="otc-national-policy-driven-financial-debt-profitability-table-th-title" colspan="3">国开政策性金融债收益率(中债)</th>
+                                <th class="otc-national-policy-driven-financial-debt-profitability-table-th-value" colspan="3" data-time="data-otc-NPDFDP"></th>
+                            </tr>
+                        </thead>
+                        <tbody class="otc-national-policy-driven-financial-debt-profitability-table-tbody" data-tbody="otc-national-policy-driven-financial-debt-profitability-table-tbody">
+                            <tr class="otc-national-policy-driven-financial-debt-profitability-table-tr">
+                                <td class="otc-national-policy-driven-financial-debt-profitability-table-td-key" data-alias="#NPDFDP"></td>
+                                <td class="otc-national-policy-driven-financial-debt-profitability-table-td-key" data-alias="#NPDFDP">1Y</td>
+                                <td class="otc-national-policy-driven-financial-debt-profitability-table-td-key" data-alias="#NPDFDP">3Y</td>
+                                <td class="otc-national-policy-driven-financial-debt-profitability-table-td-key" data-alias="#NPDFDP">5Y</td>
+                                <td class="otc-national-policy-driven-financial-debt-profitability-table-td-key" data-alias="#NPDFDP">7Y</td>
+                                <td class="otc-national-policy-driven-financial-debt-profitability-table-td-key" data-alias="#NPDFDP">10Y</td>
+                            </tr>
+                            <tr class="otc-national-policy-driven-financial-debt-profitability-table-tr">
+                                <td class="otc-national-policy-driven-financial-debt-profitability-table-td-key" data-alias="收益率">收益率</td>
+                                <td class="otc-national-policy-driven-financial-debt-profitability-table-td-value" data-value="data-otc-NPDFDP"></td>
+                                <td class="otc-national-policy-driven-financial-debt-profitability-table-td-value" data-value="data-otc-NPDFDP"></td>
+                                <td class="otc-national-policy-driven-financial-debt-profitability-table-td-value" data-value="data-otc-NPDFDP"></td>
+                                <td class="otc-national-policy-driven-financial-debt-profitability-table-td-value" data-value="data-otc-NPDFDP"></td>
+                                <td class="otc-national-policy-driven-financial-debt-profitability-table-td-value" data-value="data-otc-NPDFDP"></td>
+                            </tr>
+                            <tr class="otc-national-policy-driven-financial-debt-profitability-table-tr">
+                                <td class="otc-national-policy-driven-financial-debt-profitability-table-td-key" data-alias="比较日">比较日</td>
+                                <td class="otc-national-policy-driven-financial-debt-profitability-table-td-value" data-value="data-otc-NPDFDP"></td>
+                                <td class="otc-national-policy-driven-financial-debt-profitability-table-td-value" data-value="data-otc-NPDFDP"></td>
+                                <td class="otc-national-policy-driven-financial-debt-profitability-table-td-value" data-value="data-otc-NPDFDP"></td>
+                                <td class="otc-national-policy-driven-financial-debt-profitability-table-td-value" data-value="data-otc-NPDFDP"></td>
+                                <td class="otc-national-policy-driven-financial-debt-profitability-table-td-value" data-value="data-otc-NPDFDP"></td>
+                            </tr>
+                            <tr class="otc-national-policy-driven-financial-debt-profitability-table-tr">
+                                <td class="otc-national-policy-driven-financial-debt-profitability-table-td-key" data-alias="BP差值">BP差值</td>
+                                <td class="otc-national-policy-driven-financial-debt-profitability-table-td-value" data-value="data-otc-NPDFDP"></td>
+                                <td class="otc-national-policy-driven-financial-debt-profitability-table-td-value" data-value="data-otc-NPDFDP"></td>
+                                <td class="otc-national-policy-driven-financial-debt-profitability-table-td-value" data-value="data-otc-NPDFDP"></td>
+                                <td class="otc-national-policy-driven-financial-debt-profitability-table-td-value" data-value="data-otc-NPDFDP"></td>
+                                <td class="otc-national-policy-driven-financial-debt-profitability-table-td-value" data-value="data-otc-NPDFDP"></td>
+                            </tr>
+                        </tbody>
+                        <tfoot class="otc-national-policy-driven-financial-debt-profitability-table-tfoot">
+                            <tr class="otc-national-policy-driven-financial-debt-profitability-table-tr">
+                                <td class="otc-national-policy-driven-financial-debt-profitability-table-td-value" data-value="data-otc-NPDFDP"></td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                    <!-- hc -->
+                    <div id="national-policy-driven-financial-debt-profitability-hs-container" data-hs-container="data-national-policy-driven-financial-debt-profitability-container-uid" class="otc-national-policy-driven-financial-debt-profitability-hs otc-national-policy-driven-financial-debt-profitability-hs-container"></div>
+                    <!-- no data -->
+                    <div data-none="no-data-div-hidden" data-none-uid="otc-national-policy-driven-financial-debt-profitability">
+                        <!-- <p data-none="no-data-p">国开政策性金融债收益率(中债)</p> -->
+                        <p data-none="no-data-p">
+                            <span data-none="no-data-span"></span>
+                        </p>
+                    </div>
+                </section>
+            `;
+            break;
+        case "bondratefast06":
+            delete_uid = `commercial-banks-aaa-profitability`;
+            loadModule(uid, `commercial-banks-aaa-profitability`, true);
+            htmlstr += `
+                <section class="otc-module-box-5">
+                    <div class="otc-h5dnd-modules-title-box">
+                        <p class="otc-h5dnd-modules-title" data-title="otc-commercial-banks-aaa-profitability-title">
+                            主要品种的关键年期利率 (到期)
+                            <!-- <span data-link="otc-commercial-banks-aaa-profitability-link">
+                                <a href="#more" data-uid="1112" data-turn-to-uid="node-uid-commercial-banks-aaa-profitability-data">more</a>
+                                <a href="#more" data-uid="1085" data-turn-to-uid="node-uid-commercial-banks-aaa-profitability-data">more</a>
+                            </span> -->
+                        </p>
+                    </div>
+                    <!-- table -->
+                    <table class="otc-commercial-banks-aaa-profitability-table">
+                        <thead class="otc-commercial-banks-aaa-profitability-table-thead">
+                            <tr class="otc-commercial-banks-aaa-profitability-table-tr">
+                                <th class="otc-commercial-banks-aaa-profitability-table-th-title" colspan="3">商业银行AAA收益率(中债)</th>
+                                <th class="otc-commercial-banks-aaa-profitability-table-th-value" colspan="3" data-time="data-otc-CB3AP"></th>
+                            </tr>
+                        </thead>
+                        <tbody class="otc-commercial-banks-aaa-profitability-table-tbody" data-tbody="otc-commercial-banks-aaa-profitability-table-tbody">
+                            <tr class="otc-commercial-banks-aaa-profitability-table-tr">
+                                <td class="otc-commercial-banks-aaa-profitability-table-td-key" data-alias="#CB3AP"></td>
+                                <td class="otc-commercial-banks-aaa-profitability-table-td-key" data-alias="#CB3AP">1Y</td>
+                                <td class="otc-commercial-banks-aaa-profitability-table-td-key" data-alias="#CB3AP">3Y</td>
+                                <td class="otc-commercial-banks-aaa-profitability-table-td-key" data-alias="#CB3AP">5Y</td>
+                                <td class="otc-commercial-banks-aaa-profitability-table-td-key" data-alias="#CB3AP">7Y</td>
+                                <td class="otc-commercial-banks-aaa-profitability-table-td-key" data-alias="#CB3AP">10Y</td>
+                            </tr>
+                            <tr class="otc-commercial-banks-aaa-profitability-table-tr">
+                                <td class="otc-commercial-banks-aaa-profitability-table-td-key" data-alias="收益率">收益率</td>
+                                <td class="otc-commercial-banks-aaa-profitability-table-td-value" data-value="data-otc-CB3AP"></td>
+                                <td class="otc-commercial-banks-aaa-profitability-table-td-value" data-value="data-otc-CB3AP"></td>
+                                <td class="otc-commercial-banks-aaa-profitability-table-td-value" data-value="data-otc-CB3AP"></td>
+                                <td class="otc-commercial-banks-aaa-profitability-table-td-value" data-value="data-otc-CB3AP"></td>
+                                <td class="otc-commercial-banks-aaa-profitability-table-td-value" data-value="data-otc-CB3AP"></td>
+                            </tr>
+                            <tr class="otc-commercial-banks-aaa-profitability-table-tr">
+                                <td class="otc-commercial-banks-aaa-profitability-table-td-key" data-alias="比较日">比较日</td>
+                                <td class="otc-commercial-banks-aaa-profitability-table-td-value" data-value="data-otc-CB3AP"></td>
+                                <td class="otc-commercial-banks-aaa-profitability-table-td-value" data-value="data-otc-CB3AP"></td>
+                                <td class="otc-commercial-banks-aaa-profitability-table-td-value" data-value="data-otc-CB3AP"></td>
+                                <td class="otc-commercial-banks-aaa-profitability-table-td-value" data-value="data-otc-CB3AP"></td>
+                                <td class="otc-commercial-banks-aaa-profitability-table-td-value" data-value="data-otc-CB3AP"></td>
+                            </tr>
+                            <tr class="otc-commercial-banks-aaa-profitability-table-tr">
+                                <td class="otc-commercial-banks-aaa-profitability-table-td-key" data-alias="BP差值">BP差值</td>
+                                <td class="otc-commercial-banks-aaa-profitability-table-td-value" data-value="data-otc-CB3AP"></td>
+                                <td class="otc-commercial-banks-aaa-profitability-table-td-value" data-value="data-otc-CB3AP"></td>
+                                <td class="otc-commercial-banks-aaa-profitability-table-td-value" data-value="data-otc-CB3AP"></td>
+                                <td class="otc-commercial-banks-aaa-profitability-table-td-value" data-value="data-otc-CB3AP"></td>
+                                <td class="otc-commercial-banks-aaa-profitability-table-td-value" data-value="data-otc-CB3AP"></td>
+                            </tr>
+                        </tbody>
+                        <tfoot class="otc-commercial-banks-aaa-profitability-table-tfoot">
+                            <tr class="otc-commercial-banks-aaa-profitability-table-tr">
+                                <td class="otc-commercial-banks-aaa-profitability-table-td-value" data-value="data-otc-CB3AP"></td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                    <!-- hc -->
+                    <div id="commercial-banks-aaa-profitability-hs-container" data-hs-container="data-commercial-banks-aaa-profitability-container-uid" class="otc-commercial-banks-aaa-profitability-hs otc-commercial-banks-aaa-profitability-hs-container"></div>
+                    <!-- no data -->
+                    <div data-none="no-data-div-hidden" data-none-uid="otc-commercial-banks-aaa-profitability">
+                        <!-- <p data-none="no-data-p">商业银行AAA收益率(中债)</p> -->
+                        <p data-none="no-data-p">
+                            <span data-none="no-data-span"></span>
+                        </p>
+                    </div>
                 </section>
             `;
             break;
         case "bondratefast07":
-            delete_uid = `company-performance-all`;
-            loadModule(uid, `company-performance-all`);
+            delete_uid = `city-investment-debt-aaa-profitability`;
+            loadModule(uid, `city-investment-debt-aaa-profitability`, true);
             htmlstr += `
                 <section class="otc-module-box-5">
                     <div class="otc-h5dnd-modules-title-box">
-                        <p class="otc-h5dnd-modules-title" data-title="otc-company-performance-all-title">
-                            公司表现 (所属三板管理型行业二级)
-                            <span data-link="otc-company-performance-all-link">
-                                <a href="#同业数据" data-uid="1094" data-turn-to-uid="node-uid-company-performance-all-data">同业数据</a>
-                            </span>
+                        <p class="otc-h5dnd-modules-title" data-title="otc-city-investment-debt-aaa-profitability-title">
+                            主要品种的关键年期利率 (到期)
+                            <!-- <span data-link="otc-city-investment-debt-aaa-profitability-link">
+                                <a href="#more" data-uid="1112" data-turn-to-uid="node-uid-city-investment-debt-aaa-profitability-data">more</a>
+                                <a href="#more" data-uid="1085" data-turn-to-uid="node-uid-city-investment-debt-aaa-profitability-data">more</a>
+                            </span> -->
                         </p>
                     </div>
-                    <section data-tabs="tabs-box">
-                        <div data-tab="tab-title-box">
-                            <ul data-tab="tab-title-ul">
-                                <li data-tab="tab-title">
-                                    <a href="#1" data-tab-uid="0" data-tab="tab-link" class="hover-link-color">市场表现</a>
-                                </li>
-                                <li data-tab="tab-title">
-                                    <a href="#2" data-tab-uid="1" data-tab="tab-link" class="default-link-color">公司规模</a>
-                                </li>
-                                <li data-tab="tab-title">
-                                    <a href="#3" data-tab-uid="2" data-tab="tab-link" class="default-link-color">公司业绩</a>
-                                </li>
-                                <li data-tab="tab-title">
-                                    <a href="#4" data-tab-uid="3" data-tab="tab-link" class="default-link-color">公司估值</a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div data-tab="tab-container-box">
-                            <div data-tab="tab-container" class="active-display-block">
-                                <section class="otc-module-box-5">
-                                    <div class="otc-company-performance-market-container">
-                                        <!-- 公司表现 -->
-                                        <div data-hs-title="data-company-performance-market-title-uid"></div>
-                                        <div id="company_performance_market_hs_container" data-hs-container="data-company-performance-market-container-uid" class="otc-company-performance-market-hs otc-company-performance-market-hs-container"></div>
-                                        <div data-hs-title="data-company-performance-market-title-uid"></div>
-                                        <div>
-                                            <div id="company_performance_market_hs_container2" data-hs-container="data-company-performance-market-container-uid" class="otc-company-performance-market-hs otc-company-performance-market-hs-container"></div>
-                                        </div>
-                                    </div>
-                                </section>
-                            </div>
-                            <div data-tab="tab-container" class="default-display-block">
-                                <section class="otc-module-box-5">
-                                    <div class="otc-company-performance-scale-container">
-                                        <!-- 公司规模 -->
-                                        <div data-hs-title="data-company-performance-scale-title-uid"></div>
-                                        <div id="company_performance_scale_hs_container" data-hs-container="data-company-performance-scale-container-uid" class="otc-company-performance-scale-hs otc-company-performance-scale-hs-container"></div>
-                                    </div>
-                                </section>
-                            </div>
-                            <div data-tab="tab-container" class="default-display-block">
-                                <section class="otc-module-box-5">
-                                    <div class="otc-company-performance-achievement-container">
-                                        <!-- 公司业绩 placeholder -->
-                                        <div data-hs-title="data-company-performance-achievement-title-uid"></div>
-                                        <div id="company_performance_achievement_hs_container" data-hs-container="data-company-performance-achievement-container-uid" class="otc-company-performance-achievement-hs otc-company-performance-achievement-hs-container"></div>
-                                        <div>
-                                            <div id="company_performance_achievement_hs_container2" data-hs-container="data-company-performance-achievement-container-uid" class="otc-company-performance-achievement-hs otc-company-performance-achievement-hs-container"></div>
-                                        </div>
-                                    </div>
-                                </section>
-                            </div>
-                            <div data-tab="tab-container" class="default-display-block">
-                                <section class="otc-module-box-5">
-                                    <div class="otc-company-performance-valuation-container">
-                                        <!-- 公司估值 -->
-                                        <div data-hs-title="data-company-performance-valuation-title-uid"></div>
-                                        <div id="company_performance_valuation_hs_container" data-hs-container="data-company-performance-valuation-container-uid" class="otc-company-performance-valuation-hs otc-company-performance-valuation-hs-container"></div>
-                                        <div>
-                                            <div id="company_performance_valuation_hs_container2" data-hs-container="data-company-performance-valuation-container-uid" class="otc-company-performance-valuation-hs otc-company-performance-valuation-hs-container"></div>
-                                        </div>
-                                    </div>
-                                </section>
-                            </div>
-                        </div>
-                    </section>
-                </section>
-                <section data-scripts="all-scripts" class="otc-company-performance-all-container"></section>
-            `;
-            break;
-        case "bondratefast09":
-            delete_uid = `main-management-business`;
-            loadModule(uid, `main-management-business`);// false
-            htmlstr += `
-                <section class="otc-module-box-5">
-                    <div class="otc-h5dnd-modules-title-box">
-                        <p class="otc-h5dnd-modules-title" data-title="otc-main-management-business-title">
-                            主营业务
-                            <span data-time="otc-main-management-business-time"></span>
-                            <span data-more="otc-main-management-business-link">
-                                <a href="#更多主营业务数据" data-more="otc-main-management-business-link-more" data-uid="85648" data-turn-to-uid="node-uid-main-management-business-data">更多主营业务数据</a>
-                            </span>
-                        </p>
-                    </div>
-                    <div data-div="tbody-div" data-titles="data-otc-MMB-title">
-                        <!-- no data -->
-                    </div>
-                    <div class="otc-main-management-business-container">
-                        <div id="main_managemen_business_hs_container" data-hs-container="data-main-management-business-container-uid" class="otc-main-management-business-hs otc-main-management-business-hs-container"></div>
-                    </div>
-                    <div class="otc-main-management-business-container">
-                        <div id="main_managemen_business_hs_container2" data-hs-container="data-main-management-business-container-uid" class="otc-main-management-business-hs otc-main-management-business-hs-container"></div>
-                    </div>
-                    <table class="otc-main-management-business-table">
-                        <thead class="otc-main-management-business-table-thead">
-                            <tr class="otc-main-management-business-table-tr">
-                                <td class="otc-main-management-business-table-td-title">产品及服务</td>
-                                <td class="otc-main-management-business-table-td-title">营业收入(万元)</td>
-                                <td class="otc-main-management-business-table-td-title">营业成本(万元)</td>
-                                <td class="otc-main-management-business-table-td-title">营业收入占比(%)</td>
+                    <!-- table -->
+                    <table class="otc-city-investment-debt-aaa-profitability-table">
+                        <thead class="otc-city-investment-debt-aaa-profitability-table-thead">
+                            <tr class="otc-city-investment-debt-aaa-profitability-table-tr">
+                                <th class="otc-city-investment-debt-aaa-profitability-table-th-title" colspan="3">城投债AAA收益率(中债)</th>
+                                <th class="otc-city-investment-debt-aaa-profitability-table-th-value" colspan="3" data-time="data-otc-CIDA3P"></th>
                             </tr>
                         </thead>
-                        <tbody class="otc-main-management-business-table-tbody" data-tbody="otc-main-management-business-table-tbody"></tbody>
-                        <tfoot class="otc-main-management-business-table-tfoot">
-                            <tr class="otc-main-management-business-table-tr">
-                                <td class="otc-main-management-business-table-td-value" data-value="data-otc-MMB"></td>
+                        <tbody class="otc-city-investment-debt-aaa-profitability-table-tbody" data-tbody="otc-city-investment-debt-aaa-profitability-table-tbody">
+                            <tr class="otc-city-investment-debt-aaa-profitability-table-tr">
+                                <td class="otc-city-investment-debt-aaa-profitability-table-td-key" data-alias="#CIDA3P"></td>
+                                <td class="otc-city-investment-debt-aaa-profitability-table-td-key" data-alias="#CIDA3P">1Y</td>
+                                <td class="otc-city-investment-debt-aaa-profitability-table-td-key" data-alias="#CIDA3P">3Y</td>
+                                <td class="otc-city-investment-debt-aaa-profitability-table-td-key" data-alias="#CIDA3P">5Y</td>
+                                <td class="otc-city-investment-debt-aaa-profitability-table-td-key" data-alias="#CIDA3P">7Y</td>
+                                <td class="otc-city-investment-debt-aaa-profitability-table-td-key" data-alias="#CIDA3P">10Y</td>
+                            </tr>
+                            <tr class="otc-city-investment-debt-aaa-profitability-table-tr">
+                                <td class="otc-city-investment-debt-aaa-profitability-table-td-key" data-alias="收益率">收益率</td>
+                                <td class="otc-city-investment-debt-aaa-profitability-table-td-value" data-value="data-otc-CIDA3P"></td>
+                                <td class="otc-city-investment-debt-aaa-profitability-table-td-value" data-value="data-otc-CIDA3P"></td>
+                                <td class="otc-city-investment-debt-aaa-profitability-table-td-value" data-value="data-otc-CIDA3P"></td>
+                                <td class="otc-city-investment-debt-aaa-profitability-table-td-value" data-value="data-otc-CIDA3P"></td>
+                                <td class="otc-city-investment-debt-aaa-profitability-table-td-value" data-value="data-otc-CIDA3P"></td>
+                            </tr>
+                            <tr class="otc-city-investment-debt-aaa-profitability-table-tr">
+                                <td class="otc-city-investment-debt-aaa-profitability-table-td-key" data-alias="比较日">比较日</td>
+                                <td class="otc-city-investment-debt-aaa-profitability-table-td-value" data-value="data-otc-CIDA3P"></td>
+                                <td class="otc-city-investment-debt-aaa-profitability-table-td-value" data-value="data-otc-CIDA3P"></td>
+                                <td class="otc-city-investment-debt-aaa-profitability-table-td-value" data-value="data-otc-CIDA3P"></td>
+                                <td class="otc-city-investment-debt-aaa-profitability-table-td-value" data-value="data-otc-CIDA3P"></td>
+                                <td class="otc-city-investment-debt-aaa-profitability-table-td-value" data-value="data-otc-CIDA3P"></td>
+                            </tr>
+                            <tr class="otc-city-investment-debt-aaa-profitability-table-tr">
+                                <td class="otc-city-investment-debt-aaa-profitability-table-td-key" data-alias="BP差值">BP差值</td>
+                                <td class="otc-city-investment-debt-aaa-profitability-table-td-value" data-value="data-otc-CIDA3P"></td>
+                                <td class="otc-city-investment-debt-aaa-profitability-table-td-value" data-value="data-otc-CIDA3P"></td>
+                                <td class="otc-city-investment-debt-aaa-profitability-table-td-value" data-value="data-otc-CIDA3P"></td>
+                                <td class="otc-city-investment-debt-aaa-profitability-table-td-value" data-value="data-otc-CIDA3P"></td>
+                                <td class="otc-city-investment-debt-aaa-profitability-table-td-value" data-value="data-otc-CIDA3P"></td>
+                            </tr>
+                        </tbody>
+                        <tfoot class="otc-city-investment-debt-aaa-profitability-table-tfoot">
+                            <tr class="otc-city-investment-debt-aaa-profitability-table-tr">
+                                <td class="otc-city-investment-debt-aaa-profitability-table-td-value" data-value="data-otc-CIDA3P"></td>
                             </tr>
                         </tfoot>
                     </table>
+                    <!-- hc -->
+                    <div id="city-investment-debt-aaa-profitability-hs-container" data-hs-container="data-city-investment-debt-aaa-profitability-container-uid" class="otc-city-investment-debt-aaa-profitability-hs otc-city-investment-debt-aaa-profitability-hs-container"></div>
+                    <!-- no data -->
+                    <div data-none="no-data-div-hidden" data-none-uid="otc-city-investment-debt-aaa-profitability">
+                        <!-- <p data-none="no-data-p">城投债AAA收益率(中债)</p> -->
+                        <p data-none="no-data-p">
+                            <span data-none="no-data-span"></span>
+                        </p>
+                    </div>
+                </section>
+            `;
+            break;
+        case "bondratefast08":
+            delete_uid = `local-governments-debt-aaa-profitability`;
+            loadModule(uid, `local-governments-debt-aaa-profitability`, true);
+            htmlstr += `
+                <section class="otc-module-box-5">
+                    <div class="otc-h5dnd-modules-title-box">
+                        <p class="otc-h5dnd-modules-title" data-title="otc-local-governments-debt-aaa-profitability-title">
+                            主要品种的关键年期利率 (到期)
+                            <!-- <span data-link="otc-local-governments-debt-aaa-profitability-link">
+                                <a href="#more" data-uid="1112" data-turn-to-uid="node-uid-local-governments-debt-aaa-profitability-data">more</a>
+                                <a href="#more" data-uid="1085" data-turn-to-uid="node-uid-local-governments-debt-aaa-profitability-data">more</a>
+                            </span> -->
+                        </p>
+                    </div>
+                    <!-- table -->
+                    <table class="otc-local-governments-debt-aaa-profitability-table">
+                        <thead class="otc-local-governments-debt-aaa-profitability-table-thead">
+                            <tr class="otc-local-governments-debt-aaa-profitability-table-tr">
+                                <th class="otc-local-governments-debt-aaa-profitability-table-th-title" colspan="3">地方政府债AAA收益率(中债)</th>
+                                <th class="otc-local-governments-debt-aaa-profitability-table-th-value" colspan="3" data-time="data-otc-LGD3AP"></th>
+                            </tr>
+                        </thead>
+                        <tbody class="otc-local-governments-debt-aaa-profitability-table-tbody" data-tbody="otc-local-governments-debt-aaa-profitability-table-tbody">
+                            <tr class="otc-local-governments-debt-aaa-profitability-table-tr">
+                                <td class="otc-local-governments-debt-aaa-profitability-table-td-key" data-alias="#LGD3AP"></td>
+                                <td class="otc-local-governments-debt-aaa-profitability-table-td-key" data-alias="#LGD3AP">1Y</td>
+                                <td class="otc-local-governments-debt-aaa-profitability-table-td-key" data-alias="#LGD3AP">3Y</td>
+                                <td class="otc-local-governments-debt-aaa-profitability-table-td-key" data-alias="#LGD3AP">5Y</td>
+                                <td class="otc-local-governments-debt-aaa-profitability-table-td-key" data-alias="#LGD3AP">7Y</td>
+                                <td class="otc-local-governments-debt-aaa-profitability-table-td-key" data-alias="#LGD3AP">10Y</td>
+                            </tr>
+                            <tr class="otc-local-governments-debt-aaa-profitability-table-tr">
+                                <td class="otc-local-governments-debt-aaa-profitability-table-td-key" data-alias="收益率">收益率</td>
+                                <td class="otc-local-governments-debt-aaa-profitability-table-td-value" data-value="data-otc-LGD3AP"></td>
+                                <td class="otc-local-governments-debt-aaa-profitability-table-td-value" data-value="data-otc-LGD3AP"></td>
+                                <td class="otc-local-governments-debt-aaa-profitability-table-td-value" data-value="data-otc-LGD3AP"></td>
+                                <td class="otc-local-governments-debt-aaa-profitability-table-td-value" data-value="data-otc-LGD3AP"></td>
+                                <td class="otc-local-governments-debt-aaa-profitability-table-td-value" data-value="data-otc-LGD3AP"></td>
+                            </tr>
+                            <tr class="otc-local-governments-debt-aaa-profitability-table-tr">
+                                <td class="otc-local-governments-debt-aaa-profitability-table-td-key" data-alias="比较日">比较日</td>
+                                <td class="otc-local-governments-debt-aaa-profitability-table-td-value" data-value="data-otc-LGD3AP"></td>
+                                <td class="otc-local-governments-debt-aaa-profitability-table-td-value" data-value="data-otc-LGD3AP"></td>
+                                <td class="otc-local-governments-debt-aaa-profitability-table-td-value" data-value="data-otc-LGD3AP"></td>
+                                <td class="otc-local-governments-debt-aaa-profitability-table-td-value" data-value="data-otc-LGD3AP"></td>
+                                <td class="otc-local-governments-debt-aaa-profitability-table-td-value" data-value="data-otc-LGD3AP"></td>
+                            </tr>
+                            <tr class="otc-local-governments-debt-aaa-profitability-table-tr">
+                                <td class="otc-local-governments-debt-aaa-profitability-table-td-key" data-alias="BP差值">BP差值</td>
+                                <td class="otc-local-governments-debt-aaa-profitability-table-td-value" data-value="data-otc-LGD3AP"></td>
+                                <td class="otc-local-governments-debt-aaa-profitability-table-td-value" data-value="data-otc-LGD3AP"></td>
+                                <td class="otc-local-governments-debt-aaa-profitability-table-td-value" data-value="data-otc-LGD3AP"></td>
+                                <td class="otc-local-governments-debt-aaa-profitability-table-td-value" data-value="data-otc-LGD3AP"></td>
+                                <td class="otc-local-governments-debt-aaa-profitability-table-td-value" data-value="data-otc-LGD3AP"></td>
+                            </tr>
+                        </tbody>
+                        <tfoot class="otc-local-governments-debt-aaa-profitability-table-tfoot">
+                            <tr class="otc-local-governments-debt-aaa-profitability-table-tr">
+                                <td class="otc-local-governments-debt-aaa-profitability-table-td-value" data-value="data-otc-LGD3AP"></td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                    <!-- hc -->
+                    <div id="local-governments-debt-aaa-profitability-hs-container" data-hs-container="data-local-governments-debt-aaa-profitability-container-uid" class="otc-local-governments-debt-aaa-profitability-hs otc-local-governments-debt-aaa-profitability-hs-container"></div>
+                    <!-- no data -->
+                    <div data-none="no-data-div-hidden" data-none-uid="otc-local-governments-debt-aaa-profitability">
+                        <!-- <p data-none="no-data-p">地方政府债AAA收益率(中债)</p> -->
+                        <p data-none="no-data-p">
+                            <span data-none="no-data-span"></span>
+                        </p>
+                    </div>
+                </section>
+            `;
+            break;
+        case "bondratefast09":
+            delete_uid = `medium-short-term-bills-aaa-profitability`;
+            loadModule(uid, `medium-short-term-bills-aaa-profitability`, true);// false
+            htmlstr += `
+                <section class="otc-module-box-5">
+                    <div class="otc-h5dnd-modules-title-box">
+                        <p class="otc-h5dnd-modules-title" data-title="otc-medium-short-term-bills-aaa-profitability-title">
+                            主要品种的关键年期利率 (到期)
+                            <!-- <span data-link="otc-medium-short-term-bills-aaa-profitability-link">
+                                <a href="#more" data-uid="1112" data-turn-to-uid="node-uid-medium-short-term-bills-aaa-profitability-data">more</a>
+                                <a href="#more" data-uid="1085" data-turn-to-uid="node-uid-medium-short-term-bills-aaa-profitability-data">more</a>
+                            </span> -->
+                        </p>
+                    </div>
+                    <!-- table -->
+                    <table class="otc-medium-short-term-bills-aaa-profitability-table">
+                        <thead class="otc-medium-short-term-bills-aaa-profitability-table-thead">
+                            <tr class="otc-medium-short-term-bills-aaa-profitability-table-tr">
+                                <th class="otc-medium-short-term-bills-aaa-profitability-table-th-title" colspan="3">中短期票据AAA收益率(中债)</th>
+                                <th class="otc-medium-short-term-bills-aaa-profitability-table-th-value" colspan="4" data-time="data-otc-MSTB3AP"></th>
+                            </tr>
+                        </thead>
+                        <tbody class="otc-medium-short-term-bills-aaa-profitability-table-tbody" data-tbody="otc-medium-short-term-bills-aaa-profitability-table-tbody">
+                            <tr class="otc-medium-short-term-bills-aaa-profitability-table-tr">
+                                <td class="otc-medium-short-term-bills-aaa-profitability-table-td-key" data-alias="#MSTB3AP"></td>
+                                <td class="otc-medium-short-term-bills-aaa-profitability-table-td-key" data-alias="#MSTB3AP">3M</td>
+                                <td class="otc-medium-short-term-bills-aaa-profitability-table-td-key" data-alias="#MSTB3AP">6M</td>
+                                <td class="otc-medium-short-term-bills-aaa-profitability-table-td-key" data-alias="#MSTB3AP">1Y</td>
+                                <td class="otc-medium-short-term-bills-aaa-profitability-table-td-key" data-alias="#MSTB3AP">3Y</td>
+                                <!-- <td class="otc-medium-short-term-bills-aaa-profitability-table-td-key" data-alias="#MSTB3AP">2Y</td> -->
+                                <td class="otc-medium-short-term-bills-aaa-profitability-table-td-key" data-alias="#MSTB3AP">5Y</td>
+                                <td class="otc-medium-short-term-bills-aaa-profitability-table-td-key" data-alias="#MSTB3AP">7Y</td>
+                            </tr>
+                            <tr class="otc-medium-short-term-bills-aaa-profitability-table-tr">
+                                <td class="otc-medium-short-term-bills-aaa-profitability-table-td-key" data-alias="收益率">收益率</td>
+                                <td class="otc-medium-short-term-bills-aaa-profitability-table-td-value" data-value="data-otc-MSTB3AP"></td>
+                                <td class="otc-medium-short-term-bills-aaa-profitability-table-td-value" data-value="data-otc-MSTB3AP"></td>
+                                <td class="otc-medium-short-term-bills-aaa-profitability-table-td-value" data-value="data-otc-MSTB3AP"></td>
+                                <td class="otc-medium-short-term-bills-aaa-profitability-table-td-value" data-value="data-otc-MSTB3AP"></td>
+                                <td class="otc-medium-short-term-bills-aaa-profitability-table-td-value" data-value="data-otc-MSTB3AP"></td>
+                                <td class="otc-medium-short-term-bills-aaa-profitability-table-td-value" data-value="data-otc-MSTB3AP"></td>
+                            </tr>
+                            <tr class="otc-medium-short-term-bills-aaa-profitability-table-tr">
+                                <td class="otc-medium-short-term-bills-aaa-profitability-table-td-key" data-alias="比较日">比较日</td>
+                                <td class="otc-medium-short-term-bills-aaa-profitability-table-td-value" data-value="data-otc-MSTB3AP"></td>
+                                <td class="otc-medium-short-term-bills-aaa-profitability-table-td-value" data-value="data-otc-MSTB3AP"></td>
+                                <td class="otc-medium-short-term-bills-aaa-profitability-table-td-value" data-value="data-otc-MSTB3AP"></td>
+                                <td class="otc-medium-short-term-bills-aaa-profitability-table-td-value" data-value="data-otc-MSTB3AP"></td>
+                                <td class="otc-medium-short-term-bills-aaa-profitability-table-td-value" data-value="data-otc-MSTB3AP"></td>
+                                <td class="otc-medium-short-term-bills-aaa-profitability-table-td-value" data-value="data-otc-MSTB3AP"></td>
+                            </tr>
+                            <tr class="otc-medium-short-term-bills-aaa-profitability-table-tr">
+                                <td class="otc-medium-short-term-bills-aaa-profitability-table-td-key" data-alias="BP差值">BP差值</td>
+                                <td class="otc-medium-short-term-bills-aaa-profitability-table-td-value" data-value="data-otc-MSTB3AP"></td>
+                                <td class="otc-medium-short-term-bills-aaa-profitability-table-td-value" data-value="data-otc-MSTB3AP"></td>
+                                <td class="otc-medium-short-term-bills-aaa-profitability-table-td-value" data-value="data-otc-MSTB3AP"></td>
+                                <td class="otc-medium-short-term-bills-aaa-profitability-table-td-value" data-value="data-otc-MSTB3AP"></td>
+                                <td class="otc-medium-short-term-bills-aaa-profitability-table-td-value" data-value="data-otc-MSTB3AP"></td>
+                                <td class="otc-medium-short-term-bills-aaa-profitability-table-td-value" data-value="data-otc-MSTB3AP"></td>
+                            </tr>
+                        </tbody>
+                        <tfoot class="otc-medium-short-term-bills-aaa-profitability-table-tfoot">
+                            <tr class="otc-medium-short-term-bills-aaa-profitability-table-tr">
+                                <td class="otc-medium-short-term-bills-aaa-profitability-table-td-value" data-value="data-otc-MSTB3AP"></td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                    <!-- hc -->
+                    <div id="medium-short-term-bills-aaa-profitability-hc-container" data-hs-container="data-medium-short-term-bills-aaa-profitability-container-uid" class="otc-medium-short-term-bills-aaa-profitability-hs otc-medium-short-term-bills-aaa-profitability-hs-container"></div>
+                    <!-- no data -->
+                    <div data-none="no-data-div-hidden" data-none-uid="otc-medium-short-term-bills-aaa-profitability">
+                        <!-- <p data-none="no-data-p">中短期票据AAA收益率(中债)</p> -->
+                        <p data-none="no-data-p">
+                            <span data-none="no-data-span"></span>
+                        </p>
+                    </div>
                 </section>
             `;
             break;
         case "bondratefast10":
-            delete_uid = `equity-shareholder`;
-            loadModule(uid, `equity-shareholder`, true);
+            delete_uid = `central-bills-profitability`;
+            loadModule(uid, `central-bills-profitability`, true);
             htmlstr += `
                 <section class="otc-module-box-5">
                     <div class="otc-h5dnd-modules-title-box">
-                        <p class="otc-h5dnd-modules-title" data-title="otc-equity-shareholder-title">
-                            股本股东
-                            <span data-more="otc-equity-shareholder-link">
-                                <a href="#股东户数" data-uid="1079" data-more="otc-equity-shareholder-link-more" data-turn-to-uid="node-uid-equity-shareholder-data">股东户数</a>
-                            </span>
-                            <span data-more="otc-equity-shareholder-link">
-                                <a href="#股东数据" data-uid="1076" data-more="otc-equity-shareholder-link-more" data-turn-to-uid="node-uid-equity-shareholder-data">股东数据</a>
-                            </span>
-                            <span data-more="otc-equity-shareholder-link">
-                                <a href="#股本数据" data-uid="1058" data-more="otc-equity-shareholder-link-more" data-turn-to-uid="node-uid-equity-shareholder-data">股本数据</a>
-                            </span>
+                        <p class="otc-h5dnd-modules-title" data-title="otc-central-bills-profitability-title">
+                            主要品种的关键年期利率 (到期)
+                            <!-- <span data-link="otc-central-bills-profitability-link">
+                                <a href="#more" data-uid="1112" data-turn-to-uid="node-uid-central-bills-profitability-data">more</a>
+                                <a href="#more" data-uid="1085" data-turn-to-uid="node-uid-central-bills-profitability-data">more</a>
+                            </span> -->
                         </p>
                     </div>
-                    <section data-group="mix-hc-table">
-                        <p>
-                            <span data-title="sub-title">股本结构</span>
+                    <!-- table -->
+                    <table class="otc-central-bills-profitability-table">
+                        <thead class="otc-central-bills-profitability-table-thead">
+                            <tr class="otc-central-bills-profitability-table-tr">
+                                <th class="otc-central-bills-profitability-table-th-title" colspan="3">央票收益率(中债)</th>
+                                <th class="otc-central-bills-profitability-table-th-value" colspan="4" data-time="data-otc-CBP"></th>
+                            </tr>
+                        </thead>
+                        <tbody class="otc-central-bills-profitability-table-tbody" data-tbody="otc-central-bills-profitability-table-tbody">
+                            <tr class="otc-central-bills-profitability-table-tr">
+                                <td class="otc-central-bills-profitability-table-td-key" data-alias="#CBP"></td>
+                                <td class="otc-central-bills-profitability-table-td-key" data-alias="#CBP">3M</td>
+                                <td class="otc-central-bills-profitability-table-td-key" data-alias="#CBP">6M</td>
+                                <td class="otc-central-bills-profitability-table-td-key" data-alias="#CBP">1Y</td>
+                                <td class="otc-central-bills-profitability-table-td-key" data-alias="#CBP">3Y</td>
+                                <!-- <td class="otc-central-bills-profitability-table-td-key" data-alias="#CBP">2Y</td> -->
+                                <td class="otc-central-bills-profitability-table-td-key" data-alias="#CBP">5Y</td>
+                                <td class="otc-central-bills-profitability-table-td-key" data-alias="#CBP">7Y</td>
+                            </tr>
+                            <tr class="otc-central-bills-profitability-table-tr">
+                                <td class="otc-central-bills-profitability-table-td-key" data-alias="收益率">收益率</td>
+                                <td class="otc-central-bills-profitability-table-td-value" data-value="data-otc-CBP"></td>
+                                <td class="otc-central-bills-profitability-table-td-value" data-value="data-otc-CBP"></td>
+                                <td class="otc-central-bills-profitability-table-td-value" data-value="data-otc-CBP"></td>
+                                <td class="otc-central-bills-profitability-table-td-value" data-value="data-otc-CBP"></td>
+                                <td class="otc-central-bills-profitability-table-td-value" data-value="data-otc-CBP"></td>
+                                <td class="otc-central-bills-profitability-table-td-value" data-value="data-otc-CBP"></td>
+                            </tr>
+                            <tr class="otc-central-bills-profitability-table-tr">
+                                <td class="otc-central-bills-profitability-table-td-key" data-alias="比较日">比较日</td>
+                                <td class="otc-central-bills-profitability-table-td-value" data-value="data-otc-CBP"></td>
+                                <td class="otc-central-bills-profitability-table-td-value" data-value="data-otc-CBP"></td>
+                                <td class="otc-central-bills-profitability-table-td-value" data-value="data-otc-CBP"></td>
+                                <td class="otc-central-bills-profitability-table-td-value" data-value="data-otc-CBP"></td>
+                                <td class="otc-central-bills-profitability-table-td-value" data-value="data-otc-CBP"></td>
+                                <td class="otc-central-bills-profitability-table-td-value" data-value="data-otc-CBP"></td>
+                            </tr>
+                            <tr class="otc-central-bills-profitability-table-tr">
+                                <td class="otc-central-bills-profitability-table-td-key" data-alias="BP差值">BP差值</td>
+                                <td class="otc-central-bills-profitability-table-td-value" data-value="data-otc-CBP"></td>
+                                <td class="otc-central-bills-profitability-table-td-value" data-value="data-otc-CBP"></td>
+                                <td class="otc-central-bills-profitability-table-td-value" data-value="data-otc-CBP"></td>
+                                <td class="otc-central-bills-profitability-table-td-value" data-value="data-otc-CBP"></td>
+                                <td class="otc-central-bills-profitability-table-td-value" data-value="data-otc-CBP"></td>
+                                <td class="otc-central-bills-profitability-table-td-value" data-value="data-otc-CBP"></td>
+                            </tr>
+                        </tbody>
+                        <tfoot class="otc-central-bills-profitability-table-tfoot">
+                            <tr class="otc-central-bills-profitability-table-tr">
+                                <td class="otc-central-bills-profitability-table-td-value" data-value="data-otc-CBP"></td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                    <!-- hc & id="central_bills_profitability_hs_container" -->
+                    <div id="central-bills-profitability-hc-container" data-hs-container="data-central-bills-profitability-container-uid" class="otc-central-bills-profitability-hs otc-central-bills-profitability-hs-container"></div>
+                    <!-- no data -->
+                    <div data-none="no-data-div-hidden" data-none-uid="otc-central-bills-profitability">
+                        <!-- <p data-none="no-data-p">央票收益率(中债)</p> -->
+                        <p data-none="no-data-p">
+                            <span data-none="no-data-span"></span>
                         </p>
-                        <div class="otc-equity-shareholder-container">
-                            <div id="equity_shareholder_hs_container" data-hs-container="data-equity-shareholder-container-uid" class="otc-equity-shareholder-hs otc-equity-shareholder-hs-container"></div>
-                        </div>
-                        <table class="otc-equity-shareholder-table" data-tables="otc-equity-shareholder-table1">
-                            <thead class="otc-equity-shareholder-table-thead">
-                                <!--
-                                    <tr class="otc-equity-shareholder-table-tr">
-                                        <td class="otc-equity-shareholder-table-td-title">截止日期</td>
-                                        <td class="otc-equity-shareholder-table-td-title">总股本(股)</td>
-                                        <td class="otc-equity-shareholder-table-td-title">无限售股份总数(股)</td>
-                                        <td class="otc-equity-shareholder-table-td-title">有限售股份总数(股)</td>
-                                        <td class="otc-equity-shareholder-table-td-title">变动原因说明(股)</td>
-                                    </tr>
-                                -->
-                            </thead>
-                            <tbody class="otc-equity-shareholder-table-tbody" data-tbody="otc-equity-shareholder-table-tbody"></tbody>
-                            <tfoot class="otc-equity-shareholder-table-tfoot">
-                                <tr class="otc-equity-shareholder-table-tr">
-                                    <td class="otc-equity-shareholder-table-td-value" data-value="data-otc-ES"></td>
-                                </tr>
-                            </tfoot>
-                        </table>
-                    </section>
-                    <div data-div="tbody-div" data-titles="data-otc-ES-title"></div>
-                    <table class="otc-equity-shareholder-table" data-tables="otc-equity-shareholder-table2">
-                        <thead class="otc-equity-shareholder-table-thead">
-                            <tr class="otc-equity-shareholder-table-tr">
-                                <td class="otc-equity-shareholder-table-td-title">股东名称</td>
-                                <td class="otc-equity-shareholder-table-td-title">持股数(万股)</td>
-                                <td class="otc-equity-shareholder-table-td-title">占比(%)</td>
-                                <td class="otc-equity-shareholder-table-td-title">增减变动(万股)</td>
-                                <td class="otc-equity-shareholder-table-td-title">机构类型</td>
-                            </tr>
-                            <!-- colspan & rowspan -->
-                        </thead>
-                        <tbody class="otc-equity-shareholder-table-tbody" data-tbody="otc-equity-shareholder-table-tbody"> </tbody>
-                        <tfoot class="otc-equity-shareholder-table-tfoot">
-                            <tr class="otc-equity-shareholder-table-tr">
-                                <td class="otc-equity-shareholder-table-td-value" data-value="data-otc-ES"></td>
-                            </tr>
-                        </tfoot>
-                    </table>
-                    <div data-div="tbody-div" data-titles="data-otc-ES-title"></div>
-                    <table class="otc-equity-shareholder-table" data-tables="otc-equity-shareholder-table3">
-                        <thead class="otc-equity-shareholder-table-thead">
-                            <!--
-                            <tr class="otc-equity-shareholder-table-tr">
-                                <td class="otc-equity-shareholder-table-td-title">总户数</td>
-                                <td class="otc-equity-shareholder-table-td-title">环比增长(%)</td>
-                                <td class="otc-equity-shareholder-table-td-title">户均持股数</td>
-                                <td class="otc-equity-shareholder-table-td-title">环比增长(%)</td>
-                            </tr>
-                            -->
-                        </thead>
-                        <tbody class="otc-equity-shareholder-table-tbody" data-tbody="otc-equity-shareholder-table-tbody"></tbody>
-                        <tfoot class="otc-equity-shareholder-table-tfoot">
-                            <tr class="otc-equity-shareholder-table-tr">
-                                <td class="otc-equity-shareholder-table-td-value" data-value="data-otc-ES"></td>
-                            </tr>
-                        </tfoot>
-                    </table>
+                    </div>
                 </section>
             `;
             break;
         case "bondratefast11":
-            delete_uid = `management-layer-profiles`;
-            loadModule(uid, `management-layer-profiles`, true);
+            delete_uid = `dcm-pricing-central-hub`;
+            loadModule(uid, `dcm-pricing-central-hub`, true);
             htmlstr += `
                 <section class="otc-module-box-5">
                     <div class="otc-h5dnd-modules-title-box">
-                        <p class="otc-h5dnd-modules-title" data-title="otc-management-layer-profiles-title">
-                            管理层概况与持股
-                            <span data-more="otc-management-layer-profiles-link">
-                                <a href="#管理层数据" data-more="otc-management-layer-profiles-link-more" data-uid="1070" data-turn-to-uid="node-uid-management-layer-profiles-data">管理层数据</a>
-                            </span>
+                        <p class="otc-h5dnd-modules-title" data-title="otc-dcm-pricing-central-hub-title">
+                            DCM 定价中枢
+                            <span data-time="otc-dcm-pricing-central-hub-time">最新日:</span>
+                            <span data-time="otc-dcm-pricing-central-hub-time">比较日:</span>
+                            <!-- <span data-link="otc-dcm-pricing-central-hub-link">
+                                <a href="#more" data-uid="1112" data-turn-to-uid="node-uid-dcm-pricing-central-hub-data">more</a>
+                                <a href="#more" data-uid="1085" data-turn-to-uid="node-uid-dcm-pricing-central-hub-data">more</a>
+                            </span> -->
                         </p>
                     </div>
-                    <div data-div="tbody-div" data-titles="data-otc-MLP-title"></div>
-                    <div data-table="otc-management-layer-profiles-table-box">
-                        <table class="otc-management-layer-profiles-table" data-css3-table-bug="otc-management-layer-profiles-table1">
-                            <thead class="otc-management-layer-profiles-table-thead">
-                                <tr class="otc-management-layer-profiles-table-tr">
-                                    <td class="otc-management-layer-profiles-table-td-title">姓名</td>
-                                    <td class="otc-management-layer-profiles-table-td-title">性别</td>
-                                    <td class="otc-management-layer-profiles-table-td-title">年龄</td>
-                                    <td class="otc-management-layer-profiles-table-td-title">学历</td>
-                                    <td class="otc-management-layer-profiles-table-td-title">职务</td>
-                                    <!-- <td class="otc-management-layer-profiles-table-td-title">是否在公司领薪</td> -->
-                                    <td class="otc-management-layer-profiles-table-td-title">持股数量(股)</td>
-                                    <td class="otc-management-layer-profiles-table-td-title">占比(%)</td>
-                                    <td class="otc-management-layer-profiles-table-td-title">增减变动(股)</td>
+                    <!-- table -->
+                    <section data-scrollbar="section-scrollbar-dcm-table-container">
+                        <table class="otc-dcm-pricing-central-hub-table">
+                            <thead class="otc-dcm-pricing-central-hub-table-thead">
+                                <!-- <tr class="otc-dcm-pricing-central-hub-table-tr">
+                                            <th class="otc-dcm-pricing-central-hub-table-th-title" colspan="3">DCM 定价中枢</th>
+                                            <th class="otc-dcm-pricing-central-hub-table-th-value" colspan="4" data-time="data-otc-DPCH"></th>
+                                        </tr> -->
+                                <tr class="otc-dcm-pricing-central-hub-table-tr">
+                                    <td class="otc-dcm-pricing-central-hub-table-td-key" data-alias="#DPCH" rowspan="2"></td>
+                                    <td class="otc-dcm-pricing-central-hub-table-td-key" data-alias="#DPCH" colspan="3">1Y</td>
+                                    <td class="otc-dcm-pricing-central-hub-table-td-key" data-alias="#DPCH" colspan="3">3Y</td>
+                                    <td class="otc-dcm-pricing-central-hub-table-td-key" data-alias="#DPCH" colspan="3">5Y</td>
+                                    <td class="otc-dcm-pricing-central-hub-table-td-key" data-alias="#DPCH" colspan="3">7Y</td>
+                                </tr>
+                                <tr class="otc-dcm-pricing-central-hub-table-tr">
+                                    <td class="otc-dcm-pricing-central-hub-table-td-key" data-alias="#DPCH">最新</td>
+                                    <td class="otc-dcm-pricing-central-hub-table-td-key" data-alias="#DPCH">比较日</td>
+                                    <td class="otc-dcm-pricing-central-hub-table-td-key" data-alias="#DPCH">涨跌</td>
+                                    <td class="otc-dcm-pricing-central-hub-table-td-key" data-alias="#DPCH">最新</td>
+                                    <td class="otc-dcm-pricing-central-hub-table-td-key" data-alias="#DPCH">比较日</td>
+                                    <td class="otc-dcm-pricing-central-hub-table-td-key" data-alias="#DPCH">涨跌</td>
+                                    <td class="otc-dcm-pricing-central-hub-table-td-key" data-alias="#DPCH">最新</td>
+                                    <td class="otc-dcm-pricing-central-hub-table-td-key" data-alias="#DPCH">比较日</td>
+                                    <td class="otc-dcm-pricing-central-hub-table-td-key" data-alias="#DPCH">涨跌</td>
+                                    <td class="otc-dcm-pricing-central-hub-table-td-key" data-alias="#DPCH">最新</td>
+                                    <td class="otc-dcm-pricing-central-hub-table-td-key" data-alias="#DPCH">比较日</td>
+                                    <td class="otc-dcm-pricing-central-hub-table-td-key" data-alias="#DPCH">涨跌</td>
                                 </tr>
                             </thead>
-                            <tbody class="otc-management-layer-profiles-table-tbody" data-tbody="otc-management-layer-profiles-table-tbody"></tbody>
-                            <tfoot class="otc-management-layer-profiles-table-tfoot">
-                                <tr class="otc-management-layer-profiles-table-tr">
-                                    <td class="otc-management-layer-profiles-table-td-value" data-value="data-otc-MLP"></td>
+                            <tbody class="otc-dcm-pricing-central-hub-table-tbody" data-tbody="otc-dcm-pricing-central-hub-table-tbody">
+                                <!-- rowspan="3" & colspan="3" -->
+                                <tr class="otc-dcm-pricing-central-hub-table-tr">
+                                    <td class="otc-dcm-pricing-central-hub-table-td-key" data-key="data-otc-DPCH">
+                                        <a href="#" data-button="dcm-link" data-uid="hc-focus-3a" title="点击切换到重点AAA">重点AAA</a>
+                                    </td>
+                                    <td class="otc-dcm-pricing-central-hub-table-td-value" data-value="data-otc-DPCH"></td>
+                                    <td class="otc-dcm-pricing-central-hub-table-td-value" data-value="data-otc-DPCH"></td>
+                                    <td class="otc-dcm-pricing-central-hub-table-td-value" data-value="data-otc-DPCH"></td>
+                                    <td class="otc-dcm-pricing-central-hub-table-td-value" data-value="data-otc-DPCH"></td>
+                                    <td class="otc-dcm-pricing-central-hub-table-td-value" data-value="data-otc-DPCH"></td>
+                                    <td class="otc-dcm-pricing-central-hub-table-td-value" data-value="data-otc-DPCH"></td>
+                                    <td class="otc-dcm-pricing-central-hub-table-td-value" data-value="data-otc-DPCH"></td>
+                                    <td class="otc-dcm-pricing-central-hub-table-td-value" data-value="data-otc-DPCH"></td>
+                                    <td class="otc-dcm-pricing-central-hub-table-td-value" data-value="data-otc-DPCH"></td>
+                                    <td class="otc-dcm-pricing-central-hub-table-td-value" data-value="data-otc-DPCH"></td>
+                                    <td class="otc-dcm-pricing-central-hub-table-td-value" data-value="data-otc-DPCH"></td>
+                                    <td class="otc-dcm-pricing-central-hub-table-td-value" data-value="data-otc-DPCH"></td>
+                                </tr>
+                                <tr class="otc-dcm-pricing-central-hub-table-tr">
+                                    <td class="otc-dcm-pricing-central-hub-table-td-key" data-key="data-otc-DPCH">
+                                        <a href="#" data-button="dcm-link" data-uid="hc-3a" title="点击切换到AAA">AAA</a>
+                                    </td>
+                                    <td class="otc-dcm-pricing-central-hub-table-td-value" data-value="data-otc-DPCH"></td>
+                                    <td class="otc-dcm-pricing-central-hub-table-td-value" data-value="data-otc-DPCH"></td>
+                                    <td class="otc-dcm-pricing-central-hub-table-td-value" data-value="data-otc-DPCH"></td>
+                                    <td class="otc-dcm-pricing-central-hub-table-td-value" data-value="data-otc-DPCH"></td>
+                                    <td class="otc-dcm-pricing-central-hub-table-td-value" data-value="data-otc-DPCH"></td>
+                                    <td class="otc-dcm-pricing-central-hub-table-td-value" data-value="data-otc-DPCH"></td>
+                                    <td class="otc-dcm-pricing-central-hub-table-td-value" data-value="data-otc-DPCH"></td>
+                                    <td class="otc-dcm-pricing-central-hub-table-td-value" data-value="data-otc-DPCH"></td>
+                                    <td class="otc-dcm-pricing-central-hub-table-td-value" data-value="data-otc-DPCH"></td>
+                                    <td class="otc-dcm-pricing-central-hub-table-td-value" data-value="data-otc-DPCH"></td>
+                                    <td class="otc-dcm-pricing-central-hub-table-td-value" data-value="data-otc-DPCH"></td>
+                                    <td class="otc-dcm-pricing-central-hub-table-td-value" data-value="data-otc-DPCH"></td>
+                                </tr>
+                                <tr class="otc-dcm-pricing-central-hub-table-tr">
+                                    <td class="otc-dcm-pricing-central-hub-table-td-key" data-key="data-otc-DPCH">
+                                        <a href="#" data-button="dcm-link" data-uid="hc-2a+" title="点击切换到AA+">AA+</a>
+                                    </td>
+                                    <td class="otc-dcm-pricing-central-hub-table-td-value" data-value="data-otc-DPCH"></td>
+                                    <td class="otc-dcm-pricing-central-hub-table-td-value" data-value="data-otc-DPCH"></td>
+                                    <td class="otc-dcm-pricing-central-hub-table-td-value" data-value="data-otc-DPCH"></td>
+                                    <td class="otc-dcm-pricing-central-hub-table-td-value" data-value="data-otc-DPCH"></td>
+                                    <td class="otc-dcm-pricing-central-hub-table-td-value" data-value="data-otc-DPCH"></td>
+                                    <td class="otc-dcm-pricing-central-hub-table-td-value" data-value="data-otc-DPCH"></td>
+                                    <td class="otc-dcm-pricing-central-hub-table-td-value" data-value="data-otc-DPCH"></td>
+                                    <td class="otc-dcm-pricing-central-hub-table-td-value" data-value="data-otc-DPCH"></td>
+                                    <td class="otc-dcm-pricing-central-hub-table-td-value" data-value="data-otc-DPCH"></td>
+                                    <td class="otc-dcm-pricing-central-hub-table-td-value" data-value="data-otc-DPCH"></td>
+                                    <td class="otc-dcm-pricing-central-hub-table-td-value" data-value="data-otc-DPCH"></td>
+                                    <td class="otc-dcm-pricing-central-hub-table-td-value" data-value="data-otc-DPCH"></td>
+                                </tr>
+                                <tr class="otc-dcm-pricing-central-hub-table-tr">
+                                    <td class="otc-dcm-pricing-central-hub-table-td-key" data-key="data-otc-DPCH">
+                                        <a href="#" data-button="dcm-link" data-uid="hc-2a" title="点击切换到AA">AA</a>
+                                    </td>
+                                    <td class="otc-dcm-pricing-central-hub-table-td-value" data-value="data-otc-DPCH"></td>
+                                    <td class="otc-dcm-pricing-central-hub-table-td-value" data-value="data-otc-DPCH"></td>
+                                    <td class="otc-dcm-pricing-central-hub-table-td-value" data-value="data-otc-DPCH"></td>
+                                    <td class="otc-dcm-pricing-central-hub-table-td-value" data-value="data-otc-DPCH"></td>
+                                    <td class="otc-dcm-pricing-central-hub-table-td-value" data-value="data-otc-DPCH"></td>
+                                    <td class="otc-dcm-pricing-central-hub-table-td-value" data-value="data-otc-DPCH"></td>
+                                    <td class="otc-dcm-pricing-central-hub-table-td-value" data-value="data-otc-DPCH"></td>
+                                    <td class="otc-dcm-pricing-central-hub-table-td-value" data-value="data-otc-DPCH"></td>
+                                    <td class="otc-dcm-pricing-central-hub-table-td-value" data-value="data-otc-DPCH"></td>
+                                    <td class="otc-dcm-pricing-central-hub-table-td-value" data-value="data-otc-DPCH"></td>
+                                    <td class="otc-dcm-pricing-central-hub-table-td-value" data-value="data-otc-DPCH"></td>
+                                    <td class="otc-dcm-pricing-central-hub-table-td-value" data-value="data-otc-DPCH"></td>
+                                </tr>
+                                <tr class="otc-dcm-pricing-central-hub-table-tr">
+                                    <td class="otc-dcm-pricing-central-hub-table-td-key" data-key="data-otc-DPCH">
+                                        <a href="#" data-button="dcm-link" data-uid="hc-2a-" title="点击切换到AA-">AA-</a>
+                                    </td>
+                                    <td class="otc-dcm-pricing-central-hub-table-td-value" data-value="data-otc-DPCH"></td>
+                                    <td class="otc-dcm-pricing-central-hub-table-td-value" data-value="data-otc-DPCH"></td>
+                                    <td class="otc-dcm-pricing-central-hub-table-td-value" data-value="data-otc-DPCH"></td>
+                                    <td class="otc-dcm-pricing-central-hub-table-td-value" data-value="data-otc-DPCH"></td>
+                                    <td class="otc-dcm-pricing-central-hub-table-td-value" data-value="data-otc-DPCH"></td>
+                                    <td class="otc-dcm-pricing-central-hub-table-td-value" data-value="data-otc-DPCH"></td>
+                                    <td class="otc-dcm-pricing-central-hub-table-td-value" data-value="data-otc-DPCH"></td>
+                                    <td class="otc-dcm-pricing-central-hub-table-td-value" data-value="data-otc-DPCH"></td>
+                                    <td class="otc-dcm-pricing-central-hub-table-td-value" data-value="data-otc-DPCH"></td>
+                                    <td class="otc-dcm-pricing-central-hub-table-td-value" data-value="data-otc-DPCH"></td>
+                                    <td class="otc-dcm-pricing-central-hub-table-td-value" data-value="data-otc-DPCH"></td>
+                                    <td class="otc-dcm-pricing-central-hub-table-td-value" data-value="data-otc-DPCH"></td>
+                                </tr>
+                            </tbody>
+                            <tfoot class="otc-dcm-pricing-central-hub-table-tfoot">
+                                <tr class="otc-dcm-pricing-central-hub-table-tr">
+                                    <td class="otc-dcm-pricing-central-hub-table-td-value" data-value="data-otc-DPCH"></td>
                                 </tr>
                             </tfoot>
                         </table>
+                    </section>
+                    <!-- hc -->
+                    <div id="dcm-pricing-central-hub-hs-container" data-hs-container="data-dcm-pricing-central-hub-container-uid" class="otc-dcm-pricing-central-hub-hs otc-dcm-pricing-central-hub-hs-container"></div>
+                    <!-- no data -->
+                    <div data-none="no-data-div-hidden" data-none-uid="otc-dcm-pricing-central-hub">
+                        <p data-none="no-data-p">
+                            <span data-none="no-data-span"></span>
+                        </p>
                     </div>
                 </section>
             `;
             break;
         case "bondratefast12":
-            delete_uid = `company-news`;
-            loadModule(uid, `company-news`, true);// data-link="otc-company-news-link"
+            delete_uid = `shibor-interbank-dismantle-borrowing-interest-rates`;
+            loadModule(uid, `shibor-interbank-dismantle-borrowing-interest-rates`, true);
             htmlstr += `
                 <section class="otc-module-box-5">
                     <div class="otc-h5dnd-modules-title-box">
-                        <p class="otc-h5dnd-modules-title" data-title="otc-company-news-title">
-                            公司新闻
-                            <span data-more="otc-company-news-link">
-                                <a href="#更多新闻" data-more="otc-company-news-link-more" data-uid="82540" data-turn-to-uid="node-uid-company-news-data">更多新闻</a>
-                            </span>
+                        <p class="otc-h5dnd-modules-title" data-title="otc-shibor-interbank-dismantle-borrowing-interest-rates-title">
+                            Shibor
+                            <span data-time="otc-shibor-interbank-dismantle-borrowing-interest-rates-time"></span>
+                            <!-- <span data-link="otc-shibor-interbank-dismantle-borrowing-interest-rates-link">
+                                <a href="#more" data-uid="1112" data-turn-to-uid="node-uid-shibor-interbank-dismantle-borrowing-interest-rates-data">more</a>
+                                <a href="#more" data-uid="1085" data-turn-to-uid="node-uid-shibor-interbank-dismantle-borrowing-interest-rates-data">more</a>
+                            </span> -->
                         </p>
                     </div>
-                    <table class="otc-company-news-table">
-                        <thead class="otc-company-news-table-thead">
-                            <tr class="otc-company-news-table-tr">
-                                <td class="otc-company-news-table-td-title">新闻标题</td>
-                                <td class="otc-company-news-table-td-title">新闻日期</td>
+                    <!-- table -->
+                    <table class="otc-shibor-interbank-dismantle-borrowing-interest-rates-table">
+                        <thead class="otc-shibor-interbank-dismantle-borrowing-interest-rates-table-thead">
+                            <tr class="otc-shibor-interbank-dismantle-borrowing-interest-rates-table-tr">
+                                <td class="otc-shibor-interbank-dismantle-borrowing-interest-rates-table-td-title" data-alias="#SIDBIR"></td>
+                                <td class="otc-shibor-interbank-dismantle-borrowing-interest-rates-table-td-title" data-alias="#SIDBIR">最新</td>
+                                <td class="otc-shibor-interbank-dismantle-borrowing-interest-rates-table-td-title" data-alias="#SIDBIR">5日均值</td>
+                                <td class="otc-shibor-interbank-dismantle-borrowing-interest-rates-table-td-title" data-alias="#SIDBIR">10日均值</td>
+                                <td class="otc-shibor-interbank-dismantle-borrowing-interest-rates-table-td-title" data-alias="#SIDBIR">20日均值</td>
                             </tr>
                         </thead>
-                        <tbody class="otc-company-news-table-tbody" data-tbody="otc-company-news-table-tbody"></tbody>
-                        <tfoot class="otc-company-news-table-tfoot">
-                            <tr class="otc-company-news-table-tr">
-                                <td class="otc-company-news-table-td-value" data-value="data-otc-CN"></td>
+                        <tbody class="otc-shibor-interbank-dismantle-borrowing-interest-rates-table-tbody" data-tbody="otc-shibor-interbank-dismantle-borrowing-interest-rates-table-tbody">
+                            <tr class="otc-shibor-interbank-dismantle-borrowing-interest-rates-table-tr">
+                                <td class="otc-shibor-interbank-dismantle-borrowing-interest-rates-table-td-key" data-alias="O/N1W2W1M3M6M9M1Y">O/N</td>
+                                <td class="otc-shibor-interbank-dismantle-borrowing-interest-rates-table-td-value" data-value="data-otc-SIDBIR"></td>
+                                <td class="otc-shibor-interbank-dismantle-borrowing-interest-rates-table-td-value" data-value="data-otc-SIDBIR"></td>
+                                <td class="otc-shibor-interbank-dismantle-borrowing-interest-rates-table-td-value" data-value="data-otc-SIDBIR"></td>
+                                <td class="otc-shibor-interbank-dismantle-borrowing-interest-rates-table-td-value" data-value="data-otc-SIDBIR"></td>
+                            </tr>
+                            <tr class="otc-shibor-interbank-dismantle-borrowing-interest-rates-table-tr">
+                                <td class="otc-shibor-interbank-dismantle-borrowing-interest-rates-table-td-key" data-alias="O/N1W2W1M3M6M9M1Y">1W</td>
+                                <td class="otc-shibor-interbank-dismantle-borrowing-interest-rates-table-td-value" data-value="data-otc-SIDBIR"></td>
+                                <td class="otc-shibor-interbank-dismantle-borrowing-interest-rates-table-td-value" data-value="data-otc-SIDBIR"></td>
+                                <td class="otc-shibor-interbank-dismantle-borrowing-interest-rates-table-td-value" data-value="data-otc-SIDBIR"></td>
+                                <td class="otc-shibor-interbank-dismantle-borrowing-interest-rates-table-td-value" data-value="data-otc-SIDBIR"></td>
+                            </tr>
+                            <tr class="otc-shibor-interbank-dismantle-borrowing-interest-rates-table-tr">
+                                <td class="otc-shibor-interbank-dismantle-borrowing-interest-rates-table-td-key" data-alias="O/N1W2W1M3M6M9M1Y">2W</td>
+                                <td class="otc-shibor-interbank-dismantle-borrowing-interest-rates-table-td-value" data-value="data-otc-SIDBIR"></td>
+                                <td class="otc-shibor-interbank-dismantle-borrowing-interest-rates-table-td-value" data-value="data-otc-SIDBIR"></td>
+                                <td class="otc-shibor-interbank-dismantle-borrowing-interest-rates-table-td-value" data-value="data-otc-SIDBIR"></td>
+                                <td class="otc-shibor-interbank-dismantle-borrowing-interest-rates-table-td-value" data-value="data-otc-SIDBIR"></td>
+                            </tr>
+                            <tr class="otc-shibor-interbank-dismantle-borrowing-interest-rates-table-tr">
+                                <td class="otc-shibor-interbank-dismantle-borrowing-interest-rates-table-td-key" data-alias="O/N1W2W1M3M6M9M1Y">1M</td>
+                                <td class="otc-shibor-interbank-dismantle-borrowing-interest-rates-table-td-value" data-value="data-otc-SIDBIR"></td>
+                                <td class="otc-shibor-interbank-dismantle-borrowing-interest-rates-table-td-value" data-value="data-otc-SIDBIR"></td>
+                                <td class="otc-shibor-interbank-dismantle-borrowing-interest-rates-table-td-value" data-value="data-otc-SIDBIR"></td>
+                                <td class="otc-shibor-interbank-dismantle-borrowing-interest-rates-table-td-value" data-value="data-otc-SIDBIR"></td>
+                            </tr>
+                            <tr class="otc-shibor-interbank-dismantle-borrowing-interest-rates-table-tr">
+                                <td class="otc-shibor-interbank-dismantle-borrowing-interest-rates-table-td-key" data-alias="O/N1W2W1M3M6M9M1Y">3M</td>
+                                <td class="otc-shibor-interbank-dismantle-borrowing-interest-rates-table-td-value" data-value="data-otc-SIDBIR"></td>
+                                <td class="otc-shibor-interbank-dismantle-borrowing-interest-rates-table-td-value" data-value="data-otc-SIDBIR"></td>
+                                <td class="otc-shibor-interbank-dismantle-borrowing-interest-rates-table-td-value" data-value="data-otc-SIDBIR"></td>
+                                <td class="otc-shibor-interbank-dismantle-borrowing-interest-rates-table-td-value" data-value="data-otc-SIDBIR"></td>
+                            </tr>
+                            <tr class="otc-shibor-interbank-dismantle-borrowing-interest-rates-table-tr">
+                                <td class="otc-shibor-interbank-dismantle-borrowing-interest-rates-table-td-key" data-alias="O/N1W2W1M3M6M9M1Y">6M</td>
+                                <td class="otc-shibor-interbank-dismantle-borrowing-interest-rates-table-td-value" data-value="data-otc-SIDBIR"></td>
+                                <td class="otc-shibor-interbank-dismantle-borrowing-interest-rates-table-td-value" data-value="data-otc-SIDBIR"></td>
+                                <td class="otc-shibor-interbank-dismantle-borrowing-interest-rates-table-td-value" data-value="data-otc-SIDBIR"></td>
+                                <td class="otc-shibor-interbank-dismantle-borrowing-interest-rates-table-td-value" data-value="data-otc-SIDBIR"></td>
+                            </tr>
+                            <tr class="otc-shibor-interbank-dismantle-borrowing-interest-rates-table-tr">
+                                <td class="otc-shibor-interbank-dismantle-borrowing-interest-rates-table-td-key" data-alias="O/N1W2W1M3M6M9M1Y">9M</td>
+                                <td class="otc-shibor-interbank-dismantle-borrowing-interest-rates-table-td-value" data-value="data-otc-SIDBIR"></td>
+                                <td class="otc-shibor-interbank-dismantle-borrowing-interest-rates-table-td-value" data-value="data-otc-SIDBIR"></td>
+                                <td class="otc-shibor-interbank-dismantle-borrowing-interest-rates-table-td-value" data-value="data-otc-SIDBIR"></td>
+                                <td class="otc-shibor-interbank-dismantle-borrowing-interest-rates-table-td-value" data-value="data-otc-SIDBIR"></td>
+                            </tr>
+                            <tr class="otc-shibor-interbank-dismantle-borrowing-interest-rates-table-tr">
+                                <td class="otc-shibor-interbank-dismantle-borrowing-interest-rates-table-td-key" data-alias="O/N1W2W1M3M6M9M1Y">1Y</td>
+                                <td class="otc-shibor-interbank-dismantle-borrowing-interest-rates-table-td-value" data-value="data-otc-SIDBIR"></td>
+                                <td class="otc-shibor-interbank-dismantle-borrowing-interest-rates-table-td-value" data-value="data-otc-SIDBIR"></td>
+                                <td class="otc-shibor-interbank-dismantle-borrowing-interest-rates-table-td-value" data-value="data-otc-SIDBIR"></td>
+                                <td class="otc-shibor-interbank-dismantle-borrowing-interest-rates-table-td-value" data-value="data-otc-SIDBIR"></td>
+                            </tr>
+                        </tbody>
+                        <tfoot class="otc-shibor-interbank-dismantle-borrowing-interest-rates-table-tfoot">
+                            <tr class="otc-shibor-interbank-dismantle-borrowing-interest-rates-table-tr">
+                                <td class="otc-shibor-interbank-dismantle-borrowing-interest-rates-table-td-value" data-value="data-otc-SIDBIR"></td>
                             </tr>
                         </tfoot>
                     </table>
+                    <!-- no data -->
+                    <div data-none="no-data-div-hidden" data-none-uid="otc-shibor-interbank-dismantle-borrowing-interest-rates">
+                        <!-- <p data-none="no-data-p">Shibor</p> -->
+                        <p data-none="no-data-p">
+                            <span data-none="no-data-span"></span>
+                        </p>
+                    </div>
                 </section>
             `;
             break;
         case "bondratefast13":
-            delete_uid = `company-bulletin`;
-            loadModule(uid, `company-bulletin`, true);
+            delete_uid = `central-bank-benchmark-interest-rates`;
+            loadModule(uid, `central-bank-benchmark-interest-rates`, true);
             htmlstr += `
                 <section class="otc-module-box-5">
                     <div class="otc-h5dnd-modules-title-box">
-                        <p class="otc-h5dnd-modules-title" data-title="otc-company-bulletin-title">
-                            公司公告
-                            <span data-more="otc-company-bulletin-link">
-                                <a href="#更多公告" data-more="otc-company-bulletin-link-more" data-uid="82542" data-turn-to-uid="node-uid-company-bulletin-data">更多公告</a>
-                            </span>
+                        <p class="otc-h5dnd-modules-title" data-title="otc-central-bank-benchmark-interest-rates-title">
+                            央行基准利率
+                            <span data-time="otc-central-bank-benchmark-interest-rates-time"></span>
+                            <!-- <span data-link="otc-central-bank-benchmark-interest-rates-link">
+                                <a href="#more" data-uid="1112" data-turn-to-uid="node-uid-central-bank-benchmark-interest-rates-data">more</a>
+                                <a href="#more" data-uid="1085" data-turn-to-uid="node-uid-central-bank-benchmark-interest-rates-data">more</a>
+                            </span> -->
                         </p>
                     </div>
-                    <table class="otc-company-bulletin-table">
-                        <thead class="otc-company-bulletin-table-thead">
-                            <tr class="otc-company-bulletin-table-tr">
-                                <td class="otc-company-bulletin-table-td-title">公告标题</td>
-                                <td class="otc-company-bulletin-table-td-title">公告日期</td>
+                    <!-- table -->
+                    <table class="otc-central-bank-benchmark-interest-rates-table">
+                        <thead class="otc-central-bank-benchmark-interest-rates-table-thead">
+                            <tr class="otc-central-bank-benchmark-interest-rates-table-tr">
+                                <td class="otc-central-bank-benchmark-interest-rates-table-td-title" data-alias="#CBBIR" colspan="2">存款利率</td>
+                                <td class="otc-central-bank-benchmark-interest-rates-table-td-title" data-alias="#CBBIR" colspan="2">贷款利率</td>
                             </tr>
                         </thead>
-                        <tbody class="otc-company-bulletin-table-tbody" data-tbody="otc-company-bulletin-table-tbody"></tbody>
-                        <tfoot class="otc-company-bulletin-table-tfoot">
-                            <tr class="otc-company-bulletin-table-tr">
-                                <td class="otc-company-bulletin-table-td-value" data-value="data-otc-CB"></td>
+                        <tbody class="otc-central-bank-benchmark-interest-rates-table-tbody" data-tbody="otc-central-bank-benchmark-interest-rates-table-tbody">
+                            <tr class="otc-central-bank-benchmark-interest-rates-table-tr">
+                                <td class="otc-central-bank-benchmark-interest-rates-table-td-key" data-alias="#">活期</td>
+                                <td class="otc-central-bank-benchmark-interest-rates-table-td-value" data-value="data-otc-CBBIR"></td>
+                                <td class="otc-central-bank-benchmark-interest-rates-table-td-key" data-alias="#">5Y以上(公积金)</td>
+                                <td class="otc-central-bank-benchmark-interest-rates-table-td-value" data-value="data-otc-CBBIR"></td>
+                            </tr>
+                            <tr class="otc-central-bank-benchmark-interest-rates-table-tr">
+                                <td class="otc-central-bank-benchmark-interest-rates-table-td-key" data-alias="#">3M</td>
+                                <td class="otc-central-bank-benchmark-interest-rates-table-td-value" data-value="data-otc-CBBIR"></td>
+                                <td class="otc-central-bank-benchmark-interest-rates-table-td-key" data-alias="#">5Y以下(公积金)</td>
+                                <td class="otc-central-bank-benchmark-interest-rates-table-td-value" data-value="data-otc-CBBIR"></td>
+                            </tr>
+                            <tr class="otc-central-bank-benchmark-interest-rates-table-tr">
+                                <td class="otc-central-bank-benchmark-interest-rates-table-td-key" data-alias="#">6M</td>
+                                <td class="otc-central-bank-benchmark-interest-rates-table-td-value" data-value="data-otc-CBBIR"></td>
+                                <td class="otc-central-bank-benchmark-interest-rates-table-td-key" data-alias="#">6M以内</td>
+                                <td class="otc-central-bank-benchmark-interest-rates-table-td-value" data-value="data-otc-CBBIR"></td>
+                            </tr>
+                            <tr class="otc-central-bank-benchmark-interest-rates-table-tr">
+                                <td class="otc-central-bank-benchmark-interest-rates-table-td-key" data-alias="#">1Y</td>
+                                <td class="otc-central-bank-benchmark-interest-rates-table-td-value" data-value="data-otc-CBBIR"></td>
+                                <td class="otc-central-bank-benchmark-interest-rates-table-td-key" data-alias="#">6M-1Y</td>
+                                <td class="otc-central-bank-benchmark-interest-rates-table-td-value" data-value="data-otc-CBBIR"></td>
+                            </tr>
+                            <tr class="otc-central-bank-benchmark-interest-rates-table-tr">
+                                <td class="otc-central-bank-benchmark-interest-rates-table-td-key" data-alias="#">2Y</td>
+                                <td class="otc-central-bank-benchmark-interest-rates-table-td-value" data-value="data-otc-CBBIR"></td>
+                                <td class="otc-central-bank-benchmark-interest-rates-table-td-key" data-alias="#">1Y-3Y</td>
+                                <td class="otc-central-bank-benchmark-interest-rates-table-td-value" data-value="data-otc-CBBIR"></td>
+                            </tr>
+                            <tr class="otc-central-bank-benchmark-interest-rates-table-tr">
+                                <td class="otc-central-bank-benchmark-interest-rates-table-td-key" data-alias="#">3Y</td>
+                                <td class="otc-central-bank-benchmark-interest-rates-table-td-value" data-value="data-otc-CBBIR"></td>
+                                <td class="otc-central-bank-benchmark-interest-rates-table-td-key" data-alias="#">3Y-5Y</td>
+                                <td class="otc-central-bank-benchmark-interest-rates-table-td-value" data-value="data-otc-CBBIR"></td>
+                            </tr>
+                            <tr class="otc-central-bank-benchmark-interest-rates-table-tr">
+                                <td class="otc-central-bank-benchmark-interest-rates-table-td-key" data-alias="#">5Y</td>
+                                <td class="otc-central-bank-benchmark-interest-rates-table-td-value" data-value="data-otc-CBBIR"></td>
+                                <td class="otc-central-bank-benchmark-interest-rates-table-td-key" data-alias="#">5Y以上</td>
+                                <td class="otc-central-bank-benchmark-interest-rates-table-td-value" data-value="data-otc-CBBIR"></td>
+                            </tr>
+                            <tr>
+                                <td class="otc-central-bank-benchmark-interest-rates-table-td-key" data-alias="#CBBIR" colspan="4">再贷款利率</td>
+                            </tr>
+                            <tr class="otc-central-bank-benchmark-interest-rates-table-tr">
+                                <td class="otc-central-bank-benchmark-interest-rates-table-td-key" data-alias="#">再贴现利率</td>
+                                <td class="otc-central-bank-benchmark-interest-rates-table-td-value" data-value="data-otc-CBBIR"></td>
+                                <td class="otc-central-bank-benchmark-interest-rates-table-td-key" data-alias="#">6M</td>
+                                <td class="otc-central-bank-benchmark-interest-rates-table-td-value" data-value="data-otc-CBBIR"></td>
+                            </tr>
+                            <tr class="otc-central-bank-benchmark-interest-rates-table-tr">
+                                <td class="otc-central-bank-benchmark-interest-rates-table-td-key" data-alias="#">20D</td>
+                                <td class="otc-central-bank-benchmark-interest-rates-table-td-value" data-value="data-otc-CBBIR"></td>
+                                <td class="otc-central-bank-benchmark-interest-rates-table-td-key" data-alias="#">1Y</td>
+                                <td class="otc-central-bank-benchmark-interest-rates-table-td-value" data-value="data-otc-CBBIR"></td>
+                            </tr>
+                            <tr class="otc-central-bank-benchmark-interest-rates-table-tr">
+                                <td class="otc-central-bank-benchmark-interest-rates-table-td-key" data-alias="#">3M</td>
+                                <td class="otc-central-bank-benchmark-interest-rates-table-td-value" data-value="data-otc-CBBIR"></td>
+                                <td class="otc-central-bank-benchmark-interest-rates-table-td-key" data-no-alias="#"></td>
+                                <td class="otc-central-bank-benchmark-interest-rates-table-td-value" data-no-value="data-otc-CBBIR"></td>
+                            </tr>
+                        </tbody>
+                        <tfoot class="otc-central-bank-benchmark-interest-rates-table-tfoot">
+                            <tr class="otc-central-bank-benchmark-interest-rates-table-tr">
+                                <td class="otc-central-bank-benchmark-interest-rates-table-td-value" data-value="data-otc-CBBIR"></td>
                             </tr>
                         </tfoot>
                     </table>
+                    <!-- no data -->
+                    <div data-none="no-data-div-hidden" data-none-uid="otc-central-bank-benchmark-interest-rates">
+                        <!-- <p data-none="no-data-p">央行基准利率</p> -->
+                        <p data-none="no-data-p">
+                            <span data-none="no-data-span"></span>
+                        </p>
+                    </div>
                 </section>
             `;
             break;
         case "bondratefast14":
-            delete_uid = `research-report`;
-            loadModule(uid, `research-report`, true);
+            delete_uid = `repurchase-set-interest-rates`;
+            loadModule(uid, `repurchase-set-interest-rates`, true);
             htmlstr += `
                 <section class="otc-module-box-5">
                     <div class="otc-h5dnd-modules-title-box">
-                        <p class="otc-h5dnd-modules-title" data-title="otc-research-report-title">
-                            研究报告
-                            <span data-more="otc-research-report-link">
-                                <a href="#更多研报" data-more="otc-research-report-link-more" data-uid="82546" data-turn-to-uid="node-uid-research-report-data">更多研报</a>
-                            </span>
+                        <p class="otc-h5dnd-modules-title" data-title="otc-repurchase-set-interest-rates-title">
+                            回购定盘利率
+                            <span data-time="otc-repurchase-set-interest-rates-time"></span>
+                            <!-- <span data-link="otc-repurchase-set-interest-rates-link">
+                                <a href="#more" data-uid="1112" data-turn-to-uid="node-uid-repurchase-set-interest-rates-data">more</a>
+                                <a href="#more" data-uid="1085" data-turn-to-uid="node-uid-repurchase-set-interest-rates-data">more</a>
+                            </span> -->
                         </p>
                     </div>
-                    <table class="otc-research-report-table">
-                        <thead class="otc-research-report-table-thead">
-                            <tr class="otc-research-report-table-tr">
-                                <td class="otc-research-report-table-td-title">研报标题</td>
-                                <td class="otc-research-report-table-td-title">披露日期</td>
-                                <td class="otc-research-report-table-td-title">发布机构</td>
-                            </tr>
+                    <!-- table -->
+                    <table class="otc-repurchase-set-interest-rates-table">
+                        <thead class="otc-repurchase-set-interest-rates-table-thead">
+                            <!-- <tr class="otc-repurchase-set-interest-rates-table-tr">
+                                <td class="otc-repurchase-set-interest-rates-table-td-title" data-alias="#RSIR" colspan="2"></td>
+                                <td class="otc-repurchase-set-interest-rates-table-td-value" data-alias="#RSIR" colspan="2"></td>
+                            </tr> -->
                         </thead>
-                        <tbody class="otc-research-report-table-tbody" data-tbody="otc-research-report-table-tbody"></tbody>
-                        <tfoot class="otc-research-report-table-tfoot">
-                            <tr class="otc-research-report-table-tr">
-                                <td class="otc-research-report-table-td-value" data-value="data-otc-RR"></td>
+                        <tbody class="otc-repurchase-set-interest-rates-table-tbody" data-tbody="otc-repurchase-set-interest-rates-table-tbody">
+                            <tr class="otc-repurchase-set-interest-rates-table-tr">
+                                <td class="otc-repurchase-set-interest-rates-table-td-key" data-alias="#">FR001</td>
+                                <td class="otc-repurchase-set-interest-rates-table-td-value" data-value="data-otc-RSIR"></td>
+                                <td class="otc-repurchase-set-interest-rates-table-td-key" data-alias="#">FDR001</td>
+                                <td class="otc-repurchase-set-interest-rates-table-td-value" data-value="data-otc-RSIR"></td>
+                            </tr>
+                            <tr class="otc-repurchase-set-interest-rates-table-tr">
+                                <td class="otc-repurchase-set-interest-rates-table-td-key" data-alias="#">FR007</td>
+                                <td class="otc-repurchase-set-interest-rates-table-td-value" data-value="data-otc-RSIR"></td>
+                                <td class="otc-repurchase-set-interest-rates-table-td-key" data-alias="#">FDR007</td>
+                                <td class="otc-repurchase-set-interest-rates-table-td-value" data-value="data-otc-RSIR"></td>
+                            </tr>
+                            <tr class="otc-repurchase-set-interest-rates-table-tr">
+                                <td class="otc-repurchase-set-interest-rates-table-td-key" data-alias="#">FR014</td>
+                                <td class="otc-repurchase-set-interest-rates-table-td-value" data-value="data-otc-RSIR"></td>
+                                <td class="otc-repurchase-set-interest-rates-table-td-key" data-alias="#">FDR014</td>
+                                <td class="otc-repurchase-set-interest-rates-table-td-value" data-value="data-otc-RSIR"></td>
+                            </tr>
+                        </tbody>
+                        <tfoot class="otc-repurchase-set-interest-rates-table-tfoot">
+                            <tr class="otc-repurchase-set-interest-rates-table-tr">
+                                <td class="otc-repurchase-set-interest-rates-table-td-value" data-value="data-otc-RSIR"></td>
                             </tr>
                         </tfoot>
                     </table>
+                    <!-- no data -->
+                    <div data-none="no-data-div-hidden" data-none-uid="otc-repurchase-set-interest-rates">
+                        <!-- <p data-none="no-data-p">回购定盘利率</p> -->
+                        <p data-none="no-data-p">
+                            <span data-none="no-data-span"></span>
+                        </p>
+                    </div>
+                </section>
+            `;
+            break;
+        case "bondratefast15":
+            delete_uid = `seven-days-repurchase-moving-average-interest-rates`;
+            loadModule(uid, `seven-days-repurchase-moving-average-interest-rates`, true);
+            htmlstr += `
+                <section class="otc-module-box-5">
+                    <div class="otc-h5dnd-modules-title-box">
+                        <p class="otc-h5dnd-modules-title" data-title="otc-seven-days-repurchase-moving-average-interest-rates-title">
+                            七日回购移动平均利率
+                            <span data-time="otc-seven-days-repurchase-moving-average-interest-rates-time"></span>
+                            <!-- <span data-link="otc-seven-days-repurchase-moving-average-interest-rates-link">
+                                <a href="#more" data-uid="1112" data-turn-to-uid="node-uid-seven-days-repurchase-moving-average-interest-rates-data">more</a>
+                                <a href="#more" data-uid="1085" data-turn-to-uid="node-uid-seven-days-repurchase-moving-average-interest-rates-data">more</a>
+                            </span> -->
+                        </p>
+                    </div>
+                    <!-- table -->
+                    <table class="otc-seven-days-repurchase-moving-average-interest-rates-table">
+                        <thead class="otc-seven-days-repurchase-moving-average-interest-rates-table-thead">
+                            <tr class="otc-seven-days-repurchase-moving-average-interest-rates-table-tr">
+                                <td class="otc-seven-days-repurchase-moving-average-interest-rates-table-td-title" data-alias="#SDRMAIR" colspan="2">B0</td>
+                                <td class="otc-seven-days-repurchase-moving-average-interest-rates-table-td-value" data-value="data-otc-SDRMAIR" colspan="2"></td>
+                            </tr>
+                            <tr class="otc-seven-days-repurchase-moving-average-interest-rates-table-tr">
+                                <td class="otc-seven-days-repurchase-moving-average-interest-rates-table-td-title" data-alias="#SDRMAIR" colspan="2">指数平均值</td>
+                                <td class="otc-seven-days-repurchase-moving-average-interest-rates-table-td-title" data-alias="#SDRMAIR" colspan="2">算数平均值</td>
+                            </tr>
+                        </thead>
+                        <tbody class="otc-seven-days-repurchase-moving-average-interest-rates-table-tbody" data-tbody="otc-seven-days-repurchase-moving-average-interest-rates-table-tbody">
+                            <tr class="otc-seven-days-repurchase-moving-average-interest-rates-table-tr">
+                                <td class="otc-seven-days-repurchase-moving-average-interest-rates-table-td-key" data-alias="#">B1W</td>
+                                <td class="otc-seven-days-repurchase-moving-average-interest-rates-table-td-value" data-value="data-otc-SDRMAIR"></td>
+                                <td class="otc-seven-days-repurchase-moving-average-interest-rates-table-td-key" data-alias="#">B_1W</td>
+                                <td class="otc-seven-days-repurchase-moving-average-interest-rates-table-td-value" data-value="data-otc-SDRMAIR"></td>
+                            </tr>
+                            <tr class="otc-seven-days-repurchase-moving-average-interest-rates-table-tr">
+                                <td class="otc-seven-days-repurchase-moving-average-interest-rates-table-td-key" data-alias="#">B2W</td>
+                                <td class="otc-seven-days-repurchase-moving-average-interest-rates-table-td-value" data-value="data-otc-SDRMAIR"></td>
+                                <td class="otc-seven-days-repurchase-moving-average-interest-rates-table-td-key" data-alias="#">B_2W</td>
+                                <td class="otc-seven-days-repurchase-moving-average-interest-rates-table-td-value" data-value="data-otc-SDRMAIR"></td>
+                            </tr>
+                            <tr class="otc-seven-days-repurchase-moving-average-interest-rates-table-tr">
+                                <td class="otc-seven-days-repurchase-moving-average-interest-rates-table-td-key" data-alias="#">B3W</td>
+                                <td class="otc-seven-days-repurchase-moving-average-interest-rates-table-td-value" data-value="data-otc-SDRMAIR"></td>
+                                <td class="otc-seven-days-repurchase-moving-average-interest-rates-table-td-key" data-alias="#">B_3W</td>
+                                <td class="otc-seven-days-repurchase-moving-average-interest-rates-table-td-value" data-value="data-otc-SDRMAIR"></td>
+                            </tr>
+                            <tr class="otc-seven-days-repurchase-moving-average-interest-rates-table-tr">
+                                <td class="otc-seven-days-repurchase-moving-average-interest-rates-table-td-key" data-alias="#">B1M</td>
+                                <td class="otc-seven-days-repurchase-moving-average-interest-rates-table-td-value" data-value="data-otc-SDRMAIR"></td>
+                                <td class="otc-seven-days-repurchase-moving-average-interest-rates-table-td-key" data-alias="#">B_1M</td>
+                                <td class="otc-seven-days-repurchase-moving-average-interest-rates-table-td-value" data-value="data-otc-SDRMAIR"></td>
+                            </tr>
+                            <tr class="otc-seven-days-repurchase-moving-average-interest-rates-table-tr">
+                                <td class="otc-seven-days-repurchase-moving-average-interest-rates-table-td-key" data-alias="#">B2M</td>
+                                <td class="otc-seven-days-repurchase-moving-average-interest-rates-table-td-value" data-value="data-otc-SDRMAIR"></td>
+                                <td class="otc-seven-days-repurchase-moving-average-interest-rates-table-td-key" data-alias="#">B_2M</td>
+                                <td class="otc-seven-days-repurchase-moving-average-interest-rates-table-td-value" data-value="data-otc-SDRMAIR"></td>
+                            </tr>
+                            <tr class="otc-seven-days-repurchase-moving-average-interest-rates-table-tr">
+                                <td class="otc-seven-days-repurchase-moving-average-interest-rates-table-td-key" data-alias="#">B3M</td>
+                                <td class="otc-seven-days-repurchase-moving-average-interest-rates-table-td-value" data-value="data-otc-SDRMAIR"></td>
+                                <td class="otc-seven-days-repurchase-moving-average-interest-rates-table-td-key" data-alias="#">B_3M</td>
+                                <td class="otc-seven-days-repurchase-moving-average-interest-rates-table-td-value" data-value="data-otc-SDRMAIR"></td>
+                            </tr>
+                            <tr class="otc-seven-days-repurchase-moving-average-interest-rates-table-tr">
+                                <td class="otc-seven-days-repurchase-moving-average-interest-rates-table-td-key" data-alias="#">B4M</td>
+                                <td class="otc-seven-days-repurchase-moving-average-interest-rates-table-td-value" data-value="data-otc-SDRMAIR"></td>
+                                <td class="otc-seven-days-repurchase-moving-average-interest-rates-table-td-key" data-alias="#">B_4M</td>
+                                <td class="otc-seven-days-repurchase-moving-average-interest-rates-table-td-value" data-value="data-otc-SDRMAIR"></td>
+                            </tr>
+                            <tr class="otc-seven-days-repurchase-moving-average-interest-rates-table-tr">
+                                <td class="otc-seven-days-repurchase-moving-average-interest-rates-table-td-key" data-alias="#">B5M</td>
+                                <td class="otc-seven-days-repurchase-moving-average-interest-rates-table-td-value" data-value="data-otc-SDRMAIR"></td>
+                                <td class="otc-seven-days-repurchase-moving-average-interest-rates-table-td-key" data-alias="#">B_5M</td>
+                                <td class="otc-seven-days-repurchase-moving-average-interest-rates-table-td-value" data-value="data-otc-SDRMAIR"></td>
+                            </tr>
+                            <tr class="otc-seven-days-repurchase-moving-average-interest-rates-table-tr">
+                                <td class="otc-seven-days-repurchase-moving-average-interest-rates-table-td-key" data-alias="#">B6M</td>
+                                <td class="otc-seven-days-repurchase-moving-average-interest-rates-table-td-value" data-value="data-otc-SDRMAIR"></td>
+                                <td class="otc-seven-days-repurchase-moving-average-interest-rates-table-td-key" data-alias="#">B_6M</td>
+                                <td class="otc-seven-days-repurchase-moving-average-interest-rates-table-td-value" data-value="data-otc-SDRMAIR"></td>
+                            </tr>
+                            <tr class="otc-seven-days-repurchase-moving-average-interest-rates-table-tr">
+                                <td class="otc-seven-days-repurchase-moving-average-interest-rates-table-td-key" data-alias="#">B7M</td>
+                                <td class="otc-seven-days-repurchase-moving-average-interest-rates-table-td-value" data-value="data-otc-SDRMAIR"></td>
+                                <td class="otc-seven-days-repurchase-moving-average-interest-rates-table-td-key" data-alias="#">B_7M</td>
+                                <td class="otc-seven-days-repurchase-moving-average-interest-rates-table-td-value" data-value="data-otc-SDRMAIR"></td>
+                            </tr>
+                            <tr class="otc-seven-days-repurchase-moving-average-interest-rates-table-tr">
+                                <td class="otc-seven-days-repurchase-moving-average-interest-rates-table-td-key" data-alias="#">B8M</td>
+                                <td class="otc-seven-days-repurchase-moving-average-interest-rates-table-td-value" data-value="data-otc-SDRMAIR"></td>
+                                <td class="otc-seven-days-repurchase-moving-average-interest-rates-table-td-key" data-alias="#">B_8M</td>
+                                <td class="otc-seven-days-repurchase-moving-average-interest-rates-table-td-value" data-value="data-otc-SDRMAIR"></td>
+                            </tr>
+                            <tr class="otc-seven-days-repurchase-moving-average-interest-rates-table-tr">
+                                <td class="otc-seven-days-repurchase-moving-average-interest-rates-table-td-key" data-alias="#">B9M</td>
+                                <td class="otc-seven-days-repurchase-moving-average-interest-rates-table-td-value" data-value="data-otc-SDRMAIR"></td>
+                                <td class="otc-seven-days-repurchase-moving-average-interest-rates-table-td-key" data-alias="#">B_9M</td>
+                                <td class="otc-seven-days-repurchase-moving-average-interest-rates-table-td-value" data-value="data-otc-SDRMAIR"></td>
+                            </tr>
+                            <tr class="otc-seven-days-repurchase-moving-average-interest-rates-table-tr">
+                                <td class="otc-seven-days-repurchase-moving-average-interest-rates-table-td-key" data-alias="#">B10M</td>
+                                <td class="otc-seven-days-repurchase-moving-average-interest-rates-table-td-value" data-value="data-otc-SDRMAIR"></td>
+                                <td class="otc-seven-days-repurchase-moving-average-interest-rates-table-td-key" data-alias="#">B_10M</td>
+                                <td class="otc-seven-days-repurchase-moving-average-interest-rates-table-td-value" data-value="data-otc-SDRMAIR"></td>
+                            </tr>
+                            <tr class="otc-seven-days-repurchase-moving-average-interest-rates-table-tr">
+                                <td class="otc-seven-days-repurchase-moving-average-interest-rates-table-td-key" data-alias="#">B11M</td>
+                                <td class="otc-seven-days-repurchase-moving-average-interest-rates-table-td-value" data-value="data-otc-SDRMAIR"></td>
+                                <td class="otc-seven-days-repurchase-moving-average-interest-rates-table-td-key" data-alias="#">B_11M</td>
+                                <td class="otc-seven-days-repurchase-moving-average-interest-rates-table-td-value" data-value="data-otc-SDRMAIR"></td>
+                            </tr>
+                            <tr class="otc-seven-days-repurchase-moving-average-interest-rates-table-tr">
+                                <td class="otc-seven-days-repurchase-moving-average-interest-rates-table-td-key" data-alias="#">B12M</td>
+                                <td class="otc-seven-days-repurchase-moving-average-interest-rates-table-td-value" data-value="data-otc-SDRMAIR"></td>
+                                <td class="otc-seven-days-repurchase-moving-average-interest-rates-table-td-key" data-alias="#">B_12M</td>
+                                <td class="otc-seven-days-repurchase-moving-average-interest-rates-table-td-value" data-value="data-otc-SDRMAIR"></td>
+                            </tr>
+                        </tbody>
+                        <tfoot class="otc-seven-days-repurchase-moving-average-interest-rates-table-tfoot">
+                            <tr class="otc-seven-days-repurchase-moving-average-interest-rates-table-tr">
+                                <td class="otc-seven-days-repurchase-moving-average-interest-rates-table-td-value" data-value="data-otc-SDRMAIR"></td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                    <!-- no data -->
+                    <div data-none="no-data-div-hidden" data-none-uid="otc-seven-days-repurchase-moving-average-interest-rates">
+                        <!-- <p data-none="no-data-p">七日回购移动平均利率</p> -->
+                        <p data-none="no-data-p">
+                            <span data-none="no-data-span"></span>
+                        </p>
+                    </div>
+                </section>
+            `;
+            break;
+        case "bondratefast16":
+            delete_uid = `bills-directly-indirect-subsidy-interest-rates`;
+            loadModule(uid, `bills-directly-indirect-subsidy-interest-rates`, true);
+            htmlstr += `
+                <section class="otc-module-box-5">
+                    <div class="otc-h5dnd-modules-title-box">
+                        <p class="otc-h5dnd-modules-title" data-title="otc-bills-directly-indirect-subsidy-interest-rates-title">
+                            票据直贴/转贴利率
+                            <span data-time="otc-bills-directly-indirect-subsidy-interest-rates-time"></span>
+                            <!-- <span data-link="otc-bills-directly-indirect-subsidy-interest-rates-link">
+                                <a href="#more" data-uid="1112" data-turn-to-uid="node-uid-bills-directly-indirect-subsidy-interest-rates-data">more</a>
+                                <a href="#more" data-uid="1085" data-turn-to-uid="node-uid-bills-directly-indirect-subsidy-interest-rates-data">more</a>
+                            </span> -->
+                        </p>
+                    </div>
+                    <!-- table -->
+                    <table class="otc-bills-directly-indirect-subsidy-interest-rates-table">
+                        <thead class="otc-bills-directly-indirect-subsidy-interest-rates-table-thead">
+                            <tr class="otc-bills-directly-indirect-subsidy-interest-rates-table-tr">
+                                <td class="otc-bills-directly-indirect-subsidy-interest-rates-table-td-title" data-alias="#BDISIR">利率名称</td>
+                                <td class="otc-bills-directly-indirect-subsidy-interest-rates-table-td-title" data-alias="#BDISIR">利率(月息)(‰)</td>
+                            </tr>
+                        </thead>
+                        <tbody class="otc-bills-directly-indirect-subsidy-interest-rates-table-tbody" data-tbody="otc-bills-directly-indirect-subsidy-interest-rates-table-tbody">
+                            <tr class="otc-bills-directly-indirect-subsidy-interest-rates-table-tr">
+                                <td class="otc-bills-directly-indirect-subsidy-interest-rates-table-td-key" data-alias="转贴-6M珠三角6M长三角6M中西部6M">转贴-6M</td>
+                                <td class="otc-bills-directly-indirect-subsidy-interest-rates-table-td-value" data-value="data-otc-BDISIR"></td>
+                            </tr>
+                            <tr class="otc-bills-directly-indirect-subsidy-interest-rates-table-tr">
+                                <td class="otc-bills-directly-indirect-subsidy-interest-rates-table-td-key" data-alias="转贴-6M珠三角6M长三角6M中西部6M">珠三角6M</td>
+                                <td class="otc-bills-directly-indirect-subsidy-interest-rates-table-td-value" data-value="data-otc-BDISIR"></td>
+                            </tr>
+                            <tr class="otc-bills-directly-indirect-subsidy-interest-rates-table-tr">
+                                <td class="otc-bills-directly-indirect-subsidy-interest-rates-table-td-key" data-alias="转贴-6M珠三角6M长三角6M中西部6M">长三角6M</td>
+                                <td class="otc-bills-directly-indirect-subsidy-interest-rates-table-td-value" data-value="data-otc-BDISIR"></td>
+                            </tr>
+                            <tr class="otc-bills-directly-indirect-subsidy-interest-rates-table-tr">
+                                <td class="otc-bills-directly-indirect-subsidy-interest-rates-table-td-key" data-alias="转贴-6M珠三角6M长三角6M中西部6M">中西部6M</td>
+                                <td class="otc-bills-directly-indirect-subsidy-interest-rates-table-td-value" data-value="data-otc-BDISIR"></td>
+                            </tr>
+                            <tr class="otc-bills-directly-indirect-subsidy-interest-rates-table-tr">
+                                <td class="otc-bills-directly-indirect-subsidy-interest-rates-table-td-key" data-alias="转贴-6M珠三角6M长三角6M中西部6M">环渤海6M</td>
+                                <td class="otc-bills-directly-indirect-subsidy-interest-rates-table-td-value" data-value="data-otc-BDISIR"></td>
+                            </tr>
+                        </tbody>
+                        <tfoot class="otc-bills-directly-indirect-subsidy-interest-rates-table-tfoot">
+                            <tr class="otc-bills-directly-indirect-subsidy-interest-rates-table-tr">
+                                <td class="otc-bills-directly-indirect-subsidy-interest-rates-table-td-value" data-value="data-otc-BDISIR"></td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                    <!-- no data -->
+                    <div data-none="no-data-div-hidden" data-none-uid="otc-bills-directly-indirect-subsidy-interest-rates">
+                        <!-- <p data-none="no-data-p">票据直贴/转贴利率 </p> -->
+                        <p data-none="no-data-p">
+                            <span data-none="no-data-span"></span>
+                        </p>
+                    </div>
                 </section>
             `;
             break;

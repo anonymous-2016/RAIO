@@ -27,7 +27,7 @@ OTC_F9_FV.Modules.mediumShortTermBills3AP = OTC_F9_FV.Modules.mediumShortTermBil
         .then(res => res.json())
         .then(
             (json) => {
-                if (!debug) {
+                if (debug) {
                     console.log(`fetched json =\n`, json);
                 }
                 try {
@@ -174,7 +174,7 @@ OTC_F9_FV.Modules.mediumShortTermBills3AP.drawHS = OTC_F9_FV.Modules.mediumShort
         container_uid = ``,
         debug = false
     ) => {
-        if (!debug) {
+        if (debug) {
             console.log(`HC datas = \n`, datas);
             console.log(`HC containe uid = \n`, container_uid);
         }

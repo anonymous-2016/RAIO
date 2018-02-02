@@ -26,7 +26,7 @@ OTC_F9_FV.Modules.nationalPolicyDrivenFDP = OTC_F9_FV.Modules.nationalPolicyDriv
         .then(res => res.json())
         .then(
             (json) => {
-                if (!debug) {
+                if (debug) {
                     console.log(`fetched json =\n`, json);
                 }
                 try {
