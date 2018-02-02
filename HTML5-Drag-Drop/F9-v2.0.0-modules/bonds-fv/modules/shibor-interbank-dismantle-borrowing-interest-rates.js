@@ -66,8 +66,8 @@ OTC_F9_FV.Modules.shiborInterbankDismantleBIR = OTC_F9_FV.Modules.shiborInterban
                                 // const table = document.querySelector(`.otc-shibor-interbank-dismantle-borrowing-interest-rates-table`);
                                 // table.dataset.none = "no-data-div-hidden";
                                 // const tbody = document.querySelector(`.otc-shibor-interbank-dismantle-borrowing-interest-rates-table-tbody`);
-                                const tbody = document.querySelector(tbody_uid);
-                                tbody.dataset.none = "no-data-div-hidden";
+                                const table_div = document.querySelector(table_uid);
+                                table_div.dataset.none = "no-data-div-hidden";
                             }
                         }else{
                             let message = `handle json error!`,

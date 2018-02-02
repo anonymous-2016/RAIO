@@ -55,25 +55,31 @@ OTC_F9_FV.Modules.centralBankBenchmarkIR = OTC_F9_FV.Modules.centralBankBenchmar
                     // ignore Array/Object
                     if (emptyChecker(json)) {
                         // Object
-                        if (Object.keys(json).length > 0) {
+                        if (!Array.isArray(json)) {
                             // Object
-                            if (emptyChecker(json)) {
+                            if (Object.keys(json).length > 0) {
                                 let tds = document.querySelectorAll(`[data-value="data-otc-CBBIR"]`),
-                                    date = document.querySelector(`[data-time="otc-central-bank-benchmark-interest-rates-time"]`),
-                                    time = (json[0].rq !== undefined) ? json[0].rq : `--`,
+                                    // date = document.querySelector(`[data-time="otc-central-bank-benchmark-interest-rates-time"]`),
+                                    // time = (json[0].rq !== undefined) ? json[0].rq : `--`,
+                                    // date.insertAdjacentHTML(`beforeend`, `(${time})`);
+                                    keys = Object.keys(json),
                                     values = [];
-                                for (let i = 0; i < json.length; i++) {
-                                    let zx = (json[i].zx !== undefined) ? json[i].zx : `--`,
-                                        rjz5 = (json[i].rjz5 !== undefined) ? json[i].rjz5 : `--`,
-                                        rjz10 = (json[i].rjz10 !== undefined) ? json[i].rjz10 : `--`,
-                                        rjz20 = (json[i].rjz20 !== undefined) ? json[i].rjz20 : `--`;
-                                    // by order
-                                    values.push(zx);
-                                    values.push(rjz5);
-                                    values.push(rjz10);
-                                    values.push(rjz20);
-                                }
-                                date.insertAdjacentHTML(`beforeend`, `(${time})`);
+                                // console.log(`ui_arr =`, ui_arr);
+                                // console.log(`keys =`, keys);
+                                ui_arr.map(
+                                    (key, index) => {
+                                        for (let i = 0; i < keys.length; i++) {
+                                            if (key === keys[i]) {
+                                                // console.log(`obj =`, key);
+                                                // console.log(`keys[i] =`, keys[i]);
+                                                let value = (json[key] !== undefined) ? json[key] : `--`;
+                                                // by order
+                                                values.push(value);
+                                            }
+                                        }
+                                    }
+                                );
+                                // console.log(`values =`, values);
                                 for (let i = 0; i < tds.length; i++) {
                                     tds[i].insertAdjacentHTML(`beforeend`, values[i]);
                                 }
@@ -82,9 +88,9 @@ OTC_F9_FV.Modules.centralBankBenchmarkIR = OTC_F9_FV.Modules.centralBankBenchmar
                                 let uid = `[data-none-uid="otc-central-bank-benchmark-interest-rates"]`;
                                 const none_div = document.querySelector(uid);
                                 none_div.dataset.none = "no-data-div-visible";
-                                // tbody
-                                const tbody = document.querySelector(tbody_uid);
-                                tbody.dataset.none = "no-data-div-hidden";
+                                // table
+                                const table = document.querySelector(table_uid);
+                                table.dataset.none = "no-data-div-hidden";
                             }
                         }else{
                             let message = `handle json error!`,
