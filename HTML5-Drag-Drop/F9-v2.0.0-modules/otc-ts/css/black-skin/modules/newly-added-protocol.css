@@ -173,7 +173,7 @@ span[data-otc-th-title="securities-code-newly-added-protocol"]::after {
 /* tr */
 
 [data-table-tr="otc-table-tr-newly-added-protocol"] {
-    border: 1px solid #ccc;
+    border: 1px solid #4a4c4f;
     box-sizing: border-box;
     text-align: right;
 }
@@ -199,7 +199,7 @@ span[data-otc-th-title="securities-code-newly-added-protocol"]::after {
 
 [data-td-key="otc-td-key-NAP"] {
     box-sizing: border-box;
-    border-right: 1px solid #ccc;
+    border-right: 1px solid #4a4c4f;
     /* text-align: center; */
     text-align: left;
     padding-left: 4px;
@@ -216,7 +216,7 @@ span[data-otc-th-title="securities-code-newly-added-protocol"]::after {
     /* color: red; */
     font-size: 12px;
     box-sizing: border-box;
-    border-right: 1px solid #ccc;
+    border-right: 1px solid #4a4c4f;
     width: 70px;
     min-width: 70px;
     max-width: 70px;

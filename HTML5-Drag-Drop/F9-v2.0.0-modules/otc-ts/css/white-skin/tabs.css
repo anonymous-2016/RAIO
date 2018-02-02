@@ -112,6 +112,18 @@ a[data-tab*="tab-link"] {
     /* font-size: 18px; */
 }
 
+[data-tab="tab-link-DM"]:hover {
+    background: #3385ff;
+    color: #fff;
+    cursor: pointer;
+}
+
+[data-tab="tab-link-AI"]:hover {
+    background: #3385ff;
+    color: #fff;
+    cursor: pointer;
+}
+
 
 /* a[data-tab="tab-link"] {
     color: #4d4d4d;

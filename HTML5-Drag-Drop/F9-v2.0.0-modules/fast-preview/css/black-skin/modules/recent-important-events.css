@@ -42,7 +42,7 @@
 .fv-recent-important-events-table {
     width: 100%;
     max-width: 542px;
-    /* åŽ»é™¤tableæ¯è¡Œä¹‹é—´çš„ç©ºç™½é—´éš™ */
+    /* Ã¥Å½Â»Ã©â„¢Â¤tableÃ¦Â¯ÂÃ¨Â¡Å’Ã¤Â¹â€¹Ã©â€”Â´Ã§Å¡â€žÃ§Â©ÂºÃ§â„¢Â½Ã©â€”Â´Ã©Å¡â„¢ */
     border-collapse: collapse;
     border-spacing: 0;
     /* border-collapse: separate; */
@@ -83,6 +83,7 @@
 
 .fv-recent-important-events-table-tr {
     box-sizing: border-box;
+    background-color: #25292e;
     /* border: 1px solid #e9e9e9; */
     border: 1px solid #4a4c4f;
     /* border-left: 0; */
@@ -142,7 +143,7 @@
 }
 
 .fv-recent-important-events-table-tbody>tr:nth-of-type(n)>td:last-child {
-    border-left: 1px solid #d7dbe0;
+    border-left: 1px solid #4a4c4f;
     max-width: 70px;
     box-sizing: border-box;
     text-align: left;
@@ -157,7 +158,7 @@
     text-overflow: ellipsis;
     white-space: nowrap;
     /* color: red; */
-    border-left: 1px solid #d7dbe0;
+    /* border-left: 1px solid #d7dbe0; */
     box-sizing: border-box;
     text-align: left;
 }

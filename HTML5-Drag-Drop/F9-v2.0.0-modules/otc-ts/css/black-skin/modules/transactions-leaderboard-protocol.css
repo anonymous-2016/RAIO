@@ -86,7 +86,7 @@
 /* tr */
 
 [data-table-tr="otc-table-tr-transactions-leaderboard-protocol"] {
-    border: 1px solid #ccc;
+    border: 1px solid #4a4c4f;
     box-sizing: border-box;
     /* text-align: right; */
     text-align: center;
@@ -104,7 +104,7 @@
 tr[data-table-tr="otc-table-tr-transactions-leaderboard-protocol"]>td[data-td-key="otc-td-no-key"]:nth-of-type(1),
 tr[data-table-tr="otc-table-tr-transactions-leaderboard-protocol"]>td[data-td-key="otc-td-no-key"]:nth-of-type(2) {
     box-sizing: border-box;
-    border-right: 1px solid #ccc;
+    border-right: 1px solid #4a4c4f;
     font-weight: bold;
     text-align: center;
     /* width: calc(1*100px); */
@@ -121,7 +121,7 @@ tr[data-table-tbody-tr="otc-table-tbody-tr-transactions-leaderboard-protocol"]>t
     /* color: red; */
     font-size: 13px;
     box-sizing: border-box;
-    border-right: 1px solid #ccc;
+    border-right: 1px solid #4a4c4f;
     width: 130px;
     max-width: 130px;
     min-width: 130px;
@@ -174,7 +174,7 @@ td {
 [data-table-tr="otc-table-tr-transactions-leaderboard-protocol"]>th:nth-of-type(1),
 [data-table-tr="otc-table-tr-transactions-leaderboard-protocol"]>th:nth-of-type(2),
 [data-table-tr="otc-table-tr-transactions-leaderboard-protocol"]>th:nth-of-type(3) {
-    border-right: 1px solid #ccc;
+    border-right: 1px solid #4a4c4f;
 }
 
 th[data-sort="sort-th-transactions-leaderboard-protocol"] {
@@ -212,7 +212,7 @@ th[data-sort="sort-th-transactions-leaderboard-protocol"] {
 
 [data-td-key="otc-td-no-key"] {
     content: "";
-    border-right: 1px solid #ccc;
+    border-right: 1px solid #4a4c4f;
 } */
 
 th[data-td-key="otc-td-key-TLP"] {
