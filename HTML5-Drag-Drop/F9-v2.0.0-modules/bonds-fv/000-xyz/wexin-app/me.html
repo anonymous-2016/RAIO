@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="description" content="Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.
+    ">
+    <title>年会抽奖</title>
+    <link rel="stylesheet" href="https://cdn.bootcss.com/weui/1.1.2/style/weui.min.css">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/jquery-weui/1.2.0/css/jquery-weui.min.css">
+</head>
+
+<body ontouchstart>
+    <div class="weui-msg">
+        <div class="weui-msg__icon-area"><img src="http://nh.gildata.com/photo2.php?action=get" height="150px" style="border-radius:150px" id="head"></div>
+        <div class="weui-msg__text-area">
+            <h2 class="weui-msg__title"></h2>
+        </div>
+    </div>
+    <div class="weui-cells">
+        <div class="weui-cell">
+            <div class="weui-cell__bd">
+                <p>工号</p>
+            </div>
+            <div class="weui-cell__ft">22219</div>
+        </div>
+        <div class="weui-cell">
+            <div class="weui-cell__bd">
+                <p>昵称</p>
+            </div>
+            <div class="weui-cell__ft">xgqfrms</div>
+        </div>
+        <div class="weui-cell">
+            <div class="weui-cell__bd">
+                <p>部门</p>
+            </div>
+            <div class="weui-cell__ft">金融终端产品部</div>
+        </div>
+        <div class="weui-cell">
+            <div class="weui-cell__bd">
+                <p>是否中奖</p>
+            </div>
+            <div class="weui-cell__ft">
+                特等奖
+                <!-- 暂未中奖 -->
+            </div>
+        </div>
+    </div>
+    <div class="weui-cells__tips">提示：点击头像可以更换哦</div>
+    <div class="weui-tabbar" style="position: fixed">
+        <a href="./danmu.html" class="weui-tabbar__item">
+            <div class="weui-tabbar__icon">
+                <img src="./img/msg1.svg" alt="">
+            </div>
+            <p class="weui-tabbar__label">弹幕</p>
+        </a>
+        <a href="./vote.html" class="weui-tabbar__item">
+            <div class="weui-tabbar__icon">
+                <img src="./img/money1.svg" alt="">
+            </div>
+            <p class="weui-tabbar__label">投票</p>
+        </a>
+        <a href="javascript:void(0)" class="weui-tabbar__item weui-bar__item--on">
+            <div class="weui-tabbar__icon">
+                <img src="./img/me2.svg" />
+            </div>
+            <p class="weui-tabbar__label">我</p>
+        </a>
+    </div>
+    <br><br>
+    <div class="weui-footer" style="padding-bottom: 60px">
+        <p class="weui-footer__links">
+            <a href="./about.html" class="weui-footer__link">关于</a>
+        </p>
+        <p class="weui-footer__text">Copyright © 2018 gildata.com</p>
+    </div>
+    <!-- js -->
+    <script src="https://cdn.bootcss.com/jquery/1.11.0/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/jquery-weui/1.2.0/js/jquery-weui.min.js"></script>
+    <!-- js -->
+    <script>
+        $("#head").click(function() {
+            window.location = "photo.html";
+            // window.location = "photo.php";
+        })
+    </script>
+</body>
+
+</html>

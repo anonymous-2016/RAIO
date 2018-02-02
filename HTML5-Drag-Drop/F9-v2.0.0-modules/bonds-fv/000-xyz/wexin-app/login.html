@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible " content="ie=edge ">
+    <title>注册/登录</title>
+    <meta name="description " content="Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description. ">
+    <link rel="stylesheet " href="https://cdn.bootcss.com/weui/1.1.2/style/weui.min.css ">
+    <link rel="stylesheet " href="https://cdn.bootcss.com/jquery-weui/1.2.0/css/jquery-weui.min.css ">
+    <!-- css -->
+    <link rel="stylesheet " href="./login.css ">
+    <!-- <link rel="stylesheet " href="./index.min.css "> -->
+</head>
+
+<body ontouchstart>
+    <section>
+        <div class="weui-cells__title ">登录</div>
+        <form class="weui-cells weui-cells_form " method="post " id="login " autocomplete="on ">
+            <div class="weui-cell " id="coderow ">
+                <div class="weui-cell__hd "><label class="weui-label ">工号</label></div>
+                <div class="weui-cell__bd ">
+                    <input class="weui-input " type="text " placeholder="请输入工号 " id="code " autocomplete="on ">
+                </div>
+            </div>
+            <div class="weui-cell " id="pswdrow ">
+                <div class="weui-cell__hd "><label class="weui-label ">密码</label></div>
+                <div class="weui-cell__bd ">
+                    <input class="weui-input " type="password " placeholder="请输入密码 " id="pswd " autocomplete="on ">
+                </div>
+            </div>
+            <div class="weui-cell weui-cell_vcode " id="vcoderow ">
+                <div class="weui-cell__hd "><label class="weui-label ">验证码</label></div>
+                <div class="weui-cell__bd ">
+                    <input class="weui-input " type="text " placeholder="请输入验证码 " id="vcode " autocomplete="off ">
+                </div>
+                <div class="weui-cell__ft ">
+                    <img class="weui-vcode-img " src="http://nh.gildata.com/vcode.php " id="vcodepic " onclick="this.src='http://nh.gildata.com/vcode.php?' +Math.random(); ">
+                </div>
+            </div>
+            <div class="weui-cells__tips ">点击图片可刷新</div>
+            <div class="weui-btn-area ">
+                <a class="weui-btn weui-btn_primary " href="javascript:void(0) " id="submit ">登录</a>
+            </div>
+        </form>
+        <br>
+        <div class="weui-footer weui-footer_fixed-bottom ">
+            <p class="weui-footer__text ">Copyright © 2018 gildata.com</p>
+        </div>
+    </section>
+    <!-- libs -->
+    <script src="https://cdn.bootcss.com/jquery/1.11.0/jquery.min.js "></script>
+    <script src="https://cdn.bootcss.com/jquery-weui/1.2.0/js/jquery-weui.min.js "></script>
+    <!-- js -->
+    <script src="./login.js "></script>
+    <!-- <script src="./index.min.js "></script> -->
+</body>
+
+</html>
