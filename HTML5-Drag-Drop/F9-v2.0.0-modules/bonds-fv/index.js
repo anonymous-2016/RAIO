@@ -2182,12 +2182,12 @@ OTC_F9_FV.Modules.modulesLoader = OTC_F9_FV.Modules.modulesLoader ||(
                 div.dataset.droppedUid=`module-data-${uid}`;
                 layoutCSS(uid, div);
                 let module_exist_checker = ``;
-                if (typeof(uid) === "string" && uid.length < 13) {
-                    // "bondratefast13".length; // 12 => 13
-                    module_exist_checker = document.querySelector(`[data-div-module-uid="div-module-${uid}"]`)
-                }else{
-                    module_exist_checker = null;
+                if (typeof(uid) === "string" && uid.length < 15) {
+                    // "bondratefast13".length; // 14 => 15
+                    module_exist_checker = document.querySelector(`[data-div-module-uid="div-module-${uid}"]`);
+                    // data-div-module-uid="div-module-bondratefast01"
                 }
+                // console.log(`module_exist_checker =`, module_exist_checker);
                 if (module_exist_checker === null) {
                     let {htmlstr, delete_uid} = HTML_Template(uid, loadModule);
                     div.insertAdjacentHTML(`beforeend`, `${htmlstr}`);

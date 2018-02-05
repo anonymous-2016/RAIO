@@ -56,9 +56,9 @@ span[data-title="sub-title"] {
 section[data-group="mix-hc-table"] {
     box-sizing: border-box;
     /* background: #ccc; */
-    width: 540px;
-    max-width: 540px;
-    min-width: 540px;
+    width: 542px;
+    max-width: 542px;
+    min-width: 542px;
     /* border: 1px solid #dce0e4; */
 }
 
@@ -93,9 +93,9 @@ table.otc-dcm-pricing-central-hub-table:nth-of-type(1) {
     /* margin-top: 5px; */
     /* margin-bottom: 5px; */
     /* margin: 0; */
-    width: 540px;
-    max-width: 540px;
-    min-width: 540px;
+    width: 542px;
+    max-width: 542px;
+    min-width: 542px;
     /* width: 530px;
     max-width: 530px;
     min-width: 530px; */
@@ -151,7 +151,7 @@ section.otc-module-box-5 {
     float: left;
     /* margin-top: 6px;
     margin-bottom: 6px; */
-    width: 540px;
+    width: 542px;
     /* min-height: 127px; */
 }
 
@@ -339,7 +339,7 @@ a[data-button="dcm-link"]:hover {
 
 section[data-scrollbar="section-scrollbar-dcm-table-container"] {
     box-sizing: border-box;
-    max-width: 540px;
+    max-width: 542px;
     overflow-x: auto;
-    border-right: 1px solid #c5d2db;
+    /* border-right: 1px solid #c5d2db; */
 }

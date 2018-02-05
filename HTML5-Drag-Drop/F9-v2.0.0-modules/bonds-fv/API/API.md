@@ -134,6 +134,34 @@ var OTC_IP = window.OTC_IP || `http://10.1.5.202`,
 ```
 
 
+key
+border: 1px solid #4a4c4f;
+background-color: #31373d;
+
+
+value
+border-right: 1px solid #4a4c4f;
+background-color: #25292e;
+
+color
+color: #bbc1c7;
+
+
+
+
+legend_item_color = (OTC_SKIN === "black") ? `#bbc1c7` : `#0b1016`,
+
+hc_title_color = (OTC_SKIN === "black") ? `#bbc1c7` : `#333`,
+style: {
+    // color: "#f00",
+    color: hc_title_color,
+},
+
+
+
+
+
+
     bondratefast01  回购利率
     bondratefast03  国债收益率(中债)
     bondratefast04  企债AAA收益率(中债)

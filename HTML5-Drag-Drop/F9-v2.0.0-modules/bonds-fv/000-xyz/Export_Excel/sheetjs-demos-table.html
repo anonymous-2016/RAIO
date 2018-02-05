@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>SheetJS JS-XLSX In-Browser HTML Table Export Demo</title>
+    <meta charset="utf-8" />
+    <style>
+        .xport,
+        .btn {
+            display: inline;
+            text-align: center;
+        }
+        
+        a {
+            text-decoration: none
+        }
+        
+        #data-table,
+        #data-table th,
+        #data-table td {
+            border: 1px solid black
+        }
+    </style>
+    <!-- libs -->
+    <![if gt IE 9]>
+    <script type="text/javascript" src="https:///unpkg.com/xlsx/dist/shim.min.js"></script>
+    <script type="text/javascript" src="https://unpkg.com/xlsx/dist/xlsx.full.min.js"></script>
+
+    <script type="text/javascript" src="https://unpkg.com/blob.js@1.0.1/Blob.js"></script>
+    <script type="text/javascript" src="https://unpkg.com/file-saver@1.3.3/FileSaver.js"></script>
+    <![endif]>
+
+    <!--[if lte IE 9]>
+        <script type="text/javascript" src="shim.min.js"></script>
+        <script type="text/javascript" src="xlsx.full.min.js"></script>
+
+        <script type="text/javascript" src="Blob.js"></script>
+        <script type="text/javascript" src="FileSaver.js"></script>
+    <![endif]-->
+
+    <!--[if lte IE 9]>
+        <script type="text/javascript" src="swfobject.js"></script>
+        <script type="text/javascript" src="downloadify.min.js"></script>
+        <script type="text/javascript" src="base64.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+
+    <section>
+        <table id="test-table">
+            <tbody>
+                <tr>
+                    <td t="s" id="sjs-A1">This</td>
+                    <td t="s" id="sjs-B1">is</td>
+                    <td t="s" id="sjs-C1">a</td>
+                    <td t="s" id="sjs-D1">Test</td>
+                </tr>
+                <tr>
+                    <td t="s" id="sjs-A2">வணக்கம்</td>
+                    <td t="s" id="sjs-B2">สวัสดี</td>
+                    <td t="s" id="sjs-C2">你好</td>
+                    <td t="s" id="sjs-D2">가지마</td>
+                </tr>
+                <tr>
+                    <td t="n" id="sjs-A3">1</td>
+                    <td t="n" id="sjs-B3">2</td>
+                    <td t="n" id="sjs-C3">3</td>
+                    <td t="n" id="sjs-D3">4</td>
+                </tr>
+                <tr>
+                    <td t="s" id="sjs-A4">Click</td>
+                    <td t="s" id="sjs-B4">to</td>
+                    <td t="s" id="sjs-C4">edit</td>
+                    <td t="s" id="sjs-D4">cells</td>
+                </tr>
+            </tbody>
+        </table>
+        <button data-btn="export-excel" data-title="test-excel-title">Export to XLSX!</button>
+    </section>
+    <section>
+        <div id="container"></div>
+        <p>XLSX Excel 2007+ XML</p>
+        <input type="submit" value="Export to XLSX!" onclick="doit('xlsx');">
+    </section>
+    <!-- js -->
+    <script src="./sheet_demo.js"></script>
+</body>
+
+</html>

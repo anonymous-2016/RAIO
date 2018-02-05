@@ -191,6 +191,7 @@ OTC_F9_FV.Modules.nationalPolicyDrivenFDP.drawHS = OTC_F9_FV.Modules.nationalPol
         const {color, colors, optioncolor, gridColor, legendColor, yAxisColor, index_color} = {...chart_css};
         // SKIN
         let skin_color = (OTC_SKIN === "black") ? `#0b1016` : `#fff`,
+            hc_title_color = (OTC_SKIN === "black") ? `#bbc1c7` : `#333`,
             legend_item_color = (OTC_SKIN === "black") ? `#fff` : `#0b1016`,
             legend_item_hover_color = (OTC_SKIN === "black") ? `#f79530` : `#000`,
             legend_bg_color = (OTC_SKIN === "black") ? `#0b1016` : `#ff00ff`;
@@ -230,9 +231,10 @@ OTC_F9_FV.Modules.nationalPolicyDrivenFDP.drawHS = OTC_F9_FV.Modules.nationalPol
                 align: "center",
                 x: 0,
                 y: 10,
-                // style: {
-                //     color: "#f00",
-                // },
+                style: {
+                    // color: "#f00",
+                    color: hc_title_color,
+                },
             },
             xAxis: {
                 categories: code,
