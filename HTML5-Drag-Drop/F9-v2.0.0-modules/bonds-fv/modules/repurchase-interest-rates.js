@@ -646,6 +646,52 @@ OTC_F9_FV.Modules.repurchaseInterestRates.init({
 // const url = `http://10.1.5.202/webservice/fastview/bond/rate?{"ModelId":"bondratefast01","Compare":"","CompareDate":""}`;
 
 
+const exportExcel = (
+    uid = `data-table`,
+    title = `excel-title`,
+    type = `xlsx`,
+    debug = false
+) => {
+    if (debug) {
+        console.log(`uid= `, uid);
+        console.log(`type = `, type);
+        console.log(`title = `, title);
+    }
+    let result = ``;
+    try {
+        let elt = document.querySelector(uid),
+            wb = XLSX.utils.table_to_book(
+                elt,
+                {
+                    // sheet: "Sheet JS",// excel sheet name
+                    sheet: title,
+                }
+            );
+        if (debug) {
+            console.log(`document.querySelector(uid) = `, elt);
+        }
+        result = XLSX.writeFile(
+            wb,
+            `${title}.${type}`,
+        );
+        return result;
+    } catch (error) {
+        console.log(`error = `, error);
+    }
+};
+
+
+setTimeout(() => {
+    let export_excel_a = document.querySelector(`[data-excel="otc-repurchase-interest-rates-excel"]>a`);
+    export_excel_a.addEventListener(`click`, () => {
+        let table_uid = export_excel_a.dataset.excel;
+        console.log(`excel uid =`, table_uid);
+        let table_title = export_excel_a.dataset.title;
+        console.log(`excel title =`, table_title);
+        exportExcel(`.${table_uid}`, `${table_title}`);
+        // exportExcel(`#${table_uid}`, `${title}`);
+    });
+}, 0);
 
 
 /*

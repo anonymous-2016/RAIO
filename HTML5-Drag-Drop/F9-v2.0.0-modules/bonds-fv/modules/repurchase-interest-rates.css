@@ -341,3 +341,81 @@ tbody.otc-repurchase-interest-rates-table-tbody>tr.otc-repurchase-interest-rates
 https://developer.mozilla.org/en-US/docs/Web/CSS/text-orientation
 
 */
+
+[data-excel="otc-repurchase-interest-rates-excel"] {
+    position: relative;
+    padding-left: 4px;
+    float: right;
+    margin-right: 50px;
+    background-color: #fafbff;
+    line-height: 20px;
+    height: 20px;
+    border: 1px solid #a5bacf;
+    box-sizing: border-box;
+    width: 50px;
+}
+
+[data-excel="otc-repurchase-interest-rates-excel"]>a {
+    text-decoration: none;
+    color: #3285ff;
+    font-size: 12px;
+}
+
+
+/*
+
+CSS selector & JS DOM
+
+document.querySelector(`[data-excel="otc-repurchase-interest-rates-excel"]>a`);
+
+*/
+
+[data-excel="otc-repurchase-interest-rates-excel"]>a:hover {
+    color: #f50;
+}
+
+[data-excel="otc-repurchase-interest-rates-excel"]>a::before {
+    position: absolute;
+    left: 1px;
+    top: 1px;
+    background-image: url("../css/img/excel.png");
+    background-position: 0px 0px;
+    background-repeat: no-repeat;
+    width: 16px;
+    height: 16px;
+    content: "";
+    display: block;
+    cursor: default;
+}
+
+
+/*
+
+[data-excel="otc-repurchase-interest-rates-excel"] {
+    float: right;
+    display: block;
+    margin: 0;
+    padding: 0;
+    line-height: 20px;
+    height: 20px;
+    margin-right: 50px;
+    background: url("../css/img/excel.png") left 0px no-repeat;
+    background-image: url("../css/img/excel.png");
+    background-repeat: no-repeat;
+    background-position: 0px -16px;
+    background-origin: content-box;
+    background-clip: content-box;
+    background-size: 16px 16px;
+    width: 100px;
+    text-indent: 32px;
+}
+
+[data-excel="otc-repurchase-interest-rates-excel"]::before {
+    box-sizing: border-box;
+    display: block;
+    position: absolute;
+    content: url("../css/img/excel.png");
+    width: 16px;
+    height: 16px;
+    margin-left: -32px;
+} */

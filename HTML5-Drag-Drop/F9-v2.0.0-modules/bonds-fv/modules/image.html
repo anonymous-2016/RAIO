@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .img {
+            /*  */
+            background: url("../css/img/excel.png") #f50 fixed -8px 10px no-repeat;
+            /* background-image: url("../css/img/excel.png");
+            background-color: #f50;
+            background-attachment: fixed;
+            background-position: -8px 10px;
+            background-repeat: no-repeat; */
+            text-indent: 16px;
+            width: 90px;
+        }
+        
+        .span {
+            background: url("../css/img/excel.png");
+            background-color: #f50;
+            background-repeat: no-repeat;
+            /* background-attachment: fixed; */
+            background-size: 16px 16px;
+            background-position: 0px 4px;
+            /* text-indent: 16px; */
+            /* display: block; */
+        }
+        
+        [data-span="span"] {
+            position: relative;
+            padding-left: 16px;
+        }
+        
+        [data-span="span"]::before {
+            position: absolute;
+            left: 0;
+            top: 2px;
+            background-image: url("../css/img/excel.png");
+            /* background-color: #f50; */
+            background-position: 0px 0px;
+            background-repeat: no-repeat;
+            text-indent: 16px;
+            width: 16px;
+            height: 16px;
+            content: "";
+            display: block;
+        }
+        
+        [data-span="span-hover"]::before {
+            background-image: url("../css/img/excel.png");
+            /* background-color: #f50; */
+            background-position: -16px 0px;
+            background-repeat: no-repeat;
+            text-indent: 16px;
+            width: 16px;
+            height: 16px;
+            content: "";
+            display: block;
+        }
+        /* [data-span="span"]::before:hover {
+            background-image: url("../css/img/excel.png");
+            background-color: #f50;
+            background-position: -16px 0px;
+            background-repeat: no-repeat;
+            text-indent: 16px;
+            width: 16px;
+            height: 16px;
+            content: "";
+            display: block;
+            cursor: pointer;
+        } */
+    </style>
+</head>
+
+<body>
+    <section>
+        <div class="img">导出Excel</div>
+    </section>
+    <section>
+        <div>
+            <p>
+                债券基准利率 - 速览<span class="span">导出Excel</span>
+            </p>
+        </div>
+        <div>
+            <p>
+                <span data-span="span">导出Excel</span>
+            </p>
+            <p>
+                <span data-span="span-hover">导出Excel</span>
+            </p>
+        </div>
+    </section>
+</body>
+
+</html>

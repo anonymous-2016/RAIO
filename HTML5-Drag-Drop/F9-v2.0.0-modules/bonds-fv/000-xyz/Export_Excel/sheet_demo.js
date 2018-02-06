@@ -19,6 +19,7 @@ const exportExcel = (
     debug = false
 ) => {
     if (debug) {
+        console.log(`uid= `, uid);
         console.log(`type = `, type);
         console.log(`title = `, title);
     }
@@ -28,9 +29,13 @@ const exportExcel = (
             wb = XLSX.utils.table_to_book(
                 elt,
                 {
-                    sheet: "Sheet JS",// ???
+                    // sheet: "Sheet JS",// excel sheet name
+                    sheet: title,
                 }
             );
+        if (debug) {
+            console.log(`document.querySelector(uid) = `, elt);
+        }
         result = XLSX.writeFile(
                 wb,
                 `${title}.${type}`,
@@ -59,12 +64,15 @@ const exportExcel = (
 };
 
 // demo
-setTimeout(() => {
+setTimeout((debug = false) => {
     let btn = document.querySelector(`[data-btn="export-excel"]`);
     btn.addEventListener(`click`, () => {
-        // title = btn.dataset.title;
-        console.log(`btn.dataset.title =`, btn.dataset.title);
-        exportExcel(`[data-btn="export-excel"]`, `导出Table为Excel`);
+        if (!debug) {
+            console.log(`btn.dataset.title =`, btn.dataset.title);
+        }
+        let title = btn.dataset.title;
+        exportExcel(`#test-table`, `${title}`);
+        // exportExcel(`#test-table`, `导出Table为Excel`);
     });
 }, 0);
 
