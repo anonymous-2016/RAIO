@@ -2,7 +2,7 @@
  * Datepicker for Bootstrap v1.4.1 (https://github.com/eternicode/bootstrap-datepicker)
  *
  * Copyright 2012 Stefan Petre
- * Improvements by Andrew Rowls
+ * Improvements by xgqfrms 2018-02-07
  * Licensed under the Apache License v2.0 (http://www.apache.org/licenses/LICENSE-2.0)
  */
 
@@ -137,9 +137,8 @@
             this._o = $.extend({}, this._o, opts);
             // Processed options
             var o = this.o = $.extend({}, this._o);
-
-            // Check if "de-DE" style date is available, if not language should
-            // fallback to 2 letter code eg "de"
+            // Check if "de-DE" style date is available, if not language should fallback to 2 letter code eg "de"
+            // this.o & zh ??? zh-Hans
             var lang = o.language;
             if (!dates[lang]){
                 lang = lang.split('-')[0];
@@ -1488,7 +1487,7 @@
             return this;
     };
     $.fn.datepicker = datepickerPlugin;
-
+    // default options
     var defaults = $.fn.datepicker.defaults = {
         autoclose: false,
         beforeShowDay: $.noop,
@@ -1503,7 +1502,8 @@
         format: 'yyyy-mm-dd',
         // format: 'mm/dd/yyyy',
         keyboardNavigation: true,
-        language: 'en',
+        // language: 'en',
+        language: 'zh',// default language
         minViewMode: 0,
         multidate: false,
         multidateSeparator: ',',
@@ -1524,6 +1524,7 @@
         'weekStart'
     ];
     $.fn.datepicker.Constructor = Datepicker;
+    //
     var dates = $.fn.datepicker.dates = {
         en: {
             days: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
@@ -1533,14 +1534,23 @@
             monthsShort: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
             today: "Today",
             clear: "Clear"
-        }
+        },
+        zh: {
+            days: ["星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六", "星期日"],
+            daysShort: ["日", "一", "二", "三", "四", "五", "六", "日"],
+            daysMin: ["日", "一", "二", "三", "四", "五", "六", "日"],
+            months: ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"],
+            monthsShort: ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"],
+            today: "今天",
+            clear: "清除",// 清空
+        },// zh_Hans ? zh_Hans : zh-Hans;
     };
 
     var DPGlobal = {
         modes: [
             {
-                clsName: 'days',
-                navFnc: 'Month',
+                clsName: 'days',// 天/日
+                navFnc: 'Month',// 月
                 navStep: 1
             },
             {
@@ -1549,8 +1559,8 @@
                 navStep: 1
             },
             {
-                clsName: 'years',
-                navFnc: 'FullYear',
+                clsName: 'years',// 年
+                navFnc: 'FullYear',// 全年
                 navStep: 10
         }],
         isLeapYear: function(year){
@@ -1758,7 +1768,7 @@
 
     /* DATEPICKER VERSION
      * =================== */
-    $.fn.datepicker.version =  "1.4.1";
+    $.fn.datepicker.version =  "1.4.1";// jquery version ??? jquery-1.11.3.min.js
 
     /* DATEPICKER DATA-API
     * ================== */

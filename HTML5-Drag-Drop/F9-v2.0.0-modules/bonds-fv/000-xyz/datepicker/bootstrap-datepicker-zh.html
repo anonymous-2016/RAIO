@@ -11,7 +11,7 @@
 </head>
 
 <body>
-    <input type="text" id="dob" name="date" placeholder="MM/DD/YYYY" />
+    <input type="text" id="bootstrap-datepicker-uid" data-uid="jquery-datepicker" name="date" placeholder="年年年年/月月/日日" title="YYYY/MM/DD" />
     <!-- libs -->
     <!-- <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.js"></script> -->
@@ -32,10 +32,33 @@
                 autoclose: true,
             })
         });
-        let input_value = document.querySelector(`#dob`);
+        // Utils
+        const getFullTodayDate = (debug = false) => {
+            const date = new Date();
+            let year = date.getFullYear(),
+                month = date.getMonth() + 1,
+                day = date.getDate();
+            // week_daya = date.getDay();
+            // 0 padding
+            month = (month > 9) ? month : `0${month}`;
+            day = (day > 9) ? day : `0${day}`;
+            let today = `${year}-${month}-${day}`;
+            if (debug) {
+                console.log(`today =`, today, typeof(today));
+                if (window.copy) {
+                    copy(today);
+                } else {
+                    console.log(`Your poor browser doesn't support \`copy()\`, please download Google Chrome! \nhttps://www.google.com/intl/en/chrome/browser/\n`, window.copy);
+                }
+            }
+            return today;
+        };
+        // let input_value = document.querySelector(`[data-uid="jquery-datepicker"]`);
+        let input_value = document.querySelector(`#bootstrap-datepicker-uid`);
+        // input_value.value = "2018-02-07";// today
+        input_value.value = getFullTodayDate();
         // input_value.value;
         // 2018-02-07
-        // input_value.value = "2018-02-07";// today
     </script>
 </body>
 
