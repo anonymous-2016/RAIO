@@ -12,7 +12,7 @@
 }
 
 .date_selector {
-    background: #F2F2F2;
+    background: #fff;
     border: 1px solid #bbb;
     padding: 5px;
     margin: -1px 0 0 0;
@@ -124,7 +124,8 @@
 }
 
 .date_selector td.selected {
-    background: #D8DFE5;
+    background: #3685ff;
+    color: #fff;
     font-weight: bold;
 }
 
@@ -133,3 +134,54 @@
     background: #003C78;
     color: white;
 }
+
+.date_selector thead>tr>th {
+    background: #f4f9ff;
+}
+
+
+/* css3 三角形*/
+
+[data-css3="triangle-icon"] {
+    /* color: #8a97bd */
+    border: 1px solid #8a97bd;
+    /* bd #c8d5e6 */
+    /* bg #e8eefa */
+    /* bd #c5d1db */
+    /* #b5b5b5 */
+    /* #464646 */
+}
+
+
+/* HC */
+
+.highcharts-scrollbar-thumb {
+    /* SVG & CSS */
+    color: #5c5c5c;
+}
+
+
+/*
+
+let hcs = document.querySelector(`.highcharts-scrollbar-thumb`);
+
+// <rect fill="#f00" class="highcharts-scrollbar-thumb" height="14" width="99.192307692308" rx="0" ry="0" stroke="#cccccc" stroke-width="1"></rect>
+
+
+let hcst = document.querySelector(`.highcharts-scrollbar-track`);
+
+// <rect fill="#f0f" class="highcharts-scrollbar-track" x="0" rx="0" ry="0" height="14" width="437" stroke="#f2f2f2" stroke-width="1" y="-0.5"></rect>
+
+let hcsb = document.querySelector(`.highcharts-scrollbar-button`);
+
+
+// <rect fill="#e6e6e6" class="highcharts-scrollbar-button" stroke="#cccccc" stroke-width="1" x="-0.5" y="-0.5" width="14" height="14" rx="0" ry="0"></rect>
+
+let hcsba = document.querySelectorAll(`.highcharts-scrollbar-button`);
+
+let hcsa = document.querySelector(`.highcharts-scrollbar-arrow`);
+
+
+
+
+*/

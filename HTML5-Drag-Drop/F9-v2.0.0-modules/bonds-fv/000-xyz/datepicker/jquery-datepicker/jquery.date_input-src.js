@@ -48,7 +48,8 @@ DateInput = (function($) {
         short_month_names : [ "一", "二", "三", "四", "五", "六", "七", "八", "九", "十", "十一", "十二" ],
         short_day_names : [ "日", "一", "二", "三", "四", "五", "六" ],
         start_of_week : 1,
-        clear_name : '清空'
+        clear_name : '',
+        // clear_name : '清空',
     };
     DateInput.prototype = {
         build : function() {
