@@ -16,6 +16,9 @@
 // import {UserException} from "../utils/throw_error";
 // import {UserConsoleError as ConsoleError} from "../utils/console_error";
 
+import {exportExcel as exportExcelPlugin} from "./export-excel";
+
+
 // namespaces
 var OTC_F9_FV = OTC_F9_FV || {};
 // sub namespaces
@@ -64,6 +67,7 @@ OTC_F9_FV.Modules.repurchaseInterestRates = OTC_F9_FV.Modules.repurchaseInterest
                         const time_title = document.querySelector(`[data-time="otc-repurchase-interest-rates-time"]`);
                         if (emptyChecker(json.date)) {
                             // (2018-01-01)
+                            time_title.innerHTML = "";
                             time_title.insertAdjacentHTML(`beforeend`, `(${json.date})`);
                         } else {
                             time_title.insertAdjacentHTML(`beforeend`, ``);
@@ -120,8 +124,56 @@ OTC_F9_FV.Modules.repurchaseInterestRates = OTC_F9_FV.Modules.repurchaseInterest
                                     bp_difference2.push(bp !== `--` ? parseFloat(bp) : null);
                                 }
                                 for (let i = 0; i < tds.length; i++) {
+                                    // empty
+                                    tds[i].innerHTML = "";
                                     tds[i].insertAdjacentHTML(`beforeend`, values[i]);
+                                    // tds[i].insertAdjacentHTML(`beforeend`, values[i]);
                                 }
+                                // export excel ??? extract to init module
+                                setTimeout((debug = false) => {
+                                    let export_excel_a = document.querySelector(`[data-excel="otc-repurchase-interest-rates-excel"]>a`);
+                                    if (export_excel_a !==null) {
+                                        // how to in case of add same event many times!
+                                        // let isAddClikc = (typeof(export_excel_a.click) === "function") ? true : false;
+                                        // console.log(`excel error =`, error);
+                                        // element.removeEventListener(event, function_name, useCapture)
+                                        const printExcel = (debug = false) => {
+                                            let table_uid = export_excel_a.dataset.excel,
+                                                table_title = export_excel_a.dataset.title;
+                                            if (debug) {
+                                                console.log(`excel uid =`, table_uid);
+                                                console.log(`excel title =`, table_title);
+                                            }
+                                            try {
+                                                exportExcelPlugin(`.${table_uid}`, `${table_title}`);
+                                            } catch (error) {
+                                                console.log(`excel error =`, error);
+                                            }
+                                        };
+                                        // remove before add & removeEventListener & named function
+                                        // export_excel_a.removeEventListener(`click`, printExcel);
+                                        // console.log(`removeEventListener \n`, printExcel);
+                                        let hasAddClick = (export_excel_a.dataset.click === "true")? true : false;
+                                        const options = {
+                                            // capture: true,
+                                            // once: true,// only can click once!
+                                            // passive: true,
+                                        };
+                                        // console.log(`hasAddClick \n`, hasAddClick);
+                                        // html5 data flag
+                                        if (!hasAddClick) {
+                                            export_excel_a.addEventListener(`click`, printExcel);
+                                            // export_excel_a.addEventListener(`click`, printExcel, options);
+                                            // console.log(`before add click \n`, export_excel_a.dataset.click);
+                                            export_excel_a.dataset.click = "true";
+                                            // console.log(`after add click \n`, export_excel_a.dataset.click);
+                                        } else {
+                                            console.log(`excel addEventListener error =`, `\n no need addEventListener any more!`);
+                                        }
+                                    } else {
+                                        console.log(`%c excel table\n`, `color: red;`, `addEventListener target is null!`);
+                                    }
+                                }, 0);
                                 // drawHC & rename
                                 // ES6 polyfill ???
                                 Object.assign(hc_obj1, {code: code1, weighting_closing: weighting_closing1, compare: compare1, bp_difference: bp_difference1});
@@ -601,25 +653,27 @@ OTC_F9_FV.Modules.repurchaseInterestRates.init = OTC_F9_FV.Modules.repurchaseInt
         {
             ip,
             path,
-            uid,
+            // uid,
             compare,
             date,
             skin,
         } = {
             ip: `http://10.1.5.202`,
             path: `/webservice/fastview/bond/rate`,
-            uid: `bondratefast01`,
+            // uid: `bondratefast01`,
             compare: OTC_COMPARE,
             date: OTC_DATE,
             skin: OTC_SKIN,
         }
     ) => {
         // let url = `http://10.1.5.202/json/bonds/04.json`,
-        let url = `${ip}${path}?{"ModelId":"${uid}","Compare":"${compare}","CompareDate":"${date}"}`,
+        let url = (compare === "2") ? `${ip}${path}?{"ModelId":"bondratefast01","Compare":"${compare}","CompareDate":"${date}"}` : `${ip}${path}?{"ModelId":"bondratefast01","Compare":"${compare}"}`,
+        // let url = `${ip}${path}?{"ModelId":"${uid}","Compare":"${compare}","CompareDate":"${date}"}`,
             tbody_uid = `[data-tbody="otc-repurchase-interest-rates-table-tbody"]`,
             hc_uid1 = `repurchase-interest-rates-hs-container1`,
             hc_uid2 = `repurchase-interest-rates-hs-container2`,
             hc_uids = {hc_uid1, hc_uid2};
+        // console.log(`repurchase-interest-rates & url =\n`, url);
         OTC_F9_FV.Modules.repurchaseInterestRates(url, tbody_uid, hc_uids, false);
     }
 );
@@ -633,66 +687,21 @@ var OTC_IP = window.OTC_IP || `http://10.1.5.202`,
     OTC_SKIN = window.OTC_SKIN || `white`;
     // OTC_SKIN = window.OTC_SKIN || `black`;
 
-OTC_F9_FV.Modules.repurchaseInterestRates.init({
-    ip: OTC_IP,
-    path: OTC_PATH,
-    uid: `bondratefast01`,
-    compare: OTC_COMPARE,
-    date: OTC_DATE,
-    skin: OTC_SKIN,
-});
+// OTC_F9_FV.Modules.repurchaseInterestRates.init({
+//     ip: OTC_IP,
+//     path: OTC_PATH,
+//     uid: `bondratefast01`,
+//     compare: OTC_COMPARE,
+//     date: OTC_DATE,
+//     skin: OTC_SKIN,
+// });
 
 // OTC_F9_FV.Modules.repurchaseInterestRates.init();
 // const url = `http://10.1.5.202/webservice/fastview/bond/rate?{"ModelId":"bondratefast01","Compare":"","CompareDate":""}`;
 
-
-const exportExcel = (
-    uid = `data-table`,
-    title = `excel-title`,
-    type = `xlsx`,
-    debug = false
-) => {
-    if (debug) {
-        console.log(`uid= `, uid);
-        console.log(`type = `, type);
-        console.log(`title = `, title);
-    }
-    let result = ``;
-    try {
-        let elt = document.querySelector(uid),
-            wb = XLSX.utils.table_to_book(
-                elt,
-                {
-                    // sheet: "Sheet JS",// excel sheet name
-                    sheet: title,
-                }
-            );
-        if (debug) {
-            console.log(`document.querySelector(uid) = `, elt);
-        }
-        result = XLSX.writeFile(
-            wb,
-            `${title}.${type}`,
-        );
-        return result;
-    } catch (error) {
-        console.log(`error = `, error);
-    }
-};
-
-
-setTimeout(() => {
-    let export_excel_a = document.querySelector(`[data-excel="otc-repurchase-interest-rates-excel"]>a`);
-    export_excel_a.addEventListener(`click`, () => {
-        let table_uid = export_excel_a.dataset.excel;
-        console.log(`excel uid =`, table_uid);
-        let table_title = export_excel_a.dataset.title;
-        console.log(`excel title =`, table_title);
-        exportExcel(`.${table_uid}`, `${table_title}`);
-        // exportExcel(`#${table_uid}`, `${title}`);
-    });
-}, 0);
-
+const repurchaseInterestRates = OTC_F9_FV.Modules.repurchaseInterestRates;
+export default repurchaseInterestRates;
+export {repurchaseInterestRates};
 
 /*
 
@@ -722,5 +731,63 @@ switch (json.yzy[i].name) {
     default:
         break;
 }
+
+*/
+
+
+
+
+/*
+
+    <span data-excel="otc-repurchase-interest-rates-excel">
+        <a href="#" data-excel="otc-repurchase-interest-rates-table" data-title="回购利率" data-click="false">导出</a>
+    </span>
+
+    // https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener#Parameters
+
+    // export excel ??? extract to init module
+    setTimeout((debug = false) => {
+        let export_excel_a = document.querySelector(`[data-excel="otc-repurchase-interest-rates-excel"]>a`);
+        if (export_excel_a !==null) {
+            // how to in case of add same event many times!
+            // let isAddClikc = (typeof(export_excel_a.click) === "function") ? true : false;
+            // console.log(`excel error =`, error);
+            // element.removeEventListener(event, function_name, useCapture)
+            const printExcel = (debug = false) => {
+                let table_uid = export_excel_a.dataset.excel,
+                    table_title = export_excel_a.dataset.title;
+                if (debug) {
+                    console.log(`excel uid =`, table_uid);
+                    console.log(`excel title =`, table_title);
+                }
+                try {
+                    exportExcelPlugin(`.${table_uid}`, `${table_title}`);
+                } catch (error) {
+                    console.log(`excel error =`, error);
+                }
+            };
+            // remove before add
+            // export_excel_a.removeEventListener(`click`, printExcel);
+            // console.log(`removeEventListener \n`, printExcel);
+            let hasAddClick = (export_excel_a.dataset.click === "true")? true : false;
+            const options = {
+                // capture: true,
+                // once: true,// only can click once!
+                // passive: true,
+            };
+            console.log(`hasAddClick \n`, hasAddClick);
+            if (!hasAddClick) {
+                export_excel_a.addEventListener(`click`, printExcel);
+                // export_excel_a.addEventListener(`click`, printExcel, options);
+                console.log(`before add click \n`, export_excel_a.dataset.click);
+                export_excel_a.dataset.click = "true";
+                console.log(`after add click \n`, export_excel_a.dataset.click);
+            } else {
+                console.log(`excel addEventListener error =`, `\n no need addEventListener any more!`);
+            }
+        } else {
+            console.log(`%c excel table\n`, `color: red;`, `addEventListener target is null!`);
+        }
+    }, 0);
 
 */

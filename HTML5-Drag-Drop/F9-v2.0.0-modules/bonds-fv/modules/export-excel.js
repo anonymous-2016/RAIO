@@ -24,7 +24,8 @@ const exportExcel = (
             wb = XLSX.utils.table_to_book(
                 elt,
                 {
-                    sheet: "Sheet JS",// ???
+                    // sheet: "Sheet JS",// excel sheet name
+                    sheet: title,
                 }
             );
         if (debug) {
@@ -40,12 +41,46 @@ const exportExcel = (
     }
 };
 
-
 export default exportExcel;
 
 export {exportExcel};
 
+// import {exportExcel as exportExcelPlugin} from "./export-excel";
+
 /*
+
+
+<span data-excel="otc-repurchase-interest-rates-excel">
+    <a href="#" data-excel="otc-repurchase-interest-rates-table" data-title="回购利率">导出</a>
+</span>
+
+import {exportExcel as exportExcelPlugin} from "./export-excel";
+
+
+
+// export excel
+setTimeout((debug = false) => {
+    let export_excel_a = document.querySelector(`[data-excel="otc-repurchase-interest-rates-excel"]>a`);
+    if (export_excel_a !==null) {
+        export_excel_a.addEventListener(`click`, () => {
+            let table_uid = export_excel_a.dataset.excel,
+                table_title = export_excel_a.dataset.title;
+            if (debug) {
+                console.log(`excel uid =`, table_uid);
+                console.log(`excel title =`, table_title);
+            }
+            try {
+                exportExcelPlugin(`.${table_uid}`, `${table_title}`);
+            } catch (error) {
+                console.log(`excel error =`, error);
+            }
+        });
+    } else {
+        console.log(`excel table, addEventListener target is null!`);
+    }
+}, 0);
+
+
 
 
 // demo

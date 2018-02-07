@@ -68,13 +68,15 @@ OTC_F9_FV.Utils.DOM_query = OTC_F9_FV.Utils.DOM_query || ((str = `[data-sortable
 // global variable
 window.OTC_IP = window.OTC_IP || ``;
 window.OTC_PATH = window.OTC_PATH || ``;
-window.OTC_GILCODE = window.OTC_GILCODE || ``;
+// window.OTC_GILCODE = window.OTC_GILCODE || ``;
 window.OTC_SKIN = window.OTC_SKIN || ``;
-
+// datepicker
+window.OTC_COMPARE = window.OTC_COMPARE || `0`;// default
+window.OTC_DATE = window.OTC_DATE || ``;// today ???no need
 
 
 // set params before DOM ready!
-window.OTC_GILCODE = OTC_F9_FV.Utils.getParam(`gilcode`);
+// window.OTC_GILCODE = OTC_F9_FV.Utils.getParam(`gilcode`);
 window.OTC_SKIN = OTC_F9_FV.Utils.getParam(`skin`) || `white`;
 window.OTC_IP = window.parent.location.origin.includes("http") ? window.parent.location.origin : `http://10.1.5.202`;
 window.OTC_PATH = `/webservice/fastview/bond/rate`;
@@ -318,8 +320,9 @@ const HTML_Template = (uid = ``, loadModule = function(){}, debug = false) => {
                     <div class="otc-h5dnd-modules-title-box">
                         <p class="otc-h5dnd-modules-title" data-title="otc-repurchase-interest-rates-title">
                             回购利率
-                            <span data-time="otc-repurchase-interest-rates-time">
-                                <!-- (2018-01-01) -->
+                            <span data-time="otc-repurchase-interest-rates-time"></span>
+                            <span data-excel="otc-repurchase-interest-rates-excel">
+                                <a href="#" data-excel="otc-repurchase-interest-rates-table" data-title="回购利率" data-click="false">导出</a>
                             </span>
                             <!-- <span data-link="otc-repurchase-interest-rates-link">
                                 <a href="#more" data-uid="1112" data-turn-to-uid="node-uid-repurchase-interest-rates-data">more</a>

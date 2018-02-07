@@ -359,6 +359,8 @@ https://developer.mozilla.org/en-US/docs/Web/CSS/text-orientation
     text-decoration: none;
     color: #3285ff;
     font-size: 12px;
+    font-weight: normal;
+    padding-left: 3px;
 }
 
 
@@ -378,7 +380,10 @@ document.querySelector(`[data-excel="otc-repurchase-interest-rates-excel"]>a`);
     position: absolute;
     left: 1px;
     top: 1px;
-    background-image: url("../css/img/excel.png");
+    background-image: url("../../img/excel.png");
+    /* background-image: url("../img/excel.png"); */
+    /* background-image: url("../../img/excel.png"); */
+    /* background-image: url("../css/img/excel.png"); */
     background-position: 0px 0px;
     background-repeat: no-repeat;
     width: 16px;
