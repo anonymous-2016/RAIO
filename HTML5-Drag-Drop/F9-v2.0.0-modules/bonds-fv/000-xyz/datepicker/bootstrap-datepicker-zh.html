@@ -17,6 +17,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.js"></script> -->
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script> -->
     <!-- Chinese 汉化 -->
+    <script src="./jquery-1.11.3.min.js"></script>
     <script src="./bootstrap-datepicker-zh.js"></script>
     <!-- js -->
     <script>
@@ -24,12 +25,17 @@
             var date_input = $('input[name="date"]');
             var container = $('.bootstrap-iso form').length > 0 ? $('.bootstrap-iso form').parent() : "body";
             date_input.datepicker({
-                format: 'dd/mm/yyyy',
+                format: 'yyyy-mm-dd',
+                // format: 'dd/mm/yyyy',
                 container: container,
                 todayHighlight: true,
                 autoclose: true,
             })
-        })
+        });
+        let input_value = document.querySelector(`#dob`);
+        // input_value.value;
+        // 2018-02-07
+        // input_value.value = "2018-02-07";// today
     </script>
 </body>
 
