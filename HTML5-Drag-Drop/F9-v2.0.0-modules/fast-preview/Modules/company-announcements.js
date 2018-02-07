@@ -124,7 +124,7 @@ STOCK_F9_FV.Modules.companyAnnouncements = STOCK_F9_FV.Modules.companyAnnounceme
         .catch(error => console.log(`error = \n`, error));
         // more
         setTimeout((debug = false) => {
-            let turn_to_uid = document.querySelector(`[data-turn-to-uid="node-uid-company-announcements-data]`);
+            let turn_to_uid = document.querySelector(`[data-turn-to-uid="node-uid-company-announcements-data"]`);
             if (debug) {
                 console.log(`turn_to_uid = \n`, turn_to_uid);
             }

@@ -3,6 +3,13 @@
 
 # turn to node
 
+
+
+turn_to_uid = document.querySelector(`[data-turn-to-uid="node-uid-company-announcements-data"]`)
+
+
+
+
 ```html
 
 <link rel="stylesheet" data-css="data-css-uid" href="../common/more.css">

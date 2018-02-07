@@ -138,6 +138,16 @@ btn.onclick = () => {
         body_container.classList.remove("h5-dnd-body-container-small");
         body_container.classList.add("h5-dnd-body-container-big");
     }
+    let flag = (small_btn.dataset.flag === "true") ? true : false;
+    // console.log(`\nbefore & small_btn.dataset.flag =`, small_btn.dataset.flag);
+    // reset false
+    small_btn.dataset.flag = "false";
+    // if (flag) {
+    //     small_btn.dataset.flag = "false";
+    // }else{
+    //     // do nothing
+    // }
+    // console.log(`\nafter & small_btn.dataset.flag =`, small_btn.dataset.flag);
 };
 
 
@@ -163,6 +173,8 @@ small_btn.onclick = () => {
         body_container.classList.remove("h5-dnd-body-container-big");
         body_container.classList.add("h5-dnd-body-container-small");
     }
+    // reset true
+    small_btn.dataset.flag = "true";
 };
 
 const debug = false;
@@ -1288,6 +1300,56 @@ STOCK_F9_FV.Modules.modulesLoader = STOCK_F9_FV.Modules.modulesLoader ||(
                         // remove DOM node ???
                         // [data-delete-script-dom="delete-script-dom-stockfast01"]
                         // module_container.removeChild(tdu);
+                        const showSidebar = () => {
+                            if (small_container.classList.contains("h5-dnd-nav-small-btn-hidden")) {
+                                small_container.classList.add("h5-dnd-nav-small-btn-show");
+                                small_container.classList.remove("h5-dnd-nav-small-btn-hidden");
+                            }else{
+                                small_container.classList.add("h5-dnd-nav-small-btn-hidden");
+                                small_container.classList.remove("h5-dnd-nav-small-btn-show");
+                            }
+                            if (container.classList.contains("h5-dnd-nav-container-normal")) {
+                                container.classList.add("h5-dnd-nav-container-small");
+                                container.classList.remove("h5-dnd-nav-container-normal");
+                            }else{
+                                container.classList.remove("h5-dnd-nav-container-small");
+                                container.classList.add("h5-dnd-nav-container-normal");
+                                // toggle() ???
+                            }
+                            if (body_container.classList.contains("h5-dnd-body-container-big")) {
+                                body_container.classList.remove("h5-dnd-body-container-big");
+                                body_container.classList.add("h5-dnd-body-container-small");
+                            }
+                        };
+                        setTimeout(() => {
+                            // btn.onclick();
+                            // data-flag="false"
+                            let flag = (small_btn.dataset.flag === "false") ? true : false;
+                            // console.log(`\n\nsmall_btn.dataset.flag =`, small_btn.dataset.flag);
+                            // console.log(`flag =`, flag);
+                            if (flag) {
+                                showSidebar();
+                                small_btn.dataset.flag = "true";
+                                // console.log(`%csmall_btn.dataset.flag =`, `color: green;`, small_btn.dataset.flag);
+                            }else{
+                                // do nothing
+                                // console.log(`%csmall_btn.dataset.flag =`, `color: red;`,small_btn.dataset.flag);
+                            }
+                        }, 0);
+                        // setTimeout(() => {
+                        //     // btn.onclick();
+                        //     // data-flag="false"
+                        //     let flag = (small_btn.dataset.flag === "false") ? true : false;
+                        //     // console.log(`small_btn.dataset.flag =`, small_btn.dataset.flag);
+                        //     // console.log(`flag =`, flag);
+                        //     if (flag) {
+                        //         small_btn.onclick();
+                        //         small_btn.dataset.flag = "true";
+                        //         // console.log(`small_btn.dataset.flag =`, small_btn.dataset.flag);
+                        //     }else{
+                        //         // do nothing
+                        //     }
+                        // }, 0);
                         if (debug) {
                             console.log(`this = `, this);
                             // Window
@@ -1336,22 +1398,23 @@ STOCK_F9_FV.Modules.modulesLoader = STOCK_F9_FV.Modules.modulesLoader ||(
                         }
                     }else{
                         // alert(`已取消删除此模块!`);
-                        swal({
-                            title: "已取消删除此模块!",
-                            text: "1秒后自动关闭",
-                            // text: "你确定要删除此模块?",
-                            icon: "success",
-                            buttons: false,
-                            timer: 1000
-                            // button: {
-                            //     // text: "确定",
-                            //     // value: "ok",
-                            //     // value: true,
-                            //     // visible: true,
-                            //     // className: "",
-                            //     // closeModal: true
-                            // }
-                        });
+                        console.log(`已取消删除此模块!`);
+                        // swal({
+                        //     title: "已取消删除此模块!",
+                        //     text: "1秒后自动关闭",
+                        //     // text: "你确定要删除此模块?",
+                        //     icon: "success",
+                        //     buttons: false,
+                        //     timer: 1000
+                        //     // button: {
+                        //     //     // text: "确定",
+                        //     //     // value: "ok",
+                        //     //     // value: true,
+                        //     //     // visible: true,
+                        //     //     // className: "",
+                        //     //     // closeModal: true
+                        //     // }
+                        // });
                     }
                     // value =  ok
                     // switch (value) {
@@ -2340,11 +2403,3 @@ const readFromLocalStorage = () => {
 
 
 */
-
-
-
-
-
-
-
-

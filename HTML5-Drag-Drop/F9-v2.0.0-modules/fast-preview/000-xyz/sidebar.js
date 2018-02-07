@@ -967,6 +967,7 @@ STOCK_F9_FV.Modules.modulesLoader = STOCK_F9_FV.Modules.modulesLoader ||(
                         }else{
                             console.log(`Coming soon... `, tdu.parentNode);
                         }
+                        btn.onclick();
                     }else{
                         swal({
                             title: "已取消删除此模块!",
