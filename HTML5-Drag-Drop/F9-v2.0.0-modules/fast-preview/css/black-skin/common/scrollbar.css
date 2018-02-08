@@ -3,6 +3,13 @@
 /* @import url("./scrollbar.css"); */
 
 
+/* scrollbar & must be set this!*/
+
+.h5-dnd-body-container::-webkit-scrollbar {
+    box-sizing: border-box;
+}
+
+
 /* vertical & decrement */
 
 .h5-dnd-body-container::-webkit-scrollbar-button:vertical:decrement {
