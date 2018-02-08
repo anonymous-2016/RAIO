@@ -92,8 +92,9 @@
     height: 23px;
     line-height: 23px;
     max-height: 23px;
-    background-color: #25292e;
+/*     background-color: #25292e; */
 }
+
 
 
 /* date no need `:` */
@@ -136,6 +137,9 @@
 
 .fv-top-ten-shareholders-table-tbody>tr:nth-of-type(2n) {
     background-color: #25292e;
+}
+.fv-top-ten-shareholders-table-tbody>tr:nth-of-type(2n+1) {
+    background-color: #212529;
 }
 
 .fv-top-ten-shareholders-table-tbody>tr:nth-of-type(n)>td {

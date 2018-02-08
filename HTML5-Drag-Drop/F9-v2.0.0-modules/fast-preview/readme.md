@@ -1,6 +1,13 @@
 # Stock F9 速览
 
 
+key #31373d
+
+value odd #212529
+value even #25292e
+
+color #bbc1c7
+
 # turn to node
 
 

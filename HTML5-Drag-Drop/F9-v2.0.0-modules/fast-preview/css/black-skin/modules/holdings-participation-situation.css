@@ -41,7 +41,7 @@
 
 .fv-holdings-participation-situation-table {
     width: 100%;
-    /* ÃƒÂ¥Ã…Â½Ã‚Â»ÃƒÂ©Ã¢â€žÂ¢Ã‚Â¤tableÃƒÂ¦Ã‚Â¯Ã‚ÂÃƒÂ¨Ã‚Â¡Ã…â€™ÃƒÂ¤Ã‚Â¹Ã¢â‚¬Â¹ÃƒÂ©Ã¢â‚¬â€Ã‚Â´ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ§Ã‚Â©Ã‚ÂºÃƒÂ§Ã¢â€žÂ¢Ã‚Â½ÃƒÂ©Ã¢â‚¬â€Ã‚Â´ÃƒÂ©Ã…Â¡Ã¢â€žÂ¢ */
+    /* 去除table每行之间的空白间隙 */
     border-collapse: collapse;
     border-spacing: 0;
     /* border-collapse: separate; */
@@ -144,6 +144,10 @@
     box-sizing: border-box;
     text-align: center;
 }
+.fv-holdings-participation-situation-table-tbody>tr>td:nth-of-type(3){
+    text-align: right;
+    padding-right: 4px;
+}
 
 .fv-holdings-participation-situation-table-tbody>tr:nth-of-type(n)>td:last-child {
     border-left: 1px solid #d7dbe0;
@@ -166,6 +170,14 @@
 
 
 /* https://css-tricks.com/almanac/properties/t/text-overflow/ */
+
+.fv-holdings-participation-situation-table-tbody>tr:nth-of-type(2n) {
+    background: #25292e;
+}
+
+.fv-holdings-participation-situation-table-tbody>tr:nth-of-type(2n+1) {
+    background: #212529;
+}
 
 .fv-holdings-participation-situation-table-tbody>tr:nth-of-type(n) {
     /* height: 23px; */
