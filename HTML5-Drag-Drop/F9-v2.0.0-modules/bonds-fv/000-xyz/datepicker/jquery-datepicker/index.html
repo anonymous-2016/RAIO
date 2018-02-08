@@ -11,9 +11,9 @@
 </head>
 
 <body>
-    <section>
-        <input type="text" name="date" class="date_input" data-uid="jquery-datepicker" value="" />
-        <input type="text" data-uid="jquery-datepicker-test" value="" placeholder="2018-02-08" />
+    <section data-container="input-after-container">
+        <input type="text" name="date" class="date_input" data-uid="jquery-datepicker" value="" placeholder="" />
+        <!-- style="width: 127px;" -->
     </section>
     <!-- libs -->
     <!-- <script src="./jquery-1.11.3.min.js"></script> -->
@@ -21,38 +21,7 @@
     <script src="./jquery-1.4.0.min.js"></script>
     <script src="./jquery.date_input-src.js"></script>
     <!-- js -->
-    <script>
-        $(
-            $.date_input.initialize
-            // $.date_input.initialize()
-        );
-        // Utils
-        const getFullTodayDate = (debug = false) => {
-            const date = new Date();
-            let year = date.getFullYear(),
-                month = date.getMonth() + 1,
-                day = date.getDate();
-            // week_daya = date.getDay();
-            // 0 padding
-            month = (month > 9) ? month : `0${month}`;
-            day = (day > 9) ? day : `0${day}`;
-            let today = `${year}-${month}-${day}`;
-            if (debug) {
-                console.log(`today =`, today, typeof(today));
-                if (window.copy) {
-                    copy(today);
-                } else {
-                    console.log(`Your poor browser doesn't support \`copy()\`, please download Google Chrome! \nhttps://www.google.com/intl/en/chrome/browser/\n`, window.copy);
-                }
-            }
-            return today;
-        };
-        let input_value = document.querySelector(`[data-uid="jquery-datepicker"]`);
-        // input_value.value = "2018-02-07"; // today
-        input_value.value = getFullTodayDate();
-        // input_value.value;
-        // 2018-02-07
-    </script>
+    <script src="./index.js"></script>
 </body>
 
 </html>

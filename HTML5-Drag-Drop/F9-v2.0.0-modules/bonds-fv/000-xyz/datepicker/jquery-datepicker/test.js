@@ -21,4 +21,9 @@ let hcsa = document.querySelector(`.highcharts-scrollbar-arrow`);
 
 
 
+let datapicker = document.querySelector(`[data-uid="jquery-datepicker"]`);
+
+
+
+
 

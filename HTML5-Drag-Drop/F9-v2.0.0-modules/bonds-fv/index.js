@@ -523,8 +523,9 @@ const HTML_Template = (uid = ``, loadModule = function(){}, debug = false) => {
                     <div class="otc-h5dnd-modules-title-box">
                         <p class="otc-h5dnd-modules-title" data-title="otc-cs-interbank-dismantle-borrowing-interest-rates-title">
                             拆借利率(Chibor & Shibor)
-                            <span data-time="otc-cs-interbank-dismantle-borrowing-interest-rates-time">
-                                <!-- (2018-01-01) -->
+                            <span data-time="otc-cs-interbank-dismantle-borrowing-interest-rates-time"></span>
+                            <span data-excel="otc-cs-interbank-dismantle-borrowing-interest-rates-excel">
+                                <a href="#" data-excel="otc-cs-interbank-dismantle-borrowing-interest-rates-table" data-title="拆借利率(Chibor & Shibor)" data-click="false">导出</a>
                             </span>
                             <!-- <span data-link="otc-cs-interbank-dismantle-borrowing-interest-rates-link">
                                 <a href="#more" data-uid="1112" data-turn-to-uid="node-uid-cs-interbank-dismantle-borrowing-interest-rates-data">more</a>

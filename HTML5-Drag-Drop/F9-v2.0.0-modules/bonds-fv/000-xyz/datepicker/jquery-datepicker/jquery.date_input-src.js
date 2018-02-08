@@ -45,6 +45,7 @@ DateInput = (function($) {
     };
     DateInput.DEFAULT_OPTS = {
         month_names : [ "一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月" ],
+        // en & zh-Hans
         short_month_names : [ "一", "二", "三", "四", "五", "六", "七", "八", "九", "十", "十一", "十二" ],
         short_day_names : [ "日", "一", "二", "三", "四", "五", "六" ],
         start_of_week : 1,
@@ -70,6 +71,7 @@ DateInput = (function($) {
             $(".next", yearNav).click(this.bindToObj(function() {
                 this.moveMonthBy(12);
             }));
+            // var nav = $('<div class="nav"></div>').append(yearNav, monthNav);
             var nav = $('<div class="nav"></div>').append(monthNav, yearNav);
             var tableShell = "<table><thead><tr>";
             $(this.adjustDays(this.short_day_names)).each(function() {

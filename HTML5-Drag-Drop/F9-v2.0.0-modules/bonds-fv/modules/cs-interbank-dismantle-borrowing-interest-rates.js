@@ -16,6 +16,8 @@
 // import {UserException} from "../utils/throw_error";
 // import {UserConsoleError as ConsoleError} from "../utils/console_error";
 
+import {exportExcel as exportExcelPlugin} from "./export-excel";
+
 // namespaces
 var OTC_F9_FV = OTC_F9_FV || {};
 // sub namespaces
@@ -122,6 +124,51 @@ OTC_F9_FV.Modules.csInterbankDismantleBorrowingIR = OTC_F9_FV.Modules.csInterban
                                 for (let i = 0; i < tds.length; i++) {
                                     tds[i].insertAdjacentHTML(`beforeend`, values[i]);
                                 }
+                                // export excel ??? extract to init module
+                                setTimeout((debug = false) => {
+                                    let export_excel_a = document.querySelector(`[data-excel="otc-cs-interbank-dismantle-borrowing-interest-rates-excel"]>a`);
+                                    if (export_excel_a !==null) {
+                                        // how to in case of add same event many times!
+                                        // let isAddClikc = (typeof(export_excel_a.click) === "function") ? true : false;
+                                        // console.log(`excel error =`, error);
+                                        // element.removeEventListener(event, function_name, useCapture)
+                                        const printExcel = (debug = false) => {
+                                            let table_uid = export_excel_a.dataset.excel,
+                                                table_title = export_excel_a.dataset.title;
+                                            if (debug) {
+                                                console.log(`excel uid =`, table_uid);
+                                                console.log(`excel title =`, table_title);
+                                            }
+                                            try {
+                                                exportExcelPlugin(`.${table_uid}`, `${table_title}`);
+                                            } catch (error) {
+                                                console.log(`excel error =`, error);
+                                            }
+                                        };
+                                        // remove before add & removeEventListener & named function
+                                        // export_excel_a.removeEventListener(`click`, printExcel);
+                                        // console.log(`removeEventListener \n`, printExcel);
+                                        let hasAddClick = (export_excel_a.dataset.click === "true")? true : false;
+                                        const options = {
+                                            // capture: true,
+                                            // once: true,// only can click once!
+                                            // passive: true,
+                                        };
+                                        // console.log(`hasAddClick \n`, hasAddClick);
+                                        // html5 data flag
+                                        if (!hasAddClick) {
+                                            export_excel_a.addEventListener(`click`, printExcel);
+                                            // export_excel_a.addEventListener(`click`, printExcel, options);
+                                            // console.log(`before add click \n`, export_excel_a.dataset.click);
+                                            export_excel_a.dataset.click = "true";
+                                            // console.log(`after add click \n`, export_excel_a.dataset.click);
+                                        } else {
+                                            console.log(`excel addEventListener error =`, `\n no need addEventListener any more!`);
+                                        }
+                                    } else {
+                                        console.log(`%c excel table\n`, `color: red;`, `addEventListener target is null!`);
+                                    }
+                                }, 0);
                                 // drawHC & rename
                                 // ES6 polyfill ???
                                 Object.assign(hc_obj1, {code: code1, weighting_closing: weighting_closing1, compare: compare1, bp_difference: bp_difference1});
