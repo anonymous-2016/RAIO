@@ -15,22 +15,22 @@
 }
 
 ::-webkit-scrollbar-corner {
-    background-image: url(./chrome-srollbar/corner.png);
-    background-repeat: no-repeat;
+    /* background-image: url(./chrome-srollbar/corner.png); */
+    /* background-repeat: no-repeat; */
 }
 
 ::-webkit-scrollbar-corner:window-inactive {
-    background-image: url(./chrome-srollbar/corner-inactive.png);
+    /* background-image: url(./chrome-srollbar/corner-inactive.png); */
 }
 
 ::-webkit-resizer {
-    background-image: url(./chrome-srollbar/resizer.png);
-    background-repeat: no-repeat;
-    background-position: bottom right;
+    /* background-image: url(./chrome-srollbar/resizer.png); */
+    /* background-repeat: no-repeat; */
+    /* background-position: bottom right; */
 }
 
 ::-webkit-resizer:window-inactive {
-    background-image: url(./chrome-srollbar/resizer-inactive.png);
+    /* background-image: url(./chrome-srollbar/resizer-inactive.png); */
 }
 
 ::-webkit-scrollbar-track-piece:disabled {
