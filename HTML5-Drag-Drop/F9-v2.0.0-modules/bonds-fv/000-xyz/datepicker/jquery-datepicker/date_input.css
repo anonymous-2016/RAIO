@@ -1,19 +1,19 @@
-.date_selector,
 .date_selector * {
-    font-family: "仿宋";
-    width: auto;
-    height: auto;
-    border: none;
-    background: none;
+    font-family: "Simsun";
     margin: 0;
     padding: 0;
-    text-align: left;
     text-decoration: none;
 }
 
 .date_selector {
+    box-sizing: border-box;
+    width: 242px;
+    height: 183px;
+}
+
+.date_selector {
     background: #fff;
-    border: 1px solid #bbb;
+    border: 1px solid #b5b5b5;
     padding: 5px;
     margin: -1px 0 0 0;
     position: absolute;
@@ -28,7 +28,7 @@
 }
 
 .date_selector .nav {
-    width: 17.5em;
+    width: 100%;
 }
 
 .date_selector .month_nav,
@@ -40,30 +40,38 @@
     text-align: center;
 }
 
-.date_selector .month_nav {
-    float: left;
-    width: 55%;
-}
-
-.date_selector .year_nav {
-    float: right;
-    width: 35%;
-    margin-right: -8px;
+.nav>p {
+    box-sizing: border-box;
+    height: 24px;
+    text-align: center;
+    vertical-align: middle;
+    border: 1px solid #c8cac9;
+    width: calc(50% - 2.5px);
 }
 
 .date_selector .month_name,
 .date_selector .year_name {
-    line-height: 14px;
-    font-size: 12px;
+    line-height: 22px;
+    height: 22px;
+    font-size: 14px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.date_selector .month_nav {
+    float: left;
+}
+
+.date_selector .year_nav {
+    float: right;
 }
 
 .date_selector .button {
     display: block;
     position: absolute;
     top: 0;
-    width: 18px;
-    height: 18px;
-    line-height: 14px;
+    height: 22px;
+    line-height: 22px;
     font-weight: bold;
     color: #003C78;
     text-align: center;
@@ -73,18 +81,61 @@
 
 .date_selector .button:hover,
 .date_selector .button.hover {
-    background: none;
-    color: #003C78;
     cursor: pointer;
-    border-color: #ccc;
 }
 
 .date_selector .prev {
     left: 0;
+    width: 22px;
+    height: 22px;
+    background: #e8eefa;
+    /* border-right: #c8d5e6; */
 }
 
 .date_selector .next {
     right: 0;
+    width: 22px;
+    height: 22px;
+    background: #e8eefa;
+    /* border-left: #c8d5e6; */
+}
+
+.date_selector p span.prev {
+    border-right: #c8d5e6;
+}
+
+.date_selector p span.next {
+    border-left: #c8d5e6;
+}
+
+.prev-triangle {
+    width: 0;
+    height: 0;
+    border-bottom: 5px solid transparent;
+    border-top: 5px solid transparent;
+    border-left: 5px solid transparent;
+    border-right: 5px solid #8a97bd;
+    font-size: 0;
+    line-height: 0;
+    /* background: #f00; */
+    margin-top: 5px;
+    margin-left: -7px;
+    position: absolute;
+}
+
+.next-triangle {
+    width: 0;
+    height: 0;
+    border-bottom: 5px solid transparent;
+    border-top: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-left: 5px solid #8a97bd;
+    font-size: 0;
+    line-height: 0;
+    /* background: #f00; */
+    margin-top: 5px;
+    margin-left: -2px;
+    position: absolute;
 }
 
 .date_selector table {
@@ -95,28 +146,36 @@
 
 .date_selector th,
 .date_selector td {
-    width: 2.5em;
-    height: 2em;
+    box-sizing: border-box;
+    /* width: 2.5em; */
+    /* height: 2em; */
+    width: 34px;
+    height: 22px;
     padding: 0;
     text-align: center;
     color: black;
 }
 
 .date_selector td {
-    border: 1px solid #ccc;
-    line-height: 2em;
+    border: 1px solid #c5d1db;
+    /* line-height: 2em; */
+    height: 22px;
+    width: 34px;
     text-align: center;
     white-space: nowrap;
-    color: #003C78;
+    color: #434343;
     background: white;
+    font-weight: 500;
 }
 
 .date_selector td.today {
-    background: #FFFEB3;
+    background: #FFC107;
 }
 
 .date_selector td.unselected_month {
-    color: #ccc;
+    color: #898989;
+    background: #eee;
+    cursor: not-allowed;
 }
 
 .date_selector td.selectable_day {
@@ -131,57 +190,40 @@
 
 .date_selector td.selectable_day:hover,
 .date_selector td.selectable_day.hover {
-    background: #003C78;
-    color: white;
+    background: #3685ff;
+    color: #fff;
+    font-weight: bold;
 }
 
 .date_selector thead>tr>th {
     background: #f4f9ff;
 }
 
+.date_selector table>thead>tr {
+    border: 1px solid #c5d1db;
+}
 
-/* css3 三角形*/
-
-[data-css3="triangle-icon"] {
-    /* color: #8a97bd */
-    border: 1px solid #8a97bd;
-    /* bd #c8d5e6 */
-    /* bg #e8eefa */
-    /* bd #c5d1db */
-    /* #b5b5b5 */
-    /* #464646 */
+.date_selector table>thead>tr>th {
+    box-sizing: border-box;
+    height: 22px;
+    line-height: 22px;
 }
 
 
-/* HC */
-
-.highcharts-scrollbar-thumb {
-    /* SVG & CSS */
-    color: #5c5c5c;
-}
+/* icon */
 
 
 /*
 
-let hcs = document.querySelector(`.highcharts-scrollbar-thumb`);
-
-// <rect fill="#f00" class="highcharts-scrollbar-thumb" height="14" width="99.192307692308" rx="0" ry="0" stroke="#cccccc" stroke-width="1"></rect>
-
-
-let hcst = document.querySelector(`.highcharts-scrollbar-track`);
-
-// <rect fill="#f0f" class="highcharts-scrollbar-track" x="0" rx="0" ry="0" height="14" width="437" stroke="#f2f2f2" stroke-width="1" y="-0.5"></rect>
-
-let hcsb = document.querySelector(`.highcharts-scrollbar-button`);
-
-
-// <rect fill="#e6e6e6" class="highcharts-scrollbar-button" stroke="#cccccc" stroke-width="1" x="-0.5" y="-0.5" width="14" height="14" rx="0" ry="0"></rect>
-
-let hcsba = document.querySelectorAll(`.highcharts-scrollbar-button`);
-
-let hcsa = document.querySelector(`.highcharts-scrollbar-arrow`);
-
-
-
+input[data-uid="jquery-datepicker-test"]::before {
+    box-sizing: border-box;
+    content: url("./calendar.png");
+}
 
 */
+
+
+/* ::after & ::before & input bug */
+
+
+/* https://stackoverflow.com/questions/2587669/can-i-use-a-before-or-after-pseudo-element-on-an-input-field */
