@@ -80,6 +80,7 @@ OTC_F9_FV.Modules.repurchaseInterestRates = OTC_F9_FV.Modules.repurchaseInterest
                         if (Array.isArray(hzy) && Array.isArray(yzy)) {
                             // Object
                             if (Object.keys(yzy).length > 0 && Object.keys(hzy).length > 0 ) {
+                                // excel undefined bug & tfoot
                                 let tds = document.querySelectorAll(`[data-value="data-otc-RIR"]`),
                                     values = [];
                                 let weighting_closing1 = [],
@@ -123,7 +124,8 @@ OTC_F9_FV.Modules.repurchaseInterestRates = OTC_F9_FV.Modules.repurchaseInterest
                                     compare2.push(bjr !== `--` ? parseFloat(bjr) : null);
                                     bp_difference2.push(bp !== `--` ? parseFloat(bp) : null);
                                 }
-                                for (let i = 0; i < tds.length; i++) {
+                                // excel undefined bug & tfoot & tds.length - 1
+                                for (let i = 0; i < (tds.length - 1); i++) {
                                     // empty
                                     tds[i].innerHTML = "";
                                     tds[i].insertAdjacentHTML(`beforeend`, values[i]);

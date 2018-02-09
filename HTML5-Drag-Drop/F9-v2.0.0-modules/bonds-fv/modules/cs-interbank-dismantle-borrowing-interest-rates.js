@@ -121,7 +121,8 @@ OTC_F9_FV.Modules.csInterbankDismantleBorrowingIR = OTC_F9_FV.Modules.csInterban
                                     compare2.push(bjr !== `--` ? parseFloat(bjr) : null);
                                     bp_difference2.push(bp !== `--` ? parseFloat(bp) : null);
                                 }
-                                for (let i = 0; i < tds.length; i++) {
+                                // excel undefined bug & tfoot & tds.length - 1
+                                for (let i = 0; i < (tds.length - 1); i++) {
                                     tds[i].insertAdjacentHTML(`beforeend`, values[i]);
                                 }
                                 // export excel ??? extract to init module
