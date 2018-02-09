@@ -107,7 +107,7 @@ OTC_F9_FV.Modules.treasuryBondsProfitability = OTC_F9_FV.Modules.treasuryBondsPr
                                             export_excel_a.addEventListener(`click`, printExcel);
                                             export_excel_a.dataset.click = "true";
                                         } else {
-                                            console.log(`excel addEventListener error =`, `\n no need addEventListener any more!`);
+                                            // console.log(`excel addEventListener error =`, `\n no need addEventListener any more!`);
                                         }
                                     } else {
                                         console.log(`%c excel table\n`, `color: red;`, `addEventListener target is null!`);

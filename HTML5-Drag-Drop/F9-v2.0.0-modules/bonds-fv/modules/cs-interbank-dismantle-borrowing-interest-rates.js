@@ -123,6 +123,8 @@ OTC_F9_FV.Modules.csInterbankDismantleBorrowingIR = OTC_F9_FV.Modules.csInterban
                                 }
                                 // excel undefined bug & tfoot & tds.length - 1
                                 for (let i = 0; i < (tds.length - 1); i++) {
+                                    // empty & reset
+                                    tds[i].innerHTML = "";
                                     tds[i].insertAdjacentHTML(`beforeend`, values[i]);
                                 }
                                 // export excel ??? extract to init module
@@ -646,21 +648,22 @@ OTC_F9_FV.Modules.csInterbankDismantleBorrowingIR.init = OTC_F9_FV.Modules.csInt
         {
             ip,
             path,
-            uid,
+            // uid,
             compare,
             date,
             skin,
         } = {
             ip: `http://10.1.5.202`,
             path: `/webservice/fastview/bond/rate`,
-            uid: `bondratefast02`,
+            // uid: `bondratefast02`,
             compare: OTC_COMPARE,
             date: OTC_DATE,
             skin: OTC_SKIN,
         }
     ) => {
         // let url = `http://10.1.5.202/json/bonds/04.json`,
-        let url = `${ip}${path}?{"ModelId":"${uid}","Compare":"${compare}","CompareDate":"${date}"}`,
+        // let url = `${ip}${path}?{"ModelId":"${uid}","Compare":"${compare}","CompareDate":"${date}"}`,
+        let url = (compare === "2") ? `${ip}${path}?{"ModelId":"bondratefast02","Compare":"${compare}","CompareDate":"${date}"}` : `${ip}${path}?{"ModelId":"bondratefast02","Compare":"${compare}"}`,
             tbody_uid = `[data-tbody="otc-cs-interbank-dismantle-borrowing-interest-rates-table-tbody"]`,
             hc_uid1 = `cs-interbank-dismantle-borrowing-interest-rates-hs-container1`,
             hc_uid2 = `cs-interbank-dismantle-borrowing-interest-rates-hs-container2`,
@@ -672,20 +675,28 @@ OTC_F9_FV.Modules.csInterbankDismantleBorrowingIR.init = OTC_F9_FV.Modules.csInt
 
 var OTC_IP = window.OTC_IP || `http://10.1.5.202`,
     OTC_PATH = window.OTC_PATH || `/webservice/fastview/bond/rate`,
-    OTC_COMPARE = window.OTC_COMPARE || ``,
+    OTC_COMPARE = window.OTC_COMPARE || `0`,
     OTC_DATE = window.OTC_DATE || ``,
     // OTC_DATE = window.OTC_DATE || fullToday(),// default today!
     OTC_SKIN = window.OTC_SKIN || `white`;
     // OTC_SKIN = window.OTC_SKIN || `black`;
 
-OTC_F9_FV.Modules.csInterbankDismantleBorrowingIR.init({
-    ip: OTC_IP,
-    path: OTC_PATH,
-    uid: `bondratefast02`,
-    compare: OTC_COMPARE,
-    date: OTC_DATE,
-    skin: OTC_SKIN,
-});
+if (OTC_COMPARE === "0") {
+    OTC_F9_FV.Modules.csInterbankDismantleBorrowingIR.init();
+}
+
+const csInterbankDismantleBorrowingIR = OTC_F9_FV.Modules.csInterbankDismantleBorrowingIR;
+export default csInterbankDismantleBorrowingIR;
+export {csInterbankDismantleBorrowingIR};
+
+// OTC_F9_FV.Modules.csInterbankDismantleBorrowingIR.init({
+//     ip: OTC_IP,
+//     path: OTC_PATH,
+//     // uid: `bondratefast02`,
+//     compare: OTC_COMPARE,
+//     date: OTC_DATE,
+//     skin: OTC_SKIN,
+// });
 
 // OTC_F9_FV.Modules.csInterbankDismantleBorrowingIR.init();
 // const url = `http://10.1.5.202/webservice/fastview/bond/rate?{"ModelId":"bondratefast02","Compare":"","CompareDate":""}`;

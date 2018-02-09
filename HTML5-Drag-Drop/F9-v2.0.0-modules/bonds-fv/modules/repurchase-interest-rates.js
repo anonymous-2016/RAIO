@@ -126,7 +126,7 @@ OTC_F9_FV.Modules.repurchaseInterestRates = OTC_F9_FV.Modules.repurchaseInterest
                                 }
                                 // excel undefined bug & tfoot & tds.length - 1
                                 for (let i = 0; i < (tds.length - 1); i++) {
-                                    // empty
+                                    // empty & reset
                                     tds[i].innerHTML = "";
                                     tds[i].insertAdjacentHTML(`beforeend`, values[i]);
                                     // tds[i].insertAdjacentHTML(`beforeend`, values[i]);

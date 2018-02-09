@@ -1,7 +1,9 @@
 "use strict";
 
-
+// modules
 import { repurchaseInterestRates } from "./modules/repurchase-interest-rates";
+import { csInterbankDismantleBorrowingIR } from "./modules/cs-interbank-dismantle-borrowing-interest-rates";
+// utils
 import { getFullTodayDate } from "./utils/full-today";
 
 
@@ -103,6 +105,14 @@ const reloadAllModules = (debug = false) => {
     }
     // test
     repurchaseInterestRates.init({
+        ip: OTC_IP,
+        path: OTC_PATH,
+        // uid: ``,
+        compare: OTC_COMPARE,
+        date: OTC_DATE,
+        skin: OTC_SKIN,
+    });
+    csInterbankDismantleBorrowingIR.init({
         ip: OTC_IP,
         path: OTC_PATH,
         // uid: ``,
