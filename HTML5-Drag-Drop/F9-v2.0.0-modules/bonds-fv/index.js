@@ -948,6 +948,9 @@ const HTML_Template = (uid = ``, loadModule = function(){}, debug = false) => {
                     <div class="otc-h5dnd-modules-title-box">
                         <p class="otc-h5dnd-modules-title" data-title="otc-commercial-banks-aaa-profitability-title">
                             主要品种的关键年期利率 (到期)
+                            <span data-excel="otc-commercial-banks-aaa-profitability-excel">
+                                <a href="#" data-excel="otc-commercial-banks-aaa-profitability-table" data-title="商业银行AAA收益率(中债)" data-click="false">导出</a>
+                            </span>
                             <!-- <span data-link="otc-commercial-banks-aaa-profitability-link">
                                 <a href="#more" data-uid="1112" data-turn-to-uid="node-uid-commercial-banks-aaa-profitability-data">more</a>
                                 <a href="#more" data-uid="1085" data-turn-to-uid="node-uid-commercial-banks-aaa-profitability-data">more</a>
@@ -1022,6 +1025,9 @@ const HTML_Template = (uid = ``, loadModule = function(){}, debug = false) => {
                     <div class="otc-h5dnd-modules-title-box">
                         <p class="otc-h5dnd-modules-title" data-title="otc-city-investment-debt-aaa-profitability-title">
                             主要品种的关键年期利率 (到期)
+                            <span data-excel="otc-city-investment-debt-aaa-profitability-excel">
+                                <a href="#" data-excel="otc-city-investment-debt-aaa-profitability-table" data-title="城投债AAA收益率(中债)" data-click="false">导出</a>
+                            </span>
                             <!-- <span data-link="otc-city-investment-debt-aaa-profitability-link">
                                 <a href="#more" data-uid="1112" data-turn-to-uid="node-uid-city-investment-debt-aaa-profitability-data">more</a>
                                 <a href="#more" data-uid="1085" data-turn-to-uid="node-uid-city-investment-debt-aaa-profitability-data">more</a>

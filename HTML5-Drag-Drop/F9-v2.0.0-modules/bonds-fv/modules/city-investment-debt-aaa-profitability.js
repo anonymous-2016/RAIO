@@ -14,6 +14,8 @@
 // import {UserException} from "../utils/throw_error";
 // import {UserConsoleError as ConsoleError} from "../utils/console_error";
 
+import {exportExcel as exportExcelPlugin} from "./export-excel";
+
 // namespaces
 var OTC_F9_FV = OTC_F9_FV || {};
 // sub namespaces
@@ -84,12 +86,37 @@ OTC_F9_FV.Modules.cityInvestmentDebt3AP = OTC_F9_FV.Modules.cityInvestmentDebt3A
                                             break;
                                     }
                                 }
-                                Object.assign(datas, {code, yields, compare, difference});
                                 date.insertAdjacentHTML(`beforeend`, time);
-                                for (let i = 0; i < tds.length; i++) {
+                                for (let i = 0; i < (tds.length - 1); i++) {
                                     tds[i].insertAdjacentHTML(`beforeend`, values[i]);
                                 }
+                                // export excel ??? extract to init module
+                                setTimeout((debug = false) => {
+                                    let export_excel_a = document.querySelector(`[data-excel="otc-city-investment-debt-aaa-profitability-excel"]>a`);
+                                    if (export_excel_a !==null) {
+                                        const printExcel = (debug = false) => {
+                                            let table_uid = export_excel_a.dataset.excel,
+                                                table_title = export_excel_a.dataset.title;
+                                            try {
+                                                exportExcelPlugin(`.${table_uid}`, `${table_title}`);
+                                            } catch (error) {
+                                                console.log(`excel error =`, error);
+                                            }
+                                        };
+                                        let hasAddClick = (export_excel_a.dataset.click === "true")? true : false;
+                                        // once & bug
+                                        if (!hasAddClick) {
+                                            export_excel_a.addEventListener(`click`, printExcel);
+                                            export_excel_a.dataset.click = "true";
+                                        } else {
+                                            console.log(`excel addEventListener error =`, `\n no need addEventListener any more!`);
+                                        }
+                                    } else {
+                                        console.log(`%c excel table\n`, `color: red;`, `addEventListener target is null!`);
+                                    }
+                                }, 0);
                                 // drawHC
+                                Object.assign(datas, {code, yields, compare, difference});
                                 OTC_F9_FV.Modules.cityInvestmentDebt3AP.drawHS(datas, hc_uid, false);
                             }else{
                                 // no data

@@ -16,6 +16,8 @@
 // import {UserException} from "../utils/throw_error";
 // import {UserConsoleError as ConsoleError} from "../utils/console_error";
 
+import {exportExcel as exportExcelPlugin} from "./export-excel";
+
 // namespaces
 var OTC_F9_FV = OTC_F9_FV || {};
 // sub namespaces
