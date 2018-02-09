@@ -164,7 +164,7 @@ OTC_F9_FV.Modules.csInterbankDismantleBorrowingIR = OTC_F9_FV.Modules.csInterban
                                             export_excel_a.dataset.click = "true";
                                             // console.log(`after add click \n`, export_excel_a.dataset.click);
                                         } else {
-                                            console.log(`excel addEventListener error =`, `\n no need addEventListener any more!`);
+                                            // console.log(`excel addEventListener error =`, `\n no need addEventListener any more!`);
                                         }
                                     } else {
                                         console.log(`%c excel table\n`, `color: red;`, `addEventListener target is null!`);

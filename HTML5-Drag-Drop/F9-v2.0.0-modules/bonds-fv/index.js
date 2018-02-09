@@ -1102,6 +1102,9 @@ const HTML_Template = (uid = ``, loadModule = function(){}, debug = false) => {
                     <div class="otc-h5dnd-modules-title-box">
                         <p class="otc-h5dnd-modules-title" data-title="otc-local-governments-debt-aaa-profitability-title">
                             主要品种的关键年期利率 (到期)
+                            <span data-excel="otc-local-governments-debt-aaa-profitability-excel">
+                                <a href="#" data-excel="otc-local-governments-debt-aaa-profitability-table" data-title="地方政府债AAA收益率(中债)" data-click="false">导出</a>
+                            </span>
                             <!-- <span data-link="otc-local-governments-debt-aaa-profitability-link">
                                 <a href="#more" data-uid="1112" data-turn-to-uid="node-uid-local-governments-debt-aaa-profitability-data">more</a>
                                 <a href="#more" data-uid="1085" data-turn-to-uid="node-uid-local-governments-debt-aaa-profitability-data">more</a>
@@ -1176,6 +1179,9 @@ const HTML_Template = (uid = ``, loadModule = function(){}, debug = false) => {
                     <div class="otc-h5dnd-modules-title-box">
                         <p class="otc-h5dnd-modules-title" data-title="otc-medium-short-term-bills-aaa-profitability-title">
                             主要品种的关键年期利率 (到期)
+                            <span data-excel="otc-medium-short-term-bills-aaa-profitability-excel">
+                                <a href="#" data-excel="otc-medium-short-term-bills-aaa-profitability-table" data-title="中短期票据AAA收益率(中债)" data-click="false">导出</a>
+                            </span>
                             <!-- <span data-link="otc-medium-short-term-bills-aaa-profitability-link">
                                 <a href="#more" data-uid="1112" data-turn-to-uid="node-uid-medium-short-term-bills-aaa-profitability-data">more</a>
                                 <a href="#more" data-uid="1085" data-turn-to-uid="node-uid-medium-short-term-bills-aaa-profitability-data">more</a>
@@ -1255,6 +1261,9 @@ const HTML_Template = (uid = ``, loadModule = function(){}, debug = false) => {
                     <div class="otc-h5dnd-modules-title-box">
                         <p class="otc-h5dnd-modules-title" data-title="otc-central-bills-profitability-title">
                             主要品种的关键年期利率 (到期)
+                            <span data-excel="otc-central-bills-profitability-excel">
+                                <a href="#" data-excel="otc-central-bills-profitability-table" data-title="央票收益率(中债)" data-click="false">导出</a>
+                            </span>
                             <!-- <span data-link="otc-central-bills-profitability-link">
                                 <a href="#more" data-uid="1112" data-turn-to-uid="node-uid-central-bills-profitability-data">more</a>
                                 <a href="#more" data-uid="1085" data-turn-to-uid="node-uid-central-bills-profitability-data">more</a>
@@ -1336,6 +1345,9 @@ const HTML_Template = (uid = ``, loadModule = function(){}, debug = false) => {
                             DCM 定价中枢
                             <span data-time="otc-dcm-pricing-central-hub-time">最新日:</span>
                             <span data-time="otc-dcm-pricing-central-hub-time">比较日:</span>
+                            <span data-excel="otc-dcm-pricing-central-hub-excel">
+                                <a href="#" data-excel="otc-dcm-pricing-central-hub-table" data-title="DCM 定价中枢"  data-click="false">导出</a>
+                            </span>
                             <!-- <span data-link="otc-dcm-pricing-central-hub-link">
                                 <a href="#more" data-uid="1112" data-turn-to-uid="node-uid-dcm-pricing-central-hub-data">more</a>
                                 <a href="#more" data-uid="1085" data-turn-to-uid="node-uid-dcm-pricing-central-hub-data">more</a>
@@ -1487,6 +1499,9 @@ const HTML_Template = (uid = ``, loadModule = function(){}, debug = false) => {
                         <p class="otc-h5dnd-modules-title" data-title="otc-shibor-interbank-dismantle-borrowing-interest-rates-title">
                             Shibor
                             <span data-time="otc-shibor-interbank-dismantle-borrowing-interest-rates-time"></span>
+                            <span data-excel="otc-shibor-interbank-dismantle-borrowing-interest-rates-excel">
+                                <a href="#" data-excel="otc-shibor-interbank-dismantle-borrowing-interest-rates-table" data-title="Shibor"  data-click="false">导出</a>
+                            </span>
                             <!-- <span data-link="otc-shibor-interbank-dismantle-borrowing-interest-rates-link">
                                 <a href="#more" data-uid="1112" data-turn-to-uid="node-uid-shibor-interbank-dismantle-borrowing-interest-rates-data">more</a>
                                 <a href="#more" data-uid="1085" data-turn-to-uid="node-uid-shibor-interbank-dismantle-borrowing-interest-rates-data">more</a>
@@ -1587,6 +1602,9 @@ const HTML_Template = (uid = ``, loadModule = function(){}, debug = false) => {
                         <p class="otc-h5dnd-modules-title" data-title="otc-central-bank-benchmark-interest-rates-title">
                             央行基准利率
                             <span data-time="otc-central-bank-benchmark-interest-rates-time"></span>
+                            <span data-excel="otc-central-bank-benchmark-interest-rates-excel">
+                                <a href="#" data-excel="otc-central-bank-benchmark-interest-rates-table" data-title="央行基准利率"  data-click="false">导出</a>
+                            </span>
                             <!-- <span data-link="otc-central-bank-benchmark-interest-rates-link">
                                 <a href="#more" data-uid="1112" data-turn-to-uid="node-uid-central-bank-benchmark-interest-rates-data">more</a>
                                 <a href="#more" data-uid="1085" data-turn-to-uid="node-uid-central-bank-benchmark-interest-rates-data">more</a>
@@ -1691,6 +1709,9 @@ const HTML_Template = (uid = ``, loadModule = function(){}, debug = false) => {
                         <p class="otc-h5dnd-modules-title" data-title="otc-repurchase-set-interest-rates-title">
                             回购定盘利率
                             <span data-time="otc-repurchase-set-interest-rates-time"></span>
+                            <span data-excel="otc-repurchase-set-interest-rates-excel">
+                                <a href="#" data-excel="otc-repurchase-set-interest-rates-table" data-title="回购定盘利率"  data-click="false">导出</a>
+                            </span>
                             <!-- <span data-link="otc-repurchase-set-interest-rates-link">
                                 <a href="#more" data-uid="1112" data-turn-to-uid="node-uid-repurchase-set-interest-rates-data">more</a>
                                 <a href="#more" data-uid="1085" data-turn-to-uid="node-uid-repurchase-set-interest-rates-data">more</a>
@@ -1750,6 +1771,9 @@ const HTML_Template = (uid = ``, loadModule = function(){}, debug = false) => {
                         <p class="otc-h5dnd-modules-title" data-title="otc-seven-days-repurchase-moving-average-interest-rates-title">
                             七日回购移动平均利率
                             <span data-time="otc-seven-days-repurchase-moving-average-interest-rates-time"></span>
+                            <span data-excel="otc-seven-days-repurchase-moving-average-interest-rates-excel">
+                                <a href="#" data-excel="otc-seven-days-repurchase-moving-average-interest-rates-table" data-title="七日回购移动平均利率"  data-click="false">导出</a>
+                            </span>
                             <!-- <span data-link="otc-seven-days-repurchase-moving-average-interest-rates-link">
                                 <a href="#more" data-uid="1112" data-turn-to-uid="node-uid-seven-days-repurchase-moving-average-interest-rates-data">more</a>
                                 <a href="#more" data-uid="1085" data-turn-to-uid="node-uid-seven-days-repurchase-moving-average-interest-rates-data">more</a>
@@ -1885,6 +1909,9 @@ const HTML_Template = (uid = ``, loadModule = function(){}, debug = false) => {
                         <p class="otc-h5dnd-modules-title" data-title="otc-bills-directly-indirect-subsidy-interest-rates-title">
                             票据直贴/转贴利率
                             <span data-time="otc-bills-directly-indirect-subsidy-interest-rates-time"></span>
+                            <span data-excel="otc-bills-directly-indirect-subsidy-interest-rates-excel">
+                                <a href="#" data-excel="otc-bills-directly-indirect-subsidy-interest-rates-table" data-title="票据直贴-转贴利率"  data-click="false">导出</a>
+                            </span>
                             <!-- <span data-link="otc-bills-directly-indirect-subsidy-interest-rates-link">
                                 <a href="#more" data-uid="1112" data-turn-to-uid="node-uid-bills-directly-indirect-subsidy-interest-rates-data">more</a>
                                 <a href="#more" data-uid="1085" data-turn-to-uid="node-uid-bills-directly-indirect-subsidy-interest-rates-data">more</a>

@@ -55,9 +55,34 @@ OTC_F9_FV.Modules.shiborInterbankDismantleBIR = OTC_F9_FV.Modules.shiborInterban
                                     values.push(rjz20);
                                 }
                                 date.insertAdjacentHTML(`beforeend`, `(${time})`);
-                                for (let i = 0; i < tds.length; i++) {
+                                for (let i = 0; i < (tds.length - 1); i++) {
                                     tds[i].insertAdjacentHTML(`beforeend`, values[i]);
                                 }
+                                // export excel ??? extract to init module
+                                setTimeout((debug = false) => {
+                                    let export_excel_a = document.querySelector(`[data-excel="otc-shibor-interbank-dismantle-borrowing-interest-rates-excel"]>a`);
+                                    if (export_excel_a !==null) {
+                                        const printExcel = (debug = false) => {
+                                            let table_uid = export_excel_a.dataset.excel,
+                                                table_title = export_excel_a.dataset.title;
+                                            try {
+                                                exportExcelPlugin(`.${table_uid}`, `${table_title}`);
+                                            } catch (error) {
+                                                console.log(`excel error =`, error);
+                                            }
+                                        };
+                                        let hasAddClick = (export_excel_a.dataset.click === "true")? true : false;
+                                        // once & bug
+                                        if (!hasAddClick) {
+                                            export_excel_a.addEventListener(`click`, printExcel);
+                                            export_excel_a.dataset.click = "true";
+                                        } else {
+                                            console.log(`excel addEventListener error =`, `\n no need addEventListener any more!`);
+                                        }
+                                    } else {
+                                        console.log(`%c excel table\n`, `color: red;`, `addEventListener target is null!`);
+                                    }
+                                }, 0);
                             }else{
                                 // no data
                                 let uid = `[data-none-uid="otc-shibor-interbank-dismantle-borrowing-interest-rates"]`;

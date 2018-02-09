@@ -170,7 +170,7 @@ OTC_F9_FV.Modules.repurchaseInterestRates = OTC_F9_FV.Modules.repurchaseInterest
                                             export_excel_a.dataset.click = "true";
                                             // console.log(`after add click \n`, export_excel_a.dataset.click);
                                         } else {
-                                            console.log(`excel addEventListener error =`, `\n no need addEventListener any more!`);
+                                            // console.log(`excel addEventListener error =`, `\n no need addEventListener any more!`);
                                         }
                                     } else {
                                         console.log(`%c excel table\n`, `color: red;`, `addEventListener target is null!`);
@@ -683,7 +683,7 @@ OTC_F9_FV.Modules.repurchaseInterestRates.init = OTC_F9_FV.Modules.repurchaseInt
 
 var OTC_IP = window.OTC_IP || `http://10.1.5.202`,
     OTC_PATH = window.OTC_PATH || `/webservice/fastview/bond/rate`,
-    OTC_COMPARE = window.OTC_COMPARE || ``,
+    OTC_COMPARE = window.OTC_COMPARE || `0`,
     OTC_DATE = window.OTC_DATE || ``,
     // OTC_DATE = window.OTC_DATE || fullToday(),// default today!
     OTC_SKIN = window.OTC_SKIN || `white`;
@@ -700,6 +700,9 @@ var OTC_IP = window.OTC_IP || `http://10.1.5.202`,
 
 // OTC_F9_FV.Modules.repurchaseInterestRates.init();
 // const url = `http://10.1.5.202/webservice/fastview/bond/rate?{"ModelId":"bondratefast01","Compare":"","CompareDate":""}`;
+if (OTC_COMPARE === "0") {
+    OTC_F9_FV.Modules.repurchaseInterestRates.init();
+}
 
 const repurchaseInterestRates = OTC_F9_FV.Modules.repurchaseInterestRates;
 export default repurchaseInterestRates;

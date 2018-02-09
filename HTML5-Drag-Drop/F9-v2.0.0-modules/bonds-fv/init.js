@@ -1,4 +1,8 @@
+"use strict";
+
+
 import { repurchaseInterestRates } from "./modules/repurchase-interest-rates";
+import { getFullTodayDate } from "./utils/full-today";
 
 
 // console.log(`repurchaseInterestRates = \n`, repurchaseInterestRates);
@@ -64,7 +68,8 @@ setTimeout((debug = false) => {
                 }
                 window.OTC_COMPARE = input_uid;
                 if (input_uid === "2") {
-                    window.OTC_DATE = "2018-02-01";
+                    // window.OTC_DATE = "2018-02-01";
+                    window.OTC_DATE = getFullTodayDate();// today
                 }else{
                     window.OTC_DATE = "";
                 }
@@ -96,6 +101,7 @@ const reloadAllModules = (debug = false) => {
         console.log(`\nOTC_COMPARE =`, OTC_COMPARE, typeof(OTC_COMPARE));
         console.log(`OTC_DATE =`, OTC_DATE, typeof(OTC_DATE));
     }
+    // test
     repurchaseInterestRates.init({
         ip: OTC_IP,
         path: OTC_PATH,
