@@ -30,6 +30,7 @@
     left: 1px;
     top: 1px;
     background-image: url("../img/excel.png");
+    /* background-image: url("./excel.png"), url("../../img/excel.png"); */
     background-position: 0px 0px;
     background-repeat: no-repeat;
     width: 16px;

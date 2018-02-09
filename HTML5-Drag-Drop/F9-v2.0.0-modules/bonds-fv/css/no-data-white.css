@@ -19,6 +19,10 @@
     display: block;
 }
 
+[data-none="no-data-p"] {
+    /* no data */
+}
+
 
 /* font-family: "Microsoft YaHei", sans-serif, serif; */
 
@@ -37,8 +41,9 @@ p {
     font-size: 13px;
     text-align: center;
     vertical-align: middle;
-    color: #fff;
+    color: #4d4d4d;
     border: 0;
+    background: #fff;
     position: relative;
 }
 
@@ -52,11 +57,9 @@ p {
     font-size: 13px;
     text-align: center;
     vertical-align: middle;
-    color: #bbc1c7;
-    border: 1px solid #4a4c4f;
-    /* border-top: none; */
-    /* border-right: none; */
-    background: #25292e;
+    color: #4d4d4d;
+    border: 1px solid #d7dbe0;
+    background: #f2f2f2 !important;
     position: relative;
 }
 

@@ -718,6 +718,9 @@ const HTML_Template = (uid = ``, loadModule = function(){}, debug = false) => {
                     <div class="otc-h5dnd-modules-title-box">
                         <p class="otc-h5dnd-modules-title" data-title="otc-treasury-bonds-profitability-title">
                             主要品种的关键年期利率 (到期)
+                            <span data-excel="otc-treasury-bonds-profitability-excel">
+                                <a href="#" data-excel="otc-treasury-bonds-profitability-table" data-title="国债收益率(中债)" data-click="false">导出</a>
+                            </span>
                             <!-- <span data-link="otc-treasury-bonds-profitability-link">
                                 <a href="#more" data-uid="1112" data-turn-to-uid="node-uid-treasury-bonds-profitability-data">more</a>
                                 <a href="#more" data-uid="1085" data-turn-to-uid="node-uid-treasury-bonds-profitability-data">more</a>
@@ -792,6 +795,9 @@ const HTML_Template = (uid = ``, loadModule = function(){}, debug = false) => {
                     <div class="otc-h5dnd-modules-title-box">
                         <p class="otc-h5dnd-modules-title" data-title="otc-corporate-debt-aaa-profitability-title">
                             主要品种的关键年期利率 (到期)
+                            <span data-excel="otc-corporate-debt-aaa-profitability-excel">
+                                <a href="#" data-excel="otc-corporate-debt-aaa-profitability-table" data-title="企债AAA收益率(中债)" data-click="false">导出</a>
+                            </span>
                             <!-- <span data-link="otc-corporate-debt-aaa-profitability-link">
                                 <a href="#more" data-uid="1112" data-turn-to-uid="node-uid-corporate-debt-aaa-profitability-data">more</a>
                                 <a href="#more" data-uid="1085" data-turn-to-uid="node-uid-corporate-debt-aaa-profitability-data">more</a>
@@ -865,6 +871,9 @@ const HTML_Template = (uid = ``, loadModule = function(){}, debug = false) => {
                     <div class="otc-h5dnd-modules-title-box">
                         <p class="otc-h5dnd-modules-title" data-title="otc-national-policy-driven-financial-debt-profitability-title">
                             主要品种的关键年期利率 (到期)
+                            <span data-excel="otc-national-policy-driven-financial-debt-profitability-excel">
+                                <a href="#" data-excel="otc-national-policy-driven-financial-debt-profitability-table" data-title="国开政策性金融债收益率(中债)" data-click="false">导出</a>
+                            </span>
                             <!-- <span data-link="otc-national-policy-driven-financial-debt-profitability-link">
                                 <a href="#more" data-uid="1112" data-turn-to-uid="node-uid-national-policy-driven-financial-debt-profitability-data">more</a>
                                 <a href="#more" data-uid="1085" data-turn-to-uid="node-uid-national-policy-driven-financial-debt-profitability-data">more</a>

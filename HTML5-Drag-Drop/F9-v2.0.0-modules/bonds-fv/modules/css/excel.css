@@ -1,0 +1,95 @@
+/* HC */
+
+[data-hs-container="data-cs-interbank-dismantle-borrowing-interest-rates-container-uid"] {
+    box-sizing: border-box;
+    width: 542px;
+    /* height: 307px; */
+    height: auto;
+    border: 1px solid #ccc;
+}
+
+.vertical-text {
+    box-sizing: border-box;
+}
+
+
+/* excel */
+
+[data-excel*="excel"] {
+    position: relative;
+    padding-left: 4px;
+    float: right;
+    margin-right: 50px;
+    line-height: 20px;
+    height: 20px;
+    box-sizing: border-box;
+    width: 50px;
+}
+
+[data-excel*="excel"]>a {
+    text-decoration: none;
+    color: #3285ff;
+    font-size: 12px;
+    font-weight: normal;
+    padding-left: 3px;
+}
+
+[data-excel*="excel"]>a:hover {
+    color: #f50;
+}
+
+[data-excel*="excel"]>a::before {
+    position: absolute;
+    left: 1px;
+    top: 1px;
+    background-image: url("./excel.png"), url("../../img/excel.png");
+    background-position: 0px 0px;
+    background-repeat: no-repeat;
+    width: 16px;
+    height: 16px;
+    content: "";
+    display: block;
+    cursor: default;
+}
+
+
+/*
+
+[data-excel="otc-cs-interbank-dismantle-borrowing-interest-rates-excel"] {
+    position: relative;
+    padding-left: 4px;
+    float: right;
+    margin-right: 50px;
+    line-height: 20px;
+    height: 20px;
+    box-sizing: border-box;
+    width: 50px;
+}
+
+[data-excel="otc-cs-interbank-dismantle-borrowing-interest-rates-excel"]>a {
+    text-decoration: none;
+    color: #3285ff;
+    font-size: 12px;
+    font-weight: normal;
+    padding-left: 3px;
+}
+
+[data-excel="otc-cs-interbank-dismantle-borrowing-interest-rates-excel"]>a:hover {
+    color: #f50;
+}
+
+[data-excel="otc-cs-interbank-dismantle-borrowing-interest-rates-excel"]>a::before {
+    position: absolute;
+    left: 1px;
+    top: 1px;
+    background-image: url("./excel.png"), url("../../img/excel.png");
+    background-position: 0px 0px;
+    background-repeat: no-repeat;
+    width: 16px;
+    height: 16px;
+    content: "";
+    display: block;
+    cursor: default;
+}
+
+*/
