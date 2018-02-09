@@ -130,12 +130,28 @@ write global hash
 
 
 ```js
-
+// empty & reset
+time_title.innerHTML = "";
 
 // (tds.length - 1)
 
 for (let i = 0; i < (tds.length - 1); i++) {
+    // empty & reset
+    tds[i].innerHTML = "";
     tds[i].insertAdjacentHTML(`beforeend`, values[i]);
+}
+
+
+
+
+
+// empty & reset
+date.innerHTML = "";
+for (let i = 0; i < (tds.length - 1); i++) {
+    // empty & reset
+    tds[i].innerHTML = "";
+    tds[i].insertAdjacentHTML(`beforeend`, values[i]);
+    // tds[i].insertAdjacentHTML(`beforeend`, values[i]);
 }
 
 /* 

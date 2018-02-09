@@ -66,6 +66,8 @@ OTC_F9_FV.Modules.csInterbankDismantleBorrowingIR = OTC_F9_FV.Modules.csInterban
                         const time_title = document.querySelector(`[data-time="otc-cs-interbank-dismantle-borrowing-interest-rates-time"]`);
                         if (emptyChecker(json.date)) {
                             // (2018-01-01)
+                            // empty & reset
+                            time_title.innerHTML = "";
                             time_title.insertAdjacentHTML(`beforeend`, `(${json.date})`);
                         } else {
                             time_title.insertAdjacentHTML(`beforeend`, ``);

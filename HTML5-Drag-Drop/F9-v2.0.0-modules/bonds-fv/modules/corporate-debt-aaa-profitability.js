@@ -86,10 +86,15 @@ OTC_F9_FV.Modules.corporateDebt3AP = OTC_F9_FV.Modules.corporateDebt3AP || (
                                             break;
                                     }
                                 }
+                                // empty & reset
+                                date.innerHTML = "";
                                 date.insertAdjacentHTML(`beforeend`, time);
                                 for (let i = 0; i < (tds.length - 1); i++) {
+                                    // empty & reset
+                                    tds[i].innerHTML = "";
                                     tds[i].insertAdjacentHTML(`beforeend`, values[i]);
-                                }// export excel ??? extract to init module
+                                }
+                                // export excel ??? extract to init module
                                 setTimeout((debug = false) => {
                                     let export_excel_a = document.querySelector(`[data-excel="otc-corporate-debt-aaa-profitability-excel"]>a`);
                                     if (export_excel_a !==null) {

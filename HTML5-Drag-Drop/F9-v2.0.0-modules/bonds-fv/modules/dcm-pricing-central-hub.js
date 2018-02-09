@@ -60,6 +60,9 @@ OTC_F9_FV.Modules.dcmPricingCentralHub = OTC_F9_FV.Modules.dcmPricingCentralHub 
                         const time_titles = document.querySelectorAll(`[data-time="otc-dcm-pricing-central-hub-time"]`);
                         if (emptyChecker(json.zxr) & emptyChecker(json.bjr)) {
                             // (2018-01-01)
+                            // empty & reset
+                            time_titles[0].innerHTML = "";
+                            time_titles[1].innerHTML = "";
                             time_titles[0].insertAdjacentHTML(`beforeend`, `(${json.zxr})`);//最新日
                             time_titles[1].insertAdjacentHTML(`beforeend`, `(${json.bjr})`);//比较日
                         } else {
@@ -170,6 +173,8 @@ OTC_F9_FV.Modules.dcmPricingCentralHub = OTC_F9_FV.Modules.dcmPricingCentralHub 
                                 );
                                 // show table cells data
                                 for (let i = 0; i < (tds.length - 1); i++) {
+                                    // empty & reset
+                                    tds[i].innerHTML = "";
                                     tds[i].insertAdjacentHTML(`beforeend`, values[i]);
                                 }
                                 // export excel ??? extract to init module

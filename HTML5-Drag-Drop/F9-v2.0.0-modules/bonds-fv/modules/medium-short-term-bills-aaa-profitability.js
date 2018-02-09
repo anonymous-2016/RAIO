@@ -91,8 +91,12 @@ OTC_F9_FV.Modules.mediumShortTermBills3AP = OTC_F9_FV.Modules.mediumShortTermBil
                                             break;
                                     }
                                 }
+                                // empty & reset
+                                date.innerHTML = "";
                                 date.insertAdjacentHTML(`beforeend`, time);
                                 for (let i = 0; i < (tds.length - 1); i++) {
+                                    // empty & reset
+                                    tds[i].innerHTML = "";
                                     tds[i].insertAdjacentHTML(`beforeend`, values[i]);
                                 }
                                 // export excel ??? extract to init module

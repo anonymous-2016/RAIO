@@ -85,9 +85,12 @@ OTC_F9_FV.Modules.nationalPolicyDrivenFDP = OTC_F9_FV.Modules.nationalPolicyDriv
                                             break;
                                     }
                                 }
+                                // empty & reset
+                                date.innerHTML = "";
                                 date.insertAdjacentHTML(`beforeend`, time);
                                 for (let i = 0; i < (tds.length - 1); i++) {
-                                    // console.log(`values[i] type =`, typeof(values[i]));
+                                    // empty & reset
+                                    tds[i].innerHTML = "";
                                     tds[i].insertAdjacentHTML(`beforeend`, values[i]);
                                 }
                                 // export excel ??? extract to init module

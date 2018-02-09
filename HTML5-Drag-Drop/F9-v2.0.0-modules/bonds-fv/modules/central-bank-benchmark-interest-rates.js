@@ -81,8 +81,9 @@ OTC_F9_FV.Modules.centralBankBenchmarkIR = OTC_F9_FV.Modules.centralBankBenchmar
                                         }
                                     }
                                 );
-                                // console.log(`values =`, values);
                                 for (let i = 0; i < (tds.length - 1); i++) {
+                                    // empty & reset
+                                    tds[i].innerHTML = "";
                                     tds[i].insertAdjacentHTML(`beforeend`, values[i]);
                                 }
                                 // export excel ??? extract to init module
