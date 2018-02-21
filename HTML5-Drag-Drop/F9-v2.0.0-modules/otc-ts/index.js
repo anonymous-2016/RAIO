@@ -1,3 +1,4 @@
+"use strict";
 // import {DOM_queryAll, DOM_query} from "./utils/DOM";
 
 // namespaces & global variable
@@ -139,8 +140,9 @@ const initSidebar = () => {
         container = OTC_TS_FV.Utils.DOM_query(`[data-nav-container="nav-container"]`),
         small_container = OTC_TS_FV.Utils.DOM_query(`[data-nav-small-container="nav-small-container"]`),
         body_container = OTC_TS_FV.Utils.DOM_query(`[data-body-container="data-body-container"]`);
-
+// re-construction
     btn.onclick = () => {
+        // container
         if (container.classList.contains("h5-dnd-nav-container-normal")) {
             container.classList.add("h5-dnd-nav-container-small");
             container.classList.remove("h5-dnd-nav-container-normal");
@@ -148,6 +150,7 @@ const initSidebar = () => {
             container.classList.remove("h5-dnd-nav-container-small");
             container.classList.add("h5-dnd-nav-container-normal");
         }
+        // small_container
         if (small_container.classList.contains("h5-dnd-nav-small-btn-hidden")) {
             small_container.classList.add("h5-dnd-nav-small-btn-show");
             small_container.classList.remove("h5-dnd-nav-small-btn-hidden");
@@ -155,6 +158,7 @@ const initSidebar = () => {
             small_container.classList.add("h5-dnd-nav-small-btn-hidden");
             small_container.classList.remove("h5-dnd-nav-small-btn-show");
         }
+        // body_container
         if (body_container.classList.contains("h5-dnd-body-container-small")) {
             body_container.classList.remove("h5-dnd-body-container-small");
             body_container.classList.add("h5-dnd-body-container-big");
@@ -181,7 +185,8 @@ const initSidebar = () => {
         }
     };
     // init
-    btn.onclick();
+    // btn.onclick();
+    // no need any more!
 };
 // tabs & load all default modules
 const initTabs = () => {
@@ -237,6 +242,19 @@ const initTabs = () => {
 // css var ???
 document.addEventListener(`DOMContentLoaded`, (e) => {
     // console.log("2, (DOMContentLoaded)DOM fully loaded and parsed");
+    // fixed white screen blink bug ???
+    const showBody = (bd = `[data-class="init-body"]`) => {
+        // after loading & show body
+        let body = document.querySelector(bd);
+        // Uncaught TypeError: body.classList.includes is not a function
+        // if (body.classList.includes(`init-hidden`)) {
+        if (body.classList.value.includes(`init-hidden`)) {
+            body.classList.add(`init-show`);
+            body.classList.remove(`init-hidden`);
+        }else{
+            // body.classList.toggle(`init-hidden`);
+        }
+    };
     // load css
     const css_arr = ["index.css", "tabs.css", "common/module.css", "common/modal.css", "common/no-data.css"];
     const css_skins = ["black-skin", "white-skin"];
@@ -253,6 +271,11 @@ document.addEventListener(`DOMContentLoaded`, (e) => {
         }else{
             // use default
         }
+        showBody();
+        // black delay
+        // setTimeout(() => {
+        //     showBody();
+        // }, 0);
     }else{
         // black-skin => white-skin
         if (window.OTC_SKIN === "white" && css_links[0].href.includes(`black-skin`)){
@@ -263,6 +286,7 @@ document.addEventListener(`DOMContentLoaded`, (e) => {
         }else{
             // use default
         }
+        showBody();
     }
 });
 
