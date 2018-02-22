@@ -399,23 +399,23 @@ const HTML_Template = (uid = ``, loadModule = function(){}, debug = false) => {
                                 <tr data-table-tr="otc-table-tr-newly-added-listing">
                                     <td class="otc-td-key" data-td-key="otc-td-key-NAL">所属行业</td>
                                     <td data-td-value="otc-td-value-NAL" data-td="otc-cols-span-NAL" colspan="3"></td>
-                                    <td class="otc-td-key" data-td-key="otc-td-key-NAL">主板券商</td>
+                                    <td class="otc-td-key" data-td-key="otc-td-key-NAL">主办券商</td>
                                     <td data-td-value="otc-td-value-NAL"></td>
                                 </tr>
                                 <tr data-table-tr="otc-table-tr-newly-added-listing">
                                     <td class="otc-td-key" data-td-key="otc-td-key-NAL">每股收益</td>
                                     <td data-td-value="otc-td-value-NAL"></td>
-                                    <td class="otc-td-key" data-td-key="otc-td-key-NAL">净利润同比增长</td>
+                                    <td class="otc-td-key" data-td-key="otc-td-key-NAL">净利润同比增长(%)</td>
                                     <td data-td-value="otc-td-value-NAL"></td>
-                                    <td class="otc-td-key" data-td-key="otc-td-key-NAL">总股本</td>
+                                    <td class="otc-td-key" data-td-key="otc-td-key-NAL">总股本(股)</td>
                                     <td data-td-value="otc-td-value-NAL"></td>
                                 </tr>
                                 <tr data-table-tr="otc-table-tr-newly-added-listing">
                                     <td class="otc-td-key" data-td-key="otc-td-key-NAL">每股净资产</td>
                                     <td data-td-value="otc-td-value-NAL"></td>
-                                    <td class="otc-td-key" data-td-key="otc-td-key-NAL">净资产收益率</td>
+                                    <td class="otc-td-key" data-td-key="otc-td-key-NAL">净资产收益率(%)</td>
                                     <td data-td-value="otc-td-value-NAL"></td>
-                                    <td class="otc-td-key" data-td-key="otc-td-key-NAL">流通股本</td>
+                                    <td class="otc-td-key" data-td-key="otc-td-key-NAL">流通股本(股)</td>
                                     <td data-td-value="otc-td-value-NAL"></td>
                                 </tr>
                             </tbody>

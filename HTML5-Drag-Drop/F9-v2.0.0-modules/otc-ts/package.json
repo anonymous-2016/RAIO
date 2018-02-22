@@ -10,6 +10,8 @@
         "dev": "npm run rmrf && webpack -p -w",
         "page": "cd modules && browser-sync start --server --files './*.html'",
         "index": "browser-sync start --server --files './index.html'",
+        "white": "start http://localhost:3000/index.html?skin=white && npm run index",
+        "black": "start http://localhost:3000/index.html?skin=black && npm run index",
         "dev & prod": "??? webpack --config webpack.prod.js ???",
         "hot_modules_loader": "??? webpack hot HMR ???",
         "rmrf": "rimraf build/js",

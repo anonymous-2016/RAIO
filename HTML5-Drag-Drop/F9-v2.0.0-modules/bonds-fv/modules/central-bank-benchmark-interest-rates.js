@@ -141,7 +141,16 @@ OTC_F9_FV.Modules.centralBankBenchmarkIR = OTC_F9_FV.Modules.centralBankBenchmar
                 }
             }
         )
-        .catch(err => console.log(`fetch error = \n`, err));
+        .catch((err) => {
+            console.log(`fetch error = \n`, err);
+            // no data & fetch error handler
+            let uid = `[data-none-uid="otc-central-bank-benchmark-interest-rates"]`;
+            const none_div = document.querySelector(uid);
+            none_div.dataset.none = "no-data-div-visible";
+            // no data
+            const table_div = document.querySelector(table_uid);
+            table_div.dataset.none = "no-data-div-hidden";
+        });
         // return datas;
         // more
         /*
