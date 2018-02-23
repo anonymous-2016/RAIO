@@ -21,10 +21,42 @@ OTC_TS_FV.Modules = OTC_TS_FV.Modules || {};
 OTC_TS_FV.Modules.thematicStatisticsBulletin = OTC_TS_FV.Modules.thematicStatisticsBulletin || (
     (url = ``, tbody_dom = ``, more = ``, debug = false) => {
         let datas = {};
+        // let new_add = document.querySelector(`[data-text="otc-thematic-statistics-bulletin-text"]`),
+        // no_data_dom = document.querySelector(`.otc-thematic-statistics-bulletin-title-box`),
+        // hs_container = document.querySelector(`#thematic_statistics_bulletin_hs_container`),
+        // table_body = document.querySelector(`[data-table-body="otc-table-body-thematic-statistics-bulletin"]`),
+        // table_container = document.querySelector(`[data-table="otc-thematic-statistics-bulletin-table"]`);
+        // no data
+        let no_data_p = `
+            <div data-margin="no-data-margin-top">
+                <p data-none="no-data-p">
+                    <span data-none="no-data-span"></span>
+                </p>
+            </div>
+        `;
         fetch(url)
         .then(res => res.json())
         .then(
             (json) => {
+                // global function
+                const emptyChecker = (key = ``) => {
+                    // arr.map() ???
+                    let result = true;
+                    switch (key) {
+                        case undefined:
+                            result = false;
+                            break;
+                        case null:
+                            result = false;
+                            break;
+                        // case "--":
+                        //     result = false;
+                        //     break;
+                        default:
+                            break;
+                    }
+                    return result;
+                };
                 datas = json;
                 try {
                     if (Array.isArray(datas)) {
@@ -124,14 +156,28 @@ OTC_TS_FV.Modules.thematicStatisticsBulletin = OTC_TS_FV.Modules.thematicStatist
                             fileName = `thematic-statistics-bulletin.js`,
                             lineNumber = 29;
                         throw new UserException(message, fileName, lineNumber);
+                        // no data
+                        // hs_container.style.display = "none";
+                        // table_container.style.display = "none";
+                        // no_data_dom.insertAdjacentHTML(`afterend`, no_data_p);
                     }
                 } catch (err) {
                     let url =`otc-f9/modules/thematic-statistics-bulletin.js`;
                     ConsoleError(err, url);
+                    // no data & fallback
+                    // hs_container.style.display = "none";
+                    // table_container.style.display = "none";
+                    // no_data_dom.insertAdjacentHTML(`afterend`, no_data_p);
                 }
             }
         )
-        .catch(err => console.log(`fetch error = \n`, err));
+        .catch(err => {
+            console.log(`fetch error = \n`, err);
+            // no data
+            // hs_container.style.display = "none";
+            // table_container.style.display = "none";
+            // no_data_dom.insertAdjacentHTML(`afterend`, no_data_p);
+        });
         // return datas;
         // a href="#更多" data-uid="xxxxxx" data-topic-category="NQTOPIC" data-turn-to-uid="node-uid-thematic-statistics-bulletin-data">更多</a>
         // more

@@ -705,7 +705,7 @@ const HTML_Template = (uid = ``, loadModule = function(){}, debug = false) => {
             loadModule(uid, `additional-issues-all`, true);
             htmlstr += `
                 <section class="otc-module-box-5">
-                    <div class="otc-h5dnd-modules-title-box">
+                    <div class="otc-h5dnd-modules-title-box otc-additional-issues-title-box">
                         <p class="otc-h5dnd-modules-title" data-title="otc-additional-issues-all-title">
                             <!--今日定增-->
                             近期定增
@@ -891,7 +891,7 @@ const HTML_Template = (uid = ``, loadModule = function(){}, debug = false) => {
             loadModule(uid, `dividend-matters-all`, true);
             htmlstr += `
                 <section class="otc-module-box-5">
-                    <div class="otc-h5dnd-modules-title-box">
+                    <div class="otc-h5dnd-modules-title-box otc-dividend-matters-all-title-box">
                         <p class="otc-h5dnd-modules-title" data-title="otc-dividend-matters-all-title">
                             <!--今日定增-->
                             近期分红
@@ -1205,7 +1205,7 @@ const HTML_Template = (uid = ``, loadModule = function(){}, debug = false) => {
             loadModule(uid, `turnover-trend-diagram`, false);
             htmlstr += `
                 <section class="otc-module-box-5">
-                    <div class="otc-h5dnd-modules-title-box">
+                    <div class="otc-h5dnd-modules-title-box otc-turnover-trend-diagram-title-box">
                         <p class="otc-h5dnd-modules-title otc-turnover-trend-diagram-title" data-title="otc-turnover-trend-diagram-title">
                             成交走势
                             <span data-link="otc-turnover-trend-diagram-link">

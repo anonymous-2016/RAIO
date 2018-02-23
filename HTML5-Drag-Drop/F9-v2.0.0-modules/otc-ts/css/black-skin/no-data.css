@@ -13,6 +13,9 @@ p {
     padding: 0;
 }
 
+
+/* black */
+
 [data-none="no-data-hc"] {
     box-sizing: border-box;
     line-height: 23px;
@@ -23,8 +26,9 @@ p {
     font-size: 13px;
     text-align: center;
     vertical-align: middle;
-    color: #fff;
+    color: #bbc1c7;
     border: 0;
+    background: #25292e;
     position: relative;
 }
 

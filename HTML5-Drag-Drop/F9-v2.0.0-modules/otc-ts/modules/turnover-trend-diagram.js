@@ -16,8 +16,6 @@
 import {UserException} from "../utils/throw_error";
 import {UserConsoleError as ConsoleError} from "../utils/console_error";
 
-
-
 // namespaces
 var OTC_TS_FV = OTC_TS_FV || {};
 // sub namespaces
@@ -33,10 +31,8 @@ OTC_TS_FV.Modules.turnoverTrendMakeMarketDiagram = OTC_TS_FV.Modules.turnoverTre
     let result_obj = {};
     // urls ???
     // no data
-    // let new_time = document.querySelector(`[data-time="otc-listing-situation-time"]`),
-    //     no_data_dom = document.querySelector(`.otc-listing-situation-title-box`),
-    //     // hs_container = document.querySelector(`#newly_added_listing_hs_container`),
-    //     table_container = document.querySelector(`[data-table="otc-listing-situation-table-box"]`);
+    let no_data_dom = document.querySelector(`.otc-turnover-trend-diagram-title-box`),
+        hs_container = document.querySelector(`#turnover_trend_make_market_diagram_hs_container`);
     // no data
     let no_data_p = `
         <div data-margin="no-data-margin-top">
@@ -49,8 +45,8 @@ OTC_TS_FV.Modules.turnoverTrendMakeMarketDiagram = OTC_TS_FV.Modules.turnoverTre
     .then(res => res.json())
     .then(
         (json) => {
-             // global function
-             const emptyChecker = (key = ``) => {
+            // global function
+            const emptyChecker = (key = ``) => {
                 // arr.map() ???
                 let result = true;
                 switch (key) {
@@ -151,26 +147,57 @@ OTC_TS_FV.Modules.turnoverTrendMakeMarketDiagram = OTC_TS_FV.Modules.turnoverTre
                     // OTC_TS_FV.Modules.turnoverTrendProtocolDiagram.drawHC(obj_protocol, protocol_uid, false);
                 }else{
                     // no data
-                    // hs_container.style.display = "none";// OK
-                    // table_container.style.display = "none";
-                    // no_data_dom.insertAdjacentHTML(`afterend`, no_data_p);
+                    hs_container.style.display = "none";
+                    let hasNoData = no_data_dom.nextElementSibling.dataset.margin || ``;
+                    // "no-data-margin-top" / undefined => "no-data-margin-top" / ``
+                    if (hasNoData === ``) {
+                        if (hasNoData !== `no-data-margin-top`) {
+                            no_data_dom.insertAdjacentHTML(`afterend`, no_data_p);
+                            // console.log(`OK`);
+                        }else{
+                            // console.log(`Error`);
+                        }
+                    }else{
+                        // in case of duplication!
+                    }
                 }
             } catch (err) {
                 let url =`file:///E:/otc-ts/modules/listing-situation.js`;
-                // ConsoleError(err, url);
+                ConsoleError(err, url);
                 // no data & fallback
-                // hs_container.style.display = "none";// OK
-                // table_container.style.display = "none";
-                // no_data_dom.insertAdjacentHTML(`afterend`, no_data_p);
+                hs_container.style.display = "none";
+                let hasNoData = no_data_dom.nextElementSibling.dataset.margin || ``;
+                // "no-data-margin-top" / undefined => "no-data-margin-top" / ``
+                if (hasNoData === ``) {
+                    if (hasNoData !== `no-data-margin-top`) {
+                        no_data_dom.insertAdjacentHTML(`afterend`, no_data_p);
+                        // console.log(`OK`);
+                    }else{
+                        // console.log(`Error`);
+                    }
+                }else{
+                    // in case of duplication!
+                }
             }
         }
     )
     .catch(error => {
         console.log(`error = \n`, error);
         // no data
-        // hs_container.style.display = "none";// OK
+        hs_container.style.display = "none";
         // table_container.style.display = "none";
-        // no_data_dom.insertAdjacentHTML(`afterend`, no_data_p);
+        let hasNoData = no_data_dom.nextElementSibling.dataset.margin || ``;
+        // "no-data-margin-top" / undefined => "no-data-margin-top" / ``
+        if (hasNoData === ``) {
+            if (hasNoData !== `no-data-margin-top`) {
+                no_data_dom.insertAdjacentHTML(`afterend`, no_data_p);
+                // console.log(`OK`);
+            }else{
+                // console.log(`Error`);
+            }
+        }else{
+            // in case of duplication!
+        }
     });
     // return result_obj;
 });
@@ -205,80 +232,161 @@ OTC_TS_FV.Modules = OTC_TS_FV.Modules || {};
 OTC_TS_FV.Modules.turnoverTrendProtocolDiagram = OTC_TS_FV.Modules.turnoverTrendProtocolDiagram || ((url = ``, uid = ``, debug = false) => {
     let result_obj = {};
     // urls ???
+    // no data
+    let no_data_dom = document.querySelector(`.otc-turnover-trend-diagram-title-box`),
+        hs_container = document.querySelector(`#turnover_trend_protocol_diagram_hs_container`);
+    // no data
+    let no_data_p = `
+        <div data-margin="no-data-margin-top">
+            <p data-none="no-data-p">
+                <span data-none="no-data-span"></span>
+            </p>
+        </div>
+    `;
     fetch(url)
     .then(res => res.json())
     .then(
         (json) => {
-            if (json !== undefined && typeof(json) === "object") {
-                if (debug) {
-                    console.log(`json = \n`, json);
-                    // array
-                    // console.log(`json = \n`, json.slice(0, 3));
+            // global function
+            const emptyChecker = (key = ``) => {
+                // arr.map() ???
+                let result = true;
+                switch (key) {
+                    case undefined:
+                        result = false;
+                        break;
+                    case null:
+                        result = false;
+                        break;
+                    // case "--":
+                    //     result = false;
+                    //     break;
+                    default:
+                        break;
                 }
-                let arr = json || [],
-                    temp_sort_arr = [];
-                for (let i = 0; i < arr.length; i++) {
-                    temp_sort_arr.push(arr[i]["rq"]);
-                }
-                temp_sort_arr = temp_sort_arr.sort();
-                if (debug) {
-                    // console.log(`temp_sort_arr = \n`, temp_sort_arr);
-                    console.log(`temp_sort_arr = \n`, temp_sort_arr.slice(0, 4));
-                }
-                const sortArrayObjectsHandler = (objs_arr = [], sort_arr = [], debug = false) => {
+                return result;
+            };
+            try {
+                //
+                if (emptyChecker(json) && Object.keys(json).length > 0) {
                     if (debug) {
-                        console.log(`arr = \n`, objs_arr);
-                        console.log(`sort_arr = \n`, sort_arr);
-                        // console.log(`arr keys = \n`, Object.keys(arr[0]));
+                        console.log(`json = \n`, json);
+                        // array
+                        // console.log(`json = \n`, json.slice(0, 3));
                     }
-                    let turnover_time = [],
-                        turnover_number = [],
-                        turnover_amount = [];
-                    for (let i = 0; i < sort_arr.length; i++) {
-                        objs_arr.map(
-                            (obj, ii) => {
-                                if (obj["rq"] === temp_sort_arr[i]) {
-                                    if (debug && ii === 0) {
-                                        console.log(`obj["rq"] = \n`, obj["rq"], ii);
-                                        console.log(`temp_sort_arr[i] = \n`, temp_sort_arr[i], i);
-                                    }
-                                    turnover_time.push(obj["rq"]);
-                                    turnover_number.push(parseFloat(obj["cjl"]));
-                                    turnover_amount.push(parseFloat(obj["cje"]));
-                                }else{
-                                    // break
-                                }
-                            }
-                        );
-                        if (debug  && i === 3) {
-                            console.log(`turnover_time = \n`, turnover_time);
-                            console.log(`turnover_number = \n`, turnover_number);
-                            console.log(`turnover_amount = \n`, turnover_amount);
+                    let arr = json || [],
+                        temp_sort_arr = [];
+                    for (let i = 0; i < arr.length; i++) {
+                        temp_sort_arr.push(arr[i]["rq"]);
+                    }
+                    temp_sort_arr = temp_sort_arr.sort();
+                    if (debug) {
+                        // console.log(`temp_sort_arr = \n`, temp_sort_arr);
+                        console.log(`temp_sort_arr = \n`, temp_sort_arr.slice(0, 4));
+                    }
+                    const sortArrayObjectsHandler = (objs_arr = [], sort_arr = [], debug = false) => {
+                        if (debug) {
+                            console.log(`arr = \n`, objs_arr);
+                            console.log(`sort_arr = \n`, sort_arr);
+                            // console.log(`arr keys = \n`, Object.keys(arr[0]));
                         }
-                    }
-                    const new_obj = {
-                        turnover_time,
-                        turnover_number,
-                        turnover_amount
+                        let turnover_time = [],
+                            turnover_number = [],
+                            turnover_amount = [];
+                        for (let i = 0; i < sort_arr.length; i++) {
+                            objs_arr.map(
+                                (obj, ii) => {
+                                    if (obj["rq"] === temp_sort_arr[i]) {
+                                        if (debug && ii === 0) {
+                                            console.log(`obj["rq"] = \n`, obj["rq"], ii);
+                                            console.log(`temp_sort_arr[i] = \n`, temp_sort_arr[i], i);
+                                        }
+                                        turnover_time.push(obj["rq"]);
+                                        turnover_number.push(parseFloat(obj["cjl"]));
+                                        turnover_amount.push(parseFloat(obj["cje"]));
+                                    }else{
+                                        // break
+                                    }
+                                }
+                            );
+                            if (debug  && i === 3) {
+                                console.log(`turnover_time = \n`, turnover_time);
+                                console.log(`turnover_number = \n`, turnover_number);
+                                console.log(`turnover_amount = \n`, turnover_amount);
+                            }
+                        }
+                        const new_obj = {
+                            turnover_time,
+                            turnover_number,
+                            turnover_amount
+                        };
+                        if (debug) {
+                            console.log(`new_obj = \n`, JSON.stringify(new_obj, null, 4));
+                        }
+                        return new_obj;
                     };
+                    // let obj_protocol = {};
+                    let obj_protocol = sortArrayObjectsHandler(arr, temp_sort_arr) || {};
                     if (debug) {
-                        console.log(`new_obj = \n`, JSON.stringify(new_obj, null, 4));
+                        console.log(`obj_protocol = \n`, obj_protocol);
+                        // console.log(`obj_protocol = \n`, JSON.stringify(obj_protocol, null, 4));
                     }
-                    return new_obj;
-                };
-                // let obj_protocol = {};
-                let obj_protocol = sortArrayObjectsHandler(arr, temp_sort_arr) || {};
-                if (debug) {
-                    console.log(`obj_protocol = \n`, obj_protocol);
-                    // console.log(`obj_protocol = \n`, JSON.stringify(obj_protocol, null, 4));
+                    let protocol_uid = uid;
+                    // result_obj ??? no need
+                    OTC_TS_FV.Modules.turnoverTrendProtocolDiagram.drawHC(obj_protocol, protocol_uid, false);
+                }else{
+                    // no data
+                    hs_container.style.display = "none";
+                    let hasNoData = no_data_dom.nextElementSibling.dataset.margin || ``;
+                    // "no-data-margin-top" / undefined => "no-data-margin-top" / ``
+                    if (hasNoData === ``) {
+                        if (hasNoData !== `no-data-margin-top`) {
+                            no_data_dom.insertAdjacentHTML(`afterend`, no_data_p);
+                            // console.log(`OK`);
+                        }else{
+                            // console.log(`Error`);
+                        }
+                    }else{
+                        // in case of duplication!
+                    }
                 }
-                let protocol_uid = uid;
-                // result_obj ??? no need
-                OTC_TS_FV.Modules.turnoverTrendProtocolDiagram.drawHC(obj_protocol, protocol_uid, false);
+            } catch (err) {
+                let url =`file:///E:/otc-ts/modules/listing-situation.js`;
+                ConsoleError(err, url);
+                // no data & fallback
+                hs_container.style.display = "none";
+                let hasNoData = no_data_dom.nextElementSibling.dataset.margin || ``;
+                // "no-data-margin-top" / undefined => "no-data-margin-top" / ``
+                if (hasNoData === ``) {
+                    if (hasNoData !== `no-data-margin-top`) {
+                        no_data_dom.insertAdjacentHTML(`afterend`, no_data_p);
+                        // console.log(`OK`);
+                    }else{
+                        // console.log(`Error`);
+                    }
+                }else{
+                    // in case of duplication!
+                }
             }
         }
     )
-    .catch(error => console.log(`error = \n`, error));
+    .catch(error => {
+        console.log(`error = \n`, error);
+        // no data
+        hs_container.style.display = "none";
+        let hasNoData = no_data_dom.nextElementSibling.dataset.margin || ``;
+        // "no-data-margin-top" / undefined => "no-data-margin-top" / ``
+        if (hasNoData === ``) {
+            if (hasNoData !== `no-data-margin-top`) {
+                no_data_dom.insertAdjacentHTML(`afterend`, no_data_p);
+                // console.log(`OK`);
+            }else{
+                // console.log(`Error`);
+            }
+        }else{
+            // in case of duplication!
+        }
+    });
     // return result_obj;
     // more
     setTimeout((debug = false) => {
@@ -362,6 +470,7 @@ OTC_TS_FV.Modules.turnoverTrendMakeMarketDiagram.drawHC = OTC_TS_FV.Modules.turn
             console.log(`HC turnover_amount = \n`, turnover_amount);
         }
         let skin_color = (OTC_SKIN === "black") ? `#0b1016` : `#fff`,
+            border_color = (OTC_SKIN === "black") ? `#4a4c4f` : `#d7dbe0`,
             legend_item_color = (OTC_SKIN === "black") ? `#fff` : `#0b1016`,
             legend_item_hover_color = (OTC_SKIN === "black") ? `#f79530` : `#000`,
             legend_label_color = (OTC_SKIN === "black") ? `#fff` : `#000`,
@@ -425,6 +534,12 @@ OTC_TS_FV.Modules.turnoverTrendMakeMarketDiagram.drawHC = OTC_TS_FV.Modules.turn
                 // height: (9 / 16 * 100) + '%',
                 height: 272,// 275px;
                 // 16:9 ratio
+                borderColor: border_color,
+                borderWidth: 1,
+                // className: "",
+                // colorCount: "",
+                // 该参数决定了颜色的数据量（超过这个数量后的颜色会从 0 开始）
+                // 默认是 10 个颜色，数据列或数据点会被赋予样式类 highcharts-color-0 到 highcharts-color-9。 默认是：10.
             },
             title: {
                 text: '做市',// 协议
@@ -674,6 +789,7 @@ OTC_TS_FV.Modules.turnoverTrendProtocolDiagram.drawHC = OTC_TS_FV.Modules.turnov
             console.log(`HC turnover_amount = \n`, turnover_amount);
         }
         let skin_color = (OTC_SKIN === "black") ? `#0b1016` : `#fff`,
+            border_color = (OTC_SKIN === "black") ? `#4a4c4f` : `#d7dbe0`,
             legend_item_color = (OTC_SKIN === "black") ? `#fff` : `#0b1016`,
             legend_item_hover_color = (OTC_SKIN === "black") ? `#f79530` : `#000`,
             legend_label_color = (OTC_SKIN === "black") ? `#fff` : `#000`,
@@ -737,6 +853,8 @@ OTC_TS_FV.Modules.turnoverTrendProtocolDiagram.drawHC = OTC_TS_FV.Modules.turnov
                 // height: (9 / 16 * 100) + '%',
                 height: 272,// 275px;
                 // 16:9 ratio
+                borderColor: border_color,
+                borderWidth: 1,
             },
             title: {
                 text: "竞价",

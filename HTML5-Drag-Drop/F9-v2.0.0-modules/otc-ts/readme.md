@@ -62,6 +62,193 @@ $("table").mousedown(function(e){
 
 ```
 
+## no data
+
+
+```js
+
+    // no data
+    let no_data_dom = document.querySelector(`.otc-turnover-trend-diagram-title-box`),
+        hs_container = document.querySelector(`#turnover_trend_protocol_diagram_hs_container`);
+    // no data
+    let no_data_p = `
+        <div data-margin="no-data-margin-top">
+            <p data-none="no-data-p">
+                <span data-none="no-data-span"></span>
+            </p>
+        </div>
+    `;
+
+    // no data
+    hs_container.style.display = "none";
+    // table_container.style.display = "none";
+    let hasNoData = no_data_dom.nextElementSibling.dataset.margin || ``;
+    // "no-data-margin-top" / undefined => "no-data-margin-top" / ``
+    if (hasNoData === ``) {
+        if (hasNoData !== `no-data-margin-top`) {
+            no_data_dom.insertAdjacentHTML(`afterend`, no_data_p);
+            // console.log(`OK`);
+        }else{
+            // console.log(`Error`);
+        }
+    }else{
+        // in case of duplication!
+    }
+
+```
+
+```css
+/* black */
+background: #25292e;
+color: #bbc1c7;
+
+border: 1px solid #4a4c4f;
+
+
+/* black */
+[data-none="no-data-hc"] {
+    box-sizing: border-box;
+    line-height: 23px;
+    height: 32px;
+    width: 100%;
+    font-family: "Microsoft YaHei", sans-serif, serif;
+    font-weight: normal;
+    font-size: 13px;
+    text-align: center;
+    vertical-align: middle;
+    color: #bbc1c7;
+    border: 0;
+    background: #25292e;
+    position: relative;
+}
+
+
+/* white */
+border: 1px solid #d7dbe0;
+
+
+/*
+
+border_color = (OTC_SKIN === "black") ? `#4a4c4f` : `#d7dbe0`,
+
+borderColor: border_color,
+borderWidth: 1,
+
+*/
+
+```
+
+## english
+
+https://writingexplained.org/anymore-vs-any-more-difference
+
+
+```md
+
+no need anymore!// OK
+
+no need any more!// not too good!
+
+
+I don’t buy shoes anymore because I don’t need any more shoes.
+
+> any more ...
+
+> ... anymore!
+
+```
+
+https://english.stackexchange.com/questions/150807/how-alive-is-the-distinction-between-not-any-more-and-not-any-longer
+
+> grammarly
+
+https://www.grammarly.com/grammar-check
+
+https://www.grammarly.com/blog/category/handbook/
+
+
+
+## DOM
+
+https://github.com/mdn/dom-examples
+
+https://developer.mozilla.org/en-US/docs/Glossary/DOM
+
+https://dom.spec.whatwg.org/
+
+
+https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model
+
+https://developer.mozilla.org/en-US/docs/Web/API/Node
+
+https://developer.mozilla.org/en-US/docs/Web/API/Element
+
+
+https://developer.mozilla.org/en-US/docs/Web/API/ParentNode
+
+https://developer.mozilla.org/en-US/docs/Web/API/ChildNode
+
+```js
+
+// ParentNode & Properties
+
+ParentNode.children
+ParentNode.firstElementChild
+ParentNode.lastElementChild
+ParentNode.childElementCount
+
+// ParentNode & Methods
+
+ParentNode.append()
+ParentNode.prepend()
+ParentNode.querySelector()
+ParentNode.querySelectorAll()
+
+// ChildNode & Properties
+`There are neither inherited, nor specific properties.`;
+
+// ChildNode & Methods
+
+ChildNode.remove()
+ChildNode.before()
+ChildNode.after()
+ChildNode.replaceWith()
+
+
+
+```
+
+### Sibling
+
+https://developer.mozilla.org/en-US/docs/Web/API/Node
+
+https://developer.mozilla.org/en-US/docs/Web/API/Element
+
+
+https://developer.mozilla.org/en-US/docs/Web/API/Node/nextSibling
+
+https://developer.mozilla.org/en-US/docs/Web/API/Node/previousSibling
+
+https://developer.mozilla.org/en-US/docs/Web/API/NonDocumentTypeChildNode/nextElementSibling
+
+https://developer.mozilla.org/en-US/docs/Web/API/NonDocumentTypeChildNode/previousElementSibling
+
+
+```js
+
+Node.nextSibling
+
+Node.previousSibling
+
+NonDocumentTypeChildNode.nextElementSibling
+
+NonDocumentTypeChildNode.previousElementSibling
+
+```
+
+http://mdn.beonex.com/en/DOM/element.previousElementSibling.html
+http://mdn.beonex.com/en/DOM/element.nextElementSibling.html
+
 
 
 ```js

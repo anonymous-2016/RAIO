@@ -20,6 +20,7 @@ OTC_TS_FV.Modules = OTC_TS_FV.Modules || {};
 // additionalIssuesImplementation
 OTC_TS_FV.Modules.additionalIssuesImplementation = OTC_TS_FV.Modules.additionalIssuesImplementation || ((url = ``, debug = false) => {
     let result_obj = {};
+    // otc-additional-issues-title-box
     fetch(url)
     .then(res => res.json())
     .then(

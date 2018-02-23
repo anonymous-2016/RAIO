@@ -20,6 +20,17 @@ NSB_TS_FV.Modules = NSB_TS_FV.Modules || {};
 // additionalMattersImplementation
 NSB_TS_FV.Modules.additionalMattersImplementation = NSB_TS_FV.Modules.additionalMattersImplementation || ((url = ``, debug = false) => {
     let result_obj = {};
+    // no data
+    let no_data_dom = document.querySelector(`.otc-dividend-matters-all-title-box`),
+        table_container = document.querySelector(`[data-table="otc-table-dividend-matters-implementation"]`);
+    // no data
+    let no_data_p = `
+        <div data-margin="no-data-margin-top">
+            <p data-none="no-data-p">
+                <span data-none="no-data-span"></span>
+            </p>
+        </div>
+    `;
     fetch(url)
     .then(res => res.json())
     .then(
@@ -61,7 +72,22 @@ NSB_TS_FV.Modules.additionalMattersImplementation = NSB_TS_FV.Modules.additional
             NSB_TS_FV.Modules.additionalMattersImplementation.showTable(result_obj, false);
         }
     )
-    .catch(error => console.log(`error = \n`, error));
+    .catch(error => {
+        console.log(`error = \n`, error);
+        // no data
+        let hasNoData = no_data_dom.nextElementSibling.dataset.margin || ``;
+        // "no-data-margin-top" / undefined => "no-data-margin-top" / ``
+        if (hasNoData === ``) {
+            if (hasNoData !== `no-data-margin-top`) {
+                no_data_dom.insertAdjacentHTML(`afterend`, no_data_p);
+                // console.log(`OK`);
+            }else{
+                // console.log(`Error`);
+            }
+        }else{
+            // in case of duplication!
+        }
+    });
     // return result_obj;
 });
 

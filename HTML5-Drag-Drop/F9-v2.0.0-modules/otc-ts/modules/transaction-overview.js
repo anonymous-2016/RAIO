@@ -76,7 +76,7 @@ OTC_TS_FV.Modules.transactionOverview = OTC_TS_FV.Modules.transactionOverview ||
                     let data = json || [];
                     const new_obj = {};
                     // fixed order!
-                    const keys = ["total", "market", "protocol"];
+                    const keys = ["total", "market", "protocol"];// ui order
                     // let keys = Object.keys(data);
                     // let transactions_number, rising_number, fell_number, trading_volume, turnover_volume, deals_number = [],
                     let transactions_number = [],
@@ -170,8 +170,8 @@ OTC_TS_FV.Modules.transactionOverview = OTC_TS_FV.Modules.transactionOverview ||
                     ConsoleError(error, url);
                 }
                 // no data & fallback
-                table_container.style.display = "none";
-                no_data_dom.insertAdjacentHTML(`afterend`, no_data_p);
+                // table_container.style.display = "none";
+                // no_data_dom.insertAdjacentHTML(`afterend`, no_data_p);
             }
         }
     )

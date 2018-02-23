@@ -69,7 +69,7 @@ OTC_TS_FV.Modules.listingSituation = OTC_TS_FV.Modules.listingSituation || ((url
                     let data = json || [];
                     const new_obj = {};
                     // fixed order!
-                    const keys = ["total", "market", "protocol"];
+                    const keys = ["total", "market", "protocol"];// ui order
                     // const keys = ["total", "protocol", "market"];
                     let listed_number = [],
                         new_add_listed_number = [],
@@ -141,6 +141,7 @@ OTC_TS_FV.Modules.listingSituation = OTC_TS_FV.Modules.listingSituation || ((url
                 // no data & fallback
                 table_container.style.display = "none";
                 no_data_dom.insertAdjacentHTML(`afterend`, no_data_p);
+                // no need anymore!
             }
         }
     )
