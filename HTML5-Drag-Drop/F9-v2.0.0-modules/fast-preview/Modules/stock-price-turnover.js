@@ -18,7 +18,8 @@ STOCK_F9_FV.Modules.SPTurnover = STOCK_F9_FV.Modules.SPTurnover || (
     (url = ``, uid = `default_dom_uid`, debug = false) => {
         let datas = {};
         // fetch(`http://10.1.5.202/stock/f9/fastview/datas/sort6.json`)
-        fetch(url)
+        fetch(`http://10.1.5.202/json/stock-f9/6.json`)
+        // fetch(url)
         .then(res => res.json())
         .then(
             (json) => {

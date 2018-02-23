@@ -14,7 +14,36 @@ color #bbc1c7
 
 turn_to_uid = document.querySelector(`[data-turn-to-uid="node-uid-company-announcements-data"]`)
 
+## highstock crosshairs
 
+
+> highstock 十字准星线
+
+
+http://stepday.com/topic/?633
+
+
+```js
+
+    tooltip: {
+        crosshairs:[
+            {
+                enabled:true,//是否显示X轴标线
+                width:3,//标线宽度
+                color:'red' //标线颜色值
+            },
+            {
+                enabled:true,//是否显示Y轴标线
+                width:3,//标线宽度
+                color:'green' //标线颜色值
+            }
+        ],
+        style:{
+            display:'none' //通过样式表控制不显示tooltip数据提示框
+        }
+    },
+
+```
 
 
 ```html
