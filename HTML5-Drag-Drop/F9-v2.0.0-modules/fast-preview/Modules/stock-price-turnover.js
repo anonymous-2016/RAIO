@@ -524,6 +524,32 @@ STOCK_F9_FV.Modules.SPTurnover.SPTdrawHS = STOCK_F9_FV.Modules.SPTurnover.SPTdra
                 //     lineWidth: 2
                 // }
             ],
+            tooltip: {
+                xDateFormat: '%Y年 %m月 %d日',
+                shared: true,
+                // valueDecimals: 3,
+                crosshairs:[
+                    {
+                        enabled: true,//是否显示X轴标线
+                        width: 1,//标线宽度
+                        color: 'red' //标线颜色值
+                    },
+                    {
+                        enabled: false,//是否显示Y轴标线
+                        width: 1,//标线宽度
+                        color: 'hotpink', //标线颜色值
+                    },
+                ],
+                style:{
+                    display:'none', //通过样式表控制不显示tooltip数据提示框
+                },
+            },
+            // plotOptions: {
+            //     series: {
+            //         pointStart: Date.UTC(2012, 0, 1),
+            //         pointInterval: 24 * 3600 * 1000
+            //     }
+            // },
             series: [
                 {
                     // type: 'candlestick',
@@ -539,7 +565,22 @@ STOCK_F9_FV.Modules.SPTurnover.SPTdrawHS = STOCK_F9_FV.Modules.SPTurnover.SPTdra
                         //         <b> ${this.series.name} </b><br/>
                         //     `;
                         // },
-                        valueSuffix: ' 元'
+                        valueSuffix: ' 元',
+                        crosshairs:[
+                            {
+                                enabled: true,//是否显示X轴标线
+                                width: 1,//标线宽度
+                                color: 'red', //标线颜色值
+                            },
+                            {
+                                enabled: true,//是否显示Y轴标线
+                                width: 1,//标线宽度
+                                color: 'hotpink', //标线颜色值
+                            },
+                        ],
+                        style:{
+                            // display:'none', //通过样式表控制不显示tooltip数据提示框
+                        },
                     },
                     // tooltip: {
                     //     formatter: () => {
@@ -576,8 +617,23 @@ STOCK_F9_FV.Modules.SPTurnover.SPTdrawHS = STOCK_F9_FV.Modules.SPTurnover.SPTdra
                         //         <b> ${this.series.name} </b><br/>
                         //     `;
                         // },
-                        valueSuffix: `手`
+                        valueSuffix: `手`,
                         // valueSuffix: ' 万手'
+                        crosshairs:[
+                            {
+                                enabled: true,//是否显示X轴标线
+                                width: 1,//标线宽度
+                                color: 'red', //标线颜色值
+                            },
+                            {
+                                enabled: false,//是否显示Y轴标线
+                                width: 1,//标线宽度
+                                color: 'hotpink', //标线颜色值
+                            },
+                        ],
+                        style:{
+                            display:'none', //通过样式表控制不显示tooltip数据提示框
+                        },
                     },
                 },
                 {
@@ -595,21 +651,25 @@ STOCK_F9_FV.Modules.SPTurnover.SPTdrawHS = STOCK_F9_FV.Modules.SPTurnover.SPTdra
                         //         <b> ${this.series.name} </b><br/>
                         //     `;
                         // },
-                        valueSuffix: ' 点'
+                        valueSuffix: ' 点',
+                        crosshairs:[
+                            {
+                                enabled: true,//是否显示X轴标线
+                                width: 1,//标线宽度
+                                color: 'red', //标线颜色值
+                            },
+                            {
+                                enabled: false,//是否显示Y轴标线
+                                width: 1,//标线宽度
+                                color: 'hotpink', //标线颜色值
+                            },
+                        ],
+                        style:{
+                            display:'none', //通过样式表控制不显示tooltip数据提示框
+                        },
                     },
                 },
             ],
-            tooltip: {
-                xDateFormat: '%Y年 %m月 %d日',
-                shared: true,
-                // valueDecimals: 3
-            },
-            // plotOptions: {
-            //     series: {
-            //         pointStart: Date.UTC(2012, 0, 1),
-            //         pointInterval: 24 * 3600 * 1000
-            //     }
-            // },
             legend: {
                 enabled: true,
                 backgroundColor: bg_skin,
