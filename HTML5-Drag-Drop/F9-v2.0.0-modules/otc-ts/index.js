@@ -705,7 +705,7 @@ const HTML_Template = (uid = ``, loadModule = function(){}, debug = false) => {
             loadModule(uid, `additional-issues-all`, true);
             htmlstr += `
                 <section class="otc-module-box-5">
-                    <div class="otc-h5dnd-modules-title-box otc-additional-issues-title-box">
+                    <div class="otc-h5dnd-modules-title-box otc-additional-issues-all-title-box">
                         <p class="otc-h5dnd-modules-title" data-title="otc-additional-issues-all-title">
                             <!--今日定增-->
                             近期定增

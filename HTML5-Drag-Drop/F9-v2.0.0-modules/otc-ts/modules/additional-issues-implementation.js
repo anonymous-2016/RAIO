@@ -20,7 +20,16 @@ OTC_TS_FV.Modules = OTC_TS_FV.Modules || {};
 // additionalIssuesImplementation
 OTC_TS_FV.Modules.additionalIssuesImplementation = OTC_TS_FV.Modules.additionalIssuesImplementation || ((url = ``, debug = false) => {
     let result_obj = {};
-    // otc-additional-issues-title-box
+    let no_data_dom = document.querySelector(`.otc-additional-issues-all-title-box`),
+        table_container = document.querySelector(`[data-table="otc-table-additional-issues-implementation"]`);
+    // no data
+    let no_data_p = `
+        <div data-margin="no-data-margin-top">
+            <p data-none="no-data-p">
+                <span data-none="no-data-span"></span>
+            </p>
+        </div>
+    `;
     fetch(url)
     .then(res => res.json())
     .then(
