@@ -31,6 +31,20 @@ OTC_TS_FV.Modules.newlyAddedListing = OTC_TS_FV.Modules.newlyAddedListing || ((u
     let datas = {};
     // , ui_arr = ["gpjs", "zqdm", "zqjc", "sshy", "zbqs", "mgsy", "mgjzc", "jlrtbzz", "jzcsyl", "zgb", "ltgb"]
     // const ui_keys = ui_arr;
+    // show new add num
+    let new_add = document.querySelector(`[data-text="otc-newly-added-listing-text"]`),
+        no_data_dom = document.querySelector(`.otc-newly-added-listing-title-box`),
+        hs_container = document.querySelector(`#newly_added_listing_hs_container`),
+        // table_body = document.querySelector(`[data-table-body="otc-table-body-newly-added-listing"]`),
+        table_container = document.querySelector(`[data-table="otc-newly-added-listing-table"]`);
+    // no data
+    let no_data_p = `
+        <div data-margin="no-data-margin-top">
+            <p data-none="no-data-p">
+                <span data-none="no-data-span"></span>
+            </p>
+        </div>
+    `;
     fetch(url)
     .then(res => res.json())
     .then(
@@ -60,20 +74,6 @@ OTC_TS_FV.Modules.newlyAddedListing = OTC_TS_FV.Modules.newlyAddedListing || ((u
             try {
                 let json_keys = [],
                     json_values = [];
-                // show new add num
-                let new_add = document.querySelector(`[data-text="otc-newly-added-listing-text"]`),
-                    no_data_dom = document.querySelector(`.otc-newly-added-listing-title-box`),
-                    hs_container = document.querySelector(`#newly_added_listing_hs_container`),
-                    // table_body = document.querySelector(`[data-table-body="otc-table-body-newly-added-listing"]`),
-                    table_container = document.querySelector(`[data-table="otc-newly-added-listing-table"]`);
-                // no data
-                let no_data_p = `
-                    <div data-margin="no-data-margin-top">
-                        <p data-none="no-data-p">
-                            <span data-none="no-data-span"></span>
-                        </p>
-                    </div>
-                `;
                 // alert("json test");
                 if (emptyChecker(json) && Object.keys(json).length > 0) {
                     // auto sort
@@ -156,10 +156,10 @@ OTC_TS_FV.Modules.newlyAddedListing = OTC_TS_FV.Modules.newlyAddedListing || ((u
                         // no data
                     }
                 } else {
-                    // no data
-                    hs_container.style.display = "none";// OK
                     // "none" !== "none;" && string value
                     // hs_container.style.display = "none;";// BAD
+                    // no data
+                    hs_container.style.display = "none";// OK
                     table_container.style.display = "none";
                     no_data_dom.insertAdjacentHTML(`afterend`, no_data_p);
                 }
@@ -167,10 +167,19 @@ OTC_TS_FV.Modules.newlyAddedListing = OTC_TS_FV.Modules.newlyAddedListing || ((u
                 let url =`file:///E:/otc-ts/modules/newly-added-listing.js`;
                 ConsoleError(err, url);
                 // no data & fallback
+                hs_container.style.display = "none";// OK
+                table_container.style.display = "none";
+                no_data_dom.insertAdjacentHTML(`afterend`, no_data_p);
             }
         }
     )
-    .catch(error => console.log(`error = \n`, error));
+    .catch(error => {
+        console.log(`fetch error = \n`, error);
+        // no data
+        hs_container.style.display = "none";// OK
+        table_container.style.display = "none";
+        no_data_dom.insertAdjacentHTML(`afterend`, no_data_p);
+    });
     // return datas;
     // <a href="#更多" data-uid="342064" data-topic-category="NQTOPIC" data-turn-to-uid="node-uid-newly-added-listing">更多</a>
     // <a href="#更多" data-uid="342066" data-topic-category="NQTOPIC" data-turn-to-uid="node-uid-newly-added-protocol">更多</a>
@@ -246,10 +255,13 @@ OTC_TS_FV.Modules.newlyAddedListing.drawHC = OTC_TS_FV.Modules.newlyAddedListing
         console.log(`%c Highcharts container_uid =`, `color: #f0f; font-size: 23px;`, container_uid);
     }
     let skin_color = (OTC_SKIN === "black") ? `#0b1016` : `#fff`,
+        tootip_color = (OTC_SKIN === "black") ? `#000` : `#000`,
+        // tootip_color = (OTC_SKIN === "black") ? `#f00` : `#000`,
         legend_item_color = (OTC_SKIN === "black") ? `#fff` : `#0b1016`,
         legend_item_hover_color = (OTC_SKIN === "black") ? `#f79530` : `#000`,
         legend_label_color = (OTC_SKIN === "black") ? `#fff` : `#000`,
         legend_bg_color = (OTC_SKIN === "black") ? `#0b1016` : `#ff00ff`;
+    // console.log(`tootip_color =`, tootip_color);
     Highcharts.setOptions({
         lang: {
             rangeSelectorZoom: '缩放',// 放大
@@ -391,7 +403,7 @@ OTC_TS_FV.Modules.newlyAddedListing.drawHC = OTC_TS_FV.Modules.newlyAddedListing
             // ]
         },
         tooltip: {
-            useHTML: true,
+            useHTML: true,// HTML
             headerFormat: '<table>',
             pointFormat: `
                 <tr>
@@ -401,20 +413,40 @@ OTC_TS_FV.Modules.newlyAddedListing.drawHC = OTC_TS_FV.Modules.newlyAddedListing
                 </tr>
                 <tr>
                     <th>每股收益:</th>
-                    <td>{point.x} 元</td>
+                    <td style="color: ${tootip_color}">{point.x} 元</td>
                 </tr>
                 <tr>
                     <th>每股净资产:</th>
-                    <td>{point.y} 元</td>
+                    <td style="color: ${tootip_color}">{point.y} 元</td>
                 </tr>
                 <tr>
                     <th>总股本:</th>
-                    <td>{point.z} 股</td>
+                    <td style="color: ${tootip_color}">{point.z} 股</td>
                 </tr>
             `,// point.??? 万
             footerFormat: '</table>',
-            followPointer: true
+            followPointer: true,
+            style: {
+                color: tootip_color,
+                fontSize: "12px",
+                fontWeight: "blod",
+                // fontFamily: "Courir new",
+            },// tootip_color
         },
+        // tooltip: {
+        //     backgroundColor: '#FCFFC5',   // 背景颜色
+        //     borderColor: 'black',         // 边框颜色
+        //     borderRadius: 10,             // 边框圆角
+        //     borderWidth: 3,               // 边框宽度
+        //     shadow: true,                 // 是否显示阴影
+        //     animation: true               // 是否启用动画效果
+        //     style: {                      // 文字内容相关样式
+        //         color: "#ff0000",
+        //         fontSize: "12px",
+        //         fontWeight: "blod",
+        //         fontFamily: "Courir new"
+        //     }
+        // },
         plotOptions: {
             // bubble: {
             //     dataLabels: {
@@ -434,6 +466,7 @@ OTC_TS_FV.Modules.newlyAddedListing.drawHC = OTC_TS_FV.Modules.newlyAddedListing
                     // backgroundColor: 'rgba(0, 255, 0, 0.7)',
                     // color: "#fff",// "#000",
                     color: legend_label_color,
+                    // color: `#f0f`,
                     // borderColor: '#f0f',
                     // borderWidth: 1,
                     // borderRadius: 5,
@@ -485,6 +518,25 @@ OTC_TS_FV.Modules.newlyAddedListing.drawHC = OTC_TS_FV.Modules.newlyAddedListing
                 data: [...datas],
                 name: `今日新增挂牌公司`,// legend & enabled: false
                 color: `#3285ff`,// ???
+                tooltip: {
+                    // headerFormat: `
+                    //     <strong>
+                    //         {point.x}
+                    //     </strong>
+                    //     <br/>
+                    // `,// over write tooltip color
+                    // pointFormat: `
+                    //     {point.name} ({point.code})<br/>
+                    //     <span style="color:{point.color}">\u25CF</span>
+                    //     <b>每股收益: {point.x} 元</b><br/>
+                    //     <span style="color:{point.color}">\u25CF</span>
+                    //     <b>每股净资产: {point.y} 元</b><br/>
+                    //     <span style="color:{point.color}">\u25CF</span>
+                    //     <b>总股本: {point.z} 股</b><br/>
+                    // `,
+                    // 点 <span style="color:{point.color}">\u25CF</span> 百分比 :{point.percentage:.0f}%
+                    // 万元
+                },
                 // name: "",
                 // data: [
                 //     {

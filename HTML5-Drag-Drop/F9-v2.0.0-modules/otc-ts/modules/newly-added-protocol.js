@@ -84,7 +84,8 @@ OTC_TS_FV.Modules.newlyAddedProtocol = OTC_TS_FV.Modules.newlyAddedProtocol || (
                         // all same & no need sort
                         // new_add.innerHTML = json[json_keys[0]]["gpjs"];
                         // new_add.innerHTML = json_values[0].gpjs;
-                        new_add.insertAdjacentHTML(`beforeend`, `今日新增协议转做市公司${json_values[0].gpjs}家`);
+                        new_add.insertAdjacentHTML(`beforeend`, `今日新增竞价转做市公司${json_values[0].gpjs}家`);
+                        // new_add.insertAdjacentHTML(`beforeend`, `今日新增协议转做市公司${json_values[0].gpjs}家`);
                         // new_add.innerHTML = json_values[0]["gpjs"];
                         // init table & mini gilcode
                         let init_uid = json_keys[0].replace(/(id)/i, ``);
@@ -240,6 +241,7 @@ OTC_TS_FV.Modules.newlyAddedProtocol.drawHC = OTC_TS_FV.Modules.newlyAddedProtoc
         console.log(`%c Highcharts container_uid =`, `color: #f0f; font-size: 23px;`, container_uid);
     }
     let skin_color = (OTC_SKIN === "black") ? `#0b1016` : `#fff`,
+        tootip_color = (OTC_SKIN === "black") ? `#000` : `#000`,
         legend_item_color = (OTC_SKIN === "black") ? `#fff` : `#0b1016`,
         legend_item_hover_color = (OTC_SKIN === "black") ? `#f79530` : `#000`,
         legend_label_color = (OTC_SKIN === "black") ? `#fff` : `#000`,
@@ -377,19 +379,25 @@ OTC_TS_FV.Modules.newlyAddedProtocol.drawHC = OTC_TS_FV.Modules.newlyAddedProtoc
                 </tr>
                 <tr>
                     <th>每股收益:</th>
-                    <td>{point.x} 元</td>
+                    <td style="color: ${tootip_color}>{point.x} 元</td>
                 </tr>
                 <tr>
                     <th>每股净资产:</th>
-                    <td>{point.y} 元</td>
+                    <td style="color: ${tootip_color}>{point.y} 元</td>
                 </tr>
                 <tr>
                     <th>总股本:</th>
-                    <td>{point.z} 股</td>
+                    <td style="color: ${tootip_color}>{point.z} 股</td>
                 </tr>
             `,// point.??? 万
             footerFormat: '</table>',
-            followPointer: true
+            followPointer: true,
+            style: {
+                color: tootip_color,
+                fontSize: "12px",
+                fontWeight: "blod",
+                // fontFamily: "Courir new",
+            },// tootip_color
         },
         plotOptions: {
             series: {
@@ -448,8 +456,28 @@ OTC_TS_FV.Modules.newlyAddedProtocol.drawHC = OTC_TS_FV.Modules.newlyAddedProtoc
         series: [
             {
                 data: [...datas],
-                name: `今日新增协议转做市公司`,// legned & enabled: false
+                // name: `今日新增协议转做市公司`,// legned & enabled: false
+                name: `今日新增竞价转做市公司`,
                 color: `#3285ff`,// ???
+                tooltip: {
+                    // headerFormat: `
+                    //     <strong>
+                    //         {point.x}
+                    //     </strong>
+                    //     <br/>
+                    // `,// over write tooltip color
+                    // pointFormat: `
+                    //     {point.name} ({point.code})<br/>
+                    //     <span style="color:{point.color}">\u25CF</span>
+                    //     <b>每股收益: {point.x} 元</b><br/>
+                    //     <span style="color:{point.color}">\u25CF</span>
+                    //     <b>每股净资产: {point.y} 元</b><br/>
+                    //     <span style="color:{point.color}">\u25CF</span>
+                    //     <b>总股本: {point.z} 股</b><br/>
+                    // `,
+                    // 点 <span style="color:{point.color}">\u25CF</span> 百分比 :{point.percentage:.0f}%
+                    // 万元
+                },
                 // data: [
                 //     {
                 //         name: '有限售股份总数',

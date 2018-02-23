@@ -14,81 +14,142 @@
  * @param {* Boolean} debug
  */
 
+import {UserException} from "../utils/throw_error";
+import {UserConsoleError as ConsoleError} from "../utils/console_error";
+
 // namespaces
 var OTC_TS_FV = OTC_TS_FV || {};
 // sub namespaces
 OTC_TS_FV.Modules = OTC_TS_FV.Modules || {};
 
 
-
-
 OTC_TS_FV.Modules.listingSituation = OTC_TS_FV.Modules.listingSituation || ((url = ``, debug = false, uid = `default_dom_uid`) => {
     let result_obj = {};
+    // no data
+    let new_time = document.querySelector(`[data-time="otc-listing-situation-time"]`),
+        no_data_dom = document.querySelector(`.otc-listing-situation-title-box`),
+        // hs_container = document.querySelector(`#newly_added_listing_hs_container`),
+        table_container = document.querySelector(`[data-table="otc-listing-situation-table-box"]`);
+    // no data
+    let no_data_p = `
+        <div data-margin="no-data-margin-top">
+            <p data-none="no-data-p">
+                <span data-none="no-data-span"></span>
+            </p>
+        </div>
+    `;
     fetch(url)
     .then(res => res.json())
     .then(
         (json) => {
-            if (json !== undefined && typeof(json) === "object") {
-                if (debug) {
-                    console.log(`json = \n`, json);
+            // global function
+            const emptyChecker = (key = ``) => {
+                // arr.map() ???
+                let result = true;
+                switch (key) {
+                    case undefined:
+                        result = false;
+                        break;
+                    case null:
+                        result = false;
+                        break;
+                    // case "--":
+                    //     result = false;
+                    //     break;
+                    default:
+                        break;
                 }
-                let data = json || [];
-                const new_obj = {};
-                // fixed order!
-                const keys = ["total", "protocol", "market"];
-                let listed_number = [],
-                    new_add_listed_number = [],
-                    waiting_number = [],
-                    reporting_number = [];
-                data.map(
-                    (obj, i) => {
-                        let temp_obj = {};
-                        let key = obj["bz"];
-                        switch (key) {
-                            case "合计":
-                                temp_obj = obj;
-                                Object.assign(new_obj, {"total": temp_obj});
-                                break;
-                            case "协议":
-                                temp_obj = obj;
-                                Object.assign(new_obj, {"protocol": temp_obj});
-                                break;
-                            case "做市":
-                                temp_obj = obj;
-                                Object.assign(new_obj, {"market": temp_obj});
-                                break;
-                            default:
-                                break;
-                        }
-                        if (debug) {
-                            console.log(`new_obj = \n`, JSON.stringify(new_obj, null, 4));
-                        }
+                return result;
+            };
+            try {
+                if (emptyChecker(json) && Object.keys(json).length > 0) {
+                    if (debug) {
+                        console.log(`json = \n`, json);
                     }
-                );
-                if (debug) {
-                    console.log(`new_obj = \n`, JSON.stringify(new_obj, null, 4));
+                    let data = json || [];
+                    const new_obj = {};
+                    // fixed order!
+                    const keys = ["total", "market", "protocol"];
+                    // const keys = ["total", "protocol", "market"];
+                    let listed_number = [],
+                        new_add_listed_number = [],
+                        waiting_number = [],
+                        reporting_number = [];
+                    data.map(
+                        (obj, i) => {
+                            let temp_obj = {},
+                                key = obj["bz"];
+                            switch (key) {
+                                case "合计":
+                                    temp_obj = obj;
+                                    Object.assign(new_obj, {"total": temp_obj});
+                                    break;
+                                case "协议":
+                                    temp_obj = obj;
+                                    Object.assign(new_obj, {"protocol": temp_obj});
+                                    break;
+                                case "做市":
+                                    temp_obj = obj;
+                                    Object.assign(new_obj, {"market": temp_obj});
+                                    break;
+                                default:
+                                    break;
+                            }
+                            if (debug) {
+                                console.log(`new_obj = \n`, JSON.stringify(new_obj, null, 4));
+                            }
+                        }
+                    );
+                    if (debug) {
+                        console.log(`new_obj = \n`, JSON.stringify(new_obj, null, 4));
+                    }
+                    // keys order bug!
+                    keys.map(
+                        (key, i) => {
+                            listed_number.push(new_obj[key]["gpjs"]);
+                            // listed_number.push(new_obj["total"]["gpjs"]);
+                            new_add_listed_number.push(new_obj[key]["xzjs"]);
+                            waiting_number.push(new_obj[key]["dgpjs"]);
+                            reporting_number.push(new_obj[key]["sbjs"]);
+                        }
+                    );
+                    result_obj = {
+                        listed_number,
+                        new_add_listed_number,
+                        waiting_number,
+                        reporting_number
+                    };
+                    // array
+                    OTC_TS_FV.Modules.listingSituation.showTable(result_obj, uid, false);
+                } else {
+                    // no data
+                    // hs_container.style.display = "none";// OK
+                    table_container.style.display = "none";
+                    no_data_dom.insertAdjacentHTML(`afterend`, no_data_p);
                 }
-                keys.map(
-                    (key, i) => {
-                        listed_number.push(new_obj[key]["gpjs"]);
-                        // listed_number.push(new_obj["total"]["gpjs"]);
-                        new_add_listed_number.push(new_obj[key]["xzjs"]);
-                        waiting_number.push(new_obj[key]["dgpjs"]);
-                        reporting_number.push(new_obj[key]["sbjs"]);
-                    }
-                );
-                result_obj = {
-                    listed_number,
-                    new_add_listed_number,
-                    waiting_number,
-                    reporting_number
-                };
+            } catch (err) {
+                try {
+                    let message = `handle json error!`,
+                        fileName = `listing-situation.js`,
+                        lineNumber = 29;
+                    throw new UserException(message, fileName, lineNumber)
+                } catch (error) {
+                    let url =`file:///E:/otc-ts/modules/listing-situation.js`;
+                    // ConsoleError(err, url);
+                    ConsoleError(error, url);
+                }
+                // no data & fallback
+                table_container.style.display = "none";
+                no_data_dom.insertAdjacentHTML(`afterend`, no_data_p);
             }
-            // array
-            OTC_TS_FV.Modules.listingSituation.showTable(result_obj, uid, false);
         }
     )
-    .catch(error => console.log(`error = \n`, error));
+    .catch(error => {
+        console.log(`error = \n`, error);
+        // no data
+        table_container.style.display = "none";
+        no_data_dom.insertAdjacentHTML(`afterend`, no_data_p);
+    });
     // return result_obj;
     // more
     setTimeout((debug = false) => {

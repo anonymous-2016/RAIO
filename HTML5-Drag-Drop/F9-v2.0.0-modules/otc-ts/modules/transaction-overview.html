@@ -7,76 +7,81 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>成交概况</title>
     <link rel="stylesheet" href="./transaction-overview.css">
+    <link rel="stylesheet" href="../css/white-skin/common/no-data.css">
     <!-- transaction-overview -->
 </head>
 
 <body>
     <section class="otc-module-box-5" data-uid="transaction-overview">
-        <div class="otc-h5dnd-modules-title-box">
+        <div class="otc-h5dnd-modules-title-box otc-transaction-overview-title-box">
             <p class="otc-h5dnd-modules-title" data-title="otc-transaction-overview-title">
                 成交概况
                 <span data-title-text="otc-transaction-overview-title-text">
-                    (<span data-text="otc-transactions-leaderboard-all-text"></span>)
+                    <span data-text="otc-transaction-overview-text"></span>
                 </span>
                 <span data-link="otc-transaction-overview-link">
                     <a href="#more" data-uid="342079" data-topic-category="NQTOPIC" data-turn-to-uid="node-uid-transaction-overview">更多</a>
                 </span>
             </p>
         </div>
-        <table class="otc-transaction-overview-table" data-table="otc-table-transaction-overview">
-            <thead>
-                <tr data-table-tr="otc-table-tr-transaction-overview">
-                    <td class="otc-td-no-key" data-td-key="otc-td-no-key">
-                        <!-- div & roate ??? -->
-                    </td>
-                    <td class="otc-td-key-TO" data-td-key="otc-td-key-TO">合计</td>
-                    <td class="otc-td-key-TO" data-td-key="otc-td-key-TO">做市</td>
-                    <td class="otc-td-key-TO" data-td-key="otc-td-key-TO">协议</td>
-                </tr>
-            </thead>
-            <tbody data-table-body="otc-table-body-transaction-overview">
-                <tr data-table-tr="otc-table-tr-transaction-overview" data-table-tbody-tr="otc-table-tbody-tr-transaction-overview">
-                    <td class="otc-td-key-TO" data-td-key="otc-td-key-TO">成交家数</td>
-                    <td data-td-value="otc-td-value-TO"></td>
-                    <td data-td-value="otc-td-value-TO"></td>
-                    <td data-td-value="otc-td-value-TO"></td>
-                </tr>
-                <tr data-table-tr="otc-table-tr-transaction-overview" data-table-tbody-tr="otc-table-tbody-tr-transaction-overview">
-                    <td class="otc-td-key-TO" data-td-key="otc-td-key-TO">上涨家数</td>
-                    <td data-td-value="otc-td-value-TO"></td>
-                    <td data-td-value="otc-td-value-TO"></td>
-                    <td data-td-value="otc-td-value-TO"></td>
-                </tr>
-                <tr data-table-tr="otc-table-tr-transaction-overview" data-table-tbody-tr="otc-table-tbody-tr-transaction-overview">
-                    <td class="otc-td-key-TO" data-td-key="otc-td-key-TO">下跌家数</td>
-                    <td data-td-value="otc-td-value-TO"></td>
-                    <td data-td-value="otc-td-value-TO"></td>
-                    <td data-td-value="otc-td-value-TO"></td>
-                </tr>
-                <tr data-table-tr="otc-table-tr-transaction-overview" data-table-tbody-tr="otc-table-tbody-tr-transaction-overview">
-                    <td class="otc-td-key-TO" data-td-key="otc-td-key-TO">成交量(亿股)</td>
-                    <td data-td-value="otc-td-value-TO"></td>
-                    <td data-td-value="otc-td-value-TO"></td>
-                    <td data-td-value="otc-td-value-TO"></td>
-                </tr>
-                <tr data-table-tr="otc-table-tr-transaction-overview" data-table-tbody-tr="otc-table-tbody-tr-transaction-overview">
-                    <td class="otc-td-key-TO" data-td-key="otc-td-key-TO">成交额(亿元)</td>
-                    <td data-td-value="otc-td-value-TO"></td>
-                    <td data-td-value="otc-td-value-TO"></td>
-                    <td data-td-value="otc-td-value-TO"></td>
-                </tr>
-                <tr data-table-tr="otc-table-tr-transaction-overview" data-table-tbody-tr="otc-table-tbody-tr-transaction-overview">
-                    <td class="otc-td-key-TO" data-td-key="otc-td-key-TO">成交笔数</td>
-                    <td data-td-value="otc-td-value-TO"></td>
-                    <td data-td-value="otc-td-value-TO"></td>
-                    <td data-td-value="otc-td-value-TO"></td>
-                </tr>
-            </tbody>
-            <tfoot></tfoot>
-        </table>
+        <div class="otc-transaction-overview-table-box" data-table="otc-transaction-overview-table-box">
+            <table class="otc-transaction-overview-table" data-table="otc-table-transaction-overview">
+                <thead>
+                    <tr data-table-tr="otc-table-tr-transaction-overview">
+                        <td class="otc-td-no-key" data-td-key="otc-td-no-key">
+                            <!-- div & roate ??? -->
+                        </td>
+                        <td class="otc-td-key-TO" data-td-key="otc-td-key-TO">合计</td>
+                        <td class="otc-td-key-TO" data-td-key="otc-td-key-TO">做市</td>
+                        <td class="otc-td-key-TO" data-td-key="otc-td-key-TO">竞价</td>
+                        <!-- <td class="otc-td-key-TO" data-td-key="otc-td-key-TO">协议</td> -->
+                    </tr>
+                </thead>
+                <tbody data-table-body="otc-table-body-transaction-overview">
+                    <tr data-table-tr="otc-table-tr-transaction-overview" data-table-tbody-tr="otc-table-tbody-tr-transaction-overview">
+                        <td class="otc-td-key-TO" data-td-key="otc-td-key-TO">成交家数</td>
+                        <td data-td-value="otc-td-value-TO"></td>
+                        <td data-td-value="otc-td-value-TO"></td>
+                        <td data-td-value="otc-td-value-TO"></td>
+                    </tr>
+                    <tr data-table-tr="otc-table-tr-transaction-overview" data-table-tbody-tr="otc-table-tbody-tr-transaction-overview">
+                        <td class="otc-td-key-TO" data-td-key="otc-td-key-TO">上涨家数</td>
+                        <td data-td-value="otc-td-value-TO"></td>
+                        <td data-td-value="otc-td-value-TO"></td>
+                        <td data-td-value="otc-td-value-TO"></td>
+                    </tr>
+                    <tr data-table-tr="otc-table-tr-transaction-overview" data-table-tbody-tr="otc-table-tbody-tr-transaction-overview">
+                        <td class="otc-td-key-TO" data-td-key="otc-td-key-TO">下跌家数</td>
+                        <td data-td-value="otc-td-value-TO"></td>
+                        <td data-td-value="otc-td-value-TO"></td>
+                        <td data-td-value="otc-td-value-TO"></td>
+                    </tr>
+                    <tr data-table-tr="otc-table-tr-transaction-overview" data-table-tbody-tr="otc-table-tbody-tr-transaction-overview">
+                        <td class="otc-td-key-TO" data-td-key="otc-td-key-TO">成交量(亿股)</td>
+                        <td data-td-value="otc-td-value-TO"></td>
+                        <td data-td-value="otc-td-value-TO"></td>
+                        <td data-td-value="otc-td-value-TO"></td>
+                    </tr>
+                    <tr data-table-tr="otc-table-tr-transaction-overview" data-table-tbody-tr="otc-table-tbody-tr-transaction-overview">
+                        <td class="otc-td-key-TO" data-td-key="otc-td-key-TO">成交额(亿元)</td>
+                        <td data-td-value="otc-td-value-TO"></td>
+                        <td data-td-value="otc-td-value-TO"></td>
+                        <td data-td-value="otc-td-value-TO"></td>
+                    </tr>
+                    <tr data-table-tr="otc-table-tr-transaction-overview" data-table-tbody-tr="otc-table-tbody-tr-transaction-overview">
+                        <td class="otc-td-key-TO" data-td-key="otc-td-key-TO">成交笔数</td>
+                        <td data-td-value="otc-td-value-TO"></td>
+                        <td data-td-value="otc-td-value-TO"></td>
+                        <td data-td-value="otc-td-value-TO"></td>
+                    </tr>
+                </tbody>
+                <tfoot></tfoot>
+            </table>
+        </div>
     </section>
     <!-- js -->
-    <script src="./transaction-overview.js"></script>
+    <script src="../build/js/transaction-overview.min.js"></script>
+    <!-- <script src="./transaction-overview.js"></script> -->
 </body>
 
 </html>

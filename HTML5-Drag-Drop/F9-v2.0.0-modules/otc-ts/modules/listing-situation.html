@@ -7,12 +7,13 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>挂牌情况</title>
     <link rel="stylesheet" href="./listing-situation.css">
+    <link rel="stylesheet" href="../css/white-skin/common/no-data.css">
     <!-- listing-situation -->
 </head>
 
 <body>
     <section class="otc-module-box-5" data-uid="listing-situation">
-        <div class="otc-h5dnd-modules-title-box">
+        <div class="otc-h5dnd-modules-title-box otc-listing-situation-title-box">
             <p class="otc-h5dnd-modules-title" data-title="otc-listing-situation-title">
                 挂牌情况
                 <span data-time="otc-listing-situation-time"></span>
@@ -21,7 +22,7 @@
                 </span>
             </p>
         </div>
-        <div class="otc-listing-situation-table-box">
+        <div class="otc-listing-situation-table-box" data-table="otc-listing-situation-table-box">
             <table data-table="otc-table-listing-situation" class="otc-listing-situation-table">
                 <thead>
                     <tr data-table-tr="otc-table-tr-listing-situation">
@@ -30,7 +31,8 @@
                         </td>
                         <td class="otc-td-key" data-td-key="otc-td-key-LS">合计</td>
                         <td class="otc-td-key" data-td-key="otc-td-key-LS">做市</td>
-                        <td class="otc-td-key" data-td-key="otc-td-key-LS">协议</td>
+                        <td class="otc-td-key" data-td-key="otc-td-key-LS">竞价</td>
+                        <!-- <td class="otc-td-key" data-td-key="otc-td-key-LS">协议</td> -->
                     </tr>
                 </thead>
                 <tbody data-table-body="otc-table-body-listing-situation">
@@ -64,7 +66,8 @@
         </div>
     </section>
     <!-- js -->
-    <script src="./listing-situation.js"></script>
+    <script src="../build/js/listing-situation.min.js"></script>
+    <!-- <script src="./listing-situation.js"></script> -->
 </body>
 
 </html>
