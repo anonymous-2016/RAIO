@@ -29,7 +29,6 @@ http://stepday.com/topic/?633
 
 ```
 
-
 # tooltip.crosshairs
 
 > Since 4.1, the crosshair definitions are moved to the Axis object in order for a better separation from the tooltip.
@@ -42,4 +41,12 @@ https://api.highcharts.com/highstock/tooltip.crosshairs
 
 https://api.highcharts.com/highstock/xAxis.crosshair
 https://api.highcharts.com/highstock/yAxis.crosshair
+
+
+http://jsfiddle.net/gh/get/library/pure/highcharts/highcharts/tree/master/samples/stock/xaxis/crosshairs-xy/
+http://jsfiddle.net/fzjtx63p/
+
+
+http://jsfiddle.net/r7fdh/
+http://jsfiddle.net/qnTp2/
 

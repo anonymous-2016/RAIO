@@ -18,8 +18,8 @@ STOCK_F9_FV.Modules.SPTurnover = STOCK_F9_FV.Modules.SPTurnover || (
     (url = ``, uid = `default_dom_uid`, debug = false) => {
         let datas = {};
         // fetch(`http://10.1.5.202/stock/f9/fastview/datas/sort6.json`)
-        fetch(`http://10.1.5.202/json/stock-f9/6.json`)
-        // fetch(url)
+        // fetch(`http://10.1.5.202/json/stock-f9/6.json`)
+        fetch(url)
         .then(res => res.json())
         .then(
             (json) => {
@@ -528,21 +528,21 @@ STOCK_F9_FV.Modules.SPTurnover.SPTdrawHS = STOCK_F9_FV.Modules.SPTurnover.SPTdra
                 xDateFormat: '%Y年 %m月 %d日',
                 shared: true,
                 // valueDecimals: 3,
-                crosshairs:[
-                    {
-                        enabled: true,//是否显示X轴标线
-                        width: 1,//标线宽度
-                        color: 'red' //标线颜色值
-                    },
-                    {
-                        enabled: false,//是否显示Y轴标线
-                        width: 1,//标线宽度
-                        color: 'hotpink', //标线颜色值
-                    },
-                ],
-                style:{
-                    display:'none', //通过样式表控制不显示tooltip数据提示框
-                },
+                // crosshairs:[
+                //     {
+                //         enabled: true,//是否显示X轴标线
+                //         width: 1,//标线宽度
+                //         color: 'red' //标线颜色值
+                //     },
+                //     {
+                //         enabled: false,//是否显示Y轴标线
+                //         width: 1,//标线宽度
+                //         color: 'hotpink', //标线颜色值
+                //     },
+                // ],
+                // style:{
+                //     display:'none', //通过样式表控制不显示tooltip数据提示框
+                // },
             },
             // plotOptions: {
             //     series: {
@@ -566,21 +566,21 @@ STOCK_F9_FV.Modules.SPTurnover.SPTdrawHS = STOCK_F9_FV.Modules.SPTurnover.SPTdra
                         //     `;
                         // },
                         valueSuffix: ' 元',
-                        crosshairs:[
-                            {
-                                enabled: true,//是否显示X轴标线
-                                width: 1,//标线宽度
-                                color: 'red', //标线颜色值
-                            },
-                            {
-                                enabled: true,//是否显示Y轴标线
-                                width: 1,//标线宽度
-                                color: 'hotpink', //标线颜色值
-                            },
-                        ],
-                        style:{
-                            // display:'none', //通过样式表控制不显示tooltip数据提示框
-                        },
+                        // crosshairs:[
+                        //     {
+                        //         enabled: true,//是否显示X轴标线
+                        //         width: 1,//标线宽度
+                        //         color: 'red', //标线颜色值
+                        //     },
+                        //     {
+                        //         enabled: true,//是否显示Y轴标线
+                        //         width: 1,//标线宽度
+                        //         color: 'hotpink', //标线颜色值
+                        //     },
+                        // ],
+                        // style:{
+                        //     // display:'none', //通过样式表控制不显示tooltip数据提示框
+                        // },
                     },
                     // tooltip: {
                     //     formatter: () => {
@@ -619,21 +619,21 @@ STOCK_F9_FV.Modules.SPTurnover.SPTdrawHS = STOCK_F9_FV.Modules.SPTurnover.SPTdra
                         // },
                         valueSuffix: `手`,
                         // valueSuffix: ' 万手'
-                        crosshairs:[
-                            {
-                                enabled: true,//是否显示X轴标线
-                                width: 1,//标线宽度
-                                color: 'red', //标线颜色值
-                            },
-                            {
-                                enabled: false,//是否显示Y轴标线
-                                width: 1,//标线宽度
-                                color: 'hotpink', //标线颜色值
-                            },
-                        ],
-                        style:{
-                            display:'none', //通过样式表控制不显示tooltip数据提示框
-                        },
+                        // crosshairs:[
+                        //     {
+                        //         enabled: true,//是否显示X轴标线
+                        //         width: 1,//标线宽度
+                        //         color: 'red', //标线颜色值
+                        //     },
+                        //     {
+                        //         enabled: false,//是否显示Y轴标线
+                        //         width: 1,//标线宽度
+                        //         color: 'hotpink', //标线颜色值
+                        //     },
+                        // ],
+                        // style:{
+                        //     display:'none', //通过样式表控制不显示tooltip数据提示框
+                        // },
                     },
                 },
                 {
@@ -651,22 +651,22 @@ STOCK_F9_FV.Modules.SPTurnover.SPTdrawHS = STOCK_F9_FV.Modules.SPTurnover.SPTdra
                         //         <b> ${this.series.name} </b><br/>
                         //     `;
                         // },
-                        valueSuffix: ' 点',
-                        crosshairs:[
-                            {
-                                enabled: true,//是否显示X轴标线
-                                width: 1,//标线宽度
-                                color: 'red', //标线颜色值
-                            },
-                            {
-                                enabled: false,//是否显示Y轴标线
-                                width: 1,//标线宽度
-                                color: 'hotpink', //标线颜色值
-                            },
-                        ],
-                        style:{
-                            display:'none', //通过样式表控制不显示tooltip数据提示框
-                        },
+                        // valueSuffix: ' 点',
+                        // crosshairs:[
+                        //     {
+                        //         enabled: true,//是否显示X轴标线
+                        //         width: 1,//标线宽度
+                        //         color: 'red', //标线颜色值
+                        //     },
+                        //     {
+                        //         enabled: false,//是否显示Y轴标线
+                        //         width: 1,//标线宽度
+                        //         color: 'hotpink', //标线颜色值
+                        //     },
+                        // ],
+                        // style:{
+                        //     display:'none', //通过样式表控制不显示tooltip数据提示框
+                        // },
                     },
                 },
             ],
