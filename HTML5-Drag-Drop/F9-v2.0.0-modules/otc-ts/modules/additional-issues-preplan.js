@@ -34,44 +34,109 @@ OTC_TS_FV.Modules.additionalIssuesPreplan = OTC_TS_FV.Modules.additionalIssuesPr
     .then(res => res.json())
     .then(
         (json) => {
-            if (json !== undefined && typeof(json) === "object") {
-                if (debug) {
-                    console.log(`json = \n`, json);
-                    console.log(`keys = \n`, Object.keys(json[0]));
+            // global function
+            const emptyChecker = (key = ``) => {
+                // arr.map() ???
+                let result = true;
+                switch (key) {
+                    case undefined:
+                        result = false;
+                        break;
+                    case null:
+                        result = false;
+                        break;
+                    // case "--":
+                    //     result = false;
+                    //     break;
+                    default:
+                        break;
                 }
-                let data = json || [];
-                let preplan_code = [],
-                    preplan_brief = [],
-                    preplan_amount = [];
-                data.map(
-                    (obj, i) => {
-                        if (debug) {
-                            console.log(`obj = \n`, JSON.stringify(obj, null, 4));
-                        }
-                        // ["zqdm", "zqjc", "mjje"]
-                        preplan_code.push(obj["zqdm"]);
-                        preplan_brief.push(obj["zqjc"]);
-                        preplan_amount.push(obj["mjje"]);
+                return result;
+            };
+            try {
+                if (emptyChecker(json) && Object.keys(json).length > 0) {
+                    if (debug) {
+                        console.log(`json = \n`, json);
+                        console.log(`keys = \n`, Object.keys(json[0]));
                     }
-                );
-                const new_obj = {
-                    preplan_code,
-                    preplan_brief,
-                    preplan_amount
-                };
-                if (debug) {
-                    console.log(`new_obj = \n`, JSON.stringify(new_obj, null, 4));
+                    let data = json || [];
+                    let preplan_time = [],
+                        preplan_code = [],
+                        preplan_brief = [],
+                        preplan_amount = [];
+                    data.map(
+                        (obj, i) => {
+                            if (debug) {
+                                console.log(`obj = \n`, JSON.stringify(obj, null, 4));
+                            }
+                            // ["zqdm", "zqjc", "mjje"]
+                            // ["time", "zqdm", "zqjc", "mjje"] ???
+                            preplan_time.push(`--`);
+                            // preplan_time.push(obj.time);
+                            preplan_code.push(obj["zqdm"]);
+                            preplan_brief.push(obj["zqjc"]);
+                            preplan_amount.push(obj["mjje"]);
+                        }
+                    );
+                    const new_obj = {
+                        preplan_time,
+                        preplan_code,
+                        preplan_brief,
+                        preplan_amount
+                    };
+                    if (debug) {
+                        console.log(`new_obj = \n`, JSON.stringify(new_obj, null, 4));
+                    }
+                    Object.assign(result_obj, new_obj);
+                    if (debug) {
+                        console.log(`result_obj = \n`, JSON.stringify(result_obj, null, 4));
+                    }
+                } else {
+                    // no data
+                    table_container.style.display = "none";
+                    let hasNoData = no_data_dom.nextElementSibling.dataset.margin || ``;
+                    // "no-data-margin-top" / undefined => "no-data-margin-top" / ``
+                    if (hasNoData === ``) {
+                        if (hasNoData !== `no-data-margin-top`) {
+                            no_data_dom.insertAdjacentHTML(`afterend`, no_data_p);
+                        }
+                    }
                 }
-                Object.assign(result_obj, new_obj);
-                if (debug) {
-                    console.log(`result_obj = \n`, JSON.stringify(result_obj, null, 4));
+                // array
+                OTC_TS_FV.Modules.additionalIssuesPreplan.showTable(result_obj, false);
+            } catch (err) {
+                let url =`file:///E:/otc-ts/modules/dividend-issues-preplan.js`;
+                ConsoleError(err, url);
+                // no data & fallback
+                table_container.style.display = "none";
+                let hasNoData = no_data_dom.nextElementSibling.dataset.margin || ``;
+                // "no-data-margin-top" / undefined => "no-data-margin-top" / ``
+                if (hasNoData === ``) {
+                    if (hasNoData !== `no-data-margin-top`) {
+                        no_data_dom.insertAdjacentHTML(`afterend`, no_data_p);
+                    }
                 }
             }
-            // array
-            OTC_TS_FV.Modules.additionalIssuesPreplan.showTable(result_obj, false);
         }
     )
-    .catch(error => console.log(`error = \n`, error));
+    .catch(error => {
+        console.log(`error = \n`, error);
+        // no data
+        // hs_container.style.display = "none";
+        table_container.style.display = "none";
+        let hasNoData = no_data_dom.nextElementSibling.dataset.margin || ``;
+        // "no-data-margin-top" / undefined => "no-data-margin-top" / ``
+        if (hasNoData === ``) {
+            if (hasNoData !== `no-data-margin-top`) {
+                no_data_dom.insertAdjacentHTML(`afterend`, no_data_p);
+                // console.log(`OK`);
+            }else{
+                // console.log(`Error`);
+            }
+        }else{
+            // in case of duplication!
+        }
+    });
     // return result_obj;
 });
 
@@ -82,12 +147,14 @@ OTC_TS_FV.Modules.additionalIssuesPreplan.showTable = OTC_TS_FV.Modules.addition
             console.log(`datas = \n`, JSON.stringify(datas, null, 4));
         }
         const {
+            preplan_time,
             preplan_code,
             preplan_brief,
             preplan_amount
         } = datas;
         // re-order
         let order_arr = [
+            preplan_time,
             preplan_code,
             preplan_brief,
             preplan_amount
@@ -104,11 +171,13 @@ OTC_TS_FV.Modules.additionalIssuesPreplan.showTable = OTC_TS_FV.Modules.addition
                 console.log(`tds[0] = \n`, tds[0]);
                 console.log(`tds[1] = \n`, tds[1]);
                 console.log(`tds[2] = \n`, tds[2]);
+                console.log(`tds[3] = \n`, tds[3]);
             }
             tds[0].innerHTML = order_arr[0][i];
             tds[1].innerHTML = order_arr[1][i];
             tds[2].innerHTML = order_arr[2][i];
-            tds[2].setAttribute(`title`, order_arr[2][i]);
+            tds[3].innerHTML = order_arr[3][i];
+            tds[3].setAttribute(`title`, order_arr[3][i]);
             // DOM in JS ???
             /*
                 <tr data-table-tr="otc-table-tr-additional-issues-preplan" data-table-tbody-tr="otc-table-tbody-tr-additional-issues-preplan">
