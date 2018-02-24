@@ -25,7 +25,7 @@ setTimeout(() => {
     // array
     [].forEach.call(SortItems, function(el) {
         Sortable.create(el, {
-            group: 'h5dnd',// group name
+            group: 'h5dnd', // group name
             animation: 150
         });
     });
@@ -56,7 +56,7 @@ setTimeout((debug = false) => {
         //     }
         // });
         inputs[i].addEventListener(`change`, () => {
-            let input_uid = inputs[i].dataset.uid,// 0,1,2
+            let input_uid = inputs[i].dataset.uid, // 0,1,2
                 input_title = inputs[i].dataset.title;
             if (debug) {
                 console.log(`\ninput uid =`, input_uid);
@@ -71,7 +71,7 @@ setTimeout((debug = false) => {
                 window.OTC_COMPARE = input_uid;
                 if (input_uid === "2") {
                     // window.OTC_DATE = "2018-02-01";
-                    window.OTC_DATE = getFullTodayDate();// today
+                    window.OTC_DATE = getFullTodayDate(); // today
                 }else{
                     window.OTC_DATE = "";
                 }

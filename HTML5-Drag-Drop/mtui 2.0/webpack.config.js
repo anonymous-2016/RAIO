@@ -57,16 +57,29 @@ module.exports = {
     module: {
         //加载器配置
         //凡是.js结尾的文件都是用babel-loader做处理，而.jsx结尾的文件会先经过jsx-loader处理，然后经过babel-loader处理
-        loaders: [{
+        loaders: [
+            {
                 test: /\.jsx?$/,
                 exclude: /(node_modules)/,
                 // 在这里添加 react-hot，注意这里使用的是loaders，所以不能用 query，应该把presets参数写在 babel 的后面
                 loaders: ["babel-loader"] //loaders: ['react-hot', 'babel?presets[]=react,presets[]=es2015'],//loaders: ["babel-loader"],//
             },
-            { test: /\.(woff|eot|ttf)$/i, loader: 'file-loader?name=./assets/fonts/[name].[ext]' },
-            { test: /\.scss$/, loader: "style!css!sass?sourceMap" },
-            { test: /\.css$/, loader: "style!css" },
-            { test: /\.(png|jpg|gif)$/, loader: "file-loader?name=./assets/imgs/[name].[ext]" }
+            {
+                test: /\.(woff|eot|ttf)$/i,
+                loader: 'file-loader?name=./assets/fonts/[name].[ext]'
+            },
+            {
+                test: /\.scss$/,
+                loader: "style!css!sass?sourceMap"
+            },
+            {
+                test: /\.css$/,
+                loader: "style!css"
+            },
+            {
+                test: /\.(png|jpg|gif)$/,
+                loader: "file-loader?name=./assets/imgs/[name].[ext]"
+            }
         ]
     },
     devServer: {
@@ -77,6 +90,6 @@ module.exports = {
         progress: true,
         stats: 'error-only',
         host: host,
-        port: port
-    }
+        port: port,
+    },
 };

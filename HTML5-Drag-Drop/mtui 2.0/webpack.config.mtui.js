@@ -5,7 +5,7 @@ var HtmlwebpackPlugin = require('html-webpack-plugin');
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 module.exports = {
-    //页面入口文件配置 
+    //页面入口文件配置
     entry: { //需要打包的JS，支持数组
         index: './dev/mtui/style.jsx'
     },
@@ -20,7 +20,8 @@ module.exports = {
     module: {
         //加载器配置
         //凡是.js结尾的文件都是用babel-loader做处理，而.jsx结尾的文件会先经过jsx-loader处理，然后经过babel-loader处理
-        loaders: [{
+        loaders: [
+            {
                 test: /\.jsx?$/,
                 exclude: /(node_modules)/,
                 loaders: ["babel-loader"]
@@ -33,6 +34,6 @@ module.exports = {
     },
     //插件项
     plugins: [ //将外部的包导出成一个公用的文件比如 jquery，react, react-dom 等
-        new ExtractTextPlugin("style.css") //[hash:8].
-    ]
+        new ExtractTextPlugin("style.css"), //[hash:8].
+    ],
 };

@@ -39,8 +39,8 @@
         "no-alert": "error",
         "no-caller": "error",
         "no-case-declarations": "error",
-        "no-else-return": "error",
-        "no-empty-function": "error",
+        "no-else-return": 1,
+        "no-empty-function": 1,
         "no-empty-pattern": "error",
         "no-redeclare": "error",
         "no-delete-var": "error",
@@ -48,7 +48,7 @@
         "no-multiple-empty-lines": [1, { "max": 3 }],
         "space-infix-ops": "error",
         "spaced-comment": "warn",
-        "comma-spacing": "error",
+        "comma-spacing": 1,
         "comma-style": "error",
         "comma-dangle": 1,
         "semi": "error",
@@ -59,10 +59,10 @@
         "valid-typeof": "error",
         "accessor-pairs": "error",
         "eqeqeq": "error",
-        "guard-for-in": "error",
+        "guard-for-in": 1,
         "radix": "error",
-        "quotes": [1, "single"],
-        "indent": ["error", 4, { "SwitchCase": 1 }],
+        "quotes": [0, "single"],
+        "indent": [1, 4, { "SwitchCase": 1 }],
         "react/no-deprecated": "error",
         "react/no-find-dom-node": "error",
         "react/no-is-mounted": "error",
@@ -71,6 +71,6 @@
         "react/no-unused-prop-types": "error",
         "react/prefer-es6-class": "off",
         "react/prop-types": "off",
-        "jsx-quotes": "error"
+        "jsx-quotes": 1
     }
 }

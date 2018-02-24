@@ -68,7 +68,7 @@ OTC_F9_FV.Modules.shiborInterbankDismantleBIR = OTC_F9_FV.Modules.shiborInterban
                                 // export excel ??? extract to init module
                                 setTimeout((debug = false) => {
                                     let export_excel_a = document.querySelector(`[data-excel="otc-bills-directly-indirect-subsidy-interest-rates-excel"]>a`);
-                                    if (export_excel_a !==null) {
+                                    if (export_excel_a !== null) {
                                         const printExcel = (debug = false) => {
                                             let table_uid = export_excel_a.dataset.excel,
                                                 table_title = export_excel_a.dataset.title;
@@ -78,7 +78,7 @@ OTC_F9_FV.Modules.shiborInterbankDismantleBIR = OTC_F9_FV.Modules.shiborInterban
                                                 console.log(`excel error =`, error);
                                             }
                                         };
-                                        let hasAddClick = (export_excel_a.dataset.click === "true")? true : false;
+                                        let hasAddClick = (export_excel_a.dataset.click === "true") ? true : false;
                                         // once & bug
                                         if (!hasAddClick) {
                                             export_excel_a.addEventListener(`click`, printExcel);
@@ -90,7 +90,7 @@ OTC_F9_FV.Modules.shiborInterbankDismantleBIR = OTC_F9_FV.Modules.shiborInterban
                                         console.log(`%c excel table\n`, `color: red;`, `addEventListener target is null!`);
                                     }
                                 }, 0);
-                            }else{
+                            } else {
                                 // no data
                                 let uid = `[data-none-uid="otc-bills-directly-indirect-subsidy-interest-rates"]`;
                                 const none_div = document.querySelector(uid);
@@ -103,7 +103,7 @@ OTC_F9_FV.Modules.shiborInterbankDismantleBIR = OTC_F9_FV.Modules.shiborInterban
                                 const tbody = document.querySelector(tbody_uid);
                                 tbody.dataset.none = "no-data-div-hidden";
                             }
-                        }else{
+                        } else {
                             let message = `handle json error!`,
                                 fileName = `bills-directly-indirect-subsidy-interest-rates.js`,
                                 lineNumber = 29;
@@ -119,7 +119,7 @@ OTC_F9_FV.Modules.shiborInterbankDismantleBIR = OTC_F9_FV.Modules.shiborInterban
                         table_div.dataset.none = "no-data-div-hidden";
                     }
                 } catch (err) {
-                    let url =`file:///E:/**/bonds-fv/modules/bills-directly-indirect-subsidy-interest-rates.js`;
+                    let url = `file:///E:/**/bonds-fv/modules/bills-directly-indirect-subsidy-interest-rates.js`;
                     // ConsoleError(err, url);
                 }
             }

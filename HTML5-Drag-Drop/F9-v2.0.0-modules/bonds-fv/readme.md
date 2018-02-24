@@ -38,6 +38,20 @@ npm run page
 
 ```
 
+# eslint
+
+> eslint all ine one
+
+.eslintrc.json
+
+.eslintrc.prod.json
+
+
+```sh
+
+$ npm i -D eslint babel-eslint eslint-plugin-react
+
+```
 
 
 
@@ -97,7 +111,7 @@ https://www.w3schools.com/js/js_htmldom_eventlistener.asp
 
 https://www.w3schools.com/jsref/event_onhashchange.asp
 
-# History API 
+# History API
 
 https://stackoverflow.com/questions/3870057/how-can-i-update-window-location-hash-without-jumping-the-document
 
@@ -154,7 +168,7 @@ for (let i = 0; i < (tds.length - 1); i++) {
     // tds[i].insertAdjacentHTML(`beforeend`, values[i]);
 }
 
-/* 
+/*
 
 // data-title & data-excel
 

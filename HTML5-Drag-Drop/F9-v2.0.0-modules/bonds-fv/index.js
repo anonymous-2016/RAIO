@@ -13,8 +13,8 @@ OTC_F9_FV.Utils.getParam = OTC_F9_FV.Utils.getParam || ((key, debug = false) => 
         start = search.indexOf("?") + 1,
         value = ``;
     if (start < 1) {
-        return;
-    }else{
+        // return;
+    } else {
         let queryString = search.substr(start),
             paraNames = queryString.split("&");// Array
         for (let i = 0; i < paraNames.length; i++) {
@@ -31,7 +31,7 @@ OTC_F9_FV.Utils.getParam = OTC_F9_FV.Utils.getParam || ((key, debug = false) => 
         if (!debug) {
             console.log(`value =`, value);
         } else {
-
+            //
         }
         return value;
     }
@@ -94,6 +94,7 @@ const initSidebar = () => {
     for (let i = 0; i < lis.length; i++) {
         lis[i].addEventListener(`click`, (e) => {
             if (lis[i].classList.contains("h5-dnd-nav-li-active")) {
+                //
             }else{
                 lis[i].classList.add("h5-dnd-nav-li-active");
                 lis[i].classList.remove("h5-dnd-nav-li-hidden");
@@ -112,8 +113,9 @@ const initSidebar = () => {
                         }
                     }
                 );
-            };
+            }
             if (divs[i].classList.contains(`h5-dnd-nav-box-active`)) {
+                //
             }else{
                 divs[i].classList.add("h5-dnd-nav-box-active");
                 divs[i].classList.remove("h5-dnd-nav-box-hidden");
@@ -128,7 +130,7 @@ const initSidebar = () => {
                         }
                     }
                 );
-            };
+            }
         });
     }
     // btns
@@ -196,12 +198,12 @@ const initTabs = () => {
         let right_uids = ["bondratefast02", "bondratefast12", "bondratefast13", "bondratefast14", "bondratefast15", "bondratefast16", "bondratefast11"];
         OTC_F9_FV.Modules.loadAllModules.init(sortable_module_containers[0], left_uids);
         OTC_F9_FV.Modules.loadAllModules.init(sortable_module_containers[1], right_uids);
-    }
+    };
     btn_customize.onclick = (e) => {
         sortable_module_containers[0].innerHTML = "";
         sortable_module_containers[1].innerHTML = "";
         a_modules.click();
-    }
+    };
     // btn_module_setting.addEventListener(`click`, (e) => {
     //     const title = `Sorry for that, it still in developing!`;
     //     alert(`😃😃😃Coming soon ... 😧😒😟\n ${title}`);
@@ -229,7 +231,7 @@ document.addEventListener(`DOMContentLoaded`, (e) => {
         //white-skin => black-skin
         if (css_links[0].href.includes(`white-skin`)) {
             for (let i = 0; i < css_links.length; i++) {
-                let href= `./css/${css_skins[0]}/${css_arr[i]}`;
+                let href = `./css/${css_skins[0]}/${css_arr[i]}`;
                 css_links[i].setAttribute(`href`, href);
             }
         }else{
@@ -239,7 +241,7 @@ document.addEventListener(`DOMContentLoaded`, (e) => {
         // black-skin => white-skin
         if (window.OTC_SKIN === "white" && css_links[0].href.includes(`black-skin`)){
             for (let i = 0; i < css_links.length; i++) {
-                let href= `./css/${css_skins[1]}/${css_arr[i]}`;
+                let href = `./css/${css_skins[1]}/${css_arr[i]}`;
                 css_links[i].setAttribute(`href`, href);
             }
         }else{
@@ -277,14 +279,12 @@ window.onload = () => {
  * @param {* Boolean} isTable
  */
 
-const loadModule = (uid =``, module_uid_name=``, isTable=`false`, debug = false) => {
+const loadModule = (uid = ``, module_uid_name = ``, isTable = `false`, debug = false) => {
     // console.log(`loadModule & uid = `, uid);
     // setTimeout & IIFE & Closure
     setTimeout(() => {
         ((module_uid_name, isTable) => {
-            let box = (isTable === true)
-                ? document.querySelector(`.otc-${module_uid_name}-table`)
-                : document.querySelector(`.otc-${module_uid_name}-container`),
+            let box = (isTable === true) ? document.querySelector(`.otc-${module_uid_name}-table`) : document.querySelector(`.otc-${module_uid_name}-container`),
                 link_css = document.createElement(`link`),
                 script_dom = document.createElement(`script`);
             // console.log(`box = `, box);
@@ -308,7 +308,7 @@ const loadModule = (uid =``, module_uid_name=``, isTable=`false`, debug = false)
     }, 0);
 };
 
-const HTML_Template = (uid = ``, loadModule = function(){}, debug = false) => {
+const HTML_Template = (uid = ``, loadModule = () => {}, debug = false) => {
     let htmlstr = ``,
         delete_uid = ``;
     switch (uid) {
@@ -2044,7 +2044,7 @@ OTC_F9_FV.Modules.loadAllModules = OTC_F9_FV.Modules.loadAllModules || (
                         // call delete
                     });
                     div.dataset.divModuleUid = `div-module-${uid}`;
-                    div.dataset.droppedUid=`module-data-${uid}`;
+                    div.dataset.droppedUid = `module-data-${uid}`;
                     layoutCSS(uid, div);
                     // "bondratefast-all" ???
                     let {htmlstr, delete_uid} = HTML_Template(uid, loadModule);
@@ -2082,20 +2082,20 @@ OTC_F9_FV.Modules.loadAllModules = OTC_F9_FV.Modules.loadAllModules || (
 
 
 // IIFE === Closure!
-OTC_F9_FV.Modules.modulesLoader = OTC_F9_FV.Modules.modulesLoader ||(
+OTC_F9_FV.Modules.modulesLoader = OTC_F9_FV.Modules.modulesLoader || (
     (debug = false) => {
         let module_datas = document.querySelectorAll(`[data-icon-uid*="module-data"]`),
             module_container = document.querySelector(`[data-div-inner-box="data-div-inner-box"]`),
             module_containers = document.querySelectorAll(`[data-sortable-box*="sortable-box"]`),
             drop_counter = 0;
         return {
-            isExistCheck: function(uid=``){
+            isExistCheck: function(uid = ``){
                 // isExistCheck
             },
             loadAllModules: () => {
                 // loadAllModules
             },
-            deleteModule: (dom_uid=``, script_uid=``) => {
+            deleteModule: (dom_uid = ``, script_uid = ``) => {
                 let div_uid = dom_uid.replace(`delete`, `div`);
                 let tdu = document.querySelector(`[data-div-module-uid="${div_uid}"]`);
                 // swal & Promise
@@ -2123,44 +2123,45 @@ OTC_F9_FV.Modules.modulesLoader = OTC_F9_FV.Modules.modulesLoader ||(
                             // closeModal: true
                         }
                     }
-                })
-                .then((value) => {
-                    let result = value || ``;
-                    // true
-                    if(result === "ok"){
-                        if (tdu.parentNode.id === "left-sortable-container") {
-                            module_containers[0].removeChild(tdu);
+                }).then(
+                    (value) => {
+                        let result = value || ``;
+                        // true
+                        if(result === "ok"){
+                            if (tdu.parentNode.id === "left-sortable-container") {
+                                module_containers[0].removeChild(tdu);
+                                swal({
+                                    title: "已删除此模块",
+                                    text: "1秒后自动关闭",// 1秒后自动关闭 / 自动关闭中...
+                                    icon: "success",
+                                    buttons: false,
+                                    timer: 1000
+                                });
+                            }else if (tdu.parentNode.id === "right-sortable-container") {
+                                module_containers[1].removeChild(tdu);
+                                swal({
+                                    title: "已删除此模块",
+                                    text: "1秒后自动关闭",
+                                    // text: "你确定要删除此模块?",
+                                    icon: "success",
+                                    buttons: false,
+                                    timer: 1000
+                                });
+                            }else{
+                                console.log(`Coming soon... `, tdu.parentNode);
+                            }
+                        }else{
                             swal({
-                                title: "已删除此模块",
-                                text: "1秒后自动关闭",// 1秒后自动关闭 / 自动关闭中...
-                                icon: "success",
-                                buttons: false,
-                                timer: 1000
-                            });
-                        }else if (tdu.parentNode.id === "right-sortable-container") {
-                            module_containers[1].removeChild(tdu);
-                            swal({
-                                title: "已删除此模块",
+                                title: "已取消删除此模块!",
                                 text: "1秒后自动关闭",
                                 // text: "你确定要删除此模块?",
                                 icon: "success",
                                 buttons: false,
                                 timer: 1000
                             });
-                        }else{
-                            console.log(`Coming soon... `, tdu.parentNode);
                         }
-                    }else{
-                        swal({
-                            title: "已取消删除此模块!",
-                            text: "1秒后自动关闭",
-                            // text: "你确定要删除此模块?",
-                            icon: "success",
-                            buttons: false,
-                            timer: 1000
-                        });
                     }
-                });
+                );
             },
             dragstart: function(e) {
                 // e.preventDefault();
@@ -2189,7 +2190,7 @@ OTC_F9_FV.Modules.modulesLoader = OTC_F9_FV.Modules.modulesLoader ||(
                     info_div.innerHTML = "请将模块拖拽到灰色区域内!";
                     info_div.setAttribute(`id`, `drop_info_div`);
                     // module_container.insertAdjacentElement(`afterbegin`, info_div);
-                    drop_counter++
+                    drop_counter++;
                 }
                 e.preventDefault();
                 return true;
@@ -2225,7 +2226,7 @@ OTC_F9_FV.Modules.modulesLoader = OTC_F9_FV.Modules.modulesLoader ||(
                 });
                 // icons
                 div.dataset.divModuleUid = `div-module-${uid}`;
-                div.dataset.droppedUid=`module-data-${uid}`;
+                div.dataset.droppedUid = `module-data-${uid}`;
                 layoutCSS(uid, div);
                 let module_exist_checker = ``;
                 if (typeof(uid) === "string" && uid.length < 15) {
