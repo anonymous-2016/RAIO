@@ -38,10 +38,10 @@ const getCustomizeFormatDate = (debug = false) => {
         }
     );
     // ["2018", "02", "24"]
-    formatArray.map((key, i) => (i < 2) ? formatResult+= `${key}-` : formatResult+= `${key}`);
+    formatArray.map((key, i) => (i < 2) ? formatResult += `${key}-` : formatResult += `${key}`);
     // formatArray.map(
     //     (key, i) => {
-    //         (i < 2) ? formatResult+= `${key}-` : formatResult+= `${key}`;
+    //         (i < 2) ? formatResult += `${key}-` : formatResult += `${key}`;
     //         // "2018-02-24-" => "2018-02-24"
     //     }
     // );
@@ -51,11 +51,11 @@ const getCustomizeFormatDate = (debug = false) => {
     return formatResult;
 };
 
-getCustomiseFormatDate();
+getCustomizeFormatDate();
 // "2018-02-24"
-getCustomiseFormatDate(true);
+getCustomizeFormatDate(true);
 // formatResult = 2018-02-24
 
-export default getCustomiseFormatDate;
+export default getCustomizeFormatDate;
 
-export {getCustomiseFormatDate};
+export {getCustomizeFormatDate};

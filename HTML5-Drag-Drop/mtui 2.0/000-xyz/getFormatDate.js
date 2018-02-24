@@ -41,12 +41,12 @@ getFormatDatex();
  * @author xgqfrms
  * @license MIT
  * @copyright xgqfrms.xyz
- * @description zero padding problems & getCustomizeFormatDate
+ * @description zero padding problems & getCustomiseFormatDate
  *
  * @param {Boolean} debug
  */
 
-const getCustomizeFormatDate = (debug = false) => {
+const getCustomiseFormatDate = (debug = false) => {
     let formatDate = new Date(),
         formatArray = [],
         formatResult = ``;
@@ -75,10 +75,10 @@ const getCustomizeFormatDate = (debug = false) => {
         }
     );
     // ["2018", "02", "24"]
-    formatArray.map((key, i) => (i < 2) ? formatResult+= `${key}-` : formatResult+= `${key}`);
+    formatArray.map((key, i) => (i < 2) ? formatResult += `${key}-` : formatResult += `${key}`);
     // formatArray.map(
     //     (key, i) => {
-    //         (i < 2) ? formatResult+= `${key}-` : formatResult+= `${key}`;
+    //         (i < 2) ? formatResult += `${key}-` : formatResult += `${key}`;
     //         // "2018-02-24-" => "2018-02-24"
     //     }
     // );
@@ -116,7 +116,7 @@ formatDate.toLocaleTimeString(); //获取当前时间
 formatDate.toDateString();
 // "Sat Feb 24 2018"
 
-formatDate.toLocaleDateString().replace(/\//ig,`-`);// format date
+formatDate.toLocaleDateString().replace(/\//ig, `-`);// format date
 // "2018-2-24"
 
 // "2018-2-24" => "2018-02-24" ??? zero padding problems
@@ -126,9 +126,9 @@ formatDate.toLocaleDateString().replace(/\//ig,`-`);// format date
 
 
 
-let formatDate = new Date();
+// let formatDate = new Date();
 
-formatDate.toLocaleDateString().replace(/\//ig,`-`);
+formatDate.toLocaleDateString().replace(/\//ig, `-`);
 // "2018-2-24"
 formatDate.toLocaleDateString().split(`/`);
 // (3) ["2018", "2", "24"]
@@ -164,7 +164,7 @@ formatDate.toLocaleDateString().split(`/`).map(
 s = ``;
 ["2018", "02", "24"].map(
     (k, i) => {
-        i < 2 ? s+= `${k}-` : s+= `${k}`;
+        i < 2 ? s += `${k}-` : s += `${k}`;
     }
 );
 // "2018-02-24-" => "2018-02-24"

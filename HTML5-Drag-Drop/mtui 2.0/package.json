@@ -1,17 +1,26 @@
 {
     "name": "mtui",
-    "author": "Mantou",
-    "version": "2.4.59",
-    "description": "webpack and gulp for react",
-    "main": "lib/index.js",
+    "author": "Mantou & xgqfrms",
     "license": "MIT",
-    "keywords": [
-        "react",
-        "react ui",
-        "react form",
-        "react plugin"
-    ],
-    "homepage": "https://git.oschina.net/676015863/mtui2.0",
+    "version": "2.4.59",
+    "description": "Webpack 3 & Gulp 4 for React 15.x",
+    "directories": {
+        "example": "example"
+    },
+    "keywords": ["react", "react ui", "react form", "react plugin"],
+    "homepage": "https://github.com/mtsee/mtui-react",
+    "mtui-react": "https://github.com/mtsee/mtui2.0",
+    "pageother": "https://github.com/DXFE/mtui",
+    "h5ds": "https://github.com/mtsee/h5ds",
+    "main": "lib/index.js",
+    "scripts": {
+        "start": "webpack-dev-server --config webpack.config.js --display-error-details --progress --colors --watch",
+        "build": "set NODE_ENV=production && webpack -p --config webpack.config.build.js --progress --colors",
+        "ftp": "gulp default",
+        "bump": "gulp bump",
+        "bumplib": "gulp bumplib",
+        "lib": "webpack --config webpack.config.mtui.js --progress --colors && babel dev/mtui --copy-files --source-maps --extensions .jsx --out-dir lib"
+    },
     "devDependencies": {
         "autoprefixer-loader": "^3.2.0",
         "axios": "^0.15.3",
@@ -55,17 +64,6 @@
         "webpack": "^1.13.3",
         "node-sass": "^4.7.2",
         "webpack-dev-server": "^1.16.2"
-    },
-    "scripts": {
-        "start": "webpack-dev-server --config webpack.config.js --display-error-details --progress --colors --watch",
-        "build": "set NODE_ENV=production && webpack -p --config webpack.config.build.js --progress --colors",
-        "ftp": "gulp default",
-        "bump": "gulp bump",
-        "bumplib": "gulp bumplib",
-        "lib": "webpack --config webpack.config.mtui.js --progress --colors && babel dev/mtui --copy-files --source-maps --extensions .jsx --out-dir lib"
-    },
-    "directories": {
-        "example": "example"
     },
     "dependencies": {
         "draft-js": "^0.10.1"
