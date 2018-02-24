@@ -124,7 +124,10 @@ OTC_F9_FV.Modules.shiborInterbankDismantleBIR = OTC_F9_FV.Modules.shiborInterban
                 }
             }
         )
-        .catch(err => console.log(`fetch error = \n`, err));
+        .catch(err => {
+            console.log(`fetch error = \n`, err);
+            // no data
+        });
         // return datas;
         // more
         /*

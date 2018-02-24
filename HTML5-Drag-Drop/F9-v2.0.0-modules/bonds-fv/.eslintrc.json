@@ -62,7 +62,7 @@
         "guard-for-in": 1,
         "radix": "error",
         "quotes": [0, "single"],
-        "indent": [1, 4, { "SwitchCase": 1 }],
+        "indent": [0, 4, { "SwitchCase": 1 }],
         "react/no-deprecated": "error",
         "react/no-find-dom-node": "error",
         "react/no-is-mounted": "error",
