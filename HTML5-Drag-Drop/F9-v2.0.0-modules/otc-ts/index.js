@@ -97,12 +97,13 @@ const initSidebar = () => {
     for (let i = 0; i < lis.length; i++) {
         lis[i].addEventListener(`click`, (e) => {
             if (lis[i].classList.contains("h5-dnd-nav-li-active")) {
+                //
             }else{
                 lis[i].classList.add("h5-dnd-nav-li-active");
                 lis[i].classList.remove("h5-dnd-nav-li-hidden");
                 lis[i].classList.remove("add-bottom-margin");
                 lis[i].classList.add("no-bottom-margin");
-                let arr = [0,1,2];
+                let arr = [0, 1, 2];
                 arr.map(
                     (item, index) =>{
                         if(item !== i){
@@ -117,6 +118,7 @@ const initSidebar = () => {
                 );
             };
             if (divs[i].classList.contains(`h5-dnd-nav-box-active`)) {
+                //
             }else{
                 divs[i].classList.add("h5-dnd-nav-box-active");
                 divs[i].classList.remove("h5-dnd-nav-box-hidden");
@@ -188,6 +190,7 @@ const initSidebar = () => {
     // btn.onclick();
     // no need any more!
 };
+
 // tabs & load all default modules
 const initTabs = () => {
     let btn_universal = document.querySelector(`[data-uid="universal"]`),
@@ -220,11 +223,18 @@ const initTabs = () => {
         OTC_TS_FV.Modules.loadAllModules.init(sortable_module_containers[0], left_uids);
         OTC_TS_FV.Modules.loadAllModules.init(sortable_module_containers[1], right_uids);
     }
-    btn_customize.onclick = (e) => {
+    btn_customize.addEventListener(`click`, (e) => {
         sortable_module_containers[0].innerHTML = "";
         sortable_module_containers[1].innerHTML = "";
+        // alert(`😃😃😃Coming soon ... 😧😒😟`);
         a_modules.click();
-    }
+        // alert(`😃😃😃Coming soon ... 😧😒😟`);
+    });
+    // btn_customize.onclick = (e) => {
+    //     sortable_module_containers[0].innerHTML = "";
+    //     sortable_module_containers[1].innerHTML = "";
+    //     a_modules.click();
+    // }
     // btn_module_setting.addEventListener(`click`, (e) => {
     //     const title = `Sorry for that, it still in developing!`;
     //     alert(`😃😃😃Coming soon ... 😧😒😟\n ${title}`);
@@ -233,6 +243,7 @@ const initTabs = () => {
     //     // let debug = true;
     // });
     btn_universal.onclick();
+    // btn_universal.click();
 };
 
 // webpack ignore ??? bug
@@ -288,14 +299,21 @@ document.addEventListener(`DOMContentLoaded`, (e) => {
         }
         showBody();
     }
+    // order ???
+    // setTimeout(() => {
+    //     initSidebar();
+    //     setTimeout(() => {
+    //         initTabs();
+    //     }, 0);
+    // }, 0);
 });
 
 window.onload = () => {
     // console.log("3, window has been loaded!");
     // console.log(`OTC_GILCODE `, OTC_GILCODE);
     // console.log("OTC_SKIN = ", window.OTC_SKIN);
-    initTabs();
     initSidebar();
+    initTabs();
     // init
     // btn.onclick();
     // btn_universal.onclick();
@@ -1532,7 +1550,12 @@ OTC_TS_FV.Modules.modulesLoader = OTC_TS_FV.Modules.modulesLoader ||(
                     drop_counter = 0;
                 }
                 let uid = e.dataTransfer.getData("text/plain");
-                console.log(`delete ? uid = `, uid);
+                if (!debug) {
+                    console.log(`delete ? uid = `, uid);
+                    // additional-issues-all & dividend-matters-all
+                    // delete ? uid =  otcfastDividends
+                    // delete ? uid =  otcfastAdditional
+                }
                 let div = document.createElement(`div`),
                     sub_div = document.createElement(`div`);
                 sub_div.dataset.deleteModuleUid = `delete-module-${uid}`;
@@ -1555,7 +1578,12 @@ OTC_TS_FV.Modules.modulesLoader = OTC_TS_FV.Modules.modulesLoader ||(
                 div.dataset.droppedUid=`module-data-${uid}`;
                 layoutCSS(uid, div);
                 let module_exist_checker = ``;
-                if (typeof(uid) === "string" && uid.length < 13) {
+                // if (typeof(uid) === "string" && uid.length < 13) {
+                // `dividend-matters-all`.length;
+                // 20
+                // `additional-issues-all`.length;
+                // 21
+                if (typeof(uid) === "string" && uid.length < 22) {
                     // "otcfast13".length; // 12 => 13
                     module_exist_checker = document.querySelector(`[data-div-module-uid="div-module-${uid}"]`)
                 }else{

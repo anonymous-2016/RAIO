@@ -152,25 +152,41 @@ OTC_TS_FV.Modules.thematicStatisticsNews = OTC_TS_FV.Modules.thematicStatisticsN
                                                 if (debug) {
                                                     console.log(`UDP_wh = \n`, JSON.stringify(UDP_wh, null, 4));
                                                 }
-                                                let UDP_width = UDP_wh.w - 60,
-                                                    UDP_height = UDP_wh.h - 60;
-                                                const modal = new BouncedModal({
-                                                // const modal = new UDP.BouncedModal({
-                                                    // bouncedclass: "layerContianer2",//存放页面的容器类名
-                                                    width: UDP_width,
-                                                    height: UDP_height,
-                                                    title: "公司新闻",
-                                                    setOverflow: "overflow-y:none",
-                                                    //设置滚动的属性(overflow-y: 竖向  overflow-x: 横向)
-                                                    // str: html.join(''),// array to string
-                                                    // str: html_template,
-                                                    datas: Object.assign({}, data)
-                                                });
-                                                modal.init();
-                                                // return json;
+                                                if (emptyChecker(data)) {
+                                                    let UDP_width = UDP_wh.w - 60,
+                                                        UDP_height = UDP_wh.h - 60;
+                                                    const modal = new BouncedModal({
+                                                    // const modal = new UDP.BouncedModal({
+                                                        // bouncedclass: "layerContianer2",//存放页面的容器类名
+                                                        width: UDP_width,
+                                                        height: UDP_height,
+                                                        title: "公司新闻",
+                                                        setOverflow: "overflow-y:none",
+                                                        //设置滚动的属性(overflow-y: 竖向  overflow-x: 横向)
+                                                        // str: html.join(''),// array to string
+                                                        // str: html_template,
+                                                        datas: Object.assign({}, data)
+                                                    });
+                                                    modal.init();
+                                                    // return json;
+                                                }else{
+                                                    // alert(`暂无数据!`);
+                                                    // temporary no data!
+                                                    console.log(`news 暂无数据!`);
+                                                }
                                             }
                                         )
-                                        .catch(err => console.log(`error infos = \n`, err));
+                                        .catch(err => {
+                                            console.log(`error infos = \n`, err);
+                                            // no data
+                                            console.log(`news 暂无数据!`);
+                                            // disable link ???
+                                            // 1. cursor: not-allowed;
+                                            // 2. click alert no data!
+                                            // hs_container.style.display = "none";
+                                            // table_container.style.display = "none";
+                                            // no_data_dom.insertAdjacentHTML(`afterend`, no_data_p);
+                                        });
                                     } catch (err) {
                                         console.log(`${host}/queryservice/news/content/${id}: Error infos = \n`, err);
                                         // window.open(`${host}/queryservice/news/content/${id}`);

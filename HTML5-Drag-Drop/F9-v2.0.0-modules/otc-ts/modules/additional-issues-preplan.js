@@ -71,7 +71,8 @@ OTC_TS_FV.Modules.additionalIssuesPreplan = OTC_TS_FV.Modules.additionalIssuesPr
                             }
                             // ["zqdm", "zqjc", "mjje"]
                             // ["time", "zqdm", "zqjc", "mjje"] ???
-                            preplan_time.push(`--`);
+                            preplan_time.push(obj["rq"] !== undefined ? obj["rq"] : `--`);
+                            // preplan_time.push(`--`);
                             // preplan_time.push(obj.time);
                             preplan_code.push(obj["zqdm"]);
                             preplan_brief.push(obj["zqjc"]);

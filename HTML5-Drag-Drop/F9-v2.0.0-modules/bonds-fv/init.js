@@ -1,8 +1,19 @@
 "use strict";
 
-// modules
+// import all modules
 import { repurchaseInterestRates } from "./modules/repurchase-interest-rates";
 import { csInterbankDismantleBorrowingIR } from "./modules/cs-interbank-dismantle-borrowing-interest-rates";
+
+// import {  } from "module";
+// import {  } from "module";
+// import {  } from "module";
+// import {  } from "module";
+// import {  } from "module";
+// import {  } from "module";
+// import {  } from "module";
+
+
+
 // utils
 import { getFullTodayDate } from "./utils/full-today";
 
@@ -32,8 +43,19 @@ setTimeout(() => {
 }, 0);
 
 
-
-
+// datepicker
+$(
+    $.date_input.initialize
+    // $.date_input.initialize()
+);
+let input_value = document.querySelector(`[data-uid="jquery-datepicker"]`);
+// input_value.value = "2018-02-07"; // today
+input_value.value = getFullTodayDate();
+window.OTC_DATE = input_value.value; // today
+input_value.onchange = () => {
+    window.OTC_DATE = input_value.value;
+    console.log(`new & input_value.value = `, input_value.value);
+};
 
 setTimeout((debug = false) => {
     const inputs = document.querySelectorAll(`[data-input*="compare-"]`);
@@ -71,7 +93,8 @@ setTimeout((debug = false) => {
                 window.OTC_COMPARE = input_uid;
                 if (input_uid === "2") {
                     // window.OTC_DATE = "2018-02-01";
-                    window.OTC_DATE = getFullTodayDate(); // today
+                    // window.OTC_DATE = getFullTodayDate(); // today
+                    // window.OTC_DATE = input_value.value;
                 }else{
                     window.OTC_DATE = "";
                 }

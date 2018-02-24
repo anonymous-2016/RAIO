@@ -226,6 +226,7 @@
     width: 110px;
     border: none;
     overflow: hidden;
+    display: inline-block;
 }
 
 input[data-uid="jquery-datepicker"] {

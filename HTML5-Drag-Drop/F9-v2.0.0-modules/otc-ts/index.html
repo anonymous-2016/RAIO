@@ -8,14 +8,16 @@
     <title>新三板专题统计 - 速览</title>
     <!-- first load css-->
     <style>
-        [data-class="init-body"]{
+        [data-class="init-body"] {
             /* display: none; */
             /* visibility: hidden; */
         }
-        .init-hidden{
+        
+        .init-hidden {
             visibility: hidden;
         }
-        .init-show{
+        
+        .init-show {
             visibility: visible;
         }
     </style>
@@ -36,7 +38,7 @@
 </head>
 
 <body data-class="init-body" class="init-hidden">
-<!-- <body data-class="init-body" class="init-show"> -->
+    <!-- <body data-class="init-body" class="init-show"> -->
     <header class="h5-dnd-header-container" data-header="data-header">
         <!-- <nav class="h5-dnd-nav-container h5-dnd-nav-container-normal" data-nav-container="nav-container"> -->
         <nav class="h5-dnd-nav-container h5-dnd-nav-container-small" data-nav-container="nav-container">
@@ -85,18 +87,24 @@
                     <div class="h5-dnd-icon-box" draggable="true" data-icon-uid="module-data-otcfast032">
                         <p class="h5-dnd-icon-p" data-title="交易排行榜-协议">交易排行榜-协议</p>
                     </div> -->
-                    <div class="h5-dnd-icon-box" draggable="true" data-icon-uid="module-data-otcfastAdditional">
+                    <div class="h5-dnd-icon-box" draggable="true" data-icon-uid="module-data-additional-issues-all">
                         <p class="h5-dnd-icon-p" data-title="增发事项">增发事项</p>
                     </div>
+                    <!-- <div class="h5-dnd-icon-box" draggable="true" data-icon-uid="module-data-otcfastAdditional">
+                        <p class="h5-dnd-icon-p" data-title="增发事项">增发事项</p>
+                    </div> -->
                     <!-- <div class="h5-dnd-icon-box" draggable="true" data-icon-uid="module-data-otcfast04">
                             <p class="h5-dnd-icon-p" data-title="增发事项-实施">增发事项-预案</p>
                         </div>
                         <div class="h5-dnd-icon-box" draggable="true" data-icon-uid="module-data-otcfast05">
                             <p class="h5-dnd-icon-p" data-title="增发事项-实施">增发事项-实施</p>
                         </div> -->
-                    <div class="h5-dnd-icon-box" draggable="true" data-icon-uid="module-data-otcfastDividends">
+                    <div class="h5-dnd-icon-box" draggable="true" data-icon-uid="module-data-dividend-matters-all">
                         <p class="h5-dnd-icon-p" data-title="分红事项">分红事项</p>
                     </div>
+                    <!-- <div class="h5-dnd-icon-box" draggable="true" data-icon-uid="module-data-otcfastDividends">
+                        <p class="h5-dnd-icon-p" data-title="分红事项">分红事项</p>
+                    </div> -->
                     <!--
                         <div class="h5-dnd-icon-box" draggable="true" data-icon-uid="module-data-otcperfast06">
                             <p class="h5-dnd-icon-p" data-title="分红事项-预案">分红事项-预案</p>
@@ -138,12 +146,12 @@
             <div class="h5-dnd-nav-btn" data-nav-btn="nav-btn" title="折叠侧边栏"></div>
         </nav>
         <div class="h5-dnd-nav-small-btn h5-dnd-nav-small-btn-show" data-nav-small-container="nav-small-container">
-        <!-- <div class="h5-dnd-nav-small-btn h5-dnd-nav-small-btn-hidden" data-nav-small-container="nav-small-container"> -->
+            <!-- <div class="h5-dnd-nav-small-btn h5-dnd-nav-small-btn-hidden" data-nav-small-container="nav-small-container"> -->
             <div data-nav-small-btn="nav-small-btn" title="展开侧边栏"></div>
         </div>
     </header>
     <section class="h5-dnd-body-container h5-dnd-body-container-big" data-body-container="data-body-container">
-    <!-- <section class="h5-dnd-body-container h5-dnd-body-container-small" data-body-container="data-body-container"> -->
+        <!-- <section class="h5-dnd-body-container h5-dnd-body-container-small" data-body-container="data-body-container"> -->
         <div id="section-sortable-container" class="div-inner-box" data-div-inner-box="data-div-inner-box">
             <div id="left-sortable-container" class="div-sortable-box" data-sortable-box="left-sortable-box">
                 <!-- left -->
@@ -172,12 +180,13 @@
     <script src="./libs/jquery1.4.0.min.js"></script>
     <script src="./libs/modal.min.js"></script>
     <!-- js -->
-    <!-- minify bug ??? -->
-    <script src="./index.js"></script>
-    <!-- <script src="./build/js/index.min.js"></script> -->
-    <script src="./build/js/init.min.js"></script>
     <!-- babel-polyfill & js order -->
     <script src="./build/js/babel-polyfill.min.js"></script>
+    <!-- minify bug ??? -->
+    <!-- <script src="./index.js"></script> -->
+    <script src="./init-sidebar.js"></script>
+    <script src="./build/js/index.min.js"></script>
+    <script src="./build/js/init.min.js"></script>
 </body>
 
 </html>

@@ -72,9 +72,10 @@ NSB_TS_FV.Modules.additionalMattersImplementation = NSB_TS_FV.Modules.additional
                             }
                             // ["zqdm", "zqjc", "mjje"]
                             // ["time", "zqdm", "zqjc", "mjje"] ???
-                            preplan_time.push(`--`);
+                            preplan_time.push(obj["rq"] !== undefined ? obj["rq"] : `--`);
+                            // preplan_time.push(`--`);
                             // preplan_time.push(obj.time);
-                            if (!debug && i === 0) {
+                            if (debug && i === 0) {
                                 console.log(`preplan_time no data for now!`, preplan_time);
                             }
                             // error handler

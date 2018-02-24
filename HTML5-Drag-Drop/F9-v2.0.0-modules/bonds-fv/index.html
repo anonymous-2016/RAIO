@@ -9,6 +9,8 @@
     <!-- css & css order & modal-->
     <link rel="stylesheet" data-css="data-css-uid" href="./css/white-skin/common/module.css">
     <link rel="stylesheet" data-css="data-css-uid" href="./css/white-skin/common/modal.css">
+    <!-- datepicker -->
+    <!-- <link rel="stylesheet" data-css="data-css-uid" href="./css/white-skin/common/date_input.css"> -->
     <link rel="stylesheet" data-css="data-css-uid" href="./css/white-skin/common/no-data.css">
     <link rel="stylesheet" data-css="data-css-uid" href="./css/white-skin/index.css">
     <link rel="stylesheet" data-css="data-css-uid" href="./css/white-skin/tabs.css">
@@ -119,6 +121,10 @@
             <input data-input="compare-previous-day" data-uid="0" data-title="day" type="radio" name="compare-date" value="male" checked>前一交易日
             <input data-input="compare-previous-week" data-uid="1" data-title="week" type="radio" name="compare-date" value="female">上周
             <input data-input="compare-customize" data-uid="2" data-title="customize" type="radio" name="compare-date" value="other">自定义
+            <section data-container="input-after-container">
+                <input type="text" name="date" class="date_input" data-uid="jquery-datepicker" value="" placeholder="" />
+                <!-- style="width: 127px;" -->
+            </section>
         </div>
         <div id="section-sortable-container" class="div-inner-box" data-div-inner-box="data-div-inner-box">
             <div id="left-sortable-container" class="div-sortable-box" data-sortable-box="left-sortable-box">
@@ -149,6 +155,8 @@
     <!-- modal libs -->
     <script src="./libs/jquery1.4.0.min.js"></script>
     <script src="./libs/modal.min.js"></script>
+    <!-- datepicker -->
+    <script src="./libs/jquery.date_input-src.js"></script>
     <!-- js -->
     <script src="./build/js/index.min.js"></script>
     <script src="./build/js/init.min.js"></script>

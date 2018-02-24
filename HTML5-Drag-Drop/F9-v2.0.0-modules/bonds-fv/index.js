@@ -119,7 +119,7 @@ const initSidebar = () => {
             }else{
                 divs[i].classList.add("h5-dnd-nav-box-active");
                 divs[i].classList.remove("h5-dnd-nav-box-hidden");
-                let arr = [0,1,2];
+                let arr = [0, 1, 2];
                 arr.map(
                     (item, index) =>{
                         if(item !== i){

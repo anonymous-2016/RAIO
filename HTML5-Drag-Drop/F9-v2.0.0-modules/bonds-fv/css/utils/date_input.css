@@ -8,8 +8,7 @@
 .date_selector {
     box-sizing: border-box;
     width: 242px;
-    min-height: 183px;
-    height: auto;
+    height: 183px;
 }
 
 .date_selector {
@@ -226,9 +225,7 @@
     box-sizing: border-box;
     width: 110px;
     border: none;
-    /* overflow: hidden; */
-    display: inline-block;
-    position: relative;
+    overflow: hidden;
 }
 
 input[data-uid="jquery-datepicker"] {
@@ -240,17 +237,40 @@ input[data-uid="jquery-datepicker"] {
 }
 
 input[data-uid="jquery-datepicker"]:focus {
+    /* outline-offset: -2px; */
     outline-offset: -1px;
+    /* outline: -webkit-focus-ring-color auto 5px; */
+    /* outline: #f0f auto 1px; */
     outline: #3685ff auto 1px;
 }
 
 
 /* outline */
 
+
+/* https://developer.mozilla.org/en-US/docs/Web/CSS/outline */
+
 [data-container="input-after-container"]::after {
     box-sizing: border-box;
-    content: url("../img/calendar.png");
+    content: url("./calendar.png");
     position: absolute;
     left: 97px;
     top: 10px;
 }
+
+
+/*
+
+input[data-uid="jquery-datepicker-test"]::before {
+    box-sizing: border-box;
+    content: url("./calendar.png");
+}
+
+
+*/
+
+
+/* ::after & ::before & input bug */
+
+
+/* https://stackoverflow.com/questions/2587669/can-i-use-a-before-or-after-pseudo-element-on-an-input-field */

@@ -25,13 +25,13 @@ section.otc-module-box-5 {
     font-weight: 600;
     font-size: 15px;
     font-family: "MicroSoft YaHei", sans-serif, serif;
-    margin-LSp: 6px;
-    margin-botLSm: 5px;
+    margin-top: 6px;
+    margin-bottom: 5px;
 }
 
 .otc-h5dnd-modules-title::before {
     position: absolute;
-    LSp: 3px;
+    top: 3px;
     left: 0px;
     content: "";
     display: inline-block;
