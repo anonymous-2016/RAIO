@@ -1,6 +1,8 @@
 "use strict";
 // import {DOM_queryAll, DOM_query} from "./utils/DOM";
 
+import "babel-polyfill";
+
 // namespaces & global variable
 window.OTC_TS_FV = window.OTC_TS_FV || {};
 
@@ -259,11 +261,14 @@ document.addEventListener(`DOMContentLoaded`, (e) => {
         let body = document.querySelector(bd);
         // Uncaught TypeError: body.classList.includes is not a function
         // if (body.classList.includes(`init-hidden`)) {
-        if (body.classList.value.includes(`init-hidden`)) {
-            body.classList.add(`init-show`);
-            body.classList.remove(`init-hidden`);
-        }else{
-            // body.classList.toggle(`init-hidden`);
+        if (body !== undefined && body !== null) {
+            // SCRIPT5007: Unable to get property 'includes' of undefined or null reference
+            if (body.classList.value.includes(`init-hidden`)) {
+                body.classList.add(`init-show`);
+                body.classList.remove(`init-hidden`);
+            }else{
+                // body.classList.toggle(`init-hidden`);
+           }
         }
     };
     // load css

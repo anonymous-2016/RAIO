@@ -470,11 +470,13 @@ OTC_TS_FV.Modules.turnoverTrendMakeMarketDiagram.drawHC = OTC_TS_FV.Modules.turn
             console.log(`HC turnover_amount = \n`, turnover_amount);
         }
         let skin_color = (OTC_SKIN === "black") ? `#0b1016` : `#fff`,
+            grid_line_color = (OTC_SKIN === "black") ? `#2d3039` : `#e9e9e9`,
             border_color = (OTC_SKIN === "black") ? `#4a4c4f` : `#d7dbe0`,
-            legend_item_color = (OTC_SKIN === "black") ? `#fff` : `#0b1016`,
+            // legend_item_color = (OTC_SKIN === "black") ? `#4781b1` : `#6ab437`,
+            legend_item_color = (OTC_SKIN === "black") ? `#bcc1c7` : `#0b1016`,
             legend_item_hover_color = (OTC_SKIN === "black") ? `#f79530` : `#000`,
-            legend_label_color = (OTC_SKIN === "black") ? `#fff` : `#000`,
-            title_color = (OTC_SKIN === "black") ? `#fff` : `#000`,
+            legend_label_color = (OTC_SKIN === "black") ? `#bcc1c7` : `#000`,
+            title_color = (OTC_SKIN === "black") ? `#bcc1c7` : `#000`,
             legend_bg_color = (OTC_SKIN === "black") ? `#0b1016` : `#fff`;
         Highcharts.setOptions({
             lang: {
@@ -564,9 +566,19 @@ OTC_TS_FV.Modules.turnoverTrendMakeMarketDiagram.drawHC = OTC_TS_FV.Modules.turn
                 labels: {
                     // autoRotation:'false',
                     autoRotation: [0],
-                    step: 20,
+                    step: 10,
                     // step: 18,
-                }
+                    align: "left",
+                    // align: "right",
+                    style: {
+                        color: "#979ba2"
+                    }
+                },
+                // xAxis color
+                tickColor: grid_line_color,// 979ba2
+                lineColor: grid_line_color,// 979ba2
+                // tickAmount: 1,
+                tickInterval: 3,
             },
             credits: {
                 // enabled: true,//
@@ -581,6 +593,11 @@ OTC_TS_FV.Modules.turnoverTrendMakeMarketDiagram.drawHC = OTC_TS_FV.Modules.turn
             yAxis: [
                 // yAxis 0
                 {
+                    labels: {
+                        style: {
+                            color: "#979ba2",
+                        }
+                    },
                     // x: -50,
                     // y: -50,
                     // type: 'logarithmic',
@@ -592,22 +609,29 @@ OTC_TS_FV.Modules.turnoverTrendMakeMarketDiagram.drawHC = OTC_TS_FV.Modules.turn
                         text: '',
                         // text: 'Total fruit consumption'
                     },
-                    labels: {
-                        // format: '{value}%',// 百分比
-                        style: {
-                            color: Highcharts.getOptions().colors[1]
-                        }
-                    }
+                    // labels: {
+                    //     // format: '{value}%',// 百分比
+                    //     style: {
+                    //         color: Highcharts.getOptions().colors[1]
+                    //     }
+                    // }
                     // stackLabels: {
                     //     // enabled: true,// counter all cols values
                     //     style: {
                     //         fontWeight: 'bold',
                     //         color: (Highcharts.theme && Highcharts.theme.textColor) || 'gray'
                     //     }
-                    // }
+                    // },
+                    // gridLineColor: '#2D3039',
+                    gridLineColor: grid_line_color,
                 },
                 // yAxis 1
                 {
+                    labels: {
+                        style: {
+                            color: "#979ba2",
+                        }
+                    },
                     // x: -50,
                     // y: -50,
                     min: 0,
@@ -632,7 +656,8 @@ OTC_TS_FV.Modules.turnoverTrendMakeMarketDiagram.drawHC = OTC_TS_FV.Modules.turn
                     //     }
                     // },
                     opposite: true,
-                    gridLineColor: '#2D3039'
+                    // gridLineColor: '#2D3039',
+                    gridLineColor: grid_line_color,
                 }
             ],
             legend: {
@@ -692,11 +717,13 @@ OTC_TS_FV.Modules.turnoverTrendMakeMarketDiagram.drawHC = OTC_TS_FV.Modules.turn
             },
             series: [
                 {
-                    type: "area",//column
+                    // type: "area",//column
+                    type: "spline",
                     yAxis: 0,
                     // color: "red",//lawngreen
                     name: "成交额(亿元)",
                     data: turnover_amount,
+                    color: "#4781b1",
                     connectNulls: true,// OK
                     tooltip: {
                         headerFormat: `
@@ -713,10 +740,12 @@ OTC_TS_FV.Modules.turnoverTrendMakeMarketDiagram.drawHC = OTC_TS_FV.Modules.turn
                     },
                 },
                 {
-                    type: "area",//"spline"
+                    // type: "area",//"spline"
+                    type: "spline",
                     yAxis: 1,
                     // color: "grey",
-                    color: "#3f3",
+                    color: "#6ab437",
+                    // color: "#3f3",
                     name: "成交量(亿股)",
                     data: turnover_number,
                     connectNulls: true,// OK
@@ -789,11 +818,12 @@ OTC_TS_FV.Modules.turnoverTrendProtocolDiagram.drawHC = OTC_TS_FV.Modules.turnov
             console.log(`HC turnover_amount = \n`, turnover_amount);
         }
         let skin_color = (OTC_SKIN === "black") ? `#0b1016` : `#fff`,
+            grid_line_color = (OTC_SKIN === "black") ? `#2d3039` : `#e9e9e9`,
             border_color = (OTC_SKIN === "black") ? `#4a4c4f` : `#d7dbe0`,
-            legend_item_color = (OTC_SKIN === "black") ? `#fff` : `#0b1016`,
+            legend_item_color = (OTC_SKIN === "black") ? `#bcc1c7` : `#0b1016`,
             legend_item_hover_color = (OTC_SKIN === "black") ? `#f79530` : `#000`,
-            legend_label_color = (OTC_SKIN === "black") ? `#fff` : `#000`,
-            title_color = (OTC_SKIN === "black") ? `#fff` : `#000`,
+            legend_label_color = (OTC_SKIN === "black") ? `#bcc1c7` : `#000`,
+            title_color = (OTC_SKIN === "black") ? `#bcc1c7` : `#000`,// #666 => #bcc1c7
             legend_bg_color = (OTC_SKIN === "black") ? `#0b1016` : `#fff`;
         Highcharts.setOptions({
             lang: {
@@ -846,7 +876,8 @@ OTC_TS_FV.Modules.turnoverTrendProtocolDiagram.drawHC = OTC_TS_FV.Modules.turnov
             //     selected: 4
             // },
             chart: {
-                type: "column",
+                // type: "column",
+                type: "spline",
                 // backgroundColor: chart_css.color
                 backgroundColor: skin_color,
                 // plotBorderWidth: 1,
@@ -855,6 +886,7 @@ OTC_TS_FV.Modules.turnoverTrendProtocolDiagram.drawHC = OTC_TS_FV.Modules.turnov
                 // 16:9 ratio
                 borderColor: border_color,
                 borderWidth: 1,
+                // marginTop: 10,
             },
             title: {
                 text: "竞价",
@@ -875,8 +907,19 @@ OTC_TS_FV.Modules.turnoverTrendProtocolDiagram.drawHC = OTC_TS_FV.Modules.turnov
                 labels: {
                     // autoRotation:'false',
                     autoRotation: [0],
-                    step: 20
-                }
+                    step: 10,
+                    align: "left",
+                    labels: {
+                        style: {
+                            color: "#979ba2",
+                        }
+                    },
+                },
+                // xAxis color
+                tickColor: grid_line_color,
+                lineColor: grid_line_color,
+                // tickAmount: 1,
+                // tickInterval: 2,
             },
             credits: {
                 // enabled: true,//
@@ -892,6 +935,11 @@ OTC_TS_FV.Modules.turnoverTrendProtocolDiagram.drawHC = OTC_TS_FV.Modules.turnov
             yAxis: [
                 // yAxis 0
                 {
+                    labels: {
+                        style: {
+                            color: "#979ba2",
+                        }
+                    },
                     // x: -50,
                     // y: -50,
                     // type: 'logarithmic',
@@ -903,22 +951,29 @@ OTC_TS_FV.Modules.turnoverTrendProtocolDiagram.drawHC = OTC_TS_FV.Modules.turnov
                         text: '',
                         // text: 'Total fruit consumption'
                     },
-                    labels: {
-                        // format: '{value}%',// 百分比
-                        style: {
-                            color: Highcharts.getOptions().colors[1]
-                        }
-                    }
+                    // labels: {
+                    //     // format: '{value}%',// 百分比
+                    //     style: {
+                    //         color: Highcharts.getOptions().colors[1]
+                    //     }
+                    // }
                     // stackLabels: {
                     //     // enabled: true,// counter all cols values
                     //     style: {
                     //         fontWeight: 'bold',
                     //         color: (Highcharts.theme && Highcharts.theme.textColor) || 'gray'
                     //     }
-                    // }
+                    // },
+                    // gridLineColor: '#2D3039',
+                    gridLineColor: grid_line_color,
                 },
                 // yAxis 1
                 {
+                    labels: {
+                        style: {
+                            color: "#979ba2",
+                        }
+                    },
                     // x: -50,
                     // y: -50,
                     min: 0,
@@ -943,7 +998,8 @@ OTC_TS_FV.Modules.turnoverTrendProtocolDiagram.drawHC = OTC_TS_FV.Modules.turnov
                     //     }
                     // },
                     opposite: true,
-                    gridLineColor: '#2D3039'
+                    // gridLineColor: '#2D3039', // bug
+                    gridLineColor: grid_line_color,
                 }
             ],
             legend: {
@@ -1003,9 +1059,11 @@ OTC_TS_FV.Modules.turnoverTrendProtocolDiagram.drawHC = OTC_TS_FV.Modules.turnov
             },
             series: [
                 {
-                    type: "area",//line/spline
+                    // type: "area",//line/spline
+                    type: "spline",
                     yAxis: 0,
                     // color: "red",//lawngreen
+                    color: "#4781b1",
                     name: "成交额(亿元)",
                     data: turnover_amount,
                     connectNulls: true,// OK
@@ -1024,11 +1082,12 @@ OTC_TS_FV.Modules.turnoverTrendProtocolDiagram.drawHC = OTC_TS_FV.Modules.turnov
                     },
                 },
                 {
-                    type: "area",
+                    // type: "area",
+                    type: "spline",
                     yAxis: 1,
                     // color: "grey",//skyblue
-                    // color: "#3f3",
-                    color: "rgb(25, 255, 25)",
+                    color: "#6ab437",
+                    // color: "rgb(25, 255, 25)",
                     // color: "rgba(25, 255, 25, 0.5)",
                     name: "成交量(亿股)",
                     data: turnover_number,
@@ -1109,7 +1168,9 @@ OTC_TS_FV.Modules.turnoverTrendProtocolDiagram.init = OTC_TS_FV.Modules.turnover
 
 var OTC_IP = window.OTC_IP || `http://10.1.5.202`,
     OTC_PATH = window.OTC_PATH || `/webservice/fastview/otc`,
+    // OTC_SKIN = window.OTC_SKIN || `white`;
     OTC_SKIN = window.OTC_SKIN || `black`;
+    // OTC_SKIN = window.OTC_SKIN || (Math.random() > 0.5 ? `black` : `white`);
     // OTC_GILCODE = window.OTC_GILCODE || `430002.OC`;
 
 OTC_TS_FV.Modules.turnoverTrendMakeMarketDiagram.init({

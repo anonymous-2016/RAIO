@@ -117,6 +117,14 @@ section.otc-module-box-5 {
     padding-right: 4px;
 }
 
+[data-td-key="otc-td-key-LS"] {
+    background-color: #e8eefa;
+}
+
+[data-td-key="otc-td-no-key"] {
+    background-color: #e8eefa;
+}
+
 
 /* td */
 

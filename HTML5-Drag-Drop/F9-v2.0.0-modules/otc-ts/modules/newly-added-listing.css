@@ -6,6 +6,7 @@
     /* margin: 0 auto; */
     box-sizing: border-box;
     border: 1px solid #d7dbe0;
+    /* border: 1px solid#4a4c4f; */
 }
 
 
@@ -80,6 +81,8 @@ thead[data-table-thead="otc-table-thead-newly-added-listing"] {
     text-align: left;
     /* background-color: #666; */
     box-sizing: border-box;
+    color: #4a4c4f;
+    color: #bbc1c7;
 }
 
 
@@ -173,7 +176,7 @@ span[data-otc-th-title="securities-code-newly-added-listing"]::after {
     /* width: 100px; */
     /* min-width: 100px;
     max-width: 100px; */
-    font-weight: bold;
+    /* font-weight: bold; */
     line-height: 23px;
     height: 23px;
 }

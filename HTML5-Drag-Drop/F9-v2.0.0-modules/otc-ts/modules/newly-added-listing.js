@@ -256,6 +256,7 @@ OTC_TS_FV.Modules.newlyAddedListing.drawHC = OTC_TS_FV.Modules.newlyAddedListing
     }
     let skin_color = (OTC_SKIN === "black") ? `#0b1016` : `#fff`,
         tootip_color = (OTC_SKIN === "black") ? `#000` : `#000`,
+        grid_line_color = (OTC_SKIN === "black") ? `#2d3039` : `#e9e9e9`,
         // tootip_color = (OTC_SKIN === "black") ? `#f00` : `#000`,
         legend_item_color = (OTC_SKIN === "black") ? `#fff` : `#0b1016`,
         legend_item_hover_color = (OTC_SKIN === "black") ? `#f79530` : `#000`,
@@ -313,6 +314,9 @@ OTC_TS_FV.Modules.newlyAddedListing.drawHC = OTC_TS_FV.Modules.newlyAddedListing
         chart: {
             type: 'bubble',
             plotBorderWidth: 1,
+            plotBorderColor:  grid_line_color,// ??? inner border
+            // borderWidth: 1,
+            // borderColor: `#f00`,// outer border
             backgroundColor: skin_color,
             zoomType: 'xy',
             // ???决定用户可以通过拖动鼠标来缩放的尺寸。可以是x，y或xy中的一个。
@@ -347,7 +351,8 @@ OTC_TS_FV.Modules.newlyAddedListing.drawHC = OTC_TS_FV.Modules.newlyAddedListing
             text: ''
         },
         xAxis: {
-            gridLineWidth: 1,
+            startOnTick: false,
+            endOnTick: false,
             title: {
                 text: '每股收益(元)'
             },
@@ -371,7 +376,17 @@ OTC_TS_FV.Modules.newlyAddedListing.drawHC = OTC_TS_FV.Modules.newlyAddedListing
             //         zIndex: 3
             //     },
             //     // x line 2
-            // ]
+            // ],
+            // gridLineWidth: 0,
+            gridLineWidth: 1,
+            // highcharts-axis-line
+            // highcharts-axis highcharts-xaxis highcharts-tick
+            // highcharts-axis highcharts-xaxis highcharts-plot-background
+            tickColor: grid_line_color,
+            lineColor: grid_line_color,
+            // gridLineColor: '#2D3039',
+            gridLineColor: grid_line_color,
+            // lineWidth: 0, // no yAxis line
         },
         yAxis: {
             startOnTick: false,
@@ -382,7 +397,7 @@ OTC_TS_FV.Modules.newlyAddedListing.drawHC = OTC_TS_FV.Modules.newlyAddedListing
             labels: {
                 format: '{value}'
             },
-            maxPadding: 0.2,
+            // maxPadding: 0.2,
             // plotLines: [
             //     {
             //         color: 'black',
@@ -400,7 +415,9 @@ OTC_TS_FV.Modules.newlyAddedListing.drawHC = OTC_TS_FV.Modules.newlyAddedListing
             //         zIndex: 3
             //     },
             //     // y line no
-            // ]
+            // ],
+            // gridLineColor: '#2D3039',// bug
+            gridLineColor: grid_line_color,
         },
         tooltip: {
             useHTML: true,// HTML
@@ -517,7 +534,7 @@ OTC_TS_FV.Modules.newlyAddedListing.drawHC = OTC_TS_FV.Modules.newlyAddedListing
             {
                 data: [...datas],
                 name: `今日新增挂牌公司`,// legend & enabled: false
-                color: `#3285ff`,// ???
+                // color: `#3285ff`,// ???
                 tooltip: {
                     // headerFormat: `
                     //     <strong>

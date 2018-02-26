@@ -9,6 +9,41 @@ OTC_TS_FV.Utils
 OTC_TS_FV.Helper
 
 
+
+## ES6 bug
+
+https://babeljs.io/docs/usage/polyfill/
+
+> Because this is a polyfill (which will run before your source code),
+ we need it to be a `Dependency`, not a `devDependency`.
+
+```sh
+
+$ npm i -S babel-polyfill
+
+
+```
+
+
+highcharts-axis-labels highcharts-xaxis-labels
+
+text-anchor="right"
+
+深色标题字色: #bcc1c7
+
+
+highcharts-axis-labels highcharts-yaxis-labels
+
+
+#666 => #bcc1c7
+
+white black
+
+
+
+
+
+
 # 新三板专题统计
 
 > namespaces
@@ -33,29 +68,75 @@ table {
     -webkit-touch-callout: none;
 }
 
+
+[data-tabs="tabs-box"] {
+    box-sizing: border-box;
+    width: 542px;
+    height: 100%;
+    margin: 10px auto;
+    background: #fff;
+    /* border: 1px solid red; */
+}
+
+[data-tab="tab-container-box"] {
+    box-sizing: border-box;
+    background: #fff;
+    width: 540px;
+    /* height: 830px; */
+    /* min-height: 100px; */
+    overflow: hidden;
+    /* border: 1px solid #ccc; */
+    border: 0;
+    /* margin-top: 5px; */
+}
+
+[data-tab="tab-title-box"] {
+    background: #fff;
+    border: 0;
+    /* border: 1px solid red; */
+    border-top: 1px solid #bacadb;
+    border-left: 1px solid #bacadb;
+    border-right: 1px solid #bacadb;
+    height: 33px;
+}
+
+[data-tab="tab-title"] {
+    box-sizing: border-box;
+    width: 100px;
+    float: left;
+    text-align: center;
+    background: #e8eefa;
+    border: 1px solid #bacadb;
+    margin-left: 10px;
+    margin-top:  3px;
+}
+
+
+
+
 ```
 
 ```js
 
-document.querySelector(`.fv-indicators-per-share-table`).ondragstart = function() {
-    return false;
-};
+    document.querySelector(`.fv-indicators-per-share-table`).ondragstart = function() {
+        return false;
+    };
 
 
-let tables = document.querySelectorAll(`[data-table*="table"]`);
+    let tables = document.querySelectorAll(`[data-table*="table"]`);
 
-for (let i = 0; i < tables.length; i++) {
-    tables[i].addEventListener(`dragstart`, (e) => {
-        console.log(`\ntables[i] = `, tables[i]);
-        console.log(`\ne.target = `, e.target);
-        e.target.setAttributes(`draggable`, `false`);
-        // date_title.setAttribute(`title`, `${arr[0].sj}`);
+    for (let i = 0; i < tables.length; i++) {
+        tables[i].addEventListener(`dragstart`, (e) => {
+            console.log(`\ntables[i] = `, tables[i]);
+            console.log(`\ne.target = `, e.target);
+            e.target.setAttributes(`draggable`, `false`);
+            // date_title.setAttribute(`title`, `${arr[0].sj}`);
+        });
+    }
+
+    $("table").mousedown(function(e){
+        e.preventDefault()
     });
-}
-
-$("table").mousedown(function(e){
-    e.preventDefault()
-});
 
 
 
@@ -97,12 +178,35 @@ $("table").mousedown(function(e){
 
 ```
 
+# CSS bug
+
+> HS & HC
+
 ```css
+
+highcharts-axis highcharts-xaxis
+
+highcharts-tick
+
+highcharts-axis-line
+
+highcharts-axis-line
+highcharts-axis highcharts-xaxis highcharts-tick
+highcharts-axis highcharts-xaxis highcharts-plot-background
+
+
+
 /* black */
 background: #25292e;
 color: #bbc1c7;
 
 border: 1px solid #4a4c4f;
+
+
+// HS & HC
+
+white black
+#e9e9e9 #2d3039
 
 
 /* black */

@@ -620,6 +620,38 @@ https://yq.aliyun.com/wenji/169729
 ```
 
 
+https://github.com/github/fetch#installation
+
+https://github.github.io/fetch/
+
+
+```sh
+
+$ npm i -S whatwg-fetch
+
+
+```
+
+https://babeljs.io/docs/usage/polyfill/
+
+https://github.com/zloirock/core-js#commonjs
+
+https://www.npmjs.com/package/babel-polyfill
+
+
+> Because this is a polyfill (which will run before your source code),
+we need it to be a `Dependency`, not a `devDependency`.
+
+```sh
+
+$ npm i -S babel-polyfill
+
+```
+
+import "babel-polyfill";
+
+
+
 ```js
 
 
