@@ -78,7 +78,7 @@ window.OTC_DATE = window.OTC_DATE || ``;// today ???no need
 // set params before DOM ready!
 // window.OTC_GILCODE = OTC_F9_FV.Utils.getParam(`gilcode`);
 window.OTC_SKIN = OTC_F9_FV.Utils.getParam(`skin`) || `white`;
-window.OTC_IP = window.parent.location.origin.includes("http") ? window.parent.location.origin : `http://10.1.5.202`;
+window.OTC_IP = !window.parent.location.origin.includes("http://localhost") ? window.parent.location.origin : `http://10.1.5.202`;
 window.OTC_PATH = `/webservice/fastview/bond/rate`;
 // http://10.1.5.202/webservice/fastview/bond/rate?{"ModelId":"bondratefast07","Compare":"","CompareDate":""}
 

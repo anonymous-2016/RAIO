@@ -31,6 +31,21 @@ OTC_F9_FV.Modules.csInterbankDismantleBorrowingIR = OTC_F9_FV.Modules.csInterban
             hc_uid1,
             hc_uid2,
         } = hc_uids;
+        // no data
+        // let uid = `[data-none-uid="otc-cs-interbank-dismantle-borrowing-interest-rates"]`;
+        // let none_div = document.querySelector(uid);
+        let none_div = document.querySelector(`[data-none-uid="otc-cs-interbank-dismantle-borrowing-interest-rates"]`),
+            table_div = document.querySelector(`.otc-cs-interbank-dismantle-borrowing-interest-rates-table`),
+            hc_div = document.querySelector(`#${hc_uid1}`),
+            hc_div2 = document.querySelector(`#${hc_uid2}`);
+        //  hc_div = document.querySelector(`#cs-interbank-dismantle-borrowing-interest-rates-hs-container1`);
+        // if (none_div !== null && none_div.dataset !== null) {
+        //     if (none_div.dataset.none === "no-data-div-visible") {
+        //         // re hidden
+        //         none_div.dataset.none = "no-data-div-hidden";
+        //     }
+        // }
+        // fetch(`http://10.1.5.202/json/bonds/04x.json`)
         fetch(url)
         .then(res => res.json())
         .then(
@@ -132,7 +147,7 @@ OTC_F9_FV.Modules.csInterbankDismantleBorrowingIR = OTC_F9_FV.Modules.csInterban
                                 // export excel ??? extract to init module
                                 setTimeout((debug = false) => {
                                     let export_excel_a = document.querySelector(`[data-excel="otc-cs-interbank-dismantle-borrowing-interest-rates-excel"]>a`);
-                                    if (export_excel_a !==null) {
+                                    if (export_excel_a !== null) {
                                         // how to in case of add same event many times!
                                         // let isAddClikc = (typeof(export_excel_a.click) === "function") ? true : false;
                                         // console.log(`excel error =`, error);
@@ -153,7 +168,7 @@ OTC_F9_FV.Modules.csInterbankDismantleBorrowingIR = OTC_F9_FV.Modules.csInterban
                                         // remove before add & removeEventListener & named function
                                         // export_excel_a.removeEventListener(`click`, printExcel);
                                         // console.log(`removeEventListener \n`, printExcel);
-                                        let hasAddClick = (export_excel_a.dataset.click === "true")? true : false;
+                                        let hasAddClick = (export_excel_a.dataset.click === "true") ? true : false;
                                         const options = {
                                             // capture: true,
                                             // once: true,// only can click once!
@@ -202,22 +217,48 @@ OTC_F9_FV.Modules.csInterbankDismantleBorrowingIR = OTC_F9_FV.Modules.csInterban
                         }
                     } else {
                         // no data
-                        let uid = `[data-none-uid="otc-cs-interbank-dismantle-borrowing-interest-rates"]`;
-                        const none_div = document.querySelector(uid);
-                        none_div.dataset.none = "no-data-div-visible";
-                        // no data
-                        const tbody_div = document.querySelector(tbody_uid);
-                        tbody_div.dataset.none = "no-data-div-hidden";
-                        const hc_div = document.querySelector(`#${hc_uid}`);// id
-                        hc_div.dataset.none = "no-data-div-hidden";
+                        if (none_div !== null) {
+                            // none_div.dataset.none = "no-data-div-visible";
+                        }else{
+                            console.log(`none_div = null\n`);
+                            none_div = document.querySelector(`[data-none-uid="otc-repurchase-interest-rates"]`);
+                        }
+                        // none_div.dataset.none = "no-data-div-visible";
+                        // table_div.dataset.none = "no-data-div-hidden";
+                        // hc_div.dataset.none = "no-data-div-hidden";
+                        // hc_div2.dataset.none = "no-data-div-hidden";
                     }
                 } catch (err) {
-                    let url =`file:///E:/**/bonds-fv/modules/cs-interbank-dismantle-borrowing-interest-rates.js`;
+                    let url = `file:///E:/**/bonds-fv/modules/cs-interbank-dismantle-borrowing-interest-rates.js`;
                     // ConsoleError(err, url);
+                    // no data
+                    // if (none_div !== null) {
+                    //     // none_div.dataset.none = "no-data-div-visible";
+                    // }else{
+                    //     console.log(`none_div = null\n`);
+                    //     none_div = document.querySelector(`[data-none-uid="otc-repurchase-interest-rates"]`);
+                    // }
+                    // none_div.dataset.none = "no-data-div-visible";
+                    // table_div.dataset.none = "no-data-div-hidden";
+                    // hc_div.dataset.none = "no-data-div-hidden";
+                    // hc_div2.dataset.none = "no-data-div-hidden";
                 }
             }
         )
-        .catch(err => console.log(`fetch error = \n`, err));
+        .catch(err => {
+            console.log(`fetch error = \n`, err);
+            // no data
+            if (none_div !== null) {
+                // none_div.dataset.none = "no-data-div-visible";
+            }else{
+                console.log(`none_div = null\n`);
+                none_div = document.querySelector(`[data-none-uid="otc-repurchase-interest-rates"]`);
+            }
+            // none_div.dataset.none = "no-data-div-visible";
+            // table_div.dataset.none = "no-data-div-hidden";
+            // hc_div.dataset.none = "no-data-div-hidden";
+            // hc_div2.dataset.none = "no-data-div-hidden";
+        });
         // return datas;
         // more
         /*
@@ -294,7 +335,7 @@ OTC_F9_FV.Modules.csInterbankDismantleBorrowingIR.drawHS = OTC_F9_FV.Modules.csI
         Highcharts.setOptions({
             lang: {
                 // noData: '暂无数据',
-                noData:  `
+                noData: `
                     <p data-none="no-data-hc">
                         <span data-none="no-data-span"></span>
                     </p>
@@ -570,7 +611,7 @@ OTC_F9_FV.Modules.csInterbankDismantleBorrowingIR.drawHS = OTC_F9_FV.Modules.csI
             },
             series: [
                 {
-                    type:'line',
+                    type: 'line',
                     // type:'spline',
                     name: '加权/收盘',
                     color: "#5523cd",
@@ -598,7 +639,7 @@ OTC_F9_FV.Modules.csInterbankDismantleBorrowingIR.drawHS = OTC_F9_FV.Modules.csI
                     },
                 },
                 {
-                    type:'line',
+                    type: 'line',
                     name: '比较日',
                     color: '#fd0002',
                     data: compare,
@@ -655,7 +696,8 @@ OTC_F9_FV.Modules.csInterbankDismantleBorrowingIR.init = OTC_F9_FV.Modules.csInt
             date,
             skin,
         } = {
-            ip: `http://10.1.5.202`,
+            ip: OTC_IP,
+            // ip: `http://10.1.5.202`,
             path: `/webservice/fastview/bond/rate`,
             // uid: `bondratefast02`,
             compare: OTC_COMPARE,

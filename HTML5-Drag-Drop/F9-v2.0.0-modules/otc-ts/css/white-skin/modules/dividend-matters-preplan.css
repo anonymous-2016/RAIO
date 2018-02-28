@@ -189,14 +189,17 @@ table>tbody[data-table-body="otc-table-body-dividend-matters-preplan"]>tr[data-t
     width: 100px;
 }
 
-table>tbody[data-table-body="otc-table-body-dividend-matters-preplan"]>tr[data-table-tr="otc-table-tr-dividend-matters-preplan"]>td:nth-last-of-type(1),
-table>tbody[data-table-body="otc-table-body-dividend-matters-preplan"]>tr[data-table-tr="otc-table-tr-dividend-matters-preplan"]>td:nth-last-of-type(2),
-table>tbody[data-table-body="otc-table-body-dividend-matters-preplan"]>tr[data-table-tr="otc-table-tr-dividend-matters-preplan"]>td:nth-last-of-type(3) {
+table>tbody[data-table-body="otc-table-body-dividend-matters-preplan"]>tr[data-table-tr="otc-table-tr-dividend-matters-preplan"]>td:nth-last-of-type(1) {
     text-align: left;
     text-indent: 4px;
 }
 
+
+table>tbody[data-table-body="otc-table-body-dividend-matters-preplan"]>tr[data-table-tr="otc-table-tr-dividend-matters-preplan"]>td:nth-last-of-type(2),
+table>tbody[data-table-body="otc-table-body-dividend-matters-preplan"]>tr[data-table-tr="otc-table-tr-dividend-matters-preplan"]>td:nth-last-of-type(3) {
+    text-align: center;
+}
+
 table>tbody[data-table-body="otc-table-body-dividend-matters-preplan"]>tr[data-table-tr="otc-table-tr-dividend-matters-preplan"]>td:nth-of-type(1) {
-    text-align: left;
-    text-indent: 4px;
+    text-align: center;
 }

@@ -19,6 +19,7 @@ STOCK_F9_FV.Modules = STOCK_F9_FV.Modules || {};
 STOCK_F9_FV.Modules.profitForecast = STOCK_F9_FV.Modules.profitForecast || (
     (url = ``, uid = `default_dom_uid`, debug = false) => {
         let datas = {};
+        // fetch(`http://10.1.5.202/json/stock-f9/3.json`)
         fetch(url)
         .then(res => res.json())
         .then(
@@ -138,7 +139,10 @@ STOCK_F9_FV.Modules.profitForecast = STOCK_F9_FV.Modules.profitForecast || (
                 }
             }
         )
-        .catch(error => console.log(`error = \n`, error));
+        .catch(err => {
+            console.log(`fetch error = \n`, err);
+            // no data
+        });
         // return datas;
         // more
         setTimeout((debug = false) => {
@@ -224,10 +228,12 @@ STOCK_F9_FV.Modules.profitForecast.drawHS = STOCK_F9_FV.Modules.profitForecast.d
         //     gridColor = chart_css.gridColor,
         //     legendColor = chart_css.legendColor,
         //     yAxisColor = chart_css.yAxisColor;
-        let bg_skin = (window.STOCK_Skin === "black") ? `#0B1016` : `#fff`;
-        let bd_skin = (window.STOCK_Skin === "black") ? `#666` : `#ccc`;
-        let item_skin = (window.STOCK_Skin === "black") ? `#fff` : `#000`;
-        let hover_skin = (window.STOCK_Skin === "black") ? `#f79530` : `#f79530`;
+        let bg_skin = (window.STOCK_Skin === "black") ? `#0b1016` : `#fff`,
+            bd_skin = (window.STOCK_Skin === "black") ? `#666` : `#ccc`,
+            item_skin = (window.STOCK_Skin === "black") ? `#bcc1c7` : `#000`,
+            hover_skin = (window.STOCK_Skin === "black") ? `#f79530` : `#f79530`,
+            grid_line_color = (STOCK_Skin === "black") ? `#2d3039` : `#e9e9e9`,
+            border_color = (STOCK_Skin === "black") ? `#4a4c4f` : `#d7dbe0`;
         Highcharts.setOptions({
             lang: {
                 // noData: '暂无数据',
@@ -290,7 +296,7 @@ STOCK_F9_FV.Modules.profitForecast.drawHS = STOCK_F9_FV.Modules.profitForecast.d
                 labels: {
                     // autoRotation:'false',
                     autoRotation: [0],
-                    step: 2,// dynamic step ??? width change listener ???
+                    step: 5,// dynamic step ??? width change listener ???
                     // enabled: false,
                     // format: String
                     // formatter: () => `<a href="${categoryLinks[this.value]}">${this.value}</a>`;
@@ -306,6 +312,9 @@ STOCK_F9_FV.Modules.profitForecast.drawHS = STOCK_F9_FV.Modules.profitForecast.d
                     //     textOutline: '1px contrast'
                     // }
                 },
+                tickColor: grid_line_color,
+                lineColor: grid_line_color,
+                tickAmount: 1,
             },
             credits: {
                 // enabled: true,//
@@ -331,10 +340,11 @@ STOCK_F9_FV.Modules.profitForecast.drawHS = STOCK_F9_FV.Modules.profitForecast.d
                     },
                     labels: {
                         format: '{value}%',// 百分比
-                        style: {
-                            color: Highcharts.getOptions().colors[1]
-                        }
-                    }
+                        // style: {
+                        //     color: Highcharts.getOptions().colors[1]
+                        // }
+                    },
+                    gridLineColor: grid_line_color,
                 /*  stackLabels: {
                         // enabled: true,// counter all cols values
                         style: {
@@ -357,12 +367,13 @@ STOCK_F9_FV.Modules.profitForecast.drawHS = STOCK_F9_FV.Modules.profitForecast.d
                     stackLabels: {
                         // enabled: true,
                         style: {
-                            fontWeight: 'bold',
-                            color: (Highcharts.theme && Highcharts.theme.textColor) || 'gray'
+                            // fontWeight: 'bold',
+                            // color: (Highcharts.theme && Highcharts.theme.textColor) || 'gray'
                         }
                     },
                     opposite: true,
-                    gridLineColor: '#2D3039'
+                    // gridLineColor: '#2D3039'
+                    gridLineColor: grid_line_color,
                 }
             ],
             legend: {
@@ -414,6 +425,19 @@ STOCK_F9_FV.Modules.profitForecast.drawHS = STOCK_F9_FV.Modules.profitForecast.d
             // 情节/绘图选项
             plotOptions: {
                 // (series) type = column (chart)
+                // series: {
+                //     borderWidth: 0,
+                //     // borderColor: 'black',
+                // },
+                series: {
+                    pointPadding: 0,
+                    groupPadding: 0,
+                    // borderWidth: 1,
+                    borderWidth: 0,
+                    pointWidth: 30,
+                    shadow: false,
+                    borderColor: grid_line_color,
+                },
                 column: {
                     // stacking: 'normal',// 是否将每个系列的值叠加在一起, 默认是：null
                     // stacking: 'null',
@@ -421,16 +445,23 @@ STOCK_F9_FV.Modules.profitForecast.drawHS = STOCK_F9_FV.Modules.profitForecast.d
                     dataLabels: {
                         enabled: true,
                         // color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white',
-                        // color: "#7cb5ec",
-                        color: "#434348"
-                    }
+                        // color: "#7cb5ec",,
+                        // color: "#434348",
+                        style: {
+                            color: "#fff",
+                            textOutline: 0,
+                        },
+                        borderWidth: 0,
+                    },
+                    zIndex: 6,
                 },
                 spline: {
                     // stacking: 'normal',
                     dataLabels: {
                         // enabled: true,
                         color: "#ff00ff"
-                    }
+                    },
+                    zIndex: 9,
                 }
             },
             series: [
@@ -438,21 +469,30 @@ STOCK_F9_FV.Modules.profitForecast.drawHS = STOCK_F9_FV.Modules.profitForecast.d
                     name: '上调',// type = column (chart)
                     // data: [5, 3, 4, 7, 2],
                     data: up,
+                    // color: "#4781b1",
+                    // color: "#f27211",
+                    color: "#ff0f2f",// 红
                 },
                 {
                     name: '维持',
                     // data: [2, 2, 3, 2, 1],
                     data: keep,
+                    color: "#1a75bc",
+                    // color: "#ff7b42",// 橙
                 },
                 {
                     name: '下调',
                     // data: [3, 4, 4, 2, 5],
                     data: down,
+                    // color: "#4781b1",
+                    color: "#3bcc25",// 绿
                 },
                 {
                     type:'spline',
                     yAxis: 1,
-                    color: "skyblue",
+                    color: "#fbb728",// 蓝
+                    // color: "#f3254b",
+                    // color: "skyblue",
                     name: '平均',
                     // data: [3, 4, 4, 2, 5],
                     data: average,
@@ -511,6 +551,7 @@ STOCK_F9_FV.Modules.profitForecast.init = STOCK_F9_FV.Modules.profitForecast.ini
 var STOCK_IP = window.STOCK_IP || `http://10.1.5.202`,
     STOCK_Paths = window.STOCK_Paths || `/webservice/fastview/stock`,
     STOCK_SecCode = window.STOCK_SecCode || `600570.SH`,
+    // STOCK_Skin = window.STOCK_Skin || `black`;
     STOCK_Skin = window.STOCK_Skin || `white`;
 
 

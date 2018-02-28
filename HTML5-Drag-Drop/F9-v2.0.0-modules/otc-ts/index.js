@@ -1,7 +1,7 @@
 "use strict";
 // import {DOM_queryAll, DOM_query} from "./utils/DOM";
 
-import "babel-polyfill";
+// import "babel-polyfill";
 
 // namespaces & global variable
 window.OTC_TS_FV = window.OTC_TS_FV || {};

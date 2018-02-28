@@ -15,7 +15,7 @@ a {
     box-sizing: border-box;
     width: 540px;
     height: 100%;
-    margin: 10px auto;
+    /* margin: 10px auto; */
     background: #fff;
 }
 
@@ -59,7 +59,8 @@ a {
     text-align: center;
     background: #e8eefa;
     border: 1px solid #bacadb;
-    margin-left: 10px;
+    margin-left: 5px;
+    margin-right: 5px;
     margin-top: 2px;
 }
 

@@ -17,7 +17,6 @@ STOCK_F9_FV.Modules = STOCK_F9_FV.Modules || {};
 STOCK_F9_FV.Modules.SPTurnover = STOCK_F9_FV.Modules.SPTurnover || (
     (url = ``, uid = `default_dom_uid`, debug = false) => {
         let datas = {};
-        // fetch(`http://10.1.5.202/stock/f9/fastview/datas/sort6.json`)
         // fetch(`http://10.1.5.202/json/stock-f9/6.json`)
         fetch(url)
         .then(res => res.json())
@@ -222,7 +221,10 @@ STOCK_F9_FV.Modules.SPTurnover = STOCK_F9_FV.Modules.SPTurnover || (
                 // }
             }
         )
-        .catch(error => console.log(`error = \n`, error));
+        .catch(err => {
+            console.log(`fetch error = \n`, err);
+            // no data
+        });
         return datas;
     }
 );
@@ -246,6 +248,8 @@ STOCK_F9_FV.Modules.SPTurnover.SPTdrawHS = STOCK_F9_FV.Modules.SPTurnover.SPTdra
         // 2012-12-31 => var oldTime = (new Date("2012/12/31 20:11:11").getTime();
         // 得到毫秒数
         let max_time = (time.length-10);// ???
+        let yAxisMargin = (Object.keys(datas.time).length > 0) ? 2 : 10;
+        // console.log(`yAxisMargin =`, yAxisMargin, Object.keys(datas).length, Object.keys(datas.time).length);
         // datas
         if (debug) {
             console.log(`datas = \n`, datas);
@@ -339,14 +343,17 @@ STOCK_F9_FV.Modules.SPTurnover.SPTdrawHS = STOCK_F9_FV.Modules.SPTurnover.SPTdra
         //         loading: `Loading....`,
         //     }
         // });
-        let bg_skin = (window.STOCK_Skin === "black") ? `#0B1016` : `#ffffff`;
-        let bd_skin = (window.STOCK_Skin === "black") ? `#666` : `#ccc`;
-        let item_skin = (window.STOCK_Skin === "black") ? `#fff` : `#000`;
-        let hover_skin = (window.STOCK_Skin === "black") ? `#f79530` : `#f79530`;
         // HS & stock
-        let input_skin = (window.STOCK_Skin === "black") ? `#bbc1c7` : `#333`;
-        let input_border_skin = (window.STOCK_Skin === "black") ? `#707070` : `#ccc`;
-        let input_label_skin = (window.STOCK_Skin === "black") ? `#707070` : `#ccc`;
+        let input_skin = (window.STOCK_Skin === "black") ? `#bbc1c7` : `#333`,
+            input_border_skin = (window.STOCK_Skin === "black") ? `#707070` : `#ccc`,
+            input_label_skin = (window.STOCK_Skin === "black") ? `#707070` : `#ccc`;
+        // colors
+        let bg_skin = (window.STOCK_Skin === "black") ? `#0b1016` : `#fff`,
+            bd_skin = (window.STOCK_Skin === "black") ? `#666` : `#ccc`,
+            item_skin = (window.STOCK_Skin === "black") ? `#bcc1c7` : `#000`,
+            hover_skin = (window.STOCK_Skin === "black") ? `#f79530` : `#f79530`,
+            grid_line_color = (STOCK_Skin === "black") ? `#2d3039` : `#e9e9e9`,
+            border_color = (STOCK_Skin === "black") ? `#4a4c4f` : `#d7dbe0`;
         // bd #707070
         // fc #bbc1c7
         Highcharts.setOptions({
@@ -387,6 +394,7 @@ STOCK_F9_FV.Modules.SPTurnover.SPTdrawHS = STOCK_F9_FV.Modules.SPTurnover.SPTdra
                 // height: 272,
                 marginTop: 20,
                 backgroundColor: bg_skin,
+                // height: 360,
             },
             noData: {
                 // attr: undefined,
@@ -444,7 +452,9 @@ STOCK_F9_FV.Modules.SPTurnover.SPTdrawHS = STOCK_F9_FV.Modules.SPTurnover.SPTdra
                 tooltip: {
                     xDateFormat: '%Y年 %m月 %d日',
                     // valueDecimals: 3
-                }
+                },
+                tickColor: grid_line_color,
+                lineColor: grid_line_color,
             },
             yAxis: [
                 {
@@ -465,15 +475,18 @@ STOCK_F9_FV.Modules.SPTurnover.SPTdrawHS = STOCK_F9_FV.Modules.SPTurnover.SPTdra
                     // height: '60%',
                     height: '70%',
                     // lineWidth: 2,
+                    lineColor: grid_line_color,
                     lineWidth: 1,
                     plotLines: [{
                         value: 0,
-                        width: 1,
+                        // width: 1,
                         // width: 2,
-                        color: 'silver'
+                        // color: 'silver',
+                        color: grid_line_color,
                     }],
                     // min: 0,
                     opposite: false,// default true
+                    gridLineColor: grid_line_color,
                 },
                 {
                     // opposite: true,
@@ -488,25 +501,39 @@ STOCK_F9_FV.Modules.SPTurnover.SPTdrawHS = STOCK_F9_FV.Modules.SPTurnover.SPTdra
                     height: '70%',
                     offset: 0,
                     lineWidth: 1,
+                    lineColor: grid_line_color,
                     // lineWidth: 2,
                     // min: 0,
+                    gridLineColor: grid_line_color,
                 },
                 {
                     labels: {
                         align: 'left',
-                        x: -5
+                        x: 3,
                     },
                     title: {
-                        text: '成交量'
+                        text: '成交量',
+                        margin: yAxisMargin,
+                        // margin: 10,
+                        // margin: 2,
+                        // align: "low",
+                        // "low", "middle" or "high".
+
                     },
                     // top: '62.5%',
                     // height: '37.5%',
-                    top: '72.5%',
-                    height: '27.5%',
+                    top: '80%',
+                    height: '20%',
+                    // top: '72.5%',
+                    // height: '27.5%',
+                    // offset: -5,
                     offset: 0,
                     // lineWidth: 2,
                     lineWidth: 1,
-                    // opposite: false,// default true
+                    // opposite: false,// default true,
+                    lineColor: grid_line_color,
+                    gridLineColor: grid_line_color,
+                    // gridLineWidth: 0,
                 },
                 // {
                 //     labels: {
@@ -556,9 +583,9 @@ STOCK_F9_FV.Modules.SPTurnover.SPTdrawHS = STOCK_F9_FV.Modules.SPTurnover.SPTdra
                     type: 'line',// 样条 "spline"
                     name: '股价',
                     color: 'green',
-                    lineColor: 'green',
-                    upColor: 'red',
-                    upLineColor: 'red',
+                    // lineColor: 'green',
+                    // upColor: 'red',
+                    // upLineColor: 'red',
                     tooltip: {
                         // formatter: () => {
                         //     return `
@@ -640,7 +667,7 @@ STOCK_F9_FV.Modules.SPTurnover.SPTdrawHS = STOCK_F9_FV.Modules.SPTurnover.SPTdra
                     type: 'line',
                     name: '上证指数',
                     data: sh_index,
-                    color:"#1a75bc",
+                    color: "#1a75bc",
                     yAxis: 1,
                     // dataGrouping: {
                     //     units: groupingUnits

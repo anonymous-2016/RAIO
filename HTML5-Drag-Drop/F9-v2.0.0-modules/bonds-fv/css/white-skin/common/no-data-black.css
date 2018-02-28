@@ -181,7 +181,9 @@
 }
 
 .date_selector td.today {
-    background: #FFC107;
+/*     background: #FFC107; */
+/*     border: 1px solid #3685ff; */
+    outline: #3685ff auto 1px;
 }
 
 .date_selector td.unselected_month {

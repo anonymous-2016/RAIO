@@ -47,7 +47,7 @@ td {
 .fv-equity-pledge-table-td-value {
     box-sizing: border-box;
     border-right: 1px solid #c5d2db;
-    background: #fff;
+    /* background: #fff; */
     text-align: center;
 }
 
@@ -124,4 +124,12 @@ table.fv-equity-pledge-table tr[data-tr="matrix-tr"]>td:nth-of-type(n+2) {
 
 .fv-equity-pledge-table-tfoot {
     display: none;
+}
+
+table.fv-equity-pledge-table tr:nth-of-type(2n) {
+    background: #fff;
+}
+
+table.fv-equity-pledge-table tr:nth-of-type(2n+1) {
+    background: #f5f5f5
 }

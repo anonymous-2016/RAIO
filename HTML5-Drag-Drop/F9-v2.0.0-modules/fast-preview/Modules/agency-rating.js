@@ -233,10 +233,12 @@ STOCK_F9_FV.Modules.agencyRating.drawHS = STOCK_F9_FV.Modules.agencyRating.drawH
             }
         });
         // let bg_skin = (window.STOCK_Skin === "black") ? bg_colors[1] :  bg_colors[0];
-        let bg_skin = (window.STOCK_Skin === "black") ? `#0B1016` : `#fff`;
-        let bd_skin = (window.STOCK_Skin === "black") ? `#666` : `#ccc`;
-        let item_skin = (window.STOCK_Skin === "black") ? `#fff` : `#000`;
-        let hover_skin = (window.STOCK_Skin === "black") ? `#f79530` : `#f79530`;
+        let bg_skin = (window.STOCK_Skin === "black") ? `#0b1016` : `#fff`,
+            bd_skin = (window.STOCK_Skin === "black") ? `#666` : `#ccc`,
+            item_skin = (window.STOCK_Skin === "black") ? `#bcc1c7` : `#000`,
+            hover_skin = (window.STOCK_Skin === "black") ? `#f79530` : `#f79530`,
+            grid_line_color = (STOCK_Skin === "black") ? `#2d3039` : `#e9e9e9`,
+            border_color = (STOCK_Skin === "black") ? `#4a4c4f` : `#d7dbe0`;
         Highcharts.chart(container_uid, {
             noData: {// all defualt value
                 // attr: undefined,
@@ -287,17 +289,19 @@ STOCK_F9_FV.Modules.agencyRating.drawHS = STOCK_F9_FV.Modules.agencyRating.drawH
                     autoRotation: [0],// autoRotation:'false',
                     step: 2
                 },
-                style: {
-                    color: `#ff0000`,
-                    fill: `#00ff00`,
-                }
+                // style: {
+                //     color: `#ff0000`,
+                //     fill: `#00ff00`,
+                // },
+                tickColor: grid_line_color,
+                lineColor: grid_line_color,
             },
             credits: {
                 enabled: false,// enabled: true,
                 href: `https://www.gildata.com`,
                 text: `gildata`,
             },
-            colors: ['#ff1919', '#ffff66', '#92d050'],
+            // colors: ['#ff1919', '#ffff66', '#92d050'],
             yAxis: [
                 // yAxis 1
                 {
@@ -313,10 +317,11 @@ STOCK_F9_FV.Modules.agencyRating.drawHS = STOCK_F9_FV.Modules.agencyRating.drawH
                     },
                     labels: {
                         format: '{value}%',// 百分比
-                        style: {
-                            color: Highcharts.getOptions().colors[1]
-                        }
+                        // style: {
+                        //     color: Highcharts.getOptions().colors[1]
+                        // }
                     },
+                    gridLineColor: grid_line_color,
                     // stackLabels: {// stackLabels
                     //     enabled: true,
                     //     style: {
@@ -324,6 +329,7 @@ STOCK_F9_FV.Modules.agencyRating.drawHS = STOCK_F9_FV.Modules.agencyRating.drawH
                     //         color: (Highcharts.theme && Highcharts.theme.textColor) || 'gray'
                     //     }
                     // }
+
                 }, // yAxis 2
                 {
                     // x: -50,
@@ -337,14 +343,15 @@ STOCK_F9_FV.Modules.agencyRating.drawHS = STOCK_F9_FV.Modules.agencyRating.drawH
                     },
                     stackLabels: {// stackLabels
                         // enabled: true,
-                        style: {
-                            fontWeight: 'bold',
-                            color: (Highcharts.theme && Highcharts.theme.textColor) || 'gray'
-                        }
+                        // style: {
+                        //     fontWeight: 'bold',
+                        //     color: (Highcharts.theme && Highcharts.theme.textColor) || 'gray'
+                        // }
                     },
                     // zIndex: 9,// Defaults to 7.
                     opposite: true,
-                    gridLineColor: '#2D3039'
+                    // gridLineColor: '#2D3039'
+                    gridLineColor: grid_line_color,
                 }
             ],
             legend: {
@@ -390,16 +397,26 @@ STOCK_F9_FV.Modules.agencyRating.drawHS = STOCK_F9_FV.Modules.agencyRating.drawH
             // 情节/绘图选项
             plotOptions: {
                 // (series) type = column (chart)
+                series: {
+                    borderWidth: 0,
+                    // borderColor: 'black',
+                },
                 column: {
                     // stacking: 'normal',// 是否将每个系列的值叠加在一起, 默认是：null
                     // stacking: 'null',
                     stacking: 'percent',// 百分比堆叠柱形图
                     dataLabels: {
                         enabled: true,
-                        // color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white'
-                        color: "#434348"
+                        // color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white',
+                        // color: "#434348",
+                        style: {
+                            color: "#fff",
+                            textOutline: 0,
+                        },
+                        borderWidth: 0,
+                        // borderWidth: 10,
                     },
-                    zIndex: 6,
+                    // zIndex: 6,
                 },
                 spline: {
                     stacking: 'normal',
@@ -415,21 +432,33 @@ STOCK_F9_FV.Modules.agencyRating.drawHS = STOCK_F9_FV.Modules.agencyRating.drawH
                     name: '上调',// type = column (chart)
                     // data: [5, 3, 4, 7, 2],
                     data: up,
+                    color: "#ff0f2f",
+                    // color: "#ff1f2e",
+                    // color: "#ff1f2e",// 红
                 },
                 {
                     name: '维持',
                     // data: [2, 2, 3, 2, 1],
                     data: keep,
+                    color: "#1a75bc",
+                    // color: "#6ab437",
+                    // color: "#ff7b42",// 橙
                 },
                 {
                     name: '下调',
                     // data: [3, 4, 4, 2, 5],
                     data: down,
+                    color: "#3bcc25",
+                    // color: "#4781b1",
+                    // color: "#009957",// 绿
                 },
                 {
                     type:'spline',
                     yAxis: 1,
-                    color:"skyblue",
+                    color: "#fbb728",
+                    // color: "#4781b1",// 蓝
+                    // color: "#f3254b",
+                    // color:"skyblue",
                     name: '股价',
                     // data: [3, 4, 4, 2, 5],
                     data: stock_price,
@@ -482,7 +511,8 @@ STOCK_F9_FV.Modules.agencyRating.init = STOCK_F9_FV.Modules.agencyRating.init ||
 var STOCK_IP = window.STOCK_IP || `http://10.1.5.202`,
     STOCK_Paths = window.STOCK_Paths || `/webservice/fastview/stock`,
     STOCK_SecCode = window.STOCK_SecCode || `600570.SH`,
-    STOCK_Skin = window.STOCK_Skin || `white`;
+    STOCK_Skin = window.STOCK_Skin || `black`;
+    // STOCK_Skin = window.STOCK_Skin || `white`;
 
 STOCK_F9_FV.Modules.agencyRating.init({
     ip: STOCK_IP,

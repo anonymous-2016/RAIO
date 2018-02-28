@@ -21,7 +21,8 @@ import { getFullTodayDate } from "./utils/full-today";
 // console.log(`repurchaseInterestRates = \n`, repurchaseInterestRates);
 // console.log(`repurchaseInterestRates.init = \n`, repurchaseInterestRates.init);
 
-repurchaseInterestRates.init();
+// init modules
+// repurchaseInterestRates.init();
 
 // uglify Sortable & global var
 setTimeout(() => {
@@ -52,9 +53,30 @@ let input_value = document.querySelector(`[data-uid="jquery-datepicker"]`);
 // input_value.value = "2018-02-07"; // today
 input_value.value = getFullTodayDate();
 window.OTC_DATE = input_value.value; // today
+
 input_value.onchange = () => {
     window.OTC_DATE = input_value.value;
     console.log(`new & input_value.value = `, input_value.value);
+    if (window.OTC_COMPARE === "2") {
+        // input.checked & reload on change time
+        console.log(`true & input.checked `, window.OTC_COMPARE);
+        reloadAllModules();
+    }else{
+        console.log(`false & input.checked `, window.OTC_COMPARE);
+    }
+    // const input = document.querySelector(`[data-input="compare-customize"]`);
+    // input.checked;
+    // true
+    // if (input.checked) {
+    //     console.log(`true & input.checked =`, input.checked);
+    //     // input.checked & reload on change time
+    //     window.OTC_COMPARE = "2";
+    //     reloadAllModules();
+    // }else{
+    //     console.log(`false & input.checked =`, input.checked);
+    //     // window.OTC_COMPARE = "0";
+    //     // window.OTC_DATE = "";
+    // }
 };
 
 setTimeout((debug = false) => {
@@ -80,24 +102,27 @@ setTimeout((debug = false) => {
         inputs[i].addEventListener(`change`, () => {
             let input_uid = inputs[i].dataset.uid, // 0,1,2
                 input_title = inputs[i].dataset.title;
-            if (debug) {
-                console.log(`\ninput uid =`, input_uid);
+            if (!debug) {
+                console.log(`input uid =`, input_uid);
                 console.log(`input title =`, input_title);
             }
             try {
                 // set type
                 if (debug) {
-                    console.log(`\nwindow.OTC_COMPARE =`, window.OTC_COMPARE);
+                    console.log(`window.OTC_COMPARE =`, window.OTC_COMPARE);
                     console.log(`window.OTC_DATE =`, window.OTC_DATE);
                 }
                 window.OTC_COMPARE = input_uid;
-                if (input_uid === "2") {
-                    // window.OTC_DATE = "2018-02-01";
-                    // window.OTC_DATE = getFullTodayDate(); // today
-                    // window.OTC_DATE = input_value.value;
-                }else{
-                    window.OTC_DATE = "";
-                }
+                // if (input_uid === "2") {
+                //     // window.OTC_DATE = "2018-02-01";
+                //     // window.OTC_DATE = getFullTodayDate(); // today
+                //     console.log(`input_value.value =`, input_value.value);
+                //     window.OTC_DATE = input_value.value;
+                //     console.log(`window.OTC_DATE =`, window.OTC_DATE);
+                // }else{
+                //     window.OTC_DATE = "";
+                //     // no need
+                // }
                 if (debug) {
                     console.log(`\nafter & window.OTC_COMPARE =`, window.OTC_COMPARE, typeof(window.OTC_COMPARE));
                     console.log(`after & window.OTC_DATE =`, window.OTC_DATE, typeof(window.OTC_DATE));
@@ -116,15 +141,20 @@ const reloadAllModules = (debug = false) => {
     // init
     var OTC_IP = window.OTC_IP || `http://10.1.5.202`,
         OTC_PATH = window.OTC_PATH || `/webservice/fastview/bond/rate`,
-        OTC_COMPARE = window.OTC_COMPARE || ``,
+        OTC_COMPARE = window.OTC_COMPARE || `0`,
         OTC_DATE = window.OTC_DATE || ``,
         // OTC_DATE = window.OTC_DATE || fullToday(),// default today!
         OTC_SKIN = window.OTC_SKIN || `white`;
     // reload all modules
     // repurchaseInterestRates.init();
     if (!debug) {
-        console.log(`\nOTC_COMPARE =`, OTC_COMPARE, typeof(OTC_COMPARE));
+        console.log(`OTC_COMPARE =`, OTC_COMPARE, typeof(OTC_COMPARE));
         console.log(`OTC_DATE =`, OTC_DATE, typeof(OTC_DATE));
+        // console.log(`OTC_IP =`, OTC_DATE);
+        // console.log(`OTC_PATH =`, OTC_DATE);
+        // console.log(`OTC_SKIN =`, OTC_DATE);
+        // console.log(`OTC_DATE =`, OTC_DATE);
+        // console.log(`OTC_COMPARE =`, OTC_COMPARE);
     }
     // test
     repurchaseInterestRates.init({
@@ -138,11 +168,12 @@ const reloadAllModules = (debug = false) => {
     csInterbankDismantleBorrowingIR.init({
         ip: OTC_IP,
         path: OTC_PATH,
-        // uid: ``,
+        // uid: ``,// fixed & hardcode
         compare: OTC_COMPARE,
         date: OTC_DATE,
         skin: OTC_SKIN,
     });
+    // console.log(`finish reload modules!`);
 };
 
 

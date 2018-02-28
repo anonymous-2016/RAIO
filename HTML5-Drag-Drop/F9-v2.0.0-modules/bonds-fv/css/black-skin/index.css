@@ -842,3 +842,24 @@ td[data-title="td-colspan"] {
     width: 100%;
     line-height: 23px;
 }
+
+/* new plugins */
+
+[data-plugins="h5-dnd-timepicker-container"] {
+    box-sizing: border-box;
+    background: #31373d;
+    margin: 0 auto;
+    height: 34px;
+    line-height: 34px;
+    width: 100%;
+    text-align: left;
+    vertical-align: middle;
+    padding-left: 10%;
+    color: #bbc1c7;
+}
+
+[data-plugins="h5-dnd-timepicker-container"]>input {
+    color: #fff;
+    border-color: #adc0d3;
+    background: #3285ff;
+}

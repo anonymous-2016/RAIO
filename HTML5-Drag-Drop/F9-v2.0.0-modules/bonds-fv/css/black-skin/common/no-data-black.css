@@ -5,6 +5,24 @@
 
 /* font-family: Simsun, serif; */
 
+[data-none*="no-data-div"] {
+    box-sizing: border-box;
+    width: 100%;
+    background: #4d4d4d;
+}
+
+[data-none="no-data-div-hidden"] {
+    display: none;
+}
+
+[data-none="no-data-div-visible"] {
+    display: block;
+}
+
+[data-none="no-data-p"] {
+    /* no data */
+}
+
 
 /* font-family: "Microsoft YaHei", sans-serif, serif; */
 
@@ -39,9 +57,9 @@ p {
     font-size: 13px;
     text-align: center;
     vertical-align: middle;
-    color: #4d4d4d;
-    border: 1px solid #d7dbe0;
-    background: #f2f2f2 !important;
+    color: #bbc1c7;
+    border: 1px solid #4a4c4f;
+    background: #25292e;
     position: relative;
 }
 
@@ -93,8 +111,3 @@ p {
 
 
 */
-
-[data-margin="no-data-margin-top"] {
-    /* margin-top: 10px; */
-    width: 540px;
-}

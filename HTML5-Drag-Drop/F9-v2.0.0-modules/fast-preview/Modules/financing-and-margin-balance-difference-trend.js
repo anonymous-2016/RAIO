@@ -175,10 +175,12 @@ STOCK_F9_FV.Modules.FMBDtrend.FMBDTdrawHS = STOCK_F9_FV.Modules.FMBDtrend.FMBDTd
         //     gridColor = chart_css.gridColor,
         //     legendColor = chart_css.legendColor,
         //     yAxisColor = chart_css.yAxisColor;
-        let bg_skin = (window.STOCK_Skin === "black") ? `#0B1016` : `#ffffff`;
-        let bd_skin = (window.STOCK_Skin === "black") ? `#666` : `#ccc`;
-        let item_skin = (window.STOCK_Skin === "black") ? `#fff` : `#000`;
-        let hover_skin = (window.STOCK_Skin === "black") ? `#f79530` : `#f79530`;
+        let bg_skin = (window.STOCK_Skin === "black") ? `#0b1016` : `#fff`,
+            bd_skin = (window.STOCK_Skin === "black") ? `#666` : `#ccc`,
+            item_skin = (window.STOCK_Skin === "black") ? `#bcc1c7` : `#000`,
+            hover_skin = (window.STOCK_Skin === "black") ? `#f79530` : `#f79530`,
+            grid_line_color = (STOCK_Skin === "black") ? `#2d3039` : `#e9e9e9`,
+            border_color = (STOCK_Skin === "black") ? `#4a4c4f` : `#d7dbe0`;
         // no data
         Highcharts.setOptions({
             lang: {
@@ -259,7 +261,9 @@ STOCK_F9_FV.Modules.FMBDtrend.FMBDTdrawHS = STOCK_F9_FV.Modules.FMBDtrend.FMBDTd
                     autoRotation: [0],
                     step: 5,
                     // step: 30，
-                }
+                },
+                tickColor: grid_line_color,
+                lineColor: grid_line_color,
             },
             // scrollbar: {
             //     enabled: true,
@@ -295,10 +299,11 @@ STOCK_F9_FV.Modules.FMBDtrend.FMBDTdrawHS = STOCK_F9_FV.Modules.FMBDtrend.FMBDTd
                     stackLabels: {
                         // enabled: true,// counter all cols values
                         style: {
-                            fontWeight: 'bold',
-                            color: (Highcharts.theme && Highcharts.theme.textColor) || 'gray'
+                            // fontWeight: 'bold',
+                            // color: (Highcharts.theme && Highcharts.theme.textColor) || 'gray'
                         }
-                    }
+                    },
+                    gridLineColor: grid_line_color,
                 },
                 // yAxis 2
                 {
@@ -312,12 +317,13 @@ STOCK_F9_FV.Modules.FMBDtrend.FMBDTdrawHS = STOCK_F9_FV.Modules.FMBDtrend.FMBDTd
                     stackLabels: {
                         // enabled: true,
                         style: {
-                            fontWeight: 'bold',
-                            color: (Highcharts.theme && Highcharts.theme.textColor) || 'gray'
+                            // fontWeight: 'bold',
+                            // color: (Highcharts.theme && Highcharts.theme.textColor) || 'gray'
                         }
                     },
                     opposite: true,// yAxis label right ???
-                    gridLineColor: '#2D3039'// gridLineColor: '#f0f',// highcharts-grid-line
+                    // gridLineColor: '#2D3039'// gridLineColor: '#f0f',// highcharts-grid-line
+                    gridLineColor: grid_line_color,
                 }
             ],
             legend: {
@@ -367,20 +373,34 @@ STOCK_F9_FV.Modules.FMBDtrend.FMBDTdrawHS = STOCK_F9_FV.Modules.FMBDtrend.FMBDTd
             // 情节/绘图选项
             plotOptions: {
                 // (series) type = column (chart)
+                series: {
+                    borderWidth: 0,
+                    // borderColor: 'black',
+                },
                 column: {
                     // stacking: 'normal',// 是否将每个系列的值叠加在一起, 默认是：null
                     // stacking: 'null',
                     // stacking: 'percent',// 百分比堆叠柱形图
                     dataLabels: {
                         // enabled: true,
-                        color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white'
+                        // color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white'
+                        // style: {
+                        //     color: "#fff",
+                        //     textOutline: 0,
+                        // },
+                        // borderWidth: 0,
                     }
                 },
                 spline: {
                     // stacking: 'normal',
                     dataLabels: {
                         enabled: true,
-                        color: "#434348"
+                        // color: "#fff",
+                        style: {
+                            color: "#fff",
+                            // textOutline: 0,// #156099
+                        },
+                        borderWidth: 0,
                     }
                 }
             },
@@ -391,6 +411,7 @@ STOCK_F9_FV.Modules.FMBDtrend.FMBDTdrawHS = STOCK_F9_FV.Modules.FMBDtrend.FMBDTd
                     // 净利润/融资余额与融券余额差值
                     data: shares,
                     color: `#1a75bc`,
+                    // color: "#4781b1",
                     tooltip: {
                         pointFormat: `
                             <span style="color:{point.color}">\u25CF</span>
@@ -402,6 +423,7 @@ STOCK_F9_FV.Modules.FMBDtrend.FMBDTdrawHS = STOCK_F9_FV.Modules.FMBDtrend.FMBDTd
                     type:'spline',
                     yAxis: 1,
                     color: "#fbb728",
+                    // color: "#6ab437",
                     // name: '每股收益',
                     name: '股价',
                     // data: [3, 4, 4, 2, 5],
@@ -450,6 +472,7 @@ STOCK_F9_FV.Modules.FMBDtrend.init = STOCK_F9_FV.Modules.FMBDtrend.init || (
 var STOCK_IP = window.STOCK_IP || `http://10.1.5.202`,
     STOCK_Paths = window.STOCK_Paths || `/webservice/fastview/stock`,
     STOCK_SecCode = window.STOCK_SecCode || `600570.SH`,
+    // STOCK_Skin = window.STOCK_Skin || `black`;
     STOCK_Skin = window.STOCK_Skin || `white`;
 
 

@@ -40,8 +40,8 @@ STOCK_F9_FV.Config.Codes = STOCK_F9_FV.Config.Codes || {
 
 STOCK_F9_FV.Config.Params = STOCK_F9_FV.Config.Params || {
     params: `stockfast05`,
-    params: `news`,
-    params: `bulletin`,
+    // params: `news`,
+    // params: `bulletin`,
 };
 // .SH
 // .SZ
@@ -49,8 +49,25 @@ STOCK_F9_FV.Config.Params = STOCK_F9_FV.Config.Params || {
 
 
 STOCK_F9_FV.Config.URLs = STOCK_F9_FV.Config.URLs || {
-    //
+    dev: `http://10.1.5.202/webservice/devapi/`,
+    prod: `http://10.1.5.202/webservice/api/`,
+    test: `http://10.1.5.202/webservice/testapi/`,
 };
+
+const URLs = STOCK_F9_FV.Config.URLs;
+const Params = STOCK_F9_FV.Config.Params;
+
+export default URLs;
+export {URLs, Params};
+
+// define([
+//     'require',
+//     'dependency'
+// ], function(require, factory) {
+//     'use strict';
+//     //
+// });
+
 
 
 /*

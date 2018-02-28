@@ -146,7 +146,7 @@ tr[data-table-tbody-tr="otc-table-tbody-tr-transactions-leaderboard-make-market"
 
 tr[data-table-tbody-tr="otc-table-tbody-tr-transactions-leaderboard-make-market"]>td[data-td-value="otc-td-value-TLMM"]:nth-of-type(1),
 tr[data-table-tbody-tr="otc-table-tbody-tr-transactions-leaderboard-make-market"]>td[data-td-value="otc-td-value-TLMM"]:nth-of-type(2) {
-    text-align: left;
+    /* text-align: left; */
     padding-left: 4px;
 }
 
@@ -191,6 +191,7 @@ td {
 [data-table-tr="otc-table-tr-transactions-leaderboard-make-market"]>th:nth-last-of-type(1),
 [data-table-tr="otc-table-tr-transactions-leaderboard-make-market"]>th:nth-last-of-type(2) {
     cursor: pointer;
+    text-indent: 8px;
 }
 
 [data-table-tr="otc-table-tr-transactions-leaderboard-make-market"]>th:nth-last-of-type(1)::after,
@@ -198,14 +199,16 @@ td {
     box-sizing: border-box;
     display: inline-block;
     width: 30px;
-    height: 17px;
+    /* width: 25px; */
+/*     height: 17px; */
     content: url("../img/arrow-white.png");
     /* content: ": ↕️"; */
     /* content: "↕ U+2195"; */
     /* ↕ U+2195 */
     /* color: #fff; */
-    /* background: red; */
-    margin-left: 10px;
+/*     background: red; */
+/*     margin-left: 10px; */
+    margin-left: -8px;
 }
 
 
