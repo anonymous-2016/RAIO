@@ -198,7 +198,8 @@
 }
 
 .date_selector td.selected {
-    outline: #3685ff auto 5px;
+    background: #40659c;
+    outline: #9fc6ff auto 5px;
     color: #fff;
     font-weight: bold;
 }
