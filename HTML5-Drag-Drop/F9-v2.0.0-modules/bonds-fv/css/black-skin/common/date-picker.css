@@ -181,8 +181,10 @@
 }
 
 .date_selector td.today {
-    outline: #3685ff auto 1px;
+    background: #3685ff;
+/*     outline: #3685ff auto 1px; */
 /*     background: #FFC107; */
+     color: #fff;
 }
 
 .date_selector td.unselected_month {
@@ -196,14 +198,14 @@
 }
 
 .date_selector td.selected {
-    background: #3685ff;
+    outline: #3685ff auto 5px;
     color: #fff;
     font-weight: bold;
 }
 
 .date_selector td.selectable_day:hover,
 .date_selector td.selectable_day.hover {
-    background: #3685ff;
+    outline: #3685ff auto 5px;
     color: #fff;
     font-weight: bold;
 }

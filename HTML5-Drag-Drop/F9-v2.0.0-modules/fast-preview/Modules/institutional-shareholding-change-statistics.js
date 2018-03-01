@@ -358,8 +358,11 @@ STOCK_F9_FV.Modules.ISCstatistics.ISCSdrawHS = STOCK_F9_FV.Modules.ISCstatistics
                         enabled: true,
                         // color: "#434348",
                         style: {
+                            fontSize: "12px",
+                            // color: "#eee",
+                            fontWeight: "normal",
                             color: "#fff",
-                            // textOutline: 0,
+                            // textOutline: 0,// #156099
                         },
                         borderWidth: 0,
                     }
