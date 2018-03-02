@@ -27,7 +27,7 @@ table.otc-latest-transaction-data-table {
     box-sizing: border-box;
     width: 540px;
     /* height: 127px; */
-    background: #fff;
+/*     background: #fff; */
     /* border: 1px solid #d7dbe0; */
 }
 
@@ -53,7 +53,7 @@ table.otc-latest-transaction-data-table {
     /* border: 1px solid #eee; */
     min-height: 100vh;
     height: auto;
-    background-color: #fff;
+/*     background-color: #fff; */
     margin: 0px auto;
     /* margin-right: 0; */
     padding-top: 9px;

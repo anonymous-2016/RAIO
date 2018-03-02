@@ -64,7 +64,7 @@ OTC_F9_FV.Utils.DOM_query = OTC_F9_FV.Utils.DOM_query || ((str = `[data-sortable
     }
     return result ? result : ``;
 });
-
+/*
 // global variable
 window.OTC_IP = window.OTC_IP || ``;
 window.OTC_PATH = window.OTC_PATH || ``;
@@ -79,7 +79,7 @@ window.OTC_SKIN = OTC_F9_FV.Utils.getParam(`skin`) || `white`;
 window.OTC_IP = window.parent.location.origin.includes("http") ? window.parent.location.origin : `http://10.1.5.202`;
 window.OTC_PATH = `/webservice/fastview/otcper`;
 
-
+ */
 
 // sub namespaces
 OTC_F9_FV.Modules = OTC_F9_FV.Modules || {};
@@ -131,6 +131,7 @@ const initSidebar = () => {
     // btns
     let btn = OTC_F9_FV.Utils.DOM_query(`[data-nav-btn="nav-btn"]`),
         small_btn = OTC_F9_FV.Utils.DOM_query(`[data-nav-small-btn="nav-small-btn"]`),
+        // ???
         container = OTC_F9_FV.Utils.DOM_query(`[data-nav-container="nav-container"]`),
         small_container = OTC_F9_FV.Utils.DOM_query(`[data-nav-small-container="nav-small-container"]`),
         body_container = OTC_F9_FV.Utils.DOM_query(`[data-body-container="data-body-container"]`);
@@ -176,7 +177,7 @@ const initSidebar = () => {
         }
     };
     // init
-    btn.onclick();
+    // btn.onclick();
 };
 // tabs
 const initTabs = () => {
@@ -216,7 +217,7 @@ const initTabs = () => {
 
 // change skin & dynamic insert css link ??? replace css link (blink bug?)
 // css var ???
-document.addEventListener(`DOMContentLoaded`, (e) => {
+/* document.addEventListener(`DOMContentLoaded`, (e) => {
     // console.log("2, (DOMContentLoaded)DOM fully loaded and parsed");
     // load css
     const css_arr = ["index.css", "tabs.css", "common/module.css", "common/modal.css", "common/no-data.css"];
@@ -245,7 +246,7 @@ document.addEventListener(`DOMContentLoaded`, (e) => {
             // use default
         }
     }
-});
+}); */
 
 window.onload = () => {
     // console.log("3, window has been loaded!");

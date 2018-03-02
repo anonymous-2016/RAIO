@@ -141,7 +141,8 @@ btn.onclick = () => {
     let flag = (small_btn.dataset.flag === "true") ? true : false;
     // console.log(`\nbefore & small_btn.dataset.flag =`, small_btn.dataset.flag);
     // reset false
-    small_btn.dataset.flag = "false";
+    small_btn.dataset.flag = "true";
+    // small_btn.dataset.flag = "false";
     // if (flag) {
     //     small_btn.dataset.flag = "false";
     // }else{
@@ -174,13 +175,14 @@ small_btn.onclick = () => {
         body_container.classList.add("h5-dnd-body-container-small");
     }
     // reset true
-    small_btn.dataset.flag = "true";
+    // small_btn.dataset.flag = "true";
+    small_btn.dataset.flag = "false";
 };
 
 const debug = false;
 
 
-window.STOCK_IP = window.STOCK_IP || ``;
+/* window.STOCK_IP = window.STOCK_IP || ``;
 window.STOCK_Paths = window.STOCK_Paths || ``;
 window.STOCK_SecCode = window.STOCK_SecCode || ``;
 window.STOCK_Skin = window.STOCK_Skin || ``;
@@ -190,7 +192,7 @@ window.STOCK_Skin = window.STOCK_Skin || ``;
 window.STOCK_SecCode = STOCK_F9_FV.Utils.getParam(`gilcode`);
 window.STOCK_Skin = STOCK_F9_FV.Utils.getParam(`skin`) || `white`;
 window.STOCK_IP = window.parent.location.origin.includes("http") ? window.parent.location.origin : `http://10.1.5.202`;
-window.STOCK_Paths = `/webservice/fastview/stock`;
+window.STOCK_Paths = `/webservice/fastview/stock`; */
 // console.log("1, window.STOCK_Skin = ", window.STOCK_Skin);
 
 // const css_arr = ["/sidebar.css", "common/module.css", "common/modal.css"];
@@ -216,7 +218,7 @@ window.STOCK_Paths = `/webservice/fastview/stock`;
 // }
 
 // change skin & dynamic insert css link ??? replace css link (blink bug?)
-document.addEventListener(`DOMContentLoaded`, (e) => {
+/* document.addEventListener(`DOMContentLoaded`, (e) => {
     // console.log("2, (DOMContentLoaded)DOM fully loaded and parsed");
     // load css
     const css_arr = ["sidebar.css", "common/module.css", "common/modal.css", "common/more.css"];
@@ -245,7 +247,7 @@ document.addEventListener(`DOMContentLoaded`, (e) => {
             // use default
         }
     }
-});
+}); */
 
 window.onload = () => {
     // console.log("3, window has been loaded!");
@@ -287,7 +289,7 @@ window.onload = () => {
         // <a href="#模块选择" data-uid="modules-a-link">模块选择</a>
         // H5 DnD modules
     }
-    btn.onclick();
+    // btn.onclick();
     btn_universal.onclick();
     let print_btn = document.querySelector(`[data-print="print-title"`);
     print_btn.addEventListener(`click`, () => {

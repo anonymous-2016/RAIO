@@ -20,6 +20,7 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 const BASE_URI = {
     MODULES: './modules',
+    first: `./first`,// first.js
     index: `./index`,
     init: `./init`,
     // modal: `./modal`,
@@ -56,14 +57,18 @@ const OTC_F9 = [
 
 let entry_obj = {};
 
+// index
+entry_obj[BASE_URI.index] = `${BASE_URI.index}`;
+// first css
+entry_obj[BASE_URI.first] = `${BASE_URI.first}`;
+entry_obj[BASE_URI.init] = `${BASE_URI.init}`;
+
 OTC_F9.forEach(
     (item, i) => {
         entry_obj[item] = `${BASE_URI.MODULES}/${item}`;
     }
 );
-// index
-entry_obj[BASE_URI.index] = `${BASE_URI.index}`;
-entry_obj[BASE_URI.init] = `${BASE_URI.init}`;
+
 // entry_obj[BASE_URI.test] = `${BASE_URI.test}`;
 // BouncedModal
 // entry_obj[BASE_URI.modal] = `${BASE_URI.libs}/BouncedModal`;

@@ -40,6 +40,7 @@ const extractSass = new ExtractTextPlugin({
 const BASE_URI = {
     APP: './Modules/',
     MODULES: './Modules',
+    first: `./first`,// first.js
     index: `./sidebar`,
     // index: `./index.js`,
     modal: `./modal`,
@@ -88,6 +89,9 @@ STOCK_F9.forEach(
 );
 // sidebar
 entry_obj[BASE_URI.index] = `${BASE_URI.index}`;
+// first css
+entry_obj[BASE_URI.first] = `${BASE_URI.first}`;
+// init
 entry_obj[BASE_URI.init] = `${BASE_URI.init}`;
 
 // BouncedModal

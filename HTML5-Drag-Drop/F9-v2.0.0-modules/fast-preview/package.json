@@ -17,6 +17,7 @@
         "windows_clear": "rimraf build/js",
         "xapp": "npm run build && cd build && browser-sync start --server --files 'index.html'",
         "open": "cd ../ && browser-sync start --server --files './fast-preview/*.*' && start http://localhost:3000/fast-preview/index.html",
+        "index": "start http://localhost:3000/index.html && browser-sync start --server --files './*.*' ",
         "bat": "start start-browser.bat",
         "starts": "start http://localhost:7777/datas/ && start http://localhost:7777/Info/",
         "test": "echo \"Error: no test specified\" && exit 1"

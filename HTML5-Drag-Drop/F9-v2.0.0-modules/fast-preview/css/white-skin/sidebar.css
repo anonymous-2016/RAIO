@@ -49,7 +49,7 @@ table tr>td {
 [data-delete-module-uid*="delete-module"] {
     max-width: 100px;
     width: 100px;
-    /* float: left; */
+    float: left;
 }
 
 .h5-dnd-nav-container {
