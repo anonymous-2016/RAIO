@@ -1,7 +1,7 @@
 "use strict";
 
 /**
- * @name bills-directly-indirect-subsidy-interest-rates
+ * @name bills-directly-indirect-subsidy-interest-rates 票据直贴/转贴利率
  * @author xgqfrms
  * creadted 2018.01.23
  * @param {* String} url
@@ -191,7 +191,6 @@ OTC_F9_FV.Modules.billsDirectlyIndirectSIR.init = OTC_F9_FV.Modules.billsDirectl
     }
 );
 
-
 var OTC_IP = window.OTC_IP || `http://10.1.5.202`,
     OTC_PATH = window.OTC_PATH || `/webservice/fastview/bond/rate`,
     OTC_COMPARE = window.OTC_COMPARE || ``,
@@ -201,6 +200,17 @@ var OTC_IP = window.OTC_IP || `http://10.1.5.202`,
     OTC_SKIN = window.OTC_SKIN || `white`;
     // OTC_SKIN = window.OTC_SKIN || `black`;
 
+if (OTC_INIT === true) {
+    // self init
+    OTC_F9_FV.Modules.billsDirectlyIndirectSIR.init();
+}else{
+    // relaod module
+}
+const billsDirectlyIndirectSIR = OTC_F9_FV.Modules.billsDirectlyIndirectSIR;
+export default billsDirectlyIndirectSIR;
+export {billsDirectlyIndirectSIR};
+
+
 // OTC_F9_FV.Modules.billsDirectlyIndirectSIR.init({
 //     ip: OTC_IP,
 //     path: OTC_PATH,
@@ -209,18 +219,6 @@ var OTC_IP = window.OTC_IP || `http://10.1.5.202`,
 //     date: OTC_DATE,
 //     skin: OTC_SKIN,
 // });
-
-if (OTC_INIT === true) {
-    // self init
-    // OTC_COMPARE = "0";
-    OTC_F9_FV.Modules.billsDirectlyIndirectSIR.init();
-}else{
-    // relaod module
-}
-
-const billsDirectlyIndirectSIR = OTC_F9_FV.Modules.billsDirectlyIndirectSIR;
-export default billsDirectlyIndirectSIR;
-export {billsDirectlyIndirectSIR};
 
 // OTC_F9_FV.Modules.billsDirectlyIndirectSIR.init();
 // const url = `http://10.1.5.202/webservice/fastview/bond/rate?{"ModelId":"bondratefast16","Compare":"","CompareDate":""}`;

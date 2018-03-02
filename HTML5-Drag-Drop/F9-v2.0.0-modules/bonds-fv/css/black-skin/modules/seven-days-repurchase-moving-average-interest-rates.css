@@ -210,7 +210,7 @@ tr.otc-seven-days-repurchase-moving-average-interest-rates-table-tr {
 
 td.otc-seven-days-repurchase-moving-average-interest-rates-table-td-key {
     box-sizing: border-box;
-    color: #4d4d4d;
+    /* color: #4d4d4d; */
     /* background: #e8eefa; */
     font-size: 12px;
     width: 70px;
@@ -269,6 +269,7 @@ tbody.otc-seven-days-repurchase-moving-average-interest-rates-table-tbody>tr.otc
     white-space: nowrap;
     text-overflow: ellipsis;
     /* background: #f50; */
+    color: #bbc1c7;
     /* text-align: left; */
     /* padding-left: 8px; */
     max-width: 50px;

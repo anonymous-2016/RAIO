@@ -1,7 +1,7 @@
 "use strict";
 
 /**
- * @name corporate-debt-aaa-profitability 城投债AAA收益率(中债)
+ * @name corporate-debt-aaa-profitability 企债AAA收益率(中债)
  * @author xgqfrms
  * creadted 2018.01.23
  * @param {* String} url
@@ -587,21 +587,23 @@ OTC_F9_FV.Modules.corporateDebt3AP.init = OTC_F9_FV.Modules.corporateDebt3AP.ini
         {
             ip,
             path,
-            uid,
+            // uid,
             compare,
             date,
             skin,
         } = {
             ip: `http://10.1.5.202`,
             path: `/webservice/fastview/bond/rate`,
-            uid: `bondratefast04`,
+            // uid: `bondratefast04`,
             compare: OTC_COMPARE,
             date: OTC_DATE,
             skin: OTC_SKIN,
         }
     ) => {
         // let url = `http://10.1.5.202/json/bonds/04.json`,
-        let url = `${ip}${path}?{"ModelId":"${uid}","Compare":"${compare}","CompareDate":"${date}"}`,
+        // let url = `${ip}${path}?{"ModelId":"${uid}","Compare":"${compare}","CompareDate":"${date}"}`,
+        const uid = `bondratefast04`;
+        let url = `${ip}${path}?{"ModelId":"${uid}","Compare":"${compare}"${(compare === "2") ? `,"CompareDate":"${date}"` : ``}}`,
             tbody_uid = `[data-tbody="otc-corporate-debt-aaa-profitability-table-tbody"]`,
             hc_uid = `corporate-debt-aaa-profitability-hs-container`;
         OTC_F9_FV.Modules.corporateDebt3AP(url, tbody_uid, hc_uid, false);
@@ -613,17 +615,29 @@ var OTC_IP = window.OTC_IP || `http://10.1.5.202`,
     OTC_PATH = window.OTC_PATH || `/webservice/fastview/bond/rate`,
     OTC_COMPARE = window.OTC_COMPARE || ``,
     OTC_DATE = window.OTC_DATE || ``,// default today!
+    OTC_INIT = window.OTC_INIT || true,
     OTC_SKIN = window.OTC_SKIN || `white`;
     // OTC_SKIN = window.OTC_SKIN || `black`;
 
-OTC_F9_FV.Modules.corporateDebt3AP.init({
-    ip: OTC_IP,
-    path: OTC_PATH,
-    uid: `bondratefast04`,
-    compare: OTC_COMPARE,
-    date: OTC_DATE,
-    skin: OTC_SKIN,
-});
+if (OTC_INIT === true) {
+    // self init
+    OTC_F9_FV.Modules.corporateDebt3AP.init();
+}else{
+    // relaod module
+}
+
+const corporateDebt3AP = OTC_F9_FV.Modules.corporateDebt3AP;
+export default corporateDebt3AP;
+export {corporateDebt3AP};
+
+// OTC_F9_FV.Modules.corporateDebt3AP.init({
+//     ip: OTC_IP,
+//     path: OTC_PATH,
+//     uid: `bondratefast04`,
+//     compare: OTC_COMPARE,
+//     date: OTC_DATE,
+//     skin: OTC_SKIN,
+// });
 
 // OTC_F9_FV.Modules.corporateDebt3AP.init();
 // const url = `http://10.1.5.202/webservice/fastview/bond/rate?{"ModelId":"bondratefast03","Compare":"","CompareDate":""}`;

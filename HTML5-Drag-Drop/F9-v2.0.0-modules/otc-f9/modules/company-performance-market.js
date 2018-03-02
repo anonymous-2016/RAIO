@@ -592,7 +592,7 @@ OTC_F9_FV.Modules.companyPerformanceMarket.drawHS2 = OTC_F9_FV.Modules.companyPe
                 // 16:9 ratio
                 // marginTop: 30,
                 // marginBottom: 65,
-                plotBorderWidth: 1,
+                // plotBorderWidth: 1,
                 plotBorderColor:  grid_line_color,
                 // marginLeft: 80
             },

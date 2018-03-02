@@ -586,22 +586,24 @@ OTC_F9_FV.Modules.treasuryBondsProfitability.init = OTC_F9_FV.Modules.treasuryBo
         {
             ip,
             path,
-            uid,
+            // uid,
             compare,
             date,
             skin,
         } = {
             ip: `http://10.1.5.202`,
             path: `/webservice/fastview/bond/rate`,
-            uid: `bondratefast05`,
+            // uid: `bondratefast03`,
             compare: OTC_COMPARE,
             date: OTC_DATE,
             skin: OTC_SKIN,
         }
     ) => {
         // let url = `http://10.1.5.202/json/bonds/03.json`,
-        let url = `${ip}${path}?{"ModelId":"${uid}","Compare":"${compare}","CompareDate":"${date}"}`,
+        // let url = `${ip}${path}?{"ModelId":"${uid}","Compare":"${compare}","CompareDate":"${date}"}`,
         // let url = `${ip}${path}?{"ModelId": "${uid}","Compare": "${compare}","CompareDate": "${date}"}`,
+        const uid = `bondratefast03`;
+        let url = `${ip}${path}?{"ModelId":"${uid}","Compare":"${compare}"${(compare === "2") ? `,"CompareDate":"${date}"` : ``}}`,
             tbody_uid = `[data-tbody="otc-treasury-bonds-profitability-table-tbody"]`,
             hc_uid = `treasury-bonds-profitability-hs-container`;
         OTC_F9_FV.Modules.treasuryBondsProfitability(url, tbody_uid, hc_uid, false);
@@ -613,17 +615,28 @@ var OTC_IP = window.OTC_IP || `http://10.1.5.202`,
     OTC_PATH = window.OTC_PATH || `/webservice/fastview/bond/rate`,
     OTC_COMPARE = window.OTC_COMPARE || ``,
     OTC_DATE = window.OTC_DATE || ``,// default today!
+    OTC_INIT = window.OTC_INIT || true,
     OTC_SKIN = window.OTC_SKIN || `white`;
     // OTC_SKIN = window.OTC_SKIN || `black`;
 
-OTC_F9_FV.Modules.treasuryBondsProfitability.init({
-    ip: OTC_IP,
-    path: OTC_PATH,
-    uid: `bondratefast05`,
-    compare: OTC_COMPARE,
-    date: OTC_DATE,
-    skin: OTC_SKIN,
-});
+if (OTC_INIT === true) {
+    // self init
+    OTC_F9_FV.Modules.treasuryBondsProfitability.init();
+}else{
+    // relaod module
+}
+const treasuryBondsProfitability = OTC_F9_FV.Modules.treasuryBondsProfitability;
+export default treasuryBondsProfitability;
+export {treasuryBondsProfitability};
+
+// OTC_F9_FV.Modules.treasuryBondsProfitability.init({
+//     ip: OTC_IP,
+//     path: OTC_PATH,
+//     uid: `bondratefast05`,
+//     compare: OTC_COMPARE,
+//     date: OTC_DATE,
+//     skin: OTC_SKIN,
+// });
 
 // OTC_F9_FV.Modules.treasuryBondsProfitability.init();
 // const url = `http://10.1.5.202/webservice/fastview/bond/rate?{"ModelId":"bondratefast05","Compare":"","CompareDate":""}`;

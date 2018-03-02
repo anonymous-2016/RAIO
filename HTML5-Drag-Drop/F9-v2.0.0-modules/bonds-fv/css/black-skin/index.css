@@ -30,6 +30,9 @@
 /* @import url('./common/reset.css');@import url("../common/module.css"); */
 
 
+/* @import url("./hs-scrollbar.css"); */
+
+
 /* sweetalert btn color */
 
 .warning-alert-style {
@@ -842,6 +845,7 @@ td[data-title="td-colspan"] {
     width: 100%;
     line-height: 23px;
 }
+
 
 /* new plugins */
 

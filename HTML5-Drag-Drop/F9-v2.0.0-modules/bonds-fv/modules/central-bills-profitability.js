@@ -592,21 +592,23 @@ OTC_F9_FV.Modules.centralBillsProfitability.init = OTC_F9_FV.Modules.centralBill
         {
             ip,
             path,
-            uid,
+            // uid,
             compare,
             date,
             skin,
         } = {
             ip: `http://10.1.5.202`,
             path: `/webservice/fastview/bond/rate`,
-            uid: `bondratefast10`,
+            // uid: `bondratefast10`,
             compare: OTC_COMPARE,
             date: OTC_DATE,
             skin: OTC_SKIN,
         }
     ) => {
         // let url = `http://10.1.5.202/json/bonds/10.json`,
-        let url = `${ip}${path}?{"ModelId":"${uid}","Compare":"${compare}","CompareDate":"${date}"}`,
+        // let url = `${ip}${path}?{"ModelId":"${uid}","Compare":"${compare}","CompareDate":"${date}"}`,
+        const uid = `bondratefast10`;
+        let url = `${ip}${path}?{"ModelId":"${uid}","Compare":"${compare}"${(compare === "2") ? `,"CompareDate":"${date}"` : ``}}`,
             tbody_uid = `[data-tbody="otc-central-bills-profitability-table-tbody"]`,
             hc_uid = `central-bills-profitability-hc-container`;
             // js_uid = `#central-bills-profitability-hc-container`;
@@ -620,17 +622,29 @@ var OTC_IP = window.OTC_IP || `http://10.1.5.202`,
     OTC_PATH = window.OTC_PATH || `/webservice/fastview/bond/rate`,
     OTC_COMPARE = window.OTC_COMPARE || ``,
     OTC_DATE = window.OTC_DATE || ``,// default today!
+    OTC_INIT = window.OTC_INIT || true,
     OTC_SKIN = window.OTC_SKIN || `white`;
     // OTC_SKIN = window.OTC_SKIN || `black`;
+//
+if (OTC_INIT === true) {
+    // self init
+    OTC_F9_FV.Modules.centralBillsProfitability.init();
+}else{
+    // relaod module
+}
 
-OTC_F9_FV.Modules.centralBillsProfitability.init({
-    ip: OTC_IP,
-    path: OTC_PATH,
-    uid: `bondratefast10`,
-    compare: OTC_COMPARE,
-    date: OTC_DATE,
-    skin: OTC_SKIN,
-});
+const centralBillsProfitability = OTC_F9_FV.Modules.centralBillsProfitability;
+export default centralBillsProfitability;
+export {centralBillsProfitability};
+
+// OTC_F9_FV.Modules.centralBillsProfitability.init({
+//     ip: OTC_IP,
+//     path: OTC_PATH,
+//     uid: `bondratefast10`,
+//     compare: OTC_COMPARE,
+//     date: OTC_DATE,
+//     skin: OTC_SKIN,
+// });
 
 // OTC_F9_FV.Modules.centralBillsProfitability.init();
 // const url = `http://10.1.5.202/webservice/fastview/bond/rate?{"ModelId":"bondratefast10","Compare":"","CompareDate":""}`;

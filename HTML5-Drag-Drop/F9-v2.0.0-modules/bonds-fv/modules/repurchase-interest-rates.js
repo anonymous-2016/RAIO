@@ -778,8 +778,9 @@ if (OTC_INIT === true) {
 //     OTC_F9_FV.Modules.repurchaseInterestRates.init();
 // }
 
-const repurchaseInterestRates = OTC_F9_FV.Modules.repurchaseInterestRates;
-export default repurchaseInterestRates;
+const repurchaseInterestRates = OTC_F9_FV.Modules.repurchaseInterestRates.init;
+// const repurchaseInterestRates = OTC_F9_FV.Modules.repurchaseInterestRates;
+// export default repurchaseInterestRates;
 export {repurchaseInterestRates};
 
 /*

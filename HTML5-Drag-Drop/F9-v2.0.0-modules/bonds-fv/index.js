@@ -221,6 +221,8 @@ const initTabs = () => {
 
 // change skin & dynamic insert css link ??? replace css link (blink bug?)
 // css var ???
+// white blink bug??? js loader order ??? global var init
+// split init codes
 document.addEventListener(`DOMContentLoaded`, (e) => {
     // console.log("2, (DOMContentLoaded)DOM fully loaded and parsed");
     // load css

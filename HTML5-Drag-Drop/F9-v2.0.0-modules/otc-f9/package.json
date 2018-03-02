@@ -8,6 +8,7 @@
         "app": "npm run rmrf && webpack -p",
         "prod": "webpack -p",
         "dev": "npm run rmrf && webpack -p -w",
+        "start": "npm run dev",
         "page": "cd modules && browser-sync start --server --files './*.html'",
         "index": "browser-sync start --server --files './index.html'",
         "dev & prod": "??? webpack --config webpack.prod.js ???",

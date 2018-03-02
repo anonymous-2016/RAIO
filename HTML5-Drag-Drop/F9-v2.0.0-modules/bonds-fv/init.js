@@ -1,18 +1,24 @@
 "use strict";
 
+
+// utils
+import { getFullTodayDate } from "./utils/full-today";
+
 // import all modules
 import { repurchaseInterestRates } from "./modules/repurchase-interest-rates";
 import { csInterbankDismantleBorrowingIR } from "./modules/cs-interbank-dismantle-borrowing-interest-rates";
 
-// import {  } from "./modules/";
-// import {  } from "./modules/";
-// import {  } from "./modules/";
-// import {  } from "./modules/";
-// import {  } from "./modules/";
-// import {  } from "./modules/";
-// import {  } from "./modules/";
-// import {  } from "./modules/";
-// import {  } from "./modules/";
+import { treasuryBondsProfitability } from "./modules/treasury-bonds-profitability";
+import { corporateDebt3AP } from "./modules/corporate-debt-aaa-profitability";
+import { nationalPolicyDrivenFDP } from "./modules/national-policy-driven-financial-debt-profitability";
+import { commercialBanks3AP } from "./modules/commercial-banks-aaa-profitability";
+
+import { cityInvestmentDebt3AP } from "./modules/city-investment-debt-aaa-profitability";
+import { localGovernmentsDebt3AP } from "./modules/local-governments-debt-aaa-profitability";
+import { mediumShortTermBills3AP } from "./modules/medium-short-term-bills-aaa-profitability";
+import { centralBillsProfitability } from "./modules/central-bills-profitability";
+
+import { dcmPricingCentralHub } from "./modules/dcm-pricing-central-hub";
 
 
 /*
@@ -27,15 +33,8 @@ import { csInterbankDismantleBorrowingIR } from "./modules/cs-interbank-dismantl
 
 
 
-
-
-// utils
-import { getFullTodayDate } from "./utils/full-today";
-
-
 // console.log(`repurchaseInterestRates = \n`, repurchaseInterestRates);
 // console.log(`repurchaseInterestRates.init = \n`, repurchaseInterestRates.init);
-
 // init modules
 // repurchaseInterestRates.init();
 
@@ -57,7 +56,6 @@ setTimeout(() => {
         });
     });
 }, 0);
-
 
 // datepicker
 $(
@@ -179,7 +177,66 @@ const reloadAllModules = (debug = false) => {
         date: OTC_DATE,
         skin: OTC_SKIN,
     };
-    // test
+    /*
+        reload all modules
+    */
+    let ModuleNodeList = document.querySelectorAll(`[data-div-module-uid*="div-module-"]`);
+    for (let i = 0; i < ModuleNodeList.length; i++) {
+        let uid = ModuleNodeList[i].dataset.droppedUid.substr(12);
+        // only reload exist modules
+        switch (uid) {
+            case "bondratefast01":
+                repurchaseInterestRates({...options_obj});
+                // repurchaseInterestRates.init({...options_obj});
+                // 回购利率
+                break;
+            case "bondratefast02":
+                csInterbankDismantleBorrowingIR.init({...options_obj});
+                // 拆借利率
+                break;
+            case "bondratefast03":
+                treasuryBondsProfitability.init({...options_obj});
+                // 国债收益率(中债)
+                break;
+            case "bondratefast04":
+                corporateDebt3AP.init({...options_obj});
+                // 企债AAA收益率(中债)
+                break;
+            case "bondratefast05":
+                nationalPolicyDrivenFDP.init({...options_obj});
+                // 国开政策性金融债收益率(中债)
+                break;
+            case "bondratefast06":
+                commercialBanks3AP.init({...options_obj});
+                // 商业银行AAA收益率(中债)
+                break;
+            case "bondratefast07":
+                cityInvestmentDebt3AP.init({...options_obj});
+                // 城投债AAA收益率(中债)
+                break;
+            case "bondratefast08":
+                localGovernmentsDebt3AP.init({...options_obj});
+                // 地方政府债AAA收益率(中债)
+                break;
+            case "bondratefast09":
+                mediumShortTermBills3AP.init({...options_obj});
+                // 中短期票据AAA收益率(中债)
+                break;
+            case "bondratefast10":
+                centralBillsProfitability.init({...options_obj});
+                // 央票收益率(中债)
+                break;
+            case "bondratefast11":
+                dcmPricingCentralHub.init({...options_obj});
+                // DCM定价中枢
+                break;
+            default:
+                break;
+        }
+    }
+    // repurchaseInterestRates.init({...options_obj});
+    // csInterbankDismantleBorrowingIR.init({...options_obj});
+    // treasuryBondsProfitability.init({...options_obj});
     // repurchaseInterestRates.init({
     //     ip: OTC_IP,
     //     path: OTC_PATH,
@@ -190,10 +247,10 @@ const reloadAllModules = (debug = false) => {
     // });
     // repurchaseInterestRates.init({} = {...options_obj});
     // repurchaseInterestRates.init(options_obj);
-    repurchaseInterestRates.init({...options_obj});
-    csInterbankDismantleBorrowingIR.init({...options_obj});
-    // no need reload modules
-    // 如果某个模块的界面上没有比较日, 当用户切换比较日的时候就不需要重新请求该该模块的数据。
+    /*
+        no need reload modules
+        如果某个模块的界面上没有比较日, 当用户切换比较日的时候就不需要重新请求该该模块的数据。
+    */
     // shiborInterbankDismantleBIR.init({...options_obj});
     // centralBankBenchmarkIR.init({...options_obj});
     // repurchaseSetIR.init({...options_obj});

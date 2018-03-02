@@ -706,16 +706,18 @@ var OTC_IP = window.OTC_IP || `http://10.1.5.202`,
     OTC_SKIN = window.OTC_SKIN || `white`;
     // OTC_SKIN = window.OTC_SKIN || `black`;
 
-
-
 // OTC_INIT = window.OTC_INIT || true,
 // if (OTC_COMPARE === "0") {
 //     OTC_F9_FV.Modules.repurchaseInterestRates.init();
 // }
 
+const uid = `bondratefastXX`;
+    let url = `${ip}${path}?{"ModelId":"${uid}","Compare":"${compare}"${(compare === "2") ? `,"CompareDate":"${date}"` : ``}}`,
+
+OTC_INIT = window.OTC_INIT || true,
+
 if (OTC_INIT === true) {
     // self init
-    // OTC_COMPARE = "0";
     OTC_F9_FV.Modules.repurchaseInterestRates.init();
 }else{
     // relaod module

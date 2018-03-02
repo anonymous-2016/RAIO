@@ -593,21 +593,23 @@ OTC_F9_FV.Modules.mediumShortTermBills3AP.init = OTC_F9_FV.Modules.mediumShortTe
         {
             ip,
             path,
-            uid,
+            // uid,
             compare,
             date,
             skin,
         } = {
             ip: `http://10.1.5.202`,
             path: `/webservice/fastview/bond/rate`,
-            uid: `bondratefast09`,
+            // uid: `bondratefast09`,
             compare: OTC_COMPARE,
             date: OTC_DATE,
             skin: OTC_SKIN,
         }
     ) => {
         // let url = `http://10.1.5.202/json/bonds/09.json`,
-        let url = `${ip}${path}?{"ModelId":"${uid}","Compare":"${compare}","CompareDate":"${date}"}`,
+        // let url = `${ip}${path}?{"ModelId":"${uid}","Compare":"${compare}","CompareDate":"${date}"}`,
+        const uid = `bondratefast09`;
+        let url = `${ip}${path}?{"ModelId":"${uid}","Compare":"${compare}"${(compare === "2") ? `,"CompareDate":"${date}"` : ``}}`,
             tbody_uid = `[data-tbody="otc-medium-short-term-bills-aaa-profitability-table-tbody"]`,
             hc_uid = `medium-short-term-bills-aaa-profitability-hc-container`;
             // js_uid = `#medium-short-term-bills-aaa-profitability-hc-container`;
@@ -619,17 +621,30 @@ var OTC_IP = window.OTC_IP || `http://10.1.5.202`,
     OTC_PATH = window.OTC_PATH || `/webservice/fastview/bond/rate`,
     OTC_COMPARE = window.OTC_COMPARE || ``,
     OTC_DATE = window.OTC_DATE || ``,// default today!
+    OTC_INIT = window.OTC_INIT || true,
     OTC_SKIN = window.OTC_SKIN || `white`;
     // OTC_SKIN = window.OTC_SKIN || `black`;
+//
 
-OTC_F9_FV.Modules.mediumShortTermBills3AP.init({
-    ip: OTC_IP,
-    path: OTC_PATH,
-    uid: `bondratefast09`,
-    compare: OTC_COMPARE,
-    date: OTC_DATE,
-    skin: OTC_SKIN,
-});
+if (OTC_INIT === true) {
+    // self init
+    OTC_F9_FV.Modules.mediumShortTermBills3AP.init();
+}else{
+    // relaod module
+}
+const mediumShortTermBills3AP = OTC_F9_FV.Modules.mediumShortTermBills3AP;
+export default mediumShortTermBills3AP;
+export {mediumShortTermBills3AP};
+
+
+// OTC_F9_FV.Modules.mediumShortTermBills3AP.init({
+//     ip: OTC_IP,
+//     path: OTC_PATH,
+//     uid: `bondratefast09`,
+//     compare: OTC_COMPARE,
+//     date: OTC_DATE,
+//     skin: OTC_SKIN,
+// });
 
 // OTC_F9_FV.Modules.mediumShortTermBills3AP.init();
 // const url = `http://10.1.5.202/webservice/fastview/bond/rate?{"ModelId":"bondratefast09","Compare":"","CompareDate":""}`;

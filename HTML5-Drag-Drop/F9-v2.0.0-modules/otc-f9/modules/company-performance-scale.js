@@ -222,7 +222,7 @@ OTC_F9_FV.Modules.companyPerformanceScale.drawHS = OTC_F9_FV.Modules.companyPerf
                 // 16:9 ratio
                 // marginTop: 30,
                 // marginBottom: 65,
-                plotBorderWidth: 1,
+                // plotBorderWidth: 1,
                 plotBorderColor:  grid_line_color,
                 // marginLeft: 80
             },
@@ -530,8 +530,8 @@ OTC_F9_FV.Modules.companyPerformanceScale.init = OTC_F9_FV.Modules.companyPerfor
 
 var OTC_IP = window.OTC_IP || `http://10.1.5.202`,
     OTC_PATH = window.OTC_PATH || `/webservice/fastview/otcper`,
-    // OTC_SKIN = window.OTC_SKIN || `white`,
-    OTC_SKIN = window.OTC_SKIN || `black`,
+    OTC_SKIN = window.OTC_SKIN || `white`,
+    // OTC_SKIN = window.OTC_SKIN || `black`,
     // OTC_GILCODE = window.OTC_GILCODE || `430007.OC`;// no data
     OTC_GILCODE = window.OTC_GILCODE || `430002.OC`;
 

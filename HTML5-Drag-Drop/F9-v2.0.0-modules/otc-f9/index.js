@@ -852,10 +852,9 @@ const HTML_Template = (uid = ``, loadModule = function(){}, debug = false) => {
                                     <td class="otc-management-layer-profiles-table-td-title">年龄</td>
                                     <td class="otc-management-layer-profiles-table-td-title">学历</td>
                                     <td class="otc-management-layer-profiles-table-td-title">职务</td>
-                                    <!-- <td class="otc-management-layer-profiles-table-td-title">是否在公司领薪</td> -->
-                                    <td class="otc-management-layer-profiles-table-td-title">持股数量(股)</td>
-                                    <td class="otc-management-layer-profiles-table-td-title">占比(%)</td>
-                                    <td class="otc-management-layer-profiles-table-td-title">增减变动(股)</td>
+                                    <td class="otc-management-layer-profiles-table-td-title">持股数量 (万股)</td>
+                                    <td class="otc-management-layer-profiles-table-td-title">占比 (%)</td>
+                                    <td class="otc-management-layer-profiles-table-td-title">增减变动 (万股)</td>
                                 </tr>
                             </thead>
                             <tbody class="otc-management-layer-profiles-table-tbody" data-tbody="otc-management-layer-profiles-table-tbody"></tbody>
@@ -1298,34 +1297,3 @@ setTimeout(() => {
     OTC_F9_FV.Modules.modulesLoader.init();
 }, 0);
 
-
-
-/*
-
-<table class="otc-management-layer-profiles-table"  data-css3-table-bug="otc-management-layer-profiles-table2">
-    <thead class="otc-management-layer-profiles-table-thead">
-        <tr class="otc-management-layer-profiles-table-tr">
-            <td class="otc-management-layer-profiles-table-td-title">姓名</td>
-            <td class="otc-management-layer-profiles-table-td-title">职务</td>
-            <td class="otc-management-layer-profiles-table-td-title">任职起始日</td>
-            <td class="otc-management-layer-profiles-table-td-title">离职日期</td>
-            <td class="otc-management-layer-profiles-table-td-title">在任其他职务</td>
-        </tr>
-    </thead>
-    <tbody class="otc-management-layer-profiles-table-tbody" data-tbody="otc-management-layer-profiles-table-tbody">
-        <!-- <tr class="otc-management-layer-profiles-table-tr">
-            <td class="otc-management-layer-profiles-table-td-value" data-value="data-otc-MLP">张玮</td>
-            <td class="otc-management-layer-profiles-table-td-value" data-value="data-otc-MLP">董事会秘书</td>
-            <td class="otc-management-layer-profiles-table-td-value" data-value="data-otc-MLP">2010-05-05</td>
-            <td class="otc-management-layer-profiles-table-td-value" data-value="data-otc-MLP">2017-05-17</td>
-            <td class="otc-management-layer-profiles-table-td-value" data-value="data-otc-MLP">true</td>
-        </tr> -->
-    </tbody>
-    <tfoot class="otc-management-layer-profiles-table-tfoot">
-        <tr class="otc-management-layer-profiles-table-tr">
-            <td class="otc-management-layer-profiles-table-td-value" data-value="data-otc-MLP"></td>
-        </tr>
-    </tfoot>
-</table>
-
-*/

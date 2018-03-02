@@ -221,7 +221,7 @@ OTC_F9_FV.Modules.companyPerformanceAchievement.drawHS = OTC_F9_FV.Modules.compa
                 // 16:9 ratio
                 // marginTop: 30,
                 // marginBottom: 65,
-                plotBorderWidth: 1,
+                // plotBorderWidth: 1,
                 plotBorderColor:  grid_line_color,
                 // marginLeft: 80
             },
@@ -502,7 +502,7 @@ OTC_F9_FV.Modules.companyPerformanceAchievement.drawHS2 = OTC_F9_FV.Modules.comp
                 // 16:9 ratio
                 // marginTop: 30,
                 // marginBottom: 65,
-                plotBorderWidth: 1,
+                // plotBorderWidth: 1,
                 // marginLeft: 80
                 plotBorderColor: grid_line_color,
             },

@@ -284,9 +284,9 @@ OTC_F9_FV.Modules.managementLayerProfiles.init = OTC_F9_FV.Modules.managementLay
 var OTC_IP = window.OTC_IP || `http://10.1.5.202`,
     OTC_PATH = window.OTC_PATH || `/webservice/fastview/otcper`,
     // OTC_GILCODE = window.OTC_GILCODE || `430000.OC`;
-    OTC_GILCODE = window.OTC_GILCODE || `430007.OC`;
+    // OTC_GILCODE = window.OTC_GILCODE || `430007.OC`;
     // OTC_GILCODE = window.OTC_GILCODE || `834380.OC`;
-    // OTC_GILCODE = window.OTC_GILCODE || `430002.OC`;
+    OTC_GILCODE = window.OTC_GILCODE || `430002.OC`;
 
 
 OTC_F9_FV.Modules.managementLayerProfiles.init({

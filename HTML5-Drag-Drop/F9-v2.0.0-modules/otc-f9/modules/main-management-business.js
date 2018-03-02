@@ -344,7 +344,7 @@ OTC_F9_FV.Modules.mainManagementBusiness.drawHS = OTC_F9_FV.Modules.mainManageme
                 // 16:9 ratio
                 // marginTop: 30,
                 // marginBottom: 65,
-                plotBorderWidth: 1,
+                // plotBorderWidth: 1,
                 // marginLeft: 80
             },
             title: {
@@ -654,7 +654,7 @@ OTC_F9_FV.Modules.mainManagementBusiness.drawHS2 = OTC_F9_FV.Modules.mainManagem
                 // 16:9 ratio
                 // marginTop: 30,
                 // marginBottom: 65,
-                plotBorderWidth: 1,
+                // plotBorderWidth: 1,
                 // marginLeft: 80
             },
             title: {

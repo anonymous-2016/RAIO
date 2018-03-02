@@ -764,21 +764,23 @@ OTC_F9_FV.Modules.dcmPricingCentralHub.init = OTC_F9_FV.Modules.dcmPricingCentra
         {
             ip,
             path,
-            uid,
+            // uid,
             compare,
             date,
             skin,
         } = {
             ip: `http://10.1.5.202`,
             path: `/webservice/fastview/bond/rate`,
-            uid: `bondratefast11`,
+            // uid: `bondratefast11`,
             compare: OTC_COMPARE,
             date: OTC_DATE,
             skin: OTC_SKIN,
         }
     ) => {
         // let url = `http://10.1.5.202/json/bonds/04.json`,
-        let url = `${ip}${path}?{"ModelId":"${uid}","Compare":"${compare}","CompareDate":"${date}"}`,
+        // let url = `${ip}${path}?{"ModelId":"${uid}","Compare":"${compare}","CompareDate":"${date}"}`,
+        const uid = `bondratefast11`;
+        let url = `${ip}${path}?{"ModelId":"${uid}","Compare":"${compare}"${(compare === "2") ? `,"CompareDate":"${date}"` : ``}}`,
             tbody_uid = `[data-tbody="otc-dcm-pricing-central-hub-table-tbody"]`,
             hc_uid = `dcm-pricing-central-hub-hs-container`;
         OTC_F9_FV.Modules.dcmPricingCentralHub(url, tbody_uid, hc_uid, false);
@@ -791,17 +793,28 @@ var OTC_IP = window.OTC_IP || `http://10.1.5.202`,
     OTC_COMPARE = window.OTC_COMPARE || ``,
     OTC_DATE = window.OTC_DATE || ``,
     // OTC_DATE = window.OTC_DATE || fullToday(),// default today!
+    OTC_INIT = window.OTC_INIT || true,
     OTC_SKIN = window.OTC_SKIN || `white`;
     // OTC_SKIN = window.OTC_SKIN || `black`;
 
-OTC_F9_FV.Modules.dcmPricingCentralHub.init({
-    ip: OTC_IP,
-    path: OTC_PATH,
-    uid: `bondratefast11`,
-    compare: OTC_COMPARE,
-    date: OTC_DATE,
-    skin: OTC_SKIN,
-});
+if (OTC_INIT === true) {
+    // self init
+    OTC_F9_FV.Modules.dcmPricingCentralHub.init();
+}else{
+    // relaod module
+}
+const dcmPricingCentralHub = OTC_F9_FV.Modules.dcmPricingCentralHub;
+export default dcmPricingCentralHub;
+export {dcmPricingCentralHub};
+
+// OTC_F9_FV.Modules.dcmPricingCentralHub.init({
+//     ip: OTC_IP,
+//     path: OTC_PATH,
+//     uid: `bondratefast11`,
+//     compare: OTC_COMPARE,
+//     date: OTC_DATE,
+//     skin: OTC_SKIN,
+// });
 
 // OTC_F9_FV.Modules.dcmPricingCentralHub.init();
 // const url = `http://10.1.5.202/webservice/fastview/bond/rate?{"ModelId":"bondratefast11","Compare":"","CompareDate":""}`;
