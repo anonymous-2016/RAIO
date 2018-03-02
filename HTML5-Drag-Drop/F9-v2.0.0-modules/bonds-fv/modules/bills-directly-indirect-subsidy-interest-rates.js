@@ -1,7 +1,7 @@
 "use strict";
 
 /**
- * @name bills-directly-indirect-subsidy-interest-rates Shibor
+ * @name bills-directly-indirect-subsidy-interest-rates
  * @author xgqfrms
  * creadted 2018.01.23
  * @param {* String} url
@@ -22,8 +22,8 @@ var OTC_F9_FV = OTC_F9_FV || {};
 // sub namespaces
 OTC_F9_FV.Modules = OTC_F9_FV.Modules || {};
 
-// shiborInterbankDismantleBIR
-OTC_F9_FV.Modules.shiborInterbankDismantleBIR = OTC_F9_FV.Modules.shiborInterbankDismantleBIR || (
+// billsDirectlyIndirectSIR
+OTC_F9_FV.Modules.billsDirectlyIndirectSIR = OTC_F9_FV.Modules.billsDirectlyIndirectSIR || (
     (url = ``, ui_arr = ``, table_uid = ``, debug = false) => {
         let datas = {};
         fetch(url)
@@ -162,32 +162,32 @@ OTC_F9_FV.Modules.shiborInterbankDismantleBIR = OTC_F9_FV.Modules.shiborInterban
     }
 );
 
-
-
-OTC_F9_FV.Modules.shiborInterbankDismantleBIR.init = OTC_F9_FV.Modules.shiborInterbankDismantleBIR.init || (
+OTC_F9_FV.Modules.billsDirectlyIndirectSIR.init = OTC_F9_FV.Modules.billsDirectlyIndirectSIR.init || (
     (
         {
             ip,
             path,
-            uid,
+            // uid,
             compare,
             date,
             skin,
         } = {
             ip: `http://10.1.5.202`,
             path: `/webservice/fastview/bond/rate`,
-            uid: `bondratefast16`,
+            // uid: `bondratefast16`,
             compare: OTC_COMPARE,
             date: OTC_DATE,
             skin: OTC_SKIN,
         }
     ) => {
         // let url = `http://10.1.5.202/json/bonds/12.json`,
-        let url = `${ip}${path}?{"ModelId":"${uid}","Compare":"${compare}","CompareDate":"${date}"}`,
+        // let url = `${ip}${path}?{"ModelId":"${uid}","Compare":"${compare}","CompareDate":"${date}"}`,
+        const uid = `bondratefast16`;
+        let url = `${ip}${path}?{"ModelId":"${uid}","Compare":"${compare}"${(compare === "2") ? `,"CompareDate":"${date}"` : ``}}`,
             table_uid = `.otc-bills-directly-indirect-subsidy-interest-rates-table`,
             ui_arr = ["不限", "珠三角", "长三角", "中西部", "环渤海"];
             // fixed_ui_arr = ["转贴-6M", "珠三角6M", "长三角6M", "中西部6M", "环渤海6M"];
-        OTC_F9_FV.Modules.shiborInterbankDismantleBIR(url, ui_arr, table_uid, false);
+        OTC_F9_FV.Modules.billsDirectlyIndirectSIR(url, ui_arr, table_uid, false);
     }
 );
 
@@ -197,18 +197,31 @@ var OTC_IP = window.OTC_IP || `http://10.1.5.202`,
     OTC_COMPARE = window.OTC_COMPARE || ``,
     OTC_DATE = window.OTC_DATE || ``,
     // OTC_DATE = window.OTC_DATE || fullToday(),// default today!
+    OTC_INIT = window.OTC_INIT || true,
     OTC_SKIN = window.OTC_SKIN || `white`;
     // OTC_SKIN = window.OTC_SKIN || `black`;
 
-OTC_F9_FV.Modules.shiborInterbankDismantleBIR.init({
-    ip: OTC_IP,
-    path: OTC_PATH,
-    uid: `bondratefast16`,
-    compare: OTC_COMPARE,
-    date: OTC_DATE,
-    skin: OTC_SKIN,
-});
+// OTC_F9_FV.Modules.billsDirectlyIndirectSIR.init({
+//     ip: OTC_IP,
+//     path: OTC_PATH,
+//     uid: `bondratefast16`,
+//     compare: OTC_COMPARE,
+//     date: OTC_DATE,
+//     skin: OTC_SKIN,
+// });
 
-// OTC_F9_FV.Modules.shiborInterbankDismantleBIR.init();
+if (OTC_INIT === true) {
+    // self init
+    // OTC_COMPARE = "0";
+    OTC_F9_FV.Modules.billsDirectlyIndirectSIR.init();
+}else{
+    // relaod module
+}
+
+const billsDirectlyIndirectSIR = OTC_F9_FV.Modules.billsDirectlyIndirectSIR;
+export default billsDirectlyIndirectSIR;
+export {billsDirectlyIndirectSIR};
+
+// OTC_F9_FV.Modules.billsDirectlyIndirectSIR.init();
 // const url = `http://10.1.5.202/webservice/fastview/bond/rate?{"ModelId":"bondratefast16","Compare":"","CompareDate":""}`;
 

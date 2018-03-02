@@ -268,7 +268,7 @@ td.otc-equity-shareholder-table-td-key {
     font-size: 12px;
     width: 70px;
     min-width: 70px;
-    max-width: 70px;
+    max-width: 90px;
     height: 23px;
     line-height: 23px;
     text-align: left;
@@ -472,7 +472,7 @@ div[data-titles="data-otc-ES-title"] {
     font-size: 12px;
     width: 100%;
     margin-bottom: 10px;
-    padding-left: 0;
+    padding-left: 8px;
 }
 
 div[data-titles="no-data-otc-ES-title"] {
@@ -507,3 +507,10 @@ table[data-tables="otc-equity-shareholder-table2"]>tbody.otc-equity-shareholder-
 
 
 /* data-right-tr="otc-equity-shareholder-tr-right"  */
+
+
+/* HC & no text-outline */
+
+.highcharts-text-outline {
+    display: none !important;
+}

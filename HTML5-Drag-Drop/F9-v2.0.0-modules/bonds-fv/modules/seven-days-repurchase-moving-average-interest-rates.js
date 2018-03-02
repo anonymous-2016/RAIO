@@ -181,21 +181,23 @@ OTC_F9_FV.Modules.sevenDaysRepurchaseMAIR.init = OTC_F9_FV.Modules.sevenDaysRepu
         {
             ip,
             path,
-            uid,
+            // uid,
             compare,
             date,
             skin,
         } = {
             ip: `http://10.1.5.202`,
             path: `/webservice/fastview/bond/rate`,
-            uid: `bondratefast15`,
+            // uid: `bondratefast15`,
             compare: OTC_COMPARE,
             date: OTC_DATE,
             skin: OTC_SKIN,
         }
     ) => {
         // let url = `http://10.1.5.202/json/bonds/13.json`,
-        let url = `${ip}${path}?{"ModelId":"${uid}","Compare":"${compare}","CompareDate":"${date}"}`,
+        // let url = `${ip}${path}?{"ModelId":"${uid}","Compare":"${compare}","CompareDate":"${date}"}`,
+        const uid = `bondratefast15`;
+        let url = `${ip}${path}?{"ModelId":"${uid}","Compare":"${compare}"${(compare === "2") ? `,"CompareDate":"${date}"` : ``}}`,
             table_uid = `.otc-seven-days-repurchase-moving-average-interest-rates-table`,
             ui_arr = ["b0", "b1w", "b_1w", "b2w", "b_2w", "b3w", "b_3w", "b1m", "b_1m", "b2m", "b_2m", "b3m", "b_3m", "b4m", "b_4m", "b5m", "b_5m", "b6m", "b_6m", "b7m", "b_7m", "b8m", "b_8m", "b9m", "b_9m", "b10m", "b_10m", "b11m", "b_11m", "b12m", "b_12m"];// no "rq"
         OTC_F9_FV.Modules.sevenDaysRepurchaseMAIR(url, ui_arr, table_uid, false);
@@ -208,17 +210,31 @@ var OTC_IP = window.OTC_IP || `http://10.1.5.202`,
     OTC_COMPARE = window.OTC_COMPARE || ``,
     OTC_DATE = window.OTC_DATE || ``,
     // OTC_DATE = window.OTC_DATE || fullToday(),// default today!
+    OTC_INIT = window.OTC_INIT || true,
     OTC_SKIN = window.OTC_SKIN || `white`;
     // OTC_SKIN = window.OTC_SKIN || `black`;
 
-OTC_F9_FV.Modules.sevenDaysRepurchaseMAIR.init({
-    ip: OTC_IP,
-    path: OTC_PATH,
-    uid: `bondratefast15`,
-    compare: OTC_COMPARE,
-    date: OTC_DATE,
-    skin: OTC_SKIN,
-});
+// OTC_F9_FV.Modules.sevenDaysRepurchaseMAIR.init({
+//     ip: OTC_IP,
+//     path: OTC_PATH,
+//     uid: `bondratefast15`,
+//     compare: OTC_COMPARE,
+//     date: OTC_DATE,
+//     skin: OTC_SKIN,
+// });
+
+if (OTC_INIT === true) {
+    // self init
+    // OTC_COMPARE = "0";
+    OTC_F9_FV.Modules.sevenDaysRepurchaseMAIR.init();
+}else{
+    // relaod module
+}
+
+const sevenDaysRepurchaseMAIR = OTC_F9_FV.Modules.sevenDaysRepurchaseMAIR;
+export default sevenDaysRepurchaseMAIR;
+export {sevenDaysRepurchaseMAIR};
+
 
 // OTC_F9_FV.Modules.sevenDaysRepurchaseMAIR.init();
 // const url = `http://10.1.5.202/webservice/fastview/bond/rate?{"ModelId":"bondratefast15","Compare":"","CompareDate":""}`;

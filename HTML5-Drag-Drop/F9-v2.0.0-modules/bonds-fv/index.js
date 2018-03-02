@@ -73,7 +73,7 @@ window.OTC_SKIN = window.OTC_SKIN || ``;
 // datepicker
 window.OTC_COMPARE = window.OTC_COMPARE || `0`;// default
 window.OTC_DATE = window.OTC_DATE || ``;// today ???no need
-
+window.OTC_INIT = window.OTC_INIT || true;// init module
 
 // set params before DOM ready!
 // window.OTC_GILCODE = OTC_F9_FV.Utils.getParam(`gilcode`);
@@ -198,11 +198,13 @@ const initTabs = () => {
         let right_uids = ["bondratefast02", "bondratefast12", "bondratefast13", "bondratefast14", "bondratefast15", "bondratefast16", "bondratefast11"];
         OTC_F9_FV.Modules.loadAllModules.init(sortable_module_containers[0], left_uids);
         OTC_F9_FV.Modules.loadAllModules.init(sortable_module_containers[1], right_uids);
+        window.OTC_INIT = false;
     };
     btn_customize.onclick = (e) => {
         sortable_module_containers[0].innerHTML = "";
         sortable_module_containers[1].innerHTML = "";
         a_modules.click();
+        window.OTC_INIT = true;
     };
     // btn_module_setting.addEventListener(`click`, (e) => {
     //     const title = `Sorry for that, it still in developing!`;
@@ -2166,7 +2168,10 @@ OTC_F9_FV.Modules.modulesLoader = OTC_F9_FV.Modules.modulesLoader || (
             dragstart: function(e) {
                 // e.preventDefault();
                 // iconUid
-                let iconUid = e.target.dataset.iconUid.substr(12),// data-icon-uid="module-data-bondratefast01"
+                let iconUid = e.target.dataset.iconUid.substr(12),
+                    // data-icon-uid="module-data-bondratefast01"
+                    // "module-data-bondratefast01".substr(12)
+                    // "bondratefast01"
                     droppedUid = e.target.dataset.droppedUid ? e.target.dataset.droppedUid.substr(12) : ``;
                 let uid = iconUid ? iconUid : droppedUid;
                 if (debug) {
@@ -2185,13 +2190,13 @@ OTC_F9_FV.Modules.modulesLoader = OTC_F9_FV.Modules.modulesLoader || (
                 return true;
             },
             dragover: (e) => {
-                if (drop_counter === 0) {
-                    let info_div = document.createElement(`div`);
-                    info_div.innerHTML = "请将模块拖拽到灰色区域内!";
-                    info_div.setAttribute(`id`, `drop_info_div`);
-                    // module_container.insertAdjacentElement(`afterbegin`, info_div);
-                    drop_counter++;
-                }
+                // if (drop_counter === 0) {
+                //     let info_div = document.createElement(`div`);
+                //     info_div.innerHTML = "请将模块拖拽到灰色区域内!";
+                //     info_div.setAttribute(`id`, `drop_info_div`);
+                //     // module_container.insertAdjacentElement(`afterbegin`, info_div);
+                //     drop_counter++;
+                // }
                 e.preventDefault();
                 return true;
             },
@@ -2202,10 +2207,10 @@ OTC_F9_FV.Modules.modulesLoader = OTC_F9_FV.Modules.modulesLoader || (
             drop: function(e) {
                 e.preventDefault();
                 let drop_container_uid = e.target.dataset.sortableBox;
-                if (drop_counter === 1) {
-                    let drop_info_div = document.querySelector(`#drop_info_div`);
-                    drop_counter = 0;
-                }
+                // if (drop_counter === 1) {
+                //     let drop_info_div = document.querySelector(`#drop_info_div`);
+                //     drop_counter = 0;
+                // }
                 let uid = e.dataTransfer.getData("text/plain");
                 let div = document.createElement(`div`),
                     sub_div = document.createElement(`div`);
@@ -2229,10 +2234,13 @@ OTC_F9_FV.Modules.modulesLoader = OTC_F9_FV.Modules.modulesLoader || (
                 div.dataset.droppedUid = `module-data-${uid}`;
                 layoutCSS(uid, div);
                 let module_exist_checker = ``;
+                // console.log(`uid = `, uid, uid.length, typeof(uid.length));
                 if (typeof(uid) === "string" && uid.length < 15) {
                     // "bondratefast13".length; // 14 => 15
                     module_exist_checker = document.querySelector(`[data-div-module-uid="div-module-${uid}"]`);
                     // data-div-module-uid="div-module-bondratefast01"
+                }else{
+                    // module_exist_checker = undefined;
                 }
                 // console.log(`module_exist_checker =`, module_exist_checker);
                 if (module_exist_checker === null) {
@@ -2255,24 +2263,28 @@ OTC_F9_FV.Modules.modulesLoader = OTC_F9_FV.Modules.modulesLoader || (
                     }, 0);
                 }else{
                     try {
-                        swal({
-                            title: "此模块已存在!",
-                            text: `
-                                此模块已存在, 不能再次拖放!\n
-                                1 秒后自动关闭.
-                            `,
-                            icon: "warning",
-                            className: "warning-alert-style",
-                            timer: 2000,
-                            // buttons: false,
-                            button: {
-                                text: "关闭",
-                                value: true,
-                                visible: true,
-                                // className: "warning-alert-btn-style",
-                                closeModal: true
-                            }
-                        });
+                        if (module_exist_checker === `` & uid.length > 14) {
+                            // console.log("bug , 此模块已存在!");
+                        }else{
+                            swal({
+                                title: "此模块已存在!",
+                                text: `
+                                    此模块已存在, 不能再次拖放!\n
+                                    1 秒后自动关闭.
+                                `,
+                                icon: "warning",
+                                className: "warning-alert-style",
+                                timer: 2000,
+                                // buttons: false,
+                                button: {
+                                    text: "关闭",
+                                    value: true,
+                                    visible: true,
+                                    // className: "warning-alert-btn-style",
+                                    closeModal: true
+                                }
+                            });
+                        }
                     } catch (error) {
                         console.log(`%c Sorry, some errors occurred!`, `color: #f0f`);
                     }

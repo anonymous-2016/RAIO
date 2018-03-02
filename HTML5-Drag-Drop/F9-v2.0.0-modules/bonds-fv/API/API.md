@@ -178,7 +178,7 @@ style: {
     bondratefast02  拆借利率
     bondratefast12  shibor
     bondratefast13  央行基准利率
-    
+
     bondratefast14  回购定盘利率
     bondratefast15  七日回购移动平均利率
     bondratefast16  票据直贴/转贴利率
@@ -264,8 +264,13 @@ Compare：--比较日标志
 "2: 自定义"
 CompareDate：--比较日，（比较日标志=2时有效，不为2的时候可传可不传）
 
-// 是你描述不清楚: 应该说清楚，比较日标志为2时，CompareDate 必传; 比较日标志不为2的时候, CompareDate可传/可不传。
+// 比较日标志为2时，CompareDate 必传; 比较日标志不为2的时候, CompareDate可传/可不传。
 
+// 如果某个模块的3个接口返回的数据都一样，我只要请求一次就行了，不用在用户进行日期条件过滤的时候，重新请求数据了。
+
+/*
+    如果某个模块的界面上没有比较日, 当用户切换比较日的时候就不需要重新请求该该模块的数据。
+*/
 
 // 分析日===今天
 

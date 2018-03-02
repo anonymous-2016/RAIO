@@ -116,7 +116,7 @@ OTC_F9_FV.Modules.companyPerformanceMarket = OTC_F9_FV.Modules.companyPerformanc
                             // typeof null & "object"
                             const shitAPI = () => {
                                 // `暂无数据` & no data!
-                                console.log(`json is empty! = \n`, json);
+                                // console.log(`json is empty! = \n`, json);
                                 const arr_obj = {};
                                 arr_obj.industry_average = [];
                                 arr_obj.market_average = [];
@@ -266,7 +266,11 @@ OTC_F9_FV.Modules.companyPerformanceMarket.drawHS = OTC_F9_FV.Modules.companyPer
         container_uid = ``,
         debug = false
     ) => {
-        let {time, otc_index, up_down_amplitude} = datas;
+        let {
+            time,
+            otc_index,
+            up_down_amplitude
+        } = datas;
         // let {time, otc_index, up_down_amplitude} = {...datas};
         // console.log(`container_uid = \n`, container_uid);
         // console.log(`time = \n`, time);
@@ -285,6 +289,7 @@ OTC_F9_FV.Modules.companyPerformanceMarket.drawHS = OTC_F9_FV.Modules.companyPer
         const {color, colors, optioncolor, gridColor, legendColor, yAxisColor, index_color} = {...chart_css};
         // SKIN
         let skin_color = (OTC_SKIN === "black") ? `#0b1016` : `#fff`,
+            grid_line_color = (OTC_SKIN === "black") ? `#2d3039` : `#e9e9e9`,
             legend_item_color = (OTC_SKIN === "black") ? `#fff` : `#0b1016`,
             legend_item_hover_color = (OTC_SKIN === "black") ? `#f79530` : `#000`,
             legend_bg_color = (OTC_SKIN === "black") ? `#0b1016` : `#fff`;
@@ -335,7 +340,10 @@ OTC_F9_FV.Modules.companyPerformanceMarket.drawHS = OTC_F9_FV.Modules.companyPer
                     // autoRotation: [0],// autoRotation:'false',
                     // step: 100,
                     // step: 2,
-                }
+                },
+                tickColor: grid_line_color,
+                lineColor: grid_line_color,
+                gridLineColor: grid_line_color,
             },
             credits: {
                 enabled: false,// enabled: true,
@@ -363,6 +371,7 @@ OTC_F9_FV.Modules.companyPerformanceMarket.drawHS = OTC_F9_FV.Modules.companyPer
                             color: Highcharts.getOptions().colors[1]
                         }
                     },
+                    gridLineColor: grid_line_color,
                     // stackLabels: {// stackLabels
                     //     enabled: true,
                     //     style: {
@@ -398,7 +407,8 @@ OTC_F9_FV.Modules.companyPerformanceMarket.drawHS = OTC_F9_FV.Modules.companyPer
                     //     }
                     // },
                     opposite: true,
-                    gridLineColor: '#2D3039'
+                    // gridLineColor: '#2D3039',
+                    gridLineColor: grid_line_color,
                 }
             ],
             legend: {
@@ -524,12 +534,18 @@ OTC_F9_FV.Modules.companyPerformanceMarket.drawHS2 = OTC_F9_FV.Modules.companyPe
         container_uid = ``,
         debug = false
     ) => {
-        let {code, change_rate, industry_average, market_average} = datas;
+        let {
+            code,
+            change_rate,
+            industry_average,
+            market_average
+        } = datas;
         // console.log(`drawHS2 datas = `, JSON.stringify(datas, null, 4));
         let v1 = market_average[0],
             v2 = industry_average[0],
-            len = code.length !== undefined ? (code.length - 1) : (6 - 1);
-        for (let i = 0; i < len; i++) {
+            len =(code.length !== undefined ? (code.length - 1) : (6 - 1));
+            //
+        for (let i = 0; i < (code.length - 1); i++) {
             market_average.push(v1);
             industry_average.push(v2);
         }
@@ -547,6 +563,7 @@ OTC_F9_FV.Modules.companyPerformanceMarket.drawHS2 = OTC_F9_FV.Modules.companyPe
         // console.log(`market_average = \n`, market_average);
         const {color, colors, optioncolor, gridColor, legendColor, yAxisColor, index_color} = {...chart_css};
         let skin_color = (OTC_SKIN === "black") ? `#0b1016` : `#fff`,
+            grid_line_color = (OTC_SKIN === "black") ? `#2d3039` : `#e9e9e9`,
             legend_item_color = (OTC_SKIN === "black") ? `#fff` : `#0b1016`,
             legend_item_hover_color = (OTC_SKIN === "black") ? `#f79530` : `#000`,
             legend_bg_color = (OTC_SKIN === "black") ? `#0b1016` : `#fff`;
@@ -576,6 +593,7 @@ OTC_F9_FV.Modules.companyPerformanceMarket.drawHS2 = OTC_F9_FV.Modules.companyPe
                 // marginTop: 30,
                 // marginBottom: 65,
                 plotBorderWidth: 1,
+                plotBorderColor:  grid_line_color,
                 // marginLeft: 80
             },
             title: {
@@ -595,6 +613,9 @@ OTC_F9_FV.Modules.companyPerformanceMarket.drawHS2 = OTC_F9_FV.Modules.companyPe
                     autoRotation: [0],// autoRotation:'false',
                     step: 1
                 },
+                tickColor: grid_line_color,
+                lineColor: grid_line_color,
+                gridLineColor: grid_line_color,
                 // plotLines: [{
                 //     color: 'black',
                 //     dashStyle: 'dot',
@@ -623,7 +644,7 @@ OTC_F9_FV.Modules.companyPerformanceMarket.drawHS2 = OTC_F9_FV.Modules.companyPe
                     // x: -50,
                     // y: -50,
                     // type: 'logarithmic',
-                    min: 0,
+                    // min: 0,
                     // floor: 0,
                     // ceiling: 100,
                     // max: 100,
@@ -637,6 +658,7 @@ OTC_F9_FV.Modules.companyPerformanceMarket.drawHS2 = OTC_F9_FV.Modules.companyPe
                             color: Highcharts.getOptions().colors[1]
                         }
                     },
+                    gridLineColor: grid_line_color,
                     // stackLabels: {// stackLabels
                     //     enabled: true,
                     //     style: {
@@ -727,16 +749,17 @@ OTC_F9_FV.Modules.companyPerformanceMarket.drawHS2 = OTC_F9_FV.Modules.companyPe
             // 情节/绘图选项
             plotOptions: {
                 // (series) type = column (chart)
-                // column: {
-                //     // stacking: 'normal',// 是否将每个系列的值叠加在一起, 默认是：null
-                //     // stacking: 'null',
-                //     // stacking: 'percent',// 百分比堆叠柱形图
-                //     dataLabels: {
-                //         enabled: true,
-                //         // color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white'
-                //         color: "#434348"
-                //     }
-                // },
+                column: {
+                    // stacking: 'normal',// 是否将每个系列的值叠加在一起, 默认是：null
+                    // stacking: 'null',
+                    // stacking: 'percent',// 百分比堆叠柱形图
+                    // dataLabels: {
+                    //     enabled: true,
+                    //     // color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white'
+                    //     color: "#434348"
+                    // },
+                    borderWidth: 0,
+                },
                 // spline: {
                 //     stacking: 'normal',
                 //     dataLabels: {
@@ -804,6 +827,7 @@ OTC_F9_FV.Modules.companyPerformanceMarket.drawHS2 = OTC_F9_FV.Modules.companyPe
                     // type: 'spline',
                     // yAxis: 1, // 0 ???
                     color: "skyblue",
+                    negativeColor: '#00ce9b',
                     name: '月平均换手率',
                     data: change_rate,
                     zIndex: 1,
@@ -859,8 +883,8 @@ OTC_F9_FV.Modules.companyPerformanceMarket.init = OTC_F9_FV.Modules.companyPerfo
 
 var OTC_IP = window.OTC_IP || `http://10.1.5.202`,
     OTC_PATH = window.OTC_PATH || `/webservice/fastview/otcper`,
-    // OTC_SKIN = window.OTC_SKIN || `black`,
-    OTC_SKIN = window.OTC_SKIN || `white`,
+    OTC_SKIN = window.OTC_SKIN || `black`,
+    // OTC_SKIN = window.OTC_SKIN || `white`,
     // OTC_GILCODE = window.OTC_GILCODE || `430007.OC`;// no data
     OTC_GILCODE = window.OTC_GILCODE || `430003.OC`;
     // OTC_GILCODE = window.OTC_GILCODE || `430002.OC`;

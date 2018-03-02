@@ -110,14 +110,21 @@ tr {
     height: 23px;
     line-height: 23px;
     /* color: red; */
+    border: 1px solid #d7dbe0;
+    border-left: none;
+    border-bottom: none;
 }
+
+
+/* overflow-y: auto; & auto show/hide scrollbar */
 
 [data-float="float-div"] {
     box-sizing: border-box;
     /* width: 242px; */
     width: 234px;
     /* max-height: 450px; */
-    overflow-y: scroll;
+    /* overflow-y: scroll; */
+    overflow-y: auto;
     border-top: 1px solid #d7e0eb;
     border-right: 1px solid #d7e0eb;
     border-bottom: 1px solid #d7e0eb;
@@ -128,6 +135,10 @@ tr {
 [data-float="float-div"]>p {
     line-height: 23px;
     height: 23px;
+}
+
+[data-float="float-div"]>p::first-line {
+    text-indent: 8px;
 }
 
 

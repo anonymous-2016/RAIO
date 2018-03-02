@@ -166,12 +166,16 @@ OTC_F9_FV.Modules.companyPerformanceAchievement.drawHS = OTC_F9_FV.Modules.compa
         container_uid = ``,
         debug = false
     ) => {
-        let {code, share_earnings, share_earnings_average} = {...datas};
+        let {
+            code,
+            share_earnings,
+            share_earnings_average
+        } = {...datas};
         // console.log(`share_earnings = \n`, share_earnings);
         // console.log(`time = \n`, time);
         // let max_time = (time.length-10);
         let v1 = share_earnings_average[0]
-        for (let i = 0; i < 4; i++) {
+        for (let i = 0; i < (code.length - 1); i++) {
             share_earnings_average.push(v1);
         }
         const chart_css = {
@@ -186,6 +190,7 @@ OTC_F9_FV.Modules.companyPerformanceAchievement.drawHS = OTC_F9_FV.Modules.compa
         const {color, colors, optioncolor, gridColor, legendColor, yAxisColor, index_color} = {...chart_css};
         // SKIN
         let skin_color = (OTC_SKIN === "black") ? `#0b1016` : `#fff`,
+            grid_line_color = (OTC_SKIN === "black") ? `#2d3039` : `#e9e9e9`,
             legend_item_color = (OTC_SKIN === "black") ? `#fff` : `#0b1016`,
             legend_item_hover_color = (OTC_SKIN === "black") ? `#f79530` : `#000`,
             legend_bg_color = (OTC_SKIN === "black") ? `#0b1016` : `#fff`;
@@ -217,6 +222,7 @@ OTC_F9_FV.Modules.companyPerformanceAchievement.drawHS = OTC_F9_FV.Modules.compa
                 // marginTop: 30,
                 // marginBottom: 65,
                 plotBorderWidth: 1,
+                plotBorderColor:  grid_line_color,
                 // marginLeft: 80
             },
             title: {
@@ -235,7 +241,10 @@ OTC_F9_FV.Modules.companyPerformanceAchievement.drawHS = OTC_F9_FV.Modules.compa
                 labels: {
                     autoRotation: [0],// autoRotation:'false',
                     step: 1, // step:  2
-                }
+                },
+                tickColor: grid_line_color,
+                lineColor: grid_line_color,
+                gridLineColor: grid_line_color,
             },
             credits: {
                 enabled: false,// enabled: true,
@@ -249,7 +258,7 @@ OTC_F9_FV.Modules.companyPerformanceAchievement.drawHS = OTC_F9_FV.Modules.compa
                     // x: -50,
                     // y: -50,
                     // type: 'logarithmic',
-                    min: 0,
+                    // min: 0,
                     // floor: 0,
                     // ceiling: 100,
                     // max: 100,
@@ -263,6 +272,7 @@ OTC_F9_FV.Modules.companyPerformanceAchievement.drawHS = OTC_F9_FV.Modules.compa
                             color: Highcharts.getOptions().colors[1]
                         }
                     },
+                    gridLineColor: grid_line_color,
                     // stackLabels: {// stackLabels
                     //     enabled: true,
                     //     style: {
@@ -296,7 +306,8 @@ OTC_F9_FV.Modules.companyPerformanceAchievement.drawHS = OTC_F9_FV.Modules.compa
                     //     }
                     // },
                     opposite: true,
-                    gridLineColor: '#2D3039'
+                    // gridLineColor: '#2D3039',
+                    gridLineColor: grid_line_color,
                 }
             ],
             legend: {
@@ -344,16 +355,18 @@ OTC_F9_FV.Modules.companyPerformanceAchievement.drawHS = OTC_F9_FV.Modules.compa
             // 情节/绘图选项
             plotOptions: {
                 // (series) type = column (chart)
-                // column: {
-                //     // stacking: 'normal',// 是否将每个系列的值叠加在一起, 默认是：null
-                //     // stacking: 'null',
-                //     // stacking: 'percent',// 百分比堆叠柱形图
-                //     dataLabels: {
-                //         enabled: true,
-                //         // color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white'
-                //         color: "#434348"
-                //     }
-                // },
+                column: {
+                    // stacking: 'normal',// 是否将每个系列的值叠加在一起, 默认是：null
+                    // stacking: 'null',
+                    // stacking: 'percent',// 百分比堆叠柱形图
+                    // dataLabels: {
+                    //     enabled: true,
+                    //     // color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white'
+                    //     color: "#434348"
+                    // },
+                    borderWidth: 0,
+                    // borderColor: `#fff`,// default
+                },
                 // spline: {
                 //     stacking: 'normal',
                 //     dataLabels: {
@@ -368,6 +381,7 @@ OTC_F9_FV.Modules.companyPerformanceAchievement.drawHS = OTC_F9_FV.Modules.compa
                     name: '每股收益(TTM)',
                     // color: "#f04949",
                     color: '#41aae2',
+                    negativeColor: '#00ce9b',
                     data: share_earnings,
                     zIndex: 1,
                     tooltip: {
@@ -427,24 +441,37 @@ OTC_F9_FV.Modules.companyPerformanceAchievement.drawHS2 = OTC_F9_FV.Modules.comp
         container_uid = ``,
         debug = false
     ) => {
-        let {code, ttm, ttm_average} = {...datas};
+        let {
+            code,
+            ttm,
+            ttm_average
+        } = {...datas};
         // console.log(`ttm = \n`, ttm);
         let v1 = ttm_average[0]
-        for (let i = 0; i < 4; i++) {
+        for (let i = 0; i < (code.length - 1); i++) {
             ttm_average.push(v1);
         }
         const chart_css = {
             color: `#0B1016`,
-            colors: ['#ff1919', '#ffff66', '#92d050'],
+            colors: ['#ff1919', '#ffff66', '#92d050'],// over-write default colors
             index_color: `#2196f3`,
             optioncolor: `red`,
             gridColor: `#2D3039`,
             legendColor: `#fff`,
             yAxisColor: `#FFB400`,
         };
-        const {color, colors, optioncolor, gridColor, legendColor, yAxisColor, index_color} = {...chart_css};
+        const {
+            color,
+            colors,
+            optioncolor,
+            gridColor,
+            legendColor,
+            yAxisColor,
+            index_color
+        } = {...chart_css};
         // SKIN
         let skin_color = (OTC_SKIN === "black") ? `#0b1016` : `#fff`,
+            grid_line_color = (OTC_SKIN === "black") ? `#2d3039` : `#e9e9e9`,
             legend_item_color = (OTC_SKIN === "black") ? `#fff` : `#0b1016`,
             legend_item_hover_color = (OTC_SKIN === "black") ? `#f79530` : `#000`,
             legend_bg_color = (OTC_SKIN === "black") ? `#0b1016` : `#fff`;
@@ -477,6 +504,7 @@ OTC_F9_FV.Modules.companyPerformanceAchievement.drawHS2 = OTC_F9_FV.Modules.comp
                 // marginBottom: 65,
                 plotBorderWidth: 1,
                 // marginLeft: 80
+                plotBorderColor: grid_line_color,
             },
             title: {
                 // text: '近一个月涨跌幅',
@@ -494,7 +522,10 @@ OTC_F9_FV.Modules.companyPerformanceAchievement.drawHS2 = OTC_F9_FV.Modules.comp
                 // labels: {
                 //     autoRotation: [0],// autoRotation:'false',
                 //     step: 1, // 1
-                // }
+                // },
+                tickColor: grid_line_color,
+                lineColor: grid_line_color,
+                gridLineColor: grid_line_color,
             },
             credits: {
                 enabled: false,// enabled: true,
@@ -508,7 +539,7 @@ OTC_F9_FV.Modules.companyPerformanceAchievement.drawHS2 = OTC_F9_FV.Modules.comp
                     // x: -50,
                     // y: -50,
                     // type: 'logarithmic',
-                    min: 0,
+                    // min: 0,
                     // floor: 0,
                     // ceiling: 100,
                     // max: 100,
@@ -528,7 +559,8 @@ OTC_F9_FV.Modules.companyPerformanceAchievement.drawHS2 = OTC_F9_FV.Modules.comp
                     //         fontWeight: 'bold',
                     //         color: (Highcharts.theme && Highcharts.theme.textColor) || 'gray'
                     //     }
-                    // }
+                    // },
+                    gridLineColor: grid_line_color,
                 }, // yAxis 2
                 {
                     // x: -50,
@@ -555,7 +587,8 @@ OTC_F9_FV.Modules.companyPerformanceAchievement.drawHS2 = OTC_F9_FV.Modules.comp
                     //     }
                     // },
                     opposite: true,
-                    gridLineColor: '#2D3039'
+                    // gridLineColor: '#2D3039',
+                    gridLineColor: grid_line_color,
                 }
             ],
             legend: {
@@ -603,16 +636,18 @@ OTC_F9_FV.Modules.companyPerformanceAchievement.drawHS2 = OTC_F9_FV.Modules.comp
             // 情节/绘图选项
             plotOptions: {
                 // (series) type = column (chart)
-                // column: {
-                //     // stacking: 'normal',// 是否将每个系列的值叠加在一起, 默认是：null
-                //     // stacking: 'null',
-                //     // stacking: 'percent',// 百分比堆叠柱形图
-                //     dataLabels: {
-                //         enabled: true,
-                //         // color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white'
-                //         color: "#434348"
-                //     }
-                // },
+                column: {
+                    // stacking: 'normal',// 是否将每个系列的值叠加在一起, 默认是：null
+                    // stacking: 'null',
+                    // stacking: 'percent',// 百分比堆叠柱形图
+                    // dataLabels: {
+                    //     enabled: true,
+                    //     // color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white'
+                    //     color: "#434348"
+                    // },
+                    borderWidth: 0,
+                    // borderColor: `#fff`,// default
+                },
                 // spline: {
                 //     stacking: 'normal',
                 //     dataLabels: {
@@ -627,6 +662,7 @@ OTC_F9_FV.Modules.companyPerformanceAchievement.drawHS2 = OTC_F9_FV.Modules.comp
                     name: '市盈率(TTM)',
                     // color: "#f04949",
                     color: '#41aae2',
+                    negativeColor: '#00ce9b',
                     data: ttm,
                     zIndex: 1,
                     tooltip: {
@@ -650,7 +686,7 @@ OTC_F9_FV.Modules.companyPerformanceAchievement.drawHS2 = OTC_F9_FV.Modules.comp
                     // color: "lawngreen",
                     name: '行业均值',
                     data:   ttm_average,
-                    zIndex: 2,
+                    zIndex: 2,// ??? y1
                     marker : {
                         enabled : true,
                         radius : 0,

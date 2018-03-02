@@ -158,24 +158,48 @@ OTC_F9_FV.Modules.mainManagementBusiness = OTC_F9_FV.Modules.mainManagementBusin
                                     OTC_F9_FV.Modules.mainManagementBusiness.drawHS2(arr_obj2, hsc_uids[1]);
                                     // table
                                     let trs = ``;
+                                    // fixed UI
+                                    // const UI_arr = [];
+                                    let UI_index = ``;
                                     for (let i = 0; i < arr.length; i++) {
-                                        trs += `
-                                            <tr class="otc-main-management-business-table-tr">
-                                                <td class="otc-main-management-business-table-td-value" data-value="data-otc-MMB" title="${arr[i].xm}">
-                                                    ${arr[i].xm}
-                                                </td>
-                                                <td class="otc-main-management-business-table-td-value" data-value="data-otc-MMB">
-                                                    ${arr[i].yysr}
-                                                </td>
-                                                <td class="otc-main-management-business-table-td-value" data-value="data-otc-MMB">
-                                                    ${arr[i].yycb}
-                                                </td>
-                                                <td class="otc-main-management-business-table-td-value" data-value="data-otc-MMB">
-                                                    ${arr[i].yysrzb}
-                                                </td>
-                                            </tr>
-                                        `;
+                                        if (arr[i].xm !== "合计") {
+                                            trs += `
+                                                <tr class="otc-main-management-business-table-tr">
+                                                    <td class="otc-main-management-business-table-td-value" data-value="data-otc-MMB" title="${arr[i].xm}">
+                                                        ${arr[i].xm}
+                                                    </td>
+                                                    <td class="otc-main-management-business-table-td-value" data-value="data-otc-MMB">
+                                                        ${arr[i].yysr}
+                                                    </td>
+                                                    <td class="otc-main-management-business-table-td-value" data-value="data-otc-MMB">
+                                                        ${arr[i].yycb}
+                                                    </td>
+                                                    <td class="otc-main-management-business-table-td-value" data-value="data-otc-MMB">
+                                                        ${arr[i].yysrzb}
+                                                    </td>
+                                                </tr>
+                                            `;
+                                        }else{
+                                            UI_index = i;
+                                        }
                                     }
+                                    // UI_index
+                                    trs += `
+                                        <tr class="otc-main-management-business-table-tr">
+                                            <td class="otc-main-management-business-table-td-value" data-value="data-otc-MMB" title="${arr[UI_index].xm}">
+                                                ${arr[UI_index].xm}
+                                            </td>
+                                            <td class="otc-main-management-business-table-td-value" data-value="data-otc-MMB">
+                                                ${arr[UI_index].yysr}
+                                            </td>
+                                            <td class="otc-main-management-business-table-td-value" data-value="data-otc-MMB">
+                                                ${arr[UI_index].yycb}
+                                            </td>
+                                            <td class="otc-main-management-business-table-td-value" data-value="data-otc-MMB">
+                                                ${arr[UI_index].yysrzb}
+                                            </td>
+                                        </tr>
+                                    `;
                                     tbody_dom.insertAdjacentHTML(`beforeend`, trs);
                                 }else{
                                     // no data
@@ -883,7 +907,7 @@ OTC_F9_FV.Modules.mainManagementBusiness.init = OTC_F9_FV.Modules.mainManagement
             gilcode: `430002.OC`
         }
     ) => {
-        // let url = `http://10.1.5.202/JSON/otc-f9/9.json`,
+        // let url = `http://10.1.5.202/json/otc-f9/9.json`,
         let url = `${ip}${path}${socket}${gilcode}`,
             time_uid = `[data-time="otc-main-management-business-time"]`,
             hst_uid = `[data-titles="data-otc-MMB-title"]`,

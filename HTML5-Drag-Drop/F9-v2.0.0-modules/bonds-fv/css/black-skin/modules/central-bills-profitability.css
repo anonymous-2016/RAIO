@@ -271,7 +271,8 @@ tr.otc-central-bills-profitability-table-tr>td:nth-of-type(3) {
 }
 
 thead.otc-central-bills-profitability-table-thead>tr.otc-central-bills-profitability-table-tr {
-    border-right: 1px solid #4a4c4f;
+/*     border-right: 1px solid #4a4c4f; */
+    border: 1px solid #4a4c4f;
 }
 
 tr.otc-central-bills-profitability-table-tr>td:nth-of-type(n) {

@@ -555,6 +555,10 @@ STOCK_F9_FV.Modules.loadAllModules = STOCK_F9_FV.Modules.loadAllModules || (
                                                 <td class="fv-important-infos-table-td-value" data-value="data-fv-infos"></td>
                                             </tr>
                                             <tr class="fv-important-infos-table-tr">
+                                                <td class="fv-important-infos-table-td-key">无限售条件的流通股本(万股)</td>
+                                                <td class="fv-important-infos-table-td-value" data-value="data-fv-infos"></td>
+                                            </tr>
+                                            <tr class="fv-important-infos-table-tr">
                                                 <td class="fv-important-infos-table-td-key">股息率(%)</td>
                                                 <td class="fv-important-infos-table-td-value" data-value="data-fv-infos"></td>
                                             </tr>
@@ -1699,6 +1703,10 @@ STOCK_F9_FV.Modules.modulesLoader = STOCK_F9_FV.Modules.modulesLoader ||(
                                             </tr>
                                             <tr class="fv-important-infos-table-tr">
                                                 <td class="fv-important-infos-table-td-key">流通股本(万股)</td>
+                                                <td class="fv-important-infos-table-td-value" data-value="data-fv-infos"></td>
+                                            </tr>
+                                            <tr class="fv-important-infos-table-tr">
+                                                <td class="fv-important-infos-table-td-key">无限售条件的流通股本(万股)</td>
                                                 <td class="fv-important-infos-table-td-value" data-value="data-fv-infos"></td>
                                             </tr>
                                             <tr class="fv-important-infos-table-tr">

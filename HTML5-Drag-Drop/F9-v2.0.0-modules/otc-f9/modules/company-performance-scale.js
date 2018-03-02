@@ -169,7 +169,8 @@ OTC_F9_FV.Modules.companyPerformanceScale.drawHS = OTC_F9_FV.Modules.companyPerf
         } = datas;
         let v1 = industry_circulation_value[0],
             v2 = industry_total_value[0];
-        for (let i = 0; i < 4; i++) {
+        // (code.length - 1)
+        for (let i = 0; i < (code.length - 1); i++) {
             industry_circulation_value.push(v1);
             industry_total_value.push(v2);
         }
@@ -190,6 +191,7 @@ OTC_F9_FV.Modules.companyPerformanceScale.drawHS = OTC_F9_FV.Modules.companyPerf
         const {color, colors, optioncolor, gridColor, legendColor, yAxisColor, index_color} = {...chart_css};
         // SKIN
         let skin_color = (OTC_SKIN === "black") ? `#0b1016` : `#fff`,
+            grid_line_color = (OTC_SKIN === "black") ? `#2d3039` : `#e9e9e9`,
             legend_item_color = (OTC_SKIN === "black") ? `#fff` : `#0b1016`,
             legend_item_hover_color = (OTC_SKIN === "black") ? `#f79530` : `#000`,
             legend_bg_color = (OTC_SKIN === "black") ? `#0b1016` : `#ff00ff`;
@@ -221,6 +223,7 @@ OTC_F9_FV.Modules.companyPerformanceScale.drawHS = OTC_F9_FV.Modules.companyPerf
                 // marginTop: 30,
                 // marginBottom: 65,
                 plotBorderWidth: 1,
+                plotBorderColor:  grid_line_color,
                 // marginLeft: 80
             },
             title: {
@@ -241,6 +244,9 @@ OTC_F9_FV.Modules.companyPerformanceScale.drawHS = OTC_F9_FV.Modules.companyPerf
                     // step: 2,
                     step: 1
                 },
+                tickColor: grid_line_color,
+                lineColor: grid_line_color,
+                gridLineColor: grid_line_color,
                 // plotLines: [{
                 //     color: 'black',
                 //     dashStyle: 'dot',
@@ -277,6 +283,7 @@ OTC_F9_FV.Modules.companyPerformanceScale.drawHS = OTC_F9_FV.Modules.companyPerf
                         // text: '换手率',
                         text: '',
                     },
+                    gridLineColor: grid_line_color,
                     // labels: {
                     //     format: '{value}',// 百分比
                     //     style: {
@@ -326,7 +333,7 @@ OTC_F9_FV.Modules.companyPerformanceScale.drawHS = OTC_F9_FV.Modules.companyPerf
                     //         zIndex: 3
                     //     }
                     // ],
-                }
+                },
             ],
             legend: {
                 symbolRadius: 0,
@@ -372,16 +379,17 @@ OTC_F9_FV.Modules.companyPerformanceScale.drawHS = OTC_F9_FV.Modules.companyPerf
             // 情节/绘图选项
             plotOptions: {
                 // (series) type = column (chart)
-                // column: {
-                //     // stacking: 'normal',// 是否将每个系列的值叠加在一起, 默认是：null
-                //     // stacking: 'null',
-                //     // stacking: 'percent',// 百分比堆叠柱形图
-                //     dataLabels: {
-                //         enabled: true,
-                //         // color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white'
-                //         color: "#434348"
-                //     }
-                // },
+                column: {
+                    // stacking: 'normal',// 是否将每个系列的值叠加在一起, 默认是：null
+                    // stacking: 'null',
+                    // stacking: 'percent',// 百分比堆叠柱形图
+                    // dataLabels: {
+                    //     enabled: true,
+                    //     // color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white'
+                    //     color: "#434348"
+                    // },
+                    borderWidth: 0,
+                },
                 // spline: {
                 //     stacking: 'normal',
                 //     dataLabels: {
@@ -522,8 +530,8 @@ OTC_F9_FV.Modules.companyPerformanceScale.init = OTC_F9_FV.Modules.companyPerfor
 
 var OTC_IP = window.OTC_IP || `http://10.1.5.202`,
     OTC_PATH = window.OTC_PATH || `/webservice/fastview/otcper`,
-    OTC_SKIN = window.OTC_SKIN || `white`,
-    // OTC_SKIN = window.OTC_SKIN || `black`,
+    // OTC_SKIN = window.OTC_SKIN || `white`,
+    OTC_SKIN = window.OTC_SKIN || `black`,
     // OTC_GILCODE = window.OTC_GILCODE || `430007.OC`;// no data
     OTC_GILCODE = window.OTC_GILCODE || `430002.OC`;
 

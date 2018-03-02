@@ -660,6 +660,98 @@ console.log(`gilcode `, gilcode, typeof gilcode);
 
 // const url = `http://10.1.5.202/webservice/fastview/stock/stockfast${num}/600570.SH`;
 
+
+
+OTC_F9_FV.Modules.repurchaseInterestRates.init = OTC_F9_FV.Modules.repurchaseInterestRates.init || (
+    (
+        {
+            ip,
+            path,
+            // uid,
+            compare,
+            date,
+            skin,
+        } = {
+            ip: OTC_IP,
+            // ip: `http://10.1.5.202`,
+            path: `/webservice/fastview/bond/rate`,
+            // uid: `bondratefast01`,
+            compare: OTC_COMPARE,
+            date: OTC_DATE,
+            skin: OTC_SKIN,
+        }
+    ) => {
+        // let url = `http://10.1.5.202/json/bonds/04.json`,
+        // let url = (compare === "2") ? `${ip}${path}?{"ModelId":"bondratefast01","Compare":"${compare}","CompareDate":"${date}"}` : `${ip}${path}?{"ModelId":"bondratefast01","Compare":"${compare}"}`,
+        // let url = (compare === "2") ? `${ip}${path}?{"ModelId":"${uid}","Compare":"${compare}","CompareDate":"${date}"}` : `${ip}${path}?{"ModelId":"${uid}","Compare":"${compare}"}`,
+        const uid = `bondratefast12`;
+        let url = `${ip}${path}?{"ModelId":"${uid}","Compare":"${compare}"${(compare === "2") ? `,"CompareDate":"${date}"` : ``}}`,
+        // let url = `${ip}${path}?{"ModelId":"${uid}","Compare":"${compare}","CompareDate":"${date}"}`,
+            tbody_uid = `[data-tbody="otc-repurchase-interest-rates-table-tbody"]`,
+            hc_uid1 = `repurchase-interest-rates-hs-container1`,
+            hc_uid2 = `repurchase-interest-rates-hs-container2`,
+            hc_uids = {hc_uid1, hc_uid2};
+        // console.log(`repurchase-interest-rates & url =\n`, url);
+        OTC_F9_FV.Modules.repurchaseInterestRates(url, tbody_uid, hc_uids, false);
+    }
+);
+
+
+var OTC_IP = window.OTC_IP || `http://10.1.5.202`,
+    OTC_PATH = window.OTC_PATH || `/webservice/fastview/bond/rate`,
+    OTC_COMPARE = window.OTC_COMPARE || `0`,
+    OTC_DATE = window.OTC_DATE || ``,
+    OTC_INIT = window.OTC_INIT || true,
+    // OTC_DATE = window.OTC_DATE || fullToday(),// default today!
+    OTC_SKIN = window.OTC_SKIN || `white`;
+    // OTC_SKIN = window.OTC_SKIN || `black`;
+
+
+
+// OTC_INIT = window.OTC_INIT || true,
+// if (OTC_COMPARE === "0") {
+//     OTC_F9_FV.Modules.repurchaseInterestRates.init();
+// }
+
+if (OTC_INIT === true) {
+    // self init
+    // OTC_COMPARE = "0";
+    OTC_F9_FV.Modules.repurchaseInterestRates.init();
+}else{
+    // relaod module
+}
+
+const repurchaseInterestRates = OTC_F9_FV.Modules.repurchaseInterestRates;
+export default repurchaseInterestRates;
+export {repurchaseInterestRates};
+
+
+
+import { repurchaseInterestRates } from "./modules/repurchase-interest-rates";
+
+// test
+// repurchaseInterestRates.init({
+//     ip: OTC_IP,
+//     path: OTC_PATH,
+//     // uid: ``,
+//     compare: OTC_COMPARE,
+//     date: OTC_DATE,
+//     skin: OTC_SKIN,
+// });
+// repurchaseInterestRates.init({} = {...options_obj});
+// repurchaseInterestRates.init(options_obj);
+repurchaseInterestRates.init({...options_obj});
+
+
+const uid = `bondratefast13`;
+let url = `${ip}${path}?{"ModelId":"${uid}","Compare":"${compare}"${(compare === "2") ? `,"CompareDate":"${date}"` : ``}}`,
+
+
+/*
+    如果某个模块的界面上没有比较日, 当用户切换比较日的时候就不需要重新请求该该模块的数据。
+*/
+
+
 ```
 
 

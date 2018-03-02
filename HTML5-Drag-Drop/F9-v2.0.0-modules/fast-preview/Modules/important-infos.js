@@ -130,7 +130,7 @@ STOCK_F9_FV.Modules.importantInfos.init = STOCK_F9_FV.Modules.importantInfos.ini
     ) => {
         let url = `${ip}${path}${gilcode}`,
             tds = document.querySelectorAll('[data-value="data-fv-infos"]');
-        const ui_arr = ["sjgn", "zyyw", "bdl", "cjl", "jzc", "zgb", "ltgb", "gxl", "cgzb", "mbjg", "zhpj"];
+        const ui_arr = ["sjgn", "zyyw", "bdl", "cjl", "jzc", "zgb", "ltgb", "wxsltgb", "gxl", "cgzb", "mbjg", "zhpj"];
         STOCK_F9_FV.Modules.importantInfos(url, tds, ui_arr, false);
     }
 );

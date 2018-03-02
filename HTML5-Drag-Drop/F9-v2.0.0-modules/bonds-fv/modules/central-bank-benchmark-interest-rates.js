@@ -186,27 +186,28 @@ OTC_F9_FV.Modules.centralBankBenchmarkIR = OTC_F9_FV.Modules.centralBankBenchmar
 );
 
 
-
 OTC_F9_FV.Modules.centralBankBenchmarkIR.init = OTC_F9_FV.Modules.centralBankBenchmarkIR.init || (
     (
         {
             ip,
             path,
-            uid,
+            // uid,
             compare,
             date,
             skin,
         } = {
             ip: `http://10.1.5.202`,
             path: `/webservice/fastview/bond/rate`,
-            uid: `bondratefast13`,
+            // uid: `bondratefast13`,
             compare: OTC_COMPARE,
             date: OTC_DATE,
             skin: OTC_SKIN,
         }
     ) => {
         // let url = `http://10.1.5.202/json/bonds/13.json`,
-        let url = `${ip}${path}?{"ModelId":"${uid}","Compare":"${compare}","CompareDate":"${date}"}`,
+        // let url = `${ip}${path}?{"ModelId":"${uid}","Compare":"${compare}","CompareDate":"${date}"}`,
+        const uid = `bondratefast13`;
+        let url = `${ip}${path}?{"ModelId":"${uid}","Compare":"${compare}"${(compare === "2") ? `,"CompareDate":"${date}"` : ``}}`,
             table_uid = `.otc-central-bank-benchmark-interest-rates-table`,
             ui_arr = ["hq", "y5ysG", "m3", "y5yxG", "m6", "m6yn", "y1", "m6y1", "y2", "y1y3", "y3", "y3y5", "y5", "y5ys", "ztxll", "m6Z", "d20", "y1Z", "m3Z"];
         OTC_F9_FV.Modules.centralBankBenchmarkIR(url, ui_arr, table_uid, false);
@@ -219,17 +220,31 @@ var OTC_IP = window.OTC_IP || `http://10.1.5.202`,
     OTC_COMPARE = window.OTC_COMPARE || ``,
     OTC_DATE = window.OTC_DATE || ``,
     // OTC_DATE = window.OTC_DATE || fullToday(),// default today!
+    OTC_INIT = window.OTC_INIT || true,
     OTC_SKIN = window.OTC_SKIN || `white`;
     // OTC_SKIN = window.OTC_SKIN || `black`;
 
-OTC_F9_FV.Modules.centralBankBenchmarkIR.init({
-    ip: OTC_IP,
-    path: OTC_PATH,
-    uid: `bondratefast13`,
-    compare: OTC_COMPARE,
-    date: OTC_DATE,
-    skin: OTC_SKIN,
-});
+// OTC_F9_FV.Modules.centralBankBenchmarkIR.init({
+//     ip: OTC_IP,
+//     path: OTC_PATH,
+//     uid: `bondratefast13`,
+//     compare: OTC_COMPARE,
+//     date: OTC_DATE,
+//     skin: OTC_SKIN,
+// });
+
+if (OTC_INIT === true) {
+    // self init
+    // OTC_COMPARE = "0";
+    OTC_F9_FV.Modules.centralBankBenchmarkIR.init();
+}else{
+    // relaod module
+}
+
+const centralBankBenchmarkIR = OTC_F9_FV.Modules.centralBankBenchmarkIR;
+
+export default centralBankBenchmarkIR;
+export {centralBankBenchmarkIR};
 
 // OTC_F9_FV.Modules.centralBankBenchmarkIR.init();
 // const url = `http://10.1.5.202/webservice/fastview/bond/rate?{"ModelId":"bondratefast13","Compare":"","CompareDate":""}`;

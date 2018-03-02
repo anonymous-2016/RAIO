@@ -78,15 +78,15 @@ OTC_F9_FV.Modules.equityShareholder = OTC_F9_FV.Modules.equityShareholder || (
                                     <td class="otc-equity-shareholder-table-td-value" data-value="data-otc-ES">${hc_data.zgb}</td>
                                 </tr>
                                 <tr class="otc-equity-shareholder-table-tr">
-                                    <td class="otc-equity-shareholder-table-td-key" data-alias="无限售股份总数(股)">无限售股份总数(股)</td>
-                                    <td class="otc-equity-shareholder-table-td-value" data-value="data-otc-ES">${hc_data.yxsg}</td>
-                                </tr>
-                                <tr class="otc-equity-shareholder-table-tr">
-                                    <td class="otc-equity-shareholder-table-td-key" data-alias="有限售股份总数(股)">有限售股份总数(股)</td>
+                                    <td class="otc-equity-shareholder-table-td-key" data-alias="无限售股份总数(万股)">无限售股份总数(万股)</td>
                                     <td class="otc-equity-shareholder-table-td-value" data-value="data-otc-ES">${hc_data.wxsg}</td>
                                 </tr>
                                 <tr class="otc-equity-shareholder-table-tr">
-                                    <td class="otc-equity-shareholder-table-td-key" data-alias="变动原因说明(股)">变动原因说明(股)</td>
+                                    <td class="otc-equity-shareholder-table-td-key" data-alias="有限售股份总数(万股)">有限售股份总数(万股)</td>
+                                    <td class="otc-equity-shareholder-table-td-value" data-value="data-otc-ES">${hc_data.yxsg}</td>
+                                </tr>
+                                <tr class="otc-equity-shareholder-table-tr">
+                                    <td class="otc-equity-shareholder-table-td-key" data-alias="变动原因说明">变动原因说明</td>
                                     <td class="otc-equity-shareholder-table-td-value" data-value="data-otc-ES">${hc_data.bdyy}</td>
                                 </tr>
                             `;
@@ -280,11 +280,11 @@ OTC_F9_FV.Modules.equityShareholder = OTC_F9_FV.Modules.equityShareholder || (
                                     ${times}
                                 </tr>
                                 <tr class="otc-equity-shareholder-table-tr">
-                                    <td class="otc-equity-shareholder-table-td-key">总户数</td>
+                                    <td class="otc-equity-shareholder-table-td-key">总户数(户)</td>
                                     ${holders}
                                 </tr>
                                 <tr class="otc-equity-shareholder-table-tr">
-                                    <td class="otc-equity-shareholder-table-td-key">户均持股数</td>
+                                    <td class="otc-equity-shareholder-table-td-key">户均持股数(万股)</td>
                                     ${shares}
                                 </tr>
                             `;
@@ -297,7 +297,7 @@ OTC_F9_FV.Modules.equityShareholder = OTC_F9_FV.Modules.equityShareholder || (
                                         股东户数 (<span>${json.gdhs[0].sj}</span>)
                                     </p>
                                     <p data-p="data-otc-ES-title">
-                                        报告期内公司股东比上期${json.gdhs[0].hsjsq.includes(`-`) ? "减少" : "增加"}<span>${emptyChecker(json.gdhs[0].hsjsq) ? json.gdhs[0].hsjsq.replace(/-/ig, ``) : "--"}</span>户,${json.gdhs[0].zhszz.includes(`-`) ? "减少" : "增加"}<span>${emptyChecker(json.gdhs[0].zhszz) ? json.gdhs[0].zhszz.replace(/-/ig, ``) : "--"}</span>%,户均持股数<span>${emptyChecker(json.gdhs[0].hjcgs) ? json.gdhs[0].hjcgs : "--"}</span>股,${json.gdhs[0].hjzz.includes(`-`) ? "减少" : "增加"}<span>${emptyChecker(json.gdhs[0].hjzz) ? json.gdhs[0].hjzz.replace(/-/ig, ``) : "--"}</span>%.
+                                        报告期内公司股东比上期${json.gdhs[0].hsjsq.includes(`-`) ? "减少" : "增加"}<span>${emptyChecker(json.gdhs[0].hsjsq) ? json.gdhs[0].hsjsq.replace(/-/ig, ``) : "--"}</span>户,${json.gdhs[0].zhszz.includes(`-`) ? "减少" : "增加"}<span>${emptyChecker(json.gdhs[0].zhszz) ? json.gdhs[0].zhszz.replace(/-/ig, ``) : "--"}</span>%,户均持股数<span>${emptyChecker(json.gdhs[0].hjcgs) ? json.gdhs[0].hjcgs : "--"}</span>万股,${json.gdhs[0].hjzz.includes(`-`) ? "减少" : "增加"}<span>${emptyChecker(json.gdhs[0].hjzz) ? json.gdhs[0].hjzz.replace(/-/ig, ``) : "--"}</span>%.
                                     </p>
                                 `;
                             }else{
@@ -608,7 +608,8 @@ var OTC_IP = window.OTC_IP || `http://10.1.5.202`,
     OTC_SKIN = window.OTC_SKIN || `black`,
     // OTC_GILCODE = window.OTC_GILCODE || `430007.OC`;
     // OTC_GILCODE = window.OTC_GILCODE || `834380.OC`;
-    OTC_GILCODE = window.OTC_GILCODE || `430005.OC`;
+    // OTC_GILCODE = window.OTC_GILCODE || `430005.OC`;
+    OTC_GILCODE = window.OTC_GILCODE || `430003.OC`;
     // OTC_GILCODE = window.OTC_GILCODE || `430002.OC`;
 
 

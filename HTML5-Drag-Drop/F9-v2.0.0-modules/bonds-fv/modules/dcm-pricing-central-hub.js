@@ -27,6 +27,7 @@ OTC_F9_FV.Modules = OTC_F9_FV.Modules || {};
 OTC_F9_FV.Modules.dcmPricingCentralHub = OTC_F9_FV.Modules.dcmPricingCentralHub || (
     (url = ``, tbody_uid = ``, hc_uid = ``, debug = false) => {
         let datas = {};
+        // no data
         fetch(url)
         .then(res => res.json())
         .then(
@@ -283,18 +284,26 @@ OTC_F9_FV.Modules.dcmPricingCentralHub = OTC_F9_FV.Modules.dcmPricingCentralHub 
                         const none_div = document.querySelector(uid);
                         none_div.dataset.none = "no-data-div-visible";
                         // no data
-                        const tbody_div = document.querySelector(tbody_uid);
-                        tbody_div.dataset.none = "no-data-div-hidden";
+                        const table = document.querySelector(`.otc-dcm-pricing-central-hub-table`);
+                        table.dataset.none = "no-data-div-hidden";
+                        // const tbody_div = document.querySelector(tbody_uid);
+                        // tbody_div.dataset.none = "no-data-div-hidden";
                         const hc_div = document.querySelector(`#${hc_uid}`);// id
                         hc_div.dataset.none = "no-data-div-hidden";
                     }
                 } catch (err) {
                     let url =`file:///E:/**/bonds-fv/modules/dcm-pricing-central-hub.js`;
                     // ConsoleError(err, url);
+                    // no data
                 }
             }
         )
-        .catch(err => console.log(`fetch error = \n`, err));
+        .catch(err => {
+            console.log(`fetch error = \n`, err);
+            // no data
+            let table = document.querySelector(`.otc-dcm-pricing-central-hub-table`);
+            table.dataset.none = "no-data-div-hidden";
+        });
         // return datas;
         // more
         /*

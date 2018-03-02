@@ -269,7 +269,11 @@ tr.otc-treasury-bonds-profitability-table-tr>td:nth-of-type(3) {
 }
 
 thead.otc-treasury-bonds-profitability-table-thead>tr.otc-treasury-bonds-profitability-table-tr {
-    border-right: 1px solid #c5d2db;
+    border: 1px solid #c5d2db;
+}
+
+thead.otc-treasury-bonds-profitability-table-thead>tr.otc-treasury-bonds-profitability-table-tr {
+/*     border-right: 1px solid #c5d2db; */
 }
 
 tr.otc-treasury-bonds-profitability-table-tr>td:nth-of-type(n) {

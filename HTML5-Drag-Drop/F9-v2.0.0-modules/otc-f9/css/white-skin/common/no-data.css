@@ -23,7 +23,7 @@ p {
     font-size: 13px;
     text-align: center;
     vertical-align: middle;
-    color: #4d4d4d;
+    color: #4d4d4d !important;
     border: 0;
     background: #fff;
     position: relative;
@@ -39,7 +39,7 @@ p {
     font-size: 13px;
     text-align: center;
     vertical-align: middle;
-    color: #4d4d4d;
+    color: #4d4d4d !important;
     border: 1px solid #d7dbe0;
     background: #f2f2f2 !important;
     position: relative;

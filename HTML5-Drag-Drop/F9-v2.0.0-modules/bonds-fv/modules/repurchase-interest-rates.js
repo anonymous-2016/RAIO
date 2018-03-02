@@ -64,7 +64,7 @@ OTC_F9_FV.Modules.repurchaseInterestRates = OTC_F9_FV.Modules.repurchaseInterest
         //         none_div.dataset.none = "no-data-div-hidden";
         //     }
         // }
-        console.log(`fetch url =`, url);
+        // console.log(`fetch url =`, url);
         fetch(url)
         .then(res => res.json())
         .then(
@@ -243,10 +243,10 @@ OTC_F9_FV.Modules.repurchaseInterestRates = OTC_F9_FV.Modules.repurchaseInterest
                             console.log(`none_div = null\n`);
                             none_div = document.querySelector(`[data-none-uid="otc-repurchase-interest-rates"]`);
                         }
-                        // none_div.dataset.none = "no-data-div-visible";
-                        // table_div.dataset.none = "no-data-div-hidden";
-                        // hc_div.dataset.none = "no-data-div-hidden";
-                        // hc_div2.dataset.none = "no-data-div-hidden";
+                        none_div.dataset.none = "no-data-div-visible";
+                        table_div.dataset.none = "no-data-div-hidden";
+                        hc_div.dataset.none = "no-data-div-hidden";
+                        hc_div2.dataset.none = "no-data-div-hidden";
                     }
                 } catch (err) {
                     let url = `file:///E:/**/bonds-fv/modules/repurchase-interest-rates.js`;
@@ -277,10 +277,10 @@ OTC_F9_FV.Modules.repurchaseInterestRates = OTC_F9_FV.Modules.repurchaseInterest
                 console.log(`none_div = null\n`);
                 none_div = document.querySelector(`[data-none-uid="otc-repurchase-interest-rates"]`);
             }
-            // none_div.dataset.none = "no-data-div-visible";
-            // table_div.dataset.none = "no-data-div-hidden";
-            // hc_div.dataset.none = "no-data-div-hidden";
-            // hc_div2.dataset.none = "no-data-div-hidden";
+            none_div.dataset.none = "no-data-div-visible";
+            table_div.dataset.none = "no-data-div-hidden";
+            hc_div.dataset.none = "no-data-div-hidden";
+            hc_div2.dataset.none = "no-data-div-hidden";
         });
         // return datas;
         // more
@@ -732,8 +732,10 @@ OTC_F9_FV.Modules.repurchaseInterestRates.init = OTC_F9_FV.Modules.repurchaseInt
         }
     ) => {
         // let url = `http://10.1.5.202/json/bonds/04.json`,
-        let url = (compare === "2") ? `${ip}${path}?{"ModelId":"bondratefast01","Compare":"${compare}","CompareDate":"${date}"}` : `${ip}${path}?{"ModelId":"bondratefast01","Compare":"${compare}"}`,
+        // let url = (compare === "2") ? `${ip}${path}?{"ModelId":"bondratefast01","Compare":"${compare}","CompareDate":"${date}"}` : `${ip}${path}?{"ModelId":"bondratefast01","Compare":"${compare}"}`,
         // let url = `${ip}${path}?{"ModelId":"${uid}","Compare":"${compare}","CompareDate":"${date}"}`,
+        const uid = `bondratefast01`;
+        let url = `${ip}${path}?{"ModelId":"${uid}","Compare":"${compare}"${(compare === "2") ? `,"CompareDate":"${date}"` : ``}}`,
             tbody_uid = `[data-tbody="otc-repurchase-interest-rates-table-tbody"]`,
             hc_uid1 = `repurchase-interest-rates-hs-container1`,
             hc_uid2 = `repurchase-interest-rates-hs-container2`,
@@ -748,6 +750,7 @@ var OTC_IP = window.OTC_IP || `http://10.1.5.202`,
     OTC_PATH = window.OTC_PATH || `/webservice/fastview/bond/rate`,
     OTC_COMPARE = window.OTC_COMPARE || `0`,
     OTC_DATE = window.OTC_DATE || ``,
+    OTC_INIT = window.OTC_INIT || true,
     // OTC_DATE = window.OTC_DATE || fullToday(),// default today!
     OTC_SKIN = window.OTC_SKIN || `white`;
     // OTC_SKIN = window.OTC_SKIN || `black`;
@@ -764,9 +767,16 @@ var OTC_IP = window.OTC_IP || `http://10.1.5.202`,
 // OTC_F9_FV.Modules.repurchaseInterestRates.init();
 // const url = `http://10.1.5.202/webservice/fastview/bond/rate?{"ModelId":"bondratefast01","Compare":"","CompareDate":""}`;
 // console.log(`repurchaseInterestRates.init() & OTC_COMPARE`, OTC_COMPARE);
-if (OTC_COMPARE === "0") {
+if (OTC_INIT === true) {
+    // self init
+    // OTC_COMPARE = "0";
     OTC_F9_FV.Modules.repurchaseInterestRates.init();
+}else{
+    // relaod module
 }
+// if (OTC_COMPARE === "0") {
+//     OTC_F9_FV.Modules.repurchaseInterestRates.init();
+// }
 
 const repurchaseInterestRates = OTC_F9_FV.Modules.repurchaseInterestRates;
 export default repurchaseInterestRates;

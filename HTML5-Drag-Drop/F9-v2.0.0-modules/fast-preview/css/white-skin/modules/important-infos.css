@@ -135,7 +135,7 @@
 .fv-important-infos-table-td-key {
     box-sizing: border-box;
     /* min-width: 120px; */
-    min-width: 155px;
+    min-width: 180px;
     background: #e8eefa;
     padding-left: 6px;
     border: 1px solid #c5d2db;
@@ -274,3 +274,11 @@ mds.forEach(
 
 
 */
+
+[data-color="red"] {
+    color: #ff2323;
+}
+
+[data-color="green"] {
+    color: #5aa884;
+}

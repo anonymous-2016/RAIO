@@ -271,7 +271,8 @@ tr.otc-local-governments-debt-aaa-profitability-table-tr>td:nth-of-type(3) {
 }
 
 thead.otc-local-governments-debt-aaa-profitability-table-thead>tr.otc-local-governments-debt-aaa-profitability-table-tr {
-    border-right: 1px solid #4a4c4f;
+/*     border-right: 1px solid #4a4c4f; */
+    border: 1px solid #4a4c4f;
 }
 
 tr.otc-local-governments-debt-aaa-profitability-table-tr>td:nth-of-type(n) {

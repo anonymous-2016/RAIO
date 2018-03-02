@@ -384,8 +384,8 @@ OTC_TS_FV.Modules.newlyAddedListing.drawHC = OTC_TS_FV.Modules.newlyAddedListing
             // highcharts-axis highcharts-xaxis highcharts-plot-background
             tickColor: grid_line_color,
             lineColor: grid_line_color,
-            // gridLineColor: '#2D3039',
             gridLineColor: grid_line_color,
+            // gridLineColor: '#2D3039',
             // lineWidth: 0, // no yAxis line
         },
         yAxis: {

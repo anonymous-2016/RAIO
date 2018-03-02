@@ -269,7 +269,10 @@ tr.otc-commercial-banks-aaa-profitability-table-tr>td:nth-of-type(3) {
 }
 
 thead.otc-commercial-banks-aaa-profitability-table-thead>tr.otc-commercial-banks-aaa-profitability-table-tr {
-    border-right: 1px solid #c5d2db;
+    border: 1px solid #c5d2db;
+}
+thead.otc-commercial-banks-aaa-profitability-table-thead>tr.otc-commercial-banks-aaa-profitability-table-tr {
+/*     border-right: 1px solid #c5d2db; */
 }
 
 tr.otc-commercial-banks-aaa-profitability-table-tr>td:nth-of-type(n) {
