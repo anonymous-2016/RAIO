@@ -36,6 +36,7 @@
     "license": "MIT",
     "dependencies": {
         "browserify": "^14.5.0",
+        "css-modal": "^1.5.0",
         "requirejs": "^2.3.5",
         "systemjs": "^0.20.19",
         "webpack": "^3.8.1"
