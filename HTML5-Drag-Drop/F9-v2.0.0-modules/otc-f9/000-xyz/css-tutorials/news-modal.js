@@ -1,6 +1,6 @@
 let modal = document.querySelector("#modal"),
     modalOverlay = document.querySelector("#modal-overlay"),
-    closeButton = document.querySelector("#close-button"),
+    closeButton = document.querySelector("#close-link"),
     newsLinks = document.querySelectorAll(`[data-link="fv-company-news-link"]`);
 
 closeButton.addEventListener("click", function() {
@@ -8,11 +8,34 @@ closeButton.addEventListener("click", function() {
     modalOverlay.classList.toggle("closed");
 });
 
+// modalOverlay.addEventListener("click", function(e) {
+//     console.log(`modalOverlay = `, e.target);
+//     // ??? click empty close modal
+//     // modal.classList.toggle("closed");
+//     // modalOverlay.classList.toggle("closed");
+// });
+
+// document.addEventListener(`clcik`, (e) => {
+//     console.log(`modal Overlay = `, e.target);
+//     // if modal show
+//     // esle modal hidden
+// });
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target === modal) {
+        // modal.style.display = "none";
+        modal.classList.toggle("closed");
+        modalOverlay.classList.toggle("closed");
+    }
+}
+
+
 for (let i = 0; i < newsLinks.length; i++) {
     newsLinks[i].addEventListener("click", function() {
         // fetch data & insert data to DOM
         let div_text = document.querySelector(`[data-text="div"]`),
-            h1_text = document.querySelector(`[data-text="h1"]`);
+            h3_text = document.querySelector(`[data-text="h3"]`);
         const title = newsLinks[i].dataset.title;
         const uid = newsLinks[i].dataset.newsid;
         // http://10.1.5.202/queryservice/news/content/573297152893
@@ -57,8 +80,8 @@ for (let i = 0; i < newsLinks.length; i++) {
                 const modal_url = json.Url;
                 const modal_source = json.Infosource;
                 const modal_date = json.PublishDate.substr(0, 10);
-                h1_text.innerHTML = ``;
-                h1_text.insertAdjacentHTML(`beforeend`, title);
+                h3_text.innerHTML = ``;
+                h3_text.insertAdjacentHTML(`beforeend`, title);
                 div_text.innerHTML = ``;
                 div_text.insertAdjacentHTML(`beforeend`, modal_content);
             } else {
