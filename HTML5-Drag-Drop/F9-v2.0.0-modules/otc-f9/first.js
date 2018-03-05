@@ -50,11 +50,9 @@ window.OTC_IP = window.parent.location.origin.includes("http://localhost") ? `ht
 // http://localhost:3004/index.html?gilcode=600570.SH&skin=black
 window.OTC_PATH = `/webservice/fastview/otcper`;
 
-
-
-
-document.addEventListener(`DOMContentLoaded`, (e) => {
-    // console.log("2, (DOMContentLoaded)DOM fully loaded and parsed");
+// IIFE
+(() => {
+        // console.log("2, (DOMContentLoaded)DOM fully loaded and parsed");
     // load css
     const css_arr = ["no-body.css", "index.css", "tabs.css", "common/module.css", "common/modal.css", "common/no-data.css"];
     const css_skins = ["black-skin", "white-skin"];
@@ -89,5 +87,10 @@ document.addEventListener(`DOMContentLoaded`, (e) => {
         const body = document.querySelector(`body[data-body="no-body"]`);
         body.dataset.body = "show-body";
     }, 300);
+})();
+
+
+document.addEventListener(`DOMContentLoaded`, (e) => {
+    // delay, not too good!
 });
 

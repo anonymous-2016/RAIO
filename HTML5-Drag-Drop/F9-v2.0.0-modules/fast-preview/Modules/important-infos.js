@@ -19,7 +19,18 @@ STOCK_F9_FV.Modules = STOCK_F9_FV.Modules || {};
 STOCK_F9_FV.Modules.importantInfos = STOCK_F9_FV.Modules.importantInfos || (
     (url = ``, tds = [], ui_arr = [], debug = false) => {
         // important-infos
-        fetch(url)
+        fetch(url, {
+            method: "GET",
+            headers: {
+                "Accept": "application/json",
+                "Access-Control-Allow-Origin": "*",
+                "Content-Type": "application/json"
+            },
+            mode: "no-cors"
+            // method: `GET`,
+            // mode: `no-cors`,
+            // CORS
+        })
         .then(res => res.json())
         // SyntaxError: Unexpected end of input ??? CORS
         .then(

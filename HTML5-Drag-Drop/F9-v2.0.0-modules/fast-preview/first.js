@@ -39,7 +39,10 @@ window.STOCK_Skin = window.STOCK_Skin || ``;
 // set params before DOM ready!
 window.STOCK_SecCode = STOCK_F9_FV.Utils.getParam(`gilcode`);
 window.STOCK_Skin = STOCK_F9_FV.Utils.getParam(`skin`) || `white`;
-window.STOCK_IP = window.parent.location.origin.includes("http://localhost") ? `http://10.1.5.202` : window.parent.location.origin;
+// window.STOCK_IP = window.parent.location.origin.includes("http://localhost") ? `http://10.1.5.202` : window.parent.location.origin;
+const url_origin = window.parent.location.origin;
+window.STOCK_IP = (url_origin.includes("http://localhost") || url_origin.includes("file://")) ? `http://10.1.5.202` : url_origin;
+// window.parent.location.origin; // "file://"
 // window.STOCK_IP = window.parent.location.origin.includes("http") ? window.parent.location.origin : `http://10.1.5.202`;
 // http://localhost:3002/index.html?gilcode=600570.SH&skin=black
 window.STOCK_Paths = `/webservice/fastview/stock`;
