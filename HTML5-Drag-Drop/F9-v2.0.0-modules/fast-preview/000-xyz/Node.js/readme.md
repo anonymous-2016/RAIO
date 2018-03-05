@@ -43,12 +43,17 @@ app.get('/', (req, res) => {
 app.get('/index.html', (req, res) => {
     res.setHeader('Content-Type', 'text/html');
     // node url & express url
+    // req.params.name???
     if(res.url){
         res.send(cache[1]);
     }else{
         res.send(cache[2]);
     }
 });
+
+https://expressjs.com/zh-cn/api.html#req
+
+https://nodejs.org/api/http.html#http_message_url
 
 ```
 
