@@ -45,19 +45,36 @@
 }
 
 .modal-contents {
+    box-sizing: border-box;
     position: absolute;
+    /* overflow: auto; */
     top: 5%;
     left: 5%;
     width: 90%;
     height: 90%;
-    overflow: auto;
-    padding: 20px 50px 20px 20px;
+    min-width: 500px;
+    min-height: 400px;
+    padding: 5px 0;
     margin: auto;
     /* transform: translate(-5%); */
     color: #fff;
     border: 1px solid red;
-    background: #f0f;
+    background: #ccc;
     z-index: 999;
+}
+
+.modal-contents>div {
+    box-sizing: border-box;
+    overflow: auto;
+    width: 100%;
+    height: 90%;
+    max-width: 1366px;
+    max-height: 888px;
+    min-width: 400px;
+    min-height: 300px;
+    padding: 5px;
+    margin: auto;
+    background-color: coral;
 }
 
 * {
@@ -106,14 +123,15 @@ h1 {
     position: absolute;
     /* don't need to go crazy with z-index here, just sits over .modal-guts */
     z-index: 9999;
-    top: 10px;
+    top: 5%;
     /* needs to look OK with or without scrollbar */
-    right: 20px;
+    right: 5%;
     border: 0;
-    background: black;
-    color: white;
+    background: #fff;
+    color: #f00;
     padding: 5px 10px;
     font-size: 1.3rem;
+    cursor: pointer;
 }
 
 .open-button {

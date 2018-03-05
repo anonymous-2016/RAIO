@@ -11,7 +11,7 @@ closeButton.addEventListener("click", function() {
 for (let i = 0; i < newsLinks.length; i++) {
     newsLinks[i].addEventListener("click", function() {
         // fetch data & insert data to DOM
-        let p_text = document.querySelector(`[data-text="p"]`),
+        let div_text = document.querySelector(`[data-text="div"]`),
             h1_text = document.querySelector(`[data-text="h1"]`);
         const title = newsLinks[i].dataset.title;
         const uid = newsLinks[i].dataset.newsid;
@@ -20,7 +20,7 @@ for (let i = 0; i < newsLinks.length; i++) {
         const IP =  (ORIGIN.includes(`file://`) || ORIGIN.includes(`http://localhost`)) ? `http://10.1.5.202` : ORIGIN;
         const PATH = `/queryservice/news/content/`;
         const url = `${IP}${PATH}${uid}`;
-        console.log(`fetch url =`, url);
+        // console.log(`fetch url =`, url);
         // CORS ???
         fetch(url)
         .then(res => res.json())
@@ -46,7 +46,7 @@ for (let i = 0; i < newsLinks.length; i++) {
                 result ? ((Object.keys(key).length > 0) ? `` : (result = false)) : ``;
                 return result;
             };
-            console.log(`json =`, JSON.stringify(json, null, 4));
+            // console.log(`json =`, JSON.stringify(json, null, 4));
             // show modal
             if (emptyChecker(json)) {
                 // "Title".toLowerCase();
@@ -59,10 +59,8 @@ for (let i = 0; i < newsLinks.length; i++) {
                 const modal_date = json.PublishDate.substr(0, 10);
                 h1_text.innerHTML = ``;
                 h1_text.insertAdjacentHTML(`beforeend`, title);
-                //
-                p_text.innerHTML = ``;
-                p_text.insertAdjacentHTML(`beforeend`, data);
-                //
+                div_text.innerHTML = ``;
+                div_text.insertAdjacentHTML(`beforeend`, modal_content);
             } else {
                 // no data!
             }
@@ -70,7 +68,6 @@ for (let i = 0; i < newsLinks.length; i++) {
         .catch(
             err => console.log(`fetch json error!\n`, err)
         );
-        // const data = `Getting Started The difference between building a plugin and a project component lies in flexibility. <br/> The first thing we are going to is take a step back and think about the requirements. <br/>Our modal plugin should: Launch different modals based upon option sets Allow users to define custom transitions Be responsive Have max/min width points Anchor to the top of the page if too tall Be centered otherwise Accept a HTML string for content OR a domNode Have no dependencies See that last line? Thats right folks, we're doing this in plain old Javascript. <br/>The Javascript Architecture Alright, lets get our hands dirty. <br/>Our first order of business is going to be deciding on our plugin architecture and picking a design pattern. <br/>Let's create an IIFE to create a closure we can work within. <br/>Closures can be leveraged to create a private scope, where you have control over what data you make available.<br/>`;
         modal.classList.toggle("closed");
         modalOverlay.classList.toggle("closed");
     });
