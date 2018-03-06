@@ -1,4 +1,19 @@
-/* Modal Base CSS */
+/* common css */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-size: 12px;
+}
+
+body {
+    font-family: "Microsoft YaHei", sans-serif;
+    /* font-family: Helvetica, Arial, san-serif; */
+}
+
+
+/* Modal CSS */
 
 .scotch-overlay {
     position: fixed;
@@ -8,10 +23,6 @@
     opacity: 0;
     width: 100%;
     height: 100%;
-    -webkit-transition: 1ms opacity ease;
-    -moz-transition: 1ms opacity ease;
-    -ms-transition: 1ms opacity ease;
-    -o-transition: 1ms opacity ease;
     transition: 1ms opacity ease;
     background: rgba(0, 0, 0, .6);
 }
@@ -23,16 +34,9 @@
     left: 50%;
     opacity: 0;
     width: 94%;
-    padding: 24px 20px;
-    -webkit-transition: 1ms opacity ease;
-    -moz-transition: 1ms opacity ease;
-    -ms-transition: 1ms opacity ease;
-    -o-transition: 1ms opacity ease;
+    padding: 0;
+    margin: 0;
     transition: 1ms opacity ease;
-    -webkit-transform: translate(-50%, -50%);
-    -moz-transform: translate(-50%, -50%);
-    -ms-transform: translate(-50%, -50%);
-    -o-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
     border-radius: 2px;
     background: #fff;
@@ -40,10 +44,6 @@
 
 .scotch-modal.scotch-open.scotch-anchored {
     top: 20px;
-    -webkit-transform: translate(-50%, 0);
-    -moz-transform: translate(-50%, 0);
-    -ms-transform: translate(-50%, 0);
-    -o-transform: translate(-50%, 0);
     transform: translate(-50%, 0);
 }
 
@@ -68,14 +68,16 @@
     right: 5px;
     padding: 5px 7px 7px;
     cursor: pointer;
-    color: #fff;
+    color: #eee;
     border: 0;
     outline: none;
-    background: #e74c3c;
+    /* background: #e74c3c; */
+    background: #616a87;
 }
 
 .scotch-close:hover {
-    background: #c0392b;
+    /* background: #c0392b; */
+    color: #fff;
 }
 
 
@@ -94,63 +96,32 @@
 
 .scotch-modal.fade-and-drop.scotch-open {
     top: 50%;
-    -webkit-transition: 500ms top 500ms ease;
-    -moz-transition: 500ms top 500ms ease;
-    -ms-transition: 500ms top 500ms ease;
-    -o-transition: 500ms top 500ms ease;
-    transition: 500ms top 500ms ease;
+    transition: 500ms top 100ms ease;
 }
 
 .scotch-modal.fade-and-drop.scotch-open.scotch-anchored {
-    -webkit-transition: 500ms top 500ms ease;
-    -moz-transition: 500ms top 500ms ease;
-    -ms-transition: 500ms top 500ms ease;
-    -o-transition: 500ms top 500ms ease;
-    transition: 500ms top 500ms ease;
+    transition: 500ms top 100ms ease;
 }
 
 .scotch-overlay.fade-and-drop.scotch-open {
     top: 0;
-    -webkit-transition: 500ms opacity ease;
-    -moz-transition: 500ms opacity ease;
-    -ms-transition: 500ms opacity ease;
-    -o-transition: 500ms opacity ease;
     transition: 500ms opacity ease;
     opacity: 1;
 }
 
 .scotch-modal.fade-and-drop {
-    -webkit-transition: 500ms top ease;
-    -moz-transition: 500ms top ease;
-    -ms-transition: 500ms top ease;
-    -o-transition: 500ms top ease;
     transition: 500ms top ease;
 }
 
 .scotch-overlay.fade-and-drop {
-    -webkit-transition: 500ms opacity 500ms ease;
-    -moz-transition: 500ms opacity 500ms ease;
-    -ms-transition: 500ms opacity 500ms ease;
-    -o-transition: 500ms opacity 500ms ease;
-    transition: 500ms opacity 500ms ease;
+    transition: 500ms opacity 100ms ease;
 }
 
 
 /* Demo Styles */
 
-html {
-    box-sizing: border-box;
-}
-
 * {
-    box-sizing: inherit;
-}
-
-body {
-    font-family: Helvetica, Arial, san-serif;
-    font-size: 16px;
-    margin: 0;
-    padding: 0;
+    box-sizing: border-box;
 }
 
 #content {
@@ -181,4 +152,210 @@ body {
 .trigger-button:active {
     border-top: 5px solid white;
     box-shadow: none;
+}
+
+
+/* trigger-link */
+
+.trigger-link {
+    font-size: 12px;
+    position: relative;
+    width: 100px;
+    height: 23px;
+    line-height: 23px;
+    display: block;
+    margin: 3px;
+    padding: 1.5px;
+    cursor: pointer;
+    color: #000;
+    border: 0;
+    border-radius: 3px;
+    outline: none;
+    background: #2ecc71;
+    box-shadow: 0 3px 3px #27ae60;
+    float: left;
+    text-align: center;
+    /* vertical-align: middle; */
+    text-decoration: none;
+}
+
+.trigger-link:hover {
+    background: #27ae60;
+    box-shadow: 0 3px 3px #145b32;
+}
+
+.trigger-link:active {
+    border-top: 3px solid white;
+    box-shadow: none;
+}
+
+ul>li {
+    list-style: none;
+}
+
+
+/* modal line */
+
+
+/*
+
+<hr data-modal="line" />
+
+hr[data-modal="line"] {
+    width: 95%;
+    height: 1px;
+    margin: 0 auto;
+    border: 0;
+    padding: 0;
+    background: crimson;
+}
+*/
+
+
+/* modal title */
+
+div[data-modal="title-box"] {
+    border-bottom: 1px solid #b8b8b8;
+    padding: 10px;
+    margin: auto 10px;
+}
+
+div[data-modal="title-box"]::after {
+    display: block;
+    clear: both;
+    content: "";
+}
+
+
+/* close */
+
+a[data-modal="close"] {
+    color: #fff;
+    background: #616a87;
+}
+
+div[data-modal="modal-title"] {
+    background: #616a87;
+    border-bottom: 1px solid #edeeee;
+    height: 35px;
+    line-height: 35px;
+    color: #fff;
+    /* cursor: move; */
+}
+
+div[data-modal="modal-title"]>h1 {
+    font-size: 14px;
+    margin-left: 10px;
+}
+
+
+/* title */
+
+div[data-modal="title"] {
+    background: coral;
+    width: 100%;
+}
+
+div[data-modal="title"]>h3 {
+    text-align: center;
+    font-size: 18px;
+    height: 50px;
+    line-height: 50px;
+    padding: 5px;
+}
+
+
+/* modal content */
+
+div[data-modal="content"] {
+    box-sizing: border-box;
+    min-height: 300px;
+    max-height: 800px;
+    height: auto;
+    width: 100%;
+    margin: auto;
+    padding: 10px;
+    overflow: auto;
+}
+
+
+/* model info */
+
+div[data-modal="info"] {
+    background: chartreuse;
+    float: left;
+    min-width: 300px;
+    width: 70%;
+    line-height: 30px;
+    height: 30px;
+    font-size: 12px;
+}
+
+div[data-modal="info"]>p {
+    margin: 0;
+    line-height: 30px;
+    height: 30px;
+    font-size: 12px;
+}
+
+div[data-modal="info"]>p>a {
+    text-decoration: none;
+    margin-left: 10px;
+    color: #5389d2;
+    cursor: pointer;
+    background-color: transparent;
+}
+
+
+/* font */
+
+div[data-modal="modal-font"] {
+    background: cyan;
+    min-width: 150px;
+    width: 30%;
+    line-height: 30px;
+    height: 30px;
+    float: left;
+}
+
+.fontBtn {
+    width: 24px;
+    height: 22px;
+    display: inline-block;
+    border: 1px solid #ccc;
+    background: #ebebeb;
+    line-height: 20px;
+    text-align: center;
+    cursor: pointer;
+    color: #000;
+}
+
+.active {
+    background: #2196F3;
+    color: #fff;
+}
+
+.fontBtn a {
+    width: 24px;
+    height: 22px;
+    display: inline-block;
+}
+
+span.fontBtn>a:hover {
+    background: #2196F3;
+}
+
+
+/* font-size */
+
+.fontsize-big {
+    font-size: 23px;
+}
+
+.fontsize-middle {
+    font-size: 18px;
+}
+
+.fontsize-small {
+    font-size: 12px;
 }

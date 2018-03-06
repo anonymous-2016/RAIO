@@ -95,7 +95,10 @@ STOCK_F9_FV.Modules.companyAnnouncements = STOCK_F9_FV.Modules.companyAnnounceme
                                     let download_pdf = `${host}/queryservice/bulletin/attachment/company/${id}.${type}\\${title}.${type}`;
                                     console.log(`%c download_pdf = \n`, `color: #f0f; font-size: 23px;`, download_pdf);
                                     // http://10.1.5.202/queryservice/bulletin/attachment563999772286.pdf
-                                    ChromeExternal.Execute("OpenFile", download_pdf);
+                                    // open
+                                    // ChromeExternal.Execute("OpenFile", download_pdf);
+                                    // download
+                                    ChromeExternal.Execute("DownloadFile", download_pdf);
                                 } catch (err) {
                                     window.open(`${host}/queryservice/bulletin/attachment/company/${id}`);
                                     console.log(`%c ChromeExternal & caught error = \n`, `color: red; font-size: 23px;`, err);

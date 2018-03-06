@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>modal & table</title>
     <!-- css -->
-    <link rel="stylesheet" href="./modal.css">
+    <link rel="stylesheet" href="./news-modal.css">
 </head>
 
 <body>
@@ -84,13 +84,16 @@
         </table>
     </section>
     <!-- overlay -->
-    <div class="modal-overlay closed" id="modal-overlay"></div>
-    <!-- modal -->
+    <!-- <div class="modal-overlay closed" id="modal-overlay"></div> -->
+    <!-- modal overlay -->
     <div class="modal-overlay closed" id="modal">
-        <!-- close-link -->
-        <a class="close-link" id="close-link">Close</button>
+        <!-- modal-content -->
         <div class="modal-contents">
-            <h3 data-text="h3">Modal Title</h3>
+            <div data-text="title">
+                <h3 data-text="h3">Modal Title</h3>
+                <!-- close-link -->
+                <a class="close-link" id="close-link">Close</a>
+            </div>
             <div data-text="div">CSS Loading...</div>
         </div>
     </div>

@@ -1,11 +1,11 @@
 let modal = document.querySelector("#modal"),
-    modalOverlay = document.querySelector("#modal-overlay"),
+    // modalOverlay = document.querySelector("#modal-overlay"),
     closeButton = document.querySelector("#close-link"),
     newsLinks = document.querySelectorAll(`[data-link="fv-company-news-link"]`);
 
 closeButton.addEventListener("click", function() {
     modal.classList.toggle("closed");
-    modalOverlay.classList.toggle("closed");
+    // modalOverlay.classList.toggle("closed");
 });
 
 // modalOverlay.addEventListener("click", function(e) {
@@ -26,7 +26,7 @@ window.onclick = function(event) {
     if (event.target === modal) {
         // modal.style.display = "none";
         modal.classList.toggle("closed");
-        modalOverlay.classList.toggle("closed");
+        // modalOverlay.classList.toggle("closed");
     }
 }
 
@@ -92,7 +92,7 @@ for (let i = 0; i < newsLinks.length; i++) {
             err => console.log(`fetch json error!\n`, err)
         );
         modal.classList.toggle("closed");
-        modalOverlay.classList.toggle("closed");
+        // modalOverlay.classList.toggle("closed");
     });
 }
 
