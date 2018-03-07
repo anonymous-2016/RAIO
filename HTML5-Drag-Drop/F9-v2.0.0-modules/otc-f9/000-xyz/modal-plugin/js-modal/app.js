@@ -121,6 +121,7 @@ const showModalData = (debug = false) => {
                     time = json.PublishDate.substr(0, 10);
                     url = json.Url;
                     content = json.Content;
+                    // <span>字体: </span>
                     html = `
                         <div>
                             <div data-modal="modal-title">
@@ -131,15 +132,15 @@ const showModalData = (debug = false) => {
                                     <h3>${title}</h3>
                                 </div>
                                 <div data-modal="modal-font" class="fontSize">
-                                    <span>字体: </span>
+                                    字体:
                                     <span class="fontBtn">
-                                        <a data-modal-font="data-font-big">大</a>
+                                        <a data-modal-font="data-font-big" data-modal-uid="0">大</a>
                                     </span>
                                     <span class="fontBtn">
-                                        <a data-modal-font="data-font-middle">中</a>
+                                        <a data-modal-font="data-font-middle" data-modal-uid="1">中</a>
                                     </span>
                                     <span class="fontBtn active">
-                                        <a data-modal-font="data-font-small">小</a>
+                                        <a data-modal-font="data-font-small" data-modal-uid="2">小</a>
                                     </span>
                                 </div>
                                 <div data-modal="info">

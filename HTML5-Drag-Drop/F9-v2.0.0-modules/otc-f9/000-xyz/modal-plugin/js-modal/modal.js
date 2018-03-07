@@ -168,15 +168,42 @@
         }
         return 'transitionend';
     }
-    const changeFontSize = () => {
+    const changeFontSize = (debug = false) => {
         const font = document.querySelector(`[data-modal="modal-font"]`);
         // proxy
         font.addEventListener('click', function(e) {
         // const fonts = document.querySelectorAll(`[data-modal="modal-font"]`);
         // fonts[1].addEventListener('click', function(e) {
             // myModal.open();
-            console.log(`e.target.dataset.modalFont =`, e.target.dataset.modalFont);
-            // if data-modal="data-font-big"
+            if (debug) {
+                console.log(`e.target.dataset.modalFont =`, e.target.dataset.modalFont);
+                console.log(`e.target =`, e.target);
+                // a
+                // console.log(`this.parentElement =`, this.parentElement);
+                // modal
+                console.log(`e.target.parentElement =`, e.target.parentElement);
+                // .nextElementSibling;
+                // .previousElementSibling;
+                console.log(`e.target.parentElement.parentElement.children =`, e.target.parentElement.parentElement.children);
+                console.log(`uid = `, uid);
+                // e.target.parentElement.classList.add(`active`);
+                // e.target.parentElement.classList.toggle(`active`);
+                console.log(`e.target.parentElement.classList =`, e.target.parentElement.classList);
+            }
+            let spans = e.target.parentElement.parentElement.children;
+            let uid = e.target.dataset.modalUid;
+            // "0", "1", "2"
+            for (let i = 0; i < spans.length; i++) {
+                if (i.toString() === uid) {
+                    spans[i].classList.add(`active`);
+                }else{
+                    spans[i].classList.remove(`active`);
+                    // spans[i].classList.contains(`active`);
+                    // spans[i].classList.toggle(`active`);
+                    // spans[i].classList.replace(`active`, `inactive`);
+                    // spans[i].classList.item(index: Number);
+                }
+            }
             let key = e.target.dataset.modalFont.substr(10),
                 value = ``;
             switch (key) {
@@ -188,17 +215,23 @@
                 default:
                     break;
             }
-            console.log(`key =`, key);
-            console.log(`value =`, value);
+            if (debug) {
+                console.log(`key =`, key);
+                console.log(`value =`, value);
+            }
             // this.content.classList.add(value);
             // let content = document.querySelector(`[data-modal="content"]`);
             // let content = font.parentElement.nextElementSibling;
             let content = this.parentElement.nextElementSibling;
             // let content = fonts[1].parentElement.nextElementSibling;
             content.className = ``;
-            console.log(`content =`, content, content.classList);
+            if (debug) {
+                console.log(`content =`, content, content.classList);
+            }
             content.classList.add(value);
-            console.log(`content =`, content, content.classList);
+            if (debug) {
+                console.log(`content =`, content, content.classList);
+            }
             // content.classList.toggle(`fontsize-big`);
         });
     };
