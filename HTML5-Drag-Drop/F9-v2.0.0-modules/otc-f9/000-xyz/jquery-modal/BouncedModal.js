@@ -4,7 +4,7 @@
  * @subnamespace STOCK_F9_FV.Modal
  *
  * @description BouncedModal
- * @author xgqfrms
+ * @author xgqfrms & ???
  *
  * @method getClientWidthHeight
  * @method BouncedModal(options,debug)
@@ -16,11 +16,18 @@ var STOCK_F9_FV = STOCK_F9_FV || {};
 // sub namespaces
 STOCK_F9_FV.Modal = STOCK_F9_FV.Modal || {};
 
+// Modal && IIFE === Closure!
 STOCK_F9_FV.Modal.Public = STOCK_F9_FV.Modal.Public  || ((debug = false) => {
     return {
         view: () => {
             const w = document.documentElement.clientWidth;
             const h = document.documentElement.clientHeight;
+            if (debug) {
+                console.log(`clientHeight = `, h);
+                console.log(`clientWidth = `, w);
+            }
+            //w:可视区域的宽度
+            // h:可视区域的高度
             return {
                 w,
                 h
@@ -46,9 +53,28 @@ STOCK_F9_FV.Modal.getClientWidthHeight = STOCK_F9_FV.Modal.getClientWidthHeight 
         bodyheight = document.body.clientHeight;
         height = document.documentElement.clientHeight;
         innerheight = window.innerHeight;
+        if (debug) {
+            console.log(`document.body.clientHeight = `, bodyheight);
+            // 50px ??? bug
+            console.log(`document.documentElement.clientHeight = `, height);
+            console.log(`window.innerHeight = `, innerheight);
+            console.log(`***********************************`);
+            console.log(`document.body.clientWidth = `, bodywidth);
+            console.log(`document.documentElement.clientWidth = `, width);
+            console.log(`window.innerWidth = `, innerwidth);
+        }
     }else{
         width = document.documentElement.clientWidth;
         height = document.documentElement.clientHeight;
+        if (debug) {
+            console.log(`document.documentElement.clientHeight = `, height);
+            console.log(`document.documentElement.clientWidth = `, width);
+        }
+    }
+    if (debug) {
+        console.log(`isIE = `, isIE);
+        console.log(`clientHeight = `, height);
+        console.log(`clientWidth = `, width);
     }
     return {
         w: width,
@@ -68,7 +94,11 @@ STOCK_F9_FV.Modal.getClientWidthHeight = STOCK_F9_FV.Modal.getClientWidthHeight 
  * @augments $.extend === Object.assign
  */
 
-function BouncedModal(options){
+/* 弹框的基本对象 Constructor */
+function BouncedModal(options, debug = false){
+    if (debug) {
+        console.log(`BouncedModal's options = \n`, JSON.stringify(options, null, 4));
+    }
     this.config = {
         layerBoxClass : "layerBox",
         layerclass:"",
@@ -83,9 +113,11 @@ function BouncedModal(options){
             //
         }
     };
-    // $.extend(this.config, options);
-    Object.assign(this.config, options);
-};
+    $.extend(this.config, options);
+    // jquery plugin ???
+    // Object.assign({}, obj1, obj2);
+}
+
 
 BouncedModal.prototype = {
     /*创建弹出框*/
@@ -110,6 +142,9 @@ BouncedModal.prototype = {
         ];
         // shape data ???
         const data = that.config.datas;
+        if (debug) {
+            console.log(`BouncedModal's data = \n`, JSON.stringify(data, null, 4));
+        }
         let url_link = BAD_URLs.includes(data.Url) === true ? `` : `
             <a
                 style="margin-left:10px;color:#5389d2;"
@@ -122,6 +157,10 @@ BouncedModal.prototype = {
                 <i class="icon-external-link"></i>
             </a>
         `;
+        if (debug) {
+            // value="${data.Url}" !== href="${data.Url}"
+            console.log(`BouncedModal's url_link = \n`, url_link);
+        }
         const html_template = `
             <div>
                 <div class="modal-title">
@@ -183,13 +222,16 @@ BouncedModal.prototype = {
             </div>
         `;
         const UDP_wh = UDP.getClientWidthHeight;
+        if (debug) {
+            console.log(`BouncedModal's UDP_wh = \n`, JSON.stringify(UDP_wh, null, 4));
+        }
         // UDP_wh.h
         $("#zxdtModal").empty().html(str);
-        $(".modal-body").css("height", UDP.Public.view().h - 200+"px");
+        $(".modal-body").css("height", UDP.Public.view().h - 200);// +"px"
         $(window).resize(function() {
             $(".layerBox").css("width", $(window).width()-60+"px");
             $(".layerBox").css("height", $(window).height()-80+"px");
-            $(".modal-body").css("height", UDP.Public.view().h - 200+"px");
+            $(".modal-body").css("height", UDP.Public.view().h - 200);// +"px"
         });
 
         $(".close_btn").click(function (){
@@ -255,8 +297,8 @@ BouncedModal.prototype = {
                height = height < 0 ? 0 : height;
                height = height > s.h ? s.h : height;
                moveEle.css({
-                    width: width,
-                    height: height
+                    width:width,
+                    height:height
                });
            });
             $(document).mouseup(function(){
@@ -307,18 +349,21 @@ BouncedModal.prototype = {
         // win["UDP"], will never be executed!
         win["UDP"].Public = STOCK_F9_FV.Modal.Public();
         win["UDP"].getClientWidthHeight = STOCK_F9_FV.Modal.getClientWidthHeight();
-        // win["UDP"].BouncedModal = STOCK_F9_FV.Modal.BouncedModal();
-        win["UDP"].BouncedModal = BouncedModal();
-        // BouncedModal && Constructorle ???
+        win["UDP"].BouncedModal = BouncedModal;
     }else{
         win.UDP = {
             Public: STOCK_F9_FV.Modal.Public(),
+            // getClientWidth: STOCK_F9_FV.Modal.getClientWidth(),
+            // getClientHeight: STOCK_F9_FV.Modal.getClientHeight(),
             getClientWidthHeight: STOCK_F9_FV.Modal.getClientWidthHeight(),
-            BouncedModal: BouncedModal()
+            BouncedModal: BouncedModal
         };
+        // window.UDP & window["UDP"]
     }
-})(window, (debug = false) => {
+})(window, function(debug = false){
     let test = `NameSpace testing!`;
+    if (debug) {
+        console.log(`this is a callback function!`);
+    }
     return test;
 });
-
