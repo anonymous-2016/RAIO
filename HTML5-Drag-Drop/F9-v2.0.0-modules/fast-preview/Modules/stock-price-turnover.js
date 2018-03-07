@@ -194,6 +194,22 @@ STOCK_F9_FV.Modules.SPTurnover = STOCK_F9_FV.Modules.SPTurnover || (
                     );
                     datas = Object.assign(datas, arr_obj);
                     STOCK_F9_FV.Modules.SPTurnover.SPTdrawHS(datas, uid);
+                    setTimeout(() => {
+                        // HS no input
+                        let hs_inputs = document.querySelectorAll(`input.highcharts-range-selector`);
+                        if(hs_inputs.length > 0){
+                            for (let i = 0; i < hs_inputs.length; i++) {
+                                let old_style = hs_inputs[i].getAttribute(`style`),
+                                    new_style = `display: none; cursor: not-allowed; readonly`,
+                                    style = `${old_style} ${new_style}`;
+                                hs_inputs[i].setAttribute(`style`, style);
+                            }
+                            console.log(`disable hs_inputs OK!`);
+                        }else{
+                            // no input
+                            console.log(`disable hs_inputs error!`);
+                        }
+                    }, 0);
                 }else{
                     // console.log(`json is empty! = \n`, json);
                     // alert(`暂无数据!`);
@@ -225,7 +241,7 @@ STOCK_F9_FV.Modules.SPTurnover = STOCK_F9_FV.Modules.SPTurnover || (
             console.log(`fetch error = \n`, err);
             // no data
         });
-        return datas;
+        // return datas;
     }
 );
 

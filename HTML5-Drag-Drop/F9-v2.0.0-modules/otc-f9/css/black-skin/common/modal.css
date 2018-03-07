@@ -754,6 +754,10 @@ button.close {
     margin-top: 15px;
 }
 
+.modal-title>h3{
+    font-size: 24px;
+}
+
 .modal-body {
     position: relative;
     line-height: 30px;
@@ -791,7 +795,7 @@ button.close {
     cursor: pointer;
 }
 
-.active {
+.active>a {
     background: #2196F3;
 }
 

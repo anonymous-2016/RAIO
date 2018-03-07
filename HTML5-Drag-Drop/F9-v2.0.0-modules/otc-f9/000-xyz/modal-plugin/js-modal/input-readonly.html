@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>input readonly</title>
+</head>
+
+<body>
+    <section>
+        <form action="/index.html">
+            <label for="">Email:</label>
+            <input type="text" name="email" type="email"><br>
+            <label for="">Country:</label>
+            <input type="text" name="country" readonly data-input="input-readonly" value="default China"><br>
+            <!-- <input type="submit" value="Submit"> -->
+        </form>
+    </section>
+    <!-- js -->
+    <script>
+        // script module
+        let input = document.querySelector(`[data-input="input-readonly"]`);
+        console.log(`input.value =`, input.value);
+        // "default China"
+        setTimeout(() => {
+            input.value = `UFO`;
+            // "UFO"
+            console.log(`input.value =`, input.value);
+        }, 1000);
+    </script>
+</body>
+
+</html>

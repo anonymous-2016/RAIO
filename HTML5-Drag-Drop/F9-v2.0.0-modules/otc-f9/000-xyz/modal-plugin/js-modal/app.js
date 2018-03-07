@@ -30,14 +30,11 @@ const test = () => {
     }
 
     // font buttons
-
     const font = document.querySelector(`[data-modal="modal-font"]`);
     // proxy
     font.addEventListener('click', function(e) {
-
     // const fonts = document.querySelectorAll(`[data-modal="modal-font"]`);
     // fonts[1].addEventListener('click', function(e) {
-        // myModal.open();
         console.log(`e.target.dataset.modalFont =`, e.target.dataset.modalFont);
         // if data-modal="data-font-big"
         let key = e.target.dataset.modalFont.substr(10),
@@ -65,7 +62,7 @@ const test = () => {
         // content.classList.toggle(`fontsize-big`);
     });
 };
-test();
+// test();
 
 
 const showModalData = (debug = false) => {

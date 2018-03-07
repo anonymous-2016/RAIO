@@ -1,3 +1,5 @@
+@charset "UTF-8";
+
 /* common css */
 
 * {
@@ -35,7 +37,8 @@ body {
     /* background: #808289; */
     min-height: 600px;
     min-width: 700px;
-    height: 90%;
+    height: 100%;
+    /* height: 90%; */
     overflow-x: auto;
 }
 
@@ -46,6 +49,7 @@ body {
     left: 50%;
     opacity: 0;
     width: 94%;
+    /* height: 90%; */
     padding: 0;
     margin: 0;
     transition: 1ms opacity ease;
@@ -106,8 +110,14 @@ body {
     display: block;
 }
 
+.scotch-bug {
+    top: 5%;
+    transition: 500ms top 100ms ease;
+}
+
 .scotch-modal.fade-and-drop.scotch-open {
     top: 50%;
+    /* top: 5%; */
     transition: 500ms top 100ms ease;
 }
 
@@ -304,7 +314,8 @@ div[data-modal="content"]>p {
     height: 30px;
     font-family: "Microsoft YaHei", sans-serif;
     font-size: 12px;
-    background: #fff;
+    /*     background: #fff; */
+    background: #f0f;
     color: #333;
     /* text-align: left; */
     /* text-indent: 2em; */
@@ -342,8 +353,13 @@ div[data-modal="info"]>p {
     margin: 0;
     line-height: 30px;
     height: 30px;
+    /* min-height: 500px; */
+    /* height: 100%; */
+    /* max-height: 800px; */
     font-size: 12px;
-    margin-left: -150px;
+    /* padding-left: -150px; */
+    text-align: left;
+    padding-left: calc(50% - 200px);
 }
 
 div[data-modal="info"]>p>a {
@@ -377,7 +393,7 @@ a[data-modal-font="data-font-big"] {
     cursor: pointer;
 }
 
-.fontBtn {
+span.fontBtn {
     width: 24px;
     height: 22px;
     display: inline-block;
@@ -385,11 +401,11 @@ a[data-modal-font="data-font-big"] {
     background: #ebebeb;
     line-height: 20px;
     text-align: center;
-    cursor: pointer;
     color: #000;
+    cursor: pointer;
 }
 
-.active {
+span.fontBtn.active {
     background: #2196F3;
     color: #fff;
 }
@@ -413,8 +429,21 @@ span.fontBtn>a:hover {
 
 .fontsize-middle {
     font-size: 18px;
+    /* font-size: 18px !important; */
 }
 
 .fontsize-small {
+    font-size: 12px;
+}
+
+div[data-modal="content"].fontsize-big>div {
+    font-size: 18px;
+}
+
+div[data-modal="content"].fontsize-middle>div {
+    font-size: 14px;
+}
+
+div[data-modal="content"].fontsize-small>div {
     font-size: 12px;
 }

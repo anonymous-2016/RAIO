@@ -32,7 +32,7 @@
             closeButton: true,
             content: "",// html template
             maxWidth: 1366,
-            minWidth: 600,
+            minWidth: 700,
             maxHeight: 888,
             minHeight: 400,
             overlay: true
@@ -80,10 +80,19 @@
         initializeEvents.call(this);
         // get height
         window.getComputedStyle(this.modal).height;
+        console.log(`window.getComputedStyle(this.modal).height = `, window.getComputedStyle(this.modal).height);
+        // 616px
         // classList
-        var class_open = (this.modal.offsetHeight > window.innerHeight) ? " scotch-open scotch-anchored" : " scotch-open";
+        console.log(`this.modal.offsetHeight = `, this.modal.offsetHeight);
+        // 616
+        console.log(`window.innerHeight= `, window.innerHeight);
+        // 662 / 595 bug
+        // var class_open = (this.modal.offsetHeight < window.innerHeight) ? " scotch-open scotch-anchored" : " scotch-open scotch-bug";
+        var class_open = (this.modal.offsetHeight < window.innerHeight) ? " scotch-open scotch-bug" : " scotch-open scotch-bug";
         this.modal.className = this.modal.className + class_open;
         this.overlay.className = this.overlay.className + " scotch-open";
+        // font-size
+        changeFontSize.call(this);
     };
     // Private Methods
     function buildOut() {
@@ -159,6 +168,40 @@
         }
         return 'transitionend';
     }
+    const changeFontSize = () => {
+        const font = document.querySelector(`[data-modal="modal-font"]`);
+        // proxy
+        font.addEventListener('click', function(e) {
+        // const fonts = document.querySelectorAll(`[data-modal="modal-font"]`);
+        // fonts[1].addEventListener('click', function(e) {
+            // myModal.open();
+            console.log(`e.target.dataset.modalFont =`, e.target.dataset.modalFont);
+            // if data-modal="data-font-big"
+            let key = e.target.dataset.modalFont.substr(10),
+                value = ``;
+            switch (key) {
+                case `big`:
+                case `middle`:
+                case `small`:
+                    value = `fontsize-${key}`;
+                    break;
+                default:
+                    break;
+            }
+            console.log(`key =`, key);
+            console.log(`value =`, value);
+            // this.content.classList.add(value);
+            // let content = document.querySelector(`[data-modal="content"]`);
+            // let content = font.parentElement.nextElementSibling;
+            let content = this.parentElement.nextElementSibling;
+            // let content = fonts[1].parentElement.nextElementSibling;
+            content.className = ``;
+            console.log(`content =`, content, content.classList);
+            content.classList.add(value);
+            console.log(`content =`, content, content.classList);
+            // content.classList.toggle(`fontsize-big`);
+        });
+    };
 }());
 
 
