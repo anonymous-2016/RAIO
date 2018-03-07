@@ -31,8 +31,10 @@
             className: 'fade-and-drop',
             closeButton: true,
             content: "",// html template
-            maxWidth: 800,
-            minWidth: 500,
+            maxWidth: 1366,
+            minWidth: 600,
+            maxHeight: 888,
+            minHeight: 400,
             overlay: true
         };
         // Create options by extending defaults with the passed in arugments
