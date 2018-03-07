@@ -25,10 +25,19 @@
     }
     50% {
         opacity: 1;
-        ;
     }
 }
 
 .zoomIn {
     animation: zoomIn;
+}
+
+
+/* zoom & transform, transition*/
+
+.zoom {
+    zoom: 2;
+    transform: scale(2);
+    transform-origin: 0 0;
+    transition: all 0.5s ease;
 }
