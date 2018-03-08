@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>element.onscroll</title>
+    <style>
+        #container {
+            position: absolute;
+            height: auto;
+            top: 0;
+            bottom: 0;
+            width: auto;
+            left: 0;
+            right: 0;
+            overflow: auto;
+            max-height: 300px;
+            max-width: 300px;
+        }
+        
+        #foo {
+            height: 500px;
+            width: 500px;
+            background-color: #777;
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="container">
+        <div id="foo">
+            xxxxxxxxxxxxxxxxxxxxxxxxx
+        </div>
+    </div>
+    <script type="text/javascript">
+        let box = document.querySelector(`#container`);
+        box.onscroll = () => {
+            // console.log("scrolling...");
+            console.log("window.scrollX =", window.scrollX);
+            console.log("window.scrollY =", window.scrollY);
+            // console.log("this.scrollX =", this.scrollX);
+            // console.log("this.scrollY =", this.scrollY);
+            // console.log(`this =`, this);
+            // Window
+            // console.log(`box =`, box);
+            // <div id=​"container">​…​</div>​
+            console.log("box.scrollX =", box.scrollX);
+            // undefined
+            console.log("box.scrollY =", box.scrollY);
+            // undefined
+        };
+    </script>
+</body>
+
+</html>

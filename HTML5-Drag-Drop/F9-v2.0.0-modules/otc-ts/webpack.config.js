@@ -10,7 +10,9 @@
  * @copyright xgqfrms 2016-forever || 2017-present
  *
  */
-
+require("babel-polyfill");
+// import "babel-polyfill";
+// import "whatwg-fetch";
 
 const path = require('path');
 const webpack = require('webpack'); //to access built-in plugins
@@ -30,8 +32,6 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 
-require("babel-polyfill");
-// import "babel-polyfill";
 
 const BASE_URI = {
     MODULES: './modules',
@@ -66,7 +66,15 @@ const OTC_F9 = [
 let entry_obj = {};
 
 //"babel-polyfill"
-entry_obj["babel-polyfill"] = "babel-polyfill";
+// entry_obj["babel-polyfill"] = "babel-polyfill";
+// entry: ["babel-polyfill", "./app/js"]
+
+
+// "whatwg-fetch"
+// entry_obj["whatwg-fetch"] = "whatwg-fetch";
+// entry: ['whatwg-fetch', ...]
+
+
 
 OTC_F9.forEach(
     (item, i) => {
@@ -76,8 +84,10 @@ OTC_F9.forEach(
 // index
 entry_obj[BASE_URI.index] = `${BASE_URI.index}`;
 entry_obj[BASE_URI.init] = `${BASE_URI.init}`;
+entry_obj["init-sidebar"] = `./init-sidebar`;
+
 // ES6 test & polyfill
-entry_obj[BASE_URI.test] = `${BASE_URI.test}`;
+// entry_obj[BASE_URI.test] = `${BASE_URI.test}`;
 // init-sidebar
 
 // BouncedModal

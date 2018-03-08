@@ -12,6 +12,7 @@
  * @param {* String} url
  * @param {* Boolean} debug
  */
+import 'whatwg-fetch';
 
 // namespaces
 var NSB_TS_FV = NSB_TS_FV || {};

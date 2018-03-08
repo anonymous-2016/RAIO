@@ -1,21 +1,4 @@
-@charset "UTF-8";
-
-/* common css */
-
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    font-size: 12px;
-}
-
-body {
-    font-family: "Microsoft YaHei", sans-serif;
-    /* font-family: Helvetica, Arial, san-serif; */
-}
-
-
-/* Modal CSS */
+/* Modal Base CSS */
 
 .scotch-overlay {
     position: fixed;
@@ -25,21 +8,12 @@ body {
     opacity: 0;
     width: 100%;
     height: 100%;
+    -webkit-transition: 1ms opacity ease;
+    -moz-transition: 1ms opacity ease;
+    -ms-transition: 1ms opacity ease;
+    -o-transition: 1ms opacity ease;
     transition: 1ms opacity ease;
     background: rgba(0, 0, 0, .6);
-}
-
-.scotch-content {
-    /* border: 1px solid #616a87;
-    border-left: 0;
-    border-right: 0; */
-    border: 0;
-    /* background: #808289; */
-    min-height: 600px;
-    min-width: 700px;
-    height: 100%;
-    /* height: 90%; */
-    overflow-x: auto;
 }
 
 .scotch-modal {
@@ -49,10 +23,16 @@ body {
     left: 50%;
     opacity: 0;
     width: 94%;
-    /* height: 90%; */
-    padding: 0;
-    margin: 0;
+    padding: 24px 20px;
+    -webkit-transition: 1ms opacity ease;
+    -moz-transition: 1ms opacity ease;
+    -ms-transition: 1ms opacity ease;
+    -o-transition: 1ms opacity ease;
     transition: 1ms opacity ease;
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
     border-radius: 2px;
     background: #fff;
@@ -60,6 +40,10 @@ body {
 
 .scotch-modal.scotch-open.scotch-anchored {
     top: 20px;
+    -webkit-transform: translate(-50%, 0);
+    -moz-transform: translate(-50%, 0);
+    -ms-transform: translate(-50%, 0);
+    -o-transform: translate(-50%, 0);
     transform: translate(-50%, 0);
 }
 
@@ -84,69 +68,128 @@ body {
     right: 5px;
     padding: 5px 7px 7px;
     cursor: pointer;
-    color: #eee;
+    color: #fff;
     border: 0;
     outline: none;
-    /* background: #e74c3c; */
-    background: #616a87;
+    background: #e74c3c;
 }
 
 .scotch-close:hover {
-    /* background: #c0392b; */
-    color: #fff;
+    background: #c0392b;
 }
 
 
 /* Default Animation */
 
-
-/* overlay */
-
-.scotch-overlay.fade-and-drop {
+.scotch-overlay.zoom {
     display: block;
     opacity: 0;
 }
 
-.scotch-overlay.fade-and-drop {
-    transition: 500ms opacity 100ms ease;
-    /* delay & slow */
-}
-
-.scotch-overlay.fade-and-drop.scotch-open {
-    top: 0;
-    opacity: 1;
-    transition: 500ms opacity ease;
-    /* no delay & fast */
-}
-
-
-/* modal */
-
-.scotch-modal.fade-and-drop {
-    top: -300%;
+.scotch-modal.zoom {
+    -webkit-transition: 500ms -webkit-transform ease;
+    -moz-transition: 500ms -moz-transform ease;
+    -ms-transition: 500ms -ms-transform ease;
+    -o-transition: 500ms -o-transform ease;
+    transition: 500ms transform ease;
+    -webkit-transform: translate(-50%, -50%) scale(0);
+    -moz-transform: translate(-50%, -50%) scale(0);
+    -ms-transform: translate(-50%, -50%) scale(0);
+    -o-transform: translate(-50%, -50%) scale(0);
+    transform: translate(-50%, -50%) scale(0);
     opacity: 1;
     display: block;
 }
 
-.scotch-modal.fade-and-drop {
-    transition: 500ms top ease;
+.scotch-modal.zoom.scotch-open {
+    -webkit-transition: 500ms -webkit-transform 500ms ease;
+    -moz-transition: 500ms -moz-transform 500ms ease;
+    -ms-transition: 500ms -ms-transform 500ms ease;
+    -o-transition: 500ms -o-transform 500ms ease;
+    transition: 500ms transform 500ms ease;
+    -webkit-transform: translate(-50%, -50%) scale(1);
+    -moz-transform: translate(-50%, -50%) scale(1);
+    -ms-transform: translate(-50%, -50%) scale(1);
+    -o-transform: translate(-50%, -50%) scale(1);
+    transform: translate(-50%, -50%) scale(1);
 }
 
-.scotch-modal.fade-and-drop.scotch-open {
-    top: 50%;
-    /* top: 5%; */
-    transition: 500ms top 100ms ease;
+.scotch-modal.zoom.scotch-open.scotch-anchored {
+    -webkit-transition: 500ms -webkit-transform 500ms ease;
+    -moz-transition: 500ms -moz-transform 500ms ease;
+    -ms-transition: 500ms -ms-transform 500ms ease;
+    -o-transition: 500ms -o-transform 500ms ease;
+    transition: 500ms transform 500ms ease;
 }
 
-.scotch-modal.fade-and-drop.scotch-open.scotch-anchored {
-    /* 20px; */
-    transition: 500ms top 100ms ease;
+.scotch-overlay.zoom.scotch-open {
+    top: 0;
+    -webkit-transition: 500ms opacity ease;
+    -moz-transition: 500ms opacity ease;
+    -ms-transition: 500ms opacity ease;
+    -o-transition: 500ms opacity ease;
+    transition: 500ms opacity ease;
+    opacity: 1;
 }
 
-.scotch-bug {
-    top: 5%;
-    transition: 500ms top 100ms ease;
+.scotch-overlay.zoom {
+    -webkit-transition: 500ms opacity 500ms ease;
+    -moz-transition: 500ms opacity 500ms ease;
+    -ms-transition: 500ms opacity 500ms ease;
+    -o-transition: 500ms opacity 500ms ease;
+    transition: 500ms opacity 500ms ease;
 }
+
+
+/* Demo Styles */
+
+html {
+    box-sizing: border-box;
+}
+
+* {
+    box-sizing: inherit;
+}
+
+body {
+    font-family: Helvetica, Arial, san-serif;
+    font-size: 16px;
+    margin: 0;
+    padding: 0;
+}
+
+#content {
+    display: none;
+}
+
+.trigger-button {
+    font-size: 17px;
+    position: relative;
+    top: 100px;
+    display: block;
+    margin: auto;
+    padding: 10px 30px;
+    cursor: pointer;
+    color: #fff;
+    border: 0;
+    border-radius: 3px;
+    outline: none;
+    background: #3498db;
+    box-shadow: 0 5px 1px #196090;
+}
+
+.trigger-button:hover {
+    background: #196090;
+    box-shadow: 0 5px 1px #0a2639;
+}
+
+.trigger-button:active {
+    border-top: 5px solid white;
+    box-shadow: none;
+}
+
+
+/* modal & DOM */
 
 
 /* Demo Styles */
@@ -457,42 +500,3 @@ div[data-modal="content"].fontsize-middle>div {
 div[data-modal="content"].fontsize-small>div {
     font-size: 12px;
 }
-
-
-/* custom-animation */
-
-.scotch-modal.custom-animation {
-    -webkit-transition: 1ms -webkit-transform ease;
-    -moz-transition: 1ms -moz-transform ease;
-    -ms-transition: 1ms -ms-transform ease;
-    -o-transition: 1ms -o-transform ease;
-    transition: 1ms transform ease;
-    -webkit-transform: scale(0);
-    -moz-transform: scale(0);
-    -ms-transform: scale(0);
-    -o-transform: scale(0);
-    transform: scale(0);
-}
-
-.scotch-modal-custom-animation.scotch-open {
-    -webkit-transform: scale(1);
-    -moz-transform: scale(1);
-    -ms-transform: scale(1);
-    -o-transform: scale(1);
-    transform: scale(1);
-}
-
-
-/*
-
-var myModal = new Modal({
-    className: 'custom-animation',
-    content: '<p>Ken Wheeler is strikingly handsome.</p>',
-    maxWidth: 600
-});
-
-myModal.open();
-
-
-
-*/

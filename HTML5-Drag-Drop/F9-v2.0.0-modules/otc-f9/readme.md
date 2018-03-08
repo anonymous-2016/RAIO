@@ -821,7 +821,36 @@ Ctrl + X
 
 
 
+## ES6 bug & polyfill
 
+### babel-polyfill
+
+https://babeljs.io/docs/usage/polyfill/
+
+> Because this is a polyfill (which will run before your source code),
+ we need it to be a `Dependency`, not a `devDependency`.
+
+```sh
+
+$ npm i -S babel-polyfill
+
+
+```
+
+### whatwg-fetch
+
+https://github.com/github/fetch#installation
+
+
+```sh
+
+$ npm i -S whatwg-fetch
+
+# import "whatwg-fetch";
+
+# entry: ['whatwg-fetch', ...]
+
+```
 
 
 

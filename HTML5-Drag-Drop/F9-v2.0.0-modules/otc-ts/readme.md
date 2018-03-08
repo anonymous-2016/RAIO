@@ -10,7 +10,9 @@ OTC_TS_FV.Helper
 
 
 
-## ES6 bug
+## ES6 bug & polyfill
+
+### babel-polyfill
 
 https://babeljs.io/docs/usage/polyfill/
 
@@ -21,6 +23,21 @@ https://babeljs.io/docs/usage/polyfill/
 
 $ npm i -S babel-polyfill
 
+
+```
+
+### whatwg-fetch
+
+https://github.com/github/fetch#installation
+
+
+```sh
+
+$ npm i -S whatwg-fetch
+
+# import "whatwg-fetch";
+
+# entry: ['whatwg-fetch', ...]
 
 ```
 

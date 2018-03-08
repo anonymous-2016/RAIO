@@ -11,6 +11,7 @@
  * @param {Boolean} debug
  */
 
+import 'whatwg-fetch';
 
 /**
  * @author xgqfrms

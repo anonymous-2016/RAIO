@@ -1,7 +1,7 @@
 "use strict";
 // import {DOM_queryAll, DOM_query} from "./utils/DOM";
 
-// import "babel-polyfill";
+import "babel-polyfill";
 
 // namespaces & global variable
 window.OTC_TS_FV = window.OTC_TS_FV || {};
@@ -260,10 +260,13 @@ document.addEventListener(`DOMContentLoaded`, (e) => {
         // after loading & show body
         let body = document.querySelector(bd);
         // Uncaught TypeError: body.classList.includes is not a function
+        console.log(`body =`, body);
         // if (body.classList.includes(`init-hidden`)) {
         if (body !== undefined && body !== null) {
             // SCRIPT5007: Unable to get property 'includes' of undefined or null reference
-            if (body.classList.value.includes(`init-hidden`)) {
+            console.log(`body.classList =`, body.classList)
+            if (body.classList.contains(`init-hidden`)) {
+            // if (body.classList.value.includes(`init-hidden`)) {
                 body.classList.add(`init-show`);
                 body.classList.remove(`init-hidden`);
             }else{

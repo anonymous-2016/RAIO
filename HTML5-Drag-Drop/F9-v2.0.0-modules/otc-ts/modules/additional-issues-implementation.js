@@ -12,6 +12,7 @@
  * @param {* String} url
  * @param {* Boolean} debug
  */
+import 'whatwg-fetch';
 
 // namespaces
 var OTC_TS_FV = OTC_TS_FV || {};

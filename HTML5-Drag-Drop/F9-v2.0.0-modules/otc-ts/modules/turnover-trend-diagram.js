@@ -12,6 +12,7 @@
  * @param {* String} url
  * @param {* Boolean} debug
  */
+import 'whatwg-fetch';
 
 import {UserException} from "../utils/throw_error";
 import {UserConsoleError as ConsoleError} from "../utils/console_error";

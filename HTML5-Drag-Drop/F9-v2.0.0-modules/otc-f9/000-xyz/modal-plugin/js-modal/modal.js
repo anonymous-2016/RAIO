@@ -160,13 +160,21 @@
     }
     function transitionSelect() {
         var el = document.createElement("div");
+        let result = `transitionend`;
         if (el.style.WebkitTransition) {
-            return "webkitTransitionEnd";
+            result = "webkitTransitionEnd";
         }
         if (el.style.OTransition) {
-            return "oTransitionEnd";
+            result = "oTransitionEnd";
         }
-        return 'transitionend';
+        // if (el.style.transitionend) {
+        //     result = 'transitionend';
+        //     console.log(`result = `, result);
+        // }
+        // console.log(`element.style = `, el.style);
+        // console.log(`element.style.transitionend = `, el.style.transitionend);
+        // undefined
+        return result;
     }
     const changeFontSize = (debug = false) => {
         const font = document.querySelector(`[data-modal="modal-font"]`);

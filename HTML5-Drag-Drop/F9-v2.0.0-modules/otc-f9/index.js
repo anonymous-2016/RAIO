@@ -1,5 +1,7 @@
 // import {DOM_queryAll, DOM_query} from "./utils/DOM";
 
+import "babel-polyfill";
+
 // const xyz_debug = window.xyz_debug ? window.xyz_debug : false;
 // var debug = false;
 

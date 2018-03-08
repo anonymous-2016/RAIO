@@ -1,3 +1,10 @@
+// namespaces & global variable
+window.OTC_TS_FV = window.OTC_TS_FV || {};
+
+// sub namespaces
+OTC_TS_FV.Utils = OTC_TS_FV.Utils || {};
+
+
 const initSidebar = () => {
     let lis = document.querySelectorAll(`[data-nav-li="nav-li"]`);
     let divs = document.querySelectorAll(`[data-nav-box="nav-box"]`);
