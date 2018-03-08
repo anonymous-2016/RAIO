@@ -1,5 +1,8 @@
 // "use strict";
 // recentImportantEvents & Uncaught SyntaxError: Delete of an unqualified identifier in strict mode.
+// import "babel-polyfill";
+
+// import "whatwg-fetch";
 
 // namespaces
 var STOCK_F9_FV = STOCK_F9_FV || {};

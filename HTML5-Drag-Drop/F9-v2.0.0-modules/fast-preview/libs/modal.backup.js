@@ -16,7 +16,7 @@ var STOCK_F9_FV = STOCK_F9_FV || {};
 // sub namespaces
 STOCK_F9_FV.Modal = STOCK_F9_FV.Modal || {};
 
-STOCK_F9_FV.Modal.Public = STOCK_F9_FV.Modal.Public  || (function (params) {
+STOCK_F9_FV.Modal.Public = STOCK_F9_FV.Modal.Public  || ((debug = false) => {
     return {
         view: () => {
             const w = document.documentElement.clientWidth;
@@ -27,7 +27,7 @@ STOCK_F9_FV.Modal.Public = STOCK_F9_FV.Modal.Public  || (function (params) {
             };
         },
     }
-);
+});
 
 
 STOCK_F9_FV.Modal.getClientWidthHeight = STOCK_F9_FV.Modal.getClientWidthHeight  || ((debug = false) => {

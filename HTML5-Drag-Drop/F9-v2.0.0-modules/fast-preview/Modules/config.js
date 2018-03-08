@@ -4,12 +4,13 @@
  * @subnamespace STOCK_F9_FV.Utils
  * @name getURL
  * @created 2017.11.12
- * 
- * @description 
- * @param {* Object} gil_obj 
- * @param {* Boolean} debug 
+ *
+ * @description
+ * @param {* Object} gil_obj
+ * @param {* Boolean} debug
  */
 
+// import "whatwg-fetch";
 
 // namespaces
 var STOCK_F9_FV = STOCK_F9_FV || {};
@@ -52,7 +53,7 @@ STOCK_F9_FV.Utils.getURL = STOCK_F9_FV.Utils.getURL || ((gil_obj = {
                         console.log(`%c You passed the ${i+1} param ${key}'s value is`, `color: red`, `${gil_obj[key]}!`);
                     }
                 }else{
-                    // 
+                    //
                 }
             }else{
                 // let index = init_keys.indexOf(key);
@@ -74,7 +75,7 @@ STOCK_F9_FV.Utils.getURL = STOCK_F9_FV.Utils.getURL || ((gil_obj = {
 
 // url
 
-/* 
+/*
 // http://localhost:3000/fast-preview/json/datas/2.json
 const url = `http://10.1.5.202/webservice/fastview/stock/stockfast01/600570.SH`;
 
@@ -112,7 +113,7 @@ const url = STOCK_F9_FV.Utils.getURL(gil_obj, true);
 // export STOCK_F9_FV.Utils.getURL;
 // module.exports = STOCK_F9_FV.Utils.getURL;
 
-/* 
+/*
 
     $(".figcaption").each(function(i){
         var divH = $(this).height();

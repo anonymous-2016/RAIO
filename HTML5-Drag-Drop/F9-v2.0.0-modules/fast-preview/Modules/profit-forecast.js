@@ -9,7 +9,7 @@
  * @param {* Boolean} debug
  */
 
-// todo
+import "whatwg-fetch";
 
 // namespaces
 var STOCK_F9_FV = STOCK_F9_FV || {};

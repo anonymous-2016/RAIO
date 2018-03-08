@@ -9,6 +9,8 @@
  * @param {* Boolean} debug
  */
 
+import "whatwg-fetch";
+
 // institutional-shareholding-change-statistics ISCS
 
 // namespaces

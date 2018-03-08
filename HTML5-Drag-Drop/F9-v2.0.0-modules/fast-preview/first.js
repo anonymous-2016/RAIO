@@ -1,3 +1,5 @@
+import "babel-polyfill";
+
 // namespaces
 var STOCK_F9_FV = STOCK_F9_FV || {};
 // sub namespaces

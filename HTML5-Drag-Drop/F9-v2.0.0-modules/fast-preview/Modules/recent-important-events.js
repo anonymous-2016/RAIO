@@ -8,6 +8,7 @@
  * @param {* Array} ui_arr
  * @param {Boolean} debug
  */
+import "whatwg-fetch";
 
 // namespaces
 var STOCK_F9_FV = STOCK_F9_FV || {};

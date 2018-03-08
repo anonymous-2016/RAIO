@@ -8,6 +8,7 @@
  * @param {* DOM Element} uid
  * @param {* Boolean} debug
  */
+import "whatwg-fetch";
 
 // monthly-capital-flows-large-single-statistics MCFLSStatistics
 
