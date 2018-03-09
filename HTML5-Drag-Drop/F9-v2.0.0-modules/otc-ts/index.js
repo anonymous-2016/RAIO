@@ -458,7 +458,7 @@ const HTML_Template = (uid = ``, loadModule = function(){}, debug = false) => {
                 <section class="otc-module-box-5" data-uid="newly-added-protocol">
                     <div class="otc-h5dnd-modules-title-box otc-newly-added-protocol-title-box">
                         <p class="otc-h5dnd-modules-title" data-title="otc-newly-added-protocol-title">
-                            新增协议
+                            新增竞价
                             <span data-title-text="otc-newly-added-protocol-title-text">
                                 <!-- 今日新增协议转做市公司 -->
                                 <!-- 今日新增竞价转做市公司 -->
@@ -644,7 +644,7 @@ const HTML_Template = (uid = ``, loadModule = function(){}, debug = false) => {
                                     <!--交易排行榜-协议-->
                             </span>
                             <span data-link="otc-transactions-leaderboard-protocol-link">
-                                <a href="#more" data-uid="342081" data-topic-category="NQTOPIC" data-turn-to-uid="node-uid-transactions-leaderboard-protocol">更多</a>
+                                <a href="#more" data-uid="101946" data-topic-category="NQTOPIC" data-turn-to-uid="node-uid-transactions-leaderboard-protocol">更多</a>
                             </span>
                         </p>
                     </div>
@@ -736,7 +736,7 @@ const HTML_Template = (uid = ``, loadModule = function(){}, debug = false) => {
                             <!--今日定增-->
                             近期定增
                             <span data-link="otc-additional-issues-all-link">
-                                <a href="#more" data-uid="342097" data-topic-category="NQTOPIC" data-turn-to-uid="node-uid-additional-issues-all">更多</a>
+                                <a href="#more" data-uid="342098" data-topic-category="NQTOPIC" data-turn-to-uid="node-uid-additional-issues-all">更多</a>
                             </span>
                         </p>
                     </div>
@@ -922,7 +922,7 @@ const HTML_Template = (uid = ``, loadModule = function(){}, debug = false) => {
                             <!--今日定增-->
                             近期分红
                             <span data-link="otc-dividend-matters-all-link">
-                                <a href="#more" data-uid="342096" data-topic-category="NQTOPIC" data-turn-to-uid="node-uid-dividend-matters-all">更多</a>
+                                <a href="#more" data-uid="342101" data-topic-category="NQTOPIC" data-turn-to-uid="node-uid-dividend-matters-all">更多</a>
                             </span>
                         </p>
                     </div>

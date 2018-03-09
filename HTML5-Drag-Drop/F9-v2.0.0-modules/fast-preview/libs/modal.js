@@ -305,15 +305,15 @@ BouncedModal.prototype = {
     }
     if(win["UDP"]){
         // win["UDP"], will never be executed!
-        win["UDP"].Public = STOCK_F9_FV.Modal.Public();
-        win["UDP"].getClientWidthHeight = STOCK_F9_FV.Modal.getClientWidthHeight();
+        win["UDP"].Public = Modal_Public();
+        win["UDP"].getClientWidthHeight = Modal_getClientWidthHeight();
         // win["UDP"].BouncedModal = STOCK_F9_FV.Modal.BouncedModal();
         win["UDP"].BouncedModal = BouncedModal();
         // BouncedModal && Constructorle ???
     }else{
         win.UDP = {
-            Public: STOCK_F9_FV.Modal.Public(),
-            getClientWidthHeight: STOCK_F9_FV.Modal.getClientWidthHeight(),
+            Public:  Modal_Public(),
+            getClientWidthHeight: Modal_getClientWidthHeight(),
             BouncedModal: BouncedModal()
         };
     }

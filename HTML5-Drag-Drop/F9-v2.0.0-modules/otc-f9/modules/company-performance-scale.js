@@ -105,11 +105,13 @@ OTC_F9_FV.Modules.companyPerformanceScale = OTC_F9_FV.Modules.companyPerformance
                             }
                             let html = ``;
                             if (datas.data !== undefined && typeof(datas.data) === "object") {
+                                let text = (parseFloat(datas.data.zsz) - parseFloat(datas.hyzsz) > 0) ? `<span data-color="plus">高于</span>` : `<span data-color="minus">低于</span>`;
+                                // 高于 ? 低于
                                 html = `
                                     <p data-p="company-performance-scale-p">
-                                        <span data-span="company-performance-scale-span">${datas.data.zqdm}</span> 总市值为
-                                        <span data-span="company-performance-scale-span">${datas.data.zsz}</span> 万元, 高于行业均值, 行业排名第
-                                        <span data-span="company-performance-scale-span">${datas.data.pm}</span>.
+                                        <span data-span="company-performance-scale-span">${datas.data.zqdm}</span>
+                                        总市值为 <span data-color="orange">${datas.data.zsz}</span>万元, ${text}行业均值,
+                                        行业排名第<span data-color="orange">${datas.data.pm}</span>.
                                     </p>
                                 `;
                             }else{

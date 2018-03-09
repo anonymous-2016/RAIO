@@ -67,11 +67,29 @@ OTC_F9_FV.Modules.mainManagementBusiness = OTC_F9_FV.Modules.mainManagementBusin
                             }
                             time_dom.insertAdjacentHTML(`beforeend`, time);
                             if (emptyChecker(json.zz) && emptyChecker(json.zb)) {
+                                // <span data-color="minus">减少8.90%</span>
+                                // <span data-color="plus">增加8.90%</span>
+                                let neww_zz = ``,
+                                    neww_zb = ``;
+                                if (json.zz !== `--`) {
+                                    neww_zz = `${!json.zz.includes(`-`) ? `本报告期公司主营业务同比<span data-color="plus">增长${json.zz}%</span>` : `本报告期公司主营业务同比<span data-color="minus">减少${json.zz.replace(/-/ig, ``)}%</span>`}`;
+                                }else{
+                                    // neww_zz = `<span data-color="none">本报告期公司主营业务同比增长--%</span>, `;
+                                    // neww_zz = `<span data-color="none">--</span>`;
+                                    neww_zz = `<span data-color="none"></span>`;
+                                }
+                                if (json.zb !== `--`) {
+                                    if (json.zz !== `--`) {
+                                        neww_zb = `, 占营业总收入<span data-span="data-otc-MMB-title">${json.zb}</span>%.`;
+                                    }else{
+                                        neww_zb = `占营业总收入<span data-span="data-otc-MMB-title">${json.zb}</span>%.`;
+                                    }
+                                }else{
+                                    neww_zb = `<span data-color="none"></span>`;
+                                }
                                 p = `
                                     <p data-p="data-otc-MMB-title">
-                                        本报告期公司主营业务同比增长
-                                        <span data-span="data-otc-MMB-title">${json.zz}</span>%, 占营业总收入
-                                        <span data-span="data-otc-MMB-title">${json.zb}</span>%。
+                                        ${neww_zz}${neww_zb}
                                     </p>
                                 `;
                             }else{
@@ -243,6 +261,11 @@ OTC_F9_FV.Modules.mainManagementBusiness = OTC_F9_FV.Modules.mainManagementBusin
                                 </tr>
                             `;
                             tbody_dom.insertAdjacentHTML(`beforeend`, html);
+                            // otc-main-management-business-container
+                            let boxs = document.querySelectorAll(`.otc-main-management-business-container`);
+                            for (let i = 0; i < boxs.length; i++) {
+                                boxs[i].style.display = "none";
+                            }
                         }
                     }else{
                         let message = `handle json error!`,
@@ -313,6 +336,7 @@ OTC_F9_FV.Modules.mainManagementBusiness.drawHS = OTC_F9_FV.Modules.mainManageme
         const {color, colors, optioncolor, gridColor, legendColor, yAxisColor, index_color} = {...chart_css};
         // SKIN
         let skin_color = (OTC_SKIN === "black") ? `#0b1016` : `#fff`,
+            grid_line_color = (OTC_SKIN === "black") ? `#2d3039` : `#e9e9e9`,
             legend_item_color = (OTC_SKIN === "black") ? `#fff` : `#0b1016`,
             legend_item_hover_color = (OTC_SKIN === "black") ? `#f79530` : `#000`,
             legend_bg_color = (OTC_SKIN === "black") ? `#0b1016` : `#ff00ff`;
@@ -347,15 +371,30 @@ OTC_F9_FV.Modules.mainManagementBusiness.drawHS = OTC_F9_FV.Modules.mainManageme
                 // plotBorderWidth: 1,
                 // marginLeft: 80
             },
+            // title: {
+            //     // text: '月平均换手率',
+            //     text: '',
+            //     align: "left",
+            //     x: 70,
+            //     y: 10,
+            // },
             title: {
-                // text: '月平均换手率',
-                text: '',
+                text: '按产品',
+                // text: '',
                 align: "left",
-                x: 70,
-                y: 10,
+                x: -5,
+                y: 5,
+                style: {
+                    color: "#616a87",
+                    fontSize: "18px",
+                    fontWeight: "bold",
+                },
             },
             xAxis: {
                 categories: products,
+                tickColor: grid_line_color,
+                lineColor: grid_line_color,
+                gridLineColor: grid_line_color,
                 // min: max_time,
                 // min: 0,
                 // max: 8,
@@ -401,6 +440,7 @@ OTC_F9_FV.Modules.mainManagementBusiness.drawHS = OTC_F9_FV.Modules.mainManageme
                         // text: '换手率',
                         text: '',
                     },
+                    gridLineColor: grid_line_color,
                     // labels: {
                     //     format: '{value}',// 百分比
                     //     style: {
@@ -506,6 +546,9 @@ OTC_F9_FV.Modules.mainManagementBusiness.drawHS = OTC_F9_FV.Modules.mainManageme
                 //         color: "#434348"
                 //     }
                 // },
+                column: {
+                    borderWidth: 0,
+                },
                 // spline: {
                 //     stacking: 'normal',
                 //     dataLabels: {
@@ -607,6 +650,7 @@ OTC_F9_FV.Modules.mainManagementBusiness.drawHS2 = OTC_F9_FV.Modules.mainManagem
         const {color, colors, optioncolor, gridColor, legendColor, yAxisColor, index_color} = {...chart_css};
         // SKIN
         let skin_color = (OTC_SKIN === "black") ? `#0b1016` : `#fff`,
+            grid_line_color = (OTC_SKIN === "black") ? `#2d3039` : `#e9e9e9`,
             legend_item_color = (OTC_SKIN === "black") ? `#fff` : `#0b1016`,
             legend_item_hover_color = (OTC_SKIN === "black") ? `#f79530` : `#000`,
             legend_bg_color = (OTC_SKIN === "black") ? `#0b1016` : `#ff00ff`;
@@ -658,14 +702,22 @@ OTC_F9_FV.Modules.mainManagementBusiness.drawHS2 = OTC_F9_FV.Modules.mainManagem
                 // marginLeft: 80
             },
             title: {
-                // text: '月平均换手率',
-                text: '',
+                text: '按项目',
+                // text: '',
                 align: "left",
-                x: 70,
-                y: 10,
+                x: -5,
+                y: 5,
+                style: {
+                    color: "#616a87",
+                    fontSize: "18px",
+                    fontWeight: "bold",
+                },
             },
             xAxis: {
                 categories: ["营业收入", "营业成本", "毛利"],
+                tickColor: grid_line_color,
+                lineColor: grid_line_color,
+                gridLineColor: grid_line_color,
                 // categories: ["A", "B", "C", "D", "E"],
                 // min: max_time,
                 // min: 0,
@@ -712,6 +764,7 @@ OTC_F9_FV.Modules.mainManagementBusiness.drawHS2 = OTC_F9_FV.Modules.mainManagem
                         // text: '换手率',
                         text: '',
                     },
+                    gridLineColor: grid_line_color,
                     // labels: {
                     //     format: '{value}',// 百分比
                     //     style: {
@@ -808,6 +861,9 @@ OTC_F9_FV.Modules.mainManagementBusiness.drawHS2 = OTC_F9_FV.Modules.mainManagem
             },
             // 情节/绘图选项
             plotOptions: {
+                column: {
+                    borderWidth: 0,
+                },
                 // (series) type = column (chart)
                 // column: {
                 //     // stacking: 'normal',// 是否将每个系列的值叠加在一起, 默认是：null
@@ -924,8 +980,8 @@ OTC_F9_FV.Modules.mainManagementBusiness.init = OTC_F9_FV.Modules.mainManagement
 
 var OTC_IP = window.OTC_IP || `http://10.1.5.202`,
     OTC_PATH = window.OTC_PATH || `/webservice/fastview/otcper`,
-    // OTC_SKIN = window.OTC_SKIN || `white`,
-    OTC_SKIN = window.OTC_SKIN || `black`,
+    OTC_SKIN = window.OTC_SKIN || `white`,
+    // OTC_SKIN = window.OTC_SKIN || `black`,
     // OTC_GILCODE = window.OTC_GILCODE || `834380.OC`;
     // OTC_GILCODE = window.OTC_GILCODE || `430009.OC`;
     // OTC_GILCODE = window.OTC_GILCODE || `430002.OC`;

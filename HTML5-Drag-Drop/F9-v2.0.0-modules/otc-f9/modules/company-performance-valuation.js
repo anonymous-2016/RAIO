@@ -109,14 +109,13 @@ OTC_F9_FV.Modules.companyPerformanceValuation = OTC_F9_FV.Modules.companyPerform
                             // no data
                             let html = ``;
                             if (datas.stock !== undefined && typeof(datas.stock) === "object") {
-                                let text = (parseFloat(datas.stock.ttm) - parseFloat(datas.sylpj) > 0) ? "高于" : "低于";
+                                let ttm = (parseFloat(datas.stock.ttm) > 0) ? `<span data-color="plus">${datas.stock.ttm}</span>` : `<span data-color="minus">${datas.stock.ttm}</span>`,
+                                    text = (parseFloat(datas.stock.ttm) - parseFloat(datas.sylpj) > 0) ? `<span data-color="plus">高于</span>` : `<span data-color="minus">低于</span>`;
                                 // 高于 ? 低于
                                 html = `
                                     <p data-p="company-performance-valuation-p">
-                                        <span data-span="company-performance-valuation-span">${datas.stock.zqdm}</span> 最新市盈率(TTM)为
-                                        <span data-span="company-performance-valuation-span">${datas.stock.ttm}</span>,
-                                        <span data-span="company-performance-valuation-span">${text}</span>行业均值, 行业排名第
-                                        <span data-span="company-performance-valuation-span">${datas.stock.pm}</span> 位.
+                                        <span data-span="company-performance-valuation-span">${datas.stock.zqdm}</span> 最新市盈率(TTM)为 ${ttm}, ${text}行业均值, 行业排名第
+                                        <span data-color="orange">${datas.stock.pm}</span>位.
                                     </p>
                                 `;
                             }else{

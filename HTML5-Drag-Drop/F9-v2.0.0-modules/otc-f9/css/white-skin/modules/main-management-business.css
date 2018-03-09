@@ -315,8 +315,26 @@ thead.otc-main-management-business-table-thead>tr.otc-main-management-business-t
     font-size: 12px;
 }
 
+[data-titles="data-otc-MMB-title"]>p{
+    border: 0;
+}
+
 [data-span="data-otc-MMB-title"] {
     /* color: red; */
+}
+
+[data-div="tbody-div"] {
+    box-sizing: border-box;
+    line-height: 23px;
+    font-size: 12px;
+    width: 100%;
+    /* margin-bottom: 10px; */
+    margin-bottom: 0px;
+    /* padding-left: 8px; */
+    background: #fffce9;
+    border: 1px solid #d7dbe0;
+    border-bottom: 0;
+    color: #616a87;
 }
 
 thead[no-thead="hide-MMB-thead"] {
@@ -331,6 +349,7 @@ div[data-div="tbody-div"]>p[data-p="data-otc-MMB-title"] {
     color: #616a87;
     font-size: 12px;
     font-weight: normal;
+    text-indent: 8px;
 }
 
 thead[data-hide="otc-main-management-business-table-thead-hide"] {
@@ -348,4 +367,12 @@ div.otc-main-management-business-container {
 
 div.otc-main-management-business-container:nth-of-type(2) {
     margin-bottom: 10px;
+}
+
+[data-color="minus"] {
+    color: #007c00;
+}
+
+[data-color="plus"] {
+    color: #ca0000;
 }

@@ -125,7 +125,8 @@ OTC_F9_FV.Modules.companyPerformanceMarket = OTC_F9_FV.Modules.companyPerformanc
                                 OTC_F9_FV.Modules.companyPerformanceMarket.drawHS2(arr_obj, hsc_uid2);
                             };
                             // no data
-                            let html1 = ``, html2 = ``;
+                            let html1 = ``,
+                                html2 = ``;
                             html1 = html2 = `
                                 <p data-none="no-data-p">
                                     <span data-none="no-data-span"></span>
@@ -181,16 +182,23 @@ OTC_F9_FV.Modules.companyPerformanceMarket = OTC_F9_FV.Modules.companyPerformanc
                                 }
                                 if (emptyChecker(datas.hsl.hsl) && emptyChecker(datas.hsl.secuName)&& emptyChecker(datas.hsl.hslpm)) {
                                     let a = parseFloat(datas.hsl.hsl),
-                                        b = parseFloat(datas.hsl.scrjhsl);
-                                    let compare =  (a === b) ? `等于` : ((a > b) ? `高于` : `低于`);
-                                    // console.log(`a`, a, `b` , b, `a > b`, a > b);
+                                        b = parseFloat(datas.hsl.scrjhsl),
+                                        hsl = ``;
+                                    let compare =  (a === b) ? `等于` : ((a > b) ? `<span data-color="plus">高于</span>` : `<span data-color="minus">低于</span>`);
+                                    if (parseFloat(datas.hsl.hsl) !== 0) {
+                                        hsl = parseFloat(datas.hsl.hsl) > 0 ? `<span data-color="plus">${datas.hsl.hsl}</span>%` : `<span data-color="minus">${datas.hsl.hsl}</span>%`;
+                                    }else{
+                                        hsl = `<span>${datas.hsl.hsl}</span>%`;
+                                        // 0.00 === 0;
+                                        // true
+                                    }
+                                    // === 0 ???
                                     // 等于 equals
                                     html2 = `
                                         <p data-p="company-performance-market-p">
-                                            <span data-span="company-performance-market-span">${datas.hsl.secuName}</span> 近一个月平均换手率为
-                                            <span data-span="company-performance-market-span">${datas.hsl.hsl}</span> %,
-                                            <span data-span="company-performance-market-span">${compare}</span>市场平均值, 市场排名
-                                            <span data-span="company-performance-market-span">${datas.hsl.hslpm}</span>.
+                                            <span data-span="company-performance-market-span">${datas.hsl.secuName}</span>
+                                            近一个月平均换手率为 ${hsl},
+                                            ${compare}市场平均值, 市场排名<span data-color="orange">${datas.hsl.hslpm}</span>.
                                         </p>
                                     `;
                                 } else {
@@ -200,14 +208,13 @@ OTC_F9_FV.Modules.companyPerformanceMarket = OTC_F9_FV.Modules.companyPerformanc
                                 shitAPI();
                             }
                             if (emptyChecker(datas.zdfpm) && emptyChecker(datas.zdfbj) && emptyChecker(datas.secuName)) {
-                                // let a = parseFloat(datas.zdfbj),// ???
-                                //     b = parseFloat(datas.zdfbj);
+                                let zdfbj = datas.zdfbj.includes(`强`) ? `<span data-color="plus">${datas.zdfbj}</span>` : `<span data-color="minus">${datas.zdfbj}</span>`;
+                                // 高于 ? 低于
                                 // let compare =  (a === b) ? `等于` : ((a > b) ? `高于` : `低于`);
+                                // 强于
                                 html1 = `
                                     <p data-p="company-performance-market-p">
-                                        <span data-span="company-performance-market-span">${datas.secuName}</span> 近一年涨跌幅市场排名
-                                        <span data-span="company-performance-market-span">${datas.zdfpm}</span> 名,
-                                        <span data-span="company-performance-market-span">${datas.zdfbj}</span>三板成指.
+                                        <span data-span="company-performance-market-span">${datas.secuName}</span> 近一年涨跌幅市场排名<span data-color="orange">${datas.zdfpm}</span>名, ${zdfbj}三板成指.
                                     </p>
                                 `;
                             }else{

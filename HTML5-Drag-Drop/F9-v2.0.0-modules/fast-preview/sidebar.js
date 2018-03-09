@@ -1,6 +1,6 @@
 // "use strict";
 // recentImportantEvents & Uncaught SyntaxError: Delete of an unqualified identifier in strict mode.
-// import "babel-polyfill";
+import "babel-polyfill";
 
 // import "whatwg-fetch";
 

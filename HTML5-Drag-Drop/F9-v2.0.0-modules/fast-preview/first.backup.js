@@ -1,5 +1,13 @@
+import "babel-polyfill";
 
-const getParam = (key, debug = false) => {
+// namespaces
+var STOCK_F9_FV = STOCK_F9_FV || {};
+// sub namespaces
+STOCK_F9_FV.Modules = STOCK_F9_FV.Modules || {};
+
+STOCK_F9_FV.Utils = STOCK_F9_FV.Utils || {};
+
+STOCK_F9_FV.Utils.getParam = STOCK_F9_FV.Utils.getParam || ((key, debug = false) => {
     let search = decodeURIComponent(window.location.search),
         start = search.indexOf("?") + 1,
         value = ``;
@@ -22,67 +30,17 @@ const getParam = (key, debug = false) => {
         console.log(`value = `, value);
         return value;
     }
-};
-
-
-window.STOCK_Skin = window.STOCK_Skin || ``;
-
-// set params before DOM ready!
-window.STOCK_Skin = getParam(`skin`) || `white`;
-
-document.addEventListener(`DOMContentLoaded`, () => {
-    console.log("(DOMContentLoaded) & DOM fully loaded and parsed!");
 });
-
-// console.log(`window.STOCK_Skin = `, window.STOCK_Skin, typeof(window.STOCK_Skin));
-
-// const cssLoader = () => {
-(() => {
-    console.log("loading css...");
-    const css_arr = ["sidebar.css", "common/module.css", "common/modal.css", "common/more.css"];
-    // const css_arr = ["common/more.css", "common/modal.css", "common/module.css", "sidebar.css"];
-    // const css_arr = ["no-body.css", "sidebar.css", "common/module.css", "common/modal.css", "common/more.css"];
-    const css_skins = ["black-skin", "white-skin"];
-    // const css_links = document.querySelectorAll(`[data-css="data-css-uid"]`);
-    let css_dom = document.querySelector(`head`);
-    // head
-    // document.documentElement.firstElementChild;
-    // document.documentElement.firstElementChild.children;
-    // document.documentElement.firstElementChild.firstElementChild;
-    if (window.STOCK_Skin === "black") {
-        //white-skin => black-skin
-        for (let i = 0; i < css_arr.length; i++) {
-        // for (let i = (css_arr.length - 1); i > -1; i--) {
-            console.log(`i =`, i);
-            let href = `./css/${css_skins[0]}/${css_arr[i]}`;
-            // css_dom.insertAdjacentHTML(`afterbegin`, `<link rel="stylesheet" data-css="data-css-uid" href="${href}">`);
-            document.write(`<link rel="stylesheet" data-css="data-css-uid" href="${href}">`)
-            // <link rel="stylesheet" data-css="data-css-uid" href="./css/white-skin/sidebar.css">
-            // <link rel="stylesheet" data-css="data-css-uid" href="./css/white-skin/common/module.css">
-            // <link rel="stylesheet" data-css="data-css-uid" href="./css/white-skin/common/modal.css">
-            // <link rel="stylesheet" data-css="data-css-uid" href="./css/white-skin/common/more.css">
-            // console.log(`document.documentElement.firstElementChild.firstElementChild =`, document.documentElement.firstElementChild.firstElementChild, i);
-        }
-    }else{
-        if (window.STOCK_Skin === "white"){
-            // black-skin => white-skin
-            for (let i = 0; i < css_arr.length; i++) {
-            console.log(`i =`, i);
-            // for (let i = (css_arr.length - 1); i > -1; i--) {
-                let href = `./css/${css_skins[1]}/${css_arr[i]}`;
-                // css_dom.insertAdjacentHTML(`afterbegin`, `<link rel="stylesheet" data-css="data-css-uid" href="${href}">`);
-                document.write(`<link rel="stylesheet" data-css="data-css-uid" href="${href}">`)
-            }
-        }
-    }
-})();
-// cssLoader();
 
 window.STOCK_IP = window.STOCK_IP || ``;
 window.STOCK_Paths = window.STOCK_Paths || ``;
 window.STOCK_SecCode = window.STOCK_SecCode || ``;
+window.STOCK_Skin = window.STOCK_Skin || ``;
+// console.log("0, window.STOCK_Skin = ", window.STOCK_Skin);
 
-window.STOCK_SecCode = getParam(`gilcode`);
+// set params before DOM ready!
+window.STOCK_SecCode = STOCK_F9_FV.Utils.getParam(`gilcode`);
+window.STOCK_Skin = STOCK_F9_FV.Utils.getParam(`skin`) || `white`;
 // window.STOCK_IP = window.parent.location.origin.includes("http://localhost") ? `http://10.1.5.202` : window.parent.location.origin;
 const url_origin = window.parent.location.origin;
 window.STOCK_IP = (url_origin.includes("http://localhost") || url_origin.includes("file://")) ? `http://10.1.5.202` : url_origin;
@@ -92,16 +50,44 @@ window.STOCK_IP = (url_origin.includes("http://localhost") || url_origin.include
 window.STOCK_Paths = `/webservice/fastview/stock`;
 
 
-// setTimeout(() => {
-//     // hide loading div & css
-//     // show body
-//     const body = document.querySelector(`body[data-body="no-body"]`);
-//     body.dataset.body = "show-body";
-// }, 0);
 
-
-
-
+document.addEventListener(`DOMContentLoaded`, (e) => {
+    // console.log("2, (DOMContentLoaded)DOM fully loaded and parsed");
+    // load css
+    const css_arr = ["no-body.css", "sidebar.css", "common/module.css", "common/modal.css", "common/more.css"];
+    const css_skins = ["black-skin", "white-skin"];
+    const css_links = document.querySelectorAll(`[data-css="data-css-uid"]`);
+    let css_dom = document.querySelector(`head`);
+    if (window.STOCK_Skin === "black") {
+        // console.log(`window.STOCK_Skin = `, window.STOCK_Skin, typeof(window.STOCK_Skin));
+        //white-skin => black-skin
+        if (css_links[0].href.includes(`white-skin`)) {
+            for (let i = 0; i < css_links.length; i++) {
+                let href= `./css/${css_skins[0]}/${css_arr[i]}`;
+                css_links[i].setAttribute(`href`, href);
+            }
+        }else{
+            // use default
+        }
+    }else{
+        // black-skin => white-skin
+        if (window.STOCK_Skin === "white" && css_links[0].href.includes(`black-skin`)){
+            for (let i = 0; i < css_links.length; i++) {
+                let href= `./css/${css_skins[1]}/${css_arr[i]}`;
+                css_links[i].setAttribute(`href`, href);
+            }
+        }else{
+            // use default
+        }
+    }
+    setTimeout(() => {
+        // hide loading div & css
+        // ???
+        // show body
+        const body = document.querySelector(`body[data-body="no-body"]`);
+        body.dataset.body = "show-body";
+    }, 300);
+});
 
 
 /*
@@ -113,9 +99,6 @@ window.STOCK_Paths = `/webservice/fastview/stock`;
 
 document.write(`<link rel="stylesheet" data-css="data-css-uid" href="./css/white-skin/common/no-data.css">`);
 
-
-??? why `document.write` more fast ???
-// block DOM
 
 
 http://10.1.5.202/stock/f9/fastview/css/white-skin/common/no-data.css

@@ -532,6 +532,7 @@ table[data-tables="otc-equity-shareholder-table2"]>tbody.otc-equity-shareholder-
 
 table[data-tables="otc-equity-shareholder-table2"]>tbody.otc-equity-shareholder-table-tbody>tr.otc-equity-shareholder-table-tr>td.otc-equity-shareholder-table-td-value:nth-of-type(5) {
     text-align: left;
+    padding-left: 4px;
 }
 
 

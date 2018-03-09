@@ -676,7 +676,7 @@ OTC_TS_FV.Modules.newlyAddedListing.showTable = OTC_TS_FV.Modules.newlyAddedList
     // tr1
     tds2[1].innerHTML = `${table_obj.mgsy}`;
     tds2[3].innerHTML = `${table_obj.jlrtbzz}`;
-    let zgb = parseInt(table_obj.zgb);
+    let zgb = table_obj.zgb !== `--` ? parseInt(table_obj.zgb) : table_obj.zgb;
     tds2[5].innerHTML = `${zgb}`;// 保留整数
     tds2[1].setAttribute(`title`, `${table_obj.mgsy}`);
     tds2[3].setAttribute(`title`, `${table_obj.jlrtbzz}`);
@@ -684,7 +684,8 @@ OTC_TS_FV.Modules.newlyAddedListing.showTable = OTC_TS_FV.Modules.newlyAddedList
     // tr2
     tds3[1].innerHTML = `${table_obj.mgjzc}`;
     tds3[3].innerHTML = `${table_obj.jzcsyl}`;
-    let ltgb = parseInt(table_obj.ltgb);
+    let ltgb = table_obj.ltgb !== `--` ? parseInt(table_obj.ltgb) : table_obj.ltgb;
+    // 后端 api 更新，导致的字符串转数字(保留整数)的bug!
     tds3[5].innerHTML = `${ltgb}`;// 保留整数
     tds3[1].setAttribute(`title`, `${table_obj.mgjzc}`);
     tds3[3].setAttribute(`title`, `${table_obj.jzcsyl}`);

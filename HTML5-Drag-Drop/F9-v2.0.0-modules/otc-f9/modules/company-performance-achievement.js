@@ -108,16 +108,19 @@ OTC_F9_FV.Modules.companyPerformanceAchievement = OTC_F9_FV.Modules.companyPerfo
                             // no data
                             let html = ``;
                             if (datas.stock !== undefined && typeof(datas.stock) === "object") {
-                                let text = (parseFloat(datas.stock.mgsy) - parseFloat(datas.mgsypj) > 0) ? "高于" : "低于";
+                                let mgsy = (parseFloat(datas.stock.mgsy) > 0) ? `<span data-color="plus">${datas.stock.mgsy}</span>` : `<span data-color="minus">${datas.stock.mgsy}</span>`,
+                                    text = (parseFloat(datas.stock.mgsy) - parseFloat(datas.mgsypj) > 0) ? `<span data-color="plus">高于</span>` : `<span data-color="minus">低于</span>`;
                                 // 高于 ? 低于
+                                // text = `<span data-color="none"></span>`;
                                 html = `
                                     <p data-p="company-performance-achievement-p">
-                                        <span data-span="company-performance-achievement-span">${datas.stock.zqdm}</span> 每股收益(TTM)为
-                                        <span data-span="company-performance-achievement-span">${datas.stock.mgsy}</span>,
-                                        <span data-span="company-performance-achievement-span">${text}</span>行业均值, 行业排名第
-                                        <span data-span="company-performance-achievement-span">${datas.stock.pm}</span> 位.
+                                        <span data-span="company-performance-achievement-span">${datas.stock.zqdm}</span>
+                                        每股收益(TTM)为 ${mgsy},
+                                        ${text}行业均值, 行业排名第
+                                        <span data-color="orange">${datas.stock.pm}</span>位.
                                     </p>
                                 `;
+                                // 橙色 orange #ff6b3d
                             }else{
                                 // no data
                                 html = `
