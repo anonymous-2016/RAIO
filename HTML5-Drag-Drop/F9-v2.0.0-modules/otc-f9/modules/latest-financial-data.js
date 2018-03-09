@@ -35,7 +35,7 @@ OTC_F9_FV.Modules.latestFinancialData = OTC_F9_FV.Modules.latestFinancialData ||
                             td_title2 = ``;
                         if (datas["yjyg"] !== null) {
                             title = `
-                                <p>
+                                <p data-lfd="data-otc-lfd-title">
                                     业绩预告 (报告期
                                     <span>${datas["yjyg"].bgq}</span>, 披露日期
                                     <span>${datas["yjyg"].plrq}</span>)
@@ -46,7 +46,7 @@ OTC_F9_FV.Modules.latestFinancialData = OTC_F9_FV.Modules.latestFinancialData ||
                             `;
                         }else{
                             title = `
-                                <p>业绩预告</>
+                                <p data-lfd="data-otc-lfd-title">业绩预告</>
                                 <p data-none="no-data-p">
                                     <span data-none="no-data-span"></span>
                                 </p>
@@ -67,8 +67,8 @@ OTC_F9_FV.Modules.latestFinancialData = OTC_F9_FV.Modules.latestFinancialData ||
                             //     <p>业绩快报-暂无数据.</p>
                             // `;
                             td_title1 = `
-                                <p>业绩快报</p>
-                                <p data-none="no-data-p">
+                                <p data-lfd="none-lfd-p">业绩快报</p>
+                                <p data-none="no-data-p" data-lfd="none-lfd-p">
                                     <span data-none="no-data-span"></span>
                                 </p>
                             `;
@@ -80,7 +80,8 @@ OTC_F9_FV.Modules.latestFinancialData = OTC_F9_FV.Modules.latestFinancialData ||
                         // tds & values === 0-11 & 12-34
                         if (datas["cwzy"] !== null) {
                             td_title2 = `
-                                <span>财务数据摘要</span><span data-title-span="td-colspan-span">( ${datas["cwzy"].bgq} )</span>
+                                <span>财务数据摘要</span>
+                                <span data-title-span="td-colspan-span">(${datas["cwzy"].bgq})</span>
                             `;
                             const ui_tds2 = ["jbmgsy", "yysr", "zczj", "xsmgsy", "yylr", "fzzj", "mgsykc", "lrze", "mgjzc", "jzc", "jlr", "llje", "mgllje", "jlrkc", "zzctbzz", "jzcsyljq", "yysrtbzz", "xsmll", "kcjq", "jlrtbzz", "zcfzl"];
                             // (tds.length - 1) && no tfoot!
@@ -94,7 +95,7 @@ OTC_F9_FV.Modules.latestFinancialData = OTC_F9_FV.Modules.latestFinancialData ||
                             //     <p>财务数据摘要-暂无数据.</p>
                             // `;
                             td_title2 = `
-                                <p>财务数据</>
+                                <p data-lfd="data-otc-lfd-title">财务数据</>
                                 <p data-none="no-data-p">
                                     <span data-none="no-data-span"></span>
                                 </p>

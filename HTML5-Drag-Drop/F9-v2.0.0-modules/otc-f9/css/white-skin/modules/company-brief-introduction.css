@@ -82,8 +82,8 @@ table.otc-company-brief-introduction-table {
 }
 
 tr {
-    height: 23px;
-    line-height: 23px;
+    /* height: 23px; */
+    /* line-height: 23px; */
 }
 
 [data-float="float-table"],
