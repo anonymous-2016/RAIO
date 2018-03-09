@@ -11,26 +11,24 @@
  *
  */
 
-// namespaces
-var STOCK_F9_FV = STOCK_F9_FV || {};
-// sub namespaces
-STOCK_F9_FV.Modal = STOCK_F9_FV.Modal || {};
 
-STOCK_F9_FV.Modal.Public = STOCK_F9_FV.Modal.Public  || (function (params) {
+var Modal_Public = function () {
     return {
-        view: () => {
-            const w = document.documentElement.clientWidth;
-            const h = document.documentElement.clientHeight;
+        view: function () {
+            let w = document.documentElement.clientWidth,
+                // <= 1366
+                h = document.documentElement.clientHeight;
+                // <= 662
             return {
                 w,
                 h
             };
         },
-    }
-);
+    };
+};
 
 
-STOCK_F9_FV.Modal.getClientWidthHeight = STOCK_F9_FV.Modal.getClientWidthHeight  || ((debug = false) => {
+var Modal_getClientWidthHeight = function () {
     let width = 0,
         innerwidth = 0,
         bodywidth = 0,
@@ -38,6 +36,7 @@ STOCK_F9_FV.Modal.getClientWidthHeight = STOCK_F9_FV.Modal.getClientWidthHeight 
         innerheight = 0,
         bodyheight = 0,
         isIE = navigator.userAgent.indexOf("MSIE 6.0") !== -1 ? true : false;
+        // shit IE
     if(!isIE){
         bodywidth = document.body.clientWidth;
         width = document.documentElement.clientWidth;
@@ -54,7 +53,7 @@ STOCK_F9_FV.Modal.getClientWidthHeight = STOCK_F9_FV.Modal.getClientWidthHeight 
         w: width,
         h: height
     };
-});
+};
 
 
 /**

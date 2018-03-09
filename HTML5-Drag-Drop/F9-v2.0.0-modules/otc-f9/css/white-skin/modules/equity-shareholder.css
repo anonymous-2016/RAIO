@@ -47,6 +47,25 @@ section.otc-module-box-5 {
     font-weight: normal;
 }
 
+[data-p="data-otc-ES-title"] {
+    width: 542px;
+}
+
+[data-p="data-otc-ES-table-title"] {
+    color: #616a8c;
+    font-weight: bold;
+    background: #fff;
+    border-bottom: 1px solid #d7dbe0;
+}
+
+[data-color="minus"] {
+    color: #007c00;
+}
+
+[data-color="plus"] {
+    color: #ca0000;
+}
+
 * {
     font-family: SimSun, serif;
     font-size: 12px;
@@ -101,6 +120,8 @@ section.otc-module-box-5 {
 .css-class-hc-ES {
     border: 1px solid #d7dbe0;
     /* border: 1px solid #fff; */
+    /* border-top: 1px solid #d7dbe0; */
+    border-bottom: 0;
 }
 
 span[data-title="sub-title"] {
@@ -116,10 +137,13 @@ span[data-title="sub-title"] {
 section[data-group="mix-hc-table"] {
     box-sizing: border-box;
     /* background: #ccc; */
-    width: 540px;
-    max-width: 540px;
-    min-width: 540px;
+    width: 544px;
+    max-width: 544px;
+    min-width: 544px;
+    /* border-top: 1px solid #dce0e4; */
     /* border: 1px solid #dce0e4; */
+    /* border-bottom: 0; */
+    margin-bottom: 5px;
 }
 
 td.otc-equity-shareholder-table-td-key {
@@ -134,11 +158,11 @@ td.otc-equity-shareholder-table-td-key {
 
 table.otc-equity-shareholder-table:nth-of-type(1) {
     box-sizing: border-box;
-    margin-top: 5px;
-    margin-bottom: 5px;
-    width: 540px;
-    max-width: 540px;
-    min-width: 540px;
+    /* margin-top: 5px; */
+    /* margin-bottom: 5px; */
+    width: 542px;
+    max-width: 542px;
+    min-width: 542px;
     /* width: 530px;
     max-width: 530px;
     min-width: 530px; */
@@ -179,6 +203,10 @@ table {
     box-sizing: border-box;
     padding: 0;
     margin: 0;
+}
+
+[data-table-box="table-conatiner"] {
+    width: 542px;
 }
 
 thead,
@@ -468,11 +496,15 @@ div[data-titles="data-otc-ES-title"] {
     box-sizing: border-box;
     background: #fffce9;
     border: 1px solid #d7dbe0;
+    border-bottom: 0;
     line-height: 23px;
     font-size: 12px;
-    width: 100%;
-    margin-bottom: 10px;
-    padding-left: 8px;
+    /*     width: 100%; */
+    width: 542px;
+    /* margin-bottom: 10px; */
+    /* padding-left: 8px; */
+    margin-top: 10px;
+    text-indent: 8px;
 }
 
 div[data-titles="no-data-otc-ES-title"] {
@@ -513,4 +545,12 @@ table[data-tables="otc-equity-shareholder-table2"]>tbody.otc-equity-shareholder-
 
 .highcharts-text-outline {
     display: none !important;
+}
+
+g.highcharts-drillup-button>text>tspan:nth-of-type(1) {
+    fill: #3285ff !important;
+}
+
+g.highcharts-drillup-button>text>tspan:nth-last-of-type(1) {
+    fill: #4d4d4d !important;
 }

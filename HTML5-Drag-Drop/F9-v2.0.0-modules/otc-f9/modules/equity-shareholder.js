@@ -212,16 +212,38 @@ OTC_F9_FV.Modules.equityShareholder = OTC_F9_FV.Modules.equityShareholder || (
                                 tbodys_dom[1].parentElement.setAttribute(`data-hide-table`, `no-data-hide-table`);
                             }
                             let title1 = ``;
-                            if (Object.keys(json.sdgd).length === 5) {
+                            if (Object.keys(json.sdgd).length > 0) {
                                 //  data-span="data-otc-ES-title"
+                                let bh = json.sdgd.bh,
+                                    new_bh = `<span></span>`;// --
+                                if (bh.includes(`减持`)) {
+                                    new_bh = `<span data-color="minus">${bh}</span>`;
+                                    // new_bh = `<span data-color="minus">${bh}</span>, 报告期内有<span>${json.sdgd.gds}</span>位股东有<span data-color="minus">减持</span>行为`;
+                                }else if(bh.includes(`增持`)){
+                                    new_bh = `<span data-color="plus">${bh}</span>`;
+                                    // new_bh = `<span data-color="plus">${bh}</span>, 报告期内有<span>${json.sdgd.gds}</span>位股东有<span data-color="minus">增持</span>行为`;
+                                }else if(bh.includes(`未发生变更`)){
+                                    new_bh = `<span>${json.sdgd.bh}</span>`;
+                                    // new_bh = `<span>${json.sdgd.bh}</span>, 报告期内有<span>${json.sdgd.gds}</span>位股东<span>未发生变更</span>行为`;
+                                }
                                 title1 = `
-                                    <p>
+                                    <p data-p="data-otc-ES-table-title">
                                         十大股东 (<span>${json.sdgd.sj}</span>)
                                     </p>
                                     <p data-p="data-otc-ES-title">
-                                        报告期内十大股东合计持股<span>${json.sdgd.hj}</span>万股,<span>${json.sdgd.bh}</span>${(json.sdgd.gds !== 0 && json.sdgd.gds !== undefined)?`,报告期内有<span>${json.sdgd.gds}</span>位股东有减持行为.`:`<span></span>.`}
+                                        报告期内十大股东合计持股<span>${json.sdgd.hj}</span>万股, ${new_bh}${(json.sdgd.gds !== "0" && json.sdgd.gds !== undefined)? `, 报告期内有<span>${json.sdgd.gds}</span>位股东有<span data-color="minus">减持</span>行为.` : `, <span>报告期内无股东有减持行为</span>.`}
                                     </p>
                                 `;
+                                // 增持行为/减持行为
+                                // ${json.gdhs[0].hsjsq.includes(`-`) ? `<span data-color="minus">减少${json.gdhs[0].hsjsq.replace(/-/ig, ``)}户</span>` : `<span data-color="plus">${json.gdhs[0].hsjsq}户</span>`},
+                                // title1 = `
+                                //     <p data-p="data-otc-ES-table-title">
+                                //         十大股东 (<span>${json.sdgd.sj}</span>)
+                                //     </p>
+                                //     <p data-p="data-otc-ES-title">
+                                //         报告期内十大股东合计持股<span>${json.sdgd.hj}</span>万股,<span>${json.sdgd.bh}</span>${(json.sdgd.gds !== 0 && json.sdgd.gds !== undefined)?`,报告期内有<span>${json.sdgd.gds}</span>位股东有减持行为.`:`<span></span>.`}
+                                //     </p>
+                                // `;
                                 // 万股
                                 // 报告期内十大股东，合计持股77894821股，减少455315股，报告期内有2位股东有减持行为。
                             }else{
@@ -293,13 +315,30 @@ OTC_F9_FV.Modules.equityShareholder = OTC_F9_FV.Modules.equityShareholder || (
                             if (Object.keys(json.gdhs[0]).length === 7) {
                                 // data-span="data-otc-ES-title"
                                 title2 = `
-                                    <p>
+                                    <p data-p="data-otc-ES-table-title">
                                         股东户数 (<span>${json.gdhs[0].sj}</span>)
                                     </p>
                                     <p data-p="data-otc-ES-title">
-                                        报告期内公司股东比上期${json.gdhs[0].hsjsq.includes(`-`) ? "减少" : "增加"}<span>${emptyChecker(json.gdhs[0].hsjsq) ? json.gdhs[0].hsjsq.replace(/-/ig, ``) : "--"}</span>户,${json.gdhs[0].zhszz.includes(`-`) ? "减少" : "增加"}<span>${emptyChecker(json.gdhs[0].zhszz) ? json.gdhs[0].zhszz.replace(/-/ig, ``) : "--"}</span>%,户均持股数<span>${emptyChecker(json.gdhs[0].hjcgs) ? json.gdhs[0].hjcgs : "--"}</span>万股,${json.gdhs[0].hjzz.includes(`-`) ? "减少" : "增加"}<span>${emptyChecker(json.gdhs[0].hjzz) ? json.gdhs[0].hjzz.replace(/-/ig, ``) : "--"}</span>%.
+                                        报告期内公司股东比上期${json.gdhs[0].hsjsq.includes(`-`) ? `<span data-color="minus">减少${json.gdhs[0].hsjsq.replace(/-/ig, ``)}户</span>` : `<span data-color="plus">增加${json.gdhs[0].hsjsq}户</span>`},
+                                        ${json.gdhs[0].zhszz.includes(`-`) ? `<span data-color="minus">减少${json.gdhs[0].zhszz.replace(/-/ig, ``)}%</span>` :`<span data-color="plus">增加${json.gdhs[0].zhszz}%</span>`},
+                                        户均持股数<span>${emptyChecker(json.gdhs[0].hjcgs) ? json.gdhs[0].hjcgs : "--"}</span>万股,
+                                        ${json.gdhs[0].hjzz.includes(`-`) ? `<span data-color="minus">减少${json.gdhs[0].hjzz.replace(/-/ig, ``)}%</span>` :`<span data-color="plus">增加${json.gdhs[0].hjzz}%</span>`},
                                     </p>
                                 `;
+                                // title2 = `
+                                //     <p data-p="data-otc-ES-table-title">
+                                //         股东户数 (<span>${json.gdhs[0].sj}</span>)
+                                //     </p>
+                                //     <p data-p="data-otc-ES-title">
+                                //         报告期内公司股东比上期
+                                //         ${json.gdhs[0].hsjsq.includes(`-`) ? `<span data-color="minus">减少</span>` : `<span data-color="plus">增加</span>`}<span>${emptyChecker(json.gdhs[0].hsjsq) ? json.gdhs[0].hsjsq.replace(/-/ig, ``) : "--"}</span>户,
+                                //         ${json.gdhs[0].zhszz.includes(`-`) ? "减少" : "增加"}
+                                //         <span>${emptyChecker(json.gdhs[0].zhszz) ? json.gdhs[0].zhszz.replace(/-/ig, ``) : "--"}</span>%,
+                                //         户均持股数<span>${emptyChecker(json.gdhs[0].hjcgs) ? json.gdhs[0].hjcgs : "--"}</span>万股,
+                                //         ${json.gdhs[0].hjzz.includes(`-`) ? "减少" : "增加"}
+                                //         <span>${emptyChecker(json.gdhs[0].hjzz) ? json.gdhs[0].hjzz.replace(/-/ig, ``) : "--"}</span>%.
+                                //     </p>
+                                // `;
                             }else{
                                 // no data
                                 title2 = `
@@ -425,18 +464,23 @@ OTC_F9_FV.Modules.equityShareholder.drawHS = OTC_F9_FV.Modules.equityShareholder
                 backgroundColor: skin_color,
                 // plotBorderWidth: 1,
                 // borderWidth: 1,
-                width: 540,
+                width: 542,
                 // width: 530,
                 height: 300,
                 className: "css-class-hc-ES",
             },
             title: {
-                // text: '股本结构',
+                text: '股本结构',
                 // text: '<h3>股本结构</h3>',
-                text: '',
+                // text: '',
                 align: "left",
-                x: 10,
-                y: 10,
+                x: -5,
+                y: 5,
+                style: {
+                    color: "#616a87",
+                    fontSize: "18px",
+                    fontWeight: "bold",
+                },
             },
             credits: {
                 enabled: false,// enabled: true,
@@ -451,7 +495,9 @@ OTC_F9_FV.Modules.equityShareholder.drawHS = OTC_F9_FV.Modules.equityShareholder
                         style: {
                             textShadow: false,
                             textOutline: false,
-                            color: '#f0f',// level 2 color
+                            color: '#7cb5ec',
+                            // buttom ???
+                            // color: '#f0f',// level 2 color
                         },
                         format: '{point.name}: {point.y:.2f}%',// .2f
                     }
@@ -473,8 +519,12 @@ OTC_F9_FV.Modules.equityShareholder.drawHS = OTC_F9_FV.Modules.equityShareholder
                     // y: 7.91,
                     y: limite,// Array
                     drilldown: 'Limited',
+                    // style: {
+                    //     color: "#0f0",
+                    // },
+                    // className: "css-class-hc-ES-pie",
+                    // className: "css-class-hc-ES",
                     color: "#9bbb59",
-                    // color: "#0f0"
                 }, {
                     name: '无限售股份总数',
                     // y: 92.09,
@@ -487,18 +537,28 @@ OTC_F9_FV.Modules.equityShareholder.drawHS = OTC_F9_FV.Modules.equityShareholder
             drilldown: {
                 activeAxisLabelStyle: {
                     textDecoration: 'none',
-                    fontStyle: 'italic',
-                    color: `#f0f`
+                    // fontStyle: 'italic',
+                    color: `#4d4d4d`,
+                    fontWeight:`normal`,
                 },
                 activeDataLabelStyle: {
                     textDecoration: 'none',
-                    fontStyle: 'italic',
-                    color: `#0f0`
+                    // fontStyle: 'italic',
+                    color: `#4d4d4d`,
+                    fontWeight:`normal`,
                 },
                 series: [{
                     name: '有限售股份',
                     id: 'Limited',
                     data: limited,
+                    dataLabels: {
+                        style: {
+                            color: '#4d4d4d',
+                            fontSize: `11`,
+                            fontWeight: `normal`,
+                            textOutline: `none`,
+                        },
+                    },
                     // data: [
                     //     ['控股股东和实际制人数量占比', 3.00],
                     //     ['董事监事高管数量占比', 10],
@@ -509,6 +569,14 @@ OTC_F9_FV.Modules.equityShareholder.drawHS = OTC_F9_FV.Modules.equityShareholder
                     name: '无限售股份',
                     id: 'Unlimited',
                     data: unlimited,
+                    dataLabels: {
+                        style: {
+                            color: '#4d4d4d',
+                            fontSize: `11`,
+                            fontWeight: `normal`,
+                            textOutline: `none`,
+                        },
+                    },
                     // data: [
                     //     ['控股股东和实际制人数量占比', 30.00],
                     //     ['董事监事高管数量占比', 50],
@@ -604,12 +672,13 @@ OTC_F9_FV.Modules.equityShareholder.init = OTC_F9_FV.Modules.equityShareholder.i
 
 var OTC_IP = window.OTC_IP || `http://10.1.5.202`,
     OTC_PATH = window.OTC_PATH || `/webservice/fastview/otcper`,
-    // OTC_SKIN = window.OTC_SKIN || `white`,
-    OTC_SKIN = window.OTC_SKIN || `black`,
+    OTC_SKIN = window.OTC_SKIN || `white`,
+    // OTC_SKIN = window.OTC_SKIN || `black`,
     // OTC_GILCODE = window.OTC_GILCODE || `430007.OC`;
     // OTC_GILCODE = window.OTC_GILCODE || `834380.OC`;
-    // OTC_GILCODE = window.OTC_GILCODE || `430005.OC`;
-    OTC_GILCODE = window.OTC_GILCODE || `430003.OC`;
+    OTC_GILCODE = window.OTC_GILCODE || `430005.OC`;
+    // OTC_GILCODE = window.OTC_GILCODE || `430003.OC`;
+    // OTC_GILCODE = window.OTC_GILCODE || `430009.OC`;
     // OTC_GILCODE = window.OTC_GILCODE || `430002.OC`;
 
 

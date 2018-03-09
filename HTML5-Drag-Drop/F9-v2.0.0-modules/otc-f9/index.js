@@ -765,24 +765,11 @@ const HTML_Template = (uid = ``, loadModule = function(){}, debug = false) => {
                         </p>
                     </div>
                     <section data-group="mix-hc-table">
-                        <p>
-                            <span data-title="sub-title">股本结构</span>
-                        </p>
                         <div class="otc-equity-shareholder-container">
                             <div id="equity_shareholder_hs_container" data-hs-container="data-equity-shareholder-container-uid" class="otc-equity-shareholder-hs otc-equity-shareholder-hs-container"></div>
                         </div>
                         <table class="otc-equity-shareholder-table" data-tables="otc-equity-shareholder-table1">
-                            <thead class="otc-equity-shareholder-table-thead">
-                                <!--
-                                    <tr class="otc-equity-shareholder-table-tr">
-                                        <td class="otc-equity-shareholder-table-td-title">截止日期</td>
-                                        <td class="otc-equity-shareholder-table-td-title">总股本(股)</td>
-                                        <td class="otc-equity-shareholder-table-td-title">无限售股份总数(股)</td>
-                                        <td class="otc-equity-shareholder-table-td-title">有限售股份总数(股)</td>
-                                        <td class="otc-equity-shareholder-table-td-title">变动原因说明(股)</td>
-                                    </tr>
-                                -->
-                            </thead>
+                            <thead class="otc-equity-shareholder-table-thead"></thead>
                             <tbody class="otc-equity-shareholder-table-tbody" data-tbody="otc-equity-shareholder-table-tbody"></tbody>
                             <tfoot class="otc-equity-shareholder-table-tfoot">
                                 <tr class="otc-equity-shareholder-table-tr">
@@ -812,16 +799,7 @@ const HTML_Template = (uid = ``, loadModule = function(){}, debug = false) => {
                     </table>
                     <div data-div="tbody-div" data-titles="data-otc-ES-title"></div>
                     <table class="otc-equity-shareholder-table" data-tables="otc-equity-shareholder-table3">
-                        <thead class="otc-equity-shareholder-table-thead">
-                            <!--
-                            <tr class="otc-equity-shareholder-table-tr">
-                                <td class="otc-equity-shareholder-table-td-title">总户数</td>
-                                <td class="otc-equity-shareholder-table-td-title">环比增长(%)</td>
-                                <td class="otc-equity-shareholder-table-td-title">户均持股数</td>
-                                <td class="otc-equity-shareholder-table-td-title">环比增长(%)</td>
-                            </tr>
-                            -->
-                        </thead>
+                        <thead class="otc-equity-shareholder-table-thead"></thead>
                         <tbody class="otc-equity-shareholder-table-tbody" data-tbody="otc-equity-shareholder-table-tbody"></tbody>
                         <tfoot class="otc-equity-shareholder-table-tfoot">
                             <tr class="otc-equity-shareholder-table-tr">
