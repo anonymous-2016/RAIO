@@ -229,9 +229,9 @@ section.otc-module-box-5 {
 
 table.otc-equity-shareholder-table {
     box-sizing: border-box;
-    width: 540px;
-    max-width: 540px;
-    /* min-width: 540px; */
+    width: 542px;
+    max-width: 542px;
+    min-width: 542px;
     /* height: 127px; */
     background: #fff;
     border-collapse: collapse;
