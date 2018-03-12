@@ -1,6 +1,8 @@
 // import {DOM_queryAll, DOM_query} from "./utils/DOM";
 
-import "babel-polyfill";
+// import "babel-polyfill";
+
+// import "whatwg-fetch";
 
 // const xyz_debug = window.xyz_debug ? window.xyz_debug : false;
 // var debug = false;

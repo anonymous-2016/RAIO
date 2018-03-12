@@ -1,4 +1,9 @@
 
+import "babel-polyfill";
+
+// import "whatwg-fetch";
+
+
 const getParam = (key, debug = false) => {
     let search = decodeURIComponent(window.location.search),
         start = search.indexOf("?") + 1,
@@ -19,7 +24,7 @@ const getParam = (key, debug = false) => {
                 }
             }
         }
-        console.log(`value = `, value);
+        // console.log(`value = `, value);
         return value;
     }
 };
@@ -31,14 +36,14 @@ window.STOCK_Skin = window.STOCK_Skin || ``;
 window.STOCK_Skin = getParam(`skin`) || `white`;
 
 document.addEventListener(`DOMContentLoaded`, () => {
-    console.log("(DOMContentLoaded) & DOM fully loaded and parsed!");
+    // console.log("(DOMContentLoaded) & DOM fully loaded and parsed!");
 });
 
 // console.log(`window.STOCK_Skin = `, window.STOCK_Skin, typeof(window.STOCK_Skin));
 
 // const cssLoader = () => {
 (() => {
-    console.log("loading css...");
+    // console.log("loading css...");
     const css_arr = ["sidebar.css", "common/module.css", "common/modal.css", "common/more.css"];
     // const css_arr = ["common/more.css", "common/modal.css", "common/module.css", "sidebar.css"];
     // const css_arr = ["no-body.css", "sidebar.css", "common/module.css", "common/modal.css", "common/more.css"];
@@ -53,7 +58,7 @@ document.addEventListener(`DOMContentLoaded`, () => {
         //white-skin => black-skin
         for (let i = 0; i < css_arr.length; i++) {
         // for (let i = (css_arr.length - 1); i > -1; i--) {
-            console.log(`i =`, i);
+            // console.log(`i =`, i);
             let href = `./css/${css_skins[0]}/${css_arr[i]}`;
             // css_dom.insertAdjacentHTML(`afterbegin`, `<link rel="stylesheet" data-css="data-css-uid" href="${href}">`);
             document.write(`<link rel="stylesheet" data-css="data-css-uid" href="${href}">`)
@@ -67,7 +72,7 @@ document.addEventListener(`DOMContentLoaded`, () => {
         if (window.STOCK_Skin === "white"){
             // black-skin => white-skin
             for (let i = 0; i < css_arr.length; i++) {
-            console.log(`i =`, i);
+            // console.log(`i =`, i);
             // for (let i = (css_arr.length - 1); i > -1; i--) {
                 let href = `./css/${css_skins[1]}/${css_arr[i]}`;
                 // css_dom.insertAdjacentHTML(`afterbegin`, `<link rel="stylesheet" data-css="data-css-uid" href="${href}">`);
@@ -76,6 +81,7 @@ document.addEventListener(`DOMContentLoaded`, () => {
         }
     }
 })();
+
 // cssLoader();
 
 window.STOCK_IP = window.STOCK_IP || ``;

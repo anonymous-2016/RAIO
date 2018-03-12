@@ -11,6 +11,8 @@
  * @param {Boolean} debug
  */
 
+import "whatwg-fetch";
+
 /*
 
 import all modules

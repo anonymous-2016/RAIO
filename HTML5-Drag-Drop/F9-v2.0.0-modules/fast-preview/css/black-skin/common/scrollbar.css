@@ -5,19 +5,19 @@
 
 /* scrollbar & must be set this!*/
 
-.h5-dnd-body-container::-webkit-scrollbar {
+::-webkit-scrollbar {
     box-sizing: border-box;
 }
 
 
 /* vertical & decrement */
 
-.h5-dnd-body-container::-webkit-scrollbar-button:vertical:decrement {
+::-webkit-scrollbar-button:vertical:decrement {
     background: url("../img/arrow-up.png") 4px 3px no-repeat;
     background-color: #2c3237;
 }
 
-.h5-dnd-body-container::-webkit-scrollbar-button:vertical:decrement:hover {
+::-webkit-scrollbar-button:vertical:decrement:hover {
     background: url("../img/arrow-up-hover.png") 4px 3px no-repeat;
     background-color: #2c3237;
     ;
@@ -27,12 +27,12 @@
 
 /* vertical & increment */
 
-.h5-dnd-body-container::-webkit-scrollbar-button:vertical:increment {
+::-webkit-scrollbar-button:vertical:increment {
     background: url("../img/arrow-down.png") 4px 3px no-repeat;
     background-color: #2c3237;
 }
 
-.h5-dnd-body-container::-webkit-scrollbar-button:vertical:increment:hover {
+::-webkit-scrollbar-button:vertical:increment:hover {
     background: url("../img/arrow-down-hover.png") 4px 3px no-repeat;
     background-color: #2c3237;
 }
@@ -40,12 +40,12 @@
 
 /* horizontal & increment */
 
-.h5-dnd-body-container::-webkit-scrollbar-button:horizontal:increment {
+::-webkit-scrollbar-button:horizontal:increment {
     background: url("../img/arrow-right.png") 4px 3px no-repeat;
     background-color: #2c3237;
 }
 
-.h5-dnd-body-container::-webkit-scrollbar-button:horizontal:increment:hover {
+::-webkit-scrollbar-button:horizontal:increment:hover {
     background: url("../img/arrow-right-hover.png") 4px 3px no-repeat;
     background-color: #2c3237;
 }
@@ -53,12 +53,12 @@
 
 /* horizontal & decrement */
 
-.h5-dnd-body-container::-webkit-scrollbar-button:horizontal:decrement {
+::-webkit-scrollbar-button:horizontal:decrement {
     background: url("../img/arrow-left.png") 4px 3px no-repeat;
     background-color: #2c3237;
 }
 
-.h5-dnd-body-container::-webkit-scrollbar-button:horizontal:decrement:hover {
+::-webkit-scrollbar-button:horizontal:decrement:hover {
     background: url("../img/arrow-left-hover.png") 4px 3px no-repeat;
     background-color: #2c3237;
 }
@@ -66,19 +66,19 @@
 
 /* thumb */
 
-.h5-dnd-body-container::-webkit-scrollbar-thumb {
+::-webkit-scrollbar-thumb {
     height: 10px;
     background-color: #4a4a4a;
     opacity: 1;
 }
 
-.h5-dnd-body-container::-webkit-scrollbar-thumb:hover {
+::-webkit-scrollbar-thumb:hover {
     background-color: #212529;
     /* 5c5c5c */
     cursor: pointer;
 }
 
-.h5-dnd-body-container::-webkit-scrollbar-thumb:active {
+::-webkit-scrollbar-thumb:active {
     background-color: #4a4a4a;
     cursor: pointer;
 }
@@ -86,7 +86,7 @@
 
 /* track */
 
-.h5-dnd-body-container::-webkit-scrollbar-track {
+::-webkit-scrollbar-track {
     background-color: #2c3237;
     opacity: 1;
 }
@@ -94,6 +94,6 @@
 
 /* corner */
 
-.h5-dnd-body-container::-webkit-scrollbar-corner {
+::-webkit-scrollbar-corner {
     background-color: #3c4247;
 }

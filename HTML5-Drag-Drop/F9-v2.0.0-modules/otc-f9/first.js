@@ -1,3 +1,8 @@
+import "babel-polyfill";
+
+// import "whatwg-fetch";
+
+
 const getParam = (key, debug = false) => {
     let search = decodeURIComponent(window.location.search),
         start = search.indexOf("?") + 1,
@@ -50,7 +55,7 @@ window.OTC_SKIN = getParam(`skin`) || `white`;
         if (window.OTC_SKIN === "white"){
             // black-skin => white-skin
             for (let i = 0; i < css_arr.length; i++) {
-                console.log(`i =`, i);
+                // console.log(`i =`, i);
                 let href = `./css/${css_skins[1]}/${css_arr[i]}`;
                 document.write(`<link rel="stylesheet" data-css="data-css-uid" href="${href}">`)
             }

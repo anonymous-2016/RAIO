@@ -66,68 +66,122 @@ STOCK_F9_FV.Modules.companyNews = STOCK_F9_FV.Modules.companyNews || (
                     let td_id = document.querySelector(uid);
                     td_id.innerHTML = html_string;
                     // open news modal
-                    setTimeout(() => {
-                        // const host = window.location.host ? window.location.host : `10.1.5.202`;
-                        // const host = `http://10.1.5.202`;
-                        const host = ip;
-                        // absolute url ip
-                        let links = document.querySelectorAll(`[data-link="fv-company-news-link"]`);
-                        if (debug) {
-                            console.log(`links = \n`, links);
-                        }
-                        for (let i = 0; i < links.length; i++) {
-                            links[i].addEventListener(`click`, (e) => {
-                                e.preventDefault();
-                                // #hash
-                                let id = e.target.dataset.newsid,
-                                    title = e.target.dataset.title;
-                                try {
-                                    let open_link = `${host}/queryservice/news/content/${id}`;
-                                    if (debug) {
-                                        console.log(`id = ${id} \ntitle = ${title}`);
-                                        // no need title
-                                    }
-                                    // fetch news summary data
-                                    let data = {};
-                                    fetch(open_link)
-                                    .then(res => res.json())
-                                    .then(
-                                        (json) => {
-                                            if (debug) {
-                                                console.log(`json = \n`, JSON.stringify(json, null, 4));
-                                            }
-                                            data = json;
-                                            // BouncedModal
-                                            const UDP_wh = UDP.getClientWidthHeight;
-                                            if (debug) {
-                                                console.log(`UDP_wh = \n`, JSON.stringify(UDP_wh, null, 4));
-                                            }
-                                            let UDP_width = UDP_wh.w - 60,
-                                                UDP_height = UDP_wh.h - 60;
-                                            // STOCK_F9_FV.Modal.BouncedModal
-                                            const modal = new BouncedModal({
-                                            // const modal = new UDP.BouncedModal({
-                                                // bouncedclass: "layerContianer2",//存放页面的容器类名
-                                                width: UDP_width,
-                                                height: UDP_height,
-                                                title: "公司新闻",
-                                                setOverflow: "overflow-y:none",
-                                                //设置滚动的属性(overflow-y: 竖向  overflow-x: 横向)
-                                                // str: html.join(''),// array to string
-                                                // str: html_template,
-                                                datas: Object.assign({}, data)
-                                            });
-                                            modal.init();
-                                            // return json;
-                                        }
-                                    )
-                                    .catch(err => console.log(`error infos = \n`, err));
-                                } catch (err) {
-                                    console.log(`${host}/queryservice/news/content/${id}: Error infos = \n`, err);
-                                    // window.open(`${host}/queryservice/news/content/${id}`);
+                    const showModalData = (debug = false) => {
+                        const newsLinks = document.querySelectorAll(`[data-link="fv-company-news-link"]`);
+                        for (let i = 0; i < newsLinks.length; i++) {
+                            newsLinks[i].addEventListener("click", () => {
+                                // fetch data & insert data to DOM
+                                const uid = newsLinks[i].dataset.newsid;
+                                // http://10.1.5.202/queryservice/news/content/573297152893
+                                const ORIGIN = window.parent.location.origin;
+                                // window.OTC_IP
+                                const IP =  (ORIGIN.includes(`file://`) || ORIGIN.includes(`http://localhost`)) ? `http://10.1.5.202` : ORIGIN;
+                                const PATH = `/queryservice/news/content/`;
+                                const url = `${IP}${PATH}${uid}`;
+                                if (debug) {
+                                    console.log(`fetch url =`, url);
                                 }
+                                let html = ``;
+                                fetch(url)
+                                .then(res => res.json())
+                                .then(json => {
+                                    // global function
+                                    const emptyChecker = (key = ``) => {
+                                        // arr.map() ???
+                                        let result = true;
+                                        switch (key) {
+                                            case undefined:
+                                                result = false;
+                                                break;
+                                            case null:
+                                                result = false;
+                                                break;
+                                            case "--":
+                                                result = false;
+                                                // maybe no need, for string no data!
+                                                break;
+                                            default:
+                                                break;
+                                        }
+                                        result ? ((Object.keys(key).length > 0) ? `` : (result = false)) : ``;
+                                        return result;
+                                    };
+                                    if (debug) {
+                                        console.log(`json =`, JSON.stringify(json, null, 4));
+                                    }
+                                    // show modal
+                                    if (emptyChecker(json)) {
+                                        let title = ``,
+                                            source = ``,
+                                            time = ``,
+                                            content = ``,
+                                            url = ``;
+                                        // data
+                                        title = json.Title;
+                                        source = json.Infosource;
+                                        time = json.PublishDate.substr(0, 10);
+                                        url = json.Url;
+                                        content = json.Content;
+                                        // <span>字体: </span>
+                                        html = `
+                                            <div>
+                                                <div data-modal="modal-title">
+                                                    <h1>公司新闻</h1>
+                                                </div>
+                                                <div data-modal="title-box">
+                                                    <div data-modal="title">
+                                                        <h3>${title}</h3>
+                                                    </div>
+                                                    <div data-modal="modal-font" class="fontSize">
+                                                        字体:
+                                                        <span class="fontBtn">
+                                                            <a data-modal-font="data-font-big" data-modal-uid="0">大</a>
+                                                        </span>
+                                                        <span class="fontBtn">
+                                                            <a data-modal-font="data-font-middle" data-modal-uid="1">中</a>
+                                                        </span>
+                                                        <span class="fontBtn active">
+                                                            <a data-modal-font="data-font-small" data-modal-uid="2">小</a>
+                                                        </span>
+                                                    </div>
+                                                    <div data-modal="info">
+                                                        <p>
+                                                            来源: <span data-info="info-source">${source}</span>
+                                                            日期: <span data-info="info-time">${time}</span>
+                                                            <a data-info="info-link" target="_blank" href="${url}">
+                                                                查看原文
+                                                                <i class="icon-external-link"></i>
+                                                            </a>
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <div data-modal="content">
+                                                    <div>${content}</div>
+                                                </div>
+                                            </div>
+                                        `;
+                                        // instance
+                                        const options = {
+                                            content: html,
+                                            // others
+                                        };
+                                        let newsModal = new Modal(options);
+                                        newsModal.open();
+                                    } else {
+                                        // no data!
+                                    }
+                                })
+                                .catch(
+                                    err => {
+                                        console.log(`fetch json error!\n`, err);
+                                        // no data!
+                                    }
+                                );
                             });
                         }
+                    };
+                    setTimeout(() => {
+                        showModalData();
                     }, 0);
                 }else{
                     let table_uid = document.querySelector(`.fv-company-news-table`),

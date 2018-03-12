@@ -205,10 +205,10 @@ STOCK_F9_FV.Modules.SPTurnover = STOCK_F9_FV.Modules.SPTurnover || (
                                     style = `${old_style} ${new_style}`;
                                 hs_inputs[i].setAttribute(`style`, style);
                             }
-                            console.log(`disable hs_inputs OK!`);
+                            // console.log(`disable hs_inputs OK!`);
                         }else{
                             // no input
-                            console.log(`disable hs_inputs error!`);
+                            // console.log(`disable hs_inputs error!`);
                         }
                     }, 0);
                 }else{
