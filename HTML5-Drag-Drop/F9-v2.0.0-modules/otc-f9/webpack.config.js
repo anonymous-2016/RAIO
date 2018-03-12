@@ -23,7 +23,7 @@ const BASE_URI = {
     first: `./first`,// first.js
     index: `./index`,
     init: `./init`,
-    // modal: `./modal`,
+    modal: `./modal`,
     // libs: `./libs`,
     // test: `./test`
 };
@@ -61,6 +61,9 @@ let entry_obj = {};
 entry_obj[BASE_URI.index] = `${BASE_URI.index}`;
 // first css
 entry_obj[BASE_URI.first] = `${BASE_URI.first}`;
+// new modal ??? global function & uglify bug ???
+entry_obj[BASE_URI.modal] = `${BASE_URI.modal}`;
+// sortable
 entry_obj[BASE_URI.init] = `${BASE_URI.init}`;
 
 OTC_F9.forEach(

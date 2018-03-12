@@ -38,6 +38,7 @@ const BASE_URI = {
     index: `./index`,
     init: `./init`,
     test: `./test`,
+    first: `./first`,
     // modal: `./modal`,
     // libs: `./libs`,
 };
@@ -84,6 +85,8 @@ OTC_F9.forEach(
 // index
 entry_obj[BASE_URI.index] = `${BASE_URI.index}`;
 entry_obj[BASE_URI.init] = `${BASE_URI.init}`;
+entry_obj[BASE_URI.first] = `${BASE_URI.first}`;
+// entry_obj["first"] = `./first`;
 entry_obj["init-sidebar"] = `./init-sidebar`;
 
 // ES6 test & polyfill

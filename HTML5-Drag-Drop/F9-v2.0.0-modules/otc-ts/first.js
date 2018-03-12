@@ -62,12 +62,12 @@ window.OTC_SKIN = getParam(`skin`) || `white`;
 // global variable
 window.OTC_IP = window.OTC_IP || ``;
 window.OTC_PATH = window.OTC_PATH || ``;
-window.OTC_GILCODE = window.OTC_GILCODE || ``;
+// window.OTC_GILCODE = window.OTC_GILCODE || ``;
 
 
 const url_origin = window.parent.location.origin;
 window.OTC_IP = (url_origin.includes("http://localhost") || url_origin.includes("file://")) ? `http://10.1.5.202` : url_origin;
-window.OTC_GILCODE = getParam(`gilcode`);
+// window.OTC_GILCODE = getParam(`gilcode`);
 window.OTC_PATH = `/webservice/fastview/otcper`;
 
 

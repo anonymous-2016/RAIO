@@ -69,13 +69,13 @@ OTC_TS_FV.Utils.DOM_query = OTC_TS_FV.Utils.DOM_query || ((str = `[data-sortable
 // global variable
 window.OTC_IP = window.OTC_IP || ``;
 window.OTC_PATH = window.OTC_PATH || ``;
-window.OTC_GILCODE = window.OTC_GILCODE || ``;
+// window.OTC_GILCODE = window.OTC_GILCODE || ``;
 window.OTC_SKIN = window.OTC_SKIN || ``;
 
 
 
 // set params before DOM ready!
-window.OTC_GILCODE = OTC_TS_FV.Utils.getParam(`gilcode`);
+// window.OTC_GILCODE = OTC_TS_FV.Utils.getParam(`gilcode`);
 window.OTC_SKIN = OTC_TS_FV.Utils.getParam(`skin`) || `white`;
 let UIP =  window.parent.location.origin,
     UHTTP = UIP.includes("http"),
@@ -253,68 +253,68 @@ const initTabs = () => {
 
 // change skin & dynamic insert css link ??? replace css link (blink bug?)
 // css var ???
-document.addEventListener(`DOMContentLoaded`, (e) => {
-    // console.log("2, (DOMContentLoaded)DOM fully loaded and parsed");
-    // fixed white screen blink bug ???
-    const showBody = (bd = `[data-class="init-body"]`) => {
-        // after loading & show body
-        let body = document.querySelector(bd);
-        // Uncaught TypeError: body.classList.includes is not a function
-        console.log(`body =`, body);
-        // if (body.classList.includes(`init-hidden`)) {
-        if (body !== undefined && body !== null) {
-            // SCRIPT5007: Unable to get property 'includes' of undefined or null reference
-            console.log(`body.classList =`, body.classList)
-            if (body.classList.contains(`init-hidden`)) {
-            // if (body.classList.value.includes(`init-hidden`)) {
-                body.classList.add(`init-show`);
-                body.classList.remove(`init-hidden`);
-            }else{
-                // body.classList.toggle(`init-hidden`);
-           }
-        }
-    };
-    // load css
-    const css_arr = ["index.css", "tabs.css", "common/module.css", "common/modal.css", "common/no-data.css"];
-    const css_skins = ["black-skin", "white-skin"];
-    const css_links = document.querySelectorAll(`[data-css="data-css-uid"]`);
-    let css_dom = document.querySelector(`head`);
-    if (window.OTC_SKIN === "black") {
-        // console.log(`window.OTC_SKIN = `, window.OTC_SKIN, typeof(window.OTC_SKIN));
-        //white-skin => black-skin
-        if (css_links[0].href.includes(`white-skin`)) {
-            for (let i = 0; i < css_links.length; i++) {
-                let href= `./css/${css_skins[0]}/${css_arr[i]}`;
-                css_links[i].setAttribute(`href`, href);
-            }
-        }else{
-            // use default
-        }
-        showBody();
-        // black delay
-        // setTimeout(() => {
-        //     showBody();
-        // }, 0);
-    }else{
-        // black-skin => white-skin
-        if (window.OTC_SKIN === "white" && css_links[0].href.includes(`black-skin`)){
-            for (let i = 0; i < css_links.length; i++) {
-                let href= `./css/${css_skins[1]}/${css_arr[i]}`;
-                css_links[i].setAttribute(`href`, href);
-            }
-        }else{
-            // use default
-        }
-        showBody();
-    }
-    // order ???
-    // setTimeout(() => {
-    //     initSidebar();
-    //     setTimeout(() => {
-    //         initTabs();
-    //     }, 0);
-    // }, 0);
-});
+// document.addEventListener(`DOMContentLoaded`, (e) => {
+//     // console.log("2, (DOMContentLoaded)DOM fully loaded and parsed");
+//     // fixed white screen blink bug ???
+//     const showBody = (bd = `[data-class="init-body"]`) => {
+//         // after loading & show body
+//         let body = document.querySelector(bd);
+//         // Uncaught TypeError: body.classList.includes is not a function
+//         console.log(`body =`, body);
+//         // if (body.classList.includes(`init-hidden`)) {
+//         if (body !== undefined && body !== null) {
+//             // SCRIPT5007: Unable to get property 'includes' of undefined or null reference
+//             console.log(`body.classList =`, body.classList)
+//             if (body.classList.contains(`init-hidden`)) {
+//             // if (body.classList.value.includes(`init-hidden`)) {
+//                 body.classList.add(`init-show`);
+//                 body.classList.remove(`init-hidden`);
+//             }else{
+//                 // body.classList.toggle(`init-hidden`);
+//            }
+//         }
+//     };
+//     // load css
+//     const css_arr = ["index.css", "tabs.css", "common/module.css", "common/modal.css", "common/no-data.css"];
+//     const css_skins = ["black-skin", "white-skin"];
+//     const css_links = document.querySelectorAll(`[data-css="data-css-uid"]`);
+//     let css_dom = document.querySelector(`head`);
+//     if (window.OTC_SKIN === "black") {
+//         // console.log(`window.OTC_SKIN = `, window.OTC_SKIN, typeof(window.OTC_SKIN));
+//         //white-skin => black-skin
+//         if (css_links[0].href.includes(`white-skin`)) {
+//             for (let i = 0; i < css_links.length; i++) {
+//                 let href= `./css/${css_skins[0]}/${css_arr[i]}`;
+//                 css_links[i].setAttribute(`href`, href);
+//             }
+//         }else{
+//             // use default
+//         }
+//         showBody();
+//         // black delay
+//         // setTimeout(() => {
+//         //     showBody();
+//         // }, 0);
+//     }else{
+//         // black-skin => white-skin
+//         if (window.OTC_SKIN === "white" && css_links[0].href.includes(`black-skin`)){
+//             for (let i = 0; i < css_links.length; i++) {
+//                 let href= `./css/${css_skins[1]}/${css_arr[i]}`;
+//                 css_links[i].setAttribute(`href`, href);
+//             }
+//         }else{
+//             // use default
+//         }
+//         showBody();
+//     }
+//     // order ???
+//     // setTimeout(() => {
+//     //     initSidebar();
+//     //     setTimeout(() => {
+//     //         initTabs();
+//     //     }, 0);
+//     // }, 0);
+// });
 
 window.onload = () => {
     // console.log("3, window has been loaded!");

@@ -121,6 +121,7 @@ let btn = document.querySelector(`[data-nav-btn="nav-btn"]`),
     small_container = document.querySelector(`[data-nav-small-container="nav-small-container"]`),
     body_container = document.querySelector(`[data-body-container="data-body-container"]`);
 
+
 btn.onclick = () => {
     if (container.classList.contains("h5-dnd-nav-container-normal")) {
         container.classList.add("h5-dnd-nav-container-small");
@@ -144,7 +145,9 @@ btn.onclick = () => {
     let flag = (small_btn.dataset.flag === "true") ? true : false;
     // console.log(`\nbefore & small_btn.dataset.flag =`, small_btn.dataset.flag);
     // reset false
-    small_btn.dataset.flag = "true";
+    if (flag) {
+        small_btn.dataset.flag = "false";
+    }
     // small_btn.dataset.flag = "false";
     // if (flag) {
     //     small_btn.dataset.flag = "false";
@@ -179,7 +182,10 @@ small_btn.onclick = () => {
     }
     // reset true
     // small_btn.dataset.flag = "true";
-    small_btn.dataset.flag = "false";
+    let flag = (small_btn.dataset.flag === "false") ? true : false;
+    if (flag) {
+        small_btn.dataset.flag = "true";
+    }
 };
 
 const debug = false;
@@ -1343,6 +1349,7 @@ STOCK_F9_FV.Modules.modulesLoader = STOCK_F9_FV.Modules.modulesLoader ||(
                             }else{
                                 // do nothing
                                 // console.log(`%csmall_btn.dataset.flag =`, `color: red;`,small_btn.dataset.flag);
+                                // small_btn.dataset.flag = "false";
                             }
                         }, 0);
                         // setTimeout(() => {
