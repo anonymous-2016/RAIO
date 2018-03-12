@@ -26,7 +26,7 @@ const getParam = (key, debug = false) => {
         if (debug) {
             console.log(`value =`, value);
         } else {
-
+            //
         }
         return value;
     }
