@@ -98,7 +98,7 @@ OTC_F9_FV.Modules.cityInvestmentDebt3AP = OTC_F9_FV.Modules.cityInvestmentDebt3A
                                 // export excel ??? extract to init module
                                 setTimeout((debug = false) => {
                                     let export_excel_a = document.querySelector(`[data-excel="otc-city-investment-debt-aaa-profitability-excel"]>a`);
-                                    if (export_excel_a !==null) {
+                                    if (export_excel_a !== null) {
                                         const printExcel = (debug = false) => {
                                             let table_uid = export_excel_a.dataset.excel,
                                                 table_title = export_excel_a.dataset.title;
@@ -108,7 +108,7 @@ OTC_F9_FV.Modules.cityInvestmentDebt3AP = OTC_F9_FV.Modules.cityInvestmentDebt3A
                                                 console.log(`excel error =`, error);
                                             }
                                         };
-                                        let hasAddClick = (export_excel_a.dataset.click === "true")? true : false;
+                                        let hasAddClick = (export_excel_a.dataset.click === "true") ? true : false;
                                         // once & bug
                                         if (!hasAddClick) {
                                             export_excel_a.addEventListener(`click`, printExcel);
@@ -154,7 +154,7 @@ OTC_F9_FV.Modules.cityInvestmentDebt3AP = OTC_F9_FV.Modules.cityInvestmentDebt3A
                         hc_div.dataset.none = "no-data-div-hidden";
                     }
                 } catch (err) {
-                    let url =`file:///E:/**/bonds-fv/modules/city-investment-debt-aaa-profitability.js`;
+                    let url = `file:///E:/**/bonds-fv/modules/city-investment-debt-aaa-profitability.js`;
                     // ConsoleError(err, url);
                 }
             }
@@ -201,7 +201,7 @@ OTC_F9_FV.Modules.cityInvestmentDebt3AP.drawHS = OTC_F9_FV.Modules.cityInvestmen
         container_uid = ``,
         debug = false
     ) => {
-        if (debug) {
+        if (!debug) {
             console.log(`HC datas = \n`, datas);
             console.log(`HC containe uid = \n`, container_uid);
         }
