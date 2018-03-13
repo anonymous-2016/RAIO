@@ -351,6 +351,7 @@ OTC_F9_FV.Modules.repurchaseInterestRates.drawHS = OTC_F9_FV.Modules.repurchaseI
         const {color, colors, optioncolor, gridColor, legendColor, yAxisColor, index_color} = {...chart_css};
         // SKIN
         let skin_color = (OTC_SKIN === "black") ? `#0b1016` : `#fff`,
+            grid_line_color = (OTC_SKIN === "black") ? `#2d3039` : `#e9e9e9`,
             hc_title_color = (OTC_SKIN === "black") ? `#bbc1c7` : `#333`,
             legend_item_color = (OTC_SKIN === "black") ? `#fff` : `#0b1016`,
             // legend_item_color = (OTC_SKIN === "black") ? `#bbc1c7` : `#0b1016`,
@@ -383,7 +384,8 @@ OTC_F9_FV.Modules.repurchaseInterestRates.drawHS = OTC_F9_FV.Modules.repurchaseI
                 // 16:9 ratio
                 // marginTop: 30,
                 // marginBottom: 65,
-                plotBorderWidth: 1,
+                // plotBorderWidth: 1,
+                plotBorderWidth: 0,
                 // marginLeft: 80
             },
             title: {
@@ -409,6 +411,9 @@ OTC_F9_FV.Modules.repurchaseInterestRates.drawHS = OTC_F9_FV.Modules.repurchaseI
                     // // step: 2,
                     // step: 1
                 },
+                tickColor: grid_line_color,
+                lineColor: grid_line_color,
+                gridLineColor: grid_line_color,
                 // plotLines: [{
                 //     color: 'black',
                 //     dashStyle: 'dot',
@@ -454,6 +459,7 @@ OTC_F9_FV.Modules.repurchaseInterestRates.drawHS = OTC_F9_FV.Modules.repurchaseI
                             color: Highcharts.getOptions().colors[1]
                         }
                     },
+                    gridLineColor: grid_line_color,
                     // labels: {
                     //     formatter: function () {
                     //         return this.value + '%';
@@ -516,6 +522,7 @@ OTC_F9_FV.Modules.repurchaseInterestRates.drawHS = OTC_F9_FV.Modules.repurchaseI
                         // text: '',
                     },
                     opposite: true,
+                    gridLineColor: grid_line_color,
                     // https://api.hcharts.cn/highcharts#yAxis.opposite
                     // labels: {
                     //     formatter: function () {
@@ -618,6 +625,10 @@ OTC_F9_FV.Modules.repurchaseInterestRates.drawHS = OTC_F9_FV.Modules.repurchaseI
             // 情节/绘图选项
             plotOptions: {
                 // (series) type = column (chart)
+                column: {
+                    borderWidth: 0,
+                    // borderColor: grid_line_color,
+                },
                 // column: {
                 //     // stacking: 'normal',// 是否将每个系列的值叠加在一起, 默认是：null
                 //     // stacking: 'null',
@@ -753,8 +764,8 @@ var OTC_IP = window.OTC_IP || `http://10.1.5.202`,
     OTC_DATE = window.OTC_DATE || ``,
     OTC_INIT = window.OTC_INIT || true,
     // OTC_DATE = window.OTC_DATE || fullToday(),// default today!
-    OTC_SKIN = window.OTC_SKIN || `white`;
-    // OTC_SKIN = window.OTC_SKIN || `black`;
+    // OTC_SKIN = window.OTC_SKIN || `white`;
+    OTC_SKIN = window.OTC_SKIN || `black`;
 
 // OTC_F9_FV.Modules.repurchaseInterestRates.init({
 //     ip: OTC_IP,

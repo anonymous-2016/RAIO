@@ -10,34 +10,34 @@ var OTC_F9_FV = OTC_F9_FV || {};
 // sub namespaces
 OTC_F9_FV.Utils = OTC_F9_FV.Utils || {};
 
-OTC_F9_FV.Utils.getParam = OTC_F9_FV.Utils.getParam || ((key, debug = false) => {
-    let search = decodeURIComponent(window.location.search),
-        start = search.indexOf("?") + 1,
-        value = ``;
-    if (start < 1) {
-        // return;
-    } else {
-        let queryString = search.substr(start),
-            paraNames = queryString.split("&");// Array
-        for (let i = 0; i < paraNames.length; i++) {
-            let begin = paraNames[i].indexOf("=");
-            if (begin > 0) {
-                let pname = paraNames[i].substring(0, begin),
-                    pvalue = paraNames[i].substring(begin + 1);
-                if (key === pname) {
-                    value = pvalue;
-                    break;
-                }
-            }
-        }
-        if (!debug) {
-            console.log(`value =`, value);
-        } else {
-            //
-        }
-        return value;
-    }
-});
+// OTC_F9_FV.Utils.getParam = OTC_F9_FV.Utils.getParam || ((key, debug = false) => {
+//     let search = decodeURIComponent(window.location.search),
+//         start = search.indexOf("?") + 1,
+//         value = ``;
+//     if (start < 1) {
+//         // return;
+//     } else {
+//         let queryString = search.substr(start),
+//             paraNames = queryString.split("&");// Array
+//         for (let i = 0; i < paraNames.length; i++) {
+//             let begin = paraNames[i].indexOf("=");
+//             if (begin > 0) {
+//                 let pname = paraNames[i].substring(0, begin),
+//                     pvalue = paraNames[i].substring(begin + 1);
+//                 if (key === pname) {
+//                     value = pvalue;
+//                     break;
+//                 }
+//             }
+//         }
+//         if (!debug) {
+//             console.log(`value =`, value);
+//         } else {
+//             //
+//         }
+//         return value;
+//     }
+// });
 // getParam(`gilcode`);
 // "430003.OC"
 
@@ -71,7 +71,8 @@ OTC_F9_FV.Utils.DOM_query = OTC_F9_FV.Utils.DOM_query || ((str = `[data-sortable
 window.OTC_IP = window.OTC_IP || ``;
 window.OTC_PATH = window.OTC_PATH || ``;
 // window.OTC_GILCODE = window.OTC_GILCODE || ``;
-window.OTC_SKIN = window.OTC_SKIN || ``;
+// window.OTC_SKIN = window.OTC_SKIN || ``;
+
 // datepicker
 window.OTC_COMPARE = window.OTC_COMPARE || `0`;// default
 window.OTC_DATE = window.OTC_DATE || ``;// today ???no need
@@ -79,7 +80,7 @@ window.OTC_INIT = window.OTC_INIT || true;// init module
 
 // set params before DOM ready!
 // window.OTC_GILCODE = OTC_F9_FV.Utils.getParam(`gilcode`);
-window.OTC_SKIN = OTC_F9_FV.Utils.getParam(`skin`) || `white`;
+// window.OTC_SKIN = OTC_F9_FV.Utils.getParam(`skin`) || `white`;
 
 const url_origin = window.parent.location.origin;
 // "http://10.1.5.202"

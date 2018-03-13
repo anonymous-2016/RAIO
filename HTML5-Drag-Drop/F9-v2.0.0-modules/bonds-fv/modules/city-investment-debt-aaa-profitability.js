@@ -234,7 +234,7 @@ OTC_F9_FV.Modules.cityInvestmentDebt3AP.drawHS = OTC_F9_FV.Modules.cityInvestmen
         Highcharts.setOptions({
             lang: {
                 // noData: '暂无数据',
-                noData:  `
+                noData: `
                     <p data-none="no-data-hc">
                         <span data-none="no-data-span"></span>
                     </p>
@@ -255,7 +255,7 @@ OTC_F9_FV.Modules.cityInvestmentDebt3AP.drawHS = OTC_F9_FV.Modules.cityInvestmen
                 // 16:9 ratio
                 // marginTop: 30,
                 // marginBottom: 65,
-                plotBorderWidth: 1,
+                plotBorderWidth: 0,
                 // marginLeft: 80
             },
             title: {
@@ -280,6 +280,9 @@ OTC_F9_FV.Modules.cityInvestmentDebt3AP.drawHS = OTC_F9_FV.Modules.cityInvestmen
                     // // step: 2,
                     // step: 1
                 },
+                tickColor: grid_line_color,
+                lineColor: grid_line_color,
+                gridLineColor: grid_line_color,
                 // plotLines: [{
                 //     color: 'black',
                 //     dashStyle: 'dot',
@@ -325,6 +328,7 @@ OTC_F9_FV.Modules.cityInvestmentDebt3AP.drawHS = OTC_F9_FV.Modules.cityInvestmen
                             color: Highcharts.getOptions().colors[1]
                         }
                     },
+                    gridLineColor: grid_line_color,
                     // labels: {
                     //     formatter: function () {
                     //         return this.value + '%';
@@ -387,6 +391,7 @@ OTC_F9_FV.Modules.cityInvestmentDebt3AP.drawHS = OTC_F9_FV.Modules.cityInvestmen
                         // text: '',
                     },
                     opposite: true,
+                    gridLineColor: grid_line_color,
                     // https://api.hcharts.cn/highcharts#yAxis.opposite
                     // labels: {
                     //     formatter: function () {
@@ -489,6 +494,10 @@ OTC_F9_FV.Modules.cityInvestmentDebt3AP.drawHS = OTC_F9_FV.Modules.cityInvestmen
             // 情节/绘图选项
             plotOptions: {
                 // (series) type = column (chart)
+                column: {
+                    borderWidth: 0,
+                    // borderColor: grid_line_color,
+                },
                 // column: {
                 //     // stacking: 'normal',// 是否将每个系列的值叠加在一起, 默认是：null
                 //     // stacking: 'null',
@@ -509,7 +518,7 @@ OTC_F9_FV.Modules.cityInvestmentDebt3AP.drawHS = OTC_F9_FV.Modules.cityInvestmen
             },
             series: [
                 {
-                    type:'line',
+                    type: 'line',
                     // type:'spline',
                     name: '收益率',
                     color: "#5523cd",
@@ -537,7 +546,7 @@ OTC_F9_FV.Modules.cityInvestmentDebt3AP.drawHS = OTC_F9_FV.Modules.cityInvestmen
                     },
                 },
                 {
-                    type:'line',
+                    type: 'line',
                     name: '比较日',
                     color: '#fd0002',
                     data: compare,
@@ -619,8 +628,8 @@ var OTC_IP = window.OTC_IP || `http://10.1.5.202`,
     OTC_COMPARE = window.OTC_COMPARE || ``,
     OTC_DATE = window.OTC_DATE || ``,// default today!
     OTC_INIT = window.OTC_INIT || true,
-    OTC_SKIN = window.OTC_SKIN || `white`;
-    // OTC_SKIN = window.OTC_SKIN || `black`;
+    // OTC_SKIN = window.OTC_SKIN || `white`;
+    OTC_SKIN = window.OTC_SKIN || `black`;
 
 if (OTC_INIT === true) {
     // self init

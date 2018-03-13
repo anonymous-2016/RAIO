@@ -224,6 +224,7 @@ OTC_F9_FV.Modules.commercialBanks3AP.drawHS = OTC_F9_FV.Modules.commercialBanks3
         const {color, colors, optioncolor, gridColor, legendColor, yAxisColor, index_color} = {...chart_css};
         // SKIN
         let skin_color = (OTC_SKIN === "black") ? `#0b1016` : `#fff`,
+            grid_line_color = (OTC_SKIN === "black") ? `#2d3039` : `#e9e9e9`,
             hc_title_color = (OTC_SKIN === "black") ? `#bbc1c7` : `#333`,
             legend_item_color = (OTC_SKIN === "black") ? `#fff` : `#0b1016`,
             legend_item_hover_color = (OTC_SKIN === "black") ? `#f79530` : `#000`,
@@ -234,7 +235,7 @@ OTC_F9_FV.Modules.commercialBanks3AP.drawHS = OTC_F9_FV.Modules.commercialBanks3
         Highcharts.setOptions({
             lang: {
                 // noData: '暂无数据',
-                noData:  `
+                noData: `
                     <p data-none="no-data-hc">
                         <span data-none="no-data-span"></span>
                     </p>
@@ -255,7 +256,7 @@ OTC_F9_FV.Modules.commercialBanks3AP.drawHS = OTC_F9_FV.Modules.commercialBanks3
                 // 16:9 ratio
                 // marginTop: 30,
                 // marginBottom: 65,
-                plotBorderWidth: 1,
+                plotBorderWidth: 0,
                 // marginLeft: 80
             },
             title: {
@@ -280,6 +281,9 @@ OTC_F9_FV.Modules.commercialBanks3AP.drawHS = OTC_F9_FV.Modules.commercialBanks3
                     // // step: 2,
                     // step: 1
                 },
+                tickColor: grid_line_color,
+                lineColor: grid_line_color,
+                gridLineColor: grid_line_color,
                 // plotLines: [{
                 //     color: 'black',
                 //     dashStyle: 'dot',
@@ -325,6 +329,7 @@ OTC_F9_FV.Modules.commercialBanks3AP.drawHS = OTC_F9_FV.Modules.commercialBanks3
                             color: Highcharts.getOptions().colors[1]
                         }
                     },
+                    gridLineColor: grid_line_color,
                     // labels: {
                     //     formatter: function () {
                     //         return this.value + '%';
@@ -387,6 +392,7 @@ OTC_F9_FV.Modules.commercialBanks3AP.drawHS = OTC_F9_FV.Modules.commercialBanks3
                         // text: '',
                     },
                     opposite: true,
+                    gridLineColor: grid_line_color,
                     // https://api.hcharts.cn/highcharts#yAxis.opposite
                     // labels: {
                     //     formatter: function () {
@@ -489,6 +495,10 @@ OTC_F9_FV.Modules.commercialBanks3AP.drawHS = OTC_F9_FV.Modules.commercialBanks3
             // 情节/绘图选项
             plotOptions: {
                 // (series) type = column (chart)
+                column: {
+                    borderWidth: 0,
+                    // borderColor: grid_line_color,
+                },
                 // column: {
                 //     // stacking: 'normal',// 是否将每个系列的值叠加在一起, 默认是：null
                 //     // stacking: 'null',
@@ -509,7 +519,7 @@ OTC_F9_FV.Modules.commercialBanks3AP.drawHS = OTC_F9_FV.Modules.commercialBanks3
             },
             series: [
                 {
-                    type:'line',
+                    type: 'line',
                     // type:'spline',
                     name: '收益率',
                     color: "#5523cd",
@@ -537,7 +547,7 @@ OTC_F9_FV.Modules.commercialBanks3AP.drawHS = OTC_F9_FV.Modules.commercialBanks3
                     },
                 },
                 {
-                    type:'line',
+                    type: 'line',
                     name: '比较日',
                     color: '#fd0002',
                     data: compare,
@@ -619,8 +629,8 @@ var OTC_IP = window.OTC_IP || `http://10.1.5.202`,
     OTC_COMPARE = window.OTC_COMPARE || ``,
     OTC_DATE = window.OTC_DATE || ``,// default today!
     OTC_INIT = window.OTC_INIT || true,
-    OTC_SKIN = window.OTC_SKIN || `white`;
-    // OTC_SKIN = window.OTC_SKIN || `black`;
+    // OTC_SKIN = window.OTC_SKIN || `white`;
+    OTC_SKIN = window.OTC_SKIN || `black`;
 
 if (OTC_INIT === true) {
     // self init
