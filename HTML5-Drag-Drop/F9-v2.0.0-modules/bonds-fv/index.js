@@ -80,7 +80,13 @@ window.OTC_INIT = window.OTC_INIT || true;// init module
 // set params before DOM ready!
 // window.OTC_GILCODE = OTC_F9_FV.Utils.getParam(`gilcode`);
 window.OTC_SKIN = OTC_F9_FV.Utils.getParam(`skin`) || `white`;
-window.OTC_IP = !window.parent.location.origin.includes("http://localhost") ? window.parent.location.origin : `http://10.1.5.202`;
+
+const url_origin = window.parent.location.origin;
+// "http://10.1.5.202"
+// "http://localhost"
+// "file://"
+window.OTC_IP = url_origin.includes("http://localhost") || url_origin.includes("file://") ? `http://10.1.5.202` : url_origin;
+
 window.OTC_PATH = `/webservice/fastview/bond/rate`;
 // http://10.1.5.202/webservice/fastview/bond/rate?{"ModelId":"bondratefast07","Compare":"","CompareDate":""}
 
