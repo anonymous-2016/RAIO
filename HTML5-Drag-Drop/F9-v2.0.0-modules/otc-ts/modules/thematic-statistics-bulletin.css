@@ -200,7 +200,7 @@ a[data-link="otc-thematic-statistics-bulletin-link"] {
     text-decoration: none;
     font-size: 12px;
     font-weight: normal;
-    margin-right: 54px;
+    /* margin-right: 54px; */
 }
 
 a[data-link="otc-thematic-statistics-bulletin-link"]:hover {

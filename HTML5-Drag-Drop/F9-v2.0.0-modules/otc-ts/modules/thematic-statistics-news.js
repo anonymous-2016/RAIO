@@ -120,10 +120,13 @@ OTC_TS_FV.Modules.thematicStatisticsNews = OTC_TS_FV.Modules.thematicStatisticsN
                         // open news modal
                         const showModalData = (debug = false) => {
                             const newsLinks = document.querySelectorAll(`[data-link="otc-thematic-statistics-news-link"]`);
-                            for (let i = 0; i < newsLinks.length; i++) {
-                                newsLinks[i].addEventListener("click", () => {
+                            // links number bug! no span
+                            // let i = 0; i < newsLinks.length; i++
+                            for (let i = 1; i < newsLinks.length; i++) {
+                                newsLinks[i].addEventListener("click", (e) => {
                                     // fetch data & insert data to DOM
-                                    const uid = newsLinks[i].dataset.newsid;
+                                    const uid = e.target.dataset.newsid;
+                                    // const uid = newsLinks[i].dataset.newsid;
                                     // http://10.1.5.202/queryservice/news/content/573297152893
                                     const ORIGIN = window.parent.location.origin;
                                     // window.OTC_IP
@@ -131,6 +134,10 @@ OTC_TS_FV.Modules.thematicStatisticsNews = OTC_TS_FV.Modules.thematicStatisticsN
                                     const PATH = `/queryservice/news/content/`;
                                     const url = `${IP}${PATH}${uid}`;
                                     if (debug) {
+                                        console.log(`uid =`, uid);
+                                        console.log(`e.target.dataset.newsid =`, e.target.dataset.newsid);
+                                        // uid bug
+                                        // console.log(`newsLinks[${i}].dataset.newsid=`, newsLinks[i].dataset.newsid);
                                         console.log(`fetch url =`, url);
                                     }
                                     let html = ``;
