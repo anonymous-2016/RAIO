@@ -1,5 +1,7 @@
 // import {DOM_queryAll, DOM_query} from "./utils/DOM";
 
+import "whatwg-fetch";
+
 // const xyz_debug = window.xyz_debug ? window.xyz_debug : false;
 // var debug = false;
 
@@ -194,8 +196,8 @@ const initTabs = () => {
         sortable_module_containers[0].innerHTML = "";
         sortable_module_containers[1].innerHTML = "";
         // init modules
-        let left_uids = ["bondratefast01", "bondratefast03", "bondratefast04", "bondratefast05", "bondratefast06", "bondratefast07", "bondratefast08", "bondratefast09", "bondratefast10"];
-        let right_uids = ["bondratefast02", "bondratefast12", "bondratefast13", "bondratefast14", "bondratefast15", "bondratefast16", "bondratefast11"];
+        let left_uids = ["bondratefast01", "bondratefast03", "bondratefast04", "bondratefast05", "bondratefast06", "bondratefast08", "bondratefast10"];
+        let right_uids = ["bondratefast02", "bondratefast12", "bondratefast13", "bondratefast14", "bondratefast15", "bondratefast16", "bondratefast11", "bondratefast07", "bondratefast09"];
         OTC_F9_FV.Modules.loadAllModules.init(sortable_module_containers[0], left_uids);
         OTC_F9_FV.Modules.loadAllModules.init(sortable_module_containers[1], right_uids);
         window.OTC_INIT = false;
@@ -203,6 +205,12 @@ const initTabs = () => {
     btn_customize.onclick = (e) => {
         sortable_module_containers[0].innerHTML = "";
         sortable_module_containers[1].innerHTML = "";
+        // fetch customise modules data & init data
+        // write to sessionStorage, onchange modules ??? save button
+        // insert === add cookies / sessionStorage
+        // delete === remove cookies / sessionStorage
+        // Save ??? on session close ??? POST cookies
+        // how to detect session close???
         a_modules.click();
         window.OTC_INIT = true;
     };

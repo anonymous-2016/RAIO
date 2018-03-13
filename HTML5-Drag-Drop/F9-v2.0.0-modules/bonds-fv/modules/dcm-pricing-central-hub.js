@@ -10,6 +10,7 @@
  * @param {* Array} ui_arr
  * @param {Boolean} debug
  */
+import "whatwg-fetch";
 
 // import {getFullTodayDate as fullToday} from "./full-today";
 
