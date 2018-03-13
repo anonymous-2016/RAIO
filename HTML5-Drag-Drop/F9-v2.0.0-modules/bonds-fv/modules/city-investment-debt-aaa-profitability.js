@@ -201,7 +201,7 @@ OTC_F9_FV.Modules.cityInvestmentDebt3AP.drawHS = OTC_F9_FV.Modules.cityInvestmen
         container_uid = ``,
         debug = false
     ) => {
-        if (!debug) {
+        if (debug) {
             console.log(`HC datas = \n`, datas);
             console.log(`HC containe uid = \n`, container_uid);
         }
@@ -224,6 +224,7 @@ OTC_F9_FV.Modules.cityInvestmentDebt3AP.drawHS = OTC_F9_FV.Modules.cityInvestmen
         const {color, colors, optioncolor, gridColor, legendColor, yAxisColor, index_color} = {...chart_css};
         // SKIN
         let skin_color = (OTC_SKIN === "black") ? `#0b1016` : `#fff`,
+            grid_line_color = (OTC_SKIN === "black") ? `#2d3039` : `#e9e9e9`,
             hc_title_color = (OTC_SKIN === "black") ? `#bbc1c7` : `#333`,
             legend_item_color = (OTC_SKIN === "black") ? `#fff` : `#0b1016`,
             legend_item_hover_color = (OTC_SKIN === "black") ? `#f79530` : `#000`,
