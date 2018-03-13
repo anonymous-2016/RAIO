@@ -37,6 +37,7 @@
         "babel-polyfill": "^6.26.0",
         "browserify": "^14.5.0",
         "requirejs": "^2.3.5",
+        "shelljs": "^0.8.1",
         "systemjs": "^0.20.19",
         "webpack": "^3.8.1",
         "whatwg-fetch": "^2.0.3"

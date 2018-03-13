@@ -1,7 +1,8 @@
 "use strict";
 // import {DOM_queryAll, DOM_query} from "./utils/DOM";
 
-import "babel-polyfill";
+// import "babel-polyfill";
+// import 'whatwg-fetch';
 
 // namespaces & global variable
 window.OTC_TS_FV = window.OTC_TS_FV || {};

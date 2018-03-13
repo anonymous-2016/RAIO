@@ -325,7 +325,7 @@ window.onload = () => {
             return result;
         };
         try {
-            if (true) {
+            if (window.ChromeExternal !== undefined) {
                 ChromeExternal.Execute("ChromeCommand", "PrintToPdf");
                 let timestamps = getNowTimeStamps(`stock速览`, `pdf`);
                 let url = window.parent.location.origin ? window.parent.location.origin : window.location.origin;
@@ -337,6 +337,7 @@ window.onload = () => {
                 /// demo: ABC_2018010901011
             }else{
                 console.log(`your are not run it in a terminal!`);
+                window.print();
             }
             setTimeout(() => {
                 // show sidebar

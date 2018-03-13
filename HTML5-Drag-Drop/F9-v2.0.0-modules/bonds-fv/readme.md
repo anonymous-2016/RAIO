@@ -26,6 +26,15 @@ font-family: "Microsoft YaHei", sans-serif;
 
 
 
+## shelljs
+
+```js
+
+$ npm i -S shelljs
+
+```
+
+
 
 ```sh
 

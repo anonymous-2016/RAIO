@@ -12,8 +12,8 @@ const initSidebar = () => {
     // let divs = OTC_TS_FV.Utils.DOM_queryAll(`[data-nav-box="nav-box"]`);
     for (let i = 0; i < lis.length; i++) {
         lis[i].addEventListener(`click`, (e) => {
-            console.log(`i =`, i);
-            console.log(`lis[${i}] =`, lis[i]);
+            // console.log(`i =`, i);
+            // console.log(`lis[${i}] =`, lis[i]);
             if (lis[i].classList.contains("h5-dnd-nav-li-active")) {
                 //
             }else{
@@ -35,8 +35,8 @@ const initSidebar = () => {
                     }
                 );
             };
-            console.log(`divs =`, i);
-            console.log(`divs[${i}] =`, divs[i]);
+            // console.log(`divs =`, i);
+            // console.log(`divs[${i}] =`, divs[i]);
             if (divs[i].classList.contains(`h5-dnd-nav-box-active`)) {
                 //
             }else{

@@ -8,26 +8,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>新三板专题统计 - 速览</title>
+    <!-- css & css order & modal-->
+    <!-- <link rel="stylesheet" data-css="data-css-uid" href="./css/white-skin/common/module.css">
+    <link rel="stylesheet" data-css="data-css-uid" href="./css/white-skin/common/modal.css">
+    <link rel="stylesheet" data-css="data-css-uid" href="./css/white-skin/common/no-data.css">
+    <link rel="stylesheet" data-css="data-css-uid" href="./css/white-skin/index.css">
+    <link rel="stylesheet" data-css="data-css-uid" href="./css/white-skin/tabs.css"> -->
+    <!-- common & reusable css -->
     <!-- print must set media query -->
     <link rel="stylesheet" media="print" href="./css/utils/print.css">
     <!--[if lt IE 9]>
         <script src="./libs/html5shiv.min.js"></script>
     <![endif]-->
+    <!-- Uncaught Error: only one instance of babel-polyfill is allowed -->
+    <!-- <script src="./build/js/babel-polyfill.min.js"></script> -->
 </head>
 
 <body>
+    <!-- <body data-class="init-body" class="init-hidden"> -->
+    <!-- <body data-class="init-body" class="init-show"> -->
     <header class="h5-dnd-header-container" data-header="data-header">
         <!-- <nav class="h5-dnd-nav-container h5-dnd-nav-container-normal" data-nav-container="nav-container"> -->
         <nav class="h5-dnd-nav-container h5-dnd-nav-container-small" data-nav-container="nav-container">
             <ul class="h5-dnd-nav-ul">
                 <li class="h5-dnd-nav-li-active no-bottom-margin" data-nav-li="nav-li">
-                    <a href="#" data-uid="tempaltes-a-link">模板选择</a>
+                    <a href="#模板选择" data-uid="tempaltes-a-link">模板选择</a>
                 </li>
                 <li class="h5-dnd-nav-li-hidden add-bottom-margin" data-nav-li="nav-li">
-                    <a href="#" data-uid="modules-a-link">模块选择</a>
+                    <a href="#模块选择" data-uid="modules-a-link">模块选择</a>
                 </li>
                 <li class="h5-dnd-nav-li-hidden add-bottom-margin" data-nav-li="nav-li">
-                    <a href="#module-settings" data-uid="settings-a-link"></a>
                     <!-- <a href="#模块设置" data-uid="settings-a-link">模块设置</a> -->
                 </li>
             </ul>
@@ -140,6 +150,7 @@
             </div>
         </div>
     </section>
+    <!-- <script src="./modules/tabs/tabs.js"></script> -->
     <script src="./libs/highstock.min.js"></script>
     <!-- <script src="./libs/highcharts.js"></script> -->
     <script src="./libs/data.min.js"></script>
@@ -151,9 +162,10 @@
     <script src="./libs/sweetalert.min.js"></script>
     <!-- modal libs -->
     <script src="./libs/modal.min.js"></script>
-    <!-- js & minify bug ??? -->
-    <script src="./index.js"></script>
-    <!-- <script src="./build/js/index.min.js"></script> -->
+    <!-- js -->
+    <!-- minify bug ??? -->
+    <!-- <script src="./index.js"></script> -->
+    <script src="./build/js/index.min.js"></script>
     <script src="./build/js/init.min.js"></script>
 </body>
 
