@@ -86,7 +86,7 @@ OTC_TS_FV.Modules.newlyAddedProtocol = OTC_TS_FV.Modules.newlyAddedProtocol || (
                         // new_add.innerHTML = json[json_keys[0]]["gpjs"];
                         // new_add.innerHTML = json_values[0].gpjs;
                         // new_add.insertAdjacentHTML(`beforeend`, `今日新增竞价转做市公司${json_values[0].gpjs}家`);
-                        new_add.insertAdjacentHTML(`afterbegin`, `今日新增协议转做市公司${json_values[0].gpjs}家`);
+                        new_add.insertAdjacentHTML(`afterbegin`, `今日新增竞价转做市公司${json_values[0].gpjs}家`);
                         // new_add.innerHTML = json_values[0]["gpjs"];
                         // init table & mini gilcode
                         let init_uid = json_keys[0].replace(/(id)/i, ``);
@@ -153,7 +153,7 @@ OTC_TS_FV.Modules.newlyAddedProtocol = OTC_TS_FV.Modules.newlyAddedProtocol || (
                         // no data
                     }
                 } else {
-                    new_add.insertAdjacentHTML(`afterbegin`, `今日新增协议转做市公司--家`);
+                    new_add.insertAdjacentHTML(`afterbegin`, `今日新增竞价转做市公司--家`);
                     // new_add.insertAdjacentHTML(`beforeend`, `今日新增竞价转做市公司--家`);
                     // no data
                     hs_container.style.display = "none";// OK
@@ -204,7 +204,6 @@ OTC_TS_FV.Modules.newlyAddedProtocol = OTC_TS_FV.Modules.newlyAddedProtocol || (
         }
     }, 0);
 });
-
 
 
 

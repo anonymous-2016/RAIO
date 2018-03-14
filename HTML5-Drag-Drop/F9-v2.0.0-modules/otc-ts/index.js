@@ -1343,6 +1343,10 @@ const deleteModule = () => {
     //
 };
 
+const saveCustomizeModule = () => {
+    //
+};
+
 /**
  * loadAllModules
  * @description initial all modules

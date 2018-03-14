@@ -352,10 +352,44 @@ duplicate([1, 2, 3, 4, 5]);
 
 
 function duplicate(arr) {
-  return arr.concat(arr);
+    return arr.concat(arr);
 }
 
 let arr = [1, 2, 3, 4, 5];
+
+const duplicate = (arr = [], result = arr || []) => result.map(item => result.push(item));
+
+
+const duplicate = (arr = []) => `${arr.toString()},`.repeat(2).slice(0, -1).split(`,`).map(item => parseInt(item));
+
+`${arr.toString()},`.repeat(2).split(",");
+// (11) ["1", "2", "3", "4", "5", "1", "2", "3", "4", "5", ""]
+
+arr.length
+// 5
+arr
+// (5) [1, 2, 3, 4, 5]
+arr.toString()
+// "1,2,3,4,5"
+`${arr.toString()},`.repeat(2)
+// "1,2,3,4,5,1,2,3,4,5,"
+`${arr.toString()},`.repeat(2).slice(-1);
+// ","
+`${arr.toString()},`.repeat(2).slice(0, -1);
+// "1,2,3,4,5,1,2,3,4,5"
+`${arr.toString()},`.repeat(2).slice(0, -1).split(`,`);
+// (10) ["1", "2", "3", "4", "5", "1", "2", "3", "4", "5"]
+`${arr.toString()},`.repeat(2).slice(0, -1).split(`,`).map(item => parseInt(item));
+// (10) [1, 2, 3, 4, 5, 1, 2, 3, 4, 5]
+
+
+let arr = [1, 2, 3, 4, 5];
+const ES6_String_Duplicate = arr => `${arr.toString()},`.repeat(2).slice(0, -1).split(`,`).map(item => parseInt(item));
+ES6_String_Duplicate(arr);
+// (10) [1, 2, 3, 4, 5, 1, 2, 3, 4, 5]
+
+
+
 arr.map(
     (item, i) => {
         console.log(`item = `, item, i);
@@ -364,5 +398,21 @@ arr.map(
 );
 
 //
+
+
+
+let str = '\u1E9B\u0323';
+
+str.normalize('NFC');
+// "ẛ̣"
+str.normalize();
+// "ẛ̣"
+
+str = `\u4ff4`;
+// "俴"
+str.normalize();
+// "俴"
+str.normalize('NFC');
+// "俴"
 
 ```
