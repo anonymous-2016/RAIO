@@ -398,7 +398,11 @@ const HTML_Template = (uid = ``, loadModule = function(){}, debug = false) => {
             htmlstr += `
                 <section class="otc-module-box-5" data-uid="newly-added-listing">
                     <div class="otc-h5dnd-modules-title-box otc-newly-added-listing-title-box">
-                        <p class="otc-h5dnd-modules-title" data-title="otc-newly-added-listing-title"  data-text="otc-newly-added-listing-text">
+                        <p class="otc-h5dnd-modules-title" data-title="otc-newly-added-listing-title">
+                            新增挂牌
+                            <span data-title-text="otc-newly-added-listing-title-text">
+                                <span data-text="otc-newly-added-listing-text"></span>
+                            </span>
                             <span data-link="otc-newly-added-listing-link">
                                 <a href="#更多" data-uid="342064" data-topic-category="NQTOPIC" data-turn-to-uid="node-uid-newly-added-listing">更多</a>
                             </span>
@@ -454,7 +458,13 @@ const HTML_Template = (uid = ``, loadModule = function(){}, debug = false) => {
             htmlstr += `
                 <section class="otc-module-box-5" data-uid="newly-added-protocol">
                     <div class="otc-h5dnd-modules-title-box otc-newly-added-protocol-title-box">
-                        <p class="otc-h5dnd-modules-title" data-title="otc-newly-added-protocol-title" data-text="otc-newly-added-protocol-text">
+                        <p class="otc-h5dnd-modules-title" data-title="otc-newly-added-protocol-title">
+                            新增竞价
+                            <span data-title-text="otc-newly-added-protocol-title-text">
+                                <!-- 今日新增协议转做市公司 -->
+                                <!-- 今日新增竞价转做市公司 -->
+                                <span data-text="otc-newly-added-protocol-text"></span>
+                            </span>
                             <span data-link="otc-newly-added-protocol-link">
                                 <a href="#更多" data-uid="342066" data-topic-category="NQTOPIC" data-turn-to-uid="node-uid-newly-added-protocol">更多</a>
                             </span>

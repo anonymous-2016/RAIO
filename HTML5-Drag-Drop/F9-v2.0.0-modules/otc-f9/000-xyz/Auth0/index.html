@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Auth0 VanillaJS</title>
+    <!-- Auth0 lock script -->
+    <script src="https://cdn.auth0.com/js/auth0/8.6.0/auth0.min.js"></script>
+    <script src="https://unpkg.com/jwt-decode@2.2.0/build/jwt-decode.min.js"></script>
+</head>
+
+<body>
+    <section>
+        <img alt="avatar" id="avatar" style="display:none;">
+        <p>Welcome <span id="nickname"></span></p>
+        <button type="submit" id="btn-login">Sign In</button>
+        <button type="submit" id="btn-logout" style="display:none;">Sign Out</button>
+    </section>
+    <!-- js -->
+    <script src="./app.js"></script>
+</body>
+
+</html>

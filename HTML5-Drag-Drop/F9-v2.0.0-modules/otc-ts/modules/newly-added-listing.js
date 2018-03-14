@@ -86,7 +86,8 @@ OTC_TS_FV.Modules.newlyAddedListing = OTC_TS_FV.Modules.newlyAddedListing || ((u
                         // all same & no need sort
                         // new_add.innerHTML = json[json_keys[0]]["gpjs"];
                         // new_add.innerHTML = json_values[0].gpjs;
-                        new_add.insertAdjacentHTML(`beforeend`, `今日新增挂牌公司${json_values[0].gpjs}家`);
+                        new_add.insertAdjacentHTML(`afterbegin`, `今日新增挂牌公司${json_values[0].gpjs}家`);
+                        // new_add.insertAdjacentHTML(`beforeend`, `今日新增挂牌公司${json_values[0].gpjs}家`);
                         // new_add.innerHTML = json_values[0]["gpjs"];
                         // init table & mini gilcode
                         let init_uid = json_keys[0].replace(/(id)/i, ``);
@@ -157,12 +158,13 @@ OTC_TS_FV.Modules.newlyAddedListing = OTC_TS_FV.Modules.newlyAddedListing || ((u
                         // no data
                     }
                 } else {
+                    new_add.insertAdjacentHTML(`afterbegin`, `今日新增挂牌公司--家`);
                     // "none" !== "none;" && string value
                     // hs_container.style.display = "none;";// BAD
                     // no data
                     hs_container.style.display = "none";// OK
                     table_container.style.display = "none";
-                    no_data_dom.insertAdjacentHTML(`afterend`, no_data_p);
+                    no_data_dom.insertAdjacentHTML(`beforeend`, no_data_p);
                 }
             } catch (err) {
                 let url =`file:///E:/otc-ts/modules/newly-added-listing.js`;
@@ -731,6 +733,7 @@ var OTC_IP = window.OTC_IP || `http://10.1.5.202`,
 OTC_TS_FV.Modules.newlyAddedListing.init({
     ip: OTC_IP,
     path: OTC_PATH,
+    // socket: `/otcfast02`,// test
     socket: `/otcfast01`,
     skin: OTC_SKIN,
     // gilcode: OTC_GILCODE
