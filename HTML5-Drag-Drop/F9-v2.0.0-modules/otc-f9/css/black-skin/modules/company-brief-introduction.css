@@ -174,7 +174,8 @@ td.otc-company-brief-introduction-table-td-key {
     /* width: 91px; */
     box-sizing: border-box;
     color: #bbc1c7;
-    background: #25292e;
+/*     background: #25292e; */
+    background: #31373d;
     font-size: 12px;
     width: 102px;
     min-width: 102px;

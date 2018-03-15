@@ -345,7 +345,8 @@ tbody.otc-equity-shareholder-table-tbody>tr.otc-equity-shareholder-table-tr>td:n
     word-wrap: break-word;
     white-space: nowrap;
     text-overflow: ellipsis;
-    background-color: #25292e;
+/*     background-color: #25292e; */
+    background: #31373d;
     border: 1px solid #4a4c4f;
     color: #bbc1c7;
 }
@@ -490,14 +491,14 @@ div[data-titles="data-otc-ES-title"]>p[data-p="data-otc-ES-title"] {
     box-sizing: border-box;
     color: #bbc1c7;
     line-height: 23px;
-    background: #fffce9;
+    background: #2c3d4f;
+    color: #bbc1c7;
     font-weight: normal;
     font-size: 12px;
     padding-left: 8px;
     border: 1px solid #4a4c4f;
     border-left: 0;
     width: 542px;
-    color: #4d4d4d;
 }
 
 div[data-titles="data-otc-ES-title"] {

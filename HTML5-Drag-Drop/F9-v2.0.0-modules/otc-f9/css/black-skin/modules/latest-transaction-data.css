@@ -66,7 +66,8 @@ tr.otc-latest-transaction-data-table-tr {
 td.otc-latest-transaction-data-table-td-key {
     box-sizing: border-box;
     color: #bbc1c7;
-    background: #25292e;
+/*     background: #25292e; */
+    background: #31373d;
     font-size: 12px;
     width: 112px;
     min-width: 112px;

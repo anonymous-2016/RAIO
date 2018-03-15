@@ -72,7 +72,8 @@ tr.otc-latest-financial-data-table-tr {
 td.otc-latest-financial-data-table-td-key {
     box-sizing: border-box;
     color: #bbc1c7;
-    background: #25292e;
+/*     background: #25292e; */
+    background: #31373d;
     /* font-size: 12px; */
     font-size: 12px;
     width: 112px;

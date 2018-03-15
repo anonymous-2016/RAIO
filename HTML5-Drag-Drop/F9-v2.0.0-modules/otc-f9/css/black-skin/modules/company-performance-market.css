@@ -43,10 +43,10 @@ p {
     box-sizing: border-box;
     height: 23px;
     line-height: 23px;
-/*     background: #25292e; */
-    background: #fffce9;
-/*     color: #bbc1c7; */
-    color: #4d4d4d;
+    background: #2c3d4f;
+    /* background: #fffce9; */
+    color: #bbc1c7;
+    /* color: #4d4d4d; */
     padding-left: 5px;
     border: 1px solid #4a4c4f;
 }
@@ -261,12 +261,13 @@ div.otc-company-performance-market-hs-container {
 }
 
 [data-color="minus"] {
-    color: #007c00;
+    color: #00d100;
 }
 
 [data-color="plus"] {
-    color: #ca0000;
+    color: #ff0000;
 }
+
 
 [data-color="orange"] {
     color: #ff6b3d;

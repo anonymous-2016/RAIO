@@ -312,9 +312,9 @@ div[data-div="tbody-div"]>p[data-p="data-otc-MMB-title"] {
 
 div[data-div="tbody-div"]>p[data-p="data-otc-MMB-title"] {
     box-sizing: border-box;
-    color: #4d4d4d;
     font-weight: normal;
-    background: #fffce9;
+    background: #2c3d4f;
+    color: #bbc1c7;
     font-size: 12px;
     border: 0;
     /* padding-left: 0; */
