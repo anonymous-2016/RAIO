@@ -338,6 +338,7 @@ OTC_F9_FV.Modules.mainManagementBusiness.drawHS = OTC_F9_FV.Modules.mainManageme
         const {color, colors, optioncolor, gridColor, legendColor, yAxisColor, index_color} = {...chart_css};
         // SKIN
         let skin_color = (OTC_SKIN === "black") ? `#0b1016` : `#fff`,
+            title_color = (OTC_SKIN === "black") ? `#9ba7d1` : `#616a87`,
             grid_line_color = (OTC_SKIN === "black") ? `#2d3039` : `#e9e9e9`,
             legend_item_color = (OTC_SKIN === "black") ? `#fff` : `#0b1016`,
             legend_item_hover_color = (OTC_SKIN === "black") ? `#f79530` : `#000`,
@@ -387,7 +388,8 @@ OTC_F9_FV.Modules.mainManagementBusiness.drawHS = OTC_F9_FV.Modules.mainManageme
                 x: -5,
                 y: 5,
                 style: {
-                    color: "#616a87",
+                    color: title_color,
+                    // color: "#616a87",
                     fontSize: "18px",
                     fontWeight: "bold",
                 },
@@ -652,6 +654,7 @@ OTC_F9_FV.Modules.mainManagementBusiness.drawHS2 = OTC_F9_FV.Modules.mainManagem
         const {color, colors, optioncolor, gridColor, legendColor, yAxisColor, index_color} = {...chart_css};
         // SKIN
         let skin_color = (OTC_SKIN === "black") ? `#0b1016` : `#fff`,
+            title_color = (OTC_SKIN === "black") ? `#9ba7d1` : `#616a87`,
             grid_line_color = (OTC_SKIN === "black") ? `#2d3039` : `#e9e9e9`,
             legend_item_color = (OTC_SKIN === "black") ? `#fff` : `#0b1016`,
             legend_item_hover_color = (OTC_SKIN === "black") ? `#f79530` : `#000`,
@@ -710,7 +713,8 @@ OTC_F9_FV.Modules.mainManagementBusiness.drawHS2 = OTC_F9_FV.Modules.mainManagem
                 x: -5,
                 y: 5,
                 style: {
-                    color: "#616a87",
+                    color: title_color,
+                    // color: "#616a87",
                     fontSize: "18px",
                     fontWeight: "bold",
                 },
@@ -982,8 +986,8 @@ OTC_F9_FV.Modules.mainManagementBusiness.init = OTC_F9_FV.Modules.mainManagement
 
 var OTC_IP = window.OTC_IP || `http://10.1.5.202`,
     OTC_PATH = window.OTC_PATH || `/webservice/fastview/otcper`,
-    OTC_SKIN = window.OTC_SKIN || `white`,
-    // OTC_SKIN = window.OTC_SKIN || `black`,
+    // OTC_SKIN = window.OTC_SKIN || `white`,
+    OTC_SKIN = window.OTC_SKIN || `black`,
     // OTC_GILCODE = window.OTC_GILCODE || `834380.OC`;
     // OTC_GILCODE = window.OTC_GILCODE || `430009.OC`;
     // OTC_GILCODE = window.OTC_GILCODE || `430002.OC`;

@@ -49,7 +49,7 @@ monsterImage.src = `./images/monster.png`;
 
 // Game objects
 const hero = {
-    speed: 256 ,
+    speed: 256*3
     // movement in pixels per second
 };
 let monster = {},
@@ -130,9 +130,15 @@ let render = () => {
 };
 
 // The main game loop ??? timestamp & requestAnimationFrame ???
-let main = () => {
+let main = (timestamp) => {
     let now = Date.now(),
         delta = now - then;
+        // delta = now - timestamp;
+    // if (debug) {
+    //     console.log(`then =`, then);// 1521098214292
+    //     console.log(`timestamp =`, timestamp);//  67904.36899999622
+    //     console.log(`now =`, now);// 1521098214313
+    // }
     update(delta / 1000);
     render();
     then = now;

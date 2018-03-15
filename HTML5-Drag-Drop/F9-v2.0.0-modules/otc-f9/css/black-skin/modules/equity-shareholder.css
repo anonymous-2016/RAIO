@@ -317,7 +317,7 @@ tbody.otc-equity-shareholder-table-tbody>tr {
 } */
 
 tbody.otc-equity-shareholder-table-tbody>tr:nth-of-type(2n) {
-    background: #f5f5f5;
+    background: #212529;
     border: 1px solid #e9e9e9;
 }
 
@@ -363,7 +363,7 @@ thead.otc-equity-shareholder-table-thead>tr.otc-equity-shareholder-table-tr {
 
 tr.otc-equity-shareholder-table-tr>td:nth-of-type(n) {
     border-right: 1px solid #4a4c4f;
-    background-color: #25292e;
+    /* background-color: #25292e; */
 }
 
 tr.otc-equity-shareholder-table-tr>td:nth-last-of-type(1) {

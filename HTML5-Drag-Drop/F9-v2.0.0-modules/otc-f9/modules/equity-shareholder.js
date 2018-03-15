@@ -437,6 +437,8 @@ OTC_F9_FV.Modules.equityShareholder.drawHS = OTC_F9_FV.Modules.equityShareholder
         const {color, colors, optioncolor, gridColor, legendColor, yAxisColor, index_color} = {...chart_css};
         // SKIN
         let skin_color = (OTC_SKIN === "black") ? `#0b1016` : `#fff`,
+            title_color = (OTC_SKIN === "black") ? `#9ba7d1` : `#616a87`,
+            drilldown_color = (OTC_SKIN === "black") ? `#979ba2` : `#4d4d4d`,
             legend_item_color = (OTC_SKIN === "black") ? `#fff` : `#0b1016`,
             legend_item_hover_color = (OTC_SKIN === "black") ? `#f79530` : `#000`,
             legend_bg_color = (OTC_SKIN === "black") ? `#0b1016` : `#ff00ff`,
@@ -479,7 +481,8 @@ OTC_F9_FV.Modules.equityShareholder.drawHS = OTC_F9_FV.Modules.equityShareholder
                 x: -5,
                 y: 5,
                 style: {
-                    color: "#616a87",
+                    color: title_color,
+                    // color: "#616a87",
                     fontSize: "18px",
                     fontWeight: "bold",
                 },
@@ -540,13 +543,15 @@ OTC_F9_FV.Modules.equityShareholder.drawHS = OTC_F9_FV.Modules.equityShareholder
                 activeAxisLabelStyle: {
                     textDecoration: 'none',
                     // fontStyle: 'italic',
-                    color: `#4d4d4d`,
+                    color: drilldown_color,
+                    // color: `#4d4d4d`,
                     fontWeight:`normal`,
                 },
                 activeDataLabelStyle: {
                     textDecoration: 'none',
                     // fontStyle: 'italic',
-                    color: `#4d4d4d`,
+                    color: drilldown_color,
+                    // color: `#4d4d4d`,
                     fontWeight:`normal`,
                 },
                 series: [{
@@ -555,7 +560,8 @@ OTC_F9_FV.Modules.equityShareholder.drawHS = OTC_F9_FV.Modules.equityShareholder
                     data: limited,
                     dataLabels: {
                         style: {
-                            color: '#4d4d4d',
+                            color: drilldown_color,
+                            // color: '#4d4d4d',
                             fontSize: `11`,
                             fontWeight: `normal`,
                             textOutline: `none`,
@@ -573,7 +579,8 @@ OTC_F9_FV.Modules.equityShareholder.drawHS = OTC_F9_FV.Modules.equityShareholder
                     data: unlimited,
                     dataLabels: {
                         style: {
-                            color: '#4d4d4d',
+                            color: drilldown_color,
+                            // color: '#4d4d4d',
                             fontSize: `11`,
                             fontWeight: `normal`,
                             textOutline: `none`,
@@ -674,8 +681,8 @@ OTC_F9_FV.Modules.equityShareholder.init = OTC_F9_FV.Modules.equityShareholder.i
 
 var OTC_IP = window.OTC_IP || `http://10.1.5.202`,
     OTC_PATH = window.OTC_PATH || `/webservice/fastview/otcper`,
-    OTC_SKIN = window.OTC_SKIN || `white`,
-    // OTC_SKIN = window.OTC_SKIN || `black`,
+    // OTC_SKIN = window.OTC_SKIN || `white`,
+    OTC_SKIN = window.OTC_SKIN || `black`,
     // OTC_GILCODE = window.OTC_GILCODE || `430007.OC`;
     // OTC_GILCODE = window.OTC_GILCODE || `834380.OC`;
     OTC_GILCODE = window.OTC_GILCODE || `430005.OC`;
