@@ -553,29 +553,39 @@ OTC_TS_FV.Modules.newlyAddedProtocol.showTable = OTC_TS_FV.Modules.newlyAddedPro
     // more.setAttribute(`href`, `#${table_obj.zqdm}.OC`);
     // more.dataset.moreUid = `${table_obj.zqdm}.OC`;
     // console.log(`more.dataset.moreUid new = `, more.dataset.moreUid);
-    // more
-    setTimeout((debug = false) => {
-        more.addEventListener(`click`, (e) => {
-            let gilcode = e.target.dataset.moreUid,
-                // gilcode = OTC_GILCODE ? OTC_GILCODE : window.OTC_GILCODE,
-                more_node_path = `12\\${gilcode}\\${uid}`;
-            if (debug) {
-                // console.log(`more = \n`, more);
-                console.log(`more gilcode = \n`, gilcode);
+    const bindOnceEvent = () => {
+        let gilcode = more.dataset.moreUid,
+            // gilcode = OTC_GILCODE ? OTC_GILCODE : window.OTC_GILCODE,
+            more_node_path = `12\\${gilcode}\\`;
+            // more_node_path = `12\\${gilcode}\\${uid}`;
+        if (debug) {
+            // console.log(`more = \n`, more);
+            console.log(`more gilcode = `, gilcode);
+            console.log(`more_node_path = `, more_node_path);
+            console.log(`more.dataset.clickFlag = `, more.dataset.clickFlag);
+        }
+        try {
+            if (gilcode !== null) {
+                ChromeExternal.Execute("ExecuteCommand", `12\\${gilcode}\\`);
+                // ChromeExternal.Execute("ExecuteCommand", `12\\${gilcode}\\${uid}`);
+            }else{
+                console.log(`ChromeExternal & ${gilcode} === null\n`);
                 console.log(`more_node_path = \n`, more_node_path);
             }
-            try {
-                if (gilcode !== null) {
-                    ChromeExternal.Execute("ExecuteCommand", `12\\${gilcode}\\`);
-                    // ChromeExternal.Execute("ExecuteCommand", `12\\${gilcode}\\${uid}`);
-                }else{
-                    console.log(`ChromeExternal & ${gilcode} === null\n`);
-                }
-            } catch (error) {
-                console.log(`%c ChromeExternal & caught error = \n`, `color: red; font-size: 23px;`, error);
-                console.log(`more node gilcode = `, gilcode);
-            }
-        });
+        } catch (error) {
+            console.log(`%c ChromeExternal & caught error = \n`, `color: red; font-size: 23px;`, error);
+            // console.log(`more node gilcode = `, gilcode);
+            // console.log(`more_node_path = \n`, more_node_path);
+        }
+    };
+    // more
+    setTimeout(() => {
+        if (more.dataset.clickFlag === undefined) {
+            more.addEventListener(`click`, bindOnceEvent);
+            more.dataset.clickFlag = `true`;
+        }else{
+            // no need bind again!
+        }
     }, 0);
     // let tr1 = tb.firstElementChild;
     // let tr3 = tb.lastElementChild;

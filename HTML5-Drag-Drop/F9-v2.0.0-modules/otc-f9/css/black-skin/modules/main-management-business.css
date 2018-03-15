@@ -312,8 +312,9 @@ div[data-div="tbody-div"]>p[data-p="data-otc-MMB-title"] {
 
 div[data-div="tbody-div"]>p[data-p="data-otc-MMB-title"] {
     box-sizing: border-box;
-    color: #bbc1c7;
+    color: #4d4d4d;
     font-weight: normal;
+    background: #fffce9;
     font-size: 12px;
     border: 0;
     /* padding-left: 0; */
@@ -324,4 +325,8 @@ div.otc-main-management-business-container {
     box-sizing: border-box;
     border: 1px solid #4a4c4f;
     margin-bottom: 10px;
+}
+
+div[data-titles="data-otc-MMB-title"]{
+    margin-bottom: 0;
 }

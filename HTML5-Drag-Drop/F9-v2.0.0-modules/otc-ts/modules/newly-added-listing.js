@@ -200,6 +200,7 @@ OTC_TS_FV.Modules.newlyAddedListing = OTC_TS_FV.Modules.newlyAddedListing || ((u
                         node_path = `13\\${topic_category}\\${uid}`;
                     try {
                         if (uid !== undefined && topic_category !== undefined) {
+                            // console.log(`node node_path = `, node_path);
                             ChromeExternal.Execute("ExecuteCommand", node_path);
                             // ChromeExternal.Execute("ExecuteCommand", `13\\${topic_category}\\${uid}`);
                         }else{
@@ -633,28 +634,49 @@ OTC_TS_FV.Modules.newlyAddedListing.showTable = OTC_TS_FV.Modules.newlyAddedList
     // more.dataset.moreUid = `${table_obj.zqdm}.OC`;
     // console.log(`more.dataset.moreUid new = `, more.dataset.moreUid);
     // more
-    setTimeout((debug = false) => {
-        more.addEventListener(`click`, (e) => {
-            let gilcode = e.target.dataset.moreUid,
-                // gilcode = OTC_GILCODE ? OTC_GILCODE : window.OTC_GILCODE,
-                more_node_path = `12\\${gilcode}\\${uid}`;
-            if (debug) {
-                // console.log(`more = \n`, more);
-                console.log(`more gilcode = \n`, gilcode);
+    // const bindOnceEvent = (e) => {
+        // let gilcode = e.target.dataset.moreUid,
+    const bindOnceEvent = () => {
+        let gilcode = more.dataset.moreUid,
+            // gilcode = OTC_GILCODE ? OTC_GILCODE : window.OTC_GILCODE,
+            more_node_path = `12\\${gilcode}\\`;
+            // more_node_path = `12\\${gilcode}\\${uid}`;
+        if (debug) {
+            // console.log(`more = \n`, more);
+            console.log(`more gilcode = `, gilcode);
+            console.log(`more_node_path = `, more_node_path);
+            console.log(`more.dataset.clickFlag = `, more.dataset.clickFlag);
+        }
+        try {
+            if (gilcode !== null) {
+                ChromeExternal.Execute("ExecuteCommand", `12\\${gilcode}\\`);
+                // ChromeExternal.Execute("ExecuteCommand", `12\\${gilcode}\\${uid}`);
+            }else{
+                console.log(`ChromeExternal & ${gilcode} === null\n`);
                 console.log(`more_node_path = \n`, more_node_path);
             }
-            try {
-                if (gilcode !== null) {
-                    ChromeExternal.Execute("ExecuteCommand", `12\\${gilcode}\\`);
-                    // ChromeExternal.Execute("ExecuteCommand", `12\\${gilcode}\\${uid}`);
-                }else{
-                    console.log(`ChromeExternal & ${gilcode} === null\n`);
-                }
-            } catch (error) {
-                console.log(`%c ChromeExternal & caught error = \n`, `color: red; font-size: 23px;`, error);
-                console.log(`more node gilcode = `, gilcode);
-            }
-        });
+        } catch (error) {
+            console.log(`%c ChromeExternal & caught error = \n`, `color: red; font-size: 23px;`, error);
+            // console.log(`more node gilcode = `, gilcode);
+            // console.log(`more_node_path = \n`, more_node_path);
+        }
+    };
+    // proxy ??? flag
+    // more.addEventListener(`click`, bindOnceEvent, false);
+    // console.log(`init & more.dataset.clickFlag = `, more.dataset.clickFlag);
+    // 重复绑定 bug? ???
+    setTimeout(() => {
+        // unbind
+        // more.removeEventListener(`click`, bindOnceEvent, false);
+        // // bind
+        // more.addEventListener(`click`, bindOnceEvent, false);
+        if (more.dataset.clickFlag === undefined) {
+            more.addEventListener(`click`, bindOnceEvent);
+            // flag
+            more.dataset.clickFlag = `true`;
+        }else{
+            // no need bind again!
+        }
     }, 0);
     // let tr1 = tb.firstElementChild;
     // let tr3 = tb.lastElementChild;
