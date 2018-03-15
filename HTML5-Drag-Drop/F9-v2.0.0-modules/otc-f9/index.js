@@ -820,6 +820,9 @@ const HTML_Template = (uid = ``, loadModule = function(){}, debug = false) => {
                     <div class="otc-h5dnd-modules-title-box">
                         <p class="otc-h5dnd-modules-title" data-title="otc-management-layer-profiles-title">
                             管理层概况与持股
+                            <span data-title-text="otc-management-layer-profiles-title-text">
+                                <span data-text="otc-management-layer-profiles-text"></span>
+                            </span>
                             <span data-more="otc-management-layer-profiles-link">
                                 <a href="#管理层数据" data-more="otc-management-layer-profiles-link-more" data-uid="1070" data-turn-to-uid="node-uid-management-layer-profiles-data">管理层数据</a>
                             </span>

@@ -20,11 +20,6 @@ a {
 }
 
 
-[data-tab="tab-title-box"]{
-    background: #25292e;
-    border: 1px solid #4a4c4f;
-}
-
 /* tab-title & li */
 
 [data-tab="tab-title-ul"] {
@@ -102,9 +97,7 @@ a {
     border-right: 1px solid #777;
 }
 
-[data-tab="tab-title"]:nth-last-of-type(1) {
-    /* background: #ff00ff; */
-}
+
 
 li[data-tab="tab-title"] {
     list-style: none;
@@ -115,6 +108,11 @@ a[data-tab="tab-link"] {
     display: inline-block;
     width: 100%;
     /* font-size: 18px; */
+}
+
+[data-tab="tab-title-box"]{
+    background: #25292e;
+    border: 1px solid #4a4c4f;
 }
 
 

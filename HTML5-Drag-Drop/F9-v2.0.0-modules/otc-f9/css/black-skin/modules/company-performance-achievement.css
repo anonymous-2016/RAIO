@@ -15,10 +15,16 @@ p {
 [data-hs-container="data-company-performance-achievement-container-uid"] {
     box-sizing: border-box;
     border: 1px solid #4a4c4f;
+    border-top: none;
     min-height: 300px;
     height: 100%;
+}
+
+#company_performance_achievement_hs_container2 {
+    border-top: 1px solid #4a4c4f;
     margin-top: 10px;
 }
+
 
 [no-data-hs-container="no-data-company-performance-achievement-container-uid"] {
     display: none;
@@ -39,8 +45,8 @@ p {
     box-sizing: border-box;
     height: 23px;
     line-height: 23px;
-    background: #25292e;
-    color: #bbc1c7;
+    background: #fffce9;
+    color: #4d4d4d;
     border: 1px solid #4a4c4f;
     padding-left: 5px;
 }
@@ -242,4 +248,12 @@ tr.otc-company-performance-achievement-table-tr>td:nth-of-type(4) {
 
 [data-display="display-none"] {
     display: none;
+}
+
+[data-color="minus"] {
+    color: #007c00;
+}
+
+[data-color="plus"] {
+    color: #ca0000;
 }

@@ -48,7 +48,8 @@ OTC_F9_FV.Modules.managementLayerProfiles = OTC_F9_FV.Modules.managementLayerPro
                     if (emptyChecker(json)) {
                         let text = ``,
                             time = ``,
-                            table_text = ``;
+                            table_text = ``,
+                            date = document.querySelector(`[data-text="otc-management-layer-profiles-text"]`);
                         text = `
                             <p data-none="no-data-p">
                                 <span data-none="no-data-span"></span>
@@ -77,7 +78,7 @@ OTC_F9_FV.Modules.managementLayerProfiles = OTC_F9_FV.Modules.managementLayerPro
                             if (emptyChecker(datas.ggcg)) {
                                 let obj = datas.ggcg || {};
                                 let {dsh, jsh, gg, sj, hxyg, gghjcg, zb} = obj;
-                                emptyChecker(sj) ? time = `(${sj})` : time = ``;
+                                emptyChecker(sj) ? time = `(${sj})` : time = `--`;
                                 // (截止2015-06-30) ??? data-title
                                 // "sj": "2017-06-30",
                                 text = `
@@ -95,7 +96,7 @@ OTC_F9_FV.Modules.managementLayerProfiles = OTC_F9_FV.Modules.managementLayerPro
                                 // default
                             }
                             title.insertAdjacentHTML(`beforeend`, text);
-                            // date.insertAdjacentHTML(`beforeend`, time);
+                            date.insertAdjacentHTML(`beforeend`, time);
                             if (Array.isArray(datas.ggcg.ggs) && datas.ggcg.ggs.length > 0) {
                                 let trs = ``;
                                 for (let i = 0; i < datas.ggcg.ggs.length; i++) {

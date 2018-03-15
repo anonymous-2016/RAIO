@@ -9,6 +9,7 @@
  * @param {* Array} ui_arr
  * @param {Boolean} debug
  */
+
 import "whatwg-fetch";
 
 // namespaces

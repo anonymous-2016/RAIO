@@ -15,9 +15,10 @@ p {
 [data-hs-container="data-company-performance-scale-container-uid"] {
     box-sizing: border-box;
     border: 1px solid #4a4c4f;
+    border-top: none;
     min-height: 300px;
     height: 100%;
-    margin-top: 10px;
+/*     margin-top: 10px; */
 }
 
 [no-data-hs-container="no-data-company-performance-scale-container-uid"] {
@@ -30,17 +31,17 @@ p {
 [data-hs-title="data-company-performance-scale-title-uid"] {
     box-sizing: border-box;
     /* border: 1px solid #4a4c4f; */
+    background: #fffce9;
     height: 100%;
     margin-top: 10px;
-    border: 0;
 }
 
 [data-p="company-performance-scale-p"] {
     box-sizing: border-box;
     height: 23px;
     line-height: 23px;
-    background: #25292e;
-    color: #bbc1c7;
+    background: #fffce9;
+    color: #4d4d4d;
     border: 1px solid #4a4c4f;
     padding-left: 5px;
 }
@@ -242,4 +243,18 @@ tr.otc-company-performance-scale-table-tr>td:nth-of-type(4) {
 
 [data-display="display-none"] {
     display: none;
+}
+
+
+
+[data-color="minus"] {
+    color: #007c00;
+}
+
+[data-color="plus"] {
+    color: #ca0000;
+}
+
+[data-color="orange"] {
+    color: #ff6b3d;
 }
