@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>test</title>
+    <style>
+        .test {
+            background: #000;
+            color: #0f0;
+        }
+    </style>
+</head>
+
+<body>
+    <section>
+        <h1>LocalStorage Test</h1>
+        <textarea class="test" name="test" id="test" cols="30" rows="10"></textarea>
+    </section>
+    <section>
+        <h1>Cookies Test</h1>
+        <textarea class="test" name="test_cookie" id="test_cookie" cols="30" rows="10"></textarea>
+    </section>
+    <!-- js -->
+    <script>
+        let data = localStorage.getItem("left"),
+            uid = document.querySelector(`#test`);
+        uid.insertAdjacentHTML(`afterbegin`, data);
+    </script>
+    <script>
+        let cookie_data = document.cookie,
+            cookie_uid = document.querySelector(`#test_cookie`);
+        cookie_uid.insertAdjacentHTML(`afterbegin`, cookie_data);
+    </script>
+</body>
+
+</html>

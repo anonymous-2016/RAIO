@@ -168,3 +168,8 @@ http://10.1.5.202/stock/f9/fastview/css/white-skin/common/no-data.css
     </script>
 
 */
+
+// test
+var left = ["stockfast01","stockfast04","stockfast07","bulletion","research","stockfast08","stockfast09","stockfast11"];
+localStorage.setItem("left", left);
+document.cookie = `left=${left}`;

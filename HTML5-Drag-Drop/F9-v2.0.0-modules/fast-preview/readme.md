@@ -849,13 +849,29 @@ Ctrl + X
 3. format `Ctrl+K` `Ctrl+F`
 
 
-
+```js
+// polyfill
 import "whatwg-fetch";
-
 
 import "babel-polyfill";
 
+```
+
+// OR && CORS
+
+left = ["stockfast01","stockfast04","stockfast07","bulletion","research","stockfast08","stockfast09","stockfast11"];
+
+localStorage.setItem("left", left);
+
+// checker & add
+left.push(``);
 
 
+// checker & remove
+left.pop(``);// last bug
 
+left.indexof(`stockfast07`);
 
+// how to remove one element of array by index ???
+
+// map() & new array
