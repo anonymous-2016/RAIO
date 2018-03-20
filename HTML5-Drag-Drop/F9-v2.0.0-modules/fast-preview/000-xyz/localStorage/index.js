@@ -82,4 +82,13 @@ localStorage.setItem("left", left);
 
 // cookie
 document.cookie = `left=${left}`;
+// expires= ???
+// document.cookie = "expires=Thu, 01 Jan 2020 00:00:00 UTC;";
 
+document.cookie = "expires=Thu, 01 Jan 2020 00:00:00 GMT;";
+/*
+
+new Date().toGMTString();
+"Mon, 19 Mar 2018 11:03:18 GMT"
+
+*/
