@@ -180,8 +180,8 @@ const getCookies = (key_name = ``) => {
         }
     );
     console.log(`temp_obj = `, temp_obj);
-    if (key in temp_obj) {
-        result = temp_obj[key];
+    if (key_name in temp_obj) {
+        result = temp_obj[key_name];
         console.log(`result = `, result);
     } else {
         result = null;
@@ -190,8 +190,121 @@ const getCookies = (key_name = ``) => {
     return result;
 };
 
+
+getCookies(`_hp2_id.1557708959`);
+// "_hp2_id.1557708959=%7B%22userId%22%3A%220973096690871854%22%2C%22pageviewId%22%3A%220256347617340861%22%2C%22sessionId%22%3A%222302119049021178%22%2C%22identity%22%3Anull%2C%22trackerVersion%22%3A%223.0%22%7D; csrftoken=a8ace69ee6f846d6fb895028ad047bc1590bc0ed"
+
+let obj = getCookies(`_hp2_id.1557708959`);
+// "%7B%22userId%22%3A%220973096690871854%22%2C%22pageviewId%22%3A%220256347617340861%22%2C%22sessionId%22%3A%222302119049021178%22%2C%22identity%22%3Anull%2C%22trackerVersion%22%3A%223.0%22%7D"
+decodeURI(obj);
+// "{"userId"%3A"0973096690871854"%2C"pageviewId"%3A"0256347617340861"%2C"sessionId"%3A"2302119049021178"%2C"identity"%3Anull%2C"trackerVersion"%3A"3.0"}"
+decodeURIComponent(obj);
+// "{"userId":"0973096690871854","pageviewId":"0256347617340861","sessionId":"2302119049021178","identity":null,"trackerVersion":"3.0"}"
+let obj = {},
+    arr = [],
+    str = ``;
+obj = {"userId":"0973096690871854","pageviewId":"0256347617340861","sessionId":"2302119049021178","identity":null,"trackerVersion":"3.0"};
+
+str = JSON.stringify(obj);
+// "{"userId":"0973096690871854","pageviewId":"0256347617340861","sessionId":"2302119049021178","identity":null,"trackerVersion":"3.0"}"
+obj = JSON.parse(str);
+// {userId: "0973096690871854", pageviewId: "0256347617340861", sessionId: "2302119049021178", identity: null, trackerVersion: "3.0"}
+
+
+arr = ["stockfast01","stockfast04","stockfast07","bulletion","research","stockfast08","stockfast09","stockfast11"];
+
+str = JSON.stringify(arr);
+// "["stockfast01","stockfast04","stockfast07","bulletion","research","stockfast08","stockfast09","stockfast11"]"
+
+arr = JSON.parse(str);
+// "["stockfast01","stockfast04","stockfast07","bulletion","research","stockfast08","stockfast09","stockfast11"]"
+
+
+
+encodeURIComponent(obj);
+// "%5Bobject%20Object%5D"
+encodeURIComponent(str);
+// "%7B%22userId%22%3A%220973096690871854%22%2C%22pageviewId%22%3A%220256347617340861%22%2C%22sessionId%22%3A%222302119049021178%22%2C%22identity%22%3Anull%2C%22trackerVersion%22%3A%223.0%22%7D"
+
+
+encodeURIComponent(arr);
+// "stockfast01%2Cstockfast04%2Cstockfast07%2Cbulletion%2Cresearch%2Cstockfast08%2Cstockfast09%2Cstockfast11"
+encodeURIComponent(str);
+
+
+
+
+decodeURIComponent(obj);
+// "[object Object]"
+decodeURIComponent(str);
+// "{"userId":"0973096690871854","pageviewId":"0256347617340861","sessionId":"2302119049021178","identity":null,"trackerVersion":"3.0"}"
+
+decodeURIComponent(arr);
+// "stockfast01,stockfast04,stockfast07,bulletion,research,stockfast08,stockfast09,stockfast11"
+decodeURIComponent(str);
+// "["stockfast01","stockfast04","stockfast07","bulletion","research","stockfast08","stockfast09","stockfast11"]"
+
+
+// modules & layout
+modules = {
+    left: ["stockfast01","stockfast04","stockfast07","bulletion","research","stockfast08","stockfast09","stockfast11"],
+    right: ["stockfast01","stockfast04","stockfast07","bulletion","research","stockfast08","stockfast09","stockfast11"]
+};
+
+
+
+
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for...in
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/in
 
 ```
+
+## GMT & UTC
+
+https://www.timeanddate.com/time/gmt-utc-time.html
+
+Coordinated Universal Time (UTC)
+世界标准时间 UTC
+
+协调世界时 (UTC) +0000 UTC
+// Tue Mar 20 2018 13:56:08 GMT+0800 (China Standard Time)
+
+Greenwich Mean Time (GMT)
+格林尼治标准时间 (GMT)
+
+
+
+
+## How cookies work
+
+> A cookie is nothing but a small `text` file that's stored in your `browser`.
+It contains some data:
+
+* A `name-value pair` containing the actual data
+* An `expiry date` after which it is no longer valid
+* The `domain` and `path` of the server it should be sent to
+
+```js
+
+let date = new Date()
+// Tue Mar 20 2018 13:56:08 GMT+0800 (China Standard Time)
+
+date.toDateString();
+// "Tue Mar 20 2018"
+
+date.toUTCString();
+// "Tue, 20 Mar 2018 05:56:16 GMT"
+date.toGMTString();
+// "Tue, 20 Mar 2018 05:56:16 GMT"
+date.toISOString();
+// "2018-03-20T05:56:16.941Z"
+
+```
+
+## `cookie` must set `expires` with the `key`
+
+## `cookie` if only has `key`, the `expires`  will be set default to `1969-12-31T23:59:59.000Z`;
+
+https://www.quirksmode.org/js/cookies.html
+
 

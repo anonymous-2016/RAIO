@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Print Page to PDF test</title>
+    <style>
+        @media print {
+            .noprint {
+                display: none;
+                /*
+                    visibility: hidden;
+                    color: #0f0;
+                    background: #000;
+                */
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <section>
+        <input type="button" onClick="printdiv('div_print');" value=" 打印 ">
+        <div id="div_print">
+            <h1 style="Color:Red">被打印区域: </h1>
+            <p>
+                要实现页面打印功能。这个需求往往听起来挺复杂，挺高级的，其实没那么难，下面本文分享一种超简单的方法实现页面的打印功能，不仅可以打印整个页面，还可以打印页面某块区域。下面是具体的实例代码：
+            </p>
+        </div>
+        <div class="noprint">
+            这块区域是打印不到的！
+        </div>
+    </section>
+    <!-- js -->
+    <script>
+        function printdiv(printpage) {
+            var headstr = "<html><head><title></title></head><body>";
+            var footstr = "</body>";
+            var newstr = document.all.item(printpage).innerHTML;
+            var oldstr = document.body.innerHTML;
+            document.body.innerHTML = headstr + newstr + footstr;
+            window.print();
+            document.body.innerHTML = oldstr;
+            return false;
+        }
+    </script>
+</body>
+
+</html>

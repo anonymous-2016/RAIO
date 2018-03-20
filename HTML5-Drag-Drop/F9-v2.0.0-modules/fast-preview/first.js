@@ -173,12 +173,39 @@ http://10.1.5.202/stock/f9/fastview/css/white-skin/common/no-data.css
 var left = ["stockfast01","stockfast04","stockfast07","bulletion","research","stockfast08","stockfast09","stockfast11"];
 localStorage.setItem("left", left);
 
+// let value = encodeURIComponent(JSON.stringify(left));
+
+
+// str = JSON.stringify(left);
+// "["stockfast01","stockfast04","stockfast07","bulletion","research","stockfast08","stockfast09","stockfast11"]"
+
+// str = encodeURIComponent(str);
+// "%5B%22stockfast01%22%2C%22stockfast04%22%2C%22stockfast07%22%2C%22bulletion%22%2C%22research%22%2C%22stockfast08%22%2C%22stockfast09%22%2C%22stockfast11%22%5D"
+
+
+// str = decodeURIComponent(str);
+// arr = JSON.parse(str);
+
+
 // document.cookie = `left=${left}`;
-document.cookie = `left=xxxxxxxxxxxxxxxxxxxxxxxxxxxx;`;
+// document.cookie = `left=xxxxxxxxxxxxxxxxxxxxxxxxxxxx; expires=Thu, 01 Jan 2050 00:00:00 GMT;`;
 // expires= ???
 // document.cookie = "expires=Thu, 01 Jan 2020 00:00:00 UTC;";
-document.cookie = "expires=Thu, 01 Jan 2020 00:00:00 GMT;";
+// document.cookie = "expires=Thu, 01 Jan 2020 00:00:00 GMT;";
 
+document.cookie = `left=${left}; expires=Thu, 01 Jan 2050 00:00:00 GMT; path=/`;
+
+
+// document.cookie = "expires=Thu, 01 Jan 2050 00:00:00 GMT; path=/";
+// document.cookie = "expires=Thu, 01 Jan 2050 00:00:00 GMT; path=/stock/f9/fastview/";
+
+// domain=10.1.5.202
 // path=/
-document.cookie = "path=/;";
+// document.cookie = "path=/;";
+
+
+// must set `expires` with the `key`
+
+// if only has `key`, the `expires`  will be default to `1969-12-31T23:59:59.000Z`;
+
 

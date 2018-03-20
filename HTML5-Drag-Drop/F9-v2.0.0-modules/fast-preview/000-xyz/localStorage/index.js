@@ -81,11 +81,29 @@ left = ["stockfast01","stockfast04","stockfast07","bulletion","research","stockf
 localStorage.setItem("left", left);
 
 // cookie
-document.cookie = `left=${left}`;
+document.cookie = `left=${left}; `;
 // expires= ???
 // document.cookie = "expires=Thu, 01 Jan 2020 00:00:00 UTC;";
 
-document.cookie = "expires=Thu, 01 Jan 2020 00:00:00 GMT;";
+// document.cookie = "; expires=Thu, 01 Jan 2050 00:00:00 GMT; domain=10.1.5.202; path=/;";
+// IP bug ??? domain
+
+document.cookie = "expires=Thu, 01 Jan 2020 00:00:00 GMT; path=/;";
+document.cookie = "expires=Thu, 01 Jan 2050 00:00:00 GMT; path=/stock/f9/fastview/; ";
+
+// document.cookie = "expires=Thu, 01 Jan 2020 00:00:00 GMT; domain=wakatime.com; path=/;";
+// document.cookie = "expires=Thu, 01 Jan 2020 00:00:00 GMT; domain=www.quirksmode.org; path=/;";
+// domain=www.quirksmode.org;
+getCookies(`expires`);
+// "Thu, 01 Jan 2020 00:00:00 GMT"
+getCookies(`path`);
+// "Thu, 01 Jan 2020 00:00:00 GMT"
+getCookies(`domain`);
+// null
+getCookies(`path`);
+// null
+
+
 /*
 
 new Date().toGMTString();
