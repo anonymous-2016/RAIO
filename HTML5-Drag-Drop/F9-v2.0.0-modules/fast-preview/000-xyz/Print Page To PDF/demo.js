@@ -43,3 +43,35 @@ function preview(oper) {
 // <!--startprint1-->要打印的内容<!--endprint1-->
 
 // 再加个打印按纽 onclick=preview(1)
+
+
+// bd = document.querySelector(`[data-body-container="data-body-container"]`);
+bd = document.querySelector('[data-body-container="data-body-container"]');
+html = bd.innerHTML;
+
+
+// shit if without {} curly brackets
+
+let x = 1;
+
+if (x === 0)
+    console.log(`test 1`);
+    console.log(`test 2`);
+    console.log(`test 3`);
+// test 2
+// test 3
+
+
+if (x === 0)
+    console.log(`test 1`);
+    console.log(`test 2`);
+    console.log(`test 3`);
+// test 1
+// test 2
+// test 3
+
+if (x === 0) {
+    console.log(`test 1`);
+}
+console.log(`test 2`);
+console.log(`test 3`);
