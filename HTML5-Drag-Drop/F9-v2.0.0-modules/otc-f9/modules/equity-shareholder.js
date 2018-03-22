@@ -76,7 +76,7 @@ OTC_F9_FV.Modules.equityShareholder = OTC_F9_FV.Modules.equityShareholder || (
                                     <td class="otc-equity-shareholder-table-td-value" data-value="data-otc-ES">${hc_data.jzrq}</td>
                                 </tr>
                                 <tr class="otc-equity-shareholder-table-tr">
-                                    <td class="otc-equity-shareholder-table-td-key" data-alias="总股本(股)">总股本(股)</td>
+                                    <td class="otc-equity-shareholder-table-td-key" data-alias="总股本(万股)">总股本(万股)</td>
                                     <td class="otc-equity-shareholder-table-td-value" data-value="data-otc-ES">${hc_data.zgb}</td>
                                 </tr>
                                 <tr class="otc-equity-shareholder-table-tr">

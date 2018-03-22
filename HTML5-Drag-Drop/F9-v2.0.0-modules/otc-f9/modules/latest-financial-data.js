@@ -85,7 +85,8 @@ OTC_F9_FV.Modules.latestFinancialData = OTC_F9_FV.Modules.latestFinancialData ||
                                 <span>财务数据摘要</span>
                                 <span data-title-span="td-colspan-span">(${datas["cwzy"].bgq})</span>
                             `;
-                            const ui_tds2 = ["jbmgsy", "yysr", "zczj", "xsmgsy", "yylr", "fzzj", "mgsykc", "lrze", "mgjzc", "jzc", "jlr", "llje", "mgllje", "jlrkc", "zzctbzz", "jzcsyljq", "yysrtbzz", "xsmll", "kcjq", "jlrtbzz", "zcfzl"];
+                            // fixed UI
+                            const ui_tds2 = ["jbmgsy", "yysr", "zczj", "xsmgsy", "yylr", "fzzj", "mgsykc", "lrze", "jzc", "mgjzc", "jlr", "llje", "mgllje", "jlrkc", "zzctbzz", "jzcsyljq", "yysrtbzz", "xsmll", "kcjq", "jlrtbzz", "zcfzl"];
                             // (tds.length - 1) && no tfoot!
                             for (let i = 12; i < tds.length - 1; i++) {
                                 let k = ui_tds2[i - 12];
