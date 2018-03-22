@@ -839,7 +839,7 @@ STOCK_F9_FV.Modules.loadAllModules = STOCK_F9_FV.Modules.loadAllModules || (
                                                     今年以来涨跌幅
                                                     <span data-title-span="small-span"></span> 3个月涨跌幅
                                                     <span data-title-span="small-span"></span>
-                                                    <br> 52周涨跌幅
+                                                    <br> 12个月涨跌幅
                                                     <span data-title-span="small-span"></span>
                                                 </p>
                                             </div>
