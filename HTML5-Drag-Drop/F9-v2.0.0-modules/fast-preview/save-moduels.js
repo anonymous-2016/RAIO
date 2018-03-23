@@ -15,6 +15,7 @@ const decodeBase64 = (serialize = ``) => {
 window.STOCK_UCODE = "43003";
 window.STOCK_UCODE = parseInt(window.STOCK_UCODE);
 
+// counter = 0;
 
 window.STOCK_ModuleID = ``;
 
@@ -51,7 +52,10 @@ const getModules = (options = {}, debug = false) => {
                 if (json.items.length > 0) {
                     const {id, pid, name, value} = json.items[0];
                     result = {id, pid, name, value};
+                    window.STOCK_ModuleID = id;
+                    console.log(`getModules OK`);
                 }else{
+                    console.log(`getModules bad`);
                     // initial
                     const initial_type = 4;
                     const initial_name = `默认配置`;
@@ -68,6 +72,9 @@ const getModules = (options = {}, debug = false) => {
             }else{
                 // no json.items
             }
+            if (debug) {
+                console.log(`get result =`, result);
+            }
             return result;
         } catch (error) {
             console.log(`json error =`, error)
@@ -75,7 +82,6 @@ const getModules = (options = {}, debug = false) => {
     })
     .catch(err => console.log(`fetch error =`, err));
 };
-
 
 
 const setModules = (url = {}, debug = false) => {
@@ -94,11 +100,15 @@ const setModules = (url = {}, debug = false) => {
                 if (json.flag && json.msg) {
                     const {flag, msg} = json;
                     result = flag;
+                    window.STOCK_ModuleID = msg;
                 }else{
                     // initial faild
                 }
             }else{
                 // faild
+            }
+            if (debug) {
+                console.log(`set result =`, result);
             }
             return result;
         } catch (error) {
@@ -108,7 +118,7 @@ const setModules = (url = {}, debug = false) => {
     .catch(err => console.log(`fetch error =`, err));
 };
 
-const updateModules = (options = {}, modules = {left: [], right: []}, id = ``, name = ``, debug = false) => {
+const updateModules = (options = {}, modules = {left: [], right: []}, name = ``, id = ``, debug = false) => {
     const {
         uip,
         path,
@@ -118,9 +128,10 @@ const updateModules = (options = {}, modules = {left: [], right: []}, id = ``, n
         update_type,
         dafault_name
     } = options;
-    let update_name = name ? name : dafault_name,
+    let update_id = id ? id : window.STOCK_ModuleID,
+        update_name = name ? name : dafault_name,
         update_values = encodeBase64(modules);
-    const url = `${uip}${path}?type=${update_type}&pid=${pid}&ucode=${ucode}&id=${id}&name=${update_name}&value=${update_values}`;
+    const url = `${uip}${path}?type=${update_type}&pid=${pid}&ucode=${ucode}&id=${update_id}&name=${update_name}&value=${update_values}`;
     if (debug) {
         console.log(`update url =`, url);
     }
@@ -158,14 +169,14 @@ let modules = {
 };
 // serialize / serialization 序列化
 
-// ucode=4300000003 ??? write id
+
 
 // getModules(options, true);
-// updateModules(options, modules, 18109, `name = 默认配置`, true);
+// updateModules(options, modules, `name666默认配置`, window.STOCK_ModuleID, true);
 
+// params order
 
-
-
+// http://222.73.146.144/user/manager?type=3&pid=10005&ucode=43003&id=18094&name=name666默认配置&value=JTdCJTIybGVmdCUyMiUzQSU1QiUyMnN0b2NrZmFzdDAxJTIyJTJDJTIyc3RvY2tmYXN0MDQlMjIlMkMlMjJzdG9ja2Zhc3QwNyUyMiUyQyUyMmJ1bGxldGlvbiUyMiUyQyUyMnJlc2VhcmNoJTIyJTJDJTIyc3RvY2tmYXN0MDglMjIlMkMlMjJzdG9ja2Zhc3QwOSUyMiUyQyUyMnN0b2NrZmFzdDExJTIyJTVEJTJDJTIycmlnaHQlMjIlM0ElNUIlMjJzdG9ja2Zhc3QwMSUyMiUyQyUyMnN0b2NrZmFzdDA0JTIyJTJDJTIyc3RvY2tmYXN0MDclMjIlMkMlMjJidWxsZXRpb24lMjIlMkMlMjJyZXNlYXJjaCUyMiUyQyUyMnN0b2NrZmFzdDA4JTIyJTJDJTIyc3RvY2tmYXN0MDklMjIlMkMlMjJzdG9ja2Zhc3QxMSUyMiU1RCU3RA==
 
 
 /*
