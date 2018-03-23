@@ -12,142 +12,113 @@ const decodeBase64 = (serialize = ``) => {
 };
 
 
+
 window.STOCK_UCODE = "43003";
 window.STOCK_UCODE = parseInt(window.STOCK_UCODE);
+// window.STOCK_UCODE = 43003;
 
-
-window.STOCK_ModuleID = ``;
+// string is OK
+// url = `http://222.73.146.144/user/manager?type=1&pid=10005&ucode=${window.STOCK_UCODE}`;
+// "http://222.73.146.144/user/manager?type=1&pid=10005&ucode=43003"
 
 // common config
 const options = {
     uip: `http://222.73.146.144`,// IP ??? CORS
     path: `/user/manager`,
     type: 1,
-    get_type: 1,
-    update_type: 3,
-    init_type: 4,
     pid: 10005,// stock f9
     ucode: window.STOCK_UCODE,
-    dafault_name: `默认配置`,
-    // dafault_value: ``,
 };
 
-const getModules = (options = {}, debug = false) => {
-    const {uip, path, type, pid, ucode} = options;
+const getModules = (options = {}) => {
+    const {uip, path, type, pid} = options;
     const url = `${uip}${path}?type=${type}&pid=${pid}&ucode=${ucode}`;
-    if (debug) {
-        console.log(`get url =`, url);
-    }
     // initial get
+    // http://222.73.146.144/user/manager?type=1&pid=10005&ucode=43003
     let result = {};
     fetch(url)
     .then(res => res.json())
     .then(json => {
+        console.log(`fetch json =`, json);
         try {
-            if (debug) {
-                console.log(`fetch json =`, json);
-            }
             if (json && json.items) {
                 if (json.items.length > 0) {
+                    // result.id = json.items[0].id;
+                    // result.pid = json.items[0].pid;
+                    // result.name = json.items[0].name;
+                    // result.value = json.items[0].value;
                     const {id, pid, name, value} = json.items[0];
                     result = {id, pid, name, value};
                 }else{
                     // initial
-                    const initial_type = 4;
-                    const initial_name = `默认配置`;
+                    // this.setModules();
                     const initial_modules = {
                         left: [],
                         right: []
                     };
                     let initial_values = encodeBase64(initial_modules);
-                    // "JTdCJTIybGVmdCUyMiUzQSU1QiU1RCUyQyUyMnJpZ2h0JTIyJTNBJTVCJTVEJTdE"
-                    let set_url = `${uip}${path}?type=${initial_type}&pid=${pid}&ucode=${ucode}&name=${initial_name}&value=${initial_values}`;
-                    result = setModules(set_url, debug);
-                    // true /false
+                    let set_url = `${url}&${initial_values}`;
+                    // http://222.73.146.144/user/manager?type=1&pid=10005&ucode=43003
+                    // http://222.73.146.144/user/manager?type=4&pid=10005&ucode=43003&name=默认配置&value=test
+                    setModules(set_url);
                 }
             }else{
-                // no json.items
+                // no items
             }
-            return result;
         } catch (error) {
             console.log(`json error =`, error)
         }
     })
     .catch(err => console.log(`fetch error =`, err));
+    return result;
 };
 
 
-
-const setModules = (url = {}, debug = false) => {
-    if (debug) {
-        console.log(`set url =`, url);
-    }
-    let result = `false`;
+// http://222.73.146.144/user/manager?type=1&pid=10005&ucode=43003
+// http://222.73.146.144/user/manager?type=4&pid=10005&ucode=43003&name=默认配置&value=test
+const setModules = (url = {}) => {
+    result = ``;
     fetch(url)
     .then(res => res.json())
     .then(json => {
+        console.log(`fetch json =`, json);
+        // {
+        //     "flag": "true",
+        //     "msg": "18094"
+        // }
         try {
-            if (debug) {
-                console.log(`fetch json =`, json);
-            }
             if (json) {
                 if (json.flag && json.msg) {
                     const {flag, msg} = json;
-                    result = flag;
+                    result = msg;
                 }else{
                     // initial faild
                 }
             }else{
                 // faild
             }
-            return result;
         } catch (error) {
             console.log(`json error =`, error)
         }
     })
     .catch(err => console.log(`fetch error =`, err));
+    return result;
 };
 
-const updateModules = (options = {}, modules = {left: [], right: []}, id = ``, name = ``, debug = false) => {
-    const {
-        uip,
-        path,
-        type,
-        pid,
-        ucode,
-        update_type,
-        dafault_name
-    } = options;
-    let update_name = name ? name : dafault_name,
-        update_values = encodeBase64(modules);
-    const url = `${uip}${path}?type=${update_type}&pid=${pid}&ucode=${ucode}&id=${id}&name=${update_name}&value=${update_values}`;
-    if (debug) {
-        console.log(`update url =`, url);
-    }
-    let result = `false`;
-    fetch(url)
-    .then(res => res.json())
-    .then(json => {
-        try {
-            if (debug) {
-                console.log(`fetch json =`, json);
-            }
-            if (json) {
-                if (json.flag && json.msg) {
-                    const {flag, msg} = json;
-                    result = flag;
-                }else{
-                    // update faild
-                }
-            }else{
-                // faild
-            }
-            return result;
-        } catch (error) {
-            console.log(`json error =`, error)
-        }
-    })
-    .catch(err => console.log(`fetch error =`, err));
+// const setModules = (options = {}) => {
+//     const {uip, path, type, pid} = options;
+//     const url = `${uip}${path}?type=${type}&pid=${pid}&ucode=${ucode}`;
+//     // http://222.73.146.144/user/manager?type=4&pid=10005&ucode=43003&name=default&value=test
+//     // http://222.73.146.144/user/manager?type=4&pid=10005&ucode=43003&name=默认配置&value=test
+//     // {
+//     //     "flag": "true",
+//     //     "msg": "18094"// id
+//     // }
+// };
+
+const updateModules = (options = {}) => {
+    const {uip, path, type, pid} = options;
+    const url = `${uip}${path}?type=${type}&pid=${pid}&ucode=${ucode}`;
 };
 
 
@@ -158,10 +129,6 @@ let modules = {
 };
 // serialize / serialization 序列化
 
-// ucode=4300000003 ??? write id
-
-// getModules(options, true);
-// updateModules(options, modules, 18109, `name = 默认配置`, true);
 
 
 
