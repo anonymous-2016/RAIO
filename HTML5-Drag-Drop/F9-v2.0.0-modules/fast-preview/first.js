@@ -84,6 +84,10 @@ document.addEventListener(`DOMContentLoaded`, () => {
 
 // cssLoader();
 
+// ucode
+window.STOCK_UCODE = window.STOCK_UCODE || ``;
+
+
 window.STOCK_IP = window.STOCK_IP || ``;
 window.STOCK_Paths = window.STOCK_Paths || ``;
 window.STOCK_SecCode = window.STOCK_SecCode || ``;
@@ -97,6 +101,12 @@ window.STOCK_IP = (url_origin.includes("http://localhost") || url_origin.include
 // http://localhost:3002/index.html?gilcode=600570.SH&skin=black
 window.STOCK_Paths = `/webservice/fastview/stock`;
 
+window.STOCK_UCODE = getParam(`ucode`);
+
+// setTimeout(() => {
+//     alert(`window.STOCK_SecCode = ${window.STOCK_SecCode}`);
+//     alert(`window.STOCK_UCODE = ${window.STOCK_UCODE}`);
+// }, 1000);
 
 // setTimeout(() => {
 //     // hide loading div & css

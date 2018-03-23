@@ -325,26 +325,33 @@ window.onload = () => {
             return result;
         };
         try {
-            if (window.ChromeExternal !== undefined) {
-                ChromeExternal.Execute("ChromeCommand", "PrintToPdf");
-                let timestamps = getNowTimeStamps(`stock速览`, `pdf`);
-                let url = window.parent.location.origin ? window.parent.location.origin : window.location.origin;
-                console.log(`URL `, url);
-                // ChromeExternal.Execute("ChromeCommand", "PrintToPdf");
-                // chrominum
-                // ChromeExternal.Execute("ChromeCommand", "PrintToPdf\文件名\Url")
-                // 备注：\文件名\Url 可选参数。
-                /// demo: ABC_2018010901011
-            }else{
-                console.log(`your are not run it in a terminal!`);
-                window.print();
-            }
+            ChromeExternal.Execute("ChromeCommand", "PrintToPdf");
+            let timestamps = getNowTimeStamps(`stock速览`, `pdf`);
+            let url = window.parent.location.origin ? window.parent.location.origin : window.location.origin;
+            // console.log(`URL `, url);
+            // if () {
+            //     ChromeExternal.Execute("ChromeCommand", "PrintToPdf");
+            //     let timestamps = getNowTimeStamps(`stock速览`, `pdf`);
+            //     let url = window.parent.location.origin ? window.parent.location.origin : window.location.origin;
+            //     console.log(`URL `, url);
+            //     // ChromeExternal.Execute("ChromeCommand", "PrintToPdf");
+            //     // chrominum
+            //     // ChromeExternal.Execute("ChromeCommand", "PrintToPdf\文件名\Url")
+            //     // 备注：\文件名\Url 可选参数。
+            //     /// demo: ABC_2018010901011
+            // }else{
+            //     if(window.ChromeExternal !== undefined){}
+            //     // console.log(`your are not run it in a terminal!`);
+            //     // window.print();
+            // }
             setTimeout(() => {
                 // show sidebar
                 small_btn.onclick();
-            }, 0);
+            }, 1000);
         } catch (error) {
             console.log(`%c ChromeExternal & caught error = \n`, `color: red; font-size: 23px;`, error);
+            // console.log(`your are not run it in a terminal!`);
+            window.print();
             setTimeout(() => {
                 // show sidebar
                 small_btn.onclick();
