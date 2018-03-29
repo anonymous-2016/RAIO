@@ -1,0 +1,106 @@
+@media print {
+    body {
+        color: #000;
+        background: #fff;
+        -webkit-print-color-adjust: exact;
+        color-adjust: exact
+    }
+    a[href^=http]:after {
+        content: " <" attr(href) "> "
+    }
+    @page {
+        margin: 2cm
+    }
+    .doc-head,
+    .doc-head-spacer,
+    .footer,
+    .header,
+    .lark-like,
+    .lark-like-doc,
+    .lark-question,
+    .main-catalog,
+    .main-catalog-target,
+    .main-crumb-rgt,
+    .main-meta-item .directory {
+        display: none
+    }
+    .main-wrapper {
+        padding: 0;
+        width: 960px;
+        background-color: #fff
+    }
+    .main-wrapper .doc-aside,
+    .main-wrapper .doc-comment,
+    .main-wrapper .doc-head,
+    .main-wrapper .doc-head-spacer,
+    .main-wrapper .doc-page-nav {
+        display: none!important
+    }
+    .main-wrapper .doc-article {
+        border: 0;
+        margin: 0;
+        padding: 0;
+        width: 100%
+    }
+    .main-wrapper .doc-article .meta {
+        display: none
+    }
+    .typo-title {
+        font-size: 20pt;
+        line-height: 1.5
+    }
+    .typo-title:after {
+        display: none
+    }
+    .typo-content {
+        font-size: 10.5pt;
+        line-height: 1.5
+    }
+    .typo-content li,
+    .typo-content p {
+        font-weight: 400
+    }
+    .typo-content h1 {
+        font-size: 18pt;
+        margin-top: 2em;
+        margin-bottom: .5em
+    }
+    .typo-content h2 {
+        font-size: 16pt;
+        margin-top: 1.7em;
+        margin-bottom: .5em
+    }
+    .typo-content h3 {
+        font-size: 15pt;
+        margin-top: 1.4em;
+        margin-bottom: .5em
+    }
+    .typo-content h4 {
+        font-size: 14pt;
+        margin-top: 1em;
+        margin-bottom: .5em
+    }
+    .typo-content h5 {
+        font-size: 13pt
+    }
+    .typo-content h5,
+    .typo-content h6 {
+        font-weight: 700;
+        margin-top: 1em;
+        margin-bottom: .5em
+    }
+    .typo-content h6 {
+        font-size: 12pt
+    }
+    .typo-content p {
+        margin-bottom: 1em
+    }
+    .typo-content pre code {
+        word-break: break-all;
+        white-space: pre-wrap;
+        white-space: -moz-pre-wrap;
+        white-space: -pre-wrap;
+        white-space: -o-pre-wrap;
+        word-wrap: break-word
+    }
+}
